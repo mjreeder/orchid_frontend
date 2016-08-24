@@ -1,0 +1,12 @@
+main a {
+    font-size: 50px;
+    padding: 20px;
+    background-color: rgba(255,255,255,.7);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+
+

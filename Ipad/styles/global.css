@@ -1,0 +1,248 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+@font-face {
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-regular.eot");
+	src: url("../fonts/aleo/aleo-regular.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-regular.woff") format("woff"),
+		 url("../fonts/aleo/aleo-regular.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-regular.svg#aleoregular") format("svg");
+	font-weight: 400;
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-light.eot");
+	src: url("../fonts/aleo/aleo-light.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-light.woff") format("woff"),
+		 url("../fonts/aleo/aleo-light.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-light.svg#aleolight") format("svg");
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face{
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-bold.eot");
+	src: url("../fonts/aleo/aleo-bold.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-bold.woff") format("woff"),
+		 url("../fonts/aleo/aleo-bold.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-bold.svg#aleobold") format("svg");
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-italic.eot");
+	src: url("../fonts/aleo/aleo-italic.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-italic.woff") format("woff"),
+		 url("../fonts/aleo/aleo-italic.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-italic.svg#aleoitalic") format("svg");
+	font-weight: 400;
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-lightitalic.eot");
+	src: url("../fonts/aleo/aleo-lightitalic.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-lightitalic.woff") format("woff"),
+		 url("../fonts/aleo/aleo-lightitalic.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-lightitalic.svg#aleolightitalic") format("svg");
+	font-weight: 100;
+	font-style: italic;
+}
+
+@font-face{
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-bolditalic.eot");
+	src: url("../fonts/aleo/aleo-bolditalic.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-bolditalic.woff") format("woff"),
+		 url("../fonts/aleo/aleo-bolditalic.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-bolditalic.svg#aleobolditalic") format("svg");
+	font-weight: 700;
+	font-style: italic;
+}
+
+
+
+
+
+
+header {
+    background-color: #666666;
+    height: 150px;
+}
+
+header li a {
+    list-style-type: none;
+    margin-left: 20px;
+    float: right;
+    background-color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-family: Aleo, serif;
+    font-weight: 400;
+    font-size:20px; 
+    text-decoration: none; 
+    color: black; 
+    float: top; 
+    margin-top: -10px;
+}
+
+header ul {
+padding: 60px; 
+}
+
+header img {
+    width: 100px;
+    float: left;
+    padding: 30px; 
+}
+
+
+body {
+ font-family: Raleway, sans-serif; 
+    color: black;
+}
+

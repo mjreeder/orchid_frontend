@@ -1,0 +1,192 @@
+main h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Aleo, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: Aleo, 'Times New Roman', Times, serif;
+    font-weight: 100;
+    font-size: 17px;
+}
+
+main form div {
+    margin: 20px 0;
+}
+
+main label {
+    display: block;
+    margin: 5px 0;
+}
+
+.message {
+    margin: 0 0 20px 0;
+}
+
+#name-section {
+    width: 45%;
+    float: left;
+}
+
+#email-section {
+    width: 45%;
+    float: right;
+}
+
+#subject-section {
+    clear: both;
+}
+
+main h2 {
+    margin: 50px 0 10px 0px;
+    font-family: Aleo, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 22px;
+    text-align: center;
+}
+
+main img {
+    margin: 20px 10px 0 65px;
+}
+
+main ul li a {
+    margin: 20px 10px 0 65px;
+}
+
+main a {
+    text-decoration: underline;
+}
+
+main form input {
+    padding: 2px;
+    font-size: 15px;
+    border: 2px solid #000000;
+}
+
+main form #subject-section input {
+    width: 428px;
+}
+
+main form textarea {
+    padding: 5px;
+    font-size: 15px;
+    width: 428px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    border: 2px solid #000000;
+    position: inline-block;
+    vertical-align: top;
+}
+
+#button {
+    padding: 8px 40px;
+    color: white;
+    background-color: black;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#button:hover {
+    background-color: #ba0c2f;
+    transition: .5s ease;
+}
+
+#submit-container {
+    text-align: center;
+}
+
+main form {
+    width: 428px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+main {
+    position: relative;
+}
+
+main form input[type=text] {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+}
+
+body {
+    background: url(../images/background42.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+main p {
+    line-height: 140%;
+    text-align: center;
+}
+
+main span {
+    height: 50px;
+    position: relative;
+    top: 20px;
+    width: 50px;
+    display: inline-block;
+    margin-right: 20px;
+    margin-left: 85px;
+}
+
+.facebook span {
+    background: transparent url(../images/facebook.svg) center top no-repeat;
+}
+
+
+/* mouse over link */
+
+.facebook span:hover {
+    background-image: url(../images/facebook_hover.svg);
+}
+
+.instagram span{
+    background: transparent url(../images/instagram.svg) center top no-repeat;
+}
+
+
+/* mouse over link*/
+.instagram span:hover {
+    background-image: url(../images/instagram_hover.svg);
+}
+
+/* mouse over link */
+
+main ul li a:hover {
+    transition: .5sec ease;
+    color: #ab0c2f;
+}
+
+
+/* mouse over link */
+
+.visit p a:hover {
+    transition: .5sec ease;
+    color: #ab0c2f;
+}
+
+.location {
+    margin: 50px 0 0 0;
+}
+
+.location h2 {
+    margin: 20px 0 10px 0
+}
+
+.location ul {
+    margin: 30px 0 0 150px;
+}
+
+.location li {
+    margin: 10px 0;
+}

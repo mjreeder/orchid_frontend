@@ -1,0 +1,31 @@
+main nav ul li {
+    float: left;
+    width: 33.333333333%;
+    font-family: Aleo;
+    font-size: 20px;
+    font-weight: 100;
+    background-color: black;
+    text-align: center;
+    padding: 22px 0;
+}
+
+main nav ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+
+#active {
+    color: black;
+    font-weight: 400;
+    background-color: white;
+    padding: 20px 30px 20px 30px; 
+    border-top-left-radius: 8px; 
+    border-top-right-radius: 8px; 
+}
+
+main img {
+    width: 100%;
+    margin-top: 40px;
+}
+

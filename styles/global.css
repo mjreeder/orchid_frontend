@@ -1,0 +1,354 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+@font-face {
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-regular.eot");
+	src: url("../fonts/aleo/aleo-regular.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-regular.woff") format("woff"),
+		 url("../fonts/aleo/aleo-regular.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-regular.svg#aleoregular") format("svg");
+	font-weight: 400;
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-light.eot");
+	src: url("../fonts/aleo/aleo-light.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-light.woff") format("woff"),
+		 url("../fonts/aleo/aleo-light.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-light.svg#aleolight") format("svg");
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face{
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-bold.eot");
+	src: url("../fonts/aleo/aleo-bold.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-bold.woff") format("woff"),
+		 url("../fonts/aleo/aleo-bold.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-bold.svg#aleobold") format("svg");
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-italic.eot");
+	src: url("../fonts/aleo/aleo-italic.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-italic.woff") format("woff"),
+		 url("../fonts/aleo/aleo-italic.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-italic.svg#aleoitalic") format("svg");
+	font-weight: 400;
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-lightitalic.eot");
+	src: url("../fonts/aleo/aleo-lightitalic.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-lightitalic.woff") format("woff"),
+		 url("../fonts/aleo/aleo-lightitalic.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-lightitalic.svg#aleolightitalic") format("svg");
+	font-weight: 100;
+	font-style: italic;
+}
+
+@font-face{
+	font-family: 'Aleo';
+	src: url("../fonts/aleo/aleo-bolditalic.eot");
+	src: url("../fonts/aleo/aleo-bolditalic.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/aleo/aleo-bolditalic.woff") format("woff"),
+		 url("../fonts/aleo/aleo-bolditalic.ttf") format("truetype"),
+		 url("../fonts/aleo/aleo-bolditalic.svg#aleobolditalic") format("svg");
+	font-weight: 700;
+	font-style: italic;
+}
+
+*{
+  box-sizing: border-box;  
+}
+
+body {
+    background: url(../images/background12.jpg);
+    background-size: cover;
+    background-position: center center;
+    font-family: 'Raleway', sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+
+header h1 {
+    text-align: center;
+    margin: 30px;
+}
+
+header img {
+    width: 150px;
+}
+
+header nav {
+    background-color: rgba(255, 255, 255, .7);
+}
+
+header ul {
+    list-style: none;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;  
+}
+
+/* mouse over link */
+header ul li a:hover{
+    transition: .5sec ease;
+    color: #ab0c2f;
+}
+
+
+header a {   
+  font-family:Aleo, 'Times New Roman', Times, serif;  
+    font-weight: 100;
+}
+header li {
+    display: inline-block;
+    font-size: 22px; 
+    color:black;
+}
+
+footer {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+footer img {
+    width: 300px;
+}
+
+a {
+    text-decoration: none;
+    color:black; 
+}
+
+main {
+    margin-bottom: 30px;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto 50px;
+    background-color: rgba(255, 255, 255, .7);
+    padding: 30px;
+}
+
+
+
+
+
+
+.menubox {
+    font-family: Aleo, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 18px;
+    max-width: 220px;
+    float: right;
+    width: 20%
+}
+
+.whitebox {
+    background-color: white;
+    padding: 10px 20px;
+}
+
+
+main aside li {
+    margin: 15px;
+}
+
+.countries {
+    font-family: Aleo, 'Times New Roman', Times, serif;
+    font-weight: 100;
+    font-size: 15px;
+    margin-left: 25px;
+}
+
+hr {
+    width: 190px;
+    height: 1.4px;
+    background: black;
+    border-style: none;
+    align-items: center;
+}
+
+#search {
+    width: 180px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    border: none;
+    letter-spacing: .5px;
+}
+
+.menubox li a:hover {
+    color: #ab0c2f;
+    transition: .5sec ease;
+}
+
+
+main h4 {
+   text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 22px;
+}
+.box {
+    float: right;
+    margin: 30px 20px;
+}
