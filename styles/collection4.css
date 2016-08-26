@@ -21,7 +21,6 @@ main menu h1  {
 main menu {
     background-color: rgba(0, 0, 0, .4);
     height: 105px;
-    
 }
 
 #plants li a h3:hover {
@@ -58,7 +57,7 @@ body {
     color: #ab0c2f;
 }
 
-#collection1 {
+#collection4 {
     color: #ab0c2f;
 }
 
@@ -117,7 +116,7 @@ hr {
 
 
 main h4 {
-   text-transform: uppercase;
+    text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 22px;
 }

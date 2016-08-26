@@ -14,13 +14,13 @@ main menu h1  {
     font-size: 30px;
     color: white;
     letter-spacing: 1.5px;
-    /*    background-color: rgba(0, 0, 0, .4);*/
+/*        background-color: rgba(0, 0, 0, .4);*/
     padding: 40px 0 20px 0;
 }
 
 main menu {
     background-color: rgba(0, 0, 0, .4);
-    height: 143px
+    height: 143px;
     
 }
 
