@@ -8,19 +8,19 @@ body {
 
 main menu h1  {
     text-align: center;
-    margin-bottom: 20px;
+/*    margin-bottom: 20px;*/
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 400;
     font-size: 30px;
     color: white;
     letter-spacing: 1.5px;
-/*        background-color: rgba(0, 0, 0, .4);*/
+    /*    background-color: rgba(0, 0, 0, .4);*/
     padding: 40px 0 20px 0;
 }
 
 main menu {
     background-color: rgba(0, 0, 0, .4);
-    height: 143px;
+    height: 105px;
     
 }
 
@@ -29,11 +29,6 @@ main menu {
     transition: .5sec ease;
 }
 
-
-#tabs li {
-    display: inline-block;
-    margin: 0 .9%;
-}
 
 main {
     background: none;
@@ -48,20 +43,6 @@ main menu li a {
     letter-spacing: 2px;
 }
 
-main menu li a:hover{
-    color: #ab0c2f;
-    transition: .5sec ease; 
-}
-
-.active a {
-    background-color: rgba(250, 250, 250, .7);
-    padding: 10px 15px;
-    color: black;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-
 
 #plants {
     float: left;
@@ -73,7 +54,7 @@ body {
     position: relative;
 }
 
-#alphabetical {
+#subfamilies, #subfam1 {
     color: #ab0c2f;
 }
 

@@ -81,7 +81,7 @@ main aside li {
     margin: 15px;
 }
 
-.special {
+.subfam, .special, .countries {
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 100;
     font-size: 15px;
