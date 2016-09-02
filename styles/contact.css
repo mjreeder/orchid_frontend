@@ -141,6 +141,7 @@ main span {
 
 .facebook span {
     background: transparent url(../images/facebook.svg) center top no-repeat;
+    transition: .5s ease; 
 }
 
 
@@ -152,6 +153,7 @@ main span {
 
 .instagram span{
     background: transparent url(../images/instagram.svg) center top no-repeat;
+    transition: .5s ease; 
 }
 
 
