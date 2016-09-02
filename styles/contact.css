@@ -90,6 +90,7 @@ main form textarea {
     font-weight: 100;
     border-radius: 8px;
     cursor: pointer;
+    border: none; 
 }
 
 #button:hover {

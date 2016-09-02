@@ -64,10 +64,17 @@ body {
     position: relative;
 }
 
-#countries {
+.selected {
     color: #ab0c2f;
 }
 
+#country {
+    color: #ab0c2f;
+}
+
+#europe {
+    color: #ab0c2f;
+}
 
 
 .menubox {

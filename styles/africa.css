@@ -1,0 +1,185 @@
+body {
+    background: url(../images/background16.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+main menu h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Aleo, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 30px;
+    color: white;
+    letter-spacing: 1.5px;
+    /*    background-color: rgba(0, 0, 0, .4);*/
+    padding: 40px 0 20px 0;
+}
+
+main menu {
+    background-color: rgba(0, 0, 0, .4);
+    height: 143px;
+}
+
+#tabs li  {
+    display: inline-block;
+    margin: 0 3%;
+}
+
+main {
+    background: none;
+    max-width: none;
+}
+
+main menu li a {
+    font-family: Aleo, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: white;
+    letter-spacing: 2px;
+}
+
+main menu li a:hover {
+    color: #ab0c2f;
+    transition: .5sec ease;
+}
+
+.active a {
+    background-color: rgba(250, 250, 250, .7);
+    padding: 10px 20px;
+    color: black;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#plants {
+    float: left;
+    width: 74%;
+    margin: 50px 0 50px 50px;
+}
+
+body {
+    position: relative;
+}
+
+.selected {
+    color: #ab0c2f;
+}
+
+#country {
+    color: #ab0c2f;
+}
+
+#africa {
+    color: #ab0c2f;
+}
+
+
+.menubox {
+    font-family: Aleo, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 18px;
+    max-width: 220px;
+    float: right;
+    width: 20%
+}
+
+.whitebox {
+    background-color: white;
+    padding: 10px 20px;
+}
+
+main aside li {
+    margin: 15px;
+}
+
+.subfam, .special, .countries {
+    font-family: Aleo, 'Times New Roman', Times, serif;
+    font-weight: 100;
+    font-size: 15px;
+    margin-left: 25px;
+}
+
+hr {
+    width: 190px;
+    height: 1.4px;
+    background: black;
+    border-style: none;
+    align-items: center;
+}
+
+#search {
+    width: 180px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    border: none;
+    letter-spacing: .5px;
+}
+
+.menubox li a:hover {
+    color: #ab0c2f;
+    transition: .5sec ease;
+}
+
+main h4 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 22px;
+}
+
+.box {
+    float: right;
+    margin: 30px 20px;
+}
+
+#grid {
+    background-color: rgba(225, 225, 225, .7);
+    overflow: hidden;
+    position: inline-block;
+}
+
+#plants li {
+    display: inline-block;
+    width: 22%;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+#plants img {
+    width: 100%;
+}
+
+#plants li a h3:hover {
+    color: #ab0c2f;
+    transition: .5sec ease;
+}
+
+#plants li img:hover > overlay{
+   background: rgba(0, 0, 0, .4);
+    
+}
+
+#plants li h3 {
+    font-family: Aleo, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, .4);
+    color: white;
+    padding: 6px;
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
+

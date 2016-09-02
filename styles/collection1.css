@@ -24,7 +24,14 @@ main menu {
     
 }
 
+/*
 #plants li a h3:hover {
+    color: #ab0c2f;
+    transition: .5sec ease;
+}
+*/
+
+.hover:hover {
     color: #ab0c2f;
     transition: .5sec ease;
 }
