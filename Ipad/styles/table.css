@@ -1,3 +1,7 @@
+a {
+    text-decoration: none;
+}
+
 main nav ul li {
     float: left;
     width: 33.333333333%;
@@ -6,12 +10,16 @@ main nav ul li {
     font-weight: 100;
     background-color: black;
     text-align: center;
-    padding: 22px 0;
+    padding: 32px 0 22px 0;
 }
 
 main nav ul li a {
     text-decoration: none;
     color: white;
+}
+
+main nav ul {
+    overflow: hidden;
 }
 
 #active {
@@ -23,65 +31,73 @@ main nav ul li a {
     border-top-right-radius: 8px;
 }
 
-main header {
+
+
+/*page nav*/
+.page-nav{
     background: none;
+    text-align: center;
+    position: relative;
+    height: auto;
+}
+
+
+#A img, #B img {
+    height: 50px;
+    display: block; 
 }
 
 #A {
-    float: left;
-    margin-top: 20px;
-    display: inline-block;
+    left: 2.5%;
 }
 
 #B {
-    float: right;
-    margin-top: -15px;
-    display: inline-block;
+    right: 2.5%;
 }
 
-.AandB {
+#A, #B {
     font-family: Aleo;
     font-weight: 400;
-    display: inline-block;
+    display: inline;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.AandB a {
+#A a, #B a {
     text-decoration: none;
     color: black;
-    display: inline-block;
+    display: inline
 }
 
-#B img {
-    margin-right: -105px;
-    display: inline-block;
-}
-
-#A a {
-    margin-left: -105px;
-    display: inline-block;
-}
-
-#B a {
-    margin-right: 50px;
-    display: inline-block;
-}
 
 main header h1 {
     font-family: Aleo;
     font-size: 35px;
+    text-align: center;
+    height: 130px;
+    line-height: 130px; 
 }
 
-#title {
-    display: inline-block;
+
+
+
+/*TABLE*/
+
+#center-table {
+    margin:auto; 
+    align-items: center;
 }
 
 main table {
-    margin: 50px 28px 50px 28px;
+    margin: 0 auto;
     background-color: #b3b3b3;
     width: 100%;
+    border-collapse:collapse; 
+    width: 95%;
 }
 
-table thead {
+thead {
     background-color: black;
     color: white;
     font-family: Aleo;
@@ -92,7 +108,8 @@ table thead {
 table,
 td,
 th {
-    border: 4px solid white;
+    border-bottom: 4px solid white;
+    border-left: 4px solid white; 
     height: 50px;
     text-align: center;
     vertical-align: middle;
@@ -103,64 +120,143 @@ th {
 }
 
 
-/*tbody tr input[type="checkbox"] {*/
-
-display:none;
-
+/*
+tbody tr input[type="checkbox"] {
+    display:none;
 }
+*/
 
-/*tbody tr input[type="checkbox"] {*/
-width: 20px;
-height: 20px;
+/*
+tbody tr input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    background:url(checkmark.svg);
+    cursor: pointer;
+}
+*/
+
+/*
+tbody tr input[type="checkbox"]:checked {
 background:url(checkmark.svg);
-cursor: pointer;
-
 }
+*/
 
-/*tbody tr input[type="checkbox"]:checked {*/
-background:url(checkmark.svg);
-
-}
-footer p {
-    background-color: black;
+#moveplants a {
+    background-color: #2B2E30;
+    text-decoration: none; 
     color: white;
     font-family: Raleway;
     font-size: 20px;
-    padding: 50px 40px;
-    display: inline-block;
+    padding: 15px 20px;
+    float: right;
+    margin: 2.5% 2.5% 0 0;
+    border-radius: 8px;
 }
-footer img {
-    width: 75px;
+
+#moveplants {
+    overflow: hidden;
 }
 
 
+
+
+/*POP UP*/
 .flower-popup {
-    width: 80%;
+    background-color: rgba(0, 0, 0, .7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
+.flower-popup form {
+    width: 75%;
     background-color: white;
     border: 4px solid black;
-float: left;
-    margin-left: 75px; 
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    box-sizing: border-box;
 }
 
-.flower-popup label p {
- font-family: aleo;
+.center h1 {
+    text-align: center;
+    font-family: aleo;
     font-size: 20px; 
-    padding: 10px
+    height: 30px;
 }
+
+.flower-popup {
+    margin-top:
+}
+
+.flower-popup label {
+    font-family: aleo;
+    font-size: 14px; 
+    margin: 0 0 5px 5px
+}
+
+.flower-popup button {
+    color: 
+}
+
+
 
 .flower-popup textarea {
     border: 4px solid black; 
     font-family: aleo; 
     color: #b3b3b3;
     font-size: 12px; 
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    height: 50px;
+    margin: 5px 0 0 0;
 }
 
-#sprayed-for-pests label {
-    font-family: aleo; 
-    font-size: 20px; 
-    padding: 10px;
+
+#current-health a {
+    background-color: #2B2E30;
+    text-decoration: none; 
+    color: white;
+    font-family: Raleway;
+    font-size: 14px;
+    padding: 10px 15px;
+    margin: 5px 15px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+#more-info {
+    background-color: #2B2E30;
+    text-decoration: none; 
+    color: white;
+    font-family: Raleway;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: block;
+}
+
+
+.flower-popup img {
+    height: 30px; 
+    width: auto;
     
-}  
+}
+
+#close {
+    position:absolute;
+    right: 15px;
+    top: 15px; 
+}
+
+
+
 
 
 

@@ -234,8 +234,8 @@ header ul {
 padding: 60px; 
 }
 
-header img {
-    width: 100px;
+#logo {
+    width: 97px;
     float: left;
     padding: 30px; 
 }
