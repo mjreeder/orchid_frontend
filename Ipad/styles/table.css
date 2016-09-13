@@ -70,6 +70,10 @@ main nav ul {
     display: inline
 }
 
+#A img, #B img {
+    padding-top: 5px; 
+}
+
 
 main header h1 {
     font-family: Aleo;
@@ -110,36 +114,37 @@ td,
 th {
     border-bottom: 4px solid white;
     border-left: 4px solid white; 
-    height: 50px;
     text-align: center;
     vertical-align: middle;
+    padding: 10px;
+    height: auto; 
 }
 
-.red {
+td:nth-child(1){
+    width: 20%;
+}
+
+td:nth-child(2){
+    width:40% 
+}
+
+td:nth-child(3){
+    width: 20%; 
+}
+
+td:nth-child(4){
+    width: 20%;
+}
+
+td{
+    vertical-align: top; 
+}
+
+
+.flagged {
     background-color: rgba(237, 28, 36, 0.3);
 }
 
-
-/*
-tbody tr input[type="checkbox"] {
-    display:none;
-}
-*/
-
-/*
-tbody tr input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    background:url(checkmark.svg);
-    cursor: pointer;
-}
-*/
-
-/*
-tbody tr input[type="checkbox"]:checked {
-background:url(checkmark.svg);
-}
-*/
 
 #moveplants a {
     background-color: #2B2E30;
@@ -161,6 +166,12 @@ background:url(checkmark.svg);
 
 
 /*POP UP*/
+#close {
+    position:absolute;
+    right: 15px;
+    top: 15px; 
+}
+
 .flower-popup {
     background-color: rgba(0, 0, 0, .7);
     position: fixed;
@@ -168,7 +179,6 @@ background:url(checkmark.svg);
     left: 0;
     width: 100%;
     height: 100%;
-
 }
 
 .flower-popup form {
@@ -186,25 +196,19 @@ background:url(checkmark.svg);
 .center h1 {
     text-align: center;
     font-family: aleo;
-    font-size: 20px; 
+    font-size: 22px; 
     height: 30px;
 }
 
-.flower-popup {
-    margin-top:
+.top-margin {
+    margin-top: 10px;
 }
 
 .flower-popup label {
     font-family: aleo;
-    font-size: 14px; 
-    margin: 0 0 5px 5px
+    font-size: 18px; 
+    margin: 0 0 5px 5px;
 }
-
-.flower-popup button {
-    color: 
-}
-
-
 
 .flower-popup textarea {
     border: 4px solid black; 
@@ -218,8 +222,7 @@ background:url(checkmark.svg);
     margin: 5px 0 0 0;
 }
 
-
-#current-health a {
+#current-health button, .today, #save, #more-info {
     background-color: #2B2E30;
     text-decoration: none; 
     color: white;
@@ -231,33 +234,42 @@ background:url(checkmark.svg);
     display: inline-block;
 }
 
-#more-info {
-    background-color: #2B2E30;
-    text-decoration: none; 
-    color: white;
-    font-family: Raleway;
-    font-size: 14px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    display: block;
+.today {
+/*    margin: 0; */
 }
 
+.today:active {
+    background-color: #BA0C2F;
+}
+
+#current-health button:active {
+    background-color: #BA0C3F;
+}
+
+#current-health {
+    font-family: aleo;
+    font-size: 18px; 
+    margin-left: 5px; 
+    margin-bottom: 5px; 
+}
 
 .flower-popup img {
     height: 30px; 
     width: auto;
-    
 }
 
-#close {
-    position:absolute;
-    right: 15px;
-    top: 15px; 
+.calendar {
+    transform: translateY(25%)
 }
 
+#save {
+    float: right;
+}
 
+#more-info, #save {
+    margin-top: 20px; 
+}
 
-
-
-
-
+#more-info a {
+    color: white; 
+}

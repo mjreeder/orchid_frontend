@@ -51,17 +51,17 @@
                         <class id="name"> Name </class>
                     </th>
                     <th>
-                        <class id="blooming"> Blooming Today</class>
+                        <class id="blooming">Verified Today</class>
                     </th>
                     <th>
-                        <class id="has pests"> Has Pests</class>
+                        <class id="has pests">Last Verified</class>
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>lorem ipsum</td>
-                    <td>lorem ipsum</td>
+                    <td>19960217124</td>
+                    <td>Agave tequilana 'Weber's Blue'</td>
                     <td>
                         <label>
                             <input type="checkbox">
@@ -69,13 +69,13 @@
                     </td>
                     <td>
                         <label>
-                            <input type="checkbox">
+                            <p>10/10/16</p>
                         </label>
                     </td>
                 </tr>
                 <tr>
-                    <td>lorem ipsum</td>
-                    <td>lorem ipsum</td>
+                    <td>19960217123</td>
+                    <td>lorem ipsumo plant name</td>
                     <td>
                         <label>
                             <input type="checkbox">
@@ -83,12 +83,12 @@
                     </td>
                     <td>
                         <label>
-                            <input type="checkbox">
+                            <p>10/6/16</p>
                         </label>
                     </td>
                 </tr>
-                <tr class="red">
-                        <td>lorem ipsum</td>
+                <tr class="flagged">
+                        <td>19960217125</td>
                         <td>lorem ipsum</td>
                         <td>
                             <label>
@@ -97,35 +97,18 @@
                         </td>
                         <td>
                             <label>
-                                <input type="checkbox">
+                                <p>10/10/16</p>
                             </label>
                         </td>
                 </tr>
-                    <tr>
-                        <td>lorem ipsum</td>
-                        <td>lorem ipsum</td>
-                        <td>
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                        </td>
-                        <td>
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                        </td>
-                    </tr>
             </tbody>
         </table>
         </div>
         
         <footer id="moveplants">
             <a href="#">Move Plants</a>
-
+<!--            <a href="#">Change Table</a>-->
         </footer>
-        
-        
-        <img src="images/checkmark.svg" alt="checkmark" width="15" />
 
 
 <!--POP UP-->
@@ -133,67 +116,54 @@
             <form action="">
                 <div class="center"><h1>Lorem Ipsum Plant Name</h1></div>
                 
-                <button><img src="images/x.svg" alt="" id="close"></button>
+                <button id="close"><img src="images/x.svg" alt="" ></button>
                 
-                <label>Blooming today:
-                        <button>Today</button>
-                        <button><img src="images/calendaricon.svg" alt=""></button>
-                </label>
-
-                
-
-                <textarea name="comments" cols="70" rows="4">Comment here about blooming.
-                </textarea>
-
-<!--
-                <label>
-                    <p>Pests:
-                        <input type="checkbox">
-                    </p>
-                </label>
-
-                <textarea name="comments" cols="70" rows="4">Comment here about pests.
-                </textarea>
--->
-
-
                 <section>
-                    <label>Sprayed for pests:
-                        <input type="checkbox">
-                    </label>
-                    <button><img src="images/calendaricon.svg" alt=""></button>
+                <div class="top-margin">
+                <label>Blooming:</label>
+                    <button class="today">Today</button>
+                    <button class="calendar"><img src="images/calendaricon.svg" alt=""></button>
+                    <label>10/10/16</label>
+                <textarea name="comments" cols="70" rows="4">Comment here about blooming.</textarea>
+                </div>
+
+                <div class="top-margin">
+                    <label>Sprayed for pests:</label>
+                        <button class="today">Today</button>
+                    <button class="calendar"><img src="images/calendaricon.svg" alt=""></button>
+                    <label>10/10/16</label>
                     <textarea name="comments" cols="70" rows="4">Comment here about pests.
                 </textarea>
+                </div>
                     
-                    <label>Repot Date:
-                        <input type="checkbox">
-                    </label>
-                    <button><img src="images/calendaricon.svg" alt=""></button>
-                    <textarea name="comments" cols="70" rows="4">Comment here about pests.
+                <div class="top-margin">
+                    <label>Repot Date:</label>
+                        <button class="today">Today</button>
+                    <button class="calendar"><img src="images/calendaricon.svg" alt=""></button>
+                    <label>10/10/16</label>
+                    <textarea name="comments" cols="70" rows="4">Comment here about repotting.
                 </textarea>
+                </div>
                 </section>
 
-                <section id="current-health">
+                <section id="current-health" class="top-margin">
                     <p>Current health condition:
-                    <a href="">Poor</a>
-                    <a href="">Fair</a>
-                    <a href="">Good</a>
+                    <button>Poor</button>
+                    <button>Fair</button>
+                    <button>Good</button>
                     </p>
                 </section>
 
-                <div id="flagged">
+                <div id="flagged" class="top-margin">
                     <label>Flag this plant:</label>
                     <input type="checkbox">
                     <textarea name="comments" cols="70" rows="4">Explain why this plant is flagged.</textarea>
                 </div>
-
-                <label id="inactive">Mark this plant as inactive:
-                    <input type="checkbox" name="" id="inactive">
-                </label>
                
                
-                <a href="" id="more-info"> More Information</a>
-                <button>Save</button>
+                <button id="more-info"><a href="more-info.html">More Information</a></button>
+                
+                <button id="save">Save</button>
 
             </form>
         </section>
