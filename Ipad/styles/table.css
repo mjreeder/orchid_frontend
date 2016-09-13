@@ -222,7 +222,7 @@ td{
     margin: 5px 0 0 0;
 }
 
-#current-health button, .today, #save, #more-info {
+#current-health button, .today, #save, #more-info, .startnewbloom {
     background-color: #2B2E30;
     text-decoration: none; 
     color: white;
@@ -272,4 +272,9 @@ td{
 
 #more-info a {
     color: white; 
+}
+
+
+.subsection {
+ margin-left   
 }
