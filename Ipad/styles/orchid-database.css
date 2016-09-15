@@ -1,0 +1,124 @@
+h1 {
+    font-family: float: left;
+    width: 33.333333333%;
+    font-family: Aleo;
+    font-size: 30px;
+    font-weight: 400;
+    color: black;
+    padding: 30px; 
+}
+
+.searchbox-and-icon {
+    width: 35%;
+    display: inline-block; 
+    float: right;
+    margin-top: -60px; 
+    
+} 
+
+#search {
+    font-family: 'Raleway', sans-serif; 
+    font-size: 15px; 
+     border: 4px solid black; 
+    height: 33px; 
+    width: 70%
+}
+
+#mag-glass {
+   float: right; 
+    width: 30px; 
+    margin: -33px 40px 0 0;  
+} 
+
+
+
+
+
+/* start of table styling */
+
+
+
+.table {
+    float: left; 
+    background-color: #b3b3b3;
+    width: 100%;
+    border-collapse:collapse; 
+    width: 50%;
+    margin-left: 30px; 
+}
+
+thead {
+    background-color: black;
+    color: white;
+    font-family: Aleo;
+    font-size: 20px;
+    font-weight: 100;
+}
+
+table,
+td,
+th {
+    border-bottom: 4px solid white;
+    border-left: 4px solid white; 
+    text-align: left;
+/*    not sure if text in the table should be centered or not */
+    vertical-align: middle;
+    padding: 10px;
+    height: auto; 
+}
+
+/* end of table styling */
+
+
+
+/* start of filter styling */
+
+
+.filter-section {
+    float: right; 
+    width: 40%; 
+}
+
+h2 {
+   border-bottom: 4px solid white; 
+    background-color: black; 
+    color: white; 
+    font-family: Aleo;
+    font-size: 20px;
+    font-weight: 100;
+    padding: 10px 0px 10px 50px; 
+}
+  
+.filter-options {
+  margin-top: -17px  
+} 
+
+
+.filter-options li {
+    float: left; 
+    background-color: #b3b3b3;
+    width: 100%;
+    border-collapse:collapse; 
+    padding: 8.5px 0; 
+    border-bottom: 4px solid white; 
+    
+ 
+} 
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+/* end of filter styling */
