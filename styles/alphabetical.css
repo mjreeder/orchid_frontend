@@ -56,12 +56,15 @@ main menu li a:hover{
 
 .active a {
     background-color: rgba(250, 250, 250, .7);
-    padding: 10px 15px 0px 15px;
+    padding: 10px 15px 19px 15px;
     color: black;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
 
+#tabs li {
+    margin-bottom: 20px;    
+}
 
 
 #plants {
@@ -158,7 +161,7 @@ main h4 {
 
 #plants img {
     width: 100%;
-    dislpay: inline-block; 
+    display: inline-block; 
 }
 
 #plants li h3 {
@@ -182,7 +185,6 @@ main h4 {
     padding: 20px, 10px, 20px, 10px;
     line-height: 3;
 }
-
 
 
 
