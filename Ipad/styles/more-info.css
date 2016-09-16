@@ -1,0 +1,155 @@
+* {
+    border-collapse: collapse; 
+}
+
+a {
+    text-decoration: none; 
+}
+
+input, textarea {
+    font-family: Raleway; 
+    font-size: 14px; 
+    padding: 5px; 
+    margin: 10px 0 0 0; 
+    border: 2px solid black; 
+}
+
+input:disabled {
+    border: none; 
+    color: black;
+    font-family: Raleway; 
+    font-size: 18px; 
+}
+
+textarea:disabled {
+    border: 2px #888888 solid; 
+    color: black; 
+    font-family: Raleway; 
+    font-size: 18px; 
+}
+
+label {
+    font-family: Raleway; 
+    font-size: 18px; 
+    margin-left: 20px; 
+}
+
+.label1 {
+    margin-top: 5px; 
+}
+
+.labellast {
+    margin-bottom: 30px; 
+}
+
+h1 {
+    font-family: Aleo; 
+    font-size: 24px; 
+    margin-left: 5px; 
+}
+
+fieldset {
+    border-bottom: 5px solid #888888; 
+    margin: 20px auto; 
+    max-width: 800px; 
+}
+
+#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos {
+    position: relative;
+    overflow: auto;
+}
+
+#edit {
+    position: absolute; 
+    width: 40px; 
+    top: 0px; 
+    right: 0px; 
+}
+
+textarea {
+    border: 4px solid black; 
+    font-family: aleo; 
+    color: #b3b3b3;
+    font-size: 12px; 
+    width: 95%;
+    padding: 5px;
+    box-sizing: border-box;
+    height: 50px;
+    margin: 8px 20px 15px 20px;
+    display: block; 
+}
+
+label {
+    display: inline-block;
+    width: 125px; 
+    margin-left: 20px;
+}
+
+input {
+    width: 225px; 
+}
+
+#commentmargin {
+    margin-top: 15px; 
+}
+
+
+
+/*VITALS*/
+
+#vitals {
+    overflow: auto;
+    position: relative; 
+}
+
+#thumbnail {
+    width: 25%; 
+    padding: 20px; 
+    float: left; 
+}
+
+#vitals div {
+    width: 70%; 
+    float: right;
+    margin: 20px 0 0 0; 
+    position: relative
+}
+
+#vitals label {
+    width: 250px
+}
+
+#vitals input {
+    font-family: Raleway; 
+    font-size: 18px; 
+    padding: 5px; 
+    border: none; 
+    margin: 15px 0; 
+}
+
+#location img {
+    width: 15px; 
+    padding: 0 5px 0 0; 
+    transform: translateY(5px);
+}
+
+
+#location select {
+    font-size: 18px; 
+    color: black; 
+    border: none; 
+    background-color: white; 
+/*    transform: translateY(-25%)*/
+}
+
+
+/*INACTIVE*/
+#inactive label, input {
+    width: auto; 
+}
+
+
+
+
+
+

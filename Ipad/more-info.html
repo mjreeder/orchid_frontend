@@ -13,89 +13,113 @@
 <body>
     <header>
        <nav id="main-nav">
+          <a href="" id="logo"><img src="images/livingplantwhite.svg" alt="logo"></a>
            <ul>
                <li><a href="">Tables</a></li>
-               <li><a href="">All Orchids</a></li>
+               <li><a href="">All Plants</a></li>
                <li><a href="">Create New</a></li>
            </ul>
         </nav>
     </header>
     
     <main>
-        <section id="vitals">
-            <img src="" alt="">
-            <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label>Class: <input type="text" value="Magnolipsida" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label><img src="" alt="location">WWB1</label>
-        </section>
         
-        <section id="taxonomic">
+          <form action="#" method="post">           
+        
+            <fieldset id="vitals">
+            <img src="http://placekitten.com/400/400" alt="" id="thumbnail">
+            <button id="edit"><img src="images/edit.svg" alt="edit"></button>
+            <div>
+                <label><input type="text" value="#1998090803" name="accession" disabled></label>
+                <label id="location"><img src="images/location.svg" alt="Location">
+                    <select name="table" disabled>
+                        <option value="table1">WWB1</option>
+                        <option value="table1">WWB2</option>
+                        <option value="table1">WWB2</option>
+                    </select>
+                </label><br />
+                <label><input type="text" value="Acianthera circumplexis" name="scientific" disabled></label><br />
+                <label><input type="text" value="Common Name" name="common" disabled></label><br />
+            </div>
+            </fieldset>
+        
+        <fieldset id="taxonomic">
             <h1>Taxonomic Rank</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-        </section>
+            <label class="label1">Class:</label><input type="text" value="Acianthera circumplexis" disabled>
+            <label>Genus:</label><input type="text" value="Acianthera circumplexis" disabled><br />
+            <label>Tribe:</label><input type="text" value="Acianthera" disabled>
+            <label>Species:</label><input type="text" value="Lorem ipsum" disabled><br />
+            <label>Subtribe:</label><input type="text" value="Lorem ipsum" disabled>
+            <label>Variety:</label><input type="text" value="" disabled><br />
+            <label class="labellast">Authority:</label><input type="text" value="Lorem ipsum" disabled>
+        </fieldset>
         
-        <section id="lorem.ipsum">
-            <h1>Lorem Ipsum</h1>
+        <fieldset id="culture">
+            <h1>Culture</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-        </section>
+            <label>Distribution:</label><input type="text" value="Lorem ipsum" disabled>
+            <label>Habitat:</label><input type="text" value="Lorem ipsum" disabled><br />
+            <label>Country:</label><input type="text" value="Lorem ipsum" disabled><br />
+<!--            <label id="commentmargin">Description: </label>-->
+            <textarea type="textarea" value="lorem ipsum" disabled>Description of the plant's culture. This will appear on the public site. </textarea><br />
+        </fieldset>
         
-        <section id="accession">
+        <fieldset id="accession">
             <h1>Accession</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label><input type="checkbox" value="Lorem ipsum">Donation</label>
-        </section>
+            <label>Donated to:</label><input type="text" value="Lorem ipsum" disabled>
+            <label>Recieved:</label><input type="text" value="Lorem ipsum" disabled><br />
+            <label></label><input type="text" value="add another donation**" disabled><br />
+            <textarea type="textarea" value="" disabled>Comment about the donation. </textarea>
+        </fieldset>
         
-        <section id="description">
+        <fieldset id="description">
             <h1>Description</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label><textarea name="" id="" cols="30" rows="10"></textarea></label>
-        </section>
+            <label></label><textarea type="textarea" value="description" disabled>Description of the plant. This will show on the public site. </textarea>
+        </fieldset>
         
-        <section id="hybrid">
+        <fieldset id="hybrid">
             <h1>Hybrid</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-        </section>
+            <label class="labelfirst">Parent 1: </label><input type="text" value="Lorem ipsum" disabled>
+            <label>Parent 2</label><input type="text" value="Lorem ipsum" disabled><br />
+            <label class="labellast">GREX: </label><input type="text" value="Lorem ipsum" disabled>
+        </fieldset>
         
-        <section id="hybrid">
+<!--
+        <fieldset id="hybrid">
             <h1>Hybrid</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-        </section>
+            <label class="labelfirst">Class: </label><input type="text" value="Lorem ipsum" disabled>
+            <label>Class: </label><input type="text" value="Lorem ipsum" disabled><br />
+            <label>Class: </label><input type="text" value="Lorem ipsum" disabled>
+            <label class="labellast">Class: </label><input type="text" value="Lorem ipsum" disabled><br />
+        </fieldset>
+-->
         
-        <section id="inactive">
+        <fieldset id="inactive">
             <h1>Inactive</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-            <label>Class: <input type="text" value="Lorem ipsum" disabled></label><br />
-        </section>
+            
+            <label for="inactive"><input type="checkbox">Inactive</label>
+            <label for="dead"><input type="checkbox">Dead</label><br /> 
+            
+            <label>Class: </label><input type="text" value="Lorem ipsum" disabled><br />
+            
+            <label for="inactivecomment">Comment:</label>
+            <textarea type="textarea" id="inactivecomment" disabled>Comment about why inactive or dead.</textarea>
+            
+        </fieldset>
         
-        <section id="photos">
+        <fieldset id="photos">
             <h1>Photos</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
             <img src="" alt="">
             <img src="" alt="">
-        </section>
+        </fieldset>
+        </form>
         
         <section id="graph">
             <h1>Blooming Graph</h1>
