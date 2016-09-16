@@ -8,19 +8,18 @@ body {
 
 main menu h1  {
     text-align: center;
-    margin-bottom: 20px;
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 400;
     font-size: 30px;
     color: white;
     letter-spacing: 1.5px;
 /*        background-color: rgba(0, 0, 0, .4);*/
-    padding: 40px 0 20px 0;
+    padding: 40px 0 40px 0;
 }
 
 main menu {
     background-color: rgba(0, 0, 0, .4);
-    height: 143px;
+
     
 }
 
@@ -33,6 +32,7 @@ main menu {
 #tabs li {
     display: inline-block;
     margin: 0 .9%;
+
 }
 
 main {
@@ -46,6 +46,7 @@ main menu li a {
     font-size: 22px;
     color: white;
     letter-spacing: 2px;
+ 
 }
 
 main menu li a:hover{
@@ -55,7 +56,7 @@ main menu li a:hover{
 
 .active a {
     background-color: rgba(250, 250, 250, .7);
-    padding: 10px 15px;
+    padding: 10px 15px 0px 15px;
     color: black;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
