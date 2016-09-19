@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>More Information</title>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles/global.css">
@@ -46,7 +47,7 @@
         <fieldset id="taxonomic">
             <h1>Taxonomic Rank</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label class="label1">Class:</label><input type="text" value="Acianthera circumplexis" disabled>
+            <label class="labelfirst">Class:</label><input type="text" value="Acianthera circumplexis" disabled>
             <label>Genus:</label><input type="text" value="Acianthera circumplexis" disabled><br />
             <label>Tribe:</label><input type="text" value="Acianthera" disabled>
             <label>Species:</label><input type="text" value="Lorem ipsum" disabled><br />
@@ -71,7 +72,7 @@
             <label>Donated to:</label><input type="text" value="Lorem ipsum" disabled>
             <label>Recieved:</label><input type="text" value="Lorem ipsum" disabled><br />
             <label></label><input type="text" value="add another donation**" disabled><br />
-            <textarea type="textarea" value="" disabled>Comment about the donation. </textarea>
+            <textarea type="textarea" value="" >Comment about the donation. </textarea>
         </fieldset>
         
         <fieldset id="description">
@@ -88,42 +89,38 @@
             <label class="labellast">GREX: </label><input type="text" value="Lorem ipsum" disabled>
         </fieldset>
         
-<!--
-        <fieldset id="hybrid">
-            <h1>Hybrid</h1>
-            <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label class="labelfirst">Class: </label><input type="text" value="Lorem ipsum" disabled>
-            <label>Class: </label><input type="text" value="Lorem ipsum" disabled><br />
-            <label>Class: </label><input type="text" value="Lorem ipsum" disabled>
-            <label class="labellast">Class: </label><input type="text" value="Lorem ipsum" disabled><br />
-        </fieldset>
--->
-        
         <fieldset id="inactive">
             <h1>Inactive</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
             
-            <label for="inactive"><input type="checkbox">Inactive</label>
-            <label for="dead"><input type="checkbox">Dead</label><br /> 
+            <label for="check1" class="labelfirst">Inactive</label>
+            <input id="check1" type="checkbox">
+            <p for="">12/18/16</p>
+            <br />
             
-            <label>Class: </label><input type="text" value="Lorem ipsum" disabled><br />
+            <label for="check2">Dead</label>
+            <input id="check2" type="checkbox">
+            <p for="">12/18/16</p>
+            <br /> 
             
-            <label for="inactivecomment">Comment:</label>
+<!--            <label for="inactivecomment">Comment:</label>-->
             <textarea type="textarea" id="inactivecomment" disabled>Comment about why inactive or dead.</textarea>
-            
         </fieldset>
         
         <fieldset id="photos">
             <h1>Photos</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <img src="" alt="">
-            <img src="" alt="">
+            <img src="http://placekitten.com/50/50" alt="" class="thumbnail">
+            <label for="">File_Name_for_acienthera_234</label><br />
+            <img src="http://placebear.com/50/50" alt="" class="thumbnail">
+            <label for="">File_Name_for_acienthera_567</label>
         </fieldset>
         </form>
         
-        <section id="graph">
+        <fieldset id="graph">
             <h1>Blooming Graph</h1>
-        </section>
+            <img src="images/floweringchart.svg" alt="" id="graphsvg">
+        </fieldset>
         
         <section>
             <button>Back to top</button>

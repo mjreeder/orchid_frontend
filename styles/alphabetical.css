@@ -159,6 +159,13 @@ main h4 {
     position: relative;
 }
 
+@media screen and (max-width:600px){
+	#plants li {
+		width: 40%;
+	}
+}
+
+
 #plants img {
     width: 100%;
     display: inline-block; 
