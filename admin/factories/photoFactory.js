@@ -5,31 +5,32 @@ app.factory('PhotoFactory', function($http) {
 
 
 
-    data.getBloomByPlantID = function(plant_id) {
+    data.getPhtosByPlantID = function(plant_id) {
         $http.get(baseUrl + "/plant_id/" + plant_id);
     }
 
-    data.createPhoto = function (pest) {
+    data.createPhoto = function (photo) {
         $http({
             method: "POST",
             url: baseUrl + '/create',
             data: {
-                "plant_id": blooming.plantId,
-                "timestamp": blooming.start_date,
-                "note": blooming.note
+                "plant_id": photo.plantId,
+                "url": photo.url,
+                "type": photo.type
             }
         });
     }
 
-    data.updatePest = function(pest){
+    data.updatePhoto = function(photo){
         $http({
             method: "PUT",
             url: baseUrl + '/update',
             data: {
-                "plant_id": pest.plantId,
-                "timestamp": pest.timestamp,
-                "note": blooming.note,
-                "id": pest.id
+                "plant_id": photo.plantId,
+                "url": photo.url,
+                "type": photo.type,
+                "id": photo.id,
+                "active": photo.active
             }
         });
     }

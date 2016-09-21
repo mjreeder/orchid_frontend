@@ -5,7 +5,7 @@ app.factory('PestFactory', function($http) {
 
 
 
-    data.getBloomByPlantID = function(plant_id) {
+    data.getPestByPlantID = function(plant_id) {
         $http.get(baseUrl + "/plant_id/" + plant_id);
     }
 
@@ -14,9 +14,9 @@ app.factory('PestFactory', function($http) {
             method: "POST",
             url: baseUrl + '/create',
             data: {
-                "plant_id": blooming.plantId,
-                "timestamp": blooming.start_date,
-                "note": blooming.note
+                "plant_id": pest.plantId,
+                "timestamp": pest.start_date,
+                "note": pest.note
             }
         });
     }
