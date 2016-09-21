@@ -6,11 +6,4 @@ var app = angular.module('orchid', [
     'tableSort'
 ]);
 
-app.config(function($routeProvider, $locationProvider) {
-  $routeProvider
-  .when('', {
-    templateUrl : '',
-    controller  : '',
-  })
-  .otherwise({redirectTo:'/'});
-})
+
