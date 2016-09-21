@@ -21,6 +21,7 @@ app.config(function($routeProvider, CONFIG) {
             templateUrl: 'views/more-info.html'
         }).
         otherwise({
-            redirectTo: 'views/404.html'
+            controller: '404ViewController',
+            templateUrl: 'views/404.html '
         });
 });
