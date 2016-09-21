@@ -1,9 +1,7 @@
 var app = angular.module('orchid', [
-    'ngRoute',
-    'ngResource',
-    'ngCookies',
-    'ab-base64',
-    'tableSort'
+    'ngRoute'
 ]);
 
+app.controller('mainController' , function ($scope) {
 
+});

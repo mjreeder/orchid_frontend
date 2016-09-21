@@ -1,3 +1,3 @@
-app.controller('PlantViewController', function(CONFIG){
+app.controller('HomePageController', function(CONFIG){
 
 });
