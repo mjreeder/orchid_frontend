@@ -1,4 +1,4 @@
-orchid.factory('ClassificationFactory', function($http) {
+app.factory('ClassificationFactory', function($http) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/users';

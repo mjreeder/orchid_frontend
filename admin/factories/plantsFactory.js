@@ -1,4 +1,4 @@
-orchid.factory('PlantsFactory', function($http) {
+app.factory('PlantsFactory', function($http) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/plants';

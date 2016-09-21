@@ -1,4 +1,4 @@
-orchid.factory('ClassificationLinkFactory', function($http) {
+app.factory('ClassificationLinkFactory', function($http) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/classification_Link';

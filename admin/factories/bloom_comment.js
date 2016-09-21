@@ -1,4 +1,4 @@
-orchid.factory('Bloom_CommentFactory', function($http) {
+app.factory('Bloom_CommentFactory', function($http) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/bloom_comment';
