@@ -1,6 +1,4 @@
-
-
-orchid.factory('UserFactory', function($http) {
+orchid.factory('ClassificationFactory', function($http) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/users';
@@ -28,6 +26,6 @@ orchid.factory('UserFactory', function($http) {
       });
     }
 
-    
+
     return data;
 });
