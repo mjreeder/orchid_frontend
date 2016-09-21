@@ -8,7 +8,7 @@ orchid.factory('NotesFactory', function($http) {
     }
 
     data.getNoteById = function(plant_id) {
-        $http.get(baseUrl + "/plant_id" + plant_id);
+        $http.get(baseUrl + "/plant_id/" + plant_id);
     }
 
     data.createNote = function (note) {
