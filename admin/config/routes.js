@@ -8,19 +8,19 @@ app.config(function($routeProvider, CONFIG) {
             controller: 'LoginViewController',
             templateUrl: 'views/login.html'
         }).
-        when('/table', {
+        when('/house', {
             controller: 'DisplayViewController',
             templateUrl: 'views/Ipad-map.html'
         }).
-        when('/table/display', {
+        when('/house/display', {
             controller: 'DisplayViewController',
             templateUrl: 'views/Ipad-map.html'
         }).
-        when('/table/warm', {
+        when('/house/warm', {
             controller: 'WarmHouseViewController',
             templateUrl: 'views/warmhouse.html'
         }).
-        when('/table/cool', {
+        when('/house/cool', {
             controller: 'CoolHouseViewController',
             templateUrl: 'views/coolhouse.html'
         }).
@@ -31,6 +31,14 @@ app.config(function($routeProvider, CONFIG) {
         when('/plant',{
             controller: 'PlantViewController',
             templateUrl: 'views/more-info.html'
+        }).
+        when('/popup',{
+            controller: 'PopUpViewController',
+            templateUrl: 'views/pop-up.html'
+        }).
+        when('/table',{
+           controller: 'TableViewController',
+            templateUrl: 'views/table.html'
         }).
         otherwise({
             controller: '404ViewController',

@@ -145,6 +145,9 @@ td{
     background-color: rgba(237, 28, 36, 0.3);
 }
 
+#repot{
+
+}
 
 #moveplants a {
     background-color: #2B2E30;
@@ -260,6 +263,10 @@ td{
 
 .calendar {
     transform: translateY(25%)
+}
+
+.calendar > img {
+    margin: 0;
 }
 
 #save {

@@ -1,189 +1,167 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>table</title>
-    <link rel="stylesheet" href="../styles/global.css">
-    <link rel="stylesheet" href="../styles/table.css">
-</head>
 
 <body>
-    <header>
-        <nav id="main-nav">
-            <a href="Ipad-map.html" id="logo"><img src="../images/livingplantwhite.svg" alt="logo"></a>
-            <ul>
-                <li><a href="">Create New</a></li>
-                <li><a href="">All Plants</a></li>
-                <li><a href="">Tables</a></li>
-            </ul>
-        </nav>
+
+<main>
+
+    <header class="page-nav">
+        <div id="A"><a href="">WWPA
+            <img src="images/backbutton.svg" alt="Back" /></a></div>
+        <h1 id="title"> WWB2</h1>
+        <div id="B"> <a href="">WWB3
+            <img src="images/forwardbutton.svg" alt="Forward" /></a></div>
     </header>
-    <main>
-        <nav id="houses">
-            <ul>
-                <li>
-                    <a href="Ipad-map.html">
-                        <class id="active">Displayhouse</class>
-                    </a>
-                </li>
-                <li><a href="warmhouse.html">Warmhouse</a></li>
-                <li><a href="coolhouse.html">Coolhouse</a></li>
-            </ul>
-        </nav>
 
-        <header class="page-nav">
-            <div id="A"><a href="">WWPA
-                <img src="../images/backbutton.svg" alt="Back" /></a></div>
-            <h1 id="title"> WWB2</h1>
-            <div id="B"> <a href="">WWB3
-                <img src="../images/forwardbutton.svg" alt="Forward" /></a></div>
-        </header>
-
-       <div id="clear">
+    <div id="clear">
         <table width="710" height="600" cell padding="10" cell spacing="5">
             <thead>
-                <tr>
-                    <th>
-                        <class id="accession"> Accession # </class>
-                    </th>
-                    <th>
-                        <class id="name"> Name </class>
-                    </th>
-                    <th>
-                        <class id="blooming">Verified Today</class>
-                    </th>
-                    <th>
-                        <class id="has pests">Last Verified</class>
-                    </th>
-                </tr>
+            <tr>
+                <th>
+                    <class id="accession"> Accession # </class>
+                </th>
+                <th>
+                    <class id="name"> Name </class>
+                </th>
+                <th>
+                    <class id="blooming">Verified Today</class>
+                </th>
+                <th>
+                    <class id="has pests">Last Verified</class>
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>19960217124</td>
-                    <td>Agave tequilana 'Weber's Blue'</td>
-                    <td>
-                        <label>
-                            <input type="checkbox">
-                        </label>
-                    </td>
-                    <td>
-                        <label>
-                            <p>10/10/16</p>
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>19960217123</td>
-                    <td>lorem ipsumo plant name</td>
-                    <td>
-                        <label>
-                            <input type="checkbox">
-                        </label>
-                    </td>
-                    <td>
-                        <label>
-                            <p>10/6/16</p>
-                        </label>
-                    </td>
-                </tr>
-                <tr class="flagged">
-                        <td>19960217125</td>
-                        <td>lorem ipsum</td>
-                        <td>
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                        </td>
-                        <td>
-                            <label>
-                                <p>10/10/16</p>
-                            </label>
-                        </td>
-                </tr>
+            <tr>
+                <td>19960217124</td>
+                <td>Agave tequilana 'Weber's Blue'</td>
+                <td>
+                    <label>
+                        <input type="checkbox">
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <p>10/10/16</p>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>19960217123</td>
+                <td>lorem ipsumo plant name</td>
+                <td>
+                    <label>
+                        <input type="checkbox">
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <p>10/6/16</p>
+                    </label>
+                </td>
+            </tr>
+            <tr class="flagged">
+                <td>19960217125</td>
+                <td>lorem ipsum</td>
+                <td>
+                    <label>
+                        <input type="checkbox">
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <p>10/10/16</p>
+                    </label>
+                </td>
+            </tr>
             </tbody>
         </table>
-        </div>
+    </div>
 
-        <footer id="moveplants">
-            <a href="#">Move Plants</a>
-<!--            <a href="#">Change Table</a>-->
-        </footer>
-
-
-<!--POP UP-->
-        <section class="flower-popup">
-            <form action="">
-                <div class="center"><h1>This is the new plant</h1></div>
-
-                <button id="close"><img src="../images/x.svg" alt="" ></button>
-
-                <section>
-                <div class="top-margin">
-                <label>Blooming:</label>
-
-                   <button class="startnewbloom">Start New Bloom</button><br>
-                   <div class="subsection">
-                    <label> Start of Bloom:</label><button class="today">Today</button>
-                    <button class="calendar"><img src="../images/calendaricon.svg" alt=""></button>
-                    <label>10/10/16</label></div>
-                    <br>
-
-                    <div class="subsection">
-                    <label>End of Bloom:</label>
-                    <button class="today">Today</button>
-                    <button class="calendar"><img src="../images/calendaricon.svg" alt=""></button>
-                    <label>10/10/16</label></div>
-
-                <textarea name="comments" cols="70" rows="4">Comment here about blooming.</textarea>
-                </div>
-
-                <div class="top-margin">
-                    <label>Sprayed for pests:</label>
-                        <button class="today">Today</button>
-                    <button class="calendar"><img src="../images/calendaricon.svg" alt=""></button>
-                    <label>10/10/16</label>
-                    <textarea name="comments" cols="70" rows="4">Comment here about pests.
-                </textarea>
-                </div>
-
-                <div class="top-margin">
-                    <label>Repot Date:</label>
-                        <button class="today">Today</button>
-                    <button class="calendar"><img src="../images/calendaricon.svg" alt=""></button>
-                    <label>10/10/16</label>
-<!--
-                    <textarea name="comments" cols="70" rows="4">Comment here about repotting.
-                </textarea>
--->
-                </div>
-                </section>
-
-                <section id="current-health" class="top-margin">
-                    <p>Current health condition:
-                    <button>Poor</button>
-                    <button>Fair</button>
-                    <button>Good</button>
-                    </p>
-                    <textarea name="comments" cols="70" rows="4">Comment here about current health condition.
-                </textarea>
-                </section>
-
-                <div id="flagged" class="top-margin">
-                    <label>Flag this plant:</label>
-                    <input type="checkbox">
-                    <textarea name="comments" cols="70" rows="4">Explain why this plant is flagged.</textarea>
-                </div>
+    <footer id="moveplants">
+        <a href="#">Move Plants</a>
+    </footer>
 
 
-                <button id="more-info"><a href="more-info.html">More Information</a></button>
+    <!--POP UP-->
+    <!--<section class="flower-popup">-->
+        <!--<form action="">-->
+            <!--<div class="center">-->
+                <!--<h1>This is the new plant</h1>-->
+            <!--</div>-->
 
-                <button id="save">Save</button>
+            <!--<button id="close"><img src="images/x.svg" alt="" ></button>-->
 
-            </form>
-        </section>
-    </main>
+            <!--&lt;!&ndash;<section>&ndash;&gt;-->
+            <!--<div class="top-margin">-->
+                <!--<label>Blooming:</label>-->
+                <!--<button class="startnewbloom">Start New Bloom</button>-->
+
+                <!--<br>-->
+            <!--</div>-->
+
+            <!--<div class="subsection">-->
+
+                <!--<label> Start of Bloom:</label><button class="today">Today</button>-->
+                <!--<button class="calendar"><img src="images/calendaricon.svg" alt=""></button>-->
+                <!--<label>10/10/16</label>-->
+            <!--</div>-->
+
+            <!--<br>-->
+
+
+            <!--<div class="subsection">-->
+                <!--<label>End of Bloom:</label>-->
+                <!--<button class="today">Today</button>-->
+                <!--<button class="calendar"><img src="images/calendaricon.svg" alt=""></button>-->
+                <!--<label>10/10/16</label>-->
+            <!--</div>-->
+
+
+            <!--<div class="top-margin">-->
+                <!--<textarea placeholder="Comment here about blooming." name="comments" cols="70" rows="4"></textarea>-->
+
+            <!--</div>-->
+
+            <!--<div class="top-margin">-->
+                <!--<label>Sprayed for pests:</label>-->
+                <!--<button class="today">Today</button>-->
+                <!--<button class="calendar"><img src="images/calendaricon.svg" alt=""></button>-->
+                <!--<label>10/10/16</label>-->
+                <!--<textarea placeholder="Comment here about pests." name="comments" cols="70" rows="4"> </textarea>-->
+            <!--</div>-->
+
+            <!--<section id="repot" class="top-margin">-->
+                <!--<label>Repot Date:</label>-->
+                <!--<button class="today">Today</button>-->
+                <!--<button class="calendar"><img src="images/calendaricon.svg" alt=""></button>-->
+                <!--<label>10/10/16</label>-->
+
+            <!--</section>-->
+
+            <!--&lt;!&ndash;</section>&ndash;&gt;-->
+
+            <!--<section id="current-health" class="top-margin">-->
+                <!--<p>Current health condition:-->
+                    <!--<button>Poor</button>-->
+                    <!--<button>Fair</button>-->
+                    <!--<button>Good</button>-->
+                <!--</p>-->
+                <!--<textarea name="comments" cols="70" rows="4">Comment here about current health condition.</textarea>-->
+            <!--</section>-->
+
+            <!--<div id="" class="top-margin">-->
+                <!--<label>Flag this plant:</label>-->
+                <!--<input type="checkbox">-->
+                <!--<textarea name="comments" cols="70" rows="4">Explain why this plant is flagged.</textarea>-->
+            <!--</div>-->
+
+
+            <!--<button id="more-info"><a href="more-info.html">More Information</a></button>-->
+
+            <!--<button id="save">Save</button>-->
+
+        <!--</form>-->
+    <!--</section>-->
+</main>
 </body>
 
-</html>
+
