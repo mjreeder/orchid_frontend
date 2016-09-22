@@ -1,3 +1,3 @@
-app.controller('SearchViewController', function(CONFIG){
+app.controller('SearchViewController', function(CONFIG, PlantsFactory){
 
 });
