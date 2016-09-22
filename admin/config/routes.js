@@ -9,8 +9,20 @@ app.config(function($routeProvider, CONFIG) {
             templateUrl: 'views/login.html'
         }).
         when('/table', {
-            controller: 'TableViewController',
+            controller: 'DisplayViewController',
             templateUrl: 'views/Ipad-map.html'
+        }).
+        when('/table/display', {
+            controller: 'DisplayViewController',
+            templateUrl: 'views/Ipad-map.html'
+        }).
+        when('/table/warm', {
+            controller: 'WarmHouseViewController',
+            templateUrl: 'views/warmhouse.html'
+        }).
+        when('/table/cool', {
+            controller: 'CoolHouseViewController',
+            templateUrl: 'views/coolhouse.html'
         }).
         when('/search', {
             controller: 'SearchViewController',

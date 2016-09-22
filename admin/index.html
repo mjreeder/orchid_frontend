@@ -42,19 +42,26 @@
     <script src="controllers/LoginViewController.js"></script>
     <script src="controllers/PlantViewController.js"></script>
     <script src="controllers/SearchViewController.js"></script>
-    <script src="controllers/TableViewController.js"></script>
+    <script src="controllers/DisplayViewController.js"></script>
+    <script src="controllers/WarmHouseViewController.js"></script>
+    <script src="controllers/CoolHouseViewController.js"></script>
     <script src="controllers/404ViewController.js"></script>
 
     <!-- Style Sheets -->
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/orchid-database.css">
-
+    <link rel="stylesheet" href="styles/warmhouse.css">
+    <link rel="stylesheet" href="styles/Ipad-map.css">
+    <link rel="stylesheet" href="styles/coolhouse.css">
+    <link rel="stylesheet" href="styles/more-info.css">
+    <link rel="stylesheet" href="styles/plant.css">
+    <link rel="stylesheet" href="styles/table.css">
 
 
     <title>Orchid Admin</title>
 </head>
 
-<body ng-controller="mainController">
+<body>
 
     <div ng-include="'views/_header.html'"></div>
     <div ng-view></div>
