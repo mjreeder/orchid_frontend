@@ -1,7 +1,7 @@
 <div>
-     <form action="#" method="post">
+    <form method="post">
 
-         <fieldset id="vitals">
+        <fieldset id="vitals">
             <img src="http://placekitten.com/400/400" alt="" id="thumbnail">
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
             <div>
@@ -12,55 +12,60 @@
                         <option value="table1">WWB2</option>
                         <option value="table1">WWB2</option>
                     </select>
-                </label><br />
-                <label><input type="text" value="Acianthera circumplexis" name="scientific" disabled></label><br />
-                <label><input type="text" value="Common Name" name="common" disabled></label><br />
+                </label><br/>
+                <label><input type="text" value="Acianthera circumplexis" name="scientific" disabled></label><br/>
+                <label><input type="text" value="Common Name" name="common" disabled></label><br/>
             </div>
-         </fieldset>
+        </fieldset>
 
         <fieldset id="taxonomic">
             <h1>Taxonomic Rank</h1>
-            <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label class="labelfirst">Class:</label><input type="text" value="Acianthera circumplexis" disabled>
-            <label>Genus:</label><input type="text" value="Acianthera circumplexis" disabled><br />
-            <label>Tribe:</label><input type="text" value="Acianthera" disabled>
-            <label>Species:</label><input type="text" value="Lorem ipsum" disabled><br />
-            <label>Subtribe:</label><input type="text" value="Lorem ipsum" disabled>
-            <label>Variety:</label><input type="text" value="" disabled><br />
-            <label class="labellast">Authority:</label><input type="text" value="Lorem ipsum" disabled>
+            <button id="edit" ng-click="editTaxonomy()"><img src="images/edit.svg" alt="edit"></button>
+            <label class="labelfirst">Class:</label><input type="text" ng-model="plant" ng-disabled="!editPlant.taxonommy">
+            <label>Genus:</label><input type="text" ng-model="plant.taxonomic" ng-disabled="!editPlant.taxonommy"><br/>
+            <label>Tribe:</label><input type="text" ng-model="plant.taxonomic" ng-disabled="!editPlant.taxonommy">
+            <label>Species:</label><input type="text" ng-model="plant.taxonomic" ng-disabled="!editPlant.taxonommy"><br/>
+            <label>Subtribe:</label><input type="text" ng-model="plant.taxonomic" ng-disabled="!editPlant.taxonommy">
+            <label>Variety:</label><input type="text" ng-model="plant.taxonomic" ng-disabled="!editPlant.taxonommy"><br/>
+            <label class="labellast">Authority:</label><input type="text" ng-model="plant" ng-disabled="!editPlant.taxonommy">
         </fieldset>
 
         <fieldset id="culture">
             <h1>Culture</h1>
-            <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label>Distribution:</label><input type="text" value="Lorem ipsum" disabled>
-            <label>Habitat:</label><input type="text" value="Lorem ipsum" disabled><br />
-            <label>Country:</label><input type="text" value="Lorem ipsum" disabled><br />
-<!--            <label id="commentmargin">Description: </label>-->
-            <textarea type="textarea" value="lorem ipsum" disabled>Description of the plant's culture. This will appear on the public site. </textarea><br />
+            <button id="edit" ng-click="editCulture()"><img src="images/edit.svg" alt="edit"></button>
+            <label>Distribution:</label><input type="text" ng-model="plant.culture" ng-disabled="!editPlant.culture">
+            <label>Habitat:</label><input type="text" ng-model="plant.culture" ng-disabled="!editPlant.culture"><br/>
+            <label>Country:</label><input type="text" ng-model="plant.culture" ng-disabled="!editPlant.culture"><br/>
+            <!--            <label id="commentmargin">Description: </label>-->
+            <textarea type="textarea" value="lorem ipsum" disabled>Description of the plant's culture. This will appear on the public site.
+            </textarea><br/>
         </fieldset>
 
         <fieldset id="accession">
             <h1>Accession</h1>
-            <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label>Donated to:</label><input type="text" value="Lorem ipsum" disabled>
-            <label>Recieved:</label><input type="text" value="Lorem ipsum" disabled><br />
-            <label></label><input type="text" value="add another donation**" disabled><br />
-            <textarea type="textarea" value="" >Comment about the donation. </textarea>
+            <button id="edit" ng-click="editAccession()"><img src="images/edit.svg" alt="edit"></button>
+            <label>Donated to:</label><input type="text" ng-model="plant.accesssion" ng-disabled="!editPlant.accesssion">
+            <label>Recieved:</label><input type="text" ng-model="plant.accesssion" ng-disabled="!editPlant.accesssion"><br/>
+            <label></label><input type="text" ng-model="plant.accesssion" ng-disabled="!editPlant.accesssion"><br/>
+            <textarea type="textarea" value="">Comment about the donation.
+            </textarea>
         </fieldset>
 
         <fieldset id="description">
             <h1>Description</h1>
-            <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label></label><textarea type="textarea" value="description" disabled>Description of the plant. This will show on the public site. </textarea>
+            <button id="edit" ng-click="editDescription()"><img src="images/edit.svg" alt="edit"></button>
+            <label></label>
+            <textarea type="textarea" ng-model="plant.description" ng-disabled="!editPlant.description"></textarea>
         </fieldset>
 
         <fieldset id="hybrid">
             <h1>Hybrid</h1>
-            <button id="edit"><img src="images/edit.svg" alt="edit"></button>
-            <label class="labelfirst">Parent 1: </label><input type="text" value="Lorem ipsum" disabled>
-            <label>Parent 2</label><input type="text" value="Lorem ipsum" disabled><br />
-            <label class="labellast">GREX: </label><input type="text" value="Lorem ipsum" disabled>
+            <button id="edit" ng-click="editHybrid()"><img src="images/edit.svg" alt="edit"></button>
+            <label class="labelfirst">Parent 1:
+            </label><input type="text" ng-model="plant.hybrid" ng-disabled="!editPlant.hybrid">
+            <label>Parent 2</label><input type="text" ng-model="plant.hybrid" ng-disabled="!editPlant.hybrid"><br/>
+            <label class="labellast">GREX:
+            </label><input type="text" value="Lorem ipsum" disabled>
         </fieldset>
 
         <fieldset id="inactive">
@@ -70,14 +75,14 @@
             <label for="check1" class="labelfirst">Inactive</label>
             <input id="check1" type="checkbox">
             <p for="">12/18/16</p>
-            <br />
+            <br/>
 
             <label for="check2">Dead</label>
             <input id="check2" type="checkbox">
             <p for="">12/18/16</p>
-            <br />
+            <br/>
 
-<!--            <label for="inactivecomment">Comment:</label>-->
+            <!--            <label for="inactivecomment">Comment:</label>-->
             <textarea type="textarea" id="inactivecomment" disabled>Comment about why inactive or dead.</textarea>
         </fieldset>
 
@@ -85,19 +90,20 @@
             <h1>Photos</h1>
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
             <img src="http://placekitten.com/50/50" alt="" class="thumbnail">
-            <label for="">File_Name_for_acienthera_234</label><br />
+            <label for="">File_Name_for_acienthera_234</label><br/>
             <img src="http://placebear.com/50/50" alt="" class="thumbnail">
             <label for="">File_Name_for_acienthera_567</label>
         </fieldset>
-        </form>
+    </form>
 
-        <fieldset id="graph">
-            <h1>Blooming Graph</h1>
-            <!--<img src="images/floweringchart.svg" alt="" id="graphsvg">-->
-            <p> This is where the blooming graph or something like that is going to be</p>
-        </fieldset>
+    <fieldset id="graph">
+        <h1>Blooming Graph</h1>
+        <!--<img src="images/floweringchart.svg" alt="" id="graphsvg">-->
+        <p>
+            This is where the blooming graph or something like that is going to be</p>
+    </fieldset>
 
-        <section>
-            <button>Back to top</button>
-        </section>
-    </div>
+    <section>
+        <button>Back to top</button>
+    </section>
+</div>
