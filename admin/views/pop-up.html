@@ -104,9 +104,12 @@
 
                     <div class="subsection">
 
-                        <label> Start of Bloom:</label><button class="today">Today</button>
-                        <button class="calendar"><img src="images/calendaricon.svg" alt=""></button>
-                        <label>10/10/16</label>
+                        <label> Start of Bloom:</label>
+                        <button ng-click="startBloomDate = today" class="today">Today</button>
+                        <button class="calendar"><img src="images/calendaricon.svg" alt="">
+                            <input type="date" id="startDateBloom" ng-model="startBloomDate"></input>
+                        </button>
+                        <output>{{ startBloomDate | date }}</output>
                     </div>
 
                     <br>
@@ -115,10 +118,12 @@
                     <div class="subsection">
                         <label>End of Bloom:</label>
                         <button ng-click="endBloomDate = today" class="today">Today</button>
-                        <button class="calendar"><img src="images/calendaricon.svg" alt=""><input type="date" id="inputDate" ng-model="endBloomDate"></input></button>
+                        <button class="calendar"><img src="images/calendaricon.svg" alt="">
+                            <input type="date" id="endDateBloom" ng-model="endBloomDate"></input>
+                        </button>
 
                         <output>{{ endBloomDate | date }}</output>
-                    </div>
+
 
 
                     <div class="top-margin">
@@ -128,17 +133,22 @@
 
                     <div class="top-margin">
                         <label>Sprayed for pests:</label>
-                        <button class="today">Today</button>
-                        <button class="calendar"><img src="images/calendaricon.svg" alt=""></button>
-                        <label>10/10/16</label>
+                        <button ng-click="sprayedDate = today" class="today">Today</button>
+                        <button class="calendar"><img src="images/calendaricon.svg" alt="">
+                            <input type="date" id="sprayedDate" ng-model="sprayedDate"></input>
+                        </button>
+                        <output>{{ sprayedDate | date }}</output>
+
                         <textarea placeholder="Comment here about pests." name="comments" cols="70" rows="4"> </textarea>
                     </div>
 
                     <section id="repot" class="top-margin">
                         <label>Repot Date:</label>
-                        <button class="today">Today</button>
-                        <button class="calendar"><img src="images/calendaricon.svg" alt=""></button>
-                        <label>10/10/16</label>
+                        <button ng-click="repotDate = today" class="today">Today</button>
+                        <button class="calendar"><img src="images/calendaricon.svg" alt="">
+                            <input type="date" id="repotDate" ng-model="repotDate"></input>
+                        </button>
+                        <label>{{ repotDate | date }}</label>
 
                     </section>
 
@@ -146,21 +156,21 @@
 
                 <section id="current-health" class="top-margin">
                     <p>Current health condition:
-                    <button>Poor</button>
-                    <button>Fair</button>
-                    <button>Good</button>
+                    <button id="poor">Poor</button>
+                    <button id="fair">Fair</button>
+                    <button id="good">Good</button>
                     </p>
-                    <textarea name="comments" cols="70" rows="4">Comment here about current health condition.</textarea>
+                    <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition."></textarea>
                 </section>
 
                 <div id="" class="top-margin">
                     <label>Flag this plant:</label>
                     <input type="checkbox">
-                    <textarea name="comments" cols="70" rows="4">Explain why this plant is flagged.</textarea>
+                    <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged."></textarea>
                 </div>
 
 
-                <button id="more-info"><a href="more-info.html">More Information</a></button>
+                <button id="more-info"><a href="#/plants">More Information</a></button>
 
                 <button id="save">Save</button>
 
