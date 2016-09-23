@@ -262,11 +262,27 @@ td{
 }
 
 .calendar {
-    transform: translateY(25%)
+    transform: translateY(25%);
+    overflow: hidden;
+    position: relative;
 }
 
-.calendar > img {
+.calendar input{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+}
+
+
+.calendar img {
     margin: 0;
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
 }
 
 #save {

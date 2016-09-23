@@ -82,6 +82,10 @@
 
 
 <!--POP UP-->
+        <script type="text/javascript">
+            var currentDate = new Date();
+//            document.getElementById('aaa').innerHTML =  currentDate;
+        </script>
         <section class="flower-popup">
             <form action="">
                 <div class="center">
@@ -110,9 +114,10 @@
 
                     <div class="subsection">
                         <label>End of Bloom:</label>
-                        <button class="today">Today</button>
-                        <button class="calendar"><img src="images/calendaricon.svg" alt=""></button>
-                        <label>10/10/16</label>
+                        <button ng-click="endBloomDate = today" class="today">Today</button>
+                        <button class="calendar"><img src="images/calendaricon.svg" alt=""><input type="date" id="inputDate" ng-model="endBloomDate"></input></button>
+
+                        <output>{{ endBloomDate | date }}</output>
                     </div>
 
 
