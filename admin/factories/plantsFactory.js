@@ -4,23 +4,23 @@ app.factory('PlantsFactory', function($http) {
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/plants';
 
     data.getPaginatedPlants = function(alpha, index) {
-        $http.get(baseUrl + "/alpha/" + alpha + "/" + index);
+        return $http.get(baseUrl + "/alpha/" + alpha + "/" + index);
     }
 
     data.getAllPlants = function() {
-        $http.get(baseUrl);
+        return $http.get(baseUrl);
     }
 
     data.getPlantById = function(id) {
-        $http.get(baseUrl + '/' + id);
+        return $http.get(baseUrl + '/' + id);
     }
 
     data.getPlantByAccessionNumber = function(accessionNumber) {
-        $http.get(baseUrl + '/' + accessionNumber);
+          return $http.get(baseUrl + '/' + accessionNumber);
     }
 
     data.createNewPlant = function(plant) {
-        $http({
+        return $http({
           method: "POST",
           url: baseUrl + '/',
           data: plant
@@ -28,7 +28,7 @@ app.factory('PlantsFactory', function($http) {
     }
 
     data.editPlant = function(plant) {
-      $http({
+      return $http({
         method: "PUT",
         url: baseUrl + '/',
         data: plant
@@ -36,7 +36,7 @@ app.factory('PlantsFactory', function($http) {
     }
 
     data.deletePlant = function(id) {
-      $http.delete(baseUrl + '/' + id);
+      return $http.delete(baseUrl + '/' + id);
     }
 
     return data;
