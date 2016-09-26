@@ -82,10 +82,10 @@
 
 
 <!--POP UP-->
-        <script type="text/javascript">
-            var currentDate = new Date();
-//            document.getElementById('aaa').innerHTML =  currentDate;
-        </script>
+        <!--<script type="text/javascript">-->
+            <!--var currentDate = new Date();-->
+<!--//            document.getElementById('aaa').innerHTML =  currentDate;-->
+        <!--</script>-->
         <section class="flower-popup">
             <form action="">
                 <div class="center">
@@ -139,7 +139,7 @@
                         </button>
                         <output>{{ sprayedDate | date }}</output>
 
-                        <textarea placeholder="Comment here about pests." name="comments" cols="70" rows="4"> </textarea>
+                        <textarea placeholder="Comment here about blooming." name="comments" cols="70" rows="4"> </textarea>
                     </div>
 
                     <section id="repot" class="top-margin">
@@ -170,9 +170,9 @@
                 </div>
 
 
-                <button id="more-info"><a href="#/plants">More Information</a></button>
+                <button id="more-info"><a href="#/plant">More Information</a></button>
 
-                <button id="save">Save</button>
+                <button id="save" type="submit" ng-click="submitPopUp()">Save</button>
 
             </form>
         </section>
