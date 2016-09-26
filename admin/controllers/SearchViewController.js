@@ -4,4 +4,10 @@ app.controller('SearchViewController', function(CONFIG, $scope, PlantsFactory){
     $scope.paginatedPlants = response.data.data;
   });
 
+  $scope.getPlantsBySearch = function(searchItem){
+    PlantsFactory.getPlantBySearch(searchItem).then(function(response) {
+      $scope.paginatedPlants = response.data.data;
+    });
+  }
+
 });

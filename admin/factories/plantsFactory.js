@@ -19,6 +19,10 @@ app.factory('PlantsFactory', function($http) {
           return $http.get(baseUrl + '/' + accessionNumber);
     }
 
+    data.getPlantBySearch = function (searchItem) {
+      return $http.get(baseUrl + '/search_all/' + searchItem);
+    }
+
     data.createNewPlant = function(plant) {
         return $http({
           method: "POST",
