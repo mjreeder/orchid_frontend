@@ -1,10 +1,38 @@
 app.controller('PlantViewController', function($scope, CONFIG) {
+
     $scope.editPlant = {
       taxonommy:false,
       culture:false,
       accesssion:false,
       hybrid:false
 
+    }
+
+    $scope.newPlant = {
+      taxonomicRank:{
+        class: '',
+        tribe:'',
+        authority:'',
+        genus:'',
+        species:'',
+        variety:''
+      },
+      culture: {
+        distribution: '',
+        country: '',
+        habitat:''
+      },
+      accesssion:{
+        donatedTo:'',
+        Recieved:'',
+        dontationComment:''
+      },
+      description:'',
+      hybrid:{
+        parentOne:'',
+        parentTwo:'',
+        grex:''
+      }
     }
 
     $scope.editTaxonomy = function() {
