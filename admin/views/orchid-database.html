@@ -3,37 +3,11 @@
     <table width="400" class="table" cell padding="10" cell spacing="2">
         <thead>
             <tr>
-                <th ng-repeat="attribute in displayAttributes">{{attribute}}</th>
-                <!-- <th>Name</th> -->
+                <th ng-repeat="key in plantKeys">{{key}}</th>
             </tr>
             <tbody>
-                <tr ng-repeat="plant in plants || plant.isDisplay == true">
-                    <td>{{plant.accession_number}}</td>
-                    <td>{{plant.name}}</td>
-                    <!-- <td>{{plant.authority}}</td>
-                    <td>{{plant.distribution}}</td>
-                    <td>{{plant.habitat}}</td>
-                    <td>{{plant.scientific_name}}</td>
-                    <td>{{plant.culture}}</td>
-                    <td>{{plant.donation_comment}}</td>
-                    <td>{{plant.date_received}}</td>
-                    <td>{{plant.received_from}}</td>
-                    <td>{{plant.description}}</td>
-                    <td>{{plant.username}}</td>
-                    <td>{{plant.inactive_date}}</td>
-                    <td>{{plant.inactive_comment}}</td>
-                    <td>{{plant.size}}</td>
-                    <td>{{plant.value}}</td>
-                    <td>{{plant.parent_one}}</td>
-                    <td>{{plant.parent_two}}</td>
-                    <td>{{plant.grex_status}}</td>
-                    <td>{{plant.hybrid_comment}}</td>
-                    <td>{{plant.hybrid_status}}</td>
-                    <td>{{plant.origin_comment}}</td>
-                    <td>{{plant.location_id}}</td>
-                    <td>{{plant.dead}}</td>
-                    <td>{{plant.special_collections_id}}</td>
-                    <td>{{plant.is_donation}}</td> -->
+                <tr ng-repeat="plant in plants">
+                    <td ng-repeat="(key, val) in plant">{{val}}</td>
                 </tr>
             </tbody>
         </thead>

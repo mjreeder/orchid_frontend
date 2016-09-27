@@ -1,6 +1,5 @@
-app.controller('SearchViewController', function(CONFIG, $scope, PlantsFactory) {
-    $scope.displayAttributes = ['Accession Number', 'Name'];
-
+app.controller('SearchViewController', function(CONFIG, $scope, PlantsFactory, ClassificationLinkFactory) {
+    $scope.plantKeys = [];
     $scope.getPlantsBySearch = function(searchItem) {
         // if the search box goes to empty, give default view
         // and return function before network call
@@ -10,7 +9,6 @@ app.controller('SearchViewController', function(CONFIG, $scope, PlantsFactory) {
         }
 
         PlantsFactory.getPlantBySearch(searchItem).then(function(response) {
-
             $scope.plants = response.data.data;
         });
     }
@@ -19,13 +17,17 @@ app.controller('SearchViewController', function(CONFIG, $scope, PlantsFactory) {
     function getPaginatedPlants() {
         PlantsFactory.getPaginatedPlants('a', 1).then(function(response) {
             $scope.plants = response.data.data;
-
+            // get the keys for the table header
+            for (var key in $scope.plants[0]) {
+              $scope.plantKeys.push(key);
+            }
         });
     }
 
-    var result = _.pick(thing, function(value, key) {
-        return _.startsWith(key, "a");
-    });
+    // var result = _.pick(thing, function(value, key) {
+    //
+    //     return _.startsWith(key, "a");
+    // });
 
     getPaginatedPlants();
 

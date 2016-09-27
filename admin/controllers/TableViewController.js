@@ -25,8 +25,9 @@ app.controller('TableViewController', function(CONFIG, $scope, $location, Locati
         } else {
             $scope.current_table_name = param1;
             $scope.id  = response.data.data.id;
+            console.log($scope.id);
 
-            PlantsFactory.getByLocationID(7).then(function (response) {
+            PlantsFactory.getByLocationID($scope.id).then(function (response) {
                 console.log($scope.id);
                 $scope.plantsInTable = response.data.data;
             });
