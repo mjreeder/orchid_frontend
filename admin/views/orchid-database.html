@@ -3,13 +3,11 @@
     <table width="400" class="table" cell padding="10" cell spacing="2">
         <thead>
             <tr>
-                <th>Accession #</th>
-                <th>Name</th>
+                <th ng-repeat="key in plantKeys">{{key}}</th>
             </tr>
             <tbody>
-                <tr ng-repeat="plant in paginatedPlants">
-                    <td>{{plant.accession_number}}</td>
-                    <td>{{plant.name}}</td>
+                <tr ng-repeat="plant in plants">
+                    <td ng-repeat="(key, val) in plant">{{val}}</td>
                 </tr>
             </tbody>
         </thead>
@@ -18,7 +16,8 @@
         <div class="searchbox-and-icon">
             <form>
                 <div class="searchbox">
-                    <input type="search" id="search" placeholder="Search. . ." name="databasesearch" ng-model="searchItem"></div>
+                     <input type="search" id="search" placeholder="Search. . ." name="databasesearch" ng-model="searchItem" ng-change="getPlantsBySearch(searchItem)">
+                </div>
                 <input type="image" id="mag-glass" name="search-button" src="images/Searchbutton.svg" width="20" ng-click="getPlantsBySearch(searchItem)">
             </form>
         </div>
