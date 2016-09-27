@@ -3,13 +3,37 @@
     <table width="400" class="table" cell padding="10" cell spacing="2">
         <thead>
             <tr>
-                <th>Accession #</th>
-                <th>Name</th>
+                <th ng-repeat="attribute in displayAttributes">{{attribute}}</th>
+                <!-- <th>Name</th> -->
             </tr>
             <tbody>
-                <tr ng-repeat="plant in paginatedPlants">
+                <tr ng-repeat="plant in plants || plant.isDisplay == true">
                     <td>{{plant.accession_number}}</td>
                     <td>{{plant.name}}</td>
+                    <!-- <td>{{plant.authority}}</td>
+                    <td>{{plant.distribution}}</td>
+                    <td>{{plant.habitat}}</td>
+                    <td>{{plant.scientific_name}}</td>
+                    <td>{{plant.culture}}</td>
+                    <td>{{plant.donation_comment}}</td>
+                    <td>{{plant.date_received}}</td>
+                    <td>{{plant.received_from}}</td>
+                    <td>{{plant.description}}</td>
+                    <td>{{plant.username}}</td>
+                    <td>{{plant.inactive_date}}</td>
+                    <td>{{plant.inactive_comment}}</td>
+                    <td>{{plant.size}}</td>
+                    <td>{{plant.value}}</td>
+                    <td>{{plant.parent_one}}</td>
+                    <td>{{plant.parent_two}}</td>
+                    <td>{{plant.grex_status}}</td>
+                    <td>{{plant.hybrid_comment}}</td>
+                    <td>{{plant.hybrid_status}}</td>
+                    <td>{{plant.origin_comment}}</td>
+                    <td>{{plant.location_id}}</td>
+                    <td>{{plant.dead}}</td>
+                    <td>{{plant.special_collections_id}}</td>
+                    <td>{{plant.is_donation}}</td> -->
                 </tr>
             </tbody>
         </thead>
@@ -18,7 +42,8 @@
         <div class="searchbox-and-icon">
             <form>
                 <div class="searchbox">
-                    <input type="search" id="search" placeholder="Search. . ." name="databasesearch" ng-model="searchItem"></div>
+                     <input type="search" id="search" placeholder="Search. . ." name="databasesearch" ng-model="searchItem" ng-change="getPlantsBySearch(searchItem)">
+                </div>
                 <input type="image" id="mag-glass" name="search-button" src="images/Searchbutton.svg" width="20" ng-click="getPlantsBySearch(searchItem)">
             </form>
         </div>
