@@ -53,5 +53,10 @@ app.controller('TableViewController', function(CONFIG, $scope, $location, Locati
     //});
 
 
+  $scope.popupShow = false;
+
+  $scope.showPopup = function() {
+    $scope.popupShow = !$scope.popupShow;
+  }
 
 });

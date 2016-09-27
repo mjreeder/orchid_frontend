@@ -32,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="plant in plantsInTable">
+            <tr ng-repeat="plant in plantsInTable" ng-click="showPopup()">
 
                 <td>{{plant.accession_number}}</td>
                 <td>{{plant.name}}</td>
@@ -57,88 +57,7 @@
         <a href="#">Move Plants</a>
     </footer>
 
+    <div ng-include="'views/pop-up.html'" ng-show="popupShow"></div>
 
-    <!--POP UP-->
-    <!--<section class="flower-popup">-->
-        <!--<form action="">-->
-            <!--<div class="center">-->
-                <!--<h1>This is the new plant</h1>-->
-            <!--</div>-->
-
-            <!--<button id="close"><img src="images/x.svg" alt="" ></button>-->
-
-            <!--&lt;!&ndash;<section>&ndash;&gt;-->
-            <!--<div class="top-margin">-->
-                <!--<label>Blooming:</label>-->
-                <!--<button class="startnewbloom">Start New Bloom</button>-->
-
-                <!--<br>-->
-            <!--</div>-->
-
-            <!--<div class="subsection">-->
-
-                <!--<label> Start of Bloom:</label><button class="today">Today</button>-->
-                <!--<button class="calendar"><img src="images/calendaricon.svg" alt=""></button>-->
-                <!--<label>10/10/16</label>-->
-            <!--</div>-->
-
-            <!--<br>-->
-
-
-            <!--<div class="subsection">-->
-                <!--<label>End of Bloom:</label>-->
-                <!--<button class="today">Today</button>-->
-                <!--<button class="calendar"><img src="images/calendaricon.svg" alt=""></button>-->
-                <!--<label>10/10/16</label>-->
-            <!--</div>-->
-
-
-            <!--<div class="top-margin">-->
-                <!--<textarea placeholder="Comment here about blooming." name="comments" cols="70" rows="4"></textarea>-->
-
-            <!--</div>-->
-
-            <!--<div class="top-margin">-->
-                <!--<label>Sprayed for pests:</label>-->
-                <!--<button class="today">Today</button>-->
-                <!--<button class="calendar"><img src="images/calendaricon.svg" alt=""></button>-->
-                <!--<label>10/10/16</label>-->
-                <!--<textarea placeholder="Comment here about pests." name="comments" cols="70" rows="4"> </textarea>-->
-            <!--</div>-->
-
-            <!--<section id="repot" class="top-margin">-->
-                <!--<label>Repot Date:</label>-->
-                <!--<button class="today">Today</button>-->
-                <!--<button class="calendar"><img src="images/calendaricon.svg" alt=""></button>-->
-                <!--<label>10/10/16</label>-->
-
-            <!--</section>-->
-
-            <!--&lt;!&ndash;</section>&ndash;&gt;-->
-
-            <!--<section id="current-health" class="top-margin">-->
-                <!--<p>Current health condition:-->
-                    <!--<button>Poor</button>-->
-                    <!--<button>Fair</button>-->
-                    <!--<button>Good</button>-->
-                <!--</p>-->
-                <!--<textarea name="comments" cols="70" rows="4">Comment here about current health condition.</textarea>-->
-            <!--</section>-->
-
-            <!--<div id="" class="top-margin">-->
-                <!--<label>Flag this plant:</label>-->
-                <!--<input type="checkbox">-->
-                <!--<textarea name="comments" cols="70" rows="4">Explain why this plant is flagged.</textarea>-->
-            <!--</div>-->
-
-
-            <!--<button id="more-info"><a href="more-info.html">More Information</a></button>-->
-
-            <!--<button id="save">Save</button>-->
-
-        <!--</form>-->
-    <!--</section>-->
 </main>
 </body>
-
-
