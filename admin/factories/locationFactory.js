@@ -5,7 +5,8 @@ app.factory('LocationFactory', function($http) {
 
 
 
-    data.getTableLocations = function(plant_id) {
+
+    data.getTableLocations = function() {
         $http.get(baseUrl);
     }
 
