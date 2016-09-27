@@ -16,11 +16,15 @@ app.factory('PlantsFactory', function($http) {
     }
 
     data.getPlantByAccessionNumber = function(accessionNumber) {
-          return $http.get(baseUrl + '/' + accessionNumber);
+          return $http.get(baseUrl + '/accession/' + accessionNumber);
     }
 
     data.getPlantBySearch = function (searchItem) {
       return $http.get(baseUrl + '/search_all/' + searchItem);
+    }
+
+    data.getByLocationID = function (id){
+        return $http.get(baseUrl + '/table/' + id);
     }
 
     data.createNewPlant = function(plant) {
@@ -42,6 +46,8 @@ app.factory('PlantsFactory', function($http) {
     data.deletePlant = function(id) {
       return $http.delete(baseUrl + '/' + id);
     }
+
+
 
     return data;
 });

@@ -4,11 +4,13 @@
 <main>
 
     <header class="page-nav">
-        <div id="A"><a href="">WWPA
-            <img src="images/backbutton.svg" alt="Back" /></a></div>
-        <h1 id="title"> WWB2</h1>
-        <div id="B"> <a href="">WWB3
-            <img src="images/forwardbutton.svg" alt="Forward" /></a></div>
+        <!--<div id="A"><a href="">WWPA-->
+            <!--<img src="images/backbutton.svg" alt="Back" /></a>-->
+        <!--</div>-->
+        <h1 id="title">{{current_table_name}} </h1>
+        <!--<div id="B"> <a href="">WWB3-->
+            <!--<img src="images/forwardbutton.svg" alt="Forward" /></a>-->
+        <!--</div>-->
     </header>
 
     <div id="clear">
@@ -30,9 +32,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>19960217124</td>
-                <td>Agave tequilana 'Weber's Blue'</td>
+            <tr ng-repeat="plant in plantsInTable">
+
+                <td>{{plant.accession_number}}</td>
+                <td>{{plant.name}}</td>
                 <td>
                     <label>
                         <input type="checkbox">
@@ -40,38 +43,12 @@
                 </td>
                 <td>
                     <label>
-                        <p>10/10/16</p>
+                        <p>{{plant.last_varified}}</p>
                     </label>
                 </td>
+
             </tr>
-            <tr>
-                <td>19960217123</td>
-                <td>lorem ipsumo plant name</td>
-                <td>
-                    <label>
-                        <input type="checkbox">
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        <p>10/6/16</p>
-                    </label>
-                </td>
-            </tr>
-            <tr class="flagged">
-                <td>19960217125</td>
-                <td>lorem ipsum</td>
-                <td>
-                    <label>
-                        <input type="checkbox">
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        <p>10/10/16</p>
-                    </label>
-                </td>
-            </tr>
+
             </tbody>
         </table>
     </div>

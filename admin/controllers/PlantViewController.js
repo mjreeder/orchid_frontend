@@ -1,4 +1,17 @@
-app.controller('PlantViewController', function($scope, CONFIG) {
+app.controller('PlantViewController', function($scope, CONFIG, $routeParams, PlantsFactory, LocationFactory) {
+
+    var param1 = $routeParams.accession_number;
+
+    console.log(param1);
+
+    PlantsFactory.getPlantByAccessionNumber(param1).then(function (response){
+       var data = response.data.data[0];
+        console.log(data);
+        $scope.commonName = data.name;
+        $scope.accession_number = data.accession_number;
+        $scope.scientific_name = data.scientific_name;
+    });
+
 
     $scope.editPlant = {
       taxonommy:false,

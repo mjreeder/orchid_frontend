@@ -5,7 +5,7 @@
             <img src="http://placekitten.com/400/400" alt="" id="thumbnail">
             <button id="edit"><img src="images/edit.svg" alt="edit"></button>
             <div>
-                <label><input type="text" value="#1998090803" name="accession" disabled></label>
+                <label><input type="text" value="{{accession_number}}" name="accession" disabled></label>
                 <label id="location"><img src="images/location.svg" alt="Location">
                     <select name="table" disabled>
                         <option value="table1">WWB1</option>
@@ -13,8 +13,8 @@
                         <option value="table1">WWB2</option>
                     </select>
                 </label><br/>
-                <label><input type="text" value="Acianthera circumplexis" name="scientific" disabled></label><br/>
-                <label><input type="text" value="Common Name" name="common" disabled></label><br/>
+                <label><input type="text" value="{{commonName}}" name="scientific" disabled></label><br/>
+                <label><input type="text" value="{{scientific_name}}" name="common" disabled></label><br/>
             </div>
         </fieldset>
 
