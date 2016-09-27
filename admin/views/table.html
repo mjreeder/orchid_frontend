@@ -32,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="plant in plantsInTable" ng-click="showPopup()">
+            <tr ng-repeat="plant in plantsInTable" ng-click="showPopup(plant)">
 
                 <td>{{plant.accession_number}}</td>
                 <td>{{plant.name}}</td>

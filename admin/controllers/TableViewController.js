@@ -1,4 +1,4 @@
-app.controller('TableViewController', function(CONFIG, $scope, $location, LocationFactory, PlantsFactory, $routeParams){
+app.controller('TableViewController', function(CONFIG, $scope, $location, LocationFactory, PlantsFactory, $routeParams, $rootScope){
 
     var param1 = $routeParams.table_name;
 
@@ -30,6 +30,7 @@ app.controller('TableViewController', function(CONFIG, $scope, $location, Locati
             PlantsFactory.getByLocationID($scope.id).then(function (response) {
                 console.log($scope.id);
                 $scope.plantsInTable = response.data.data;
+                console.log($scope.plantsInTable);
             });
         }
     });
@@ -56,8 +57,16 @@ app.controller('TableViewController', function(CONFIG, $scope, $location, Locati
 
   $scope.popupShow = false;
 
-  $scope.showPopup = function() {
+  $scope.showPopup = function(plant) {
+    console.log(plant);
+    $rootScope.$broadcast('current-plant', plant);
     $scope.popupShow = !$scope.popupShow;
   }
+
+  $scope.$on('popup-close', function(event, data){
+    if(data == true){
+      $scope.popupShow = false;
+    }
+  })
 
 });
