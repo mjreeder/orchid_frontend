@@ -32,12 +32,20 @@ app.config(function($routeProvider, CONFIG) {
             controller: 'PlantViewController',
             templateUrl: 'views/more-info.html'
         }).
+        when('/plant/:accession_number',{
+            controller: 'PlantViewController',
+            templateUrl: 'views/more-info.html'
+        }).
         when('/popup',{
             controller: 'PopUpViewController',
             templateUrl: 'views/pop-up.html'
         }).
         when('/table',{
            controller: 'TableViewController',
+            templateUrl: 'views/table.html'
+        }).
+        when('/table/:table_name',{
+            controller: 'TableViewController',
             templateUrl: 'views/table.html'
         }).
         otherwise({
