@@ -1,10 +1,10 @@
 app.factory('ClassificationLinkFactory', function($http) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/classification_Link';
+    var baseUrl = 'http://localhost:8888/orchid_site/public/api/classification_link';
 
     data.createClassificationLink = function(classificationLink) {
-      $http({
+      return $http({
           method: "POST",
           url: baseUrl,
           data: {
@@ -15,7 +15,11 @@ app.factory('ClassificationLinkFactory', function($http) {
     }
 
     data.getPlantByClassificationId = function(id){
-      $http.get(baseUrl + '/plant/' + id);
+      return $http.get(baseUrl + '/plant/' + id);
+    }
+
+    data.getPlantHierarchy = function(id){
+        return $http.get(baseUrl + '/plant_hierarchy/' + id);
     }
 
     return data;

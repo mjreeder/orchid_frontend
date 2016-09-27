@@ -1,4 +1,4 @@
-app.controller('SearchViewController', function(CONFIG, $scope, PlantsFactory) {
+app.controller('SearchViewController', function(CONFIG, $scope, PlantsFactory, ClassificationLinkFactory) {
     $scope.displayAttributes = ['Accession Number', 'Name'];
 
     $scope.getPlantsBySearch = function(searchItem) {
@@ -23,10 +23,15 @@ app.controller('SearchViewController', function(CONFIG, $scope, PlantsFactory) {
         });
     }
 
-    var result = _.pick(thing, function(value, key) {
-        return _.startsWith(key, "a");
-    });
+    // var result = _.pick(thing, function(value, key) {
+    //
+    //     return _.startsWith(key, "a");
+    // });
 
+    ClassificationLinkFactory.getPlantHierarchy(1).then(function(response) {
+        console.log(response);
+
+    });
     getPaginatedPlants();
 
 });
