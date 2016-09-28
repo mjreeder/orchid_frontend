@@ -7,11 +7,27 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
     PlantsFactory.getPlantByAccessionNumber(param1).then(function (response){
        var data = response.data.data[0];
         //console.log(data);
+        $scope.plant = {
+            commonName: data.name,
+            scientific_name: data.scientific_name,
+            accession_number: data.accession_number,
+            habitat: data.habitat,
+            orginComment: data.orginComment,
+            donatedTo: data.donatedTo,
+            donnaitonComment: data.donation_comment,
+            recieved: data.recieved,
+            description: data.description
+
+
+
+        };
+
         $scope.commonName = data.name;
         $scope.accession_number = data.accession_number;
         $scope.scientific_name = data.scientific_name;
 
         $scope.distribution = data.distribution;
+
         $scope.habitat = data.habitat;
         $scope.orginComment = data.orginComment;
 
@@ -44,10 +60,12 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
 
 
     $scope.editPlant = {
-      taxonommy:false,
-      culture:false,
-      accesssion:false,
-      hybrid:false
+        critical: false,
+        taxonommy:false,
+        culture:false,
+        accesssion:false,
+        hybrid:false,
+        inactive:false
 
     }
 
@@ -92,6 +110,23 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
             $scope.editPlant.taxonommy = false;
         }
     }
+
+    $scope.editInactive = function() {
+        if ($scope.editPlant.inactive == false) {
+            $scope.editPlant.inactive = true;
+        } else {
+            $scope.editPlant.inactive = false;
+        }
+    }
+
+    $scope.editCritical = function(){
+        if ($scope.editPlant.critical == false){
+            $scope.editPlant.critical = true;
+        } else {
+            $scope.editPlant.critical = false;
+        }
+    }
+
 
     $scope.editCulture = function() {
       if ($scope.editPlant.culture == false) {
