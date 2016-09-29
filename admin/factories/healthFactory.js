@@ -29,7 +29,7 @@ app.factory('HealthFactory', function($http) {
     }
 
     data.getHealthBtPlantID = function(id){
-        $http.get(baseUrl + '/plant_id/' + plant_id);
+        return $http.get(baseUrl + '/plant_id/' + id);
     }
 
     return data;

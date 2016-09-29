@@ -6,7 +6,7 @@ app.factory('BloomingFactory', function($http) {
 
 
     data.getBloomByPlantID = function(plant_id) {
-        $http.get(baseUrl + "/plant_id/" + plant_id);
+        return $http.get(baseUrl + "/plant_id/" + plant_id);
     }
 
     data.createBloom = function (blooming) {
