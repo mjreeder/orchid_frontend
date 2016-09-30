@@ -78,7 +78,7 @@ fieldset {
     overflow: auto;
 }
 
-#edit {
+.edit {
     position: absolute; 
     width: 40px; 
     top: 0px; 

@@ -14,7 +14,7 @@ app.factory('PlantsFactory', function($http) {
     data.getPlantById = function(id) {
         return $http.get(baseUrl + '/' + id);
     }
-
+    
     data.getPlantByAccessionNumber = function(accessionNumber) {
           return $http.get(baseUrl + '/accession/' + accessionNumber);
     }
@@ -35,17 +35,21 @@ app.factory('PlantsFactory', function($http) {
         });
     }
 
-    data.editPlant = function(plant) {
+    data.editCriticalPlant = function(aaa) {
       return $http({
         method: "PUT",
-        url: baseUrl + '/',
-        data: plant
+        url: baseUrl + '/updateCritical',
+        data: aaa
       });
     }
+    //
+    //accession_number: plant.accession_number,
+    //    scientific_name: plant.scientific_name,
+    //    name: plant.commonName
 
     data.deletePlant = function(id) {
       return $http.delete(baseUrl + '/' + id);
-    }
+    };
 
 
 
