@@ -3,11 +3,12 @@
     <table width="400" class="table" cell padding="10" cell spacing="2">
         <thead>
             <tr>
-                <th ng-repeat="key in plantKeys">{{key}}</th>
+                <th ng-repeat="(key, val) in plants[0]" ng-show="val.isDisplayed">{{val.key}}</th>
+                <!-- <th ng-repeat="(ind, val) in plantKeys" ng-show="val.isDisplayed">{{val.key.displayName}}</th> -->
             </tr>
             <tbody>
                 <tr ng-repeat="plant in plants">
-                    <td ng-repeat="(key, val) in plant">{{val}}</td>
+                    <td ng-repeat="(key, val) in plant" ng-show="val.isDisplayed">{{val.val}}</td>
                 </tr>
             </tbody>
         </thead>
@@ -32,221 +33,11 @@
             <button type="image" name="filter-open" id="expand" src="images/expand.svg"></button>
             <!--            </div> not sure what this closing div is for? -->
             <div class="filter-options">
-                <ul>
+                <ul ng-repeat="(key, val) in plants[0]">
                     <li>
                         <label for="Accessionnumber">
-                            <input id="Accessionnumber" name="Accessionnumber" type="checkbox"/>
-                            Accession Number
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Orchid ID
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Class
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Tribe
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Subtribe
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Genus
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Species
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Variety
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Authority
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Distribution
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Habitat
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Culture
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Donation
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Received From
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Date Received
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Donation Comment
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Description
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Username
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Inactive
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Inactive Date
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Inactive Comment
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Photo Habitat
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Photo Close-up
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Photo Other
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Size
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Value
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Parent 1
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Parent 2
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            GREX Name
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Hybrid Status
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Dead
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Scientific Name
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Location ID
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Special Collections ID
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Origin Comment
-                        </label>
-                    </li>
-                    <li>
-                        <label for="Orchid ID">
-                            <input id="Orchid ID" name="Orchid ID" type="checkbox"/>
-                            Last Verified
+                            <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed" ng-click="editFilterDisplay(val.key)"/>
+                            {{val.key}}
                         </label>
                     </li>
                 </ul>

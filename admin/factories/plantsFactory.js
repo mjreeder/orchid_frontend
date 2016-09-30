@@ -14,7 +14,7 @@ app.factory('PlantsFactory', function($http) {
     data.getPlantById = function(id) {
         return $http.get(baseUrl + '/' + id);
     }
-
+    
     data.getPlantByAccessionNumber = function(accessionNumber) {
           return $http.get(baseUrl + '/accession/' + accessionNumber);
     }
