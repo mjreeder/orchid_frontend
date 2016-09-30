@@ -4,7 +4,7 @@
             <h1>This is the new plant</h1>
         </div>
 
-        <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
+        <button id="close" ng-click="closePopUp"><img src="images/x.svg" alt=""></button>
 
         <!--<section>-->
         <div class="top-margin">
@@ -18,47 +18,47 @@
 
             <label>
                 Start of Bloom:</label>
-            <button ng-click="startBloomDate = today" class="today">Today</button>
+            <button ng-click="blooming_start_date = today" class="today">Today</button>
             <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                <input type="date" id="startDateBloom" ng-model="startBloomDate"></input>
+                <input type="date" id="startDateBloom" ng-model="blooming_start_date"></input>
             </button>
-            <output>{{ startBloomDate | date }}</output>
+            <output>{{ blooming_start_date | date }}</output>
         </div>
 
         <br>
 
         <div class="subsection">
             <label>End of Bloom:</label>
-            <button ng-click="endBloomDate = today" class="today">Today</button>
+            <button ng-click="blooming_end_date = today" class="today">Today</button>
             <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                <input type="date" id="endDateBloom" ng-model="endBloomDate"></input>
+                <input type="date" id="endDateBloom" ng-model="blooming_end_date"></input>
             </button>
 
-            <output>{{ endBloomDate | date }}</output>
+            <output>{{ blooming_end_date | date }}</output>
 
             <div class="top-margin">
-                <textarea placeholder="Comment here about blooming." name="comments" cols="70" rows="4"></textarea>
+                <textarea placeholder="Comment here about blooming." name="comments" cols="70" rows="4" ng-model="blooming_comment"></textarea>
 
             </div>
 
             <div class="top-margin">
                 <label>Sprayed for pests:</label>
-                <button ng-click="sprayedDate = today" class="today">Today</button>
+                <button ng-click="sprayed_timestamp = today" class="today">Today</button>
                 <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                    <input type="date" id="sprayedDate" ng-model="sprayedDate"></input>
+                    <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"></input>
                 </button>
-                <output>{{ sprayedDate | date }}</output>
+                <output>{{ sprayed_timestamp | date }}</output>
 
-                <textarea placeholder="Comment here about blooming." name="comments" cols="70" rows="4"></textarea>
+                <textarea placeholder="Comment here about pest spraying." name="comments" cols="70" rows="4" ng-model="sprayed_comment"></textarea>
             </div>
 
             <section id="repot" class="top-margin">
                 <label>Repot Date:</label>
-                <button ng-click="repotDate = today" class="today">Today</button>
+                <button ng-click="potting_timestamp = today" class="today">Today</button>
                 <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                    <input type="date" id="repotDate" ng-model="repotDate"></input>
+                    <input type="date" id="repotDate" ng-model="potting_timestamp"></input>
                 </button>
-                <label>{{ repotDate | date }}</label>
+                <label>{{ potting_timestamp | date }}</label>
 
             </section>
 
@@ -66,11 +66,11 @@
 
             <section id="current-health" class="top-margin">
                 <p>Current health condition:
-                    <button id="poor">Poor</button>
-                    <button id="fair">Fair</button>
-                    <button id="good">Good</button>
+                    <button id="poor" ng-click="health_condition = 'poor'">Poor</button>
+                    <button id="fair" ng-click="health_condition = 'fair'">Fair</button>
+                    <button id="good" ng-click="health_condition = 'good'">Good</button>
                 </p>
-                <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition."></textarea>
+                <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition." ng-model="health_comment"></textarea>
             </section>
 
             <div id="" class="top-margin">
