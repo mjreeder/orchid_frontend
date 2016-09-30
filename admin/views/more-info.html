@@ -84,7 +84,7 @@
             <label class="labelfirst">
                 Parent 1:
             </label>
-            <input type="text" ng-model="plant.parent1" ng-disabled="!editPlant.hybrid">
+            <input type="text" ng-model="plant.description" ng-disabled="!editPlant.hybrid">
 
             <label class="labelfirst">
                 Parent 2:
@@ -122,11 +122,25 @@
 
         <fieldset id="photos">
             <h1>Photos</h1>
-            <button class="edit"><img src="images/edit.svg" alt="edit"></button>
+
+            <button class="edit" ng-click="editPhotos()">
+                <img src="images/edit.svg" alt="edit" ng-hide="editPlant.photos">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.photos">
+            </button>
+
             <img src="http://placekitten.com/50/50" alt="" class="thumbnail">
-            <label for="">File_Name_for_acienthera_234</label><br/>
+            <label for="">File_Name_for_acienthera_234</label>
+            <input type="button" value="Habitat"  ng-hide="!editPlant.photos">
+            <input type="button" value="Other"  ng-hide="!editPlant.photos">
+
+            <br/>
+
             <img src="http://placebear.com/50/50" alt="" class="thumbnail">
             <label for="">File_Name_for_acienthera_567</label>
+            <input type="button" value="Habitat"  ng-hide="!editPlant.photos">
+            <input type="button" value="Other"  ng-hide="!editPlant.photos">
+
+
         </fieldset>
     </form>
 
