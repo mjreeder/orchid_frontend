@@ -1,8 +1,12 @@
-app.controller('PlantViewController', function($scope, CONFIG, $routeParams, PlantsFactory, LocationFactory) {
+app.controller('PlantViewController', function($scope, CONFIG, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory) {
 
     var param1 = $routeParams.accession_number;
 
     console.log(param1);
+    classificationLinkFactory.getPlantHierarchy(1).then(function (response){
+        console.log(response.data.data);
+    });
+
 
     PlantsFactory.getPlantByAccessionNumber(param1).then(function (response){
        var data = response.data.data[0];
@@ -16,7 +20,8 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
             donatedTo: data.donatedTo,
             donnaitonComment: data.donation_comment,
             recieved: data.recieved,
-            description: data.description
+            description: data.description,
+            location_id: data.location_id
 
 
 
@@ -65,7 +70,8 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
         culture:false,
         accesssion:false,
         hybrid:false,
-        inactive:false
+        inactive:false,
+        photos: false
 
     }
 
@@ -103,6 +109,16 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
       }
     }
 
+    $scope.editPhotos = function() {
+        if ($scope.editPlant.photos == false){
+            $scope.editPlant.photos = true;
+
+
+        } else {
+            $scope.editPlant.photos = false;
+        }
+    }
+
     $scope.editTaxonomy = function() {
         if ($scope.editPlant.taxonommy == false) {
             $scope.editPlant.taxonommy = true;
@@ -122,8 +138,24 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
     $scope.editCritical = function(){
         if ($scope.editPlant.critical == false){
             $scope.editPlant.critical = true;
+
         } else {
             $scope.editPlant.critical = false;
+
+            console.log($scope.plant);
+
+            //var criticalData{
+            //
+            //    scientific_name: data.scientific_name,
+            //       namea: "dd"
+            //}
+
+            console.log($scope.plant.scientific_name);
+            var car = {scientific_name: $scope.plant.scientific_name, name:"500", location_id:2, id:1, accession_number:99998};
+
+            PlantsFactory.editCriticalPlant(car).then(function (response){
+                console.log(response.data);
+            });
         }
     }
 
