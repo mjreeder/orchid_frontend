@@ -1,4 +1,4 @@
-app.factory('plantCountryLinkFactory', function($http) {
+app.factory('PlantCountryLinkFactory', function($http) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/plant_country_link';
@@ -6,7 +6,7 @@ app.factory('plantCountryLinkFactory', function($http) {
 
 
     data.getCountryByPlantID = function(plant_id) {
-        $http.get(baseUrl + "/plant_id/" + plant_id);
+        return $http.get(baseUrl + "/plant_id/" + plant_id);
     }
 
     data.createPest = function (plant_country_link) {

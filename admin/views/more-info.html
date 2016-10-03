@@ -12,14 +12,14 @@
             <div>
                 <label><input type="text" ng-model="plant.accession_number" name="accession" ng-disabled="!editPlant.critical"></label>
                 <label id="location"><img src="images/location.svg" alt="Location">
-                    <select name="table" disabled>
-                        <option value="table1">WWB1</option>
-                        <option value="table1">WWB2</option>
-                        <option value="table1">WWB2</option>
+
+                    <select ng-model="plant.locationName" ng-disabled="!editPlant.critical">
+                        <option ng-repeat="table in Tables">{{table}}</option>
                     </select>
+
                 </label><br/>
                 <label><input type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="!editPlant.critical"></label><br/>
-                <label><input type="text" ng-model="plant.commonName" name="common" ng-disabled="!editPlant.critical"></label><br/>
+                <label><input type="text" ng-model="plant.name" name="common" ng-disabled="!editPlant.critical"></label><br/>
             </div>
         </fieldset>
 
@@ -45,23 +45,28 @@
                 <img src="images/edit.svg" alt="edit" ng-hide="editPlant.culture">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.culture">
             </button>
-            <label>Distribution:</label><input ng-model="plant.distro" type="text"  ng-disabled="!editPlant.culture">
-            <label>Habitat:</label><input value="{{habitat}}" type="text"  ng-disabled="!editPlant.culture"><br/>
-            <label>Country:</label><input value="{{country}}" type="text"  ng-disabled="!editPlant.culture"><br/>
-            <textarea value="{{orginComment}}" type="textarea" ng-disabled="!editPlant.culture" placeholder="Comment about the culture."></textarea>
+            <label>Distribution:</label><input ng-model="plant.distribution" type="text"  ng-disabled="!editPlant.culture">
+            <label>Habitat:</label><input ng-model="plant.habitat" type="text"  ng-disabled="!editPlant.culture"><br/>
+            <label>Country:</label>
+            <div ng-repeat="country in CountryNames">
+                <p>{{country}}</p>
+            </div>
+
+            <br/>
+            <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="!editPlant.culture" placeholder="Comment about the culture."></textarea>
             <br/>
         </fieldset>
 
         <fieldset id="accession">
             <h1>Accession</h1>
             <button class="edit" ng-click="editAccession()">
-                <img src="images/edit.svg" alt="edit" ng-hide="editPlant.accession">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.accession">
+                <img src="images/edit.svg" alt="edit" ng-hide="editPlant.accesssion">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.accesssion">
             </button>
             <label>Donated to:</label><input type="text" ng-model="plant.accesssion" ng-disabled="!editPlant.accesssion">
-            <label>Recieved:</label><input type="text" ng-model="plant.accesssion" ng-disabled="!editPlant.accesssion"><br/>
+            <label>Recieved:</label><input type="text" ng-model="plant.received_from" ng-disabled="!editPlant.accesssion"><br/>
             <label></label><input type="text" ng-model="plant.accesssion" ng-disabled="!editPlant.accesssion"><br/>
-            <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="!editPlant.accession" value="{{accessionComment}}" ></textarea>
+            <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="!editPlant.accesssion" ng-model="plant.donation_comment" ></textarea>
         </fieldset>
 
         <fieldset id="description">
@@ -84,18 +89,18 @@
             <label class="labelfirst">
                 Parent 1:
             </label>
-            <input type="text" ng-model="plant.description" ng-disabled="!editPlant.hybrid">
+            <input type="text" ng-model="plant.parent_one" ng-disabled="!editPlant.hybrid">
 
             <label class="labelfirst">
                 Parent 2:
             </label>
 
-            <input type="text" ng-model="plant.parent2" ng-disabled="!editPlant.hybrid"><br/>
+            <input type="text" ng-model="plant.parent_two" ng-disabled="!editPlant.hybrid"><br/>
 
             <label class="labellast">GREX:</label>
-            <input type="text" value="Lorem ipsum" ng-disabled="!editPlant.hybrid">
+            <input type="text" ng-model="plant.grex_status" ng-disabled="!editPlant.hybrid">
 
-            <textarea value="{{originHybrid}}" type="textarea" ng-disabled="!editPlant.hybrid" placeholder="Comment here about Hybrid."></textarea>
+            <textarea ng-model="plant.hybrid_comment" type="textarea" ng-disabled="!editPlant.hybrid" placeholder="Comment here about Hybrid."></textarea>
 
         </fieldset>
 
@@ -108,12 +113,13 @@
 
             <label for="check1" class="labelfirst">Inactive</label>
             <input id="check1" type="checkbox">
-            <input type="date" value="10/18/2016" ng-disabled="!editPlant.inactive">
+            <input type="date" value="2016-08-30" ng-disabled="!editPlant.inactive">
             <br/>
 
             <label for="check2">Dead</label>
             <input id="check2" type="checkbox">
-            <input type="date" value="10/18/2016" ng-disabled="!editPlant.inactive">
+            <input type="date" value="plant.aaa" ng-disabled="!editPlant.inactive" placeholder="yyyy-MM-dd">
+            {{plant.inactive_date}}
             <br/>
 
             <!--            <label for="inactivecomment">Comment:</label>-->
