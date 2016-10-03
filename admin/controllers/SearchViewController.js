@@ -17,19 +17,18 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, Plan
 
     // loop over the plants array, and for each plant change the visibility of the
     // attribute that was checked
-    $scope.editFilterDisplay = function (key) {
-      for (var i = 0; i < $scope.plants.length; i++) {
-        for (var j = 0; j < $scope.plants[i].length; j++) {
-          if ($scope.plants[i][j].key == key) {
-            if ($scope.plants[i][j].isDisplayed == false) {
-              $scope.plants[i][j].isDisplayed = true;
+    $scope.editFilterDisplay = function(key) {
+        for (var i = 0; i < $scope.plants.length; i++) {
+            for (var j = 0; j < $scope.plants[i].length; j++) {
+                if ($scope.plants[i][j].key == key) {
+                    if ($scope.plants[i][j].isDisplayed == false) {
+                        $scope.plants[i][j].isDisplayed = true;
+                    } else {
+                        $scope.plants[i][j].isDisplayed = false;
+                    }
+                }
             }
-            else {
-              $scope.plants[i][j].isDisplayed = false;
-            }
-          }
         }
-      }
     }
 
     // function to get plants based on first letter and index
@@ -39,29 +38,28 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, Plan
     function getPaginatedPlants() {
         PlantsFactory.getPaginatedPlants('a', 1).then(function(response) {
             $scope.plants = [];
-            for (var i = 0; i<response.data.data.length; i++) {
-              var plant = [];
-              var attributes = Object.keys(response.data.data[i]);
-              for (var j = 0; j < attributes.length; j++) {
-                var val = attributes[j];
-                //default displays
-                if (attributes[j] =='accession_number' || attributes[j] == 'name') {
-                  var attribute = {
-                    'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
-                    'val': response.data.data[i][val],
-                    'isDisplayed': true
-                  }
+            for (var i = 0; i < response.data.data.length; i++) {
+                var plant = [];
+                var attributes = Object.keys(response.data.data[i]);
+                for (var j = 0; j < attributes.length; j++) {
+                    var val = attributes[j];
+                    //default displays
+                    if (attributes[j] == 'accession_number' || attributes[j] == 'name') {
+                        var attribute = {
+                            'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
+                            'val': response.data.data[i][val],
+                            'isDisplayed': true
+                        }
+                    } else {
+                        var attribute = {
+                            'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
+                            'val': response.data.data[i][val],
+                            'isDisplayed': false
+                        }
+                    }
+                    plant.push(attribute);
                 }
-                else{
-                  var attribute = {
-                    'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
-                    'val':response.data.data[i][val],
-                    'isDisplayed': false
-                  }
-                }
-                plant.push(attribute);
-              }
-              $scope.plants.push(plant);
+                $scope.plants.push(plant);
             }
         });
     }
