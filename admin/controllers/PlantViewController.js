@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($scope, CONFIG, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory) {
+app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory) {
 
     var param1 = $routeParams.accession_number;
 
@@ -8,59 +8,138 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
     });
 
 
-    PlantsFactory.getPlantByAccessionNumber(param1).then(function (response){
-       var data = response.data.data[0];
-        //console.log(data);
-        $scope.plant = {
-            commonName: data.name,
-            scientific_name: data.scientific_name,
-            accession_number: data.accession_number,
-            habitat: data.habitat,
-            orginComment: data.orginComment,
-            donatedTo: data.donatedTo,
-            donnaitonComment: data.donation_comment,
-            recieved: data.recieved,
-            description: data.description,
-            location_id: data.location_id
 
-
-
-        };
-
-        $scope.commonName = data.name;
-        $scope.accession_number = data.accession_number;
-        $scope.scientific_name = data.scientific_name;
-
-        $scope.distribution = data.distribution;
-
-        $scope.habitat = data.habitat;
-        $scope.orginComment = data.orginComment;
-
-        $scope.donatedTo = data.donatedTo;
-        $scope.donationComment = data.donation_comment;
-        $scope.recieved = data.recieved;
-
-        $scope.description = data.description;
-
-        $scope.parentOne = data.parent_one;
-        $scope.parentTwo = data.parent_two;
-        $scope.grex_status = data.grex_status;
-        $scope.hybrid_status = data.hybrid_status;
-        $scope.hybrid_comment = data.hybrid_comment;
-
-        $scope.inactive = data.inactive;
-        $scope.inactiveDate = data.inactive_date;
-
-
-
-    });
-
-    //LocationFactory.getTableLocations(function (response){
-    //    var data = response.data.data;
+    // THIS IS GETTING ALL THE COUNTRIES!!!
     //
-    //    console.log(data);
+    //    $scope.AllCountry = [];
+
+    //
+    //countryFactory.getCountries().then(function (response){
+    //    console.log(response.data.data);
+    //
+    //    countryArray = response.data.data;
+    //    for (i = 0; i < countryArray.length; i++){
+    //        var name = countryArray[i].name;
+    //        $scope.AllCountry.push(name);
+    //    }
     //
     //});
+
+    $scope.CountryNames = [];
+    $scope.Tables = []
+
+
+
+    PlantsFactory.getPlantByAccessionNumber(param1).then(function (response){
+       var plantData = response.data.data[0];
+        console.log(plantData);
+        var plant_id = response.data.data[0].id;
+
+        country = [];
+
+        LocationFactory.getTableLocations().then(function (response){
+            var tableData = response.data.data;
+
+            for (i = 0; i < tableData.length; i++){
+
+                $scope.Tables.push(tableData[i].name);
+            }
+
+
+        });
+
+
+
+
+
+        PlantCountryLinkFactory.getCountryByPlantID(plant_id).then(function (response) {
+            var plantCountryData = response.data.data;
+
+            for (i = 0; i < plantCountryData.length; i++) {
+
+                var nme = plantCountryData[i].name;
+                console.log(nme);
+                $scope.CountryNames.push(nme);
+            }
+        });
+
+        newLink = [];
+
+        //classificationLinkFactory.getPlantHierarchy(1).then (function (response){
+        //   console.log(response.data.data);
+        //    var classificationPlantData = response.data.data
+        //    //console.log(classificationPlantData[0].class_id);
+        //    length = classificationPlantData.length;
+        //    for (a = 0; i <= 3; a++){
+        //
+        //        //var scientific_name = classificationPlantData[a].scientific_class_name;
+        //        var type_name = classificationPlantData[a];
+        //
+        //        console.log(type_name.getElementsByClassName("scientific_class_name"));
+        //        //console.log(scientific_name);
+        //
+        //        a = [];
+        //        a.push( type_name);
+        //        newLink.push(a);
+        //    }
+        //
+        //
+        //});
+        //console.log("helllo");
+        //
+        //console.log(newLink);
+
+
+
+
+        $scope.plant = {
+            id: plantData.id,
+            accession_number: plantData.accession_number,
+            name: plantData.name,
+            authority: plantData.authority,
+            distribution: plantData.distribution,
+            habitat: plantData.habitat,
+            culture: plantData.culture,
+            donation: plantData.donation,
+            data_recieved: plantData.data_recieved,
+            received_from: plantData.received_from,
+            description: plantData.description,
+            username: plantData.username,
+            inactive: plantData.inactive,
+            inactive_date: plantData.inactive_date,
+            inactive_comment: plantData.inactive_comment,
+            size: plantData.size,
+            value: plantData.value,
+            parent_one: plantData.parent_one,
+            parent_two: plantData.parent_two,
+            grex_status: plantData.grex_status,
+            hybrid_status: plantData.status,
+            hybrid_comment: plantData.hybrid_comment,
+            dead: plantData.dead,
+            scientific_name: plantData.scientific_name,
+            location_id: plantData.location_id,
+            special_collections_id: plantData.special_collections_id,
+            donation_comment: plantData.donation_comment,
+            origin_comment: plantData.origin_comment,
+            last_varified: plantData.last_varified,
+            is_donation: plantData.is_donation,
+            aaa: new Date(2014, 02, 03)
+        };
+
+        LocationFactory.getTableNameFromID($scope.plant.location_id).then(function (response){
+            $scope.plant.locationName = response.data.data.name;
+        });
+
+        console.log($scope.plant.aaa);
+
+
+
+
+
+    }, function(error){
+        console.log("there is an erorr");
+        $location.path('/404');
+    });
 
 
 
@@ -142,18 +221,9 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
         } else {
             $scope.editPlant.critical = false;
 
-            console.log($scope.plant);
+            var criticalPlantInformation = {scientific_name: $scope.plant.scientific_name, name:$scope.plant.name, location_id: $scope.plant.location_id, id:$scope.plant.id, accession_number:$scope.plant.accession_number};
 
-            //var criticalData{
-            //
-            //    scientific_name: data.scientific_name,
-            //       namea: "dd"
-            //}
-
-            console.log($scope.plant.scientific_name);
-            var car = {scientific_name: $scope.plant.scientific_name, name:"500", location_id:2, id:1, accession_number:99998};
-
-            PlantsFactory.editCriticalPlant(car).then(function (response){
+            PlantsFactory.editCriticalPlant(criticalPlantInformation).then(function (response){
                 console.log(response.data);
             });
         }
@@ -165,6 +235,18 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
           $scope.editPlant.culture = true;
       } else {
           $scope.editPlant.culture = false;
+
+
+          var culturePlantInformation = {distribution: $scope.plant.distribution, habitat:$scope.plant.habitat, location_id: 3, id:$scope.plant.id, origin_comment:$scope.plant.origin_comment};
+
+          PlantsFactory.editCulturePlant(culturePlantInformation).then(function (response){
+              console.log(response.data);
+          });
+
+
+
+
+
       }
     }
 
@@ -173,6 +255,12 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
           $scope.editPlant.accesssion = true;
       } else {
           $scope.editPlant.accesssion = false;
+
+          var accessionPlantInformation = {recieved_from: $scope.plant.received_from, donation_comment: $scope.plant.donation_comment, id: $scope.plant.id }
+
+          PlantsFactory.editAccessionPlant(accessionPlantInformation).then(function (response){
+             console.log(response.data);
+          });
       }
     }
 
@@ -181,6 +269,15 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
           $scope.editPlant.description = true;
       } else {
           $scope.editPlant.description = false;
+
+          var descriptionPlantInformation = {description: $scope.plant.description, id: $scope.plant.id};
+
+          PlantsFactory.editDescription(descriptionPlantInformation).then(function (response){
+              console.log(response.data);
+          });
+
+
+
       }
     }
 
@@ -189,6 +286,13 @@ app.controller('PlantViewController', function($scope, CONFIG, $routeParams, Pla
           $scope.editPlant.hybrid = true;
       } else {
           $scope.editPlant.hybrid = false;
+
+          var hybridPlantInformation = {parent_one: $scope.plant.parent_one, parent_two: $scope.plant.parent_two, grex_status: $scope.plant.grex_status, hybrid_comment: $scope.plant.hybrid_comment,  id: $scope.plant.id};
+
+          PlantsFactory.editHybird(hybridPlantInformation).then(function (response){
+              console.log(response.data);
+          });
+
       }
     }
 

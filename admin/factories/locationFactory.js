@@ -7,7 +7,7 @@ app.factory('LocationFactory', function($http) {
 
 
     data.getTableLocations = function() {
-        $http.get(baseUrl);
+        return $http.get(baseUrl);
     }
 
     data.getTableNameFromID = function(table_id){
