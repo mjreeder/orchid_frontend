@@ -247,7 +247,7 @@ header ul {
 /* mouse over link */
 header ul li a:hover{
     transition: .5sec ease;
-    color: #ab0c2f;
+    color: #ba0c2f;
 }
 
 
@@ -338,7 +338,7 @@ hr {
 }
 
 .menubox li a:hover {
-    color: #ab0c2f;
+    color: #ba0c2f;
     transition: .5sec ease;
 }
 

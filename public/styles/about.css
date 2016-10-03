@@ -27,7 +27,7 @@ main figcaption {
 /* mouse over link */
 main figcaption a:hover {
     transition: .5sec ease;
-    color: #ab0c2f;
+    color: #ba0c2f;
 }
 
 main {

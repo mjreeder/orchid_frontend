@@ -1,4 +1,4 @@
-app.controller('SearchViewController', function(CONFIG, $scope, PlantsFactory, ClassificationLinkFactory) {
+app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, PlantsFactory, classificationLinkFactory) {
     $scope.plantKeys = [];
     $scope.displayAttributes = [];
 

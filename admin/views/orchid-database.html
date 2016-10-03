@@ -3,7 +3,7 @@
     <table width="400" class="table" cell padding="10" cell spacing="2">
         <thead>
             <tr>
-                <th ng-repeat="(key, val) in plants[0]" ng-show="val.isDisplayed">{{val.key}}</th>
+                <th ng-repeat="(key, val) in plants[0]" ng-show="val.isDisplayed && val.key != 'id'">{{val.key}}</th>
                 <!-- <th ng-repeat="(ind, val) in plantKeys" ng-show="val.isDisplayed">{{val.key.displayName}}</th> -->
             </tr>
             <tbody>
@@ -34,9 +34,9 @@
             <!--            </div> not sure what this closing div is for? -->
             <div class="filter-options">
                 <ul ng-repeat="(key, val) in plants[0]">
-                    <li>
+                    <li ng-show="val.key != 'id'">
                         <label for="Accessionnumber">
-                            <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed" ng-click="editFilterDisplay(val.key)"/>
+                            <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed" ng-click="editFilterDisplay(val.key)" ng-show="val.key != 'id'"/>
                             {{val.key}}
                         </label>
                     </li>
