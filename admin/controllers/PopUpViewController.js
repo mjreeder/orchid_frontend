@@ -2,20 +2,26 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     $scope.plant = {};
     $scope.health_condition = "";
+    $scope.data = {};
 
     $scope.$on('current-plant', function(event, data){
-      console.log(data);
       $scope.plant = data;
+      concatObjects(data, 'plant');
       init();
     })
 
     $scope.today = new Date();
 
     $scope.submitPopUp = function(){
+      console.log(extractData('plant'));
+    }
+
+    var handleBloom = function() {
 
     }
 
     $scope.closePopUp = function(){
+      console.log($scope.data);
       $rootScope.$broadcast('popup-close', true);
     }
 
@@ -35,17 +41,41 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       })
     }
 
-    $scope.star
-
     //Add data to scope object
     var concatObjects = function(data, prefix){
       for(key in data){
         if(data.hasOwnProperty(key)){
-          $scope[prefix + '_' + key] = data[key];
+          $scope.data[prefix + '_' + key] = data[key];
         }
       }
     }
 
+    //get all items which have the current prefix in the scope.data object
+    var extractData = function(prefix){
+      var data = $scope.data;
+      var temp = {};
+      for(key in data){
+        if(data.hasOwnProperty(key)){
+          if(stringContains(key, prefix)){
+            var tempKey = removePrefix(key);
+            temp[tempKey] = data[key];
+          }
+        }
+      }
+      return temp;
+    }
 
+    var stringContains = function(string, prefix){
+      if(string.indexOf(prefix) !== -1){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    var removePrefix = function(string){
+      var index = string.indexOf('_');
+      return string.substring(index + 1, string.length);
+    }
 
 });
