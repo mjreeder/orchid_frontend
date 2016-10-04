@@ -6,6 +6,8 @@ body {
     background-attachment: fixed;
 }
 
+
+
 main menu h1  {
     text-align: center;
     font-family: Aleo, 'Times New Roman', Times, serif;
@@ -24,15 +26,23 @@ main menu {
 }
 
 #plants li a h3:hover {
-    color: #ab0c2f;
-    transition: .5sec ease;
+    color: #ba0c2f;
+    
 }
 
 
 #tabs li {
     display: inline-block;
-    margin: 0 .9%;
+    margin: 0 2%;
+    transition: .5s ease; 
+    margin-bottom: 10px;    
 
+
+    
+    
+    
+    
+    
 }
 
 main {
@@ -50,7 +60,7 @@ main menu li a {
 }
 
 main menu li a:hover{
-    color: #ab0c2f;
+    color: #ba0c2f;
     transition: .5sec ease; 
 }
 
@@ -62,9 +72,7 @@ main menu li a:hover{
     border-top-right-radius: 8px;
 }
 
-#tabs li {
-    margin-bottom: 10px;    
-}
+
 
 
 #plants {
@@ -78,7 +86,7 @@ body {
 }
 
 #alphabetical {
-    color: #ab0c2f;
+    color: #ba0c2f;
 }
 
 .menubox {
@@ -93,6 +101,12 @@ body {
 .whitebox {
     background-color: white;
     padding: 10px 20px;
+}
+
+@media screen and (max-width: 804px){
+    .whitebox {
+		display: none;
+	}
 }
 
 
@@ -116,7 +130,7 @@ hr {
 }
 
 #search {
-    width: 180px;
+    width: 100%;
     height: 30px;
     background-color: black;
     color: white;
@@ -129,8 +143,15 @@ hr {
     letter-spacing: .5px;
 }
 
+@media screen and (max-width: 804px){
+    #search {
+		display: none;
+	}
+}
+
+
 .menubox li a:hover {
-    color: #ab0c2f;
+    color: #ba0c2f;
     transition: .5sec ease;
 }
 
@@ -159,11 +180,46 @@ main h4 {
     position: relative;
 }
 
-@media screen and (max-width:600px){
-	#plants li {
-		width: 40%;
-	}
+
+
+
+
+
+/*
+@media screen and (max-width: 1020px){
+   #plants li {
+    width: 40%;    
+   }
 }
+*/
+
+
+
+@media screen and (max-width: 933px){
+   #plants li {
+    width: 30%;    
+   }
+}
+
+@media screen and (max-width: 810px){
+   #plants li {
+    width: 50%;
+   }
+}
+
+
+
+
+
+
+@media screen and (max-width: 700px){
+   #plants li {
+    width: 100%;
+   }
+}
+
+
+
 
 
 #plants img {
@@ -192,6 +248,5 @@ main h4 {
     padding: 20px, 10px, 20px, 10px;
     line-height: 3;
 }
-
 
 

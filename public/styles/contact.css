@@ -37,9 +37,32 @@ main label {
     float: right;
 }
 
+@media screen and (max-width:470px){
+ #form {
+  width: 80%;    
+ }
+}
+
+@media screen and (max-width: 470px){
+  #email-section {
+      float: left;   
+      width: 100%;
+      margin-top: -5px;
+  }
+}
+
 #subject-section {
     clear: both;
 }
+
+/*
+@media screen and (max-width: 450px){
+   #subject {
+    width: 60%;    
+   }
+}
+*/
+
 
 main h2 {
     margin: 50px 0 10px 0px;
@@ -54,7 +77,7 @@ main img {
 }
 
 main ul li a {
-    margin: 20px 10px 0 65px;
+    margin: px 10px 0 65px;
 }
 
 main a {
@@ -71,6 +94,15 @@ main form #subject-section input {
     width: 428px;
 }
 
+/*
+
+@media screen and (max-width: 430px){
+   main from #subject-section {
+   width: 100px; 
+   }
+}
+*/
+
 main form textarea {
     padding: 5px;
     font-size: 15px;
@@ -81,6 +113,17 @@ main form textarea {
     position: inline-block;
     vertical-align: top;
 }
+
+
+/*
+@media screen and (max-width: 430px){
+   main form textarea {
+    width: 60%;    
+   }
+}
+*/
+
+
 
 #button {
     padding: 8px 40px;
@@ -98,9 +141,38 @@ main form textarea {
     transition: .5s ease;
 }
 
+
+/*
+@media screen and (max-width: 430px){
+   #submit-container {
+    float: left;
+       left: 50%; 
+   }
+}
+*/
+
+@media screen and (max-width: 570px){
+ #figcap {
+  display:none;   
+ }
+}
+
+
+@media screen and (max-width: 570px){
+ #figcap2 {
+  display:none;   
+ }
+}
+
+
+
 #submit-container {
     text-align: center;
 }
+
+
+
+
 
 main form {
     width: 428px;
@@ -130,7 +202,7 @@ main p {
     text-align: center;
 }
 
-main span {
+main span  {
     height: 50px;
     position: relative;
     top: 20px;
@@ -140,11 +212,20 @@ main span {
     margin-left: 85px;
 }
 
+
+
+/*
+@media screen and (max-width: 430px){
+    .facebook #link {
+      display: none; 
+ }
+}
+*/
+
 .facebook span {
     background: transparent url(../images/facebook.svg) center top no-repeat;
     transition: .5s ease; 
 }
-
 
 /* mouse over link */
 
@@ -190,6 +271,14 @@ main ul li a:hover {
     margin: 30px 0 0 150px;
 }
 
+@media screen and (max-width: 470px){
+    .location ul {
+      margin-left: 50px; 
+ }
+}
+
 .location li {
     margin: 10px 0;
 }
+
+

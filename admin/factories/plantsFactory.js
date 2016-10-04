@@ -35,13 +35,61 @@ app.factory('PlantsFactory', function($http) {
         });
     }
 
-    data.editCriticalPlant = function(aaa) {
+    data.editCriticalPlant = function(plant) {
       return $http({
         method: "PUT",
         url: baseUrl + '/updateCritical',
-        data: aaa
+        data: plant
       });
-    }
+    };
+
+    data.editCulturePlant = function(plant) {
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateCulture',
+            data: plant
+        });
+    };
+
+    data.editAccessionPlant = function(plant) {
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateAccession',
+            data: plant
+        });
+    };
+
+    data.editInactivePlant = function(plant) {
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateInactive',
+            data: plant
+        });
+    };
+
+    data.editSinglePhoto = function(plant) {
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateSinglePhoto',
+            data: plant
+        });
+    };
+
+    data.editDescription = function(aaa) {
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateDescription',
+            data: aaa
+        });
+    };
+
+    data.editHybird = function(plant){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateHybrid',
+            data: plant
+        });
+    };
     //
     //accession_number: plant.accession_number,
     //    scientific_name: plant.scientific_name,
