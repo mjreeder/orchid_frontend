@@ -13,15 +13,53 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.today = new Date();
 
     $scope.submitPopUp = function(){
-      console.log(extractData('plant'));
+      handleBloom();
+      handleSprayed();
+      handlePotting();
+      handleHealth();
     }
 
     var handleBloom = function() {
+      if(objectIsNew('blooming')){
 
+      } else {
+
+      }
+    }
+
+    var handleSprayed = function() {
+      if(objectIsNew('sprayed')){
+
+      } else {
+
+      }
+    }
+
+    var handlePotting = function(){
+      if(objectIsNew('potting')){
+
+      } else {
+
+      }
+    }
+
+    var handleHealth = function(){
+      if(objectIsNew('health')){
+
+      } else {
+
+      }
+    }
+
+    var objectIsNew = function(object){
+      if($scope.data[object + '_id']){
+        return false;
+      } else {
+        return true;
+      }
     }
 
     $scope.closePopUp = function(){
-      console.log($scope.data);
       $rootScope.$broadcast('popup-close', true);
     }
 
