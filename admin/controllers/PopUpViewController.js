@@ -64,18 +64,24 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     //These requests are async, but since they do not equire each other's data we will execute them concurently
     var init = function(){
-      BloomingFactory.getBloomByPlantID($scope.plant.id).then(function(data){
-        concatObjects(data, 'blooming');
-      })
-      SprayedFactory.getPestByPlantID($scope.plant.id).then(function(data){
-        concatObjects(data, 'sprayed');
-      })
-      PottingFactory.getBloomByPlantID($scope.plant.id).then(function(data){
-        concatObjects(data, 'potting');
-      })
-      HealthFactory.getHealthBtPlantID($scope.plant.id).then(function(data){
-        concatObjects(data, 'health');
-      })
+      if(!objectIsNew('plant')){
+        BloomingFactory.getBloomByPlantID($scope.plant.id).then(function(data){
+          concatObjects(data, 'blooming');
+        })
+        SprayedFactory.getPestByPlantID($scope.plant.id).then(function(data){
+          concatObjects(data, 'sprayed');
+        })
+        PottingFactory.getBloomByPlantID($scope.plant.id).then(function(data){
+          concatObjects(data, 'potting');
+        })
+        HealthFactory.getHealthBtPlantID($scope.plant.id).then(function(data){
+          concatObjects(data, 'health');
+        })
+        TagFactory.getPestByPlantID($scope.plant.id).then(function(data){
+          concatObjects(data, 'tag');
+        })
+
+      }
     }
 
     //Add data to scope object
