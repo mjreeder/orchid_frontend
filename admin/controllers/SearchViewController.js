@@ -18,6 +18,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, Plan
     // loop over the plants array, and for each plant change the visibility of the
     // attribute that was checked
     $scope.editFilterDisplay = function(key) {
+      // console.log(varb, plant);
         for (var i = 0; i < $scope.plants.length; i++) {
             for (var j = 0; j < $scope.plants[i].length; j++) {
                 if ($scope.plants[i][j].key == key) {

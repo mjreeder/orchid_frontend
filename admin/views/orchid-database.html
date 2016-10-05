@@ -35,10 +35,10 @@
             <div class="filter-options">
                 <ul ng-repeat="(key, val) in plants[0]">
                     <li ng-show="val.key != 'id'">
-                        <label for="Accessionnumber">
-                            <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed" ng-click="editFilterDisplay(val.key)" ng-show="val.key != 'id'"/>
+                        <div class="editPlant" ng-click="editFilterDisplay(val.key)">
+                            <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/>
                             {{val.key}}
-                        </label>
+                        </div>
                     </li>
                 </ul>
             </div>
