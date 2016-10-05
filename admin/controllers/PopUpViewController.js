@@ -16,38 +16,69 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       handleSprayed();
       handlePotting();
       handleHealth();
+      handleTag();
     }
 
     var handleBloom = function() {
+      var data = prepareForFactory('blooming');
       if(objectIsNew('blooming')){
-
+        BloomingFactory.createBloom(data).then(function(){})
       } else {
+        BloomingFactory.updateBloom(data).then(function(){})
+      }
+    }
 
+    var handleBloomingComment = function(){
+      var data = prepareForFactory('blooming_comment');
+      if(objectIsNew('blooming_comment')){
+        Bloom_CommentFactory.createBloom_Comment(data).then(function(){})
+      } else {
+        Bloom_CommentFactory.updateBloom(data).then(function(){})
       }
     }
 
     var handleSprayed = function() {
+      var data = prepareForFactory('sprayed');
       if(objectIsNew('sprayed')){
-
+        SprayedFactory.createSplit(data).then(function(){})
       } else {
-
+        SprayedFactory.updateSplit(data).then(function(){})
       }
     }
 
     var handlePotting = function(){
+      var data = prepareForFactory('potting');
       if(objectIsNew('potting')){
-
+        PottingFactory.createPest(data).then(function(){})
       } else {
-
+        PottingFactory.updatePotting(data).then(function(){})
       }
     }
 
     var handleHealth = function(){
+      var data = prepareForFactory('health');
       if(objectIsNew('health')){
-
+        HealthFactory.createHealth(data).then(function(){});
       } else {
-
+        HealthFactory.editHealth(data).then(function(){})
       }
+    }
+
+    var handleTag = function(){
+      var data = prepareForFactory('flag');
+      if(objectIsNew('flag')){
+        TagFactory.createTag(data).then(function(){})
+      } else {
+        TagFactory.updateTag(data).then(function(){})
+      }
+    }
+
+    var prepareForFactory = function(field){
+      var data = extractData(field);
+      if(objectIsNew('plant')){
+        data.plantId = plant.id;
+      }
+      return data;
     }
 
     var objectIsNew = function(object){
