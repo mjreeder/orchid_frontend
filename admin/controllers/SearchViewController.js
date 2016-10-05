@@ -10,8 +10,31 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, Plan
             return;
         }
 
-        PlantsFactory.getPlantBySearch(searchItem).then(function(response) {
-            $scope.plants = response.data.data;
+        PlantsFactory.getPlantBySearch(searchItem, 1).then(function(response) {
+            $scope.plants = [];
+            for (var i = 0; i < response.data.data.length; i++) {
+                var plant = [];
+                var attributes = Object.keys(response.data.data[i]);
+                for (var j = 0; j < attributes.length; j++) {
+                    var val = attributes[j];
+                    //default displays
+                    if (attributes[j] == 'accession_number' || attributes[j] == 'name') {
+                        var attribute = {
+                            'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
+                            'val': response.data.data[i][val],
+                            'isDisplayed': true
+                        }
+                    } else {
+                        var attribute = {
+                            'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
+                            'val': response.data.data[i][val],
+                            'isDisplayed': false
+                        }
+                    }
+                    plant.push(attribute);
+                }
+                $scope.plants.push(plant);
+            }
         });
     }
 

@@ -14,13 +14,13 @@ app.factory('PlantsFactory', function($http) {
     data.getPlantById = function(id) {
         return $http.get(baseUrl + '/' + id);
     }
-    
+
     data.getPlantByAccessionNumber = function(accessionNumber) {
           return $http.get(baseUrl + '/accession/' + accessionNumber);
     }
 
-    data.getPlantBySearch = function (searchItem) {
-      return $http.get(baseUrl + '/search_all/' + searchItem);
+    data.getPlantBySearch = function (searchItem, index) {
+      return $http.get(baseUrl + '/search_all/' + searchItem + "/" + index);
     }
 
     data.getByLocationID = function (id){
