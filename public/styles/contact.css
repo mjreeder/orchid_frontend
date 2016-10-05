@@ -32,28 +32,48 @@ main label {
     float: left;
 }
 
+@media screen and (max-width: 500px) {
+ #name-section {
+    width: 100%; 
+     float: none; 
+ }
+}
+
 #email-section {
     width: 45%;
     float: right;
 }
 
-@media screen and (max-width:470px){
- #form {
-  width: 80%;    
+@media screen and (max-width:500px) {
+    #form {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #email-section {
+        width: 100%;
+        margin-top: -5px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+ #message {
+  width: 100%;    
  }
 }
 
-@media screen and (max-width: 470px){
-  #email-section {
-      float: left;   
-      width: 100%;
-      margin-top: -5px;
-  }
+@media screen and (min-width: 500px) {
+    #email-section {
+      width: 100%; 
+          margin-top: -5px;
+    }
 }
 
 #subject-section {
     clear: both;
 }
+
 
 /*
 @media screen and (max-width: 450px){
@@ -62,7 +82,6 @@ main label {
    }
 }
 */
-
 
 main h2 {
     margin: 50px 0 10px 0px;
@@ -88,12 +107,28 @@ main form input {
     padding: 2px;
     font-size: 15px;
     border: 2px solid #000000;
+    box-sizing: border-box; 
 }
 
-main form #subject-section input {
+main form input {
     width: 428px;
 }
 
+@media screen and (max-width: 500px) {
+ main form input {
+   width: 100%;   
+ } 
+}
+
+
+
+
+@media screen and (min-width: 500px)  {
+   #submit-container #button {
+    width: 10%; 
+     padding-right: 20%; 
+}
+}
 /*
 
 @media screen and (max-width: 430px){
@@ -123,8 +158,6 @@ main form textarea {
 }
 */
 
-
-
 #button {
     padding: 8px 40px;
     color: white;
@@ -133,7 +166,7 @@ main form textarea {
     font-weight: 100;
     border-radius: 8px;
     cursor: pointer;
-    border: none; 
+    border: none;
 }
 
 #button:hover {
@@ -151,28 +184,40 @@ main form textarea {
 }
 */
 
-@media screen and (max-width: 570px){
- #figcap {
-  display:none;   
- }
+@media screen and (max-width: 780px) {
+    .facebook p {
+        display: none;
+    }
 }
 
-
-@media screen and (max-width: 570px){
- #figcap2 {
-  display:none;   
- }
+@media screen and (max-width: 780px) {
+    .instagram p {
+        display: none;
+    }
 }
 
+/*
+@media screen and (max-width: 780px) {
+    .instagram {
+        display: absolute;
+        float: right;
+        margin-top: -71px;
+        margin-right: 250px; 
+    }
+}
+*/
 
+@media screen and (max-width: 780px){
+#social-media li {
+    display: inline-block; 
+    width: 20%; 
+    
+}
+}
 
 #submit-container {
     text-align: center;
 }
-
-
-
-
 
 main form {
     width: 428px;
@@ -202,16 +247,15 @@ main p {
     text-align: center;
 }
 
-main span  {
+main span {
     height: 50px;
     position: relative;
     top: 20px;
     width: 50px;
     display: inline-block;
     margin-right: 20px;
-    margin-left: 85px;
+    margin-left: 175px;
 }
-
 
 
 /*
@@ -224,8 +268,23 @@ main span  {
 
 .facebook span {
     background: transparent url(../images/facebook.svg) center top no-repeat;
-    transition: .5s ease; 
+    transition: .5s ease;
+    margin-bottom: 20px;
+
 }
+
+.facebook p {
+    margin-left: 100px;
+    margin-top: -40px;
+    margin-bottom: 15px;
+}
+
+.instagram p {
+    margin-left: -170px;
+    margin-top: -30px;
+    margin-bottom: 15px;
+}
+
 
 /* mouse over link */
 
@@ -233,16 +292,20 @@ main span  {
     background-image: url(../images/facebook_hover.svg);
 }
 
-.instagram span{
+.instagram span {
     background: transparent url(../images/instagram.svg) center top no-repeat;
-    transition: .5s ease; 
+    transition: .5s ease;
+    margin-bottom: 10px;
+   
 }
 
 
 /* mouse over link*/
+
 .instagram span:hover {
     background-image: url(../images/instagram_hover.svg);
 }
+
 
 /* mouse over link */
 
@@ -271,14 +334,12 @@ main ul li a:hover {
     margin: 30px 0 0 150px;
 }
 
-@media screen and (max-width: 470px){
+@media screen and (max-width: 500px) {
     .location ul {
-      margin-left: 50px; 
- }
+        margin-left: 30px;
+    }
 }
 
 .location li {
     margin: 10px 0;
 }
-
-
