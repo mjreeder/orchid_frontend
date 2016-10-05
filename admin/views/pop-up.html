@@ -37,7 +37,7 @@
             <output>{{ blooming_end_date | date }}</output>
 
             <div class="top-margin">
-                <textarea placeholder="Comment here about blooming." name="comments" cols="70" rows="4" ng-model="blooming_comment"></textarea>
+                <textarea placeholder="Comment here about blooming." name="comments" cols="70" rows="4" ng-model="blooming_note"></textarea>
 
             </div>
 
@@ -49,7 +49,7 @@
                 </button>
                 <output>{{ sprayed_timestamp | date }}</output>
 
-                <textarea placeholder="Comment here about pest spraying." name="comments" cols="70" rows="4" ng-model="sprayed_comment"></textarea>
+                <textarea placeholder="Comment here about pest spraying." name="comments" cols="70" rows="4" ng-model="sprayed_note"></textarea>
             </div>
 
             <section id="repot" class="top-margin">
@@ -70,13 +70,13 @@
                     <button id="fair" ng-click="health_condition = 'fair'">Fair</button>
                     <button id="good" ng-click="health_condition = 'good'">Good</button>
                 </p>
-                <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition." ng-model="health_comment"></textarea>
+                <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition." ng-model="health_note"></textarea>
             </section>
 
             <div id="" class="top-margin">
                 <label>Flag this plant:</label>
                 <input type="checkbox">
-                <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged."></textarea>
+                <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
             </div>
 
             <button id="more-info">
