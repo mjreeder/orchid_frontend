@@ -2,7 +2,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     $scope.plant = {};
     $scope.health_condition = "";
-    $scope.data = {};
 
     $scope.$on('current-plant', function(event, data){
       $scope.plant = data;
@@ -52,7 +51,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var objectIsNew = function(object){
-      if($scope.data[object + '_id']){
+      if($scope[object + '_id']){
         return false;
       } else {
         return true;
@@ -84,14 +83,13 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       for(key in data){
         if(data.hasOwnProperty(key)){
           $scope[prefix + '_' + key] = data[key];
-          $scope.data[prefix + '_' + key] = data[key];
         }
       }
     }
 
     //get all items which have the current prefix in the scope.data object
     var extractData = function(prefix){
-      var data = $scope.data;
+      var data = $scope;
       var temp = {};
       for(key in data){
         if(data.hasOwnProperty(key)){
