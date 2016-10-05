@@ -83,6 +83,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var concatObjects = function(data, prefix){
       for(key in data){
         if(data.hasOwnProperty(key)){
+          $scope[prefix + '_' + key] = data[key];
           $scope.data[prefix + '_' + key] = data[key];
         }
       }
