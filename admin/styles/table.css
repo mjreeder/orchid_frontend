@@ -44,7 +44,7 @@ main nav ul {
 
 #A img, #B img {
     height: 50px;
-    display: block; 
+    display: block;
 }
 
 #A {
@@ -71,7 +71,7 @@ main nav ul {
 }
 
 #A img, #B img {
-    padding-top: 5px; 
+    padding-top: 5px;
 }
 
 
@@ -80,7 +80,7 @@ main header h1 {
     font-size: 35px;
     text-align: center;
     height: 130px;
-    line-height: 130px; 
+    line-height: 130px;
 }
 
 
@@ -89,7 +89,7 @@ main header h1 {
 /*TABLE*/
 
 #center-table {
-    margin:auto; 
+    margin:auto;
     align-items: center;
 }
 
@@ -97,7 +97,7 @@ main table {
     margin: 0 auto;
     background-color: #b3b3b3;
     width: 100%;
-    border-collapse:collapse; 
+    border-collapse:collapse;
     width: 95%;
 }
 
@@ -113,11 +113,11 @@ table,
 td,
 th {
     border-bottom: 4px solid white;
-    border-left: 4px solid white; 
+    border-left: 4px solid white;
     text-align: center;
     vertical-align: middle;
     padding: 10px;
-    height: auto; 
+    height: auto;
 }
 
 td:nth-child(1){
@@ -125,11 +125,11 @@ td:nth-child(1){
 }
 
 td:nth-child(2){
-    width:40% 
+    width:40%
 }
 
 td:nth-child(3){
-    width: 20%; 
+    width: 20%;
 }
 
 td:nth-child(4){
@@ -137,7 +137,7 @@ td:nth-child(4){
 }
 
 td{
-    vertical-align: top; 
+    vertical-align: top;
 }
 
 
@@ -151,7 +151,7 @@ td{
 
 #moveplants a {
     background-color: #2B2E30;
-    text-decoration: none; 
+    text-decoration: none;
     color: white;
     font-family: Raleway;
     font-size: 20px;
@@ -169,7 +169,7 @@ td{
 #close {
     position:absolute;
     right: 15px;
-    top: 15px; 
+    top: 15px;
 }
 
 .flower-popup {
@@ -197,7 +197,7 @@ td{
 .center h1 {
     text-align: center;
     font-family: aleo;
-    font-size: 22px; 
+    font-size: 22px;
     height: 30px;
 }
 
@@ -207,15 +207,20 @@ td{
 
 .flower-popup label {
     font-family: aleo;
-    font-size: 18px; 
+    font-size: 18px;
     margin: 0 0 5px 5px;
 }
-
+.editPlant{
+  font-family: aleo;
+  font-size: 18px;
+  margin: 0 0 5px 5px;
+  cursor: pointer;
+}
 .flower-popup textarea {
-    border: 4px solid black; 
-    font-family: aleo; 
+    border: 4px solid black;
+    font-family: aleo;
     color: #b3b3b3;
-    font-size: 12px; 
+    font-size: 12px;
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
@@ -225,7 +230,7 @@ td{
 
 #current-health button, .today, #save, #more-info, .startnewbloom {
     background-color: #2B2E30;
-    text-decoration: none; 
+    text-decoration: none;
     color: white;
     font-family: Raleway;
     font-size: 14px;
@@ -249,13 +254,13 @@ td{
 
 #current-health {
     font-family: aleo;
-    font-size: 18px; 
-    margin-left: 5px; 
-    margin-bottom: 5px; 
+    font-size: 18px;
+    margin-left: 5px;
+    margin-bottom: 5px;
 }
 
 .flower-popup img {
-    height: 30px; 
+    height: 30px;
     width: auto;
 }
 
@@ -288,14 +293,14 @@ td{
 }
 
 #more-info, #save {
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 
 #more-info a {
-    color: white; 
+    color: white;
 }
 
 
 .subsection {
- margin-left: 30px;  
+ margin-left: 30px;
 }
