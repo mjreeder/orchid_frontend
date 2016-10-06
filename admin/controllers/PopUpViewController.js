@@ -73,8 +73,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var prepareForFactory = function(field){
       var data = extractData(field);
-      if(objectIsNew('plant')){
-        data.plantId = plant.id;
+      console.log($scope['plant_id']);
+      if(!objectIsNew('plant')){
+        data.plantId = $scope.plant.id;
       }
       return data;
     }
