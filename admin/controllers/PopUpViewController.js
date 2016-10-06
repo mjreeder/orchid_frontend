@@ -31,12 +31,19 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleBloomingComment = function(){
       var data = prepareForFactory('bloomingComment');
+      if(!data.note){
+        return;
+      }
       data.timestamp = $scope.today;
       Bloom_CommentFactory.createBloom_Comment(data).then(function(){})
     }
 
     var handleSprayed = function() {
       var data = prepareForFactory('sprayed');
+      data.timestamp = $scope.today;
+      if(!data.note){
+        return;
+      }
       if(objectIsNew('sprayed')){
         SprayedFactory.createSplit(data).then(function(){})
       } else {
@@ -99,7 +106,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           concatObjects(data, 'blooming');
         })
         SprayedFactory.getPestByPlantID($scope.plant.id).then(function(data){
-          concatObjects(data, 'sprayed');
+          var lastComment = getLastComment(data);
+          concatObjects(lastComment, 'sprayed');
         })
         PottingFactory.getBloomByPlantID($scope.plant.id).then(function(data){
           concatObjects(data, 'potting');
@@ -111,11 +119,16 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           concatObjects(data, 'tag');
         })
         Bloom_CommentFactory.getBloomByPlantID($scope.plant.id).then(function(data){
-          data = data.data.data;
-          var lastComment = data[data.length-1];
+          var lastComment = getLastComment(data);
           concatObjects(lastComment, 'bloomingComment')
         })
       }
+    }
+
+    var getLastComment = function(data){
+      data = data.data.data;
+      var lastComment = data[data.length-1];
+      return lastComment;
     }
 
     //Add data to scope object

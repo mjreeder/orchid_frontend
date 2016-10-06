@@ -1,7 +1,7 @@
 app.factory('SprayedFactory', function($http) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/split';
+    var baseUrl = 'http://localhost:8888/orchid_site/public/api/sprayed';
 
 
 
@@ -15,7 +15,7 @@ app.factory('SprayedFactory', function($http) {
             url: baseUrl + '/create',
             data: {
                 "plant_id": split.plantId,
-                "timestamp": split.start_date,
+                "timestamp": split.timestamp,
                 "note": split.note,
                 "recipient" : split.recipient
             }
