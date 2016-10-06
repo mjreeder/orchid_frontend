@@ -109,7 +109,11 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         TagFactory.getPestByPlantID($scope.plant.id).then(function(data){
           concatObjects(data, 'tag');
         })
-
+        Bloom_CommentFactory.getBloomByPlantID($scope.plant.id).then(function(data){
+          data = data.data.data;
+          var lastComment = data[data.length-1];
+          concatObjects(lastComment, 'bloomingComment')
+        })
       }
     }
 
