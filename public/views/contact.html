@@ -30,11 +30,10 @@
             <section class="intro">
                 <p>Get in touch with us!</p>
             </section>
-            <form action="input">
+            <form action="input" id="form">
                 <div id="name-section">
                     <label for="name">Name</label>
-                    <input type="tex
-                    t" id="name" name="name" size="22" maxlength="30" required="required" placeholder="Jane Doe" />
+                    <input type="text" id="name" name="name" size="22" maxlength="30" required="required" placeholder="Jane Doe" />
                 </div>
                 <div id="email-section">
                     <label for="email">Email</label>
@@ -46,7 +45,7 @@
                 </div>
 
 
-                <div>
+                <div id="message" >
 
                     <label for="message">Message</label>
 
@@ -57,6 +56,9 @@
                     <input type="submit" value="Send" id="button" />
                 </div>
             </form>
+            
+            
+            
             <section class="visit">
                 <h2>Schedule a Visit</h2>
                 <p>To schedule a visit contact
@@ -68,22 +70,26 @@
             <h2>Social Media</h2>
             <p>Want to get the latest updates on the Ball State Orchid Greenhouse? Follow us!</p>
             <ul>
+               <div id="social-media">
                 <section class="facebook">
                     <li>
-                        <a href="https://www.facebook.com/WOCSB/"> <span> </span>Rinard Orchid Greenhouse - Ball State University</a>
+                        <a href="https://www.facebook.com/WOCSB/"> <span> </span><p>Rinard Orchid Greenhouse - Ball State University </p></a> 
                     </li>
                 </section>
+                
                 <section class="instagram">
                     <li>
-                        <a href="https://www.instagram.com/bsu_rogh/"><span> </span>@bsu_rogh</a>
+                        <a href="https://www.instagram.com/bsu_rogh/"><span> </span> <p> @bsu_rogh</p></a>
                     </li>
                 </section>
+                </div>
+                
             </ul>
         </section>
         <section class="location">
             <h2>Location</h2>
             <p>The Wheeler-Thanhauser Collection is located within Christy Woods, on the southwest end of our campus. Foot access is available via University Avenue or Riverside Avenue. Please contact Parking Services at 765-285-1208 for information about parking on campus.</p>
-            <ul>
+           <ul>
                 <li>Wheeler-Thanhauser Orchid Collection and Species Bank</li>
                 <li>Field Station and Environmental Education Center</li>
                 <li>Ball State University</li>
