@@ -13,6 +13,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     $scope.submitPopUp = function(){
       handleBloom();
+      handleBloomingComment();
       handleSprayed();
       handlePotting();
       handleHealth();
