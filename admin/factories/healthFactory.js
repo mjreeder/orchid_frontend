@@ -8,9 +8,10 @@ app.factory('HealthFactory', function($http) {
             method: "POST",
             url: (baseUrl + '/create'),
             data: {
-                "plantId": healthLink.plantId,
+                "plant_id": healthLink.plantId,
                 "timestamp": healthLink.timestamp,
-                "score": healthLink.score
+                "score": healthLink.score,
+                "comment": healthLink.comment
             }
         });
     }
@@ -23,7 +24,8 @@ app.factory('HealthFactory', function($http) {
                 "id": healthLink.id,
                 "plant_id": healthLink.plant_id,
                 "timestamp": healthLink.timestamp,
-                "score": healthLink.score
+                "score": healthLink.score,
+                "comment": healthLink.comment
             }
         })
     }

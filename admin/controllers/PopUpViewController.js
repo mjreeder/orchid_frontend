@@ -62,6 +62,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleHealth = function(){
       var data = prepareForFactory('health');
+      data.timestamp = $scope.today;
       if(objectIsNew('health')){
         HealthFactory.createHealth(data).then(function(){});
       } else {
