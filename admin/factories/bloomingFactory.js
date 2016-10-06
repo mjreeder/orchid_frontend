@@ -10,7 +10,7 @@ app.factory('BloomingFactory', function($http) {
     }
 
     data.createBloom = function (blooming) {
-        $http({
+        return $http({
             method: "POST",
             url: baseUrl + '/create',
             data: {
@@ -22,7 +22,7 @@ app.factory('BloomingFactory', function($http) {
     }
 
     data.updateBloom = function(blooming){
-        $http({
+        return $http({
             method: "PUT",
             url: baseUrl + '/update',
             data: {

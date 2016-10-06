@@ -10,7 +10,7 @@ app.factory('SprayedFactory', function($http) {
     }
 
     data.createSplit = function (split) {
-        $http({
+        return $http({
             method: "POST",
             url: baseUrl + '/create',
             data: {
@@ -23,7 +23,7 @@ app.factory('SprayedFactory', function($http) {
     }
 
     data.updateSplit = function(split){
-        $http({
+        return $http({
             method: "PUT",
             url: baseUrl + '/update',
             data: {

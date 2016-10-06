@@ -10,7 +10,7 @@ app.factory('PottingFactory', function($http) {
     }
 
     data.createPest = function (potting) {
-        $http({
+        return $http({
             method: "POST",
             url: baseUrl + '/create',
             data: {
@@ -21,7 +21,7 @@ app.factory('PottingFactory', function($http) {
     }
 
     data.updatePotting = function(potting){
-        $http({
+        return $http({
             method: "PUT",
             url: baseUrl + '/update',
             data: {
