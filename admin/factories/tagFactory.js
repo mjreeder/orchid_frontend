@@ -6,11 +6,11 @@ app.factory('TagFactory', function($http) {
 
 
     data.getPestByPlantID = function(plant_id) {
-        $http.get(baseUrl + "/plant_id/" + plant_id);
+        return $http.get(baseUrl + "/plant_id/" + plant_id);
     }
 
     data.createTag = function (tag) {
-        $http({
+        return $http({
             method: "POST",
             url: baseUrl + '/create',
             data: {
@@ -21,7 +21,7 @@ app.factory('TagFactory', function($http) {
     }
 
     data.updateTag = function(tag){
-        $http({
+        return $http({
             method: "PUT",
             url: baseUrl + '/update',
             data: {

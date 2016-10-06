@@ -6,11 +6,11 @@ app.factory('Bloom_CommentFactory', function($http) {
 
 
     data.getBloomByPlantID = function(plant_id) {
-        $http.get(baseUrl + "/plant_id/" + plant_id);
+        return $http.get(baseUrl + "/plant_id/" + plant_id);
     }
 
     data.createBloom_Comment = function (bloom_comment) {
-        $http({
+        return $http({
             method: "POST",
             url: baseUrl + '/create',
             data: {
@@ -22,7 +22,7 @@ app.factory('Bloom_CommentFactory', function($http) {
     }
 
     data.updatebloom_comment = function(bloom_comment){
-        $http({
+        return $http({
             method: "PUT",
             url: baseUrl + '/update',
             data: {

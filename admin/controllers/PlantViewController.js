@@ -26,7 +26,10 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     //});
 
     $scope.CountryNames = [];
-    $scope.Tables = []
+    $scope.Tables = [];
+    //$scope.createNew = false;
+    $scope.createNew;
+
 
 
 
@@ -123,7 +126,8 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             origin_comment: plantData.origin_comment,
             last_varified: plantData.last_varified,
             is_donation: plantData.is_donation,
-            aaa: new Date(2014, 02, 03)
+            aaa: new Date(2014, 02, 03),
+            image: "http://placekitten.com/400/400"
         };
 
         LocationFactory.getTableNameFromID($scope.plant.location_id).then(function (response){
@@ -132,27 +136,61 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
         console.log($scope.plant.aaa);
 
+        $scope.createNew = false;
+
 
 
 
 
     }, function(error){
-        console.log("there is an erorr");
-        $location.path('/404');
+        var param1 = $routeParams.accession_number;
+
+        if (param1 == "create"){
+            console.log("create is displayed");
+            $scope.createNew = true;
+            console.log();
+            $scope.plant = {
+                image: "http://downloadicons.net/sites/default/files/plus-icon-27951.png"
+            };
+
+        }else {
+            $location.path('/404');
+        }
+
     });
 
 
 
-    $scope.editPlant = {
-        critical: false,
-        taxonommy:false,
-        culture:false,
-        accesssion:false,
-        hybrid:false,
-        inactive:false,
-        photos: false
+    if ($scope.createNew) {
+
+
+        $scope.editPlant = {
+            critical: false,
+            taxonommy: false,
+            culture: false,
+            accesssion: false,
+            hybrid: false,
+            inactive: false,
+            photos: false
+
+        };
+    } else {
+        $scope.editPlant = {
+            critical: true,
+            taxonommy: true,
+            culture: true,
+            accesssion: true,
+            hybrid: true,
+            inactive: true,
+            photos: true
+
+        };
+
+
 
     }
+
+
 
     $scope.saveCulture = {
         taxonommy:false,
