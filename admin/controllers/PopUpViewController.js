@@ -103,10 +103,15 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var init = function(){
       if(!objectIsNew('plant')){
         BloomingFactory.getBloomByPlantID($scope.plant.id).then(function(data){
+          data = formatTimeStamp('start_date', data);
+          if(data.end_date){
+            data = formatTimeStamp('end_date', data);
+          }
           concatObjects(data, 'blooming');
         })
         SprayedFactory.getPestByPlantID($scope.plant.id).then(function(data){
           var lastComment = getLastComment(data);
+          lastComment = formatTimeStamp('timestamp', lastComment);
           concatObjects(lastComment, 'sprayed');
         })
         PottingFactory.getBloomByPlantID($scope.plant.id).then(function(data){
@@ -123,6 +128,22 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           concatObjects(lastComment, 'bloomingComment')
         })
       }
+    }
+
+    //The calendar type input fields will throw an error if not a date object
+    var formatTimeStamp = function(variable, data){
+      var stringVal = data[variable];
+      stringVal = stringVal.split('-');
+      for(var i = 0; i < stringVal.length; i++){
+        var currentItem = stringVal[i];
+        if(currentItem[0] == '0'){
+          stringVal[i] = currentItem.substring(1, currentItem.length);
+        }
+      }
+      stringVal[1] = parseInt(stringVal[1] - 1);
+      var formattedDate = new Date(stringVal[0], stringVal[1], stringVal[2]);
+      data[variable] = formattedDate;
+      return data;
     }
 
     var getLastComment = function(data){
