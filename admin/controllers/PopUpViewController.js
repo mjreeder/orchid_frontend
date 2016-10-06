@@ -30,12 +30,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var handleBloomingComment = function(){
-      var data = prepareForFactory('blooming_comment');
-      if(objectIsNew('blooming_comment')){
-        Bloom_CommentFactory.createBloom_Comment(data).then(function(){})
-      } else {
-        Bloom_CommentFactory.updateBloom(data).then(function(){})
-      }
+      var data = prepareForFactory('bloomingComment');
+      data.timestamp = $scope.today;
+      Bloom_CommentFactory.createBloom_Comment(data).then(function(){})
     }
 
     var handleSprayed = function() {
