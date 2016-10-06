@@ -18,7 +18,12 @@ app.controller('TableViewController', function(CONFIG, $scope, $location, Locati
         //console.log(response.data.data.name);
         var help = response.data.data[0];
 
+        console.log(help);
+
+
         if (help == false){
+
+            console.log("HELLLOOO");
             $location.path('#/404');
 
 

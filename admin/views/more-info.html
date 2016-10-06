@@ -2,9 +2,9 @@
     <form method="post">
 
         <fieldset id="vitals">
-            <img src="http://placekitten.com/400/400" alt="" id="thumbnail">
+            <img ng-src="{{plant.image}}" alt="" id="thumbnail">
 
-            <button class="edit" ng-click="editCritical()" >
+            <button class="edit" ng-click="editCritical()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="editPlant.critical">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.critical">
             </button>
@@ -25,7 +25,7 @@
 
         <fieldset id="taxonomic">
             <h1>Taxonomic Rank</h1>
-            <button class="edit" ng-click="editTaxonomy()" >
+            <button class="edit" ng-click="editTaxonomy()" ng-hide="createNew" ng-hide="edit">
                 <img src="images/edit.svg" alt="edit" ng-hide="editPlant.taxonommy">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.taxonommy">
             </button>
@@ -41,7 +41,7 @@
 
         <fieldset id="culture">
             <h1>Culture</h1>
-            <button class="edit" ng-click="editCulture()" ng-hide="edit">
+            <button class="edit" ng-click="editCulture()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="editPlant.culture">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.culture">
             </button>
@@ -59,7 +59,7 @@
 
         <fieldset id="accession">
             <h1>Accession</h1>
-            <button class="edit" ng-click="editAccession()">
+            <button class="edit" ng-click="editAccession()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="editPlant.accesssion">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.accesssion">
             </button>
@@ -71,7 +71,7 @@
 
         <fieldset id="description">
             <h1>Description</h1>
-            <button class="edit" ng-click="editDescription()">
+            <button class="edit" ng-click="editDescription()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="editPlant.description">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.description">
 
@@ -82,7 +82,7 @@
 
         <fieldset id="hybrid">
             <h1>Hybrid</h1>
-            <button class="edit" ng-click="editHybrid()">
+            <button class="edit" ng-click="editHybrid()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="editPlant.hybrid">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.hybrid">
             </button>
@@ -106,7 +106,7 @@
 
         <fieldset id="inactive">
             <h1>Inactive</h1>
-            <button class="edit" ng-click="editInactive()">
+            <button class="edit" ng-click="editInactive()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="editPlant.inactive">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.inactive">
             </button>
@@ -129,7 +129,7 @@
         <fieldset id="photos">
             <h1>Photos</h1>
 
-            <button class="edit" ng-click="editPhotos()">
+            <button class="edit" ng-click="editPhotos()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="editPlant.photos">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.photos">
             </button>
