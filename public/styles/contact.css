@@ -126,6 +126,15 @@ main form input {
  } 
 }
 
+@media screen and (max-width: 500px){
+ #submit-container #button {
+  padding: 15px;
+     font-size: 16px;
+     letter-spacing: 1px; 
+     
+ }
+}
+
 
 
 
@@ -133,6 +142,7 @@ main form input {
    #submit-container #button {
     width: 10%; 
      padding-right: 20%; 
+       
 }
 }
 /*
@@ -214,9 +224,16 @@ main form textarea {
 */
 
 @media screen and (max-width: 780px){
-#social-media li {
-    display: inline-block; 
-    width: 20%; 
+#social-media span {
+/*
+    display: block; 
+    width: 100%; 
+    margin: 0 auto; 
+*/
+   display: inline-block;
+    margin: 0 auto; 
+    width: 100%; 
+    margin: 10px 0px 10px 0px; 
     
 }
 }
