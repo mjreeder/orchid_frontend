@@ -53,6 +53,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handlePotting = function(){
       var data = prepareForFactory('potting');
+      data.timestamp = $scope.today;
       if(objectIsNew('potting')){
         PottingFactory.createPest(data).then(function(){})
       } else {
@@ -63,6 +64,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleHealth = function(){
       var data = prepareForFactory('health');
       data.timestamp = $scope.today;
+      if(!data.score || !data.comment){
+        return;
+      }
       if(objectIsNew('health')){
         HealthFactory.createHealth(data).then(function(){});
       } else {
@@ -72,6 +76,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleTag = function(){
       var data = prepareForFactory('flag');
+      if(!$scope.flagged){
+        return;
+      }
       if(objectIsNew('flag')){
         TagFactory.createTag(data).then(function(){})
       } else {
@@ -116,13 +123,21 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           concatObjects(lastComment, 'sprayed');
         })
         PottingFactory.getBloomByPlantID($scope.plant.id).then(function(data){
+          data = formatTimeStamp('timestamp', data);
           concatObjects(data, 'potting');
         })
         HealthFactory.getHealthBtPlantID($scope.plant.id).then(function(data){
-          concatObjects(data, 'health');
+          var lastComment = getLastComment(data);
+          lastComment = formatTimeStamp('timestamp', lastComment);
+          concatObjects(lastComment, 'health');
+          console.log(lastComment);
         })
         TagFactory.getPestByPlantID($scope.plant.id).then(function(data){
-          concatObjects(data, 'tag');
+          data = data.data.data;
+          if(data.active == 0){
+            $scope.flagged = true;
+          }
+          concatObjects(data, 'flag');
         })
         Bloom_CommentFactory.getBloomByPlantID($scope.plant.id).then(function(data){
           var lastComment = getLastComment(data);
