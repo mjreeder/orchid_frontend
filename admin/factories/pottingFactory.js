@@ -15,7 +15,7 @@ app.factory('PottingFactory', function($http) {
             url: baseUrl + '/create',
             data: {
                 "plant_id": potting.plantId,
-                "timestamp": potting.start_date
+                "timestamp": potting.timestamp
             }
         });
     }
