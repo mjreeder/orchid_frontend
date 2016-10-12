@@ -18,6 +18,19 @@ app.factory('LocationFactory', function($http) {
         return $http.get(baseUrl + '/check/' + table_name);
     }
 
+    data.updateTable = function(tableName) {
+        return $http({
+            method: "POST",
+            url: (baseUrl + '/updateTable'),
+            data: {
+                "plant_id": healthLink.plantId,
+                "timestamp": healthLink.timestamp,
+                "score": healthLink.score,
+                "comment": healthLink.comment
+            }
+        });
+    }
+
 
 
 

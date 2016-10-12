@@ -1,4 +1,4 @@
-app.controller('TableViewController', function(CONFIG, $scope, $location, LocationFactory, PlantsFactory, $routeParams, $rootScope){
+app.controller('TableViewController', function($route, CONFIG, $scope, $location, LocationFactory, PlantsFactory, $routeParams, $rootScope){
 
     var param1 = $routeParams.table_name;
 
@@ -13,6 +13,9 @@ app.controller('TableViewController', function(CONFIG, $scope, $location, Locati
         //console.log($scope.table_name.name);
     });
 
+    $scope.showTable = false;
+
+
     LocationFactory.checkTable(param1).then(function (response){
         //var answer = response.data;
         //console.log(response.data.data.name);
@@ -23,7 +26,6 @@ app.controller('TableViewController', function(CONFIG, $scope, $location, Locati
 
         if (help == false){
 
-            console.log("HELLLOOO");
             $location.path('#/404');
 
 
@@ -32,10 +34,22 @@ app.controller('TableViewController', function(CONFIG, $scope, $location, Locati
             $scope.id  = response.data.data.id;
             console.log($scope.id);
 
+
             PlantsFactory.getByLocationID($scope.id).then(function (response) {
-                console.log($scope.id);
-                $scope.plantsInTable = response.data.data;
-                console.log($scope.plantsInTable);
+                console.log("here is the data");
+                console.log(response.data.data);
+                if (response.data.data[0] == false){
+                    $scope.showTable = false;
+
+                } else {
+
+                    $scope.showTable = true;
+
+                    $scope.plantsInTable = response.data.data;
+                    console.log($scope.plantsInTable);
+                }
+
+
             });
         }
     });
@@ -59,11 +73,48 @@ app.controller('TableViewController', function(CONFIG, $scope, $location, Locati
     //   // console.log($scope.table_name);
     //});
 
+    $scope.addedPlants = [];
+
+    $scope.added = false;
+
+    var index = 0;
+
+    $scope.addVarified = function (plant){
+        $scope.added = false;
+
+        for (var i = 0; i < $scope.addedPlants.length; i++){
+            if(plant.id == $scope.addedPlants[i]){
+                console.log($scope.addedPlants[i].id);
+                index = i;
+                $scope.added = true;
+                $scope.addedPlants.splice(i, 1);
+                break;
+
+            }
+        }
+        if($scope.added == false){
+            $scope.addedPlants.push(plant);
+        } else {
+            $scope.addedPlants.splice(index, 1);
+        }
+    };
+
+    $scope.updateDates = function(){
+      for(var i = 0; i < $scope.addedPlants.length; i++){
+          console.log($scope.addedPlants[i]);
+          PlantsFactory.updateVarifiedDate($scope.addedPlants[i]).then(function (response) {
+
+          });
+      }
+
+        $route.reload();
+    };
+
+
 
   $scope.popupShow = false;
 
   $scope.showPopup = function(plant) {
-    console.log(plant);
     $rootScope.$broadcast('current-plant', plant);
     $scope.popupShow = !$scope.popupShow;
   }

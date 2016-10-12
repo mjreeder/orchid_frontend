@@ -13,7 +13,9 @@
         <!--</div>-->
     </header>
 
-    <div id="clear">
+
+
+    <div id="clear" ng-if="showTable">
         <table width="710" height="600" cell padding="10" cell spacing="5">
             <thead>
             <tr>
@@ -32,13 +34,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="plant in plantsInTable" ng-click="showPopup(plant)">
+            <tr ng-repeat="plant in plantsInTable">
 
                 <td>{{plant.accession_number}}</td>
-                <td>{{plant.name}}</td>
+                <td ng-click="showPopup(plant)">{{plant.name}}</td>
                 <td>
                     <label>
-                        <input type="checkbox">
+                        <input ng-click="addVarified(plant)" type="checkbox">
                     </label>
                 </td>
                 <td>
@@ -53,11 +55,21 @@
         </table>
     </div>
 
+    <div ng-if="showTable">
+    <button id="save" type="submit" ng-click="updateDates()">Save</button>
+
+
     <footer id="moveplants">
         <a href="#">Move Plants</a>
     </footer>
 
     <div ng-include="'views/pop-up.html'" ng-show="popupShow"></div>
+
+    </div>
+
+    <div ng-if="!showTable">
+    <p>the table is empty.. what do we want to display</p>
+    </div>
 
 </main>
 </body>
