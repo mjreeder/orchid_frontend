@@ -83,6 +83,14 @@ app.factory('PlantsFactory', function($http) {
         });
     };
 
+    data.editTaxonmicPlant = function(plant) {
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateTaxonmic',
+            data: plant
+        });
+    };
+
     data.editSinglePhoto = function(plant) {
         return $http({
             method: "PUT",

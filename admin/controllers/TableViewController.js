@@ -1,4 +1,4 @@
-app.controller('TableViewController', function($route, CONFIG, $scope, $location, LocationFactory, PlantsFactory, $routeParams, $rootScope){
+app.controller('TableViewController', function($route, CONFIG, $scope, $location, LocationFactory, PlantsFactory, $routeParams, $rootScope, TagFactory){
 
     var param1 = $routeParams.table_name;
 
@@ -14,6 +14,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
     });
 
     $scope.showTable = false;
+    $scope.plantsInTable = [];
 
 
     LocationFactory.checkTable(param1).then(function (response){
@@ -32,7 +33,8 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
         } else {
             $scope.current_table_name = param1;
             $scope.id  = response.data.data.id;
-            console.log($scope.id);
+            $scope.room_type = response.data.data.room;
+            console.log($scope.room_type);
 
 
             PlantsFactory.getByLocationID($scope.id).then(function (response) {
@@ -47,6 +49,26 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
                     $scope.plantsInTable = response.data.data;
                     console.log($scope.plantsInTable);
+
+                    for (var i = 0; i < $scope.plantsInTable.length; i++){
+                        var plant = $scope.plantsInTable[i];
+
+                        TagFactory.getPestByPlantID(plant.id).then(function(response){
+                            var tagResponse = response.data.data;
+                            //console.log(tagResponse);
+                            //console.log(tagResponse.plant_id);
+
+                            for (var i = 0; i < $scope.plantsInTable.length; i++){
+                                if ($scope.plantsInTable[i].id == tagResponse.plant_id){
+                                    $scope.plantsInTable[i].tagged =  true;
+                                    console.log($scope.plantsInTable[i]);
+                                }
+                            }
+
+                        });
+
+                    }
+
                 }
 
 

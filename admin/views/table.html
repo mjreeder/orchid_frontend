@@ -4,12 +4,16 @@
 <main>
 
     <header class="page-nav">
-        <!--<div id="A"><a href="">WWPA-->
-            <!--<img src="images/backbutton.svg" alt="Back" /></a>-->
-        <!--</div>-->
+
         <h1 id="title">{{current_table_name}} </h1>
-        <!--<div id="B"> <a href="">WWB3-->
-            <!--<img src="images/forwardbutton.svg" alt="Forward" /></a>-->
+        <div id="A"><a href="#/house/{{room_type}}">
+            <img src="images/backbutton.svg" alt="Back" /></a>
+        </div>
+
+
+
+        <!--<div id="title">-->
+            <!--{{current_table_name}}-->
         <!--</div>-->
     </header>
 
@@ -36,8 +40,12 @@
             <tbody>
             <tr ng-repeat="plant in plantsInTable">
 
+
                 <td>{{plant.accession_number}}</td>
-                <td ng-click="showPopup(plant)">{{plant.name}}</td>
+
+
+                <td ng-click="showPopup(plant)"><button background-color="red" color="white" ng-if="plant.tagged">ALERT</button>{{plant.name}}</td>
+
                 <td>
                     <label>
                         <input ng-click="addVarified(plant)" type="checkbox">
@@ -48,6 +56,7 @@
                         <p>{{plant.last_varified}}</p>
                     </label>
                 </td>
+
 
             </tr>
 
