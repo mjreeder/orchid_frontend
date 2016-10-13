@@ -123,14 +123,14 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           concatObjects(lastComment, 'sprayed');
         })
         PottingFactory.getBloomByPlantID($scope.plant.id).then(function(data){
-          data = formatTimeStamp('timestamp', data);
+          var lastComment = getLastComment(data);
+          data = formatTimeStamp('timestamp', lastComment);
           concatObjects(data, 'potting');
         })
         HealthFactory.getHealthBtPlantID($scope.plant.id).then(function(data){
           var lastComment = getLastComment(data);
           lastComment = formatTimeStamp('timestamp', lastComment);
           concatObjects(lastComment, 'health');
-          console.log(lastComment);
         })
         TagFactory.getPestByPlantID($scope.plant.id).then(function(data){
           data = data.data.data;
