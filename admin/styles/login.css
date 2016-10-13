@@ -1,0 +1,77 @@
+h1 {
+    display: block;
+    margin: 0 auto;
+    padding: 30px 0px;
+    text-align: center;
+}
+
+.form-signin {
+    background-color: rgba(128, 128, 128, .6);
+    max-width: 40%;
+    display: block;
+    margin: 0 auto;
+    padding: 20px 30px 0px 20px; 
+}
+
+.form-signin lable {
+    font-family: Aleo, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+    color: white;
+    padding: 20px 5px 5px 20px;
+}
+
+.form-signin input {
+    width: 100%;
+    
+}
+
+.password {
+       padding: 0px 5px 5px 20px;
+    margin-bottom: -25px; 
+}
+
+
+/*
+#button {
+  background-color: black; 
+    padding: 10px; 
+    
+}
+*/
+
+#button {
+   display:inline-block; 
+    margin: 0 auto;
+    width: 100%;
+    margin-left:4px; 
+    text-align: center; 
+    margin-top: 10px; 
+}
+
+#button p { 
+    display: block; 
+    margin: 0 auto; 
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 20px 30px;
+    border-radius: 15px;
+
+    margin-bottom: 30px; 
+
+    
+}
+
+h6 a {
+    text-decoration:  underline;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    margin: 0 auto; 
+    display: block;
+    margin-bottom: 30px; 
+    margin: 20px;
+}

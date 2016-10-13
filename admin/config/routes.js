@@ -88,6 +88,10 @@ app.config(function($routeProvider, CONFIG) {
                 authData: isAuthenticated
             }
         }).
+        when('/users/register',{
+            controller: 'RegisterViewController',
+            templateUrl: 'views/register.html',
+        }).
         otherwise({
             controller: '404ViewController',
             templateUrl: 'views/404.html '
