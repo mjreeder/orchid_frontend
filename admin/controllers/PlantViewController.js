@@ -3,9 +3,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     var param1 = $routeParams.accession_number;
 
     console.log(param1);
-    classificationLinkFactory.getPlantHierarchy(1).then(function (response){
-        console.log(response.data.data);
-    });
+
 
 
 
@@ -96,16 +94,69 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             last_varified: plantData.last_varified,
             is_donation: plantData.is_donation,
             aaa: new Date(2014, 02, 03),
+            class: plantData.class_name,
+            tribe: plantData.tribe_name,
+            subtribe: plantData.subtribe_name,
+            genus: plantData.genus_name,
+            species: plantData.species_name,
+            variety: plantData.variety_name,
             image: "http://placekitten.com/400/400"
         };
 
         LocationFactory.getTableNameFromID($scope.plant.location_id).then(function (response){
             $scope.plant.locationName = response.data.data;
+
+
+
         });
 
         console.log($scope.plant.aaa);
 
         $scope.createNew = false;
+
+        console.log("aaaaa");
+
+
+
+
+        classificationLinkFactory.getPlantHierarchy($scope.plant.id).then(function (response){
+            console.log(response.data.data);
+            var data = response.data.data;
+            $scope.classification ={
+                class: "",
+                tribe: "",
+                subtribe: "",
+                genus: "",
+                variety: "",
+                species: ""
+            };
+
+            for (var i = 0; i < data.length; i++){
+                var object = data[i];
+                var classificationName = object.name;
+                var scientificName = object.scientific_class_name;
+                if (classificationName == "class"){
+                    $scope.classification.class = scientificName;
+                }
+                if (classificationName == "tribe"){
+                    $scope.classification.tribe = scientificName;
+                }
+                if (classificationName == "subtribe"){
+                    $scope.classification.subtribe = scientificName;
+                }
+
+                if (classificationName == "genus"){
+                    $scope.classification.genus = scientificName;
+                }
+                if (classificationName == "species"){
+                    $scope.classification.species = scientificName;
+                }
+                if (classificationName == "variety"){
+                    $scope.classification.variety = scientificName;
+                }
+                console.log($scope.classification);
+            }
+        });
 
 
 
@@ -126,7 +177,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                 var tableData = response.data.data;
                 for (i = 0; i < tableData.length; i++){
                     $scope.Tables.push(tableData[i]);
-                    console.log(tableData[i]);
                 }
             });
 
@@ -224,6 +274,13 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     $scope.editTaxonomy = function() {
         if ($scope.editPlant.taxonommy == false) {
             $scope.editPlant.taxonommy = true;
+
+            var taxonmicPlantInformation = {class_name: $scope.plant.class, tribe_name: $scope.plant.tribe, subtribe_name: $scope.plant.subtribe, genus_name: $scope.plant.genus, species_name: $scope.plant.species, variety_name: $scope.plant.variety, id: $scope.plant.id}
+
+            PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function (response){
+               console.log("done");
+            });
+
         } else {
             $scope.editPlant.taxonommy = false;
         }
