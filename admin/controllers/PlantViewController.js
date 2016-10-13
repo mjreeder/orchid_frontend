@@ -23,10 +23,13 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     //
     //});
 
-    $scope.CountryNames = [];
+    $scope.PlantCountryNames = [];
     $scope.Tables = [];
     //$scope.createNew = false;
     $scope.createNew;
+
+    $scope.allCountires = [];
+
 
 
 
@@ -36,7 +39,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         console.log(plantData);
         var plant_id = response.data.data[0].id;
 
-        country = [];
+        Country = [];
 
         LocationFactory.getTableLocations().then(function (response){
             var tableData = response.data.data;
@@ -51,9 +54,12 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             for (i = 0; i < plantCountryData.length; i++) {
                 var nme = plantCountryData[i].name;
                 console.log(nme);
-                $scope.CountryNames.push(nme);
+                $scope.PlantCountryNames.push(nme);
+                console.log($scope.PlantCountryNames);
             }
         });
+
+
 
         newLink = [];
 
@@ -170,13 +176,21 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             $scope.createNew = true;
             console.log();
             $scope.plant = {
-                image: "http://downloadicons.net/sites/default/files/plus-icon-27951.png"
+                image: 'images/no_plant_icon.svg'
             };
 
             LocationFactory.getTableLocations().then(function (response){
                 var tableData = response.data.data;
                 for (i = 0; i < tableData.length; i++){
                     $scope.Tables.push(tableData[i]);
+                }
+            });
+
+            countryFactory.getCountries().then(function(response){
+                var countryNames = response.data.data;
+                console.log(response);
+                for (var i = 0; i < countryNames.length; i++){
+                    //$scope.allCountires = countryNames
                 }
             });
 
@@ -381,6 +395,9 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
       }
     }
 
+    $scope.click = function(){
+        console.log("we just clicked the image");
+    }
 
 
 
