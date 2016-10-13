@@ -4,134 +4,139 @@
         <fieldset id="vitals">
             <img ng-src="{{plant.image}}" alt="" id="thumbnail">
 
-            <button class="edit" ng-click="editCritical()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="editPlant.critical">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.critical">
+            <button class="edit" ng-click="editCritical()"  ng-hide="createNew">
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.critical">
+                <img src="images/checkmark.svg"  alt="edit" ng-hide="editPlant.critical">
             </button>
 
             <div>
-                <label><input type="text" ng-model="plant.accession_number" name="accession" ng-disabled="!editPlant.critical"></label>
+                <label><input type="text" ng-model="plant.accession_number" name="accession" ng-disabled="editPlant.critical && !createNew"></label>
                 <label id="location"><img src="images/location.svg" alt="Location">
 
-                    <select ng-model="plant.locationName" ng-disabled="!editPlant.critical">
-                        <option ng-repeat="table in Tables">{{table}}</option>
+                    <select ng-model="plant.locationName.name" ng-disabled="editPlant.critical && !createNew">
+                        <option ng-repeat="table in Tables">{{table.name}}</option>
                     </select>
 
                 </label><br/>
-                <label><input type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="!editPlant.critical"></label><br/>
-                <label><input type="text" ng-model="plant.name" name="common" ng-disabled="!editPlant.critical"></label><br/>
+                <label><input type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="editPlant.critical && !createNew"></label><br/>
+                <label><input type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label><br/>
             </div>
         </fieldset>
 
         <fieldset id="taxonomic">
             <h1>Taxonomic Rank</h1>
             <button class="edit" ng-click="editTaxonomy()" ng-hide="createNew" ng-hide="edit">
-                <img src="images/edit.svg" alt="edit" ng-hide="editPlant.taxonommy">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.taxonommy">
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.taxonommy">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.taxonommy">
             </button>
 
-            <label class="labelfirst">Class:</label><input type="text" ng-model="plant.class" ng-disabled="!editPlant.taxonommy">
-            <label>Genus:</label><input type="text" ng-model="plant.genus" ng-disabled="!editPlant.taxonommy"><br/>
-            <label>Tribe:</label><input type="text" ng-model="plant.tribe" ng-disabled="!editPlant.taxonommy">
-            <label>Species:</label><input type="text" ng-model="plant.species" ng-disabled="!editPlant.taxonommy"><br/>
-            <label>Subtribe:</label><input type="text" ng-model="plant.subtribe" ng-disabled="!editPlant.taxonommy">
-            <label>Variety:</label><input type="text" ng-model="plant.variety" ng-disabled="!editPlant.taxonommy"><br/>
-            <label class="labellast">Authority:</label><input type="text" ng-model="plant.authority" ng-disabled="!editPlant.taxonommy">
+            <label class="labelfirst">Class:</label><input type="text" ng-model="plant.class" ng-disabled="editPlant.taxonommy && !createNew">
+            <label>Genus:</label><input type="text" ng-model="plant.genus" ng-disabled="editPlant.taxonommy && !createNew"><br/>
+            <label>Tribe:</label><input type="text" ng-model="plant.tribe" ng-disabled="editPlant.taxonommy && !createNew">
+            <label>Species:</label><input type="text" ng-model="plant.species" ng-disabled="editPlant.taxonommy && !createNew"><br/>
+            <label>Subtribe:</label><input type="text" ng-model="plant.subtribe" ng-disabled="editPlant.taxonommy && !createNew">
+            <label>Variety:</label><input type="text" ng-model="plant.variety" ng-disabled="editPlant.taxonommy && !createNew"><br/>
+            <label class="labellast">Authority:</label><input type="text" ng-model="plant.authority" ng-disabled="editPlant.taxonommy && !createNew">
         </fieldset>
 
         <fieldset id="culture">
             <h1>Culture</h1>
             <button class="edit" ng-click="editCulture()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="editPlant.culture">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.culture">
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.culture">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.culture">
             </button>
-            <label>Distribution:</label><input ng-model="plant.distribution" type="text"  ng-disabled="!editPlant.culture">
-            <label>Habitat:</label><input ng-model="plant.habitat" type="text"  ng-disabled="!editPlant.culture"><br/>
+            <label>Distribution:</label><input ng-model="plant.distribution" type="text"  ng-disabled="editPlant.culture && !createNew">
+            <label>Habitat:</label><input ng-model="plant.habitat" type="text"  ng-disabled="editPlant.culture && !createNew"><br/>
             <label>Country:</label>
             <div ng-repeat="country in CountryNames">
                 <p>{{country}}</p>
             </div>
 
             <br/>
-            <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="!editPlant.culture" placeholder="Comment about the culture."></textarea>
+            <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Comment about the culture."></textarea>
             <br/>
         </fieldset>
 
         <fieldset id="accession">
             <h1>Accession</h1>
             <button class="edit" ng-click="editAccession()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="editPlant.accesssion">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.accesssion">
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.accesssion">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.accesssion">
             </button>
-            <label>Donated to:</label><input type="text" ng-model="plant.accesssion" ng-disabled="!editPlant.accesssion">
-            <label>Recieved:</label><input type="text" ng-model="plant.received_from" ng-disabled="!editPlant.accesssion"><br/>
-            <label></label><input type="text" ng-model="plant.accesssion" ng-disabled="!editPlant.accesssion"><br/>
-            <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="!editPlant.accesssion" ng-model="plant.donation_comment" ></textarea>
+            <label>Donated to:</label><input type="text" ng-model="plant.accesssion" ng-disabled="editPlant.accesssion && !createNew">
+            <label>Recieved:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew"><br/>
+            <label></label><input type="text" ng-model="plant.accesssion" ng-disabled="editPlant.accesssion"><br/>
+            <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment" ></textarea>
         </fieldset>
 
         <fieldset id="description">
             <h1>Description</h1>
             <button class="edit" ng-click="editDescription()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="editPlant.description">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.description">
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.description">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.description">
 
             </button>
             <label></label>
-            <textarea type="textarea" placeholder="More description of plant" ng-model="plant.description" ng-disabled="!editPlant.description"></textarea>
+            <textarea type="textarea" placeholder="More description of plant" ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
         </fieldset>
 
         <fieldset id="hybrid">
             <h1>Hybrid</h1>
             <button class="edit" ng-click="editHybrid()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="editPlant.hybrid">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.hybrid">
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.hybrid">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.hybrid">
             </button>
             <label class="labelfirst">
                 Parent 1:
             </label>
-            <input type="text" ng-model="plant.parent_one" ng-disabled="!editPlant.hybrid">
+            <input type="text" ng-model="plant.parent_one" ng-disabled="editPlant.hybrid && !createNew">
 
             <label class="labelfirst">
                 Parent 2:
             </label>
 
-            <input type="text" ng-model="plant.parent_two" ng-disabled="!editPlant.hybrid"><br/>
+            <input type="text" ng-model="plant.parent_two" ng-disabled="editPlant.hybrid && !createNew"><br/>
 
             <label class="labellast">GREX:</label>
-            <input type="text" ng-model="plant.grex_status" ng-disabled="!editPlant.hybrid">
+            <input type="text" ng-model="plant.grex_status" ng-disabled="editPlant.hybrid && !createNew">
 
-            <textarea ng-model="plant.hybrid_comment" type="textarea" ng-disabled="!editPlant.hybrid" placeholder="Comment here about Hybrid."></textarea>
+            <textarea ng-model="plant.hybrid_comment" type="textarea" ng-disabled="editPlant.hybrid && !createNew" placeholder="Comment here about Hybrid."></textarea>
 
         </fieldset>
 
         <fieldset id="inactive">
             <h1>Inactive</h1>
             <button class="edit" ng-click="editInactive()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="editPlant.inactive">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.inactive">
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.inactive">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.inactive">
             </button>
 
             <label for="check1" class="labelfirst">Inactive</label>
             <input id="check1" type="checkbox">
-            <input type="date" value="2016-08-30" ng-disabled="!editPlant.inactive">
+            <button ng-click="inactive_date = today"><img src="images/calendaricon.svg" width="50px" height="50px" alt="" />
+                <input type="date" id="inactive_date" ng-model="inactive_date"></input>
+            </button>
+            <output>{{ inactive_date | date }}</output>
             <br/>
 
             <label for="check2">Dead</label>
             <input id="check2" type="checkbox">
-            <input type="date" value="plant.aaa" ng-disabled="!editPlant.inactive" placeholder="yyyy-MM-dd">
-            {{plant.inactive_date}}
+            <button ng-click="dead_date = today"><img src="images/calendaricon.svg" width="50px" height="50px" alt="" />
+            <input type="date" id="dead_date" ng-model="dead_date"></input>
+            </button>
+            <output>{{ dead_date | date }}</output>
             <br/>
 
             <!--            <label for="inactivecomment">Comment:</label>-->
-            <textarea type="textarea" id="inactivecomment" ng-disabled="!editPlant.inactive" placeholder="Comment about why inactive or dead."></textarea>
+            <textarea type="textarea" id="inactivecomment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>
         </fieldset>
 
         <fieldset id="photos">
             <h1>Photos</h1>
 
             <button class="edit" ng-click="editPhotos()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="editPlant.photos">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.photos">
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.photos">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.photos">
             </button>
 
             <img src="http://placekitten.com/50/50" alt="" class="thumbnail">
@@ -156,6 +161,14 @@
         <p>
             This is where the blooming graph or something like that is going to be</p>
     </fieldset>
+
+    <fieldset id="graph">
+        <h1>Save All</h1>
+        <input type="button" ng-click="saveAll()" value="save"  ng-hide="!editPlant.save">
+
+    </fieldset>
+
+
 
     <section>
         <button>Back to top</button>

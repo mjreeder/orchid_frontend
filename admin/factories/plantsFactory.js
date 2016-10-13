@@ -33,7 +33,15 @@ app.factory('PlantsFactory', function($http) {
           url: baseUrl + '/',
           data: plant
         });
-    }
+    };
+
+    data.updateVarifiedDate = function(plant){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateVarifiedDate',
+            data: plant
+        });
+    };
 
     data.editCriticalPlant = function(plant) {
       return $http({
@@ -42,6 +50,14 @@ app.factory('PlantsFactory', function($http) {
         data: plant
       });
     };
+
+    data.editCritialPlantTable = function(table){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateCriticalTable',
+            data:table
+        })
+    }
 
     data.editCulturePlant = function(plant) {
         return $http({
@@ -63,6 +79,14 @@ app.factory('PlantsFactory', function($http) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateInactive',
+            data: plant
+        });
+    };
+
+    data.editTaxonmicPlant = function(plant) {
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateTaxonmic',
             data: plant
         });
     };
