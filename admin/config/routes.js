@@ -3,9 +3,7 @@ app.config(function($routeProvider, CONFIG) {
         when('/', {
             controller: 'HomePageController',
             templateUrl: CONFIG.homeTemplate,
-            resolve:{
-                authData: isAuthenticated
-            }
+
         }).
         when('/login', {
             controller: 'LoginViewController',
@@ -14,30 +12,22 @@ app.config(function($routeProvider, CONFIG) {
         when('/house', {
             controller: 'DisplayViewController',
             templateUrl: 'views/Ipad-map.html',
-            resolve:{
-              authData: isAuthenticated
-            }
+
         }).
         when('/house/display', {
             controller: 'DisplayViewController',
             templateUrl: 'views/Ipad-map.html',
-            resolve:{
-              authData: isAuthenticated
-            }
+
         }).
         when('/house/warm', {
             controller: 'DisplayViewController',
             templateUrl: 'views/warmhouse.html',
-            resolve:{
-              authData: isAuthenticated
-            }
+
         }).
         when('/house/cool', {
             controller: 'DisplayViewController',
             templateUrl: 'views/coolhouse.html',
-            resolve:{
-              authData: isAuthenticated
-            }
+            
         }).
         when('/search', {
             controller: 'SearchViewController',
