@@ -27,7 +27,7 @@ app.config(function($routeProvider, CONFIG) {
         when('/house/cool', {
             controller: 'DisplayViewController',
             templateUrl: 'views/coolhouse.html',
-            
+
         }).
         when('/search', {
             controller: 'SearchViewController',
