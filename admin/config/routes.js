@@ -84,8 +84,9 @@ app.config(function($routeProvider, CONFIG) {
         });
 });
 
-var isAuthenticated = function ($q, $rootScope, $location) {
-  if ($rootScope.userSession) {
+var isAuthenticated = function ($q, $rootScope, $location, sessionService) {
+  var session = sessionService.hasRecentSession();
+  if ($rootScope.userSession || session) {
         return true;
     } else {
         $rootScope.redirect = $location.path();
