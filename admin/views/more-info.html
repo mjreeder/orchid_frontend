@@ -48,9 +48,9 @@
             <label>Distribution:</label><input ng-model="plant.distribution" type="text"  ng-disabled="editPlant.culture && !createNew">
             <label>Habitat:</label><input ng-model="plant.habitat" type="text"  ng-disabled="editPlant.culture && !createNew"><br/>
             <label>Country:</label>
-            <div ng-repeat="country in CountryNames">
-                <p>{{country}}</p>
-            </div>
+            <select ng-disabled="editPlant.culture && !createNew">
+                <option ng-repeat="country in allCountires">{{country.name}}</option>
+            </select>
 
             <br/>
             <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Comment about the culture."></textarea>
