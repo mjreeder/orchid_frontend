@@ -197,28 +197,73 @@ header li a {
     margin-left: 20px;
     float: right;
     background-color: white;
-    padding: 15px 20px;
+    padding: 15px 10px;
     width: 15%;
     border-radius: 8px;
 /*    font-family: Aleo, serif;*/
     font-family: Raleway, sans-serif;
-    font-weight: 400;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 20px;
     text-decoration: none;
     color: black;
     float: top;
     margin-top: -10px;
     text-align: center;
 }
-/*
 
 @media screen and (max-width: 900px) {
     header li a {
-        width: 7%;
-        font-size: 12px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 645px) {
+    header li a {
+        padding: 15px 10px;
+    }
+}
+
+
+@media screen and (max-width: 520px) {
+    header li a {
+        width: 50%; 
+        padding: 5px 10px;
+        margin-top: 0px; 
+        margin-bottom: 5px; 
+    }
+}
+@media screen and (max-width: 520px) {
+    header li {
+       margin-top: -30px;  
+    }
+}
+
+@media screen and (max-width: 450px) {
+    header li {
+/*       width: 40%;*/
+       padding: 5px 0px; 
+    }
+}
+
+
+
+/*
+@media screen and (max-width: 700px) {
+    header li:nth-child(2) {
+       padding: 15px 40px; 
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    header li a:nth-child(3) {
+        padding: 15px 30px;
     }
 }
 */
+
+
+
 
 header ul {
     padding: 60px;

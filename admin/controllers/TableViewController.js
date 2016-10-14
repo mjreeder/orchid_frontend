@@ -40,7 +40,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
             PlantsFactory.getByLocationID($scope.id).then(function (response) {
                 console.log("here is the data");
                 console.log(response.data.data);
-                if (response.data.data[0] == false){
+                if (response.data[0] == false){
                     $scope.showTable = false;
 
                 } else {
