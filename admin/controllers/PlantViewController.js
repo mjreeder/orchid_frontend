@@ -189,9 +189,18 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             countryFactory.getCountries().then(function(response){
                 var countryNames = response.data.data;
                 console.log(response);
+
+
+                $scope.example1data = [];
+
                 for (var i = 0; i < countryNames.length; i++){
-                    //$scope.allCountires = countryNames
+
+                    $scope.allCountires.push(countryNames[i]);
                 }
+                console.log('aaa');
+
+                console.log($scope.allCountires);
+                console.log('aaa');
             });
 
         }else {
