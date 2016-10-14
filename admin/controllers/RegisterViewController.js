@@ -1,4 +1,6 @@
-app.controller('RegisterViewController', function($scope, $rootScope, 
-                                                   
-                                                   
+app.controller('RegisterViewController', function($scope, $rootScope){
+
+
+
+
 });

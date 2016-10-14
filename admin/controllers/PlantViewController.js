@@ -164,6 +164,19 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             }
         });
 
+        countryFactory.getCountries().then(function(response) {
+            var countryNames = response.data.data;
+            console.log(response);
+
+
+            $scope.example1data = [];
+
+            for (var i = 0; i < countryNames.length; i++) {
+
+                $scope.allCountires.push(countryNames[i]);
+            }
+        });
+
 
 
 
@@ -189,9 +202,15 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             countryFactory.getCountries().then(function(response){
                 var countryNames = response.data.data;
                 console.log(response);
+
+
+                $scope.example1data = [];
+
                 for (var i = 0; i < countryNames.length; i++){
-                    //$scope.allCountires = countryNames
+
+                    $scope.allCountires.push(countryNames[i]);
                 }
+
             });
 
         }else {
@@ -289,11 +308,13 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         if ($scope.editPlant.taxonommy == false) {
             $scope.editPlant.taxonommy = true;
 
-            var taxonmicPlantInformation = {class_name: $scope.plant.class, tribe_name: $scope.plant.tribe, subtribe_name: $scope.plant.subtribe, genus_name: $scope.plant.genus, species_name: $scope.plant.species, variety_name: $scope.plant.variety, id: $scope.plant.id}
+            var taxonmicPlantInformation = {class_name: $scope.plant.class, tribe_name: $scope.plant.tribe, subtribe_name: $scope.plant.subtribe, genus_name: $scope.plant.genus, species_name: $scope.plant.species, variety_name: $scope.plant.variety, authority: $scope.plant.authority, id: $scope.plant.id}
 
             PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function (response){
                console.log("done");
             });
+
+
 
         } else {
             $scope.editPlant.taxonommy = false;

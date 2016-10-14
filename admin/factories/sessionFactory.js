@@ -12,7 +12,6 @@ app.factory('SessionFactory', function($http) {
                 "password": credentials.password
             }
         });
-
     }
 
     data.logout = function(sessionId, userId) {
@@ -24,6 +23,10 @@ app.factory('SessionFactory', function($http) {
               "userId": userId
           }
       });
+    }
+
+    data.getUserFromSessionKey = function(session_key){
+      return $http.get(baseUrl + '/session_key/' + session_key);
     }
 
 
