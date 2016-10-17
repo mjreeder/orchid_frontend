@@ -77,7 +77,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             habitat: plantData.habitat,
             culture: plantData.culture,
             donation: plantData.donation,
-            data_recieved: plantData.data_recieved,
+            date_recieved: plantData.date_received,
             received_from: plantData.received_from,
             description: plantData.description,
             username: plantData.username,
@@ -106,8 +106,13 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             genus: plantData.genus_name,
             species: plantData.species_name,
             variety: plantData.variety_name,
-            image: "http://placekitten.com/400/400"
+            image: "http://placekitten.com/400/400",
+            dead_date: plantData.dead_date
         };
+        //console.log("aaa");
+        //console.log($scope.plant.date_recieved);
+        //console.log("aaa");
+
 
         LocationFactory.getTableNameFromID($scope.plant.location_id).then(function (response){
             $scope.plant.locationName = response.data.data;
@@ -291,6 +296,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     };
 
     $scope.saveAll = function(){
+       $scope.saveCritical();
 
     }
 
@@ -310,6 +316,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
             var taxonmicPlantInformation = {class_name: $scope.plant.class, tribe_name: $scope.plant.tribe, subtribe_name: $scope.plant.subtribe, genus_name: $scope.plant.genus, species_name: $scope.plant.species, variety_name: $scope.plant.variety, authority: $scope.plant.authority, id: $scope.plant.id}
 
+           console.log(taxonmicPlantInformation);
             PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function (response){
                console.log("done");
             });
@@ -327,7 +334,42 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         } else {
             $scope.editPlant.inactive = false;
         }
-    }
+    };
+
+    $scope.saveCritical = function(){
+        var criticalPlantInformation = {scientific_name: $scope.plant.scientific_name, name:$scope.plant.name, location_id: $scope.plant.location_id, accession_number:$scope.plant.accession_number};
+
+        $scope.editPlant = {
+            critical: false,
+            taxonommy: false,
+            culture: false,
+            accesssion: false,
+            description: false,
+            hybrid: false,
+            inactive: false,
+            photos: false,
+            save: false
+
+        };
+        console.log(criticalPlantInformation);
+        PlantsFactory.createNewPlant(criticalPlantInformation).then(function(response){
+            console.log("AAA");
+            console.log(response);
+            console.log("AAA");
+            $scope.plant.id = response.data.data.id;
+            $scope.accession_number = response.data.data.accession_number;
+            $scope.editTaxonomy();
+            $scope.editCulture();
+            $scope.editDescription();
+            $scope.editHybrid();
+            $scope.editInactive();
+            $scope.editAccession();
+            console.log($scope.accession_number);
+            var x = $scope.accession_number;
+            $location.path('/plant/' + x);
+        });
+
+    };
 
     $scope.editCritical = function(){
         if ($scope.editPlant.critical == false){
@@ -378,7 +420,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
       if ($scope.editPlant.accesssion == false) {
           $scope.editPlant.accesssion = true;
 
-          var accessionPlantInformation = {recieved_from: $scope.plant.received_from, donation_comment: $scope.plant.donation_comment, id: $scope.plant.id }
+          var accessionPlantInformation = {received_from: $scope.plant.received_from, donation_comment: $scope.plant.donation_comment, date_received: $scope.plant.date_recieved, id: $scope.plant.id }
 
           PlantsFactory.editAccessionPlant(accessionPlantInformation).then(function (response){
               console.log(response.data);
