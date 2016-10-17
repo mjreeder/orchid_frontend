@@ -1,0 +1,73 @@
+#container p {
+    width: 100%;
+    background-color: black;
+    color: white;
+    height: 40px;
+    font-family: Aleo, serif;
+    font-weight: 300;
+    font-size: 20px;
+    padding: 20px 0px 0px 30px;
+}
+
+.icon {
+    width: 40px;
+    display: inline-block;
+    float: right;
+    padding: 20px 30px;
+}
+
+#title h1 {
+    display: block;
+    margin-left: 30px;
+    padding: none;
+    width: 10%;
+    text-align: left;
+    float: left;
+}
+
+.divider {
+    width: 95%;
+    height: 5px;
+    background-color: grey;
+    display: block;
+    margin: 0 auto;
+    clear: both;
+}
+
+#form-users .users {
+    padding-top: 10px;
+}
+
+#form-users .users input {
+    width: 100%;
+    margin-right: 10px;
+}
+
+#form-users {
+    margin-left: 10px;
+    width: 90%;
+    position: relative;
+}
+
+#form-users img {
+    width: 40px;
+    position: absolute;
+    margin: 30px 0px 0px 30px;
+}
+
+#form-users .section {
+    display: block;
+}
+
+#form-users .users input:last-child {
+    margin-bottom: 30px;
+}
+
+.add-user img {
+    width: 40px;
+    padding: 30px;
+}
+
+.edit-icon {
+/*    display: none;*/
+}

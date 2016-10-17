@@ -19,10 +19,15 @@
 
 
 
+
     <div id="clear" ng-if="showTable">
         <table width="710" height="600" cell padding="10" cell spacing="5">
             <thead>
             <tr>
+                <th ng-show="movePlants">
+                    <class id="accession"> Move </class>
+                </th>
+
                 <th>
                     <class id="accession"> Accession # </class>
                 </th>
@@ -40,6 +45,9 @@
             <tbody>
             <tr ng-repeat="plant in plantsInTable">
 
+                <td ng-show="movePlants">
+                    <input type="checkbox" ng-click="wantPlantMoved(plant)">
+                </td>
 
                 <td>{{plant.accession_number}}</td>
 
@@ -68,13 +76,21 @@
     <button id="save" type="submit" ng-click="updateDates()">Save</button>
 
 
-    <footer id="moveplants">
-        <a href="#">Move Plants</a>
+    <footer id="moveplants" >
+        <button id="save" type="submit" ng-click="movePlantsFunction()">Edit</button>
     </footer>
+
+        <footer id="moveplants" >
+            <button id="save" type="submit" ng-click="showMoveFunction()">Move Certain Plants</button>
+        </footer>
 
     <div ng-include="'views/pop-up.html'" ng-show="popupShow"></div>
 
+        <div ng-include="'views/MoveTable.html'" ng-show="showPopup2"></div>
+
+
     </div>
+
 
     <div ng-if="!showTable">
     <p>the table is empty.. what do we want to display</p>

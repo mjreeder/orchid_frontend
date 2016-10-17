@@ -137,81 +137,59 @@ table {
 }
 
 @font-face {
-	font-family: 'Aleo';
-	src: url("../fonts/aleo/aleo-regular.eot");
-	src: url("../fonts/aleo/aleo-regular.eot?#iefix") format("embedded-opentype"),
-		 url("../fonts/aleo/aleo-regular.woff") format("woff"),
-		 url("../fonts/aleo/aleo-regular.ttf") format("truetype"),
-		 url("../fonts/aleo/aleo-regular.svg#aleoregular") format("svg");
-	font-weight: 400;
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'Aleo';
+    src: url("../fonts/aleo/aleo-regular.eot");
+    src: url("../fonts/aleo/aleo-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-regular.woff") format("woff"), url("../fonts/aleo/aleo-regular.ttf") format("truetype"), url("../fonts/aleo/aleo-regular.svg#aleoregular") format("svg");
+    font-weight: 400;
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: 'Aleo';
-	src: url("../fonts/aleo/aleo-light.eot");
-	src: url("../fonts/aleo/aleo-light.eot?#iefix") format("embedded-opentype"),
-		 url("../fonts/aleo/aleo-light.woff") format("woff"),
-		 url("../fonts/aleo/aleo-light.ttf") format("truetype"),
-		 url("../fonts/aleo/aleo-light.svg#aleolight") format("svg");
-	font-weight: 100;
-	font-style: normal;
-}
-
-@font-face{
-	font-family: 'Aleo';
-	src: url("../fonts/aleo/aleo-bold.eot");
-	src: url("../fonts/aleo/aleo-bold.eot?#iefix") format("embedded-opentype"),
-		 url("../fonts/aleo/aleo-bold.woff") format("woff"),
-		 url("../fonts/aleo/aleo-bold.ttf") format("truetype"),
-		 url("../fonts/aleo/aleo-bold.svg#aleobold") format("svg");
-	font-weight: 700;
-	font-style: normal;
+    font-family: 'Aleo';
+    src: url("../fonts/aleo/aleo-light.eot");
+    src: url("../fonts/aleo/aleo-light.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-light.woff") format("woff"), url("../fonts/aleo/aleo-light.ttf") format("truetype"), url("../fonts/aleo/aleo-light.svg#aleolight") format("svg");
+    font-weight: 100;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: 'Aleo';
-	src: url("../fonts/aleo/aleo-italic.eot");
-	src: url("../fonts/aleo/aleo-italic.eot?#iefix") format("embedded-opentype"),
-		 url("../fonts/aleo/aleo-italic.woff") format("woff"),
-		 url("../fonts/aleo/aleo-italic.ttf") format("truetype"),
-		 url("../fonts/aleo/aleo-italic.svg#aleoitalic") format("svg");
-	font-weight: 400;
-	font-weight: normal;
-	font-style: italic;
+    font-family: 'Aleo';
+    src: url("../fonts/aleo/aleo-bold.eot");
+    src: url("../fonts/aleo/aleo-bold.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-bold.woff") format("woff"), url("../fonts/aleo/aleo-bold.ttf") format("truetype"), url("../fonts/aleo/aleo-bold.svg#aleobold") format("svg");
+    font-weight: 700;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: 'Aleo';
-	src: url("../fonts/aleo/aleo-lightitalic.eot");
-	src: url("../fonts/aleo/aleo-lightitalic.eot?#iefix") format("embedded-opentype"),
-		 url("../fonts/aleo/aleo-lightitalic.woff") format("woff"),
-		 url("../fonts/aleo/aleo-lightitalic.ttf") format("truetype"),
-		 url("../fonts/aleo/aleo-lightitalic.svg#aleolightitalic") format("svg");
-	font-weight: 100;
-	font-style: italic;
+    font-family: 'Aleo';
+    src: url("../fonts/aleo/aleo-italic.eot");
+    src: url("../fonts/aleo/aleo-italic.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-italic.woff") format("woff"), url("../fonts/aleo/aleo-italic.ttf") format("truetype"), url("../fonts/aleo/aleo-italic.svg#aleoitalic") format("svg");
+    font-weight: 400;
+    font-weight: normal;
+    font-style: italic;
 }
 
-@font-face{
-	font-family: 'Aleo';
-	src: url("../fonts/aleo/aleo-bolditalic.eot");
-	src: url("../fonts/aleo/aleo-bolditalic.eot?#iefix") format("embedded-opentype"),
-		 url("../fonts/aleo/aleo-bolditalic.woff") format("woff"),
-		 url("../fonts/aleo/aleo-bolditalic.ttf") format("truetype"),
-		 url("../fonts/aleo/aleo-bolditalic.svg#aleobolditalic") format("svg");
-	font-weight: 700;
-	font-style: italic;
+@font-face {
+    font-family: 'Aleo';
+    src: url("../fonts/aleo/aleo-lightitalic.eot");
+    src: url("../fonts/aleo/aleo-lightitalic.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-lightitalic.woff") format("woff"), url("../fonts/aleo/aleo-lightitalic.ttf") format("truetype"), url("../fonts/aleo/aleo-lightitalic.svg#aleolightitalic") format("svg");
+    font-weight: 100;
+    font-style: italic;
 }
 
-
-
-
-
+@font-face {
+    font-family: 'Aleo';
+    src: url("../fonts/aleo/aleo-bolditalic.eot");
+    src: url("../fonts/aleo/aleo-bolditalic.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-bolditalic.woff") format("woff"), url("../fonts/aleo/aleo-bolditalic.ttf") format("truetype"), url("../fonts/aleo/aleo-bolditalic.svg#aleobolditalic") format("svg");
+    font-weight: 700;
+    font-style: italic;
+}
 
 header {
     background-color: #666666;
     height: 150px;
+    width: 100%; 
 }
 
 header li a {
@@ -219,39 +197,95 @@ header li a {
     margin-left: 20px;
     float: right;
     background-color: white;
-    padding: 15px 30px;
+    padding: 15px 10px;
+    width: 15%;
     border-radius: 8px;
-    font-family: Aleo, serif;
-    font-weight: 400;
-    font-size:20px; 
-    text-decoration: none; 
-    color: black; 
-    float: top; 
+/*    font-family: Aleo, serif;*/
+    font-family: Raleway, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    float: top;
     margin-top: -10px;
+    text-align: center;
 }
 
+@media screen and (max-width: 900px) {
+    header li a {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 645px) {
+    header li a {
+        padding: 15px 10px;
+    }
+}
+
+
+@media screen and (max-width: 520px) {
+    header li a {
+        width: 50%; 
+        padding: 5px 10px;
+        margin-top: 0px; 
+        margin-bottom: 5px; 
+    }
+}
+@media screen and (max-width: 520px) {
+    header li {
+       margin-top: -30px;  
+    }
+}
+
+@media screen and (max-width: 450px) {
+    header li {
+/*       width: 40%;*/
+       padding: 5px 0px; 
+    }
+}
+
+
+
+/*
+@media screen and (max-width: 700px) {
+    header li:nth-child(2) {
+       padding: 15px 40px; 
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    header li a:nth-child(3) {
+        padding: 15px 30px;
+    }
+}
+*/
+
+
+
+
 header ul {
-padding: 60px; 
+    padding: 60px;
 }
 
 #logo {
     width: 97px;
     float: left;
-    padding: 30px; 
+    padding: 30px;
 }
 
-
 body {
- font-family: Raleway, sans-serif; 
+    font-family: Raleway, sans-serif;
     color: black;
 }
 
 button {
-    border: none; 
+    border: none;
     background: none;
 }
 
-button, input[type="button"]{
-	outline: none;
+button,
+input[type="button"] {
+    outline: none;
 }
-

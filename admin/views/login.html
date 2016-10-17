@@ -1,13 +1,18 @@
-<div>
-    <h1>Login to flowers</h1>
+
+
+   
+
+   <div>
+    <h1>Login</h1>
     <form class="form-signin">
-        <input type="text" id="username" placeholder="Username" required autofocus ng-model="credentials.username">
-        <br>
-        <br>
+       <lable> Email: </lable>
+        <input type="text" id="username" placeholder="Email" required autofocus ng-model="credentials.username">
+        
+        <lable><div class="password"> Password: </div> </lable>
         <input type="password" id="pass" placeholder="Password" required ng-model="credentials.password">
-        <br>
-        <br>
-        <br>
-        <button style="height:200px;width:200px" ng-click="login(credentials)" type="button">Sign in</button>
+        
+       
+        <div id="button"> 
+        <button ng-click="login(credentials)" type="button"><p> Sign in</p></button></div>
     </form>
 </div>
