@@ -6,8 +6,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
     $scope.id = 7;
 
 
-
-
+    $scope.lol = "hhh";
     LocationFactory.getTableNameFromID(param1).then(function (response){
         //$scope.current_table_name = response.data.data.name;
         //console.log($scope.table_name.name);
@@ -76,9 +75,20 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
         }
     });
 
-    //PlantsFactory.getByLocationName(param1).then(function(response){
-    //    $scope.plantsInTable = response.data.data;
-    //});
+    $scope.movePlants = false;
+
+    $scope.movePlantsFunction = function(){
+        console.log("hello");
+        if ($scope.movePlants == false) {
+            $scope.movePlants = true;
+
+
+
+
+        } else {
+            $scope.movePlants = false;
+        }
+    };
 
 
 
@@ -121,6 +131,34 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
         }
     };
 
+
+    $scope.addedMovePlants = [];
+
+    $scope.didMovePlants = false;
+
+    var index = 0;
+
+    $scope.wantPlantMoved = function (plant){
+        $scope.added = false;
+
+        for (var i = 0; i < $scope.addedMovePlants.length; i++){
+            if(plant.id == $scope.addedMovePlants[i]){
+                console.log($scope.addedMovePlants[i].id);
+                index = i;
+                $scope.didMovePlants = true;
+                $scope.addedMovePlants.splice(i, 1);
+                break;
+
+            }
+        }
+        if($scope.didMovePlants == false){
+            $scope.addedMovePlants.push(plant);
+        } else {
+            $scope.addedMovePlants.splice(index, 1);
+        }
+    };
+
+
     $scope.updateDates = function(){
       for(var i = 0; i < $scope.addedPlants.length; i++){
           console.log($scope.addedPlants[i]);
@@ -136,15 +174,31 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
   $scope.popupShow = false;
 
+    $scope.showPopup2 = false;
+
   $scope.showPopup = function(plant) {
     $rootScope.$broadcast('current-plant', plant);
     $scope.popupShow = !$scope.popupShow;
-  }
+  };
 
   $scope.$on('popup-close', function(event, data){
     if(data == true){
       $scope.popupShow = false;
     }
-  })
+  });
 
+    $scope.name = "biiy jean";
+
+    $scope.showMoveFunction = function() {
+        console.log("we are going to the pop up");
+        $rootScope.$broadcast('abc', { any: {'a': $scope.addedMovePlants} });
+        $scope.showPopup2 = !$scope.showPopup2;
+        $rootScope.$broadcast('hi');
+    };
+
+    $scope.$on('popup-close2', function(event, data){
+        if(data == true){
+            $scope.showPopup2 = false;
+        }
+    });
 });
