@@ -49,6 +49,11 @@ app.config(function($routeProvider, CONFIG) {
             templateUrl: 'views/pop-up.html',
 
         }).
+        when('/moveTable',{
+            controller: 'PopUpViewController',
+            templateUrl: 'views/MoveTable.html',
+
+        }).
         when('/table',{
            controller: 'TableViewController',
             templateUrl: 'views/table.html',

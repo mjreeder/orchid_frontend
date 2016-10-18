@@ -30,10 +30,12 @@ app.factory('PlantsFactory', function($http) {
     data.createNewPlant = function(plant) {
         return $http({
           method: "POST",
-          url: baseUrl + '/',
+          url: baseUrl + '/createPlant',
           data: plant
         });
     };
+
+
 
     data.updateVarifiedDate = function(plant){
         return $http({
@@ -110,9 +112,17 @@ app.factory('PlantsFactory', function($http) {
     data.editHybird = function(plant){
         return $http({
             method: "PUT",
-            url: baseUrl + '/updateHybrid',
+            url: baseUrl + '/upateHyrbrid',
             data: plant
         });
+    };
+
+    data.editLocation = function(plant){
+      return $http({
+          method: "PUT",
+          url: baseUrl + '/updateLocation',
+          data: plant
+      })
     };
     //
     //accession_number: plant.accession_number,

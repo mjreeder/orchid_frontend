@@ -1,0 +1,36 @@
+<section class="flower-popup" ng-controller="MoveTableViewController">
+    <form>
+
+        <br>
+        <br>
+        <br>
+        <ul ng-repeat="plant in a">
+            <li>{{plant}}</li>
+        </ul>
+        <br>
+        <br>
+        <br>
+
+        <button ng-click="movePlants('3')"> Move</button>
+
+
+
+
+        <nav id="houses">
+            <ul>
+                <li ng-click="showDisplayPopup()"><class id="active"> Display </class></li>
+                <li ng-click="showWarmPopup()"><class id="active"> Warmhouse </class></li>
+                <li ng-click="showCoolPopup()"><class id="active"> Coolhouse </class></li>
+            </ul>
+        </nav>
+
+        <div ng-include="'views/moveWarmhouse.html'" ng-hide="WarmPopup"></div>
+        <div ng-include="'views/moveCoolHouse.html'" ng-show="CoolPopup"></div>
+
+        <div ng-include="'views/moveDisplay.html'" ng-show="DisplayPopup"></div>
+
+
+
+
+    </form>
+</section>
