@@ -123,6 +123,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       BloomingFactory.getBloomByPlantID($scope.plant.id).then(function(data){
         var data = getLastComment(data);
         data = formatTimeStamp('start_date', data);
+        if(!data){
+          return;
+        }
         if(data.end_date){
           console.log("end date");
           data = formatTimeStamp('end_date', data);
@@ -177,6 +180,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     //The calendar type input fields will throw an error if not a date object
     var formatTimeStamp = function(variable, data){
+      if(!data){
+        return;
+      }
       var stringVal = data[variable];
       stringVal = stringVal.split('-');
       for(var i = 0; i < stringVal.length; i++){
