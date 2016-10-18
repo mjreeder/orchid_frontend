@@ -4,10 +4,33 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.health_condition = "";
 
     $scope.$on('current-plant', function(event, data){
+      cleanPrefixes();
       $scope.plant = data;
       concatObjects(data, 'plant');
       init();
     })
+
+    var cleanPrefixes = function(){
+      cleanPrefix('plant');
+      cleanPrefix('blooming');
+      cleanPrefix('bloomingComment');
+      cleanPrefix('sprayed');
+      cleanPrefix('potting');
+      cleanPrefix('health');
+      cleanPrefix('flag');
+    }
+
+    var cleanPrefix = function(prefix){
+      var data = $scope;
+      for(key in data){
+        if(data.hasOwnProperty(key)){
+          if(stringContains(key, prefix)){
+            console.log("property found");
+            $scope[key] = undefined;
+          }
+        }
+      }
+    }
 
     $scope.today = new Date();
 
