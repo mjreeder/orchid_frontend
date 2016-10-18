@@ -25,7 +25,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       for(key in data){
         if(data.hasOwnProperty(key)){
           if(stringContains(key, prefix)){
-            console.log("property found");
             $scope[key] = undefined;
           }
         }
