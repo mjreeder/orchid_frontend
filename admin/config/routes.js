@@ -62,7 +62,7 @@ app.config(function($routeProvider, CONFIG) {
         when('/plant/create',{
             controller: 'PlantViewController',
             templateUrl: 'views/more-info.html',
-            
+
         }).
         when('/users/register',{
             controller: 'RegisterViewController',
@@ -76,7 +76,7 @@ app.config(function($routeProvider, CONFIG) {
 
 var isAuthenticated = function ($q, $rootScope, $location, sessionService) {
   var session = sessionService.hasRecentSession();
-  if ($rootScope.userSession || session) {
+  if (session) {
         return true;
     } else {
         $rootScope.redirect = $location.path();

@@ -14,8 +14,10 @@ app.factory('TagFactory', function($http) {
             method: "POST",
             url: baseUrl + '/create',
             data: {
-                "plant_id": tag.plantId,
-                "note": tag.note
+                "plant_id"    : tag.plantId,
+                "note"        : tag.note,
+                "session_key" : $rootScope.userSessionKey,
+                "session_id"  : $rootScope.userSessionId
             }
         });
     }
