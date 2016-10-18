@@ -76,7 +76,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handlePotting = function(){
       var data = prepareForFactory('potting');
-      data.timestamp = $scope.today;
       if(objectIsNew('potting')){
         PottingFactory.createPest(data).then(function(){})
       } else {
