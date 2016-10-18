@@ -60,11 +60,11 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
 
     $scope.loadRoom = function($event){
 
-        console.log("hellloo");
+        console.log("hellloo")
         console.log($event.currentTarget.id);
     };
 
-    $('svg').on('click', '> g', function(){
+    $('body').on('click', 'svg > g', function(){
         console.log("we clicked on the image");
         var abbreviation = $(this).attr('id');
         console.log(abbreviation);
