@@ -43,7 +43,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="plant in plantsInTable">
+            <tr ng-repeat="plant in plantsInTable" ng-class="{alertRow: plant.tagged == true}"  ng-hide="hideFirstRow">
 
                 <td ng-show="movePlants">
                     <input type="checkbox" ng-click="wantPlantMoved(plant)">

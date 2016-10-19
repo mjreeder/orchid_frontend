@@ -21,6 +21,10 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
         //console.log(response.data.data.name);
         var help = response.data.data[0];
 
+        if(!help){
+          $scope.hideFirstRow = true;
+        }
+
         console.log(help);
 
 
