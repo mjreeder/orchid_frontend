@@ -1,4 +1,4 @@
-app.factory('ClassificationFactory', function($http) {
+app.factory('ClassificationFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/classification';
@@ -17,7 +17,9 @@ app.factory('ClassificationFactory', function($http) {
             url: baseUrl,
             data: {
                 "name": classification.name,
-                "rank": classification.rank
+                "rank": classification.rank,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }
@@ -29,7 +31,9 @@ app.factory('ClassificationFactory', function($http) {
             data: {
                 "name": classification.name,
                 "rank": classification.rank,
-                "id": classification.id
+                "id": classification.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }

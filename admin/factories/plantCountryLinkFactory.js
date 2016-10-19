@@ -1,4 +1,4 @@
-app.factory('PlantCountryLinkFactory', function($http) {
+app.factory('PlantCountryLinkFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/plant_country_link';
@@ -16,7 +16,8 @@ app.factory('PlantCountryLinkFactory', function($http) {
             data: {
                 "plant_id": plant_country_link.plantId,
                 "country_id": plant_country_link.country_id,
-
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }
@@ -28,7 +29,9 @@ app.factory('PlantCountryLinkFactory', function($http) {
             data: {
                 "plant_id": plant_country_link.plantId,
                 "country_id": plant_country_link.countryId,
-                "id": plant_country_link.id
+                "id": plant_country_link.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }

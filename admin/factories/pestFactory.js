@@ -1,4 +1,4 @@
-app.factory('PestFactory', function($http) {
+app.factory('PestFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/pest';
@@ -16,7 +16,9 @@ app.factory('PestFactory', function($http) {
             data: {
                 "plant_id": pest.plantId,
                 "timestamp": pest.start_date,
-                "note": pest.note
+                "note": pest.note,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }
@@ -29,7 +31,9 @@ app.factory('PestFactory', function($http) {
                 "plant_id": pest.plantId,
                 "timestamp": pest.timestamp,
                 "note": blooming.note,
-                "id": pest.id
+                "id": pest.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }

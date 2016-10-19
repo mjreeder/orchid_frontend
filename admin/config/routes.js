@@ -12,7 +12,9 @@ app.config(function($routeProvider, CONFIG) {
         when('/house', {
             controller: 'DisplayViewController',
             templateUrl: 'views/Ipad-map.html',
-
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/house/display', {
             controller: 'DisplayViewController',

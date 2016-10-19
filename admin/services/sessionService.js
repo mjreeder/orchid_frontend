@@ -4,9 +4,9 @@ app.service('sessionService', function($rootScope, SessionFactory) {
     this.createStoredSession = function(sessionKey, session_id) {
         localStorage.setItem("session_key", sessionKey);
         localStorage.setItem("session_id", session_id);
-        
+
         //add session credentials to rootScope for post/put/delete to check for authorization
-        $rootScope.userSessionKey = session_key;
+        $rootScope.userSessionKey = sessionKey;
         $rootScope.userSessionId = session_id;
     }
 

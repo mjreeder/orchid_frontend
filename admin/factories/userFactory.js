@@ -25,6 +25,8 @@ app.factory('UserFactory', function($http, sessionService, $rootScope) {
           url: baseUrl,
           data: {
               "id": user.id,
+              "session_id": $rootScope.userSessionId,
+              "session_key": $rootScope.userSessionKey
           }
       });
     }

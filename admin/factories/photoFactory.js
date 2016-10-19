@@ -1,4 +1,4 @@
-app.factory('PhotoFactory', function($http) {
+app.factory('PhotoFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/photo';
@@ -16,7 +16,9 @@ app.factory('PhotoFactory', function($http) {
             data: {
                 "plant_id": photo.plantId,
                 "url": photo.url,
-                "type": photo.type
+                "type": photo.type,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }
@@ -30,7 +32,9 @@ app.factory('PhotoFactory', function($http) {
                 "url": photo.url,
                 "type": photo.type,
                 "id": photo.id,
-                "active": photo.active
+                "active": photo.active,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }

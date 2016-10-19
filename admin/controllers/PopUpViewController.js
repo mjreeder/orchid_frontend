@@ -68,7 +68,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         return;
       }
       if(objectIsNew('sprayed')){
-        SprayedFactory.createSplit(data).then(function(){})
+        SprayedFactory.createSplit(data).then(function(response){
+          console.log(response);
+        });
       } else {
         SprayedFactory.updateSplit(data).then(function(){})
       }
