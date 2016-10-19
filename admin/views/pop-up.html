@@ -66,9 +66,9 @@
 
             <section id="current-health" class="top-margin">
                 <p>Current health condition:
-                    <button id="poor" ng-click="health_score = 'poor'">Poor</button>
-                    <button id="fair" ng-click="health_score = 'fair'">Fair</button>
-                    <button id="good" ng-click="health_score = 'good'">Good</button>
+                    <button id="poor" ng-click="health_score = 'poor'" ng-class="{glow: health_score == 'poor'}">Poor</button>
+                    <button id="fair" ng-click="health_score = 'fair'" ng-class="{glow: health_score == 'fair'}">Fair</button>
+                    <button id="good" ng-click="health_score = 'good'" ng-class="{glow: health_score == 'good'}">Good</button>
                 </p>
                 <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition." ng-model="health_comment"></textarea>
             </section>

@@ -300,7 +300,9 @@ td{
     color: white;
 }
 
-
 .subsection {
  margin-left: 30px;
+}
+.glow{
+  box-shadow:0 0 20px blue;  
 }
