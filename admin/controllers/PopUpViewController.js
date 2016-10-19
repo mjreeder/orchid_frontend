@@ -25,7 +25,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       for(key in data){
         if(data.hasOwnProperty(key)){
           if(stringContains(key, prefix)){
-            console.log("property found");
             $scope[key] = undefined;
           }
         }
@@ -139,7 +138,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         handlePottingInit();
         handleHealthInit();
         handleTagInit();
-        handleBloomInit();
+        handleBloomingCommentInit();
       }
     }
 
@@ -154,7 +153,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           console.log("end date");
           data = formatTimeStamp('end_date', data);
         }
-        if(data.end_date != "0000-00-00"){
+        if(data.end_date == "0000-00-00"){
           data.end_date = null;
         }
         concatObjects(data, 'blooming');
@@ -180,6 +179,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleHealthInit = function(){
       HealthFactory.getHealthBtPlantID($scope.plant.id).then(function(data){
         var lastComment = getLastComment(data);
+        console.log(lastComment);
         lastComment = formatTimeStamp('timestamp', lastComment);
         concatObjects(lastComment, 'health');
       })
@@ -188,7 +188,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleTagInit = function(){
       TagFactory.getPestByPlantID($scope.plant.id).then(function(data){
         data = data.data.data;
-        if(data.active == 0){
+        console.log(data.active);
+        if(data.active == 1){
           $scope.flagged = true;
         }
         concatObjects(data, 'flag');
