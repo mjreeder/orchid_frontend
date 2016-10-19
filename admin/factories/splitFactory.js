@@ -1,4 +1,4 @@
-app.factory('SprayedFactory', function($http) {
+app.factory('SprayedFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/sprayed';
@@ -15,7 +15,9 @@ app.factory('SprayedFactory', function($http) {
             url: baseUrl + '/create',
             data: {
                 "plant_id": split.plantId,
-                "timestamp": split.start_date
+                "timestamp": split.start_date,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }
@@ -28,6 +30,8 @@ app.factory('SprayedFactory', function($http) {
                 "plant_id": split.plantId,
                 "timestamp": split.timestamp,
                 "id": split.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }

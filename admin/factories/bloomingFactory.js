@@ -1,4 +1,4 @@
-app.factory('BloomingFactory', function($http) {
+app.factory('BloomingFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/blooming';
@@ -16,7 +16,9 @@ app.factory('BloomingFactory', function($http) {
             data: {
                 "plant_id": blooming.plantId,
                 "start_date": blooming.start_date,
-                "end_date": "0000-00-00"
+                "end_date": "0000-00-00",
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }
@@ -29,7 +31,9 @@ app.factory('BloomingFactory', function($http) {
                 "plant_id": blooming.plantId,
                 "end_date": blooming.end_date,
                 "start_date": blooming.start_date,
-                "id": blooming.id
+                "id": blooming.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }
