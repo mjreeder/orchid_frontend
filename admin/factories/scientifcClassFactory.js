@@ -17,7 +17,9 @@ app.factory('ScientificClassFactory', function($http) {
           url: baseUrl,
           data: {
               "classificationId": scientifClass.classificationId,
-              "name": scientifClass.name
+              "name": scientifClass.name,
+              "session_id": $rootScope.userSessionId,
+              "session_key": $rootScope.userSessionKey
           }
       });
     }
@@ -29,7 +31,9 @@ app.factory('ScientificClassFactory', function($http) {
           data: {
               "classificationId": scientifClass.classificationId,
               "name": scientifClass.name,
-              "id": scientifClass.id
+              "id": scientifClass.id,
+              "session_id": $rootScope.userSessionId,
+              "session_key": $rootScope.userSessionKey
           }
       });
     }

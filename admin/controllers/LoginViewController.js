@@ -3,9 +3,13 @@ app.controller('LoginViewController', function($scope, $rootScope, $location, Se
     // console.log(credentials);
 
     SessionFactory.login(credentials).then(function (response) {
-      $rootScope.userSession = response.data.data.session_key;
-      sessionService.createSessionCookie(credentials.username, response.data.data.session_key)
-      $location.path($rootScope.redirect);
+      sessionService.createStoredSession(response.data.data.session_key, response.data.data.session_id)
+      if($rootScope.redirect){
+        $location.path($rootScope.redirect);
+      }
+      else{
+        $location.path('/');
+      }
     });
 
   }

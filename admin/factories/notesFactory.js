@@ -1,4 +1,4 @@
-app.factory('NotesFactory', function($http) {
+app.factory('NotesFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/notes';
@@ -18,7 +18,9 @@ app.factory('NotesFactory', function($http) {
           data: {
               "plant_id": note.plantId,
               "note": note.text,
-              "timestamp": note.timestamp
+              "timestamp": note.timestamp,
+              "session_id": $rootScope.userSessionId,
+              "session_key": $rootScope.userSessionKey
           }
       });
     }
@@ -31,7 +33,9 @@ app.factory('NotesFactory', function($http) {
               "plant_id": note.plantId,
               "note": note.text,
               "timestamp": note.timestamp,
-              "id": note.id
+              "id": note.id,
+              "session_id": $rootScope.userSessionId,
+              "session_key": $rootScope.userSessionKey
           }
       });
     }
