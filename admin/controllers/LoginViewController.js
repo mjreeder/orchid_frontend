@@ -4,7 +4,12 @@ app.controller('LoginViewController', function($scope, $rootScope, $location, Se
 
     SessionFactory.login(credentials).then(function (response) {
       sessionService.createStoredSession(response.data.data.session_key, response.data.data.session_id)
-      $location.path($rootScope.redirect);
+      if($rootScope.redirect){
+        $location.path($rootScope.redirect);
+      }
+      else{
+        $location.path('/');
+      }
     });
 
   }
