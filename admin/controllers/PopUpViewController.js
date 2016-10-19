@@ -60,7 +60,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       var end = moment($scope.blooming_end_date);
       var startYearDate = start.dayOfYear();
       var endYearDate = end.dayOfYear();
-      console.log(daysBetweenDates(startYearDate, endYearDate, 7));
       return daysBetweenDates(startYearDate, endYearDate, 7);
     }
 
