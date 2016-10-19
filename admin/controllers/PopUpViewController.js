@@ -3,6 +3,11 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.plant = {};
     $scope.health_condition = "";
 
+    $scope.startNewBloom = function(){
+      $scope.blooming_start_date = $scope.today;
+      $scope.blooming_end_date = null;
+    }
+
     $scope.$on('current-plant', function(event, data){
       cleanPrefixes();
       $scope.plant = data;
