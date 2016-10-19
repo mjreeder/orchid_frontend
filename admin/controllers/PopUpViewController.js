@@ -34,6 +34,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.today = new Date();
 
     $scope.submitPopUp = function(){
+      if(!bloomDateIsValid()){
+        alert('There must be 7 days between the bloom start and end!');
+        return;
+      }
       handleBloom();
       handleBloomingComment();
       handleSprayed();
@@ -49,6 +53,41 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       } else {
         BloomingFactory.updateBloom(data).then(function(){})
       }
+    }
+
+    var bloomDateIsValid = function() {
+      var start = moment($scope.blooming_start_date);
+      var end = moment($scope.blooming_end_date);
+      var startYearDate = start.dayOfYear();
+      var endYearDate = end.dayOfYear();
+      console.log(daysBetweenDates(startYearDate, endYearDate, 7));
+      return daysBetweenDates(startYearDate, endYearDate, 7);
+    }
+
+    var daysBetweenDates = function(startYearDate, endYearDate, days) {
+      if(!isLeapYear()){
+        if((endYearDate - startYearDate >= days) || (datesFromNewYear(startYearDate, endYearDate, 365) >= days)){
+          return true;
+        }
+      } else {
+        if((endYearDate - startYearDate >= days) || (datesFromNewYear(startYearDate, endYearDate, 366) >= days)){
+          return true;
+        }
+      }
+      return false;
+    }
+
+    var datesFromNewYear = function(startYearDate, endYearDate, daysInYear) {
+      if(startYearDate > endYearDate){
+        return daysInYear - startYearDate + endYearDate;
+      }
+      return 0;
+    }
+
+    //Year calculation from: http://stackoverflow.com/questions/16353211/check-if-year-is-leap-year-in-javascript
+    var isLeapYear = function() {
+      var yearNumber = moment($scope.blooming_start_date).year();
+      return ((yearNumber % 4 == 0) && (yearNumber % 100 != 0)) || (yearNumber % 400 == 0);
     }
 
     var handleBloomingComment = function(){
@@ -109,7 +148,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var prepareForFactory = function(field){
       var data = extractData(field);
-      console.log($scope['plant_id']);
       if(!objectIsNew('plant')){
         data.plantId = $scope.plant.id;
       }
