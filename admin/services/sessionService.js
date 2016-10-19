@@ -14,6 +14,8 @@ app.service('sessionService', function($rootScope, SessionFactory) {
     this.hasRecentSession = function() {
         if(localStorage.getItem("session_key") !== null && localStorage.getItem("session_key") !== undefined &&
             localStorage.getItem("session_id") !== null && localStorage.getItem("session_id") !== undefined){
+              $rootScope.userSessionKey = localStorage.getItem("session_key");
+              $rootScope.userSessionId = localStorage.getItem("session_id");
           return true;
         }
         else{
