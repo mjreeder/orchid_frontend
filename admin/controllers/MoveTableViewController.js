@@ -1,8 +1,10 @@
-app.controller('MoveTableViewController', function($route, $scope, $rootScope, PlantsFactory){
+app.controller('MoveTableViewController', function($route, $scope, $rootScope, PlantsFactory, $window){
 
     $scope.click = function(){
-        console.log("hello");
+        console.log("");
     };
+    $scope.changedRoom = "";
+
 
     $scope.x = {};
     $scope.$on('abc', function(event, data){
@@ -24,108 +26,72 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
         $scope.b ={
             name: $scope.addedMovePlants.a[0]
         };
+
     });
-
-    $scope.plant = {
-        id: 1,
-        location_id: 4
-    };
-
-
-
 
     $scope.movePlants = function(){
 
-        for (var i = 0; i < $scope.a.length; i++) {
+        if($scope.changedRoom.length != 0) {
+            for (var i = 0; i < $scope.a.length; i++) {
+                var moveInformation = {id: $scope.a[i], name: $scope.changedRoom};
 
+                PlantsFactory.editLocation(moveInformation).then(function (response) {
+                    console.log(response);
+                    $window.alert("Finished! Moved the plant");
 
+                });
+            }
+        } else {
+            $window.alert("Must click room to proceed");
 
-            PlantsFactory.editLocation($scope.plant).then(function (response) {
-                console.log("we did it");
-            });
         }
     };
 
-
-    $scope.gem = {
-        name:"Ring",
-        price:2.9,
-        Description:"",
-    };
-    $scope.seth  = {
-        name:"barf",
-    };
-
-    console.log("hellosss");
-
     $scope.loadRoom = function($event){
-
-        console.log("hellloo")
         console.log($event.currentTarget.id);
     };
 
     $('body').on('click', 'svg > g', function(){
         console.log("we clicked on the image");
         var abbreviation = $(this).attr('id');
+        $scope.changedRoom = abbreviation;
         console.log(abbreviation);
     });
 
-    //$rootScope.$on("hi", function(){
-    //    console.log("CCC");
-    //    //console.log($scope.addedMovePlants.a[0].name);
-    //    console.log("CCC");
-    //});
-
-
-
-    //
-    //$scope.lol = "Seth Winslow";
-
-    //console.log($scope.lol);
-    //console.log("aab");
-    //console.log($scope.addedMovePlants);
-    //console.log("aab");
-
-    //consoel.log($scope.addedMovePlants);
-
     $scope.WarmPopup = false;
-    $scope.showWarmPopup = function() {
-        console.log("we just clicked on warm up");
-        $scope.WarmPopup = true;
-    };
+    $scope.DisplayPopup = false;
+    $scope.CoolPopup = false;
 
-    $scope.$on('warm-popup-close', function(event, data){
-        if(data == true){
+    $scope.showWarmPopup = function() {
+        if($scope.WarmPopup == false){
+            $scope.CoolPopup = false;
+            $scope.WarmPopup = true;
+            $scope.DisplayPopup = false;
+        } else {
             $scope.WarmPopup = false;
         }
-    });
-
-    $scope.CoolPopup = false;
-    $scope.showCoolPopup = function() {
-        $scope.CoolPopup = !$scope.CoolPopup;
-
     };
 
-    $scope.$on('cool-popup-close', function(event, data){
-        if(data == true){
+
+    $scope.showCoolPopup = function() {
+        if($scope.CoolPopup == false){
+            $scope.CoolPopup = true;
+            $scope.WarmPopup = false;
+            $scope.DisplayPopup = false;
+        } else {
             $scope.CoolPopup = false;
         }
-    });
-
-    $scope.DisplayPopup = false;
+    };
 
     $scope.showDisplayPopup = function() {
-        $scope.DisplayPopup = !$scope.DisplayPopup;
+        if($scope.DisplayPopup == false){
+            $scope.CoolPopup = false;
+            $scope.WarmPopup = false;
+            $scope.DisplayPopup = true;
+        } else {
+            $scope.DisplayPopup = false;
+        }
     };
-    //
-    //$scope.$on('display-popup-close', function(event, data){
-    //    if(data == true){
-    //        $scope.DisplayPopup = false;
-    //    }
-    //})
-
-
-
 
 });
 

@@ -7,13 +7,9 @@
         <ul ng-repeat="plant in a">
             <li>{{plant}}</li>
         </ul>
-        <br>
-        <br>
-        <br>
+        <h1>{{changedRoom}}</h1>
 
-        <button ng-click="movePlants('3')"> Move</button>
-
-
+        <button ng-click="movePlants()"> Move</button>
 
 
         <nav id="houses">
@@ -24,7 +20,7 @@
             </ul>
         </nav>
 
-        <div ng-include="'views/moveWarmhouse.html'" ng-hide="WarmPopup"></div>
+        <div ng-include="'views/moveWarmhouse.html'" ng-show="WarmPopup"></div>
         <div ng-include="'views/moveCoolHouse.html'" ng-show="CoolPopup"></div>
 
         <div ng-include="'views/moveDisplay.html'" ng-show="DisplayPopup"></div>
