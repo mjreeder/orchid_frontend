@@ -318,6 +318,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
            console.log(taxonmicPlantInformation);
             PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function (response){
+              console.log(response);
                console.log("done");
             });
 
