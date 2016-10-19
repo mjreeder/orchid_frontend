@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory) {
+app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory) {
 
     var param1 = $routeParams.accession_number;
 
@@ -375,9 +375,8 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         if ($scope.editPlant.critical == false){
             $scope.editPlant.critical = true;
 
-
-            var criticalPlantInformation = {scientific_name: $scope.plant.scientific_name, name:$scope.plant.name, location_id: $scope.plant.location_id, id:$scope.plant.id, accession_number:$scope.plant.accession_number};
-
+            var criticalPlantInformation = {scientific_name: $scope.plant.scientific_name, name:$scope.plant.name, location_id: 7, id:$scope.plant.id, accession_number:$scope.plant.accession_number};
+            console.log(criticalPlantInformation);
             PlantsFactory.editCriticalPlant(criticalPlantInformation).then(function (response){
                 console.log(response.data);
             });

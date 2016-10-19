@@ -55,9 +55,12 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateCritical',
-            data: plant,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "plant": plant,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+
         });
     };
 
@@ -65,9 +68,11 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateCriticalTable',
-            data: table,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "table": table,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
         })
     }
 
