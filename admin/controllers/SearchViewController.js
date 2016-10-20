@@ -1,4 +1,4 @@
-app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, PlantsFactory, classificationLinkFactory) {
+app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $location, PlantsFactory, classificationLinkFactory) {
     $scope.plantKeys = [];
     $scope.displayAttributes = [];
 
@@ -31,6 +31,14 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, Plan
                 }
             }
         }
+    }
+
+    $scope.getMorePlantInfo = function (plant) {
+      for (var i = 0; i< plant.length; i++) {
+        if(plant[i].key == 'accession number'){
+          $location.path("/plant/" + plant[i].val);
+        }
+      }
     }
 
     // function to get plants based on first letter and index

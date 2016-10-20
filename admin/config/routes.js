@@ -12,61 +12,93 @@ app.config(function($routeProvider, CONFIG) {
         when('/house', {
             controller: 'DisplayViewController',
             templateUrl: 'views/Ipad-map.html',
-
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/house/display', {
             controller: 'DisplayViewController',
             templateUrl: 'views/Ipad-map.html',
-
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/house/warm', {
             controller: 'DisplayViewController',
             templateUrl: 'views/warmhouse.html',
-
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/house/cool', {
             controller: 'DisplayViewController',
             templateUrl: 'views/coolhouse.html',
-
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/search', {
             controller: 'SearchViewController',
             templateUrl: 'views/orchid-database.html',
-
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/plant',{
             controller: 'PlantViewController',
             templateUrl: 'views/more-info.html',
-
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/plant/:accession_number',{
             controller: 'PlantViewController',
             templateUrl: 'views/more-info.html',
-
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/popup',{
             controller: 'PopUpViewController',
             templateUrl: 'views/pop-up.html',
-
+            resolve:{
+              'data': isAuthenticated
+            }
+        }).
+        when('/moveTable',{
+            controller: 'PopUpViewController',
+            templateUrl: 'views/MoveTable.html',
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/table',{
            controller: 'TableViewController',
             templateUrl: 'views/table.html',
-
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/table/:table_name',{
             controller: 'TableViewController',
             templateUrl: 'views/table.html',
-
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/plant/create',{
             controller: 'PlantViewController',
             templateUrl: 'views/more-info.html',
-            
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
         when('/users/register',{
             controller: 'RegisterViewController',
             templateUrl: 'views/register.html',
+            resolve:{
+              'data': isAuthenticated
+            }
         }).
     when('/users/change-password',{
             controller: 'RegisterViewController',
@@ -80,7 +112,7 @@ app.config(function($routeProvider, CONFIG) {
 
 var isAuthenticated = function ($q, $rootScope, $location, sessionService) {
   var session = sessionService.hasRecentSession();
-  if ($rootScope.userSession || session) {
+  if (session) {
         return true;
     } else {
         $rootScope.redirect = $location.path();

@@ -1,10 +1,7 @@
-app.factory('LocationFactory', function($http) {
+app.factory('LocationFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/location';
-
-
-
 
     data.getTableLocations = function() {
         return $http.get(baseUrl);
@@ -26,7 +23,9 @@ app.factory('LocationFactory', function($http) {
                 "plant_id": healthLink.plantId,
                 "timestamp": healthLink.timestamp,
                 "score": healthLink.score,
-                "comment": healthLink.comment
+                "comment": healthLink.comment,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }

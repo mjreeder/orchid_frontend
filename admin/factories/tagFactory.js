@@ -1,4 +1,4 @@
-app.factory('TagFactory', function($http) {
+app.factory('TagFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/tag';
@@ -14,8 +14,10 @@ app.factory('TagFactory', function($http) {
             method: "POST",
             url: baseUrl + '/create',
             data: {
-                "plant_id": tag.plantId,
-                "note": tag.note
+                "plant_id"    : tag.plantId,
+                "note"        : tag.note,
+                "session_key" : $rootScope.userSessionKey,
+                "session_id"  : $rootScope.userSessionId
             }
         });
     }
@@ -26,7 +28,9 @@ app.factory('TagFactory', function($http) {
             url: baseUrl + '/update',
             data: {
                 "plant_id": tag.plantId,
-                "note": tag.note
+                "note": tag.note,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }

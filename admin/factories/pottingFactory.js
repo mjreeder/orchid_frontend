@@ -1,4 +1,4 @@
-app.factory('PottingFactory', function($http) {
+app.factory('PottingFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/potting';
@@ -15,7 +15,9 @@ app.factory('PottingFactory', function($http) {
             url: baseUrl + '/create',
             data: {
                 "plant_id": potting.plantId,
-                "timestamp": potting.start_date
+                "timestamp": potting.timestamp,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }
@@ -28,7 +30,9 @@ app.factory('PottingFactory', function($http) {
                 "plant_id": potting.plantId,
                 "timestamp": potting.timestamp,
                 "note": potting.note,
-                "id": potting.id
+                "id": potting.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }

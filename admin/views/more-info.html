@@ -63,9 +63,8 @@
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.accesssion">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.accesssion">
             </button>
-            <label>Donated to:</label><input type="text" ng-model="plant.accesssion" ng-disabled="editPlant.accesssion && !createNew">
-            <label>Recieved:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew"><br/>
-            <label></label><input type="text" ng-model="plant.accesssion" ng-disabled="editPlant.accesssion"><br/>
+            <label>Recieved:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
+            <label>Recieved Date:</label><input type="text" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"><br/>
             <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment" ></textarea>
         </fieldset>
 
@@ -113,18 +112,18 @@
 
             <label for="check1" class="labelfirst">Inactive</label>
             <input id="check1" type="checkbox">
-            <button ng-click="inactive_date = today"><img src="images/calendaricon.svg" width="50px" height="50px" alt="" />
-                <input type="date" id="inactive_date" ng-model="inactive_date"></input>
+            <button class="calendar"><img src="images/calendaricon.svg" alt="">
+                <input type="date" id="sprayedDate" ng-model="plant.inactive_date"></input>
             </button>
-            <output>{{ inactive_date | date }}</output>
+            <output>{{ plant.inactive_date | date }}</output>
             <br/>
 
             <label for="check2">Dead</label>
             <input id="check2" type="checkbox">
-            <button ng-click="dead_date = today"><img src="images/calendaricon.svg" width="50px" height="50px" alt="" />
-            <input type="date" id="dead_date" ng-model="dead_date"></input>
+            <button class="calendar"><img src="images/calendaricon.svg" alt="">
+                <input type="date" id="sprayedDate" ng-model="plant.inactive_date"></input>
             </button>
-            <output>{{ dead_date | date }}</output>
+            <output>{{ plant.dead_date | date }}</output>
             <br/>
 
             <!--            <label for="inactivecomment">Comment:</label>-->

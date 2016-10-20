@@ -1,4 +1,4 @@
-app.factory('Bloom_CommentFactory', function($http) {
+app.factory('Bloom_CommentFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/bloom_comment';
@@ -16,7 +16,9 @@ app.factory('Bloom_CommentFactory', function($http) {
             data: {
                 "plant_id": bloom_comment.plantId,
                 "timestamp": bloom_comment.timestamp,
-                "note": bloom_comment.note
+                "note": bloom_comment.note,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }
@@ -29,7 +31,9 @@ app.factory('Bloom_CommentFactory', function($http) {
                 "plant_id": bloom_comment.plantId,
                 "timestamp": bloom_comment.timestamp,
                 "note": bloom_comment.note,
-                "id": bloom_comment.id
+                "id": bloom_comment.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
             }
         });
     }

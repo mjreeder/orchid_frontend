@@ -25,10 +25,6 @@ app.factory('SessionFactory', function($http) {
       });
     }
 
-    data.getUserFromSessionKey = function(session_key){
-      return $http.get(baseUrl + '/session_key/' + session_key);
-    }
-
 
     return data;
 });

@@ -9,7 +9,7 @@
         <!--<section>-->
         <div class="top-margin">
             <label>Blooming:</label>
-            <button class="startnewbloom">Start New Bloom</button>
+            <button class="startnewbloom" ng-click="startNewBloom()">Start New Bloom</button>
 
             <br>
         </div>
@@ -66,9 +66,9 @@
 
             <section id="current-health" class="top-margin">
                 <p>Current health condition:
-                    <button id="poor" ng-click="health_score = 'poor'">Poor</button>
-                    <button id="fair" ng-click="health_score = 'fair'">Fair</button>
-                    <button id="good" ng-click="health_score = 'good'">Good</button>
+                    <button id="poor" ng-click="health_score = 'poor'" ng-class="{glow: health_score == 'poor'}">Poor</button>
+                    <button id="fair" ng-click="health_score = 'fair'" ng-class="{glow: health_score == 'fair'}">Fair</button>
+                    <button id="good" ng-click="health_score = 'good'" ng-class="{glow: health_score == 'good'}">Good</button>
                 </p>
                 <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition." ng-model="health_comment"></textarea>
             </section>
@@ -80,7 +80,7 @@
             </div>
 
             <button id="more-info">
-                <a href='#/plant/{{plant.accession_number}}'>More Information</a>
+                <a ng-href='#/plant/{{plant_accession_number}}' target='_blank'>More Information</a>
             </button>
 
             <button id="save" type="submit" ng-click="submitPopUp()">Save</button>
