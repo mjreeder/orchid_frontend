@@ -311,3 +311,7 @@ td{
 .alertRow {
   background-color: yellow;
 }
+
+.customNgDisabled {
+  background-color: grey;
+}

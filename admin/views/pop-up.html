@@ -29,8 +29,8 @@
 
         <div class="subsection">
             <label>End of Bloom:</label>
-            <button ng-click="blooming_end_date = today" class="today">Today</button>
-            <button class="calendar"><img src="images/calendaricon.svg" alt="">
+            <button ng-click="blooming_end_date = today" class="today" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}">Today</button>
+            <button class="calendar"><img src="images/calendaricon.svg" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}" alt="">
                 <input type="date" id="endDateBloom" ng-model="blooming_end_date"></input>
             </button>
 
