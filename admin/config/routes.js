@@ -103,7 +103,10 @@ app.config(function($routeProvider, CONFIG) {
     when('/users/change-password',{
             controller: 'RegisterViewController',
             templateUrl: 'views/change-password.html',
-        }).    }
+            resolve:{
+                 'data': isAuthenticated
+            }
+        }).
         otherwise({
             controller: '404ViewController',
             templateUrl: 'views/404.html '
