@@ -55,6 +55,7 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
         console.log("we clicked on the image");
         var abbreviation = $(this).attr('id');
         $scope.changedRoom = abbreviation;
+        $scope.$apply();
         console.log(abbreviation);
     });
 
