@@ -68,6 +68,10 @@ app.config(function($routeProvider, CONFIG) {
             controller: 'RegisterViewController',
             templateUrl: 'views/register.html',
         }).
+    when('/users/change-password',{
+            controller: 'RegisterViewController',
+            templateUrl: 'views/change-password.html',
+        }).    }
         otherwise({
             controller: '404ViewController',
             templateUrl: 'views/404.html '
