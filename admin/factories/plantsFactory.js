@@ -41,13 +41,15 @@ app.factory('PlantsFactory', function($http, $rootScope) {
 
 
 
-    data.updateVarifiedDate = function(plant) {
+    data.updateVarifiedDate = function(id) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateVarifiedDate',
-            data: plant,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "id": id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
         });
     };
 
@@ -55,9 +57,12 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateCritical',
-            data: plant,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "plant": plant,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+
         });
     };
 
@@ -65,9 +70,11 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateCriticalTable',
-            data: table,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "table": table,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
         })
     }
 
@@ -75,9 +82,11 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateCulture',
-            data: plant,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "plant": plant,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
         });
     };
 
@@ -85,9 +94,11 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateAccession',
-            data: plant,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "plant": plant,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
         });
     };
 
@@ -95,9 +106,11 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateInactive',
-            data: plant,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "plant": plant,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
         });
     };
 
@@ -105,9 +118,11 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateTaxonmic',
-            data: plant,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "plant": plant,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
         });
     };
 
@@ -115,9 +130,11 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateSinglePhoto',
-            data: plant,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "plant": plant,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
         });
     };
 
@@ -125,9 +142,11 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateDescription',
-            data: aaa,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "aaa": aaa,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
         });
     };
 
@@ -135,9 +154,11 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/upateHyrbrid',
-            data: plant,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "plant": plant,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
         });
     };
 
@@ -145,9 +166,11 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateLocation',
-            data: plant,
-            "session_id": $rootScope.userSessionId,
-            "session_key": $rootScope.userSessionKey
+            data: {
+                "plant": plant,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
         })
     };
     //

@@ -8,7 +8,7 @@
             </tr>
             <tbody>
                 <tr ng-repeat="plant in plants">
-                    <td ng-repeat="(key, val) in plant" ng-show="val.isDisplayed">{{val.val}}</td>
+                    <td ng-repeat="(key, val) in plant" ng-show="val.isDisplayed" ng-click="getMorePlantInfo(plant)">{{val.val}}</td>
                 </tr>
             </tbody>
         </thead>

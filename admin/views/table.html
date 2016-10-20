@@ -43,7 +43,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="plant in plantsInTable">
+            <tr ng-repeat="plant in plantsInTable" ng-class="{alertRow: plant.tagged == true}"  ng-show="showRows">
 
                 <td ng-show="movePlants">
                     <input type="checkbox" ng-click="wantPlantMoved(plant)">
@@ -52,7 +52,7 @@
                 <td ng-click="showPopup(plant)">{{plant.accession_number}}</td>
 
 
-                <td ng-click="showPopup(plant)"><button background-color="red" color="white" ng-if="plant.tagged">ALERT</button>{{plant.name}}</td>
+                <td ng-click="showPopup(plant)"><button background-color="red" color="white"></button>{{plant.name}}</td>
 
                 <td>
                     <label>
