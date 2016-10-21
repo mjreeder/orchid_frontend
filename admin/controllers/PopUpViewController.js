@@ -56,6 +56,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       handlePotting();
       handleHealth();
       handleTag();
+      $scope.closePopUp();
     }
 
     var handleBloom = function() {
