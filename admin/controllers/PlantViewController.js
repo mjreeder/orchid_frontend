@@ -34,22 +34,22 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
 
 
-    PlantsFactory.getPlantByAccessionNumber(param1).then(function (response){
-       var plantData = response.data.data[0];
+    PlantsFactory.getPlantByAccessionNumber(param1).then(function(response) {
+        var plantData = response.data.data[0];
         console.log(plantData);
         var plant_id = response.data.data[0].id;
 
         Country = [];
 
-        LocationFactory.getTableLocations().then(function (response){
+        LocationFactory.getTableLocations().then(function(response) {
             var tableData = response.data.data;
-            for (i = 0; i < tableData.length; i++){
+            for (i = 0; i < tableData.length; i++) {
                 $scope.Tables.push(tableData[i]);
 
             }
         });
 
-        PlantCountryLinkFactory.getCountryByPlantID(plant_id).then(function (response) {
+        PlantCountryLinkFactory.getCountryByPlantID(plant_id).then(function(response) {
             var plantCountryData = response.data.data;
             for (i = 0; i < plantCountryData.length; i++) {
                 var nme = plantCountryData[i].name;
@@ -63,10 +63,21 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
         newLink = [];
 
+        $scope.selectedCountry;
+        $scope.selectedCountries = [];
 
+        $scope.selectCountry = function() {
+            $scope.allCountires.splice($scope.allCountires.indexOf($scope.selectedCountry.name));
 
+            $scope.allCountires = $scope.allCountires.filter(function(countryObject) {
+                if (countryObject.name == $scope.selectedCountry) {
+                    $scope.selectedCountries.push(countryObject);
+                }
+                return countryObject.name !== $scope.selectedCountry;
+            });
 
-
+            $scope.selectedCountry = '';
+        }
 
         $scope.plant = {
             id: plantData.id,
@@ -114,7 +125,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         //console.log("aaa");
 
 
-        LocationFactory.getTableNameFromID($scope.plant.location_id).then(function (response){
+        LocationFactory.getTableNameFromID($scope.plant.location_id).then(function(response) {
             $scope.plant.locationName = response.data.data;
 
 
@@ -130,10 +141,10 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
 
 
-        classificationLinkFactory.getPlantHierarchy($scope.plant.id).then(function (response){
+        classificationLinkFactory.getPlantHierarchy($scope.plant.id).then(function(response) {
             console.log(response.data.data);
             var data = response.data.data;
-            $scope.classification ={
+            $scope.classification = {
                 class: "",
                 tribe: "",
                 subtribe: "",
@@ -142,27 +153,27 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                 species: ""
             };
 
-            for (var i = 0; i < data.length; i++){
+            for (var i = 0; i < data.length; i++) {
                 var object = data[i];
                 var classificationName = object.name;
                 var scientificName = object.scientific_class_name;
-                if (classificationName == "class"){
+                if (classificationName == "class") {
                     $scope.classification.class = scientificName;
                 }
-                if (classificationName == "tribe"){
+                if (classificationName == "tribe") {
                     $scope.classification.tribe = scientificName;
                 }
-                if (classificationName == "subtribe"){
+                if (classificationName == "subtribe") {
                     $scope.classification.subtribe = scientificName;
                 }
 
-                if (classificationName == "genus"){
+                if (classificationName == "genus") {
                     $scope.classification.genus = scientificName;
                 }
-                if (classificationName == "species"){
+                if (classificationName == "species") {
                     $scope.classification.species = scientificName;
                 }
-                if (classificationName == "variety"){
+                if (classificationName == "variety") {
                     $scope.classification.variety = scientificName;
                 }
                 console.log($scope.classification);
@@ -186,10 +197,10 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
 
 
-    }, function(error){
+    }, function(error) {
         var param1 = $routeParams.accession_number;
 
-        if (param1 == "create"){
+        if (param1 == "create") {
             console.log("create is displayed");
             $scope.createNew = true;
             console.log();
@@ -197,28 +208,28 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                 image: 'images/no_plant_icon.svg'
             };
 
-            LocationFactory.getTableLocations().then(function (response){
+            LocationFactory.getTableLocations().then(function(response) {
                 var tableData = response.data.data;
-                for (i = 0; i < tableData.length; i++){
+                for (i = 0; i < tableData.length; i++) {
                     $scope.Tables.push(tableData[i]);
                 }
             });
 
-            countryFactory.getCountries().then(function(response){
+            countryFactory.getCountries().then(function(response) {
                 var countryNames = response.data.data;
                 console.log(response);
 
 
                 $scope.example1data = [];
 
-                for (var i = 0; i < countryNames.length; i++){
+                for (var i = 0; i < countryNames.length; i++) {
 
                     $scope.allCountires.push(countryNames[i]);
                 }
 
             });
 
-        }else {
+        } else {
             $location.path('/404');
         }
 
@@ -262,46 +273,46 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
 
     $scope.saveCulture = {
-        taxonommy:false,
-        culture:false,
-        accesssion:false,
-        hybrid:false
+        taxonommy: false,
+        culture: false,
+        accesssion: false,
+        hybrid: false
     };
 
     $scope.newPlant = {
-      taxonomicRank:{
-        class: '',
-        tribe:'',
-        authority:'',
-        genus:'',
-        species:'',
-        variety:''
-      },
-      culture: {
-        distribution: '',
-        country: '',
-        habitat:''
-      },
-      accesssion:{
-        donatedTo:'',
-        Recieved:'',
-        dontationComment:''
-      },
-      description:'',
-      hybrid:{
-        parentOne:'',
-        parentTwo:'',
-        grex:''
-      }
+        taxonomicRank: {
+            class: '',
+            tribe: '',
+            authority: '',
+            genus: '',
+            species: '',
+            variety: ''
+        },
+        culture: {
+            distribution: '',
+            country: '',
+            habitat: ''
+        },
+        accesssion: {
+            donatedTo: '',
+            Recieved: '',
+            dontationComment: ''
+        },
+        description: '',
+        hybrid: {
+            parentOne: '',
+            parentTwo: '',
+            grex: ''
+        }
     };
 
-    $scope.saveAll = function(){
-       $scope.saveCritical();
+    $scope.saveAll = function() {
+        $scope.saveCritical();
 
     }
 
     $scope.editPhotos = function() {
-        if ($scope.editPlant.photos == false){
+        if ($scope.editPlant.photos == false) {
             $scope.editPlant.photos = true;
 
 
@@ -314,12 +325,21 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         if ($scope.editPlant.taxonommy == false) {
             $scope.editPlant.taxonommy = true;
 
-            var taxonmicPlantInformation = {class_name: $scope.plant.class, tribe_name: $scope.plant.tribe, subtribe_name: $scope.plant.subtribe, genus_name: $scope.plant.genus, species_name: $scope.plant.species, variety_name: $scope.plant.variety, authority: $scope.plant.authority, id: $scope.plant.id}
+            var taxonmicPlantInformation = {
+                class_name: $scope.plant.class,
+                tribe_name: $scope.plant.tribe,
+                subtribe_name: $scope.plant.subtribe,
+                genus_name: $scope.plant.genus,
+                species_name: $scope.plant.species,
+                variety_name: $scope.plant.variety,
+                authority: $scope.plant.authority,
+                id: $scope.plant.id
+            }
 
-           console.log(taxonmicPlantInformation);
-            PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function (response){
-              console.log(response);
-               console.log("done");
+            console.log(taxonmicPlantInformation);
+            PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function(response) {
+                console.log(response);
+                console.log("done");
             });
 
 
@@ -337,8 +357,13 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         }
     };
 
-    $scope.saveCritical = function(){
-        var criticalPlantInformation = {scientific_name: $scope.plant.scientific_name, name:$scope.plant.name, location_id: $scope.plant.location_id, accession_number:$scope.plant.accession_number};
+    $scope.saveCritical = function() {
+        var criticalPlantInformation = {
+            scientific_name: $scope.plant.scientific_name,
+            name: $scope.plant.name,
+            location_id: $scope.plant.location_id,
+            accession_number: $scope.plant.accession_number
+        };
 
         $scope.editPlant = {
             critical: false,
@@ -353,7 +378,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
         };
         console.log(criticalPlantInformation);
-        PlantsFactory.createNewPlant(criticalPlantInformation).then(function(response){
+        PlantsFactory.createNewPlant(criticalPlantInformation).then(function(response) {
             console.log("AAA");
             console.log(response);
             console.log("AAA");
@@ -372,22 +397,31 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
     };
 
-    $scope.editCritical = function(){
-        if ($scope.editPlant.critical == false){
+    $scope.editCritical = function() {
+        if ($scope.editPlant.critical == false) {
             $scope.editPlant.critical = true;
 
-            var criticalPlantInformation = {scientific_name: $scope.plant.scientific_name, name:$scope.plant.name, location_id: 7, id:$scope.plant.id, accession_number:$scope.plant.accession_number};
+            var criticalPlantInformation = {
+                scientific_name: $scope.plant.scientific_name,
+                name: $scope.plant.name,
+                location_id: 7,
+                id: $scope.plant.id,
+                accession_number: $scope.plant.accession_number
+            };
             console.log(criticalPlantInformation);
-            PlantsFactory.editCriticalPlant(criticalPlantInformation).then(function (response){
+            PlantsFactory.editCriticalPlant(criticalPlantInformation).then(function(response) {
                 console.log(response.data);
             });
 
             console.log($scope.plant.locationName);
 
-            var criticalPlantTable = {name: $scope.plant.locationName.name ,id:$scope.plant.id}
+            var criticalPlantTable = {
+                name: $scope.plant.locationName.name,
+                id: $scope.plant.id
+            }
 
-            PlantsFactory.editCritialPlantTable(criticalPlantTable).then(function(response){
-               console.log(response.data);
+            PlantsFactory.editCritialPlantTable(criticalPlantTable).then(function(response) {
+                console.log(response.data);
             });
 
 
@@ -403,62 +437,95 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
 
     $scope.editCulture = function() {
-      if ($scope.editPlant.culture == false) {
-          $scope.editPlant.culture = true;
+        if ($scope.editPlant.culture == false) {
+            $scope.editPlant.culture = true;
 
-          var culturePlantInformation = {distribution: $scope.plant.distribution, habitat:$scope.plant.habitat, location_id: 3, id:$scope.plant.id, origin_comment:$scope.plant.origin_comment};
 
-          PlantsFactory.editCulturePlant(culturePlantInformation).then(function (response){
-              console.log(response.data);
-          });
-      } else {
-          $scope.editPlant.culture = false;
-      }
+            var culturePlantInformation = {
+                distribution: $scope.plant.distribution,
+                habitat: $scope.plant.habitat,
+                location_id: 3,
+                id: $scope.plant.id,
+                origin_comment: $scope.plant.origin_comment
+            };
+
+            for (var i = 0; i < $scope.selectedCountries.length; i++) {
+              var plantCountryLink = {
+                "plantId":$scope.plant.id,
+                "countryId":$scope.selectedCountries[i].id,
+              }
+
+              PlantCountryLinkFactory.createPlantCountryLink(plantCountryLink).then(function(response){
+                console.log(response);
+              });
+
+            }
+
+            PlantsFactory.editCulturePlant(culturePlantInformation).then(function(response) {
+                console.log(response.data);
+            });
+        } else {
+            $scope.editPlant.culture = false;
+        }
     }
 
-    $scope.editAccession = function () {
-      if ($scope.editPlant.accesssion == false) {
-          $scope.editPlant.accesssion = true;
+    $scope.editAccession = function() {
+        if ($scope.editPlant.accesssion == false) {
+            $scope.editPlant.accesssion = true;
 
-          var accessionPlantInformation = {received_from: $scope.plant.received_from, donation_comment: $scope.plant.donation_comment, date_received: $scope.plant.date_recieved, id: $scope.plant.id }
+            var accessionPlantInformation = {
+                received_from: $scope.plant.received_from,
+                donation_comment: $scope.plant.donation_comment,
+                date_received: $scope.plant.date_recieved,
+                id: $scope.plant.id
+            }
 
-          PlantsFactory.editAccessionPlant(accessionPlantInformation).then(function (response){
-              console.log(response.data);
-          });
-      } else {
-          $scope.editPlant.accesssion = false;
-      }
+            PlantsFactory.editAccessionPlant(accessionPlantInformation).then(function(response) {
+                console.log(response.data);
+            });
+        } else {
+            $scope.editPlant.accesssion = false;
+        }
     }
 
-    $scope.editDescription = function () {
-      if ($scope.editPlant.description == false) {
-          $scope.editPlant.description = true;
-          var descriptionPlantInformation = {description: $scope.plant.description, id: $scope.plant.id};
+    $scope.editDescription = function() {
+        if ($scope.editPlant.description == false) {
+            $scope.editPlant.description = true;
+            var descriptionPlantInformation = {
+                description: $scope.plant.description,
+                id: $scope.plant.id
+            };
 
-          PlantsFactory.editDescription(descriptionPlantInformation).then(function (response){
-              console.log(response.data);
-          });
-      } else {
-          $scope.editPlant.description = false;
-      }
+            PlantsFactory.editDescription(descriptionPlantInformation).then(function(response) {
+                console.log(response.data);
+            });
+        } else {
+            $scope.editPlant.description = false;
+        }
     };
 
-    $scope.editHybrid = function () {
-      if ($scope.editPlant.hybrid == false) {
-          $scope.editPlant.hybrid = true;
+    $scope.editHybrid = function() {
+        if ($scope.editPlant.hybrid == false) {
+            $scope.editPlant.hybrid = true;
 
-          var hybridPlantInformation = {parent_one: $scope.plant.parent_one, parent_two: $scope.plant.parent_two, grex_status: $scope.plant.grex_status, hybrid_comment: $scope.plant.hybrid_comment,  id: $scope.plant.id};
+            var hybridPlantInformation = {
+                parent_one: $scope.plant.parent_one,
+                parent_two: $scope.plant.parent_two,
+                grex_status: $scope.plant.grex_status,
+                hybrid_comment: $scope.plant.hybrid_comment,
+                id: $scope.plant.id
+            };
 
-          PlantsFactory.editHybird(hybridPlantInformation).then(function (response){
-              console.log(response.data);
-          });
-      } else {
-          $scope.editPlant.hybrid = false;
+            PlantsFactory.editHybird(hybridPlantInformation).then(function(response) {
+                console.log(response.data);
+            });
+        } else {
+            $scope.editPlant.hybrid = false;
 
-      }
+        }
     }
 
-    $scope.click = function(){
+    $scope.click = function() {
         console.log("we just clicked the image");
     }
 
