@@ -1,3 +1,4 @@
+
 <section class="flower-popup" ng-controller="PopUpViewController">
     <form>
         <div class="center">
@@ -11,7 +12,6 @@
             <label>Blooming:</label>
             <button class="startnewbloom" ng-click="startNewBloom()">Start New Bloom</button>
 
-            <br>
         </div>
 
         <div class="subsection">
@@ -20,12 +20,10 @@
                 Start of Bloom:</label>
             <button ng-click="blooming_start_date = today" class="today">Today</button>
             <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                <input type="date" id="startDateBloom" ng-model="blooming_start_date"></input>
+                <input type="date" id="startDateBloom" ng-model="blooming_start_date">
             </button>
             <output>{{ blooming_start_date | date }}</output>
         </div>
-
-        <br>
 
         <div class="subsection">
             <label>End of Bloom:</label>
@@ -45,7 +43,7 @@
                 <label>Sprayed for pests:</label>
                 <button ng-click="sprayed_timestamp = today" class="today">Today</button>
                 <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                    <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"></input>
+                    <input type="date" id="sprayedDate" ng-model="sprayed_timestamp">
                 </button>
                 <output>{{ sprayed_timestamp | date }}</output>
 
@@ -56,7 +54,7 @@
                 <label>Repot Date:</label>
                 <button ng-click="potting_timestamp = today" class="today">Today</button>
                 <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                    <input type="date" id="repotDate" ng-model="potting_timestamp"></input>
+                    <input type="date" id="repotDate" ng-model="potting_timestamp">
                 </button>
                 <label>{{ potting_timestamp | date }}</label>
 
@@ -84,6 +82,6 @@
             </button>
 
             <button id="save" type="submit" ng-click="submitPopUp()">Save</button>
-
+        </div>
         </form>
     </section>

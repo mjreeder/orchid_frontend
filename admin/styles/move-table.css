@@ -1,0 +1,74 @@
+#move-plants-button {
+    background-color: #2B2E30;
+    text-decoration: none;
+    color: white;
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+    margin: 5px 15px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+#close img {
+    margin: 20px;
+}
+
+.move-popup-housename {
+    background: none;
+}
+
+#move-plant-list ul {
+    display: inline-block;
+}
+
+#move-plant-list {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.move-popup p {
+    text-align: center;
+
+}
+
+#move-plant-list li {
+    font-size: 20px;
+    font-family: Aleo, serif;
+    padding: 15px;
+
+}
+
+.move-popup-housename li {
+    font-size: 20px;
+    font-weight: 100;
+    font-family: Aleo, serif;
+    text-align: center;
+    padding: 20px 10px 10px 20px;
+    display: inline-block;
+
+}
+
+.move-popup-housename li:hover {
+    color: #BA0C2F;
+}
+
+.move-popup-housename li:active {
+    color: #ba0c2f;
+}
+
+#table-and-button {
+    text-align: center;
+}
+
+#table-and-button h1 {
+    display: inline;
+    margin: 0;
+    padding: 20px 0;
+}
+
+#houses {
+    border-top: 2px solid black;
+    margin-top: 10px;
+}

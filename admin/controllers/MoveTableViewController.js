@@ -17,7 +17,7 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
         $scope.x.name = $scope.addedMovePlants.a[0].accession_number;
         $scope.a = [];
         for (var t = 0; t < $scope.addedMovePlants.a.length; t++){
-            $scope.a[t] = $scope.addedMovePlants.a[t].id;
+            $scope.a[t] = $scope.addedMovePlants.a[t];
         }
 
         for (var a = 0; a < $scope.addedMovePlants.a.length; a++){
@@ -33,7 +33,10 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
 
         if($scope.changedRoom.length != 0) {
             for (var i = 0; i < $scope.a.length; i++) {
-                var moveInformation = {id: $scope.a[i], name: $scope.changedRoom};
+                console.log($scope.a[i].id);
+                console.log($scope.changedRoom);
+
+                var moveInformation = {id: $scope.a[i].id, name: $scope.changedRoom};
 
                 PlantsFactory.editLocation(moveInformation).then(function (response) {
                     console.log(response);
@@ -55,6 +58,7 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
         console.log("we clicked on the image");
         var abbreviation = $(this).attr('id');
         $scope.changedRoom = abbreviation;
+        $scope.$apply();
         console.log(abbreviation);
     });
 
