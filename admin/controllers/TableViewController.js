@@ -113,7 +113,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
     var index = 0;
 
 
-    var addVarified = function(plant) {
+    $scope.addVarified = function(plant) {
       console.log(plant);
 
         PlantsFactory.updateVarifiedDate(plant.id).then(function (response) {
