@@ -1,119 +1,118 @@
 * {
-    border-collapse: collapse; 
+    border-collapse: collapse;
 }
 
 a {
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 textarea {
-    resize:vertical; 
+    resize: vertical;
     color: #b3b3b3;
     width: 95%;
     height: 50px;
-    display: block; 
-    box-sizing: border-box; 
-    margin: auto; 
+    display: block;
+    box-sizing: border-box;
+    margin: auto;
 }
 
 input, textarea {
-    font-family: Raleway; 
-    font-size: 14px; 
-    padding: 5px; 
-    border: 2px solid black; 
+    font-family: Raleway;
+    font-size: 14px;
+    padding: 5px;
+    border: 2px solid black;
 }
 
 input {
-    margin-top: 10px; 
-    width: 225px; 
+    margin-top: 10px;
+    width: 225px;
 }
 
 input:disabled {
-    border: none; 
+    border: none;
     color: black;
-    font-family: Raleway; 
-    font-size: 18px; 
+    font-family: Raleway;
+    font-size: 18px;
 }
 
 textarea {
-    margin: 10px 0 20px 0; 
+    margin: 10px 0 20px 0;
 }
 
 textarea:disabled {
-    border: 2px #888888 solid; 
-    color: black; 
-    font-family: Raleway; 
-    font-size: 18px; 
+    border: 2px #888888 solid;
+    color: black;
+    font-family: Raleway;
+    font-size: 18px;
 }
 
 label {
-    font-family: Raleway; 
-    font-size: 18px; 
-    margin-left: 20px; 
+    font-family: Raleway;
+    font-size: 18px;
+    margin-left: 20px;
     width: 225px;
 }
 
 .labelfirst {
-    margin-top: 5px; 
+    margin-top: 5px;
 }
 
 .labellast {
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
 }
 
 h1 {
-    font-family: Aleo; 
-    font-size: 24px; 
-    margin-left: 5px; 
+    font-family: Aleo;
+    font-size: 24px;
+    margin-left: 5px;
 }
 
 fieldset {
-    border-bottom: 5px solid #888888; 
-    margin: 20px auto; 
-    max-width: 800px; 
+    border-bottom: 5px solid #888888;
+    margin: 20px auto;
+    max-width: 800px;
 }
 
-#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos, #graph{
+#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos, #graph {
     position: relative;
     overflow: auto;
 }
 
 .edit {
-    position: absolute; 
-    width: 40px; 
-    top: 0px; 
-    right: 0px; 
+    position: absolute;
+    width: 40px;
+    top: 0px;
+    right: 0px;
 }
 
 label {
     display: inline-block;
-    width: 125px; 
+    width: 125px;
     margin-left: 20px;
 }
 
 #commentmargin {
-    margin-top: 15px; 
+    margin-top: 15px;
 }
-
 
 
 /*VITALS*/
 
 #vitals {
     overflow: auto;
-    position: relative; 
+    position: relative;
 }
 
 #thumbnail {
-    width: 25%; 
-    padding: 20px; 
-    float: left; 
+    width: 25%;
+    padding: 20px;
+    float: left;
 }
 
 #vitals div {
-    width: 70%; 
+    width: 70%;
     float: right;
-    margin: 20px 0 0 0; 
+    margin: 20px 0 0 0;
     position: relative
 }
 
@@ -122,76 +121,70 @@ label {
 }
 
 #vitals input {
-    font-family: Raleway; 
-    font-size: 18px; 
-    padding: 5px; 
-    border: none; 
-    margin: 15px 0; 
+    font-family: Raleway;
+    font-size: 18px;
+    padding: 5px;
+    border: none;
+    margin: 15px 0;
 }
 
 #location img {
-    width: 15px; 
-    padding: 0 5px 0 0; 
+    width: 15px;
+    padding: 0 5px 0 0;
     transform: translateY(5px);
 }
 
-
 #location select {
-    font-size: 18px; 
-    color: black; 
-    border: none; 
-    background-color: white; 
-/*    transform: translateY(-25%)*/
+    font-size: 18px;
+    color: black;
+    border: none;
+    background-color: white;
+    /*    transform: translateY(-25%)*/
 }
 
 
 /*INACTIVE*/
+
 #inactive label {
     width: 75px;
-    padding: 10px; 
-    
+    padding: 10px;
 }
 
 input[type="checkbox"] {
-    margin: 5px 10px 5px 0px; 
-    width: auto; 
+    margin: 5px 10px 5px 0px;
+    width: auto;
     transform: translateY(-25%)
 }
 
 #inactive p {
-    display: inline; 
+    display: inline;
 }
 
 
 /*PHOTOS*/
 
 #photos label {
-    margin: 10px 0 10px px; 
-    width: 500px; 
+    margin: 10px 0 10px px;
+    width: 500px;
     display: inline-block;
     vertical-align: middle;
-
 }
 
 .thumbnail {
-    width: 50px; 
-    height: auto; 
-    margin: 10px 0px 20px 30px; 
-    display: inline-block; 
-    vertical-align: middle; 
+    width: 50px;
+    height: auto;
+    margin: 10px 0px 20px 30px;
+    display: inline-block;
+    vertical-align: middle;
 }
-
 
 #graphsvg {
-    width: 90%; 
+    width: 90%;
     height: auto;
-    
 }
 
-
-
-
-
-
-
-
+#calender_image {
+    height: 30px;
+    width: auto;
+    top: 5px;
+}
