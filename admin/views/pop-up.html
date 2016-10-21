@@ -1,7 +1,8 @@
+
 <section class="flower-popup" ng-controller="PopUpViewController">
     <form>
         <div class="center">
-            <h1>This is the new plant</h1>
+            <h1>{{ plant_accession_number }}</h1>
         </div>
 
         <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
@@ -11,7 +12,6 @@
             <label>Blooming:</label>
             <button class="startnewbloom" ng-click="startNewBloom()">Start New Bloom</button>
 
-            <br>
         </div>
 
         <div class="subsection">
@@ -20,18 +20,16 @@
                 Start of Bloom:</label>
             <button ng-click="blooming_start_date = today" class="today">Today</button>
             <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                <input type="date" id="startDateBloom" ng-model="blooming_start_date"></input>
+                <input type="date" id="startDateBloom" ng-model="blooming_start_date"/>
             </button>
             <output>{{ blooming_start_date | date }}</output>
         </div>
 
-        <br>
-
         <div class="subsection">
             <label>End of Bloom:</label>
-            <button ng-click="blooming_end_date = today" class="today">Today</button>
-            <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                <input type="date" id="endDateBloom" ng-model="blooming_end_date"></input>
+            <button ng-click="blooming_end_date = today" class="today" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}">Today</button>
+            <button class="calendar"><img src="images/calendaricon.svg" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}" alt="">
+                <input type="date" id="endDateBloom" ng-model="blooming_end_date"/>
             </button>
 
             <output>{{ blooming_end_date | date }}</output>
@@ -45,7 +43,7 @@
                 <label>Sprayed for pests:</label>
                 <button ng-click="sprayed_timestamp = today" class="today">Today</button>
                 <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                    <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"></input>
+                    <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"/>
                 </button>
                 <output>{{ sprayed_timestamp | date }}</output>
 
@@ -56,7 +54,7 @@
                 <label>Repot Date:</label>
                 <button ng-click="potting_timestamp = today" class="today">Today</button>
                 <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                    <input type="date" id="repotDate" ng-model="potting_timestamp"></input>
+                    <input type="date" id="repotDate" ng-model="potting_timestamp"/>
                 </button>
                 <label>{{ potting_timestamp | date }}</label>
 
@@ -66,16 +64,16 @@
 
             <section id="current-health" class="top-margin">
                 <p>Current health condition:
-                    <button id="poor" ng-click="health_score = 'poor'" ng-class="{glow: health_score == 'poor'}">Poor</button>
-                    <button id="fair" ng-click="health_score = 'fair'" ng-class="{glow: health_score == 'fair'}">Fair</button>
-                    <button id="good" ng-click="health_score = 'good'" ng-class="{glow: health_score == 'good'}">Good</button>
+                    <button id="poor" ng-click="health_score = 'poor'" ng-class="{glowHealth: health_score == 'poor', noglowHealth: health_score != 'poor'}">Poor</button>
+                    <button id="fair" ng-click="health_score = 'fair'" ng-class="{glowHealth: health_score == 'fair', noglowHealth: health_score != 'fair'}">Fair</button>
+                    <button id="good" ng-click="health_score = 'good'" ng-class="{glowHealth: health_score == 'good', noglowHealth: health_score != 'good'}">Good</button>
                 </p>
                 <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition." ng-model="health_comment"></textarea>
             </section>
 
             <div id="" class="top-margin">
                 <label>Flag this plant:</label>
-                <input type="checkbox" ng-model="flagged">
+                <input type="checkbox" ng-model="flagged"/>
                 <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
             </div>
 
@@ -84,6 +82,6 @@
             </button>
 
             <button id="save" type="submit" ng-click="submitPopUp()">Save</button>
-
+        </div>
         </form>
     </section>

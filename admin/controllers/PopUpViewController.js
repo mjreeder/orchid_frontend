@@ -6,14 +6,21 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.startNewBloom = function(){
       $scope.blooming_start_date = $scope.today;
       $scope.blooming_end_date = null;
+      $scope.disableEndBloom = true;
     }
 
     $scope.$on('current-plant', function(event, data){
-      cleanPrefixes();
+      destroy();
+      console.log(data);
       $scope.plant = data;
       concatObjects(data, 'plant');
       init();
     })
+
+    var destroy = function(){
+      cleanPrefixes();
+      $scope.disableEndBloom = false;
+    }
 
     var cleanPrefixes = function(){
       cleanPrefix('plant');
@@ -49,6 +56,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       handlePotting();
       handleHealth();
       handleTag();
+      $scope.closePopUp();
     }
 
     var handleBloom = function() {
