@@ -20,7 +20,7 @@
                 Start of Bloom:</label>
             <button ng-click="blooming_start_date = today" class="today">Today</button>
             <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                <input type="date" id="startDateBloom" ng-model="blooming_start_date">
+                <input type="date" id="startDateBloom" ng-model="blooming_start_date"/>
             </button>
             <output>{{ blooming_start_date | date }}</output>
         </div>
@@ -29,7 +29,7 @@
             <label>End of Bloom:</label>
             <button ng-click="blooming_end_date = today" class="today" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}">Today</button>
             <button class="calendar"><img src="images/calendaricon.svg" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}" alt="">
-                <input type="date" id="endDateBloom" ng-model="blooming_end_date"></input>
+                <input type="date" id="endDateBloom" ng-model="blooming_end_date"/>
             </button>
 
             <output>{{ blooming_end_date | date }}</output>
@@ -43,7 +43,7 @@
                 <label>Sprayed for pests:</label>
                 <button ng-click="sprayed_timestamp = today" class="today">Today</button>
                 <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                    <input type="date" id="sprayedDate" ng-model="sprayed_timestamp">
+                    <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"/>
                 </button>
                 <output>{{ sprayed_timestamp | date }}</output>
 
@@ -54,7 +54,7 @@
                 <label>Repot Date:</label>
                 <button ng-click="potting_timestamp = today" class="today">Today</button>
                 <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                    <input type="date" id="repotDate" ng-model="potting_timestamp">
+                    <input type="date" id="repotDate" ng-model="potting_timestamp"/>
                 </button>
                 <label>{{ potting_timestamp | date }}</label>
 
@@ -73,7 +73,7 @@
 
             <div id="" class="top-margin">
                 <label>Flag this plant:</label>
-                <input type="checkbox" ng-model="flagged">
+                <input type="checkbox" ng-model="flagged"/>
                 <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
             </div>
 
