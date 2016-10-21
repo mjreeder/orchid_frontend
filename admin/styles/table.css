@@ -227,7 +227,7 @@ td{
     margin: 5px 0 0 0;
 }
 
-#current-health button, .today, #save, #more-info, .startnewbloom {
+.today, #save, #more-info, .startnewbloom {
     background-color: #2B2E30;
     text-decoration: none;
     color: white;
@@ -237,6 +237,17 @@ td{
     margin: 5px 15px;
     border-radius: 5px;
     display: inline-block;
+}
+
+#current-health button {
+  text-decoration: none;
+  color: white;
+  font-family: Raleway, sans-serif;
+  font-size: 14px;
+  padding: 10px 15px;
+  margin: 5px 15px;
+  border-radius: 5px;
+  display: inline-block;
 }
 
 .today {
@@ -303,8 +314,13 @@ td{
  margin-left: 30px;
 }
 
-.glow {
-  box-shadow:0 0 20px blue;
+.glowHealth {
+  box-shadow:0 0 20px red;
+  background-color: red;
+}
+
+.noglowHealth {
+  background-color: #2B2E30;
 }
 
 .alertRow {
