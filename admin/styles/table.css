@@ -227,7 +227,7 @@ td{
     margin: 5px 0 0 0;
 }
 
-.today, #save, #more-info, .startnewbloom button {
+.today, #save, #more-info, .startnewbloom {
     background-color: #2B2E30;
     text-decoration: none;
     color: white;
@@ -239,7 +239,7 @@ td{
     display: inline-block;
 }
 
-#current-health {
+#current-health button {
   text-decoration: none;
   color: white;
   font-family: Raleway, sans-serif;
