@@ -47,6 +47,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                     $scope.showTable = true;
 
                     $scope.plantsInTable = response.data.data;
+                    formatVerification();
                     console.log($scope.plantsInTable);
 
                     for (var i = 0; i < $scope.plantsInTable.length; i++) {
@@ -75,6 +76,32 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
             });
         }
     });
+
+    var formatVerification = function(){
+      for(var i = 0; i < $scope.plantsInTable.length; i++){
+        if($scope.plantsInTable[i].last_varified == "0000-00-00"){
+          $scope.plantsInTable[i].last_varified = null;
+        } else {
+          var dateString = $scope.plantsInTable[i].last_varified;
+          if(checkIfDateIsToday(dateString)){
+            $scope.plantsInTable[i].verified = true;
+          }
+        }
+      }
+      return $scope;
+    }
+
+    var checkIfDateIsToday = function(dateString){
+      var previousDay = moment(dateString).dayOfYear();
+      var previousYear = moment(dateString).year()
+      var currentDay = moment().dayOfYear();
+      var currentYear = moment().year();
+      if((previousDay == currentDay) && (previousYear == currentYear)){
+        return true;
+      } else {
+        return false;
+      }
+    }
 
     $scope.movePlants = false;
 
