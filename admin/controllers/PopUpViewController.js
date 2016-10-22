@@ -202,12 +202,12 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         if(!data){
           return;
         }
+        if(data.end_date == "0000-00-00"){
+          data.end_date = null;
+        }
         if(data.end_date){
           console.log("end date");
           data = formatTimeStamp('end_date', data);
-        }
-        if(data.end_date == "0000-00-00"){
-          data.end_date = null;
         }
         concatObjects(data, 'blooming');
       })
