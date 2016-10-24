@@ -5,29 +5,33 @@
         <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
 
         <h1>Move Plants</h1>
-        <p>Choose the table you would like to move the following plants to:</p>
+        <p>These are the plants you have selected:</p>
         <div id="move-plant-list">
         <ul ng-repeat="plant in a">
             <li>{{plant.accession_number}}</li>
         </ul>
         </div>
 
+        <div id="movepopup-middle">
         <div id="table-and-button">
         <h1>{{changedRoom}}</h1>
-
         <button id="move-plants-button" ng-click="movePlants()">Move</button>
         </div>
 
-        <div id="houses">
+        <div id="houses-popup">
             <ul class="move-popup-housename">
                 <li  ng-click="showDisplayPopup()">Display</li>
                 <li  ng-click="showWarmPopup()">Warmhouse</li>
                 <li  ng-click="showCoolPopup()">Coolhouse</li>
             </ul>
+        </div>
+
+        </div>
+
         <div ng-include="'views/moveWarmhouse.html'" ng-show="WarmPopup"></div>
         <div ng-include="'views/moveCoolHouse.html'" ng-show="CoolPopup"></div>
         <div ng-include="'views/moveDisplay.html'" ng-show="DisplayPopup"></div>
-        </div>
+
 
     </form>
 
