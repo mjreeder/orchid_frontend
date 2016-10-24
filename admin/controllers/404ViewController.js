@@ -1,4 +1,4 @@
-app.factory('404ViewController', function($http) {
+app.controller('404ViewController', function($http) {
 
 
 });
