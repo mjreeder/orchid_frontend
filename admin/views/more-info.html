@@ -50,13 +50,16 @@
             <label>Country:</label>
 
             <select ng-model="selectedCountry" ng-disabled="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)">
-                <option disabled selected value> -- select an option -- </option>
+                <option disabled selected value>
+                    -- select an option --
+                </option>
                 <option ng-repeat="country in allCountires">{{country.name}}</option>
             </select>
 
-            <div class="selected_countries">
-              <div ng-repeat="country in selectedCountries">
-                <label>{{country.name}}</label>
+            <div class="grid2x2">
+                <div class="selectedCountry" ng-repeat="country in selectedCountries">
+                    <div>{{country.name}}</div>
+                </div>
             </div>
 
             <br/>

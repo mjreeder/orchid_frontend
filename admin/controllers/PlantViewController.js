@@ -1,5 +1,9 @@
 app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory) {
 
+  // TODO pull selectedCountries list from db
+  // make selectedCountries list good looking
+      // display rows of two labels
+
     var param1 = $routeParams.accession_number;
 
     console.log(param1);
@@ -30,10 +34,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
     $scope.allCountires = [];
 
-
-
-
-
     PlantsFactory.getPlantByAccessionNumber(param1).then(function(response) {
         var plantData = response.data.data[0];
         console.log(plantData);
@@ -49,22 +49,22 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             }
         });
 
-        PlantCountryLinkFactory.getCountryByPlantID(plant_id).then(function(response) {
-            var plantCountryData = response.data.data;
-            for (i = 0; i < plantCountryData.length; i++) {
-                var nme = plantCountryData[i].name;
-                console.log(nme);
-                $scope.PlantCountryNames.push(nme);
-                console.log($scope.PlantCountryNames);
-            }
-        });
-
-
+        // PlantCountryLinkFactory.getCountryByPlantID(plant_id).then(function(response) {
+        //     var plantCountryData = response.data.data;
+        //     for (i = 0; i < plantCountryData.length; i++) {
+        //         var nme = plantCountryData[i].name;
+        //         console.log(nme);
+        //         $scope.PlantCountryNames.push(nme);
+        //         console.log($scope.PlantCountryNames);
+        //     }
+        // });
 
         newLink = [];
 
         $scope.selectedCountry;
         $scope.selectedCountries = [];
+
+        $scope.selectedCountries
 
         $scope.selectCountry = function() {
             $scope.allCountires.splice($scope.allCountires.indexOf($scope.selectedCountry.name));
@@ -124,11 +124,14 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         //console.log($scope.plant.date_recieved);
         //console.log("aaa");
 
+        PlantCountryLinkFactory.getCountryByPlantID($scope.plant.id).then(function(response){
+           for (var i = 0; i < response.data.data.length; i++) {
+             $scope.selectedCountries.push(response.data.data[i][0]);
+           }
+        });
 
         LocationFactory.getTableNameFromID($scope.plant.location_id).then(function(response) {
             $scope.plant.locationName = response.data.data;
-
-
 
         });
 
@@ -137,9 +140,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         $scope.createNew = false;
 
         console.log("aaaaa");
-
-
-
 
         classificationLinkFactory.getPlantHierarchy($scope.plant.id).then(function(response) {
             console.log(response.data.data);
@@ -192,10 +192,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                 $scope.allCountires.push(countryNames[i]);
             }
         });
-
-
-
-
 
     }, function(error) {
         var param1 = $routeParams.accession_number;
@@ -408,12 +404,9 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                 id: $scope.plant.id,
                 accession_number: $scope.plant.accession_number
             };
-            console.log(criticalPlantInformation);
             PlantsFactory.editCriticalPlant(criticalPlantInformation).then(function(response) {
                 console.log(response.data);
             });
-
-            console.log($scope.plant.locationName);
 
             var criticalPlantTable = {
                 name: $scope.plant.locationName.name,
@@ -424,22 +417,14 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                 console.log(response.data);
             });
 
-
-
-
-
         } else {
             $scope.editPlant.critical = false;
-
-
         }
     }
-
 
     $scope.editCulture = function() {
         if ($scope.editPlant.culture == false) {
             $scope.editPlant.culture = true;
-
 
             var culturePlantInformation = {
                 distribution: $scope.plant.distribution,
@@ -450,20 +435,15 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             };
 
             for (var i = 0; i < $scope.selectedCountries.length; i++) {
-              var plantCountryLink = {
-                "plantId":$scope.plant.id,
-                "countryId":$scope.selectedCountries[i].id,
-              }
+                var plantCountryLink = {
+                    "plantId": $scope.plant.id,
+                    "countryId": $scope.selectedCountries[i].id,
+                }
 
-              PlantCountryLinkFactory.createPlantCountryLink(plantCountryLink).then(function(response){
-                console.log(response);
-              });
-
+                PlantCountryLinkFactory.createPlantCountryLink(plantCountryLink).then(function() {});
             }
 
-            PlantsFactory.editCulturePlant(culturePlantInformation).then(function(response) {
-                console.log(response.data);
-            });
+            PlantsFactory.editCulturePlant(culturePlantInformation).then(function() {});
         } else {
             $scope.editPlant.culture = false;
         }
@@ -528,8 +508,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     $scope.click = function() {
         console.log("we just clicked the image");
     }
-
-
 
 
 
