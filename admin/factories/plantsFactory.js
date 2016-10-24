@@ -189,6 +189,18 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         })
     };
 
+    data.getPhoto = function(){
+        return $http({
+            method: "GET",
+            url: "https://api.box.com/2.0/files/98747341454/thumbnail.jpg",
+            headers: {
+                'Authorization': 'Bearer SpfobNxpqmsUeSz2D5m17FSp2mnVJEWt',
+                'Content-Type': 'application/json'
+            }
+
+        })
+    }
+
 
 
     return data;
