@@ -1,9 +1,5 @@
 app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory) {
 
-    // TODO pull selectedCountries list from db
-    // make selectedCountries list good looking
-    // display rows of two labels
-
     var param1 = $routeParams.accession_number;
 
     console.log(param1);

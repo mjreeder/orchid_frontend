@@ -1,6 +1,7 @@
 app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $location, PlantsFactory, classificationLinkFactory) {
     $scope.plantKeys = [];
     $scope.displayAttributes = [];
+    var currentPage = 1;
 
     $scope.getPlantsBySearch = function(searchItem) {
         // if the search box goes to empty, give default view
@@ -10,7 +11,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
             return;
         }
 
-        PlantsFactory.getPlantBySearch(searchItem, 1).then(function(response) {
+        PlantsFactory.getPlantBySearch(searchItem, currentPage).then(function(response) {
             $scope.plants = placePlantAttributes(response);
 
         });
