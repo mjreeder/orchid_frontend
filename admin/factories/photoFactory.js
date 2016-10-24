@@ -1,12 +1,12 @@
 app.factory('PhotoFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/photo';
+    var baseUrl = 'http://localhost:8888/orchid_site/public/api/photos';
 
 
 
     data.getPhtosByPlantID = function(plant_id) {
-        $http.get(baseUrl + "/plant_id/" + plant_id);
+        return $http.get(baseUrl + "/plant_id/" + plant_id);
     }
 
     data.createPhoto = function (photo) {

@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory) {
+app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory) {
 
     var param1 = $routeParams.accession_number;
 
@@ -106,7 +106,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             genus: plantData.genus_name,
             species: plantData.species_name,
             variety: plantData.variety_name,
-            image: "http://placekitten.com/400/400",
+            image: "",
             dead_date: plantData.dead_date
         };
         //console.log("aaa");
@@ -125,8 +125,11 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
         $scope.createNew = false;
 
-        console.log("aaaaa");
 
+        PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function(response){
+            $scope.plant.image = response.data.data[0].url;
+            console.log(response.data.data[0].url);
+        });
 
 
 
@@ -399,7 +402,8 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
 
         }
-    }
+    };
+
 
 
     $scope.editCulture = function() {
