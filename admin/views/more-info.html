@@ -2,11 +2,11 @@
     <form method="post">
 
         <fieldset id="vitals">
-            <img ng-src="{{plant.image}}" alt="" id="thumbnail">
+            <img src="{{plant.image}}" alt="" id="thumbnail">
 
-            <button class="edit" ng-click="editCritical()"  ng-hide="createNew">
+            <button class="edit" ng-click="editCritical()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.critical">
-                <img src="images/checkmark.svg"  alt="edit" ng-hide="editPlant.critical">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.critical">
             </button>
 
             <div>
@@ -45,17 +45,29 @@
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.culture">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.culture">
             </button>
-            <label>Distribution:</label><input ng-model="plant.distribution" type="text"  ng-disabled="editPlant.culture && !createNew">
-            <label>Habitat:</label><input ng-model="plant.habitat" type="text"  ng-disabled="editPlant.culture && !createNew"><br/>
+            <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
+            <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
             <label>Country:</label>
-            <select ng-disabled="editPlant.culture && !createNew">
+
+            <select ng-model="selectedCountry" ng-disabled="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)">
+                <option disabled selected value>
+                    -- select an option --
+                </option>
                 <option ng-repeat="country in allCountires">{{country.name}}</option>
             </select>
+
+            <div class="grid2x2">
+                <div class="selectedCountry" ng-repeat="country in selectedCountries">
+                    <div>{{country.name}}</div>
+                </div>
+            </div>
 
             <br/>
             <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Comment about the culture."></textarea>
             <br/>
         </fieldset>
+
+        <!-- <input type="text" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"> -->
 
         <fieldset id="accession">
             <h1>Accession</h1>
@@ -64,8 +76,12 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.accesssion">
             </button>
             <label>Recieved:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
-            <label>Recieved Date:</label><input type="text" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"><br/>
-            <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment" ></textarea>
+            <label>Recieved Date:</label>
+            <button class="calendar"><img src="images/calendaricon.svg" alt="" id="calender_image">
+                <input type="date" id="startDateBloom" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"/>
+            </button>
+            <br/>
+            <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
         </fieldset>
 
         <fieldset id="description">
@@ -140,16 +156,15 @@
 
             <img src="http://placekitten.com/50/50" alt="" class="thumbnail">
             <label for="">File_Name_for_acienthera_234</label>
-            <input type="button" value="Habitat"  ng-hide="!editPlant.photos">
-            <input type="button" value="Other"  ng-hide="!editPlant.photos">
+            <input type="button" value="Habitat" ng-hide="!editPlant.photos">
+            <input type="button" value="Other" ng-hide="!editPlant.photos">
 
             <br/>
 
             <img src="http://placebear.com/50/50" alt="" class="thumbnail">
             <label for="">File_Name_for_acienthera_567</label>
-            <input type="button" value="Habitat"  ng-hide="!editPlant.photos">
-            <input type="button" value="Other"  ng-hide="!editPlant.photos">
-
+            <input type="button" value="Habitat" ng-hide="!editPlant.photos">
+            <input type="button" value="Other" ng-hide="!editPlant.photos">
 
         </fieldset>
     </form>
@@ -163,11 +178,9 @@
 
     <fieldset id="graph">
         <h1>Save All</h1>
-        <input type="button" ng-click="saveAll()" value="save"  ng-hide="!editPlant.save">
+        <input type="button" ng-click="saveAll()" value="save" ng-hide="!editPlant.save">
 
     </fieldset>
-
-
 
     <section>
         <button>Back to top</button>
