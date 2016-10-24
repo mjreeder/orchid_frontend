@@ -46,7 +46,7 @@
             <tr ng-repeat="plant in plantsInTable" ng-class="{alertRow: plant.tagged == true}"  ng-show="showRows">
 
                 <td ng-show="movePlants">
-                    <input type="checkbox" ng-click="wantPlantMoved(plant)">
+                    <input type="checkbox" ng-click="wantPlantMoved(plant)"/>
                 </td>
 
                 <td ng-click="showPopup(plant)">{{plant.accession_number}}</td>
@@ -56,7 +56,7 @@
 
                 <td>
                     <label>
-                        <input ng-click="addVarified(plant)" type="checkbox">
+                        <input ng-click="addVarified(plant)" type="checkbox"  ng-model="plant.verified"/>
                     </label>
                 </td>
                 <td>
