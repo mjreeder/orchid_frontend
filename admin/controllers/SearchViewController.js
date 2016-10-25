@@ -2,6 +2,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
     $scope.plantKeys = [];
     $scope.displayAttributes = [];
     var currentPage = 1;
+    var currentAlpha = 'a';
 
     $scope.getPlantsBySearch = function(searchItem) {
         // if the search box goes to empty, give default view
@@ -11,7 +12,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
             return;
         }
 
-        PlantsFactory.getPlantBySearch(searchItem, currentPage).then(function(response) {
+        PlantsFactory.getPlantBySearch(searchItem, 1).then(function(response) {
             $scope.plants = placePlantAttributes(response);
 
         });
@@ -47,7 +48,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
     // each attribute is an object that contains the display name:key
     // the value:val and isDisplayed
     function getPaginatedPlants() {
-        PlantsFactory.getPaginatedPlants('a', 1).then(function(response) {
+        PlantsFactory.getPaginatedPlants(currentAlpha, currentPage).then(function(response) {
             $scope.plants = placePlantAttributes(response);
         });
     }
