@@ -2,7 +2,10 @@
     <form method="post">
 
         <fieldset id="vitals">
-            <img src="{{plant.image}}" alt="" id="thumbnail">
+
+
+            <img src="{{plant.image}}" alt="" id="thumbnail"  ng-click="changeProfilePicture()">
+
 
             <button class="edit" ng-click="editCritical()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.critical">
@@ -185,4 +188,7 @@
     <section>
         <button>Back to top</button>
     </section>
+
+    <div ng-include="'views/photoPopup.html'" ng-show="profilePopUp"></div>
+
 </div>
