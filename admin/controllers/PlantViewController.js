@@ -233,8 +233,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
 
     if ($scope.createNew) {
-
-
         $scope.editPlant = {
             critical: false,
             taxonommy: false,
@@ -244,8 +242,8 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             hybrid: false,
             inactive: false,
             photos: false,
-            save: false
-
+            save: false,
+            split: false
         };
     } else {
         $scope.editPlant = {
@@ -257,7 +255,8 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             hybrid: true,
             inactive: true,
             photos: true,
-            save: true
+            save: true,
+            split: true
 
         };
 

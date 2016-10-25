@@ -3,9 +3,7 @@
 
         <fieldset id="vitals">
 
-
-            <img src="{{plant.image}}" alt="" id="thumbnail"  ng-click="changeProfilePicture()">
-
+            <img src="{{plant.image}}" alt="" id="thumbnail" ng-click="changeProfilePicture()">
 
             <button class="edit" ng-click="editCritical()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.critical">
@@ -87,12 +85,22 @@
             <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
         </fieldset>
 
+        <fieldset id="split">
+            <h1>Split</h1>
+            <button class="edit" ng-click="editSplit()" ng-hide="createNew">
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
+            </button>
+                <input id="split_name" placeholder="name" type="text"></input>
+                <input id="split_date" placeholder="date" type="date"></input>
+            <textarea type="textarea" placeholder="More info on plant split" ng-model="plant.split_comment" ng-disabled="editPlant.split && !createNew"></textarea>
+        </fieldset>
+
         <fieldset id="description">
             <h1>Description</h1>
             <button class="edit" ng-click="editDescription()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.description">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.description">
-
             </button>
             <label></label>
             <textarea type="textarea" placeholder="More description of plant" ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
