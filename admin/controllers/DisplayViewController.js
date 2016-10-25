@@ -8,12 +8,12 @@ app.controller('DisplayViewController', function(CONFIG, $scope, $location, Plan
     }
 
     $('svg').on('click', '> g', function(){
-        //var abbreviation = $(this).attr('id');
-        //$location.path("/table/" + abbreviation);
+        var abbreviation = $(this).attr('id');
+        $location.path("/table/" + abbreviation);
         console.log("we are trying");
-        PlantsFactory.getPhoto().then(function (response){
-            console.log(response);
-        });
+        // PlantsFactory.getPhoto().then(function (response){
+        //     console.log(response);
+        // });
     });
 
 });

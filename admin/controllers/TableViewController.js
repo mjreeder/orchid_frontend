@@ -215,7 +215,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
             }
         });
         $scope.showPopup2 = !$scope.showPopup2;
-        $rootScope.$broadcast('hi');
     };
 
     $scope.$on('popup-close2', function(event, data) {

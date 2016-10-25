@@ -97,6 +97,8 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
         }
     };
 
+    $scope.closePopUp = function() {
+      $rootScope.$broadcast('popup-close2', true);
+    }
+
 });
-
-

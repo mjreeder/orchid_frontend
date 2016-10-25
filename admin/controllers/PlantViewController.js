@@ -114,7 +114,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             genus: plantData.genus_name,
             species: plantData.species_name,
             variety: plantData.variety_name,
-            image: "",
+            image: "http://placekitten.com/g/200/300",
             dead_date: plantData.dead_date
         };
         //console.log("aaa");
@@ -137,9 +137,11 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         $scope.createNew = false;
 
 
+        //todo need to look at why this is not pulling in the correct image
         PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function(response){
-            $scope.plant.image = response.data.data[0].url;
-            console.log(response.data.data[0].url);
+            if (response.data.data[0].url != ""){
+                $scope.plant.image = response.data.data[0].url;
+            }
         });
 
 
@@ -401,6 +403,17 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
     };
 
+    $scope.profilePopUp = false;
+
+    $scope.changeProfilePicture = function(){
+        if ($scope.editPlant.critical == false){
+            $scope.profilePopUp = !$scope.profilePopUp;
+        } else {
+            //Do nothing since the section is not editable
+        }
+    };
+
+
     $scope.editCritical = function() {
         if ($scope.editPlant.critical == false) {
             $scope.editPlant.critical = true;
@@ -433,6 +446,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     $scope.editCulture = function() {
         console.log();
         if ($scope.editPlant.culture == false) {
+            // Update the record
             $scope.editPlant.culture = true;
 
             var culturePlantInformation = {
@@ -454,6 +468,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
             PlantsFactory.editCulturePlant(culturePlantInformation).then(function() {});
         } else {
+            //change the state of the button
             $scope.editPlant.culture = false;
         }
     }
@@ -517,6 +532,19 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     $scope.click = function() {
         console.log("we just clicked the image");
     }
+
+
+    $scope.showMoveFunction = function() {
+        console.log("we are going to the pop up");
+        $rootScope.$broadcast('abc', {
+            any: {
+                'accession_number': $scope.plant.accession_number
+            }
+        });
+        $scope.showPopup2 = !$scope.showPopup2;
+        $rootScope.$broadcast('hi');
+    };
+
 
 
 

@@ -5,11 +5,11 @@ app.factory('NotesFactory', function($http, $rootScope) {
 
     data.getAllNotes = function() {
         $http.get(baseUrl);
-    }
+    };
 
     data.getNoteById = function(plant_id) {
         $http.get(baseUrl + "/plant_id/" + plant_id);
-    }
+    };
 
     data.createNote = function (note) {
       $http({
@@ -23,7 +23,7 @@ app.factory('NotesFactory', function($http, $rootScope) {
               "session_key": $rootScope.userSessionKey
           }
       });
-    }
+    };
 
     data.editNote = function(note){
       $http({
@@ -38,7 +38,7 @@ app.factory('NotesFactory', function($http, $rootScope) {
               "session_key": $rootScope.userSessionKey
           }
       });
-    }
+    };
 
     return data;
 });
