@@ -114,7 +114,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       if(objectIsNew('bloomingComment')){
         Bloom_CommentFactory.createBloom_Comment(data).then(function(){})
       } else {
-        Bloom_CommentFactory.updatebloom_Comment(data).then(function(){})
+        Bloom_CommentFactory.updateBloom_Comment(data).then(function(){})
       }
     }
 
