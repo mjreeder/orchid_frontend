@@ -123,15 +123,15 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         //console.log($scope.plant.date_recieved);
         //console.log("aaa");
         $scope.splits = [];
-        splitFactory.getSplitForPlantId($scope.plant.id).then(function(response){
-          for(var i=0; i<response.data.data.length; i++){
+        splitFactory.getSplitForPlantId($scope.plant.id).then(function(response) {
+            for (var i = 0; i < response.data.data.length; i++) {
 
-            var timestamp = response.data.data[i].timestamp;
-            var newTimestamp = moment(timestamp).format('MM/DD/YYYY');
-            console.log(timestamp, newTimestamp);
-            response.data.data[i].timestamp = newTimestamp;
-            $scope.splits.push(response.data.data[i]);
-          }
+                var timestamp = response.data.data[i].timestamp;
+                var newTimestamp = moment(timestamp).format('MM/DD/YYYY');
+                console.log(timestamp, newTimestamp);
+                response.data.data[i].timestamp = newTimestamp;
+                $scope.splits.push(response.data.data[i]);
+            }
         });
 
         PlantCountryLinkFactory.getCountryByPlantID($scope.plant.id).then(function(response) {
@@ -151,12 +151,12 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
 
         //todo need to look at why this is not pulling in the correct image
-        PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function(response){
-            if (response.data.data != ""){
+        PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function(response) {
+            if (response.data.data != "") {
                 var data = response.data.data;
-                for (var i = 0; i < data.length; i++){
+                for (var i = 0; i < data.length; i++) {
 
-                    if (data[i].type == "profile"){
+                    if (data[i].type == "profile") {
                         $scope.plant.image = response.data.data[i];
                         break;
                     } else {
@@ -167,7 +167,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             }
         });
 
-        classificationLinkFactory.getPlantHierarchy($scope.plant.id).then(function (response){
+        classificationLinkFactory.getPlantHierarchy($scope.plant.id).then(function(response) {
             console.log(response.data.data);
             var data = response.data.data;
             $scope.classification = {
@@ -332,19 +332,19 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
     var OValue = false;
 
-    $scope.changeOther = function(photo){
+    $scope.changeOther = function(photo) {
 
-        for (var i = 0; i < $scope.otherList.length; i++){
+        for (var i = 0; i < $scope.otherList.length; i++) {
 
 
-            if ($scope.otherList[i].id == photo.id){
+            if ($scope.otherList[i].id == photo.id) {
                 //they are matching
                 OValue = true;
                 break;
             }
         }
 
-        if(OValue == false){
+        if (OValue == false) {
             console.log("add1");
             var lengthList = $scope.otherList.length;
             $scope.otherList[lengthList] = photo;
@@ -352,15 +352,15 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
 
 
-        for (var i = 0; i < $scope.habitiatList.length; i++){
-            if ($scope.habitiatList[i].id == photo.id){
+        for (var i = 0; i < $scope.habitiatList.length; i++) {
+            if ($scope.habitiatList[i].id == photo.id) {
                 $scope.habitiatList.splice(i, 1);
                 break;
             }
         }
 
-        for (var i = 0; i < $scope.deleteList.length; i++){
-            if ($scope.deleteList[i].id == photo.id){
+        for (var i = 0; i < $scope.deleteList.length; i++) {
+            if ($scope.deleteList[i].id == photo.id) {
                 $scope.deleteList.splice(i, 1);
                 break;
             }
@@ -371,19 +371,19 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     };
 
     var HValue = false;
-    $scope.changeHabitat = function(photo){
+    $scope.changeHabitat = function(photo) {
 
-        for (var i = 0; i < $scope.habitiatList.length; i++){
+        for (var i = 0; i < $scope.habitiatList.length; i++) {
 
 
-            if ($scope.habitiatList[i].id == photo.id){
+            if ($scope.habitiatList[i].id == photo.id) {
                 //they are matching
                 HValue = true;
                 break;
             }
         }
 
-        if (HValue == false){
+        if (HValue == false) {
             console.log("add2");
 
             var lengthList = $scope.habitiatList.length;
@@ -392,15 +392,15 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
 
 
-        for (var i = 0; i < $scope.otherList.length; i++){
+        for (var i = 0; i < $scope.otherList.length; i++) {
 
-            if ($scope.otherList[i].id == photo.id){
+            if ($scope.otherList[i].id == photo.id) {
                 $scope.otherList.splice(i, 1);
             }
         }
 
-        for (var i = 0; i < $scope.deleteList.length; i++){
-            if ($scope.deleteList[i].id == photo.id){
+        for (var i = 0; i < $scope.deleteList.length; i++) {
+            if ($scope.deleteList[i].id == photo.id) {
                 $scope.deleteList.splice(i, 1);
             }
         }
@@ -410,22 +410,22 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     };
 
     var DValue = false;
-    $scope.delete = function(photo){
+    $scope.delete = function(photo) {
         console.log("we are at delete");
 
 
-        for (var i = 0; i < $scope.deleteList.length; i++){
+        for (var i = 0; i < $scope.deleteList.length; i++) {
 
 
 
-            if ($scope.deleteList[i].id == photo.id){
+            if ($scope.deleteList[i].id == photo.id) {
                 //they are matching
                 DValue = true;
                 break;
             }
         }
 
-        if(DValue == false){
+        if (DValue == false) {
             console.log("add3");
 
             var lengthList = $scope.deleteList.length;
@@ -433,17 +433,17 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         }
 
 
-        for (var i = 0; i < $scope.otherList.length; i++){
+        for (var i = 0; i < $scope.otherList.length; i++) {
 
-            if ($scope.otherList[i].id == photo.id){
+            if ($scope.otherList[i].id == photo.id) {
                 console.log("we are removing");
                 $scope.otherList.splice(i, 1);
             }
         }
 
-        for (var i = 0; i < $scope.habitiatList.length; i++){
+        for (var i = 0; i < $scope.habitiatList.length; i++) {
 
-            if ($scope.habitiatList[i].id == photo.id){
+            if ($scope.habitiatList[i].id == photo.id) {
                 $scope.habitiatList.splice(i, 1);
             }
         }
@@ -457,7 +457,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         var count = 0;
         var data = response.data.data;
         for (var i = 0; i < data.length; i++) {
-            if (data[i].type != 'profile'){
+            if (data[i].type != 'profile') {
                 $scope.plant_id_url[count] = data[i];
                 count++;
                 console.log(data[i]);
@@ -473,30 +473,30 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     });
 
 
-        $scope.editPhotos = function() {
+    $scope.editPhotos = function() {
         if ($scope.editPlant.photos == false) {
             $scope.editPlant.photos = true;
 
-            for (var i = 0; i < $scope.otherList.length; i++){
+            for (var i = 0; i < $scope.otherList.length; i++) {
                 var photoInformation2 = {
                     id: $scope.otherList.id,
                     plant_id: $scope.otherList.plant_id,
                     url: $scope.otherList.url,
                     type: "other"
                 };
-                PhotoFactory.updatePhoto(photoInformation2).then(function (response){
+                PhotoFactory.updatePhoto(photoInformation2).then(function(response) {
 
                 });
             }
 
-            for (var i = 0; i < $scope.habitiatList.length; i++){
+            for (var i = 0; i < $scope.habitiatList.length; i++) {
                 var photoInformation3 = {
                     id: $scope.otherList.id,
                     plant_id: $scope.otherList.plant_id,
                     url: $scope.otherList.url,
                     type: "habitat"
                 };
-                PhotoFactory.updatePhoto(photoInformation3).then(function (response){
+                PhotoFactory.updatePhoto(photoInformation3).then(function(response) {
 
                 });
             }
@@ -506,6 +506,33 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             $scope.editPlant.photos = false;
         }
     };
+
+    $scope.editSplit = function() {
+        if ($scope.editPlant.split == false) {
+            $scope.editPlant.split = true;
+            for (var i = 0; i < $scope.newPlantSplits.length; i++) {
+                if ($scope.newPlantSplits[i].recipient !== '' && !$scope.newPlantSplits[i].timestamp !== null) {
+                    var plantSplit = $scope.newPlantSplits[i];
+                    console.log(plantSplit);
+                    plantSplit.timestamp = moment(plantSplit).format('YYYY-MM-DD');
+                    splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function(response) {
+                        console.log(response);
+                    });
+                }
+            }
+        } else {
+            $scope.editPlant.split = false;
+        }
+    }
+
+    $scope.newPlantSplits = [];
+    $scope.addPlantSplit = function() {
+        $scope.newPlantSplits.push({
+            'recipient': '',
+            'timestamp': ''
+        });
+    }
+
 
     $scope.editTaxonomy = function() {
         if ($scope.editPlant.taxonommy == false) {
@@ -535,28 +562,30 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         }
     };
 
-    $scope.editSplit = function(){
-      if($scope.editPlant.split == false){
-        $scope.editPlant.split = true;
-        for (var i = 0; i < $scope.newPlantSplits.length; i++) {
-          if ($scope.newPlantSplits[i].recipient !== '' && !$scope.newPlantSplits[i].timestamp !== null) {
-              var plantSplit = $scope.newPlantSplits[i];
-              console.log(plantSplit);
-              plantSplit.timestamp = moment(plantSplit).format('YYYY-MM-DD');
-              splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function(response){
-                console.log(response);
-              });
-          }
+    $scope.editSplit = function() {
+        if ($scope.editPlant.split == false) {
+            $scope.editPlant.split = true;
+            for (var i = 0; i < $scope.newPlantSplits.length; i++) {
+                if ($scope.newPlantSplits[i].recipient !== '' && !$scope.newPlantSplits[i].timestamp !== null) {
+                    var plantSplit = $scope.newPlantSplits[i];
+                    console.log(plantSplit);
+                    plantSplit.timestamp = moment(plantSplit).format('YYYY-MM-DD');
+                    splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function(response) {
+                        console.log(response);
+                    });
+                }
+            }
+        } else {
+            $scope.editPlant.split = false;
         }
-      }
-      else{
-        $scope.editPlant.split = false;
-      }
     }
 
     $scope.newPlantSplits = [];
-    $scope.addPlantSplit = function(){
-      $scope.newPlantSplits.push({'recipient': '', 'timestamp': ''});
+    $scope.addPlantSplit = function() {
+        $scope.newPlantSplits.push({
+            'recipient': '',
+            'timestamp': ''
+        });
     }
 
     function countryHasPlant(countryObject) {
@@ -620,8 +649,8 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
     $scope.profilePopUp = false;
 
-    $scope.changeProfilePicture = function(){
-        if ($scope.editPlant.critical == false){
+    $scope.changeProfilePicture = function() {
+        if ($scope.editPlant.critical == false) {
             $scope.profilePopUp = !$scope.profilePopUp;
         } else {
             //Do nothing since the section is not editable
