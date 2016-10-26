@@ -69,6 +69,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var bloomDateIsValid = function() {
+      if($scope.blooming_end_date == null){
+        return true;
+      }
       var start = moment($scope.blooming_start_date);
       var end = moment($scope.blooming_end_date);
       var startYearDate = start.dayOfYear();
