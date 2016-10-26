@@ -2,7 +2,8 @@
     <form method="post">
 
         <fieldset id="vitals">
-            <img src="{{plant.image}}" alt="" id="thumbnail">
+
+            <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-click="changeProfilePicture()">
 
             <button class="edit" ng-click="editCritical()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.critical">
@@ -84,6 +85,36 @@
             <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
         </fieldset>
 
+        <fieldset id="split">
+            <h1>Split</h1>
+            <button class="edit" ng-click="editSplit()" ng-hide="createNew">
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
+            </button>
+
+            <button class="add" type="button" ng-click="addPlantSplit()" ng-disabled="editPlant.split && !createNew">New planna split</button>
+            <div class="grid2x2" ng-repeat="plantSplit in splits">
+                <div>
+                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew"></input>
+                </div>
+                <div>
+                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew"></input>
+                </div>
+                <textarea type="textarea" placeholder="More info on plant split" ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+            </div>
+
+            <div class="grid2x2" ng-repeat="plantSplit in newPlantSplits">
+                <div>
+                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew"></input>
+                </div>
+                <div>
+                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew"></input>
+                </div>
+                <textarea type="textarea" placeholder="More info on plant split" ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+            </div>
+
+        </fieldset>
+
         <fieldset id="description">
             <h1>Description</h1>
             <button class="edit" ng-click="editDescription()" ng-hide="createNew">
@@ -154,17 +185,19 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.photos">
             </button>
 
-            <img src="http://placekitten.com/50/50" alt="" class="thumbnail">
-            <label for="">File_Name_for_acienthera_234</label>
-            <input type="button" value="Habitat" ng-hide="!editPlant.photos">
-            <input type="button" value="Other" ng-hide="!editPlant.photos">
+            <ul ng-repeat="photo in plant_id_url">
+
+                <img src="{{photo.url}}" alt="" class="thumbnail" height="42" width="42">
+                <label for="">{{photo.url}}</label>
+                <input type="button" value="Habitat" ng-hide="editPlant.photos" ng-click="changeHabitat(photo)">
+                <input type="button" value="Other" ng-hide="editPlant.photos" ng-click="changeOther(photo)">
+                <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="delete(photo)">
+
+                <br/>
+
+            </ul>
 
             <br/>
-
-            <img src="http://placebear.com/50/50" alt="" class="thumbnail">
-            <label for="">File_Name_for_acienthera_567</label>
-            <input type="button" value="Habitat" ng-hide="!editPlant.photos">
-            <input type="button" value="Other" ng-hide="!editPlant.photos">
 
         </fieldset>
     </form>
@@ -185,4 +218,7 @@
     <section>
         <button>Back to top</button>
     </section>
+
+    <div ng-include="'views/photoPopup.html'" ng-show="profilePopUp"></div>
+
 </div>

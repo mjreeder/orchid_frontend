@@ -1,0 +1,35 @@
+<section class="flower-popup" ng-controller="PhotoViewController">
+
+
+    <form class="move-popup">
+        <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
+
+        <h1>Picture Choser</h1>
+        <p>Choose the picture that you would like selected for: </p>
+        <div id="move-plant-list">
+
+                <h1>{{plant.accession_number}}</h1>
+
+        </div>
+
+        <img src="{{chosenPicrture}}" />
+
+        <div id="move-plant-list">
+
+            <ul ng-repeat="photo in plantsURL">
+                <button ng-click="clickedPhoto(photo)">
+                     <img src="{{photo.url}}" />
+                </button>
+            </ul>
+        </div>
+
+        <button ng-click="submitChange()">Submit</button>
+
+
+
+
+
+
+    </form>
+
+</section>

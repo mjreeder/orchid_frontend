@@ -23,6 +23,15 @@ input, textarea {
     border: 2px solid black;
 }
 
+.add {
+    position: absolute;
+    width: 40px;
+    top: 75px;
+    right: 0px
+}
+
+
+
 input {
     margin-top: 10px;
     width: 225px;
@@ -73,7 +82,7 @@ fieldset {
     max-width: 800px;
 }
 
-#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos, #graph {
+#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos, #graph, #split {
     position: relative;
     overflow: auto;
 }
@@ -83,6 +92,13 @@ fieldset {
     width: 40px;
     top: 0px;
     right: 0px;
+}
+
+.add {
+    position: absolute;
+    width: 40px;
+    top: 75px;
+    right: 0px
 }
 
 label {
@@ -178,6 +194,10 @@ input[type="checkbox"] {
     vertical-align: middle;
 }
 
+#split_date {
+    /*margin-left: 158px;*/
+}
+
 #graphsvg {
     width: 90%;
     height: auto;
@@ -190,23 +210,26 @@ input[type="checkbox"] {
 }
 
 .selectedCountry {
-  padding-top: 11px;
+    padding-top: 11px;
 }
+
 .grid2x2 {
-  min-height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  margin-left: 30px;
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-left: 30px;
 }
-.grid2x2 > div {
-  display: flex;
-  flex-basis: calc(50% - 40px);
-  justify-content: center;
-  flex-direction: column;
+
+.grid2x2>div {
+    display: flex;
+    flex-basis: calc(50% - 40px);
+    justify-content: center;
+    flex-direction: column;
 }
-.grid2x2 > div > div {
-  display: flex;
-  /*justify-content: center;*/
-  flex-direction: row;
+
+.grid2x2>div>div {
+    display: flex;
+    /*justify-content: center;*/
+    flex-direction: row;
 }
