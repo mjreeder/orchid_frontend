@@ -507,24 +507,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         }
     };
 
-    $scope.editSplit = function() {
-        if ($scope.editPlant.split == false) {
-            $scope.editPlant.split = true;
-            for (var i = 0; i < $scope.newPlantSplits.length; i++) {
-                if ($scope.newPlantSplits[i].recipient !== '' && !$scope.newPlantSplits[i].timestamp !== null) {
-                    var plantSplit = $scope.newPlantSplits[i];
-                    console.log(plantSplit);
-                    plantSplit.timestamp = moment(plantSplit).format('YYYY-MM-DD');
-                    splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function(response) {
-                        console.log(response);
-                    });
-                }
-            }
-        } else {
-            $scope.editPlant.split = false;
-        }
-    }
-
     $scope.newPlantSplits = [];
     $scope.addPlantSplit = function() {
         $scope.newPlantSplits.push({
@@ -569,11 +551,16 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                 if ($scope.newPlantSplits[i].recipient !== '' && !$scope.newPlantSplits[i].timestamp !== null) {
                     var plantSplit = $scope.newPlantSplits[i];
                     console.log(plantSplit);
-                    plantSplit.timestamp = moment(plantSplit).format('YYYY-MM-DD');
                     splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function(response) {
                         console.log(response);
                     });
                 }
+            }
+            for (var i = 0; i < $scope.splits.length; i++) {
+                console.log($scope.splits[i]);
+                splitFactory.updateSplits($scope.splits[i], $scope.plant.id).then(function(response) {
+                    console.log(response);
+                });
             }
         } else {
             $scope.editPlant.split = false;
