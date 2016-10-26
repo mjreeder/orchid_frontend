@@ -23,6 +23,8 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     //
     //});
 
+
+
     $scope.PlantCountryNames = [];
     $scope.Tables = [];
     //$scope.createNew = false;
@@ -139,8 +141,18 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
         //todo need to look at why this is not pulling in the correct image
         PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function(response){
-            if (response.data.data[0].url != ""){
-                $scope.plant.image = response.data.data[0].url;
+            if (response.data.data != ""){
+                var data = response.data.data;
+                for (var i = 0; i < data.length; i++){
+
+                    if (data[i].type == "profile"){
+                        $scope.plant.image = response.data.data[i];
+                        break;
+                    } else {
+                        // Keep looking
+                    }
+                }
+
             }
         });
 
@@ -304,9 +316,20 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     $scope.saveAll = function() {
         $scope.saveCritical();
 
-    }
+    };
 
-    $scope.editPhotos = function() {
+    $scope.plant_id_url = [];
+
+
+    PhotoFactory.getPhtosByPlantID(2).then(function(response) {
+        var data = response.data.data;
+        for (var i = 0; i < data.length; i++) {
+            $scope.plant_id_url = data[i];
+        }
+    });
+
+
+        $scope.editPhotos = function() {
         if ($scope.editPlant.photos == false) {
             $scope.editPlant.photos = true;
 

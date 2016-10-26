@@ -9,12 +9,16 @@ app.factory('PhotoFactory', function($http, $rootScope) {
         return $http.get(baseUrl + "/plant_id/" + plant_id);
     }
 
+    data.getSimilarPhotos = function(name){
+        return $http.get(baseUrl + "/getSimilarPlants/" + name);
+    };
+
     data.createPhoto = function (photo) {
-        $http({
+        return $http({
             method: "POST",
             url: baseUrl + '/create',
             data: {
-                "plant_id": photo.plantId,
+                "plant_id": photo.plant_id,
                 "url": photo.url,
                 "type": photo.type,
                 "session_id": $rootScope.userSessionId,
@@ -24,11 +28,15 @@ app.factory('PhotoFactory', function($http, $rootScope) {
     }
 
     data.updatePhoto = function(photo){
-        $http({
+        //console.log(photo);
+        //console.log($rootScope.userSessionId);
+        //console.log($rootScope.userSessionKey);
+
+        return $http({
             method: "PUT",
             url: baseUrl + '/update',
             data: {
-                "plant_id": photo.plantId,
+                "plant_id": photo.plant_id,
                 "url": photo.url,
                 "type": photo.type,
                 "id": photo.id,

@@ -4,7 +4,7 @@
         <fieldset id="vitals">
 
 
-            <img src="{{plant.image}}" alt="" id="thumbnail"  ng-click="changeProfilePicture()">
+            <img src="{{plant.image.url}}" alt="" id="thumbnail"  ng-click="changeProfilePicture()">
 
 
             <button class="edit" ng-click="editCritical()" ng-hide="createNew">
@@ -157,17 +157,31 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.photos">
             </button>
 
-            <img src="http://placekitten.com/50/50" alt="" class="thumbnail">
-            <label for="">File_Name_for_acienthera_234</label>
+
+            <h1>HELLLLLLO</h1>
+
+
+                <ul ng-repeat="photo in plant_id_url">
+                    <button >
+                        <img src="{{photo.url}}" />
+                    </button>
+
+
+            <img src="{{photo.url}}" alt="" class="thumbnail" height="42" width="42">
+            <label for="">{{photo.url}}</label>
             <input type="button" value="Habitat" ng-hide="!editPlant.photos">
             <input type="button" value="Other" ng-hide="!editPlant.photos">
 
             <br/>
 
-            <img src="http://placebear.com/50/50" alt="" class="thumbnail">
-            <label for="">File_Name_for_acienthera_567</label>
-            <input type="button" value="Habitat" ng-hide="!editPlant.photos">
-            <input type="button" value="Other" ng-hide="!editPlant.photos">
+
+
+            </ul>
+
+
+            <br/>
+
+
 
         </fieldset>
     </form>
