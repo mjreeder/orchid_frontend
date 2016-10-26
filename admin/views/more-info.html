@@ -91,9 +91,27 @@
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
             </button>
-                <input id="split_name" placeholder="name" type="text"></input>
-                <input id="split_date" placeholder="date" type="date"></input>
-            <textarea type="textarea" placeholder="More info on plant split" ng-model="plant.split_comment" ng-disabled="editPlant.split && !createNew"></textarea>
+            <button class="add" type="button" ng-click="addPlantSplit()" ng-disabled="editPlant.split && !createNew">New planna split</button>
+            <div class="grid2x2" ng-repeat="plantSplit in splits">
+                <div>
+                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew"></input>
+                </div>
+                <div>
+                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew"></input>
+                </div>
+                <textarea type="textarea" placeholder="More info on plant split" ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+            </div>
+
+            <div class="grid2x2" ng-repeat="plantSplit in newPlantSplits">
+                <div>
+                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew"></input>
+                </div>
+                <div>
+                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew"></input>
+                </div>
+                <textarea type="textarea" placeholder="More info on plant split" ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+            </div>
+
         </fieldset>
 
         <fieldset id="description">

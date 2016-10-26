@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory) {
+app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory) {
 
     var param1 = $routeParams.accession_number;
 
@@ -120,6 +120,17 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         //console.log("aaa");
         //console.log($scope.plant.date_recieved);
         //console.log("aaa");
+        $scope.splits = [];
+        splitFactory.getSplitForPlantId($scope.plant.id).then(function(response){
+          for(var i=0; i<response.data.data.length; i++){
+
+            var timestamp = response.data.data[i].timestamp;
+            var newTimestamp = moment(timestamp).format('MM/DD/YYYY');
+            console.log(timestamp, newTimestamp);
+            response.data.data[i].timestamp = newTimestamp;
+            $scope.splits.push(response.data.data[i]);
+          }
+        });
 
         PlantCountryLinkFactory.getCountryByPlantID($scope.plant.id).then(function(response) {
             for (var i = 0; i < response.data.data.length; i++) {
@@ -143,8 +154,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                 $scope.plant.image = response.data.data[0].url;
             }
         });
-
-
 
         classificationLinkFactory.getPlantHierarchy($scope.plant.id).then(function (response){
             console.log(response.data.data);
@@ -229,8 +238,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         }
 
     });
-
-
 
     if ($scope.createNew) {
         $scope.editPlant = {
@@ -342,6 +349,30 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             $scope.editPlant.taxonommy = false;
         }
     };
+
+    $scope.editSplit = function(){
+      if($scope.editPlant.split == false){
+        $scope.editPlant.split = true;
+        for (var i = 0; i < $scope.newPlantSplits.length; i++) {
+          if ($scope.newPlantSplits[i].recipient !== '' && !$scope.newPlantSplits[i].timestamp !== null) {
+              var plantSplit = $scope.newPlantSplits[i];
+              console.log(plantSplit);
+              plantSplit.timestamp = moment(plantSplit).format('YYYY-MM-DD');
+              splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function(response){
+                console.log(response);
+              });
+          }
+        }
+      }
+      else{
+        $scope.editPlant.split = false;
+      }
+    }
+
+    $scope.newPlantSplits = [];
+    $scope.addPlantSplit = function(){
+      $scope.newPlantSplits.push({'recipient': '', 'timestamp': ''});
+    }
 
     function countryHasPlant(countryObject) {
         var isPlantInCountry = false;
