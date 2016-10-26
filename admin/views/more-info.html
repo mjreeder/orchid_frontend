@@ -157,22 +157,18 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.photos">
             </button>
 
+            <ul ng-repeat="photo in plant_id_url">
 
-            <h1>HELLLLLLO</h1>
-
-
-                <ul ng-repeat="photo in plant_id_url">
-                    <button >
-                        <img src="{{photo.url}}" />
-                    </button>
 
 
             <img src="{{photo.url}}" alt="" class="thumbnail" height="42" width="42">
             <label for="">{{photo.url}}</label>
-            <input type="button" value="Habitat" ng-hide="!editPlant.photos">
-            <input type="button" value="Other" ng-hide="!editPlant.photos">
+            <input type="button" value="Habitat" ng-hide="editPlant.photos" ng-click="changeHabitat(photo)">
+            <input type="button" value="Other" ng-hide="editPlant.photos" ng-click="changeOther(photo)">
+                <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="delete(photo)">
 
-            <br/>
+
+                <br/>
 
 
 

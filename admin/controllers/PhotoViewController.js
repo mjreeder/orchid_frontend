@@ -39,6 +39,8 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
 
     });
 
+
+
     $scope.plantIDURL = [];
 
 
