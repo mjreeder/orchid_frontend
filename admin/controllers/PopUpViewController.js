@@ -2,6 +2,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     $scope.plant = {};
     $scope.health_condition = "";
+    $scope.flagWasDisabled = false;
 
     $scope.startNewBloom = function(){
       $scope.blooming_start_date = $scope.today;
@@ -156,13 +157,16 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleTag = function(){
       var data = prepareForFactory('flag');
-      if(!$scope.flagged){
+      if(!$scope.flagged && $scope.flagWasDisabled){
+        TagFactory.deactivateTag(data).then(function(){})
+      } else if(!$scope.flagged){
         return;
-      }
-      if(objectIsNew('flag')){
-        TagFactory.createTag(data).then(function(){})
       } else {
-        TagFactory.updateTag(data).then(function(){})
+        if(objectIsNew('flag')){
+          TagFactory.createTag(data).then(function(){})
+        } else {
+          TagFactory.updateTag(data).then(function(){})
+        }
       }
     }
 
@@ -319,6 +323,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var removePrefix = function(string){
       var index = string.indexOf('_');
       return string.substring(index + 1, string.length);
+    }
+
+    $scope.disableFlag = function(){
+      $scope.flagWasDisabled = true;
     }
 
 });
