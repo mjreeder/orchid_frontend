@@ -23,6 +23,15 @@ input, textarea {
     border: 2px solid black;
 }
 
+.add {
+    position: absolute;
+    width: 40px;
+    top: 75px;
+    right: 0px
+}
+
+
+
 input {
     margin-top: 10px;
     width: 225px;
