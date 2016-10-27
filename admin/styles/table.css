@@ -349,7 +349,7 @@ td{
 }
 
 .noglowHealth {
-  background-color: #DFE0E0;
+  background-color: #808080;
 }
 
 .alertRow {
@@ -357,5 +357,5 @@ td{
 }
 
 .customNgDisabled {
-  background-color: #DFE0E0; 
+  background-color: #808080; 
 }
