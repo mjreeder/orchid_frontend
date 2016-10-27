@@ -13,7 +13,10 @@
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 600;
     font-size: 100px;
-    letter-spacing: 8px; 
+    letter-spacing: 8px;
+    padding-bottom: 70px; 
+    
+   
     
 }
 
@@ -27,7 +30,7 @@
     font-size: 23px;
     margin-top: -40px; 
     color: black;
-    
+      padding-bottom: 30px; 
 }
 
 .w404 {
