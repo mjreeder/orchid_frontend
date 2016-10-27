@@ -314,9 +314,19 @@ td{
  margin-left: 30px;
 }
 
-.glowHealth {
+.glowHealthPoor {
   box-shadow:0 0 20px red;
   background-color: red;
+}
+
+.glowHealthFair {
+  box-shadow:0 0 20px yellow;
+  background-color: yellow;
+}
+
+.glowHealthGood {
+  box-shadow:0 0 20px green;
+  background-color: green;
 }
 
 .noglowHealth {
