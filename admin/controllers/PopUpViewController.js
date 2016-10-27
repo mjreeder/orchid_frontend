@@ -217,6 +217,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           data = formatTimeStamp('end_date', data);
         }
         concatObjects(data, 'blooming');
+        setTodayEndBloomState();
       })
     }
 
@@ -323,6 +324,14 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var removePrefix = function(string){
       var index = string.indexOf('_');
       return string.substring(index + 1, string.length);
+    }
+
+    var setTodayEndBloomState = function(){
+      var startDate = moment($scope.blooming_start_date);
+      var today = moment();
+      if((startDate.dayOfYear() == today.dayOfYear()) && (today.year() == startDate.year())){
+        $scope.disableEndBloom = true;
+      }
     }
 
     $scope.disableFlag = function(){
