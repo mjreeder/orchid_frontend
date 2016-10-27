@@ -98,7 +98,7 @@ main table {
     background-color: #DFE0E0;
     border-collapse:collapse;
     width: 95%;
-    
+
 }
 
 thead {
@@ -241,7 +241,7 @@ td{
 }
 
 #more-info {
-    background-color: #BA0c2F; 
+    background-color: #BA0c2F;
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
@@ -254,7 +254,7 @@ td{
 
 
 #save {
-    background-color: #BA0c2F; 
+    background-color: #BA0c2F;
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
@@ -300,7 +300,7 @@ td{
 .flower-popup img {
     height: 30px;
     width: auto;
-    
+
 }
 
 .calendar {
@@ -349,8 +349,8 @@ td{
 }
 
 .glowHealthFair {
-  box-shadow:0 0 20px yellow;
-  background-color: yellow;
+  box-shadow:0 0 20px #F3C467;
+  background-color: #F3C467;
 }
 
 .glowHealthGood {
@@ -367,5 +367,5 @@ td{
 }
 
 .customNgDisabled {
-  background-color: #DFE0E0; 
+  background-color: #DFE0E0;
 }
