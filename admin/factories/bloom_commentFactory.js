@@ -23,7 +23,7 @@ app.factory('Bloom_CommentFactory', function($http, $rootScope) {
         });
     }
 
-    data.updatebloom_comment = function(bloom_comment){
+    data.updateBloom_Comment = function(bloom_comment){
         return $http({
             method: "PUT",
             url: baseUrl + '/update',
