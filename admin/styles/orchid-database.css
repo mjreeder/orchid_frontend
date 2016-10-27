@@ -114,8 +114,8 @@ th {
 /* start of filter styling */
 
 .filter-section {
-    float: right;
-    width: 40%;
+    float: left;
+    width: 30%;
     background-color: black;
     height:60px; 
 }
@@ -132,9 +132,9 @@ th {
 }
 
 .filter-options li {
-    float: left;
+    float: right;
     background-color: #DFE0E0;
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
     padding: 8.5px 0;
     border-bottom: 4px solid white;
