@@ -135,11 +135,11 @@ th {
 
 .filter-section hr {
     float: left;
-    width: 34%;
+    width: 100%;
     color: white;
     background-color: white;
     position: relative;
-    top: -10px;
+    top: 10px;
     z-index: 1;
     height: 4px;
     outline: none;
