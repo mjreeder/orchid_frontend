@@ -18,7 +18,7 @@
 
             <label>
                 Start of Bloom:</label>
-            <button ng-click="blooming_start_date = today" class="today">Today</button>
+            <button ng-click="blooming_start_date = today" class="today" ng-disabled="startNewBloomTodayDisable" ng-class="{customNgDisabled: startNewBloomTodayDisable}">Today</button>
             <button class="calendar"><img src="images/calendaricon.svg" alt="">
                 <input type="date" id="startDateBloom" ng-model="blooming_start_date"/>
             </button>

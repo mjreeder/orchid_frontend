@@ -3,11 +3,15 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.plant = {};
     $scope.health_condition = "";
     $scope.flagWasDisabled = false;
+    $scope.createBloomPressed = false;
+    $scope.startNewBloomTodayDisable = true;
 
     $scope.startNewBloom = function(){
       $scope.blooming_start_date = $scope.today;
       $scope.blooming_end_date = null;
       $scope.disableEndBloom = true;
+      $scope.createBloomPressed = true;
+      $scope.startNewBloomTodayDisable = false;
     }
 
     $scope.$on('current-plant', function(event, data){
@@ -22,6 +26,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       cleanPrefixes();
       $scope.disableEndBloom = false;
       $scope.flagWasDisabled = false;
+      $scope.createBloomPressed = false;
+      $scope.startNewBloomTodayDisable = true;
     }
 
     var cleanPrefixes = function(){
@@ -63,7 +69,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleBloom = function() {
       var data = prepareForFactory('blooming');
-      if(objectIsNew('blooming')){
+      if(objectIsNew('blooming') && $scope.createBloomPressed){
         BloomingFactory.createBloom(data).then(function(){})
       } else {
         BloomingFactory.updateBloom(data).then(function(){})
@@ -219,7 +225,17 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         }
         concatObjects(data, 'blooming');
         setTodayEndBloomState();
+        disableNewBloomToday();
       })
+    }
+
+    var disableNewBloomToday = function(){
+      console.log(objectIsNew('blooming'));
+      if(objectIsNew('blooming')){
+        $scope.startNewBloomTodayDisable = true;
+      } else {
+        $scope.startNewBloomTodayDisable = false;
+      }
     }
 
     var handleSprayedInit = function(){
@@ -250,7 +266,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleTagInit = function(){
       TagFactory.getPestByPlantID($scope.plant.id).then(function(data){
         data = data.data.data;
-        console.log(data.active);
         if(data.active == 1){
           $scope.flagged = true;
         }
