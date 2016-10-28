@@ -16,7 +16,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     $scope.$on('current-plant', function(event, data){
       destroy();
-      console.log(data);
       $scope.plant = data;
       concatObjects(data, 'plant');
       init();
@@ -220,7 +219,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           data.end_date = null;
         }
         if(data.end_date){
-          console.log("end date");
           data = formatTimeStamp('end_date', data);
         }
         concatObjects(data, 'blooming');
@@ -230,7 +228,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var disableNewBloomToday = function(){
-      console.log(objectIsNew('blooming'));
       if(objectIsNew('blooming')){
         $scope.startNewBloomTodayDisable = true;
       } else {
@@ -257,7 +254,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleHealthInit = function(){
       HealthFactory.getHealthBtPlantID($scope.plant.id).then(function(data){
         var lastComment = getLastComment(data);
-        console.log(lastComment);
         lastComment = formatTimeStamp('timestamp', lastComment);
         concatObjects(lastComment, 'health');
       })
