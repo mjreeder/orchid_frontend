@@ -2,9 +2,14 @@
 
 
     <form class="move-popup">
+       <div class="header"> 
         <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
 
         <h1>Move Plants</h1>
+        </div>
+        
+        
+        <div class="formcontent"> 
         <p>These are the plants you have selected:</p>
         <div id="move-plant-list">
         <ul ng-repeat="plant in a">
@@ -31,7 +36,7 @@
         <div ng-include="'views/moveWarmhouse.html'" ng-show="WarmPopup"></div>
         <div ng-include="'views/moveCoolHouse.html'" ng-show="CoolPopup"></div>
         <div ng-include="'views/moveDisplay.html'" ng-show="DisplayPopup"></div>
-
+</div>
 
     </form>
 

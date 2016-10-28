@@ -152,13 +152,15 @@ td {
     font-family: Raleway, sans-serif;
     font-size: 20px;
     padding: 15px 20px;
-    float: right;
+    float: left;
     margin: 2.5% 2.5% 0 0;
+    margin
     border-radius: 8px;
 }
 
 #moveplants {
     overflow: hidden;
+    float: left; 
 }
 
 
@@ -180,15 +182,19 @@ td {
     overflow: auto;
 }
 
+.formcontent {
+ padding: 15px;    
+}
+
 .flower-popup form {
     width: 75%;
-    background-color: white;
-    border: 4px solid #BA0C2F;
+    background-color: white; 
+    border: 4px solid black;
     position: absolute;
     left: 50%;
     top: 0;
     transform: translate(-50%, 0%);
-    padding: 15px;
+    padding-bottom: 10px;
     box-sizing: border-box;
 }
 
@@ -198,7 +204,7 @@ td {
     font-size: 26px;
     letter-spacing: 3px; 
     background-color: #dfe0e0; 
-    padding: 20px 0px; 
+/*    padding:20px 0px; */
     width: 100%;
     height: 30px;
 
@@ -222,7 +228,7 @@ td {
 }
 
 .flower-popup textarea {
-    border: 4px solid black;
+    border: 2px solid #808080;
     font-family: aleo, serif;
     color: #b3b3b3;
     font-size: 12px;
@@ -230,7 +236,9 @@ td {
     padding: 5px;
     box-sizing: border-box;
     height: 50px;
-    margin: 5px 0 0 0;
+    margin-left: -15px;
+/*    margin: 5px 0 0 0;*/
+    
 }
 
 .today,
@@ -254,9 +262,10 @@ td {
     font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 10px 15px;
-    margin: 5px 15px;
+    margin: 5px 20px;
     border-radius: 5px;
     display: inline-block;
+    float: left;
 }
 
 #save {
@@ -266,7 +275,7 @@ td {
     font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 10px 15px;
-    margin: 5px 15px;
+    margin: 5px 20px;
     border-radius: 5px;
     display: inline-block;
 }
@@ -331,11 +340,17 @@ td {
 
 #save {
     float: right;
+    margin-right: 15px; 
 }
 
 #more-info,
 #save {
-    margin-top: 20px;
+/*    margin-top: 3px;*/
+}
+
+
+#more-info {
+  margin-left: -15px;   
 }
 
 #more-info a {
@@ -391,7 +406,7 @@ td {
 /*  checkbox styling */
 
 input[type=checkbox] {
-    display: none;
+/*    display: none;*/
 }
 /* to hide the checkbox itself */
 
@@ -403,7 +418,8 @@ input[type=checkbox] + label:before {
 }
 
 input[type=checkbox] + label:before {
-    content:url(../images/empty_checkbox.svg);
+/*    content:url(../images/empty_checkbox.svg);*/
+    background-image:url(../images/empty_checkbox.svg);
 
 }
 /* unchecked icon */
