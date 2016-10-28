@@ -21,6 +21,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var destroy = function(){
       cleanPrefixes();
       $scope.disableEndBloom = false;
+      $scope.flagWasDisabled = false;
     }
 
     var cleanPrefixes = function(){
