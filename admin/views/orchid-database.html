@@ -15,7 +15,7 @@
             </tbody>
         </thead>
     </table>
-    <aside>
+    
         <div class="searchbox-and-icon">
             <form>
                 <div class="searchbox">
@@ -24,6 +24,9 @@
                 <input type="image" id="mag-glass" name="search-button" src="images/Searchbutton.svg" width="20" ng-click="getPlantsBySearch(searchItem)">
             </form>
         </div>
+        
+        
+        
         <div class="filter-section">
             <button id="collapse" type="image" id="active">
                 -
@@ -31,13 +34,21 @@
 
             <h2>
                 Filter</h2>
+              <hr noshade> 
 
             <button type="image" name="filter-open" id="expand" src="images/expand.svg"></button>
-            <!--            </div> not sure what this closing div is for? -->
+            
+            
+        </div>
+           
+           
             <div class="filter-options">
                 <ul ng-repeat="(key, val) in plants[0]">
                     <li ng-show="val.key != 'id'">
+                       
+                    
                         <div class="editPlant" ng-click="editFilterDisplay(val.key)">
+                           
                             <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/>
                             {{val.key}}
                         </div>
@@ -46,5 +57,5 @@
             </div>
         </div>
 
-    </aside>
+
 </div>
