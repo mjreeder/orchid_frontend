@@ -330,6 +330,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var stringContains = function(string, prefix){
+      prefix += "_"
       if(string.indexOf(prefix) !== -1){
         return true;
       } else {
