@@ -163,8 +163,9 @@ th {
     background-color: #DFE0E0;
     width: 100%; 
     border-collapse: collapse;
-    padding: 8.5px 0;
+    padding: 8.5px 0px 0px 10px;
     border-bottom: 4px solid white;
+
 }
 
 .filter-options {

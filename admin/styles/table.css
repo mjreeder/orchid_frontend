@@ -32,17 +32,17 @@ main nav ul {
 }
 
 
-
 /*page nav*/
-.page-nav{
+
+.page-nav {
     background: none;
     text-align: center;
     position: relative;
     height: auto;
 }
 
-
-#A img, #B img {
+#A img,
+#B img {
     height: 50px;
     display: block;
 }
@@ -55,7 +55,8 @@ main nav ul {
     right: 2.5%;
 }
 
-#A, #B {
+#A,
+#B {
     font-family: Aleo, serif;
     font-weight: 400;
     display: inline;
@@ -64,16 +65,17 @@ main nav ul {
     transform: translateY(-50%);
 }
 
-#A a, #B a {
+#A a,
+#B a {
     text-decoration: none;
     color: black;
     display: inline
 }
 
-#A img, #B img {
+#A img,
+#B img {
     padding-top: 5px;
 }
-
 
 main header h1 {
     font-family: Aleo, serif;
@@ -84,21 +86,18 @@ main header h1 {
 }
 
 
-
-
 /*TABLE*/
 
 #center-table {
-    margin:auto;
+    margin: auto;
     align-items: center;
 }
 
 main table {
     margin: 0 auto;
     background-color: #DFE0E0;
-    border-collapse:collapse;
+    border-collapse: collapse;
     width: 95%;
-    
 }
 
 thead {
@@ -120,34 +119,31 @@ th {
     height: auto;
 }
 
-td:nth-child(1){
+td:nth-child(1) {
     width: 20%;
 }
 
-td:nth-child(2){
-    width:40%
+td:nth-child(2) {
+    width: 40%
 }
 
-td:nth-child(3){
+td:nth-child(3) {
     width: 20%;
 }
 
-td:nth-child(4){
+td:nth-child(4) {
     width: 20%;
 }
 
-td{
+td {
     vertical-align: top;
 }
-
 
 .flagged {
     background-color: #4D4D4D;
 }
 
-#repot{
-
-}
+#repot {}
 
 #moveplants a {
     background-color: #2B2E30;
@@ -165,9 +161,11 @@ td{
     overflow: hidden;
 }
 
+
 /*POP UP*/
+
 #close {
-    position:absolute;
+    position: absolute;
     right: 15px;
     top: 15px;
 }
@@ -197,8 +195,13 @@ td{
 .center h1 {
     text-align: center;
     font-family: aleo, serif;
-    font-size: 22px;
+    font-size: 26px;
+    letter-spacing: 3px; 
+    background-color: #dfe0e0; 
+    padding: 20px 0px; 
+    width: 100%;
     height: 30px;
+
 }
 
 .top-margin {
@@ -210,12 +213,14 @@ td{
     font-size: 18px;
     margin: 0 0 5px 5px;
 }
-.editPlant{
-  font-family: aleo, serif;
-  font-size: 18px;
-  margin: 0 0 5px 5px;
-  cursor: pointer;
+
+.editPlant {
+    font-family: aleo, serif;
+    font-size: 18px;
+    margin: 0 0 5px 5px;
+    cursor: pointer;
 }
+
 .flower-popup textarea {
     border: 4px solid black;
     font-family: aleo, serif;
@@ -228,7 +233,9 @@ td{
     margin: 5px 0 0 0;
 }
 
-.today, #save, .startnewbloom {
+.today,
+#save,
+.startnewbloom {
     background-color: #808080;
     text-decoration: none;
     color: white;
@@ -241,7 +248,7 @@ td{
 }
 
 #more-info {
-    background-color: #BA0c2F; 
+    background-color: #BA0c2F;
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
@@ -251,10 +258,9 @@ td{
     border-radius: 5px;
     display: inline-block;
 }
-
 
 #save {
-    background-color: #BA0c2F; 
+    background-color: #BA0c2F;
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
@@ -265,21 +271,19 @@ td{
     display: inline-block;
 }
 
-
-
 #current-health button {
-  text-decoration: none;
-  color: white;
-  font-family: Raleway, sans-serif;
-  font-size: 14px;
-  padding: 10px 15px;
-  margin: 5px 15px;
-  border-radius: 5px;
-  display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+    margin: 5px 15px;
+    border-radius: 5px;
+    display: inline-block;
 }
 
 .today {
-/*    margin: 0; */
+    /*    margin: 0; */
 }
 
 .today:active {
@@ -300,7 +304,6 @@ td{
 .flower-popup img {
     height: 30px;
     width: auto;
-    
 }
 
 .calendar {
@@ -309,7 +312,7 @@ td{
     position: relative;
 }
 
-.calendar input{
+.calendar input {
     -webkit-appearance: none;
     width: 100%;
     height: 100%;
@@ -318,7 +321,6 @@ td{
     opacity: 0;
     position: absolute;
 }
-
 
 .calendar img {
     margin: 0;
@@ -331,7 +333,8 @@ td{
     float: right;
 }
 
-#more-info, #save {
+#more-info,
+#save {
     margin-top: 20px;
 }
 
@@ -340,23 +343,84 @@ td{
 }
 
 .subsection {
- margin-left: 30px;
+    margin-left: 30px;
 }
 
+
+/*
 .glowHealth {
-  box-shadow:0 0 20px red;
-  background-color: red;
+  box-shadow:0 0 20px #BA0C2F;
+  background-color: #BA0C2F;
 }
 
 .noglowHealth {
   background-color: #808080;
 }
+*/
+
+.glowHealthPoor {
+    /*   box-shadow:0 0 20px #BA0C2F;*/
+    background-color: #BA0C2F;
+}
+
+.glowHealthFair {
+    /*  box-shadow:0 0 20px #F3C467;*/
+    background-color: #F3C467;
+}
+
+.glowHealthGood {
+    /*  box-shadow:0 0 20px #61d166;*/
+    background-color: #61d166;
+}
+
+.noglowHealth {
+    background-color: #DFE0E0;
+    background-color: #808080;
+}
 
 .alertRow {
-  background-color: #F3C467;
+    background-color: #F3C467;
 }
 
 .customNgDisabled {
-  background-color: #dfe0e0;
+    background-color: #dfe0e0;
     color: #808080;
 }
+
+
+/*  checkbox styling */
+
+input[type=checkbox] {
+    display: none;
+}
+/* to hide the checkbox itself */
+
+
+
+
+input[type=checkbox] + label:before {
+    display: inline-block;
+}
+
+input[type=checkbox] + label:before {
+    content:url(../images/empty_checkbox.svg);
+
+}
+/* unchecked icon */
+
+input[type=checkbox] + label:before {
+    letter-spacing: 10px;
+}
+/* space between checkbox and label */
+
+
+
+input[type=checkbox]:checked + label:before {
+    content:url(../images/checked_checkbox.svg);
+}
+/* checked icon */
+
+input[type=checkbox]:checked + label:before {
+    letter-spacing: 5px;
+}
+/* allow space for check mark */
