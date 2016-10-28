@@ -357,5 +357,6 @@ td{
 }
 
 .customNgDisabled {
-  background-color: #808080; 
+  background-color: #dfe0e0;
+    color: #808080;
 }
