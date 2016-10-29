@@ -17,7 +17,7 @@ textarea {
 }
 
 input, textarea {
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 5px;
     border: 2px solid black;
@@ -31,23 +31,23 @@ input {
 input:disabled {
     border: none;
     color: black;
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 18px;
 }
 
 textarea {
-    margin: 10px 0 20px 0;
+    margin: 10px auto 20px auto;
 }
 
 textarea:disabled {
     border: 2px #888888 solid;
     color: black;
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 18px;
 }
 
 label {
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 18px;
     margin-left: 20px;
     width: 225px;
@@ -62,9 +62,14 @@ label {
 }
 
 h1 {
-    font-family: Aleo;
+    font-family: Aleo, serif;
     font-size: 24px;
     margin-left: 5px;
+}
+
+fieldset h1 {
+    text-align: left;
+    margin-left: 20px;
 }
 
 fieldset {
@@ -81,8 +86,8 @@ fieldset {
 .edit {
     position: absolute;
     width: 40px;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
 }
 
 label {
@@ -95,6 +100,29 @@ label {
     margin-top: 15px;
 }
 
+#recieved-date {
+    width: 130px;
+}
+
+#select-country {
+    margin-top: 10px;
+}
+
+#accession button.more-calendar {
+    position: relative;
+    opacity: 1;
+    width: 200px;
+    display: inline;
+    margin-top: 0;
+    text-align: left;
+}
+
+.more-calendar input {
+    width: auto;
+    margin: 0;
+    font-size: 16px;
+    padding: 0;
+}
 
 /*VITALS*/
 
@@ -121,7 +149,7 @@ label {
 }
 
 #vitals input {
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 18px;
     padding: 5px;
     border: none;
@@ -151,7 +179,7 @@ label {
 }
 
 input[type="checkbox"] {
-    margin: 5px 10px 5px 0px;
+    margin: 5px 10px 5px 0;
     width: auto;
     transform: translateY(-25%)
 }
@@ -164,20 +192,64 @@ input[type="checkbox"] {
 /*PHOTOS*/
 
 #photos label {
-    margin: 10px 0 10px px;
-    width: 500px;
-    display: inline-block;
+    margin: 0 0 10px 0;
+    width: 60%;
+    display: block;
     vertical-align: middle;
 }
 
 .thumbnail {
-    width: 50px;
+    width: 20%;
+    max-width: 120px;
     height: auto;
-    margin: 10px 0px 20px 30px;
+    margin: 20px 10px 20px 30px;
     display: inline-block;
     vertical-align: middle;
+    float: left;
 }
 
+.photos-buttons input, .photos-add-div input {
+    width: 100px;
+    border: none;
+    background: #808080;
+    color: white;
+    border-radius: 8px;
+    padding: 15px 10px;
+    font-size: 14px;
+    margin: 0 10px 0 0;
+    display: inline-block;
+}
+
+.photos-buttons {
+    margin: 30px 10px 20px 0;
+}
+
+#photos-delete1, #photos-delete2 {
+    margin: 0 0 0 60px;
+}
+
+#photos {
+    margin: 20px auto 0px;
+    padding: 0 0 20px 0;
+}
+
+.photos-add-div input {
+    margin: 58px 0 0 0;
+}
+
+.photos-group {
+    overflow: auto;
+}
+
+.photos-selected {
+    background-color: #F3C467
+}
+
+
+
+
+
+/*GRAPH*/
 #graphsvg {
     width: 90%;
     height: auto;
@@ -186,7 +258,6 @@ input[type="checkbox"] {
 #calender_image {
     height: 30px;
     width: auto;
-    top: 5px;
 }
 
 .selectedCountry {

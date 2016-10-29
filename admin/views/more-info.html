@@ -4,7 +4,7 @@
         <fieldset id="vitals">
 
 
-            <img src="{{plant.image}}" alt="" id="thumbnail"  ng-click="changeProfilePicture()">
+            <img src="{{plant.image}}" alt="plant picture" id="thumbnail"  ng-click="changeProfilePicture()">
 
 
             <button class="edit" ng-click="editCritical()" ng-hide="createNew">
@@ -52,7 +52,7 @@
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
             <label>Country:</label>
 
-            <select ng-model="selectedCountry" ng-disabled="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)">
+            <select id="select-country" ng-model="selectedCountry" ng-disabled="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)">
                 <option disabled selected value>
                     -- select an option --
                 </option>
@@ -78,9 +78,10 @@
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.accesssion">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.accesssion">
             </button>
-            <label>Recieved:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
-            <label>Recieved Date:</label>
-            <button class="calendar"><img src="images/calendaricon.svg" alt="" id="calender_image">
+            <label>Received:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
+            <label id="recieved-date">Received Date:</label>
+            <button class="more-calendar">
+                <img src="images/calendaricon.svg" alt="" id="calender_image">
                 <input type="date" id="startDateBloom" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"/>
             </button>
             <br/>
@@ -92,7 +93,6 @@
             <button class="edit" ng-click="editDescription()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.description">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.description">
-
             </button>
             <label></label>
             <textarea type="textarea" placeholder="More description of plant" ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
@@ -132,7 +132,7 @@
             <label for="check1" class="labelfirst">Inactive</label>
             <input id="check1" type="checkbox">
             <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                <input type="date" id="sprayedDate" ng-model="plant.inactive_date"></input>
+                <input type="date" id="sprayedDate" ng-model="plant.inactive_date">
             </button>
             <output>{{ plant.inactive_date | date }}</output>
             <br/>
@@ -140,7 +140,7 @@
             <label for="check2">Dead</label>
             <input id="check2" type="checkbox">
             <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                <input type="date" id="sprayedDate" ng-model="plant.inactive_date"></input>
+                <input type="date" id="sprayedDate" ng-model="plant.inactive_date">
             </button>
             <output>{{ plant.dead_date | date }}</output>
             <br/>
@@ -157,17 +157,34 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.photos">
             </button>
 
+            <div class="photos-group">
             <img src="http://placekitten.com/50/50" alt="" class="thumbnail">
-            <label for="">File_Name_for_acienthera_234</label>
-            <input type="button" value="Habitat" ng-hide="!editPlant.photos">
-            <input type="button" value="Other" ng-hide="!editPlant.photos">
+            <div class="photos-buttons">
+                <label for="thumbnail">File_Name_for_acienthera_234</label>
+                <input type="button" value="Profile" ng-hide="!editPlant.photos">
+                <input type="button" value="Habitat" ng-hide="!editPlant.photos">
+                <input type="button" value="Other" ng-hide="!editPlant.photos">
+                <input type="button" value="Delete" ng-hide="!editPlant.photos" id="photos-delete1">
+            </div>
+            </div>
 
-            <br/>
-
+            <div class="photos-group">
             <img src="http://placebear.com/50/50" alt="" class="thumbnail">
-            <label for="">File_Name_for_acienthera_567</label>
-            <input type="button" value="Habitat" ng-hide="!editPlant.photos">
-            <input type="button" value="Other" ng-hide="!editPlant.photos">
+            <div class="photos-buttons">
+                <label>File_Name_for_acienthera_567</label>
+                <input type="button" value="Habitat" ng-hide="!editPlant.photos" class="photos-selected">
+                <input type="button" value="Other" ng-hide="!editPlant.photos">
+                <input type="button" value="Delete" ng-hide="!editPlant.photos" id="photos-delete2">
+            </div>
+            </div>
+
+            <div class="photos-group">
+            <div class="photos-add-div" ng-hide="!editPlant.photos">
+                <img src="images/orchid_favicon_32px.png" alt="Add Photo" id="photos-add" class="thumbnail">
+                <input type="button" value="Add Photo">
+            </div>
+            </div>
+
 
         </fieldset>
     </form>
@@ -179,10 +196,9 @@
             This is where the blooming graph or something like that is going to be</p>
     </fieldset>
 
-    <fieldset id="graph">
+    <fieldset>
         <h1>Save All</h1>
         <input type="button" ng-click="saveAll()" value="save" ng-hide="!editPlant.save">
-
     </fieldset>
 
     <section>
