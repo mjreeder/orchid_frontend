@@ -48,7 +48,7 @@
             </button>
             <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
-            <label>Country:</label>
+            <label id="select-country">Country:</label>
 
             <select ng-model="selectedCountry" ng-disabled="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)">
                 <option disabled selected value>
@@ -76,12 +76,12 @@
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.accesssion">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.accesssion">
             </button>
-            <label>Recieved:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
-            <label>Recieved Date:</label>
-            <button class="calendar"><img src="images/calendaricon.svg" alt="" id="calender_image">
+            <label>Received:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
+            <label id="received-date" >Received Date:</label>
+            <button class="more-calendar">
+                <!--<img src="images/calendaricon.svg" alt="" id="calender_image">-->
                 <input type="date" id="startDateBloom" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"/>
             </button>
-            <br/>
             <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
         </fieldset>
 
@@ -92,23 +92,23 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
             </button>
 
-            <button class="add" type="button" ng-click="addPlantSplit()" ng-disabled="editPlant.split && !createNew">New planna split</button>
+            <button class="split-add" type="button" ng-click="addPlantSplit()" ng-disabled="editPlant.split && !createNew">New planna split</button>
             <div class="grid2x2" ng-repeat="plantSplit in splits">
                 <div>
-                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew"></input>
+                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
                 </div>
                 <div>
-                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew"></input>
+                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
                 </div>
                 <textarea type="textarea" placeholder="More info on plant split" ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
             </div>
 
             <div class="grid2x2" ng-repeat="plantSplit in newPlantSplits">
                 <div>
-                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew"></input>
+                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
                 </div>
                 <div>
-                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew"></input>
+                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
                 </div>
                 <textarea type="textarea" placeholder="More info on plant split" ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
             </div>
@@ -123,7 +123,7 @@
 
             </button>
             <label></label>
-            <textarea type="textarea" placeholder="More description of plant" ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
+            <textarea type="textarea" placeholder="Add a description of the plant. The public will be able to see this." ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
         </fieldset>
 
         <fieldset id="hybrid">
@@ -157,24 +157,39 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.inactive">
             </button>
 
-            <label for="check1" class="labelfirst">Inactive</label>
-            <input id="check1" type="checkbox">
-            <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                <input type="date" id="sprayedDate" ng-model="plant.inactive_date"></input>
+            <label for="inactivedate" class="labelfirst">Inactive:</label>
+            <button class="more-calendar">
+                <input type="date" id="inactivedate" ng-model="plant.inactive_date">
             </button>
-            <output>{{ plant.inactive_date | date }}</output>
-            <br/>
 
-            <label for="check2">Dead</label>
-            <input id="check2" type="checkbox">
-            <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                <input type="date" id="sprayedDate" ng-model="plant.inactive_date"></input>
+            <label for="deaddate">Dead:</label>
+            <button class="more-calendar">
+                <input type="date" id="deaddate" ng-model="plant.inactive_date">
             </button>
             <output>{{ plant.dead_date | date }}</output>
-            <br/>
 
-            <!--            <label for="inactivecomment">Comment:</label>-->
             <textarea type="textarea" id="inactivecomment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>
+
+
+
+            <!--<label for="inactivedate" class="labelfirst">Inactive:</label>-->
+            <!--&lt;!&ndash;<input id="check1" type="checkbox">&ndash;&gt;-->
+            <!--<button class="more-calendar">-->
+                <!--&lt;!&ndash;<img src="images/calendaricon.svg" alt="">&ndash;&gt;-->
+                <!--<input type="date" id="inactivedate" ng-model="plant.inactive_date">-->
+            <!--</button>-->
+            <!--&lt;!&ndash;<output>{{ plant.inactive_date | date }}</output>&ndash;&gt;-->
+
+            <!--<label for="deaddate">Dead:</label>-->
+            <!--&lt;!&ndash;<input id="check2" type="checkbox">&ndash;&gt;-->
+            <!--<button class="more-calendar">-->
+                <!--&lt;!&ndash;<img src="images/calendaricon.svg" alt="">&ndash;&gt;-->
+                <!--<input type="date" id="deaddate" ng-model="plant.inactive_date">-->
+            <!--</button>-->
+            <!--<output>{{ plant.dead_date | date }}</output>-->
+            <!---->
+            <!--&lt;!&ndash;            <label for="inactivecomment">Comment:</label>&ndash;&gt;-->
+            <!--<textarea type="textarea" id="inactivecomment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>-->
         </fieldset>
 
         <fieldset id="photos">
@@ -208,25 +223,47 @@
                     <input type="button" value="Add Photo">
                 </div>
             </div>
-
-
-
-
-
         </fieldset>
     </form>
 
     <fieldset id="graph">
-        <h1>Blooming Graph</h1>
-        <!--<img src="images/floweringchart.svg" alt="" id="graphsvg">-->
-        <p>
-            This is where the blooming graph or something like that is going to be</p>
+        <h1>Blooming</h1>
+
+            <div class="top-margin">
+                <label>Blooming:</label>
+                <button class="startnewbloom" ng-click="startNewBloom()">Start New Bloom</button>
+
+            </div>
+
+            <div class="subsection">
+
+                <label>
+                    Start of Bloom:</label>
+                <button ng-click="blooming_start_date = today" class="today" ng-disabled="startNewBloomTodayDisable" ng-class="{customNgDisabled: startNewBloomTodayDisable}">Today</button>
+                <button class="calendar"><img src="images/calendaricon.svg" alt="">
+                    <input type="date" id="startDateBloom" ng-model="blooming_start_date"/>
+                </button>
+                <output>{{ blooming_start_date | date }}</output>
+            </div>
+
+            <div class="subsection">
+                <label>End of Bloom:</label>
+                <button ng-click="blooming_end_date = today" class="today" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}">Today</button>
+                <button class="calendar"><img src="images/calendaricon.svg" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}" alt="">
+                    <input type="date" id="endDateBloom" ng-model="blooming_end_date"/>
+                </button>
+
+                <output>{{ blooming_end_date | date }}</output>
+
+                <div class="top-margin">
+                    <textarea placeholder="Comment here about blooming." name="comments" cols="70" rows="4" ng-model="bloomingComment_note"></textarea>
+                </div>
+            </div>
+        <p>This is where the blooming graph or something like that is going to be</p>
     </fieldset>
 
-    <fieldset id="graph">
-        <h1>Save All</h1>
-        <input type="button" ng-click="saveAll()" value="save" ng-hide="!editPlant.save">
-
+    <fieldset id="moreinfo-save">
+        <input type="button" ng-click="saveAll()" value="Save All" ng-hide="!editPlant.save">
     </fieldset>
 
     <section>
