@@ -35,5 +35,18 @@ app.factory('TagFactory', function($http, $rootScope) {
         });
     }
 
+    data.deactivateTag = function(tag){
+      return $http({
+          method: "PUT",
+          url: baseUrl + '/deactive',
+          data: {
+              "plant_id": tag.plantId,
+              "note": tag.note,
+              "session_id": $rootScope.userSessionId,
+              "session_key": $rootScope.userSessionKey
+          }
+      });
+    }
+
     return data;
 });

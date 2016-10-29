@@ -2,16 +2,20 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     $scope.plant = {};
     $scope.health_condition = "";
+    $scope.flagWasDisabled = false;
+    $scope.createBloomPressed = false;
+    $scope.startNewBloomTodayDisable = true;
 
     $scope.startNewBloom = function(){
       $scope.blooming_start_date = $scope.today;
       $scope.blooming_end_date = null;
       $scope.disableEndBloom = true;
+      $scope.createBloomPressed = true;
+      $scope.startNewBloomTodayDisable = false;
     }
 
     $scope.$on('current-plant', function(event, data){
       destroy();
-      console.log(data);
       $scope.plant = data;
       concatObjects(data, 'plant');
       init();
@@ -20,6 +24,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var destroy = function(){
       cleanPrefixes();
       $scope.disableEndBloom = false;
+      $scope.flagWasDisabled = false;
+      $scope.createBloomPressed = false;
+      $scope.startNewBloomTodayDisable = true;
     }
 
     var cleanPrefixes = function(){
@@ -61,7 +68,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleBloom = function() {
       var data = prepareForFactory('blooming');
-      if(objectIsNew('blooming')){
+      if(objectIsNew('blooming') && $scope.createBloomPressed){
         BloomingFactory.createBloom(data).then(function(){})
       } else {
         BloomingFactory.updateBloom(data).then(function(){})
@@ -69,6 +76,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var bloomDateIsValid = function() {
+      if($scope.blooming_end_date == null){
+        return true;
+      }
       var start = moment($scope.blooming_start_date);
       var end = moment($scope.blooming_end_date);
       var startYearDate = start.dayOfYear();
@@ -111,7 +121,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       if(objectIsNew('bloomingComment')){
         Bloom_CommentFactory.createBloom_Comment(data).then(function(){})
       } else {
-        Bloom_CommentFactory.updatebloom_Comment(data).then(function(){})
+        Bloom_CommentFactory.updateBloom_Comment(data).then(function(){})
       }
     }
 
@@ -153,13 +163,16 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleTag = function(){
       var data = prepareForFactory('flag');
-      if(!$scope.flagged){
+      if(!$scope.flagged && $scope.flagWasDisabled){
+        TagFactory.deactivateTag(data).then(function(){})
+      } else if(!$scope.flagged){
         return;
-      }
-      if(objectIsNew('flag')){
-        TagFactory.createTag(data).then(function(){})
       } else {
-        TagFactory.updateTag(data).then(function(){})
+        if(objectIsNew('flag')){
+          TagFactory.createTag(data).then(function(){})
+        } else {
+          TagFactory.updateTag(data).then(function(){})
+        }
       }
     }
 
@@ -206,11 +219,20 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           data.end_date = null;
         }
         if(data.end_date){
-          console.log("end date");
           data = formatTimeStamp('end_date', data);
         }
         concatObjects(data, 'blooming');
+        setTodayEndBloomState();
+        disableNewBloomToday();
       })
+    }
+
+    var disableNewBloomToday = function(){
+      if(objectIsNew('blooming')){
+        $scope.startNewBloomTodayDisable = true;
+      } else {
+        $scope.startNewBloomTodayDisable = false;
+      }
     }
 
     var handleSprayedInit = function(){
@@ -232,7 +254,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleHealthInit = function(){
       HealthFactory.getHealthBtPlantID($scope.plant.id).then(function(data){
         var lastComment = getLastComment(data);
-        console.log(lastComment);
         lastComment = formatTimeStamp('timestamp', lastComment);
         concatObjects(lastComment, 'health');
       })
@@ -241,7 +262,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleTagInit = function(){
       TagFactory.getPestByPlantID($scope.plant.id).then(function(data){
         data = data.data.data;
-        console.log(data.active);
         if(data.active == 1){
           $scope.flagged = true;
         }
@@ -306,6 +326,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var stringContains = function(string, prefix){
+      prefix += "_"
       if(string.indexOf(prefix) !== -1){
         return true;
       } else {
@@ -316,6 +337,18 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var removePrefix = function(string){
       var index = string.indexOf('_');
       return string.substring(index + 1, string.length);
+    }
+
+    var setTodayEndBloomState = function(){
+      var startDate = moment($scope.blooming_start_date);
+      var today = moment();
+      if((startDate.dayOfYear() == today.dayOfYear()) && (today.year() == startDate.year())){
+        $scope.disableEndBloom = true;
+      }
+    }
+
+    $scope.disableFlag = function(){
+      $scope.flagWasDisabled = true;
     }
 
 });

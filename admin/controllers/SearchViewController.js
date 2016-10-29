@@ -1,7 +1,7 @@
 app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $location, PlantsFactory, classificationLinkFactory) {
-    $scope.plantKeys = [];
-    $scope.displayAttributes = [];
+    var displayAttributes = [];
     var currentPage = 1;
+    var currentAlpha = 'a';
 
     $scope.getPlantsBySearch = function(searchItem) {
         // if the search box goes to empty, give default view
@@ -11,7 +11,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
             return;
         }
 
-        PlantsFactory.getPlantBySearch(searchItem, currentPage).then(function(response) {
+        PlantsFactory.getPlantBySearch(searchItem, 1).then(function(response) {
             $scope.plants = placePlantAttributes(response);
 
         });
@@ -20,12 +20,23 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
     // loop over the plants array, and for each plant change the visibility of the
     // attribute that was checked
     $scope.editFilterDisplay = function(key) {
-      // console.log(varb, plant);
+      // add key to the displayAttributes list
+      if(displayAttributes.indexOf(key) == -1){
+        displayAttributes.push(key);
+      }
+      else{
+        // remove from displayAttributes list
+        var index = displayAttributes.indexOf(key);
+        displayAttributes.splice(index, 1);
+      }
+
         for (var i = 0; i < $scope.plants.length; i++) {
             for (var j = 0; j < $scope.plants[i].length; j++) {
                 if ($scope.plants[i][j].key == key) {
                     if ($scope.plants[i][j].isDisplayed == false) {
                         $scope.plants[i][j].isDisplayed = true;
+
+
                     } else {
                         $scope.plants[i][j].isDisplayed = false;
                     }
@@ -47,7 +58,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
     // each attribute is an object that contains the display name:key
     // the value:val and isDisplayed
     function getPaginatedPlants() {
-        PlantsFactory.getPaginatedPlants('a', 1).then(function(response) {
+        PlantsFactory.getPaginatedPlants(currentAlpha, currentPage).then(function(response) {
             $scope.plants = placePlantAttributes(response);
         });
     }
@@ -59,8 +70,8 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
           var attributes = Object.keys(response.data.data[i]);
           for (var j = 0; j < attributes.length; j++) {
               var val = attributes[j];
-              //default displays
-              if (attributes[j] == 'accession_number' || attributes[j] == 'name') {
+              //default displays or if key is in the displayAttributes
+              if (attributes[j] == 'accession_number' || attributes[j] == 'name' || displayAttributes.indexOf(attributes[j]) !== -1) {
                   var attribute = {
                       'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
                       'val': response.data.data[i][val],

@@ -17,11 +17,20 @@ textarea {
 }
 
 input, textarea {
-    font-family: Raleway, sans-serif;
+    font-family: Raleway;
     font-size: 14px;
     padding: 5px;
     border: 2px solid black;
 }
+
+.add {
+    position: absolute;
+    width: 40px;
+    top: 75px;
+    right: 0px
+}
+
+
 
 input {
     margin-top: 10px;
@@ -31,23 +40,23 @@ input {
 input:disabled {
     border: none;
     color: black;
-    font-family: Raleway, sans-serif;
+    font-family: Raleway;
     font-size: 18px;
 }
 
 textarea {
-    margin: 10px auto 20px auto;
+    margin: 10px 0 20px 0;
 }
 
 textarea:disabled {
     border: 2px #888888 solid;
     color: black;
-    font-family: Raleway, sans-serif;
+    font-family: Raleway;
     font-size: 18px;
 }
 
 label {
-    font-family: Raleway, sans-serif;
+    font-family: Raleway;
     font-size: 18px;
     margin-left: 20px;
     width: 225px;
@@ -62,14 +71,9 @@ label {
 }
 
 h1 {
-    font-family: Aleo, serif;
+    font-family: Aleo;
     font-size: 24px;
     margin-left: 5px;
-}
-
-fieldset h1 {
-    text-align: left;
-    margin-left: 20px;
 }
 
 fieldset {
@@ -78,7 +82,7 @@ fieldset {
     max-width: 800px;
 }
 
-#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos, #graph {
+#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos, #graph, #split {
     position: relative;
     overflow: auto;
 }
@@ -86,8 +90,15 @@ fieldset {
 .edit {
     position: absolute;
     width: 40px;
-    top: 0;
-    right: 0;
+    top: 0px;
+    right: 0px;
+}
+
+.add {
+    position: absolute;
+    width: 40px;
+    top: 75px;
+    right: 0px
 }
 
 label {
@@ -124,6 +135,8 @@ label {
     padding: 0;
 }
 
+
+
 /*VITALS*/
 
 #vitals {
@@ -149,7 +162,7 @@ label {
 }
 
 #vitals input {
-    font-family: Raleway, sans-serif;
+    font-family: Raleway;
     font-size: 18px;
     padding: 5px;
     border: none;
@@ -179,7 +192,7 @@ label {
 }
 
 input[type="checkbox"] {
-    margin: 5px 10px 5px 0;
+    margin: 5px 10px 5px 0px;
     width: auto;
     transform: translateY(-25%)
 }
@@ -192,20 +205,24 @@ input[type="checkbox"] {
 /*PHOTOS*/
 
 #photos label {
-    margin: 0 0 10px 0;
-    width: 60%;
+    margin: 10px 0 10px;
+    width: 500px;
     display: block;
     vertical-align: middle;
 }
 
 .thumbnail {
-    width: 20%;
-    max-width: 120px;
+    width: 50px;
     height: auto;
-    margin: 20px 10px 20px 30px;
+    margin: 10px 0px 20px 30px;
     display: inline-block;
     vertical-align: middle;
+
+    width: 20%;
+    max-width: 120px;
+    margin: 20px 10px 20px 30px;
     float: left;
+
 }
 
 .photos-buttons input, .photos-add-div input {
@@ -249,7 +266,12 @@ input[type="checkbox"] {
 
 
 
-/*GRAPH*/
+
+
+#split_date {
+    /*margin-left: 158px;*/
+}
+
 #graphsvg {
     width: 90%;
     height: auto;
@@ -258,26 +280,30 @@ input[type="checkbox"] {
 #calender_image {
     height: 30px;
     width: auto;
+    top: 5px;
 }
 
 .selectedCountry {
-  padding-top: 11px;
+    padding-top: 11px;
 }
+
 .grid2x2 {
-  min-height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  margin-left: 30px;
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-left: 30px;
 }
-.grid2x2 > div {
-  display: flex;
-  flex-basis: calc(50% - 40px);
-  justify-content: center;
-  flex-direction: column;
+
+.grid2x2>div {
+    display: flex;
+    flex-basis: calc(50% - 40px);
+    justify-content: center;
+    flex-direction: column;
 }
-.grid2x2 > div > div {
-  display: flex;
-  /*justify-content: center;*/
-  flex-direction: row;
+
+.grid2x2>div>div {
+    display: flex;
+    /*justify-content: center;*/
+    flex-direction: row;
 }
