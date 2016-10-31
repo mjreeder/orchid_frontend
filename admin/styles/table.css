@@ -286,9 +286,10 @@ td {
     font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 10px 15px;
-    margin: 5px 15px;
+    margin: 5px 10px;
     border-radius: 5px;
     display: inline-block;
+    width: 67px;
 }
 
 .today {

@@ -1,29 +1,24 @@
 <section class="flower-popup" ng-controller="PhotoViewController">
 
 
-    <form class="photo-popup">
-        <button id="close" ng-click="closePopUp()"><img src="../images/x.svg" alt=""></button>
+    <form class="add-photo-popup">
 
-        <h1>Picture Choser</h1>
-        <p>Choose the picture that you would like selected for all plants with this accession number: </p>
-        <div id="">
-
-                <h1>{{plant.accession_number}}</h1>
-
+        <div class="center">
+            <h1>{{ plant_accession_number }}</h1>
         </div>
+        <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
 
-        <img src="{{chosenPicrture}}" />
 
-        <div id="#">
+        <h2>Add this photo:</h2>
+        <img src=images/no-photo.svg" alt="">
 
-            <ul ng-repeat="photo in plantsURL">
-                <button ng-click="clickedPhoto(photo)">
-                     <img src="{{photo.url}}" />
-                </button>
-            </ul>
+        <h2>Select category:</h2>
+        <p>This can be changed later.</p>
+
+        <div class="photos-buttons">
+            <input type="button" value="Habitat" ng-hide="!editPlant.photos">
+            <input type="button" value="Other" ng-hide="!editPlant.photos">
         </div>
-
-        <button ng-click="submitChange()">Submit</button>
 
 
     </form>

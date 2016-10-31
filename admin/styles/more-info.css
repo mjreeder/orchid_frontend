@@ -6,7 +6,7 @@ a {
     text-decoration: none;
 }
 
-#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos, #graph, #split {
+#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos, #graph, #split, #weekly-checkup {
     position: relative;
     overflow: auto;
 }
@@ -252,6 +252,10 @@ input[type="checkbox"] {
     height: auto;
 }
 
+#graph .startnewbloom, #graph output {
+    display: block;
+}
+
 #calender_image {
     height: 30px;
     width: auto;
@@ -301,3 +305,32 @@ input[type="checkbox"] {
 #moreinfo-save {
     border: none;
 }
+
+
+/*WEEKLY CHECKUP*/
+#weekly-checkup #current-health {
+    margin: 0;
+}
+
+#weekly-checkup-health {
+    width: 225px;
+}
+
+#sprayed-for-pests {
+    width: 160px;
+}
+
+
+
+
+
+
+/*ADD PHOTO POPUP*/
+
+
+
+
+
+
+
+
