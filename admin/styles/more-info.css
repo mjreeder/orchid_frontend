@@ -6,6 +6,11 @@ a {
     text-decoration: none;
 }
 
+#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos, #graph, #split, #weekly-checkup {
+    position: relative;
+    overflow: auto;
+}
+
 textarea {
     resize: vertical;
     color: #b3b3b3;
@@ -13,11 +18,11 @@ textarea {
     height: 50px;
     display: block;
     box-sizing: border-box;
-    margin: auto;
+    margin: 10px auto 20px ;
 }
 
 input, textarea {
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 5px;
     border: 2px solid black;
@@ -27,10 +32,8 @@ input, textarea {
     position: absolute;
     width: 40px;
     top: 75px;
-    right: 0px
+    right: 0;
 }
-
-
 
 input {
     margin-top: 10px;
@@ -40,26 +43,22 @@ input {
 input:disabled {
     border: none;
     color: black;
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 18px;
-}
-
-textarea {
-    margin: 10px 0 20px 0;
 }
 
 textarea:disabled {
     border: 2px #888888 solid;
-    color: black;
-    font-family: Raleway;
-    font-size: 18px;
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
 }
 
 label {
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 18px;
+    display: inline-block;
+    width: 125px;
     margin-left: 20px;
-    width: 225px;
 }
 
 .labelfirst {
@@ -70,54 +69,59 @@ label {
     margin-bottom: 30px;
 }
 
-h1 {
-    font-family: Aleo;
+fieldset h1 {
+    font-family: Aleo, serif;
     font-size: 24px;
     margin-left: 5px;
+    text-align: left;
 }
 
 fieldset {
-    border-bottom: 5px solid #888888;
+    border-bottom: 5px solid #808080;
     margin: 20px auto;
     max-width: 800px;
-}
-
-#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos, #graph, #split {
-    position: relative;
-    overflow: auto;
 }
 
 .edit {
     position: absolute;
     width: 40px;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
 }
 
-.add {
+.split-add {
     position: absolute;
     width: 40px;
     top: 75px;
-    right: 0px
+    right: 0;
 }
 
-label {
-    display: inline-block;
-    width: 125px;
-    margin-left: 20px;
+#select-country {
+    margin-top: 10px;
 }
 
-#commentmargin {
-    margin-top: 15px;
+#accession button.more-calendar {
+    position: relative;
+    opacity: 1;
+    width: 200px;
+    display: inline;
+    margin-top: 0;
+    text-align: left;
+}
+
+.more-calendar input {
+    width: auto;
+    margin: 0;
+    font-size: 18px;
+    padding: 0;
+}
+
+#received-date {
+    width: 130px;
 }
 
 
 /*VITALS*/
-
-#vitals {
-    overflow: auto;
-    position: relative;
-}
 
 #thumbnail {
     width: 25%;
@@ -137,7 +141,7 @@ label {
 }
 
 #vitals input {
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 18px;
     padding: 5px;
     border: none;
@@ -163,36 +167,81 @@ label {
 
 #inactive label {
     width: 75px;
-    padding: 10px;
+    padding: 10px 10px 10px 0;
 }
 
 input[type="checkbox"] {
-    margin: 5px 10px 5px 0px;
+    margin: 5px 10px 5px 0;
     width: auto;
     transform: translateY(-25%)
 }
 
-#inactive p {
-    display: inline;
+#inactive input {
+    border: none;
 }
 
 
 /*PHOTOS*/
-
 #photos label {
-    margin: 10px 0 10px px;
+    margin: 10px 0 10px;
     width: 500px;
-    display: inline-block;
+    display: block;
     vertical-align: middle;
 }
 
 .thumbnail {
-    width: 50px;
     height: auto;
-    margin: 10px 0px 20px 30px;
     display: inline-block;
     vertical-align: middle;
+    width: 20%;
+    max-width: 120px;
+    margin: 20px 20px 20px 20px;
+    float: left;
+
 }
+
+.photos-buttons input, .photos-add-div input {
+    width: 100px;
+    border: none;
+    background: #808080;
+    color: white;
+    border-radius: 8px;
+    padding: 15px 10px;
+    font-size: 14px;
+    margin: 0 10px 0 0;
+    display: inline-block;
+}
+
+.photos-buttons {
+    margin: 30px 10px 20px 0;
+}
+
+#photos-delete1, #photos-delete2 {
+    margin: 0 0 0 60px;
+}
+
+#photos {
+    margin: 20px auto 0;
+    padding: 0 0 20px 0;
+}
+
+.photos-add-div input {
+    margin: 58px 0 0 0;
+}
+
+.photos-group {
+    overflow: auto;
+}
+
+.photos-selected {
+    background-color: #F3C467
+}
+
+
+
+
+
+
 
 #split_date {
     /*margin-left: 158px;*/
@@ -201,6 +250,10 @@ input[type="checkbox"] {
 #graphsvg {
     width: 90%;
     height: auto;
+}
+
+#graph .startnewbloom, #graph output {
+    display: block;
 }
 
 #calender_image {
@@ -233,3 +286,51 @@ input[type="checkbox"] {
     /*justify-content: center;*/
     flex-direction: row;
 }
+
+
+/*SAVE*/
+#moreinfo-save input {
+    width: 100px;
+    border: none;
+    background: black;
+    color: white;
+    border-radius: 8px;
+    padding: 15px 10px;
+    font-size: 14px;
+    margin: 0 20px 0 0;
+    display: inline-block;
+    float: right;
+}
+
+#moreinfo-save {
+    border: none;
+}
+
+
+/*WEEKLY CHECKUP*/
+#weekly-checkup #current-health {
+    margin: 0;
+}
+
+#weekly-checkup-health {
+    width: 225px;
+}
+
+#sprayed-for-pests {
+    width: 160px;
+}
+
+
+
+
+
+
+/*ADD PHOTO POPUP*/
+
+
+
+
+
+
+
+
