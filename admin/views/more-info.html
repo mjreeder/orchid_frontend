@@ -202,8 +202,10 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.photos">
             </button>
 
-            <div class="photos-group">
-                <img src="http://placekitten.com/50/50" alt="" class="thumbnail">
+            <!--<h1 ng-repeat="x in plant_id_url">{{x.url}}</h1>-->
+
+            <div class="photos-group" ng-repeat="photo in plant_id_url">
+                <img src="{{photo.url}}" alt="" class="thumbnail">
                 <div class="photos-buttons">
                     <label for="thumbnail">File_Name_for_acienthera_234</label>
                     <input type="button" value="Profile" ng-hide="editPlant.photos">
@@ -213,16 +215,16 @@
                 </div>
             </div>
 
-            <div class="photos-group">
-                <img src="http://placebear.com/50/50" alt="" class="thumbnail">
-                <div class="photos-buttons">
-                    <label>File_Name_for_acienthera_567</label>
-                    <input type="button" value="Profile" ng-hide="editPlant.photos" class="photos-selected">
-                    <input type="button" value="Habitat" ng-hide="editPlant.photos">
-                    <input type="button" value="Other" ng-hide="editPlant.photos">
-                    <input type="button" value="Delete" ng-hide="editPlant.photos" id="photos-delete2">
-                </div>
-            </div>
+            <!--<div class="photos-group">-->
+                <!--<img src="http://placebear.com/50/50" alt="" class="thumbnail">-->
+                <!--<div class="photos-buttons">-->
+                    <!--<label>File_Name_for_acienthera_567</label>-->
+                    <!--<input type="button" value="Profile" ng-hide="editPlant.photos" class="photos-selected">-->
+                    <!--<input type="button" value="Habitat" ng-hide="editPlant.photos">-->
+                    <!--<input type="button" value="Other" ng-hide="editPlant.photos">-->
+                    <!--<input type="button" value="Delete" ng-hide="editPlant.photos" id="photos-delete2">-->
+                <!--</div>-->
+            <!--</div>-->
 
             <div class="photos-group">
                 <div class="photos-add-div" ng-hide="editPlant.photos">
