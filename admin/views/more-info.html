@@ -13,12 +13,11 @@
             <div>
                 <label><input type="text" ng-model="plant.accession_number" name="accession" ng-disabled="editPlant.critical && !createNew"></label>
                 <label id="location"><img src="images/location.svg" alt="Location">
-
                     <select ng-model="plant.locationName.name" ng-disabled="editPlant.critical && !createNew">
                         <option ng-repeat="table in Tables">{{table.name}}</option>
                     </select>
-
-                </label><br/>
+                </label>
+                <br/>
                 <label><input type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="editPlant.critical && !createNew"></label><br/>
                 <label><input type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label><br/>
             </div>
@@ -46,13 +45,15 @@
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.culture">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.culture">
             </button>
+
             <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
-            <label id="select-country">Country:</label>
 
+            <label id="select-country">Country:</label>
             <select ng-model="selectedCountry" ng-disabled="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)">
+                </br>
                 <option disabled selected value>
-                    -- select an option --
+                    Select countries
                 </option>
                 <option ng-repeat="country in allCountires">{{country.name}}</option>
             </select>
@@ -159,12 +160,12 @@
 
             <label for="inactivedate" class="labelfirst">Inactive:</label>
             <button class="more-calendar">
-                <input type="date" id="inactivedate" ng-model="plant.inactive_date">
+                <input type="date" id="inactivedate" ng-model="!plant.inactive_date">
             </button>
 
             <label for="deaddate">Dead:</label>
             <button class="more-calendar">
-                <input type="date" id="deaddate" ng-model="plant.inactive_date">
+                <input type="date" id="deaddate" ng-model="!plant.inactive_date">
             </button>
             <output>{{ plant.dead_date | date }}</output>
 

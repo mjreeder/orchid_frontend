@@ -1,12 +1,7 @@
-app.controller('TableViewController', function($route, CONFIG, $scope, $location, LocationFactory, PlantsFactory, $routeParams, $rootScope, TagFactory) {
+app.controller('TableViewController', function($route, CONFIG, $scope, $location, LocationFactory, PlantsFactory, $routeParams, $rootScope, TagFactory, VerifiedFactory) {
 
     var param1 = $routeParams.table_name;
 
-
-    $scope.id = 7;
-
-
-    $scope.lol = "hhh";
     LocationFactory.getTableNameFromID(param1).then(function(response) {
         //$scope.current_table_name = response.data.data.name;
         //console.log($scope.table_name.name);
@@ -14,6 +9,8 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
     $scope.showTable = false;
     $scope.plantsInTable = [];
+
+
 
 
     LocationFactory.checkTable(param1).then(function(response) {
@@ -47,27 +44,100 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                     $scope.showTable = true;
 
                     $scope.plantsInTable = response.data.data;
-                    formatVerification();
                     console.log($scope.plantsInTable);
+
+                    for (var i = 0; i < $scope.plantsInTable.length; i++) {
+
+                        $scope.plantsInTable[i].last_varified = "0000-00-00";
+
+                    }
+
+                    var promArray = [];
+
+
 
                     for (var i = 0; i < $scope.plantsInTable.length; i++) {
                         var plant = $scope.plantsInTable[i];
 
+
+                        console.log(plant.id);
+
+                        //UPDATING THE COLOR OF THE PLANTS
                         TagFactory.getPestByPlantID(plant.id).then(function(response) {
                             var tagResponse = response.data.data;
-                            //console.log(tagResponse);
-                            //console.log(tagResponse.plant_id);
+
 
                             for (var i = 0; i < $scope.plantsInTable.length; i++) {
                                 if ($scope.plantsInTable[i].id == tagResponse.plant_id) {
                                     $scope.plantsInTable[i].tagged = true;
                                     console.log($scope.plantsInTable[i]);
                                 }
+                                $scope.plantsInTable[i].addObeject = "value3";
+
                             }
 
                         });
 
+                        var prom = new Promise((resolve, reject) => {
+                                //GETTING THE VERIFIED RECORDS FOR ALL THE PLANTS
+                                VerifiedFactory.getLastVerifiedDate(plant.id).then(function (response){
+                                    var verifiedResponse = response.data.data;
+
+
+
+                                    resolve(verifiedResponse);
+
+                                },
+                            function (error){
+                                reject(error);
+                            });
+                        });
+
+                        promArray.push(prom);
                     }
+
+                    Promise.all(promArray).then(success => {
+                        //console.log("This is the data");
+                        //console.log(promArray);
+
+                        var updateList = [];
+                        console.log("we have some data");
+                        for (var i = 0; i < success.length; i++){
+                            if (success[i] != ""){
+                                var id = success[i][0].plant_id;
+                                console.log(id);
+                                updateList.push(success[i][0]);
+
+                            }
+                        }
+
+                console.log(updateList.length);
+
+                        for (var p = 0; p < updateList.length; p++){
+                            var id = updateList[p].plant_id;
+                            for (var t = 0; t < $scope.plantsInTable.length; t++){
+
+                                if (id == $scope.plantsInTable[t].id){
+                                    $scope.plantsInTable[t].last_varified = updateList[p].verified_date;
+                                    console.log($scope.plantsInTable[t]);
+                                }
+                            }
+                        }
+
+                for (var t = 0; t < $scope.plantsInTable.length; t++){
+
+                    if($scope.plantsInTable[t].last_varified == "0000-00-00"){
+                        $scope.plantsInTable[t].last_varified = "N/A";
+                    }
+                }
+
+                $scope.$apply();
+
+            }, error => {
+
+                    });
+
+
 
                 }
 
@@ -76,6 +146,8 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
             });
         }
     });
+
+
 
     var formatVerification = function(){
       for(var i = 0; i < $scope.plantsInTable.length; i++){
@@ -89,7 +161,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
         }
       }
       return $scope;
-    }
+    };
 
     var checkIfDateIsToday = function(dateString){
       var previousDay = moment(dateString).dayOfYear();
@@ -101,7 +173,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
       } else {
         return false;
       }
-    }
+    };
 
     $scope.movePlants = false;
 
@@ -109,9 +181,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
         console.log("hello");
         if ($scope.movePlants == false) {
             $scope.movePlants = true;
-
-
-
 
         } else {
             $scope.movePlants = false;
@@ -141,12 +210,15 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
 
     $scope.addVarified = function(plant) {
-      console.log(plant);
+        console.log("we are added the plants into the section");
+        console.log(plant.id);
+        for (var i = 0; i < $scope.addedPlants.length; i++){
+            if ($scope.addedPlants[i] == plant.id){
+                break;
+            }
+        }
 
-        PlantsFactory.updateVarifiedDate(plant.id).then(function (response) {
-          plant.last_varified = response.data.data.last_varified;
-        });
-
+        $scope.addedPlants[$scope.addedPlants.length] = plant;
     };
 
 
@@ -178,15 +250,22 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
 
     $scope.updateDates = function() {
+        console.log("WE ARE IN THE UPDATE SECTION");
         for (var i = 0; i < $scope.addedPlants.length; i++) {
-            console.log($scope.addedPlants[i]);
-            PlantsFactory.updateVarifiedDate($scope.addedPlants[i]).then(function(response) {
+            console.log($scope.addedPlants[i].id);
+            var information = {
+                plant_id: $scope.addedPlants[i].id
+            };
+            console.log(information);
 
+            VerifiedFactory.createVerified(information).then(function (response){
+                console.log(response);
             });
         }
-
         $route.reload();
     };
+
+
 
 
 
