@@ -11,7 +11,16 @@ a {
     overflow: auto;
 }
 
+input, textarea {
+    font-family: Raleway, sans-serif;
+    font-size: 18px;
+    padding: 5px;
+    border: 2px solid black;
+}
+
 textarea {
+    border: 2px solid #808080;
+    font-size: 16px;
     resize: vertical;
     color: #b3b3b3;
     width: 95%;
@@ -21,11 +30,8 @@ textarea {
     margin: 10px auto 20px ;
 }
 
-input, textarea {
-    font-family: Raleway, sans-serif;
-    font-size: 14px;
-    padding: 5px;
-    border: 2px solid black;
+input:focus {
+    outline: none;
 }
 
 .add {
@@ -48,10 +54,35 @@ input:disabled {
 }
 
 textarea:disabled {
-    border: 2px #888888 solid;
+    border: 2px #808080 solid;
     font-family: Raleway, sans-serif;
     font-size: 16px;
+    color: black;
 }
+
+#select-country {
+    margin-top: 10px;
+}
+
+select {
+    font-size: 18px;
+    color: black;
+    border: none;
+    background-color: white;
+}
+
+#culture select {
+    width: 200px;
+    margin: 15px 0;
+}
+
+select:disabled {
+    border: none;
+    background: none;
+    font-size: 18px;
+    color: black;
+}
+
 
 label {
     font-family: Raleway, sans-serif;
@@ -96,9 +127,6 @@ fieldset {
     right: 0;
 }
 
-#select-country {
-    margin-top: 10px;
-}
 
 #accession button.more-calendar {
     position: relative;
@@ -144,8 +172,12 @@ fieldset {
     font-family: Raleway, sans-serif;
     font-size: 18px;
     padding: 5px;
-    border: none;
+    border: 2px solid black;
     margin: 15px 0;
+}
+
+#vitals input:disabled {
+    border: none;
 }
 
 #location img {
@@ -154,13 +186,8 @@ fieldset {
     transform: translateY(5px);
 }
 
-#location select {
-    font-size: 18px;
-    color: black;
-    border: none;
-    background-color: white;
-    /*    transform: translateY(-25%)*/
-}
+
+
 
 
 /*INACTIVE*/
@@ -176,10 +203,13 @@ input[type="checkbox"] {
     transform: translateY(-25%)
 }
 
-#inactive input {
+#inactive input:disabled {
     border: none;
 }
 
+/*#inactive input:disabled {*/
+    /*border: 2px solid black; */
+/*}*/
 
 /*PHOTOS*/
 #photos label {
@@ -287,6 +317,19 @@ input[type="checkbox"] {
     flex-direction: row;
 }
 
+#culture .grid2x2 {
+    display: inline-block;
+}
+
+#culture .grid2x2>div {
+    display: inline-block;
+}
+
+#culture .grid2x2>div>div {
+    padding: 0 10px;
+    width: 100px;
+}
+
 
 /*SAVE*/
 #moreinfo-save input {
@@ -296,7 +339,7 @@ input[type="checkbox"] {
     color: white;
     border-radius: 8px;
     padding: 15px 10px;
-    font-size: 14px;
+    font-size: 18px;
     margin: 0 20px 0 0;
     display: inline-block;
     float: right;
