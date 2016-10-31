@@ -4,27 +4,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
     console.log(param1);
 
-
-
-
-    // THIS IS GETTING ALL THE COUNTRIES!!!
-    //
-    //    $scope.AllCountry = [];
-
-    //
-    //countryFactory.getCountries().then(function (response){
-    //    console.log(response.data.data);
-    //
-    //    countryArray = response.data.data;
-    //    for (i = 0; i < countryArray.length; i++){
-    //        var name = countryArray[i].name;
-    //        $scope.AllCountry.push(name);
-    //    }
-    //
-    //});
-
-
-
     $scope.PlantCountryNames = [];
     $scope.Tables = [];
     //$scope.createNew = false;
@@ -116,7 +95,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             genus: plantData.genus_name,
             species: plantData.species_name,
             variety: plantData.variety_name,
-            image: "http://placekitten.com/g/200/300",
+            image: "",
             dead_date: plantData.dead_date
         };
         //console.log("aaa");
@@ -152,6 +131,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
         //todo need to look at why this is not pulling in the correct image
         PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function(response) {
+            console.log(response.data.data);
             if (response.data.data != "") {
                 var data = response.data.data;
                 for (var i = 0; i < data.length; i++) {
