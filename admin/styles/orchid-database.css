@@ -1,17 +1,22 @@
 #allplantsh1 {
-    width: 33.333333333%;
+/*    width: 33.333333333%;*/
     font-family: 'Aleo';
     font-size: 30px;
     font-weight: 400;
     color: black;
-    padding: 30px;
+    margin-bottom: 40px; 
+    position: absolute; 
+    left: 30px; 
+    
+/*    padding: 30px;*/
+/*    text-align: left; */
     /*    margin-left: -90px; */
 }
 
 .searchbox-and-icon {
     width: 35%;
     position: absolute;
-    top: 200px;
+    top: 170px;
     right: 0px;
 }
 
@@ -98,7 +103,7 @@
     background-color: #DFE0E0;
     width: 100%;
     border-collapse: collapse;
-    width: 55%;
+    width: 100%;
     margin-right: 20px;
 }
 
@@ -182,9 +187,13 @@ th {
     /*    width: 35%;*/
 }
 
-.filter-options ul {
-    width: 100%;
+.filter-options ul li label {
+    display: inline-block; 
+    width: 80%; 
+    margin-left: 0px; 
+    
 }
+
 
 
 /*
@@ -219,6 +228,14 @@ button {
     float: left;
     width: 35%;
     margin-left: 20px;
+    margin-top: 90px; 
+}
+
+
+.table-right {
+  margin-top: 90px; 
+    float: right; 
+    width: 55%; 
 }
 
 
@@ -227,12 +244,12 @@ button {
 
 /* checkbox styling */
 
-input[type="checkbox"], input[type="search"]  {
+input[type="checkbox"] {
     position: absolute;
     opacity: 0;
 }
 
-label {
+ table label {
     width: 100%;
 }
 

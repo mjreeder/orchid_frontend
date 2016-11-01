@@ -403,11 +403,16 @@ td {
     color: #808080;
 }
 
-table label {
-    padding: 10px;
+#main-table tr td {
+    padding: none; 
 }
 
-
+#main-table table span {
+ width: 100%;    
+}
+#main-table td label {
+ margin-left: 0px;    
+}
 
 
 
@@ -426,18 +431,23 @@ table input {
 
 span {
    background:url(../images/empty_checkbox.svg)center center no-repeat / cover;
-    height: 40px; 
-  width:40px;
+    height: 20px; 
+  width:20px;
   display: inline-block;
   vertical-align:middle;
-  margin-right:1ex;
   position:relative;
-}
+} 
 
 
 input:checked + span {
   background:url(../images/checked_checkbox.svg) center center no-repeat / cover;
  
+}
+
+
+ 
+.top-margin input {
+   display: inline-block;  
 }
 
 
