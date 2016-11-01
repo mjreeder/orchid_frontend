@@ -32,6 +32,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
             $scope.room_type = response.data.data.room;
             console.log($scope.room_type);
 
+            //GETTING THE LOCATION AND THE VERIFICATION INFORMATION FOR EACH PLANT
 
             PlantsFactory.getByLocationID($scope.id).then(function(response) {
                 console.log("here is the data");
@@ -136,8 +137,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
             }, error => {
 
                     });
-
-
 
                 }
 
