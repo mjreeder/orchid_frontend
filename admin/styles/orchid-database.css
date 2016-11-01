@@ -24,14 +24,15 @@
 }
 
 #mag-glass {
-/*    float: right;*/
-    position: absolute; 
-    top: 0px; 
-    left: 70%; 
+    /*    float: right;*/
+    position: absolute;
+    top: 0px;
+    left: 70%;
     width: 20px;
-/*    margin: -33px 40px 0 0;*/
+    /*    margin: -33px 40px 0 0;*/
     border: none;
 }
+
 
 /*
 
@@ -90,8 +91,6 @@
 /*---------*/
 
 
-
-
 /* start of table styling */
 
 .table {
@@ -134,14 +133,13 @@ th {
     width: 100%;
     background-color: black;
     height: 60px;
-/*    margin-left: 20px;*/
+    /*    margin-left: 20px;*/
 }
 
 .filter-section hr {
     float: left;
     width: 100%;
     color: white;
-    
     background-color: white;
     position: relative;
     top: -7px;
@@ -158,7 +156,7 @@ th {
     font-size: 20px;
     font-weight: 100;
     padding: 20px 0px 20px 130px;
-    margin-left: -80px; 
+    margin-left: -80px;
     display: inline-block;
     width: 100%;
 }
@@ -166,21 +164,26 @@ th {
 .filter-options li {
     float: left;
     background-color: #DFE0E0;
-    width: 100%; 
+    width: 100%;
     border-collapse: collapse;
-    padding: 8.5px 0px 0px 0px;
+    padding: 5px 0px 0px 0px;
     border-bottom: 4px solid white;
-
 }
+
+/*
+.filter-options li:first-child {
+    padding-top: 10px;
+}
+*/
 
 .filter-options {
     margin-top: -18px;
-/*    margin-left: 20px;*/
+    /*    margin-left: 20px;*/
     /*    width: 35%;*/
 }
 
 .filter-options ul {
- width:  100%;   
+    width: 100%;
 }
 
 
@@ -213,10 +216,35 @@ button {
 }
 
 .filter-left {
- float: left;
-    width: 35%; 
-    margin-left: 20px; 
+    float: left;
+    width: 35%;
+    margin-left: 20px;
 }
 
 
 /* end of filter styling */
+
+
+/* checkbox styling */
+
+input {
+    position: absolute;
+    opacity: 0;
+}
+
+label {
+    width: 100%;
+}
+
+span {
+    background: url(../images/empty_checkbox.svg)center center no-repeat / cover;
+    width: 100%;
+    display: inline-block;
+    /*  vertical-align:middle;*/
+    /*  margin-left:1px;*/
+    position: relative;
+}
+
+input:checked + span {
+    background: url(../images/checked_checkbox.svg) center center no-repeat / cover;
+}

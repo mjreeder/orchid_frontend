@@ -49,7 +49,12 @@
 
                     <div class="editPlant" ng-click="editFilterDisplay(val.key)">
 
-                        <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed" /> {{val.key}}
+                        <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/>  <span></span>
+                        <label>
+                        {{val.key}} 
+                        
+                         </label>
+                       
                     </div>
                 </li>
             </ul>
