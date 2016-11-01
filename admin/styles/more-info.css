@@ -318,7 +318,7 @@ input[type="checkbox"] {
 }
 
 #culture .grid2x2 {
-    display: inline-block;
+    display: block;
 }
 
 #culture .grid2x2>div {
@@ -328,6 +328,7 @@ input[type="checkbox"] {
 #culture .grid2x2>div>div {
     padding: 0 10px;
     width: 100px;
+    font-size: 18px;
 }
 
 
@@ -374,6 +375,52 @@ input[type="checkbox"] {
 
 
 
+/*BLOOMING*/
 
+.blooming-date1, .blooming-date2 {
+    background: none;
+    height: auto;
+    width: 100px;
+    margin: 0;
+
+}
+
+.recent-blooming-date {
+    width: 30%;
+    margin: 0 0 15px 20px;
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.recent-blooming-comment {
+    width: 65%;
+    font-size: 18px;
+    display: inline-block;
+    margin: 0 0 15px 0;
+}
+
+#graph-will-be-here {
+    border: 1px solid darkslategray;
+    width: 95%;
+    height: 100px;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+#blooming-view-more {
+    background-color: #808080;
+    text-decoration: none;
+    color: white;
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+    margin: 5px 15px 15px 60px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    width: 125px;
+
+}
 
 

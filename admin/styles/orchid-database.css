@@ -227,7 +227,7 @@ button {
 
 /* checkbox styling */
 
-input {
+input[type="checkbox"], input[type="search"]  {
     position: absolute;
     opacity: 0;
 }

@@ -403,7 +403,7 @@ td {
     color: #808080;
 }
 
-label {
+table label {
     padding: 10px;
 }
 
@@ -418,7 +418,7 @@ label {
 
 
 
-input {
+table input {
  position: absolute; 
     opacity: 0; 
 }
