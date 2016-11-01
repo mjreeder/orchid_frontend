@@ -48,7 +48,7 @@ main nav ul {
 }
 
 #A {
-    left: 2.5%;
+/*    left: 2.5%;*/
 }
 
 #B {
@@ -57,14 +57,22 @@ main nav ul {
 
 #A,
 #B {
+/*
     font-family: Aleo, serif;
     font-weight: 400;
-    display: inline;
+*/
+/*    display: inline;*/
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 30px
+       
+ 
+/*    top: 50%;*/
+/*    transform: translateY(-50%);*/
 }
 
+.page-nav img {
+  width: 20%;    
+}
 #A a,
 #B a {
     text-decoration: none;
@@ -74,7 +82,7 @@ main nav ul {
 
 #A img,
 #B img {
-    padding-top: 5px;
+/*    padding-top: 5px;*/
 }
 
 main header h1 {
