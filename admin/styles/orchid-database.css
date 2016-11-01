@@ -127,7 +127,7 @@ th {
 
 .filter-section {
     float: left;
-    width: 34%;
+    width: 100%;
     background-color: black;
     height: 60px;
     margin-left: 20px;
@@ -135,9 +135,9 @@ th {
 
 .filter-section hr {
     float: left;
-    width: 110%;
+    width: 100%;
     color: white;
-    background-color: white;
+    background-color: black;
     position: relative;
     top: -7px;
     z-index: 1;
@@ -149,13 +149,13 @@ th {
 .filter-section h2 {
     /*    border-bottom: 5px solid white;*/
     color: white;
-    margin-left: 30px; 
     font-family: 'Aleo';
     font-size: 20px;
     font-weight: 100;
     padding: 20px 0px 20px 130px;
     margin-left: -80px; 
     display: inline-block;
+    width: 100%;
 }
 
 .filter-options li {
@@ -175,7 +175,7 @@ th {
 }
 
 .filter-options ul {
- width:  35%;   
+ width:  100%;   
 }
 
 
@@ -205,6 +205,11 @@ button {
     margin-top: -37px; 
     padding: 5px;
 */
+}
+
+.filter-left {
+ float: left;
+    width: 35%; 
 }
 
 
