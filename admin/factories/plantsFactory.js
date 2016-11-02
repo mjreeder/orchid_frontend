@@ -162,12 +162,13 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         });
     };
 
-    data.editLocation = function(plant) {
+    data.editLocation = function(data) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateLocation',
             data: {
-                "plant": plant,
+                "id": data.id,
+                "name" : data.name,
                 "session_id": $rootScope.userSessionId,
                 "session_key": $rootScope.userSessionKey
             }
