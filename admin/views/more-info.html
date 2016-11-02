@@ -95,26 +95,19 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
             </button>
 
-            <button class="split-add" type="button" ng-click="addPlantSplit()" ng-disabled="editPlant.split && !createNew">New planna split</button>
-            <div class="grid2x2" ng-repeat="plantSplit in splits">
-                <div>
-                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
-                </div>
-                <div>
-                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
-                </div>
-                <textarea type="textarea" placeholder="More info on plant split" ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+            <div class="" ng-repeat="plantSplit in splits">
+
+                <label for="recipient">Recipient:</label>
+                <input id="recipient" placeholder="N/A" type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+
+                <label>Split Date:</label>
+                <input placeholder="N/A" type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
+
+                <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+
+                <button class="split-add" type="button" ng-click="addPlantSplit()" ng-disabled="editPlant.split && !createNew">Add Split</button>
             </div>
 
-            <div class="grid2x2" ng-repeat="plantSplit in newPlantSplits">
-                <div>
-                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
-                </div>
-                <div>
-                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
-                </div>
-                <textarea type="textarea" placeholder="More info on plant split" ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
-            </div>
 
         </fieldset>
 
