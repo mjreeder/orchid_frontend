@@ -29,7 +29,19 @@ app.factory('UserFactory', function($http, sessionService, $rootScope) {
               "session_key": $rootScope.userSessionKey
           }
       });
-    }
+    };
+
+    data.getAllUsers = function(){
+        return $http({
+            method: "GET",
+            url: baseUrl + '/allUsers',
+            data: {
+                //"id": user.id,
+                //"session_id": $rootScope.userSessionId,
+                //"session_key": $rootScope.userSessionKey
+            }
+        });
+    };
 
     return data;
 });
