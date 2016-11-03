@@ -58,12 +58,14 @@
     width: 30%;
     float: right;
     padding: 20px;
-}
+}  
 
 .move-popup .header {
   background-color: #dfe0e0;
  width: 100%; 
 } 
+
+
 #table-and-button h1 {
     display: inline;
     margin: 0; 
