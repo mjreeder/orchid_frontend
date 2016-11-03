@@ -4,6 +4,7 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
         console.log("");
     };
     $scope.changedRoom = "";
+    $scope.changed = false;
 
 
     $scope.x = {};
@@ -31,21 +32,19 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
 
     $scope.movePlants = function(){
 
-        if($scope.changedRoom.length != 0) {
+        if($scope.changedRoom != "") {
             for (var i = 0; i < $scope.a.length; i++) {
                 console.log($scope.a[i].id);
                 console.log($scope.changedRoom);
 
                 var moveInformation = {id: $scope.a[i].id, name: $scope.changedRoom};
+                console.log(moveInformation);
 
                 PlantsFactory.editLocation(moveInformation).then(function (response) {
                     console.log(response);
-                    $window.alert("Finished! Moved the plant");
-
                 });
             }
         } else {
-            $window.alert("Must click room to proceed");
 
         }
     };
@@ -55,7 +54,7 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
     };
 
     $('body').on('click', 'svg > g', function(){
-        console.log("we clicked on the image");
+        $scope.changed = true;
         var abbreviation = $(this).attr('id');
         $scope.changedRoom = abbreviation;
         $scope.$apply();

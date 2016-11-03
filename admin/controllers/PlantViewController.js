@@ -4,33 +4,19 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
     console.log(param1);
 
-
-
-
-    // THIS IS GETTING ALL THE COUNTRIES!!!
-    //
-    //    $scope.AllCountry = [];
-
-    //
-    //countryFactory.getCountries().then(function (response){
-    //    console.log(response.data.data);
-    //
-    //    countryArray = response.data.data;
-    //    for (i = 0; i < countryArray.length; i++){
-    //        var name = countryArray[i].name;
-    //        $scope.AllCountry.push(name);
-    //    }
-    //
-    //});
-
-
-
     $scope.PlantCountryNames = [];
     $scope.Tables = [];
     //$scope.createNew = false;
     $scope.createNew;
 
     $scope.allCountires = [];
+    $scope.plant_id_url = [];
+
+    $scope.theSelectedProfilePicture = [];
+
+    $scope.habitatPictures = [];
+    $scope.otherPictures = [];
+
     var newCountrySelections = [];
 
     PlantsFactory.getPlantByAccessionNumber(param1).then(function(response) {
@@ -116,7 +102,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             genus: plantData.genus_name,
             species: plantData.species_name,
             variety: plantData.variety_name,
-            image: "http://placekitten.com/g/200/300",
+            image: "",
             dead_date: plantData.dead_date
         };
         //console.log("aaa");
@@ -150,17 +136,36 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         $scope.createNew = false;
 
 
+
         //todo need to look at why this is not pulling in the correct image
         PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function(response) {
+            //console.log(response.data.data);
             if (response.data.data != "") {
                 var data = response.data.data;
                 for (var i = 0; i < data.length; i++) {
 
                     if (data[i].type == "profile") {
                         $scope.plant.image = response.data.data[i];
-                        break;
+                        $scope.theSelectedProfilePicture = data[i].id;
+                        $scope.plant_id_url.push(response.data.data[i]);
+
+
                     } else {
-                        // Keep looking
+                        //if not profile, add in the rest of the file
+                        console.log("we are adding this picture" + response.data.data[i].id);
+                        $scope.plant_id_url.push(response.data.data[i]);
+
+                        if (data[i].type == "habitat"){
+                            console.log("we just logged a habitat photo");
+                            $scope.habitatPictures = data[i].id;
+
+                        } else if (data[i].type == "other") {
+                            console.log("we just logged a other photo");
+
+                            $scope.otherPictures = data[i].id;
+
+                        }
+
                     }
                 }
 
@@ -324,7 +329,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
     };
 
-    $scope.plant_id_url = [];
+    //$scope.plant_id_url = [];
 
     $scope.otherList = [];
     $scope.habitiatList = [];
@@ -453,53 +458,59 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     };
 
 
-    PhotoFactory.getPhtosByPlantID(2).then(function(response) {
-        var count = 0;
-        var data = response.data.data;
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].type != 'profile') {
-                $scope.plant_id_url[count] = data[i];
-                count++;
-                console.log(data[i]);
-            }
-        }
-        console.log("AAAA");
-        for (var i = 0; i < $scope.plant_id_url.length; i++) {
-            console.log($scope.plant_id_url[i]);
-
-        }
-        console.log("AAAA");
-
-    });
-
 
     $scope.editPhotos = function() {
         if ($scope.editPlant.photos == false) {
             $scope.editPlant.photos = true;
 
-            for (var i = 0; i < $scope.otherList.length; i++) {
-                var photoInformation2 = {
-                    id: $scope.otherList.id,
-                    plant_id: $scope.otherList.plant_id,
-                    url: $scope.otherList.url,
-                    type: "other"
-                };
-                PhotoFactory.updatePhoto(photoInformation2).then(function(response) {
 
-                });
-            }
 
-            for (var i = 0; i < $scope.habitiatList.length; i++) {
-                var photoInformation3 = {
-                    id: $scope.otherList.id,
-                    plant_id: $scope.otherList.plant_id,
-                    url: $scope.otherList.url,
-                    type: "habitat"
-                };
-                PhotoFactory.updatePhoto(photoInformation3).then(function(response) {
+            //for (var i = 0; i < $scope.habitiatList.length; i++) {
+            //    var habitatInfo = {
+            //        id: $scope.habitiatList[i].id,
+            //        plant_id: $scope.habitiatList[i].plant_id,
+            //        url: $scope.habitiatList[i].url,
+            //        type: "habitat"
+            //    };
+            //    PhotoFactory.updatePhoto(habitatInfo).then(function(response) {
+            //
+            //    });
+            //}
+            //
+            //for (var i = 0; i < $scope.otherList.length; i++) {
+            //
+            //    var otherInformation = {
+            //        id: $scope.otherList[i].id,
+            //        plant_id: $scope.otherList[i].plant_id,
+            //        url: $scope.otherList[i].url,
+            //        type: "other"
+            //    };
+            //    PhotoFactory.updatePhoto(otherInformation).then(function(response) {
+            //
+            //    });
+            //}
 
-                });
-            }
+            //console.log($scope.theSelectedProfilePicture.id);
+            //
+            //console.log($scope.theSelectedProfilePicture.url);
+            //
+            //console.log($scope.theSelectedProfilePicture.plant_id);
+
+            //console.log($scope.theSelectedProfilePicture.id);
+
+
+            //console.log($scope.theSelectedProfilePicture[0].id);
+            var profile = {
+                id: $scope.theSelectedProfilePicture.id,
+                plant_id: $scope.theSelectedProfilePicture.plant_id,
+                url: $scope.theSelectedProfilePicture.url,
+                type: "profile"
+            };
+            PhotoFactory.updatePhoto(profile).then(function(response) {
+                console.log(response);
+            });
+
+
 
 
         } else {
@@ -774,6 +785,49 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         });
         $scope.showPopup2 = !$scope.showPopup2;
         $rootScope.$broadcast('hi');
+    };
+
+    $scope.profileSelected = function(photo){
+        if (photo.id == $scope.theSelectedProfilePicture.id){
+
+        } else {
+            $scope.theSelectedProfilePicture = photo;
+        }
+        console.log("we have changed the profile picture");
+        console.log(photo.id);
+    };
+
+    $scope.otherSelected = function(photo){
+        //var index = $scope.otherList.indexOf(photo);
+        //console.log(index);
+        console.log(_.findIndex($scope.otherList, function(p) { return p.id == photo.id; }));
+
+        //var found = false;
+        //console.log("we are searching for other");
+        //for (var t = 0; t < $scope.otherList.length; t++){
+        //    if ($scope.otherList[t].id == photo.id){
+        //        console.log("we have found the item");
+        //        found = true;
+        //        break;
+        //    } else {
+        //
+        //    }
+        //}
+        //if (found != true){
+        // $scope.otherList.push(photo);
+        //}
+        //
+        //console.log("Here is the list::::");
+        //for (var i = 0; i < $scope.otherList.length; i++){
+        //    console.log($scope.otherList[i]);
+        //}
+        //console.log("::::");
+
+
+    };
+
+    $scope.habitatSelected = function(){
+
     };
 
 

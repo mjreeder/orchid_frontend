@@ -48,7 +48,7 @@ main nav ul {
 }
 
 #A {
-    left: 2.5%;
+/*    left: 2.5%;*/
 }
 
 #B {
@@ -57,14 +57,22 @@ main nav ul {
 
 #A,
 #B {
+/*
     font-family: Aleo, serif;
     font-weight: 400;
-    display: inline;
+*/
+/*    display: inline;*/
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 30px
+       
+ 
+/*    top: 50%;*/
+/*    transform: translateY(-50%);*/
 }
 
+.page-nav img {
+  width: 20%;    
+}
 #A a,
 #B a {
     text-decoration: none;
@@ -74,7 +82,7 @@ main nav ul {
 
 #A img,
 #B img {
-    padding-top: 5px;
+/*    padding-top: 5px;*/
 }
 
 main header h1 {
@@ -403,75 +411,53 @@ td {
     color: #808080;
 }
 
-label {
-    padding: 10px;
+#main-table tr td {
+    padding: none; 
+}
+
+#main-table table span {
+ width: 100%;    
+}
+#main-table td label {
+ margin-left: 0px;    
 }
 
 
-/*  checkbox styling */
 
 
-/*
-input[type="checkbox"] {
-    display: none;
-}
-*/
 
 
-/* to hide the checkbox itself */
+/* checkbox styling */
 
 
-/*
-input[type=checkbox]:before {
-    display: inline-block;
-}
-*/
 
-
-/*input[type="checkbox"]:before */
-
-
-/* unchecked icon */
-
-
-/*
-
-
-label {
-    position: relative;    
-    width: 20px;
-}
-*/
-
-input[type=checkbox] {
-/*    display: none;*/
-    /*
-    position: absolute;
-    opacity: 0;
-*/
-}
-
-input[type=checkbox]+span {
-    background-image:url(../images/empty_checkbox.svg) no-repeat;
-    height: 20px;
-    width: 20px;
-    display: inline-block;
-    /*
-    width: 50px; 
-    padding: 0px; 
-*/
+table input {
+ position: absolute; 
+    opacity: 0; 
 }
 
 
-/* checked icon */
+span {
+   background:url(../images/empty_checkbox.svg)center center no-repeat / cover;
+    height: 20px; 
+  width:20px;
+  display: inline-block;
+  vertical-align:middle;
+  position:relative;
+} 
 
-input[type=checkbox]:checked + span {
-    background-image:url(../images/checked_checkbox.svg) no-repeat; 
-    height: 20px;
-    width: 20px;
-    display: inline-block;
-    /*
-    width: 50px;
-    padding: 0px;
-*/
+
+input:checked + span {
+  background:url(../images/checked_checkbox.svg) center center no-repeat / cover;
+ 
 }
+
+
+ 
+.top-margin input {
+   display: inline-block;  
+}
+
+
+
+

@@ -8,6 +8,7 @@
         
         <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
         
+        
 <div class="formcontent"> 
         <!--<section>-->
         <div class="top-margin">
@@ -75,7 +76,8 @@
 
             <div id="" class="top-margin">
                 <label>Flag this plant:</label>
-                <input type="checkbox" ng-model="flagged" ng-click="disableFlag()"/>
+                <label>
+                <input type="checkbox" ng-model="flagged" ng-click="disableFlag()"/><span></span></label>
                 <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
             </div>
 

@@ -190,10 +190,14 @@ table {
 
 .upper-heading ul {
  position: absolute; 
+    top: 17px; 
+    right: 30px; 
     
+/*
     top:-46px; 
     right: -20px; 
-    
+*/
+
 }
 
 .upper-heading ul li {
@@ -202,7 +206,7 @@ table {
 
 }
 
-.upper-heading ul li a {
+.upper-heading ul li  a {
  color: white;  
     font-size: 16px;
      font-weight: 200; 
@@ -290,7 +294,7 @@ header .main-heading li a {
 
 
 
-header ul {
+#main-nav ul {
     padding: 60px;
 }
 

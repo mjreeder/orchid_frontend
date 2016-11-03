@@ -3,7 +3,9 @@
 
         <fieldset id="vitals">
 
-            <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-click="changeProfilePicture()">
+            <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-click="changeProfilePicture()" ng-hide ="createNew">
+            <img src="images/no_plant_icon.svg" alt="" id="thumbnail" ng-click="changeProfilePicture()" ng-hide ="!createNew">
+
 
             <button class="edit" ng-click="editCritical()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.critical">
@@ -11,15 +13,15 @@
             </button>
 
             <div>
-                <label><input type="text" ng-model="plant.accession_number" name="accession" ng-disabled="editPlant.critical && !createNew"></label>
+                <label><input placeholder="Accession Number" type="text" ng-model="plant.accession_number" name="accession" ng-disabled="editPlant.critical && !createNew"></label>
                 <label id="location"><img src="images/location.svg" alt="Location">
                     <select ng-model="plant.locationName.name" ng-disabled="editPlant.critical && !createNew">
                         <option ng-repeat="table in Tables">{{table.name}}</option>
                     </select>
                 </label>
                 <br/>
-                <label><input type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="editPlant.critical && !createNew"></label><br/>
-                <label><input type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label><br/>
+                <label><input placeholder="Scientific Name" type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="editPlant.critical && !createNew"></label><br/>
+                <label><input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label><br/>
             </div>
         </fieldset>
 
@@ -93,26 +95,19 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
             </button>
 
-            <button class="split-add" type="button" ng-click="addPlantSplit()" ng-disabled="editPlant.split && !createNew">New planna split</button>
-            <div class="grid2x2" ng-repeat="plantSplit in splits">
-                <div>
-                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
-                </div>
-                <div>
-                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
-                </div>
-                <textarea type="textarea" placeholder="More info on plant split" ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+            <div class="" ng-repeat="plantSplit in splits">
+
+                <label for="recipient">Recipient:</label>
+                <input id="recipient" placeholder="N/A" type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+
+                <label>Split Date:</label>
+                <input placeholder="N/A" type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
+
+                <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+
+                <button class="split-add" type="button" ng-click="addPlantSplit()" ng-disabled="editPlant.split && !createNew">Add Split</button>
             </div>
 
-            <div class="grid2x2" ng-repeat="plantSplit in newPlantSplits">
-                <div>
-                    <input type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
-                </div>
-                <div>
-                    <input type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
-                </div>
-                <textarea type="textarea" placeholder="More info on plant split" ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
-            </div>
 
         </fieldset>
 
@@ -200,27 +195,29 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.photos">
             </button>
 
-            <div class="photos-group">
-                <img src="http://placekitten.com/50/50" alt="" class="thumbnail">
+            <!--<h1 ng-repeat="x in plant_id_url">{{x.url}}</h1>-->
+
+            <div class="photos-group" ng-repeat="photo in plant_id_url">
+                <img src="{{photo.url}}" alt="" class="thumbnail">
                 <div class="photos-buttons">
-                    <label for="thumbnail">File_Name_for_acienthera_234</label>
-                    <input type="button" value="Profile" ng-hide="editPlant.photos">
-                    <input type="button" value="Habitat" ng-hide="editPlant.photos">
-                    <input type="button" value="Other" ng-hide="editPlant.photos">
-                    <input type="button" value="Delete" ng-hide="editPlant.photos" id="photos-delete1">
+                    <label for="thumbnail">{{photo.fileName}}</label>
+                    <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: health_score == 'poor', noglowHealth: health_score != 'poor'}">
+                    <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos">
+                    <input type="button" value="Other"  ng-click="otherSelected(photo)" ng-hide="editPlant.photos">
+                    <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted" id="photos-delete1">
                 </div>
             </div>
 
-            <div class="photos-group">
-                <img src="http://placebear.com/50/50" alt="" class="thumbnail">
-                <div class="photos-buttons">
-                    <label>File_Name_for_acienthera_567</label>
-                    <input type="button" value="Profile" ng-hide="editPlant.photos" class="photos-selected">
-                    <input type="button" value="Habitat" ng-hide="editPlant.photos">
-                    <input type="button" value="Other" ng-hide="editPlant.photos">
-                    <input type="button" value="Delete" ng-hide="editPlant.photos" id="photos-delete2">
-                </div>
-            </div>
+            <!--<div class="photos-group">-->
+                <!--<img src="http://placebear.com/50/50" alt="" class="thumbnail">-->
+                <!--<div class="photos-buttons">-->
+                    <!--<label>File_Name_for_acienthera_567</label>-->
+                    <!--<input type="button" value="Profile" ng-hide="editPlant.photos" class="photos-selected">-->
+                    <!--<input type="button" value="Habitat" ng-hide="editPlant.photos">-->
+                    <!--<input type="button" value="Other" ng-hide="editPlant.photos">-->
+                    <!--<input type="button" value="Delete" ng-hide="editPlant.photos" id="photos-delete2">-->
+                <!--</div>-->
+            <!--</div>-->
 
             <div class="photos-group">
                 <div class="photos-add-div" ng-hide="editPlant.photos">
@@ -238,27 +235,128 @@
             <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.blooming">
         </button>
 
-                <button class="startnewbloom" ng-click="startNewBloom()">Start New Bloom</button>
+                <p class="recent-blooming-date">
+                    <span class="blooming-date1">10/16/2014</span>
+                    -
+                    <span class="blooming-date2">12/21/2014</span>
+                </p>
+                <p class="recent-blooming-comment">
+                    Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+                </p>
 
-                <label>Start of Bloom:</label>
-                <button ng-click="blooming_start_date = today" class="today" ng-disabled="startNewBloomTodayDisable" ng-class="{customNgDisabled: startNewBloomTodayDisable}">Today</button>
-                <!--<button class="calendar"><img src="images/calendaricon.svg" alt="">-->
-                    <input type="date" id="startDateBloom" ng-model="blooming_start_date"/>
-                </button>
-                <output>{{ blooming_start_date | date }}</output>
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+        </p>
 
-                <label>End of Bloom:</label>
-                <button ng-click="blooming_end_date = today" class="today" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}">Today</button>
-                <button class="calendar"><img src="images/calendaricon.svg" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}" alt="">
-                    <input type="date" id="endDateBloom" ng-model="blooming_end_date"/>
-                </button>
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+        </p>
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates.
+        </p>
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+        </p>
 
-                <output>{{ blooming_end_date | date }}</output>
+        <input type="button" value="View More" id="blooming-view-more" >
 
-                <div class="top-margin">
-                    <textarea placeholder="Comment here about blooming." name="comments" ng-model="bloomingComment_note"></textarea>
-                </div>
-        <p>This is where the blooming graph or something like that is going to be</p>
+        <div id="graph-will-be-here">
+            <table> 
+            <tr> 
+            <th>2013-2016</th>
+           <th>Jan.</th>
+           <th>Feb.</th>
+           <th>Mar.</th>
+           <th>Apr.</th>
+           <th>May</th>
+           <th>Jun.</th>
+           <th>Jul.</th>
+           <th>Aug.</th>
+           <th>Sep.</th>
+           <th>Oct.</th>
+           <th>Nov.</th>
+           <th>Dec.</th>
+            </tr>
+            <tr>
+            <td>2016</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+             <tr>
+            <td>2015</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+             <tr>
+            <td>2014</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+             <tr>
+            <td>2013</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            
+            
+            </table>
+            
+        </div>
     </fieldset>
 
 
