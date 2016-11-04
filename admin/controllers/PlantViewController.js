@@ -174,7 +174,8 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
         classificationLinkFactory.getPlantHierarchy($scope.plant.id).then(function(response) {
             console.log(response.data.data);
-            var data = response.data.data;
+            var data = response.data.data[0];
+            console.log(data);
             $scope.classification = {
                 class: "",
                 tribe: "",
@@ -183,32 +184,12 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                 variety: "",
                 species: ""
             };
-
-            for (var i = 0; i < data.length; i++) {
-                var object = data[i];
-                var classificationName = object.name;
-                var scientificName = object.scientific_class_name;
-                if (classificationName == "class") {
-                    $scope.classification.class = scientificName;
-                }
-                if (classificationName == "tribe") {
-                    $scope.classification.tribe = scientificName;
-                }
-                if (classificationName == "subtribe") {
-                    $scope.classification.subtribe = scientificName;
-                }
-
-                if (classificationName == "genus") {
-                    $scope.classification.genus = scientificName;
-                }
-                if (classificationName == "species") {
-                    $scope.classification.species = scientificName;
-                }
-                if (classificationName == "variety") {
-                    $scope.classification.variety = scientificName;
-                }
-                console.log($scope.classification);
-            }
+                    $scope.classification.class = data.class;
+                    $scope.classification.tribe = data.tribe;
+                    $scope.classification.subtribe = data.subtribe;
+                    $scope.classification.genus = data.genus;
+                    $scope.classification.species = data.species;
+                    $scope.classification.variety = data.variety;
         });
 
         countryFactory.getCountries().then(function(response) {
