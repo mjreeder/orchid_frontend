@@ -593,8 +593,8 @@
 
         <input type="button" value="View More" id="blooming-view-more" >
 
-        <label>Flag this plant:</label>
-       <label><input type="checkbox" ng-model="flagged" ng-click="disableFlag()"/><span></span></label> 
+        <div id="flag"> <label>Flag this plant:</label>
+       <label><input type="checkbox" ng-model="flagged" ng-click="disableFlag()"/><span></span></label> </div>
         <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
 
 
