@@ -73,12 +73,12 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             habitat: plantData.habitat,
             culture: plantData.culture,
             donation: plantData.donation,
-            date_recieved: plantData.date_received,
-            received_from: plantData.received_from,
+            date_recieved: plantData.date_received, //Should be a date
+            received_from: plantData.received_from, //Should be a date
             description: plantData.description,
             username: plantData.username,
             inactive: plantData.inactive,
-            inactive_date: plantData.inactive_date,
+            inactive_date: plantData.inactive_date, //Should be a date
             inactive_comment: plantData.inactive_comment,
             size: plantData.size,
             value: plantData.value,
@@ -93,7 +93,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             special_collections_id: plantData.special_collections_id,
             donation_comment: plantData.donation_comment,
             origin_comment: plantData.origin_comment,
-            last_varified: plantData.last_varified,
+            last_varified: plantData.last_varified, //Should be a date
             is_donation: plantData.is_donation,
             aaa: new Date(2014, 02, 03),
             class: plantData.class_name,
@@ -103,7 +103,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             species: plantData.species_name,
             variety: plantData.variety_name,
             image: "",
-            dead_date: plantData.dead_date
+            dead_date: plantData.dead_date //Should be a date
         };
         //console.log("aaa");
         //console.log($scope.plant.date_recieved);
@@ -155,7 +155,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                         console.log("we are adding this picture" + response.data.data[i].id);
                         $scope.plant_id_url.push(response.data.data[i]);
 
-                        if (data[i].type == "habitat"){
+                        if (data[i].type == "habitat") {
                             console.log("we just logged a habitat photo");
                             $scope.habitatPictures = data[i].id;
 
@@ -787,8 +787,8 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         $rootScope.$broadcast('hi');
     };
 
-    $scope.profileSelected = function(photo){
-        if (photo.id == $scope.theSelectedProfilePicture.id){
+    $scope.profileSelected = function(photo) {
+        if (photo.id == $scope.theSelectedProfilePicture.id) {
 
         } else {
             $scope.theSelectedProfilePicture = photo;
@@ -797,10 +797,12 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         console.log(photo.id);
     };
 
-    $scope.otherSelected = function(photo){
+    $scope.otherSelected = function(photo) {
         //var index = $scope.otherList.indexOf(photo);
         //console.log(index);
-        console.log(_.findIndex($scope.otherList, function(p) { return p.id == photo.id; }));
+        console.log(_.findIndex($scope.otherList, function(p) {
+            return p.id == photo.id;
+        }));
 
         //var found = false;
         //console.log("we are searching for other");
@@ -826,7 +828,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
     };
 
-    $scope.habitatSelected = function(){
+    $scope.habitatSelected = function() {
 
     };
 
