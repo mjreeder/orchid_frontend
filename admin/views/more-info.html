@@ -162,7 +162,7 @@
             <button class="more-calendar">
                 <input type="date" id="deaddate" ng-model="plant.inactive_date">
             </button>
-            <output>{{ plant.dead_date | date }}</output>
+              <output>{{ plant.dead_date | date }}</output>
 
             <textarea type="textarea" id="inactivecomment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>
 
@@ -221,7 +221,7 @@
 
             <div class="photos-group">
                 <div class="photos-add-div" ng-hide="editPlant.photos">
-                    <img src="images/orchid_favicon_32px.png" alt="Add Photo" id="photos-add" class="thumbnail">
+                    <img src="images/no_plant_icon.svg" alt="Add Photo" id="photos-add" class="thumbnail">
                     <input type="button" value="Add Photo">
                 </div>
             </div>
@@ -230,10 +230,12 @@
 
     <fieldset id="graph">
         <h1>Blooming</h1>
-        <button class="edit" ng-click="editBlooming()" ng-hide="createNew">
+<!--        <button class="edit" ng-click="editBlooming()" ng-hide="createNew">-->
+<!--
             <img src="images/edit.svg" alt="edit" ng-hide="editPlant.blooming">
             <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.blooming">
-        </button>
+-->
+<!--        </button>-->
 
                 <p class="recent-blooming-date">
                     <span class="blooming-date1">10/16/2014</span>
@@ -279,6 +281,8 @@
 
         <input type="button" value="View More" id="blooming-view-more" >
 
+       
+<!--        START OF BLOOMING GRAPH -->
         <div id="graph-will-be-here">
             <table> 
             <tr> 
@@ -357,15 +361,74 @@
             </table>
             
         </div>
+        
+        
+        
+        
+        
+        
+        
+<!--        END OF BLOOMING GRAPH -->
     </fieldset>
 
 
     <fieldset id="weekly-checkup">
-        <h1>Weekly Checkup</h1>
+        <h1>Sprayed for Pests</h1>
+<!--
         <button class="edit" ng-click="editHybrid()" ng-hide="createNew">
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.hybrid">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.hybrid">
         </button>
+-->
+        
+        <p class="recent-blooming-date">
+                    <span class="blooming-date1">10/16/2014</span>
+                    -
+                    <span class="blooming-date2">12/21/2014</span>
+                </p>
+                <p class="recent-blooming-comment">
+                    Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+                </p>
+
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+        </p>
+
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+        </p>
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates.
+        </p>
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+        </p>
+
+        <input type="button" value="View More" id="blooming-view-more" >
+
+        
+        
+        
+<!--
 
         <label id="sprayed-for-pests">Sprayed for pests:</label>
         <button ng-click="sprayed_timestamp = today" class="today">Today</button>
@@ -373,9 +436,13 @@
             <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"/>
         </button>
         <output>{{ sprayed_timestamp | date }}</output>
-        <textarea placeholder="Comment here about pest spraying." name="comments" ng-model="sprayed_note"></textarea>
+-->
+<!--        <textarea placeholder="Comment here about pest spraying." name="comments" ng-model="sprayed_note"></textarea>-->
 
+       
+        </fieldset>
         <!--<section class="top-margin">-->
+<!--
             <label>Repot Date:</label>
             <button ng-click="potting_timestamp = today" class="today">Today</button>
             <button class="calendar">
@@ -383,18 +450,150 @@
                 <input type="date" id="repotDate" ng-model="potting_timestamp"/>
             </button>
             <label>{{ potting_timestamp | date }}</label>
+-->
+            
         <!--</section>-->
+         
+         
+         
+         
+         <fieldset id="weekly-checkup">
+        <h1>Repot</h1>
+<!--
+        <button class="edit" ng-click="editHybrid()" ng-hide="createNew">
+            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.hybrid">
+            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.hybrid">
+        </button>
+-->
+        
+        <p class="recent-blooming-date">
+                    <span class="blooming-date1">10/16/2014</span>
+                    -
+                    <span class="blooming-date2">12/21/2014</span>
+                </p>
+                <p class="recent-blooming-comment">
+                    Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+                </p>
+
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+        </p>
+
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+        </p>
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates.
+        </p>
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+        </p>
+
+        <input type="button" value="View More" id="blooming-view-more" >
+
+        
+        
+        
+<!--
+
+        <label id="sprayed-for-pests">Sprayed for pests:</label>
+        <button ng-click="sprayed_timestamp = today" class="today">Today</button>
+        <button class="calendar"><img src="images/calendaricon.svg" alt="">
+            <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"/>
+        </button>
+        <output>{{ sprayed_timestamp | date }}</output>
+-->
+<!--        <textarea placeholder="Comment here about pest spraying." name="comments" ng-model="sprayed_note"></textarea>-->
+
+       
+        </fieldset>
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+          <fieldset id="weekly-checkup">
+        <h1>Current Health Condition</h1>
+        
+        
         <section id="current-health" class="top-margin">
             <label id="weekly-checkup-health">Current health condition:</label>
                 <button id="poor" ng-click="health_score = 'poor'" ng-class="{glowHealthPoor: health_score == 'poor', noglowHealth: health_score != 'poor'}">Poor</button>
                 <button id="fair" ng-click="health_score = 'fair'" ng-class="{glowHealthFair: health_score == 'fair', noglowHealth: health_score != 'fair'}">Fair</button>
                 <button id="good" ng-click="health_score = 'good'" ng-class="{glowHealthGood: health_score == 'good', noglowHealth: health_score != 'good'}">Good</button>
-            <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition." ng-model="health_comment"></textarea>
+<!--            <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition." ng-model="health_comment"></textarea>-->
         </section>
+ <p class="recent-blooming-date">
+                    <span class="blooming-date1">10/16/2014</span>
+                    -
+                    <span class="blooming-date2">12/21/2014</span>
+                </p>
+                <p class="recent-blooming-comment">
+                    Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+                </p>
 
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+        </p>
+
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+        </p>
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates.
+        </p>
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">10/16/2014</span>
+            -
+            <span class="blooming-date2">12/21/2014</span>
+        </p>
+        <p class="recent-blooming-comment">
+            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
+        </p>
+
+        <input type="button" value="View More" id="blooming-view-more" >
 
         <label>Flag this plant:</label>
-        <input type="checkbox" ng-model="flagged" ng-click="disableFlag()"/>
+       <label><input type="checkbox" ng-model="flagged" ng-click="disableFlag()"/><span></span></label> 
         <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
 
 
@@ -404,13 +603,24 @@
 
 
 
-    <fieldset id="moreinfo-save">
+ 
+        <div class="end-section"> 
+      
+      <div id="back-to-top">
+        <img src="images/back-to-top.svg" alt="back to top">
+</div> 
+ 
+      
+      
+       <div id="moreinfo-save">
         <input type="button" ng-click="saveAll()" value="Save All" ng-hide="!editPlant.save">
-    </fieldset>
+</div>
+        </div>
+   
 
-    <section>
-        <button>Back to top</button>
-    </section>
+   
+  
+    
 
     <div ng-include="'views/photoPopup.html'" ng-show="profilePopUp"></div>
 

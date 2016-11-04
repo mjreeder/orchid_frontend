@@ -6,12 +6,23 @@ a {
     text-decoration: none;
 }
 
-#taxonomic, #vitals, #culture, #accession, #description, #hybrid, #inactive, #photos, #graph, #split, #weekly-checkup {
+#taxonomic,
+#vitals,
+#culture,
+#accession,
+#description,
+#hybrid,
+#inactive,
+#photos,
+#graph,
+#split,
+#weekly-checkup {
     position: relative;
     overflow: auto;
 }
 
-input, textarea {
+input,
+textarea {
     font-family: Raleway, sans-serif;
     font-size: 18px;
     padding: 5px;
@@ -27,10 +38,12 @@ textarea {
     height: 50px;
     display: block;
     box-sizing: border-box;
-    margin: 10px auto 20px ;
+    margin: 10px auto 20px;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
     outline: none;
 }
 
@@ -83,7 +96,6 @@ select:disabled {
     color: black;
 }
 
-
 fieldset label {
     font-family: Raleway, sans-serif;
     font-size: 18px;
@@ -121,7 +133,6 @@ fieldset {
     right: 0;
 }
 
-
 #accession button.more-calendar {
     position: relative;
     opacity: 1;
@@ -155,11 +166,11 @@ fieldset {
     width: 70%;
     float: right;
     margin: 20px 0 0 0;
-    position: relative
+    position: relative;
 }
 
 #vitals label {
-    width: 250px
+    width: 250px;
 }
 
 #vitals input {
@@ -181,9 +192,6 @@ fieldset {
 }
 
 
-
-
-
 /*INACTIVE*/
 
 #inactive label {
@@ -191,21 +199,41 @@ fieldset {
     padding: 10px 10px 10px 0;
 }
 
-input[type="checkbox"] {
+
+/*input[type="date"]*/
+
+#inactive input {
+    font-family: Raleway, sans-serif;
+    font-size: 18px;
+    padding: 5px;
+    border: 2px solid black;
+    margin: 15px 0;
+}
+
+
+/*
+input[type="date"] {
     margin: 5px 10px 5px 0;
     width: auto;
-    transform: translateY(-25%)
+    transform: translateY(-25%);
+    border: none; 
 }
+*/
 
 #inactive input:disabled {
-    border: none;
+    border: 0px;
 }
 
-/*#inactive input:disabled {*/
-    /*border: 2px solid black; */
-/*}*/
+
+/*
+#inactive input:disabled {
+    border: 2px solid black; 
+}
+*/
+
 
 /*PHOTOS*/
+
 #photos label {
     margin: 10px 0 10px;
     width: 500px;
@@ -221,10 +249,10 @@ input[type="checkbox"] {
     max-width: 120px;
     margin: 20px 20px 20px 20px;
     float: left;
-
 }
 
-.photos-buttons input, .photos-add-div input {
+.photos-buttons input,
+.photos-add-div input {
     width: 100px;
     border: none;
     background: #808080;
@@ -240,7 +268,8 @@ input[type="checkbox"] {
     margin: 30px 10px 20px 0;
 }
 
-#photos-delete1, #photos-delete2 {
+#photos-delete1,
+#photos-delete2 {
     margin: 0 0 0 60px;
 }
 
@@ -276,9 +305,6 @@ input[type="checkbox"] {
     width: 100px;
 }
 
-
-
-
 #split_date {
     /*margin-left: 158px;*/
 }
@@ -288,7 +314,8 @@ input[type="checkbox"] {
     height: auto;
 }
 
-#graph .startnewbloom, #graph output {
+#graph .startnewbloom,
+#graph output {
     display: block;
 }
 
@@ -339,6 +366,7 @@ input[type="checkbox"] {
 
 
 /*SAVE*/
+
 #moreinfo-save input {
     width: 100px;
     border: none;
@@ -352,12 +380,29 @@ input[type="checkbox"] {
     float: right;
 }
 
+#back-to-top img {
+    display: inline-block;
+    float: left;
+    width: 10%;
+    margin-left: 20px;
+       margin-bottom: 50px; 
+}
+
 #moreinfo-save {
     border: none;
+ 
+}
+
+.end-section {
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+    
 }
 
 
 /*WEEKLY CHECKUP*/
+
 #weekly-checkup #current-health {
     margin: 0;
 }
@@ -370,25 +415,22 @@ input[type="checkbox"] {
     width: 160px;
 }
 
-
-
-
+#weekly-checkup .top-margin {
+    margin-bottom: 50px;
+}
 
 
 /*ADD PHOTO POPUP*/
 
 
-
-
-
 /*BLOOMING*/
 
-.blooming-date1, .blooming-date2 {
+.blooming-date1,
+.blooming-date2 {
     background: none;
     height: auto;
     width: 100px;
     margin: 0;
-
 }
 
 .recent-blooming-date {
@@ -406,14 +448,6 @@ input[type="checkbox"] {
     margin: 0 0 15px 0;
 }
 
-#graph-will-be-here {
-    border: 1px solid darkslategray;
-    width: 95%;
-    height: 100px;
-    margin: 10px auto;
-    padding: 10px;
-}
-
 #blooming-view-more {
     background-color: #808080;
     text-decoration: none;
@@ -426,13 +460,28 @@ input[type="checkbox"] {
     display: inline-block;
     border: none;
     width: 125px;
+}
 
+#graph {
+    overflow: hidden;
 }
 
 
+/* START OF BLOOMING GRAPH */
+
+#graph-will-be-here {
+    border: 1px solid darkslategray;
+    width: 95%;
+    height: 100px;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+#graph-will-be-here {}
 
 
+/* END OF BLOOMING GRAPH */
 
-
-
-
+label span {
+    margin-left: -20px;
+}
