@@ -172,45 +172,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             }
         });
 
-        classificationLinkFactory.getPlantHierarchy($scope.plant.id).then(function(response) {
-            console.log(response.data.data);
-            var data = response.data.data;
-            $scope.classification = {
-                class: "",
-                tribe: "",
-                subtribe: "",
-                genus: "",
-                variety: "",
-                species: ""
-            };
-
-            for (var i = 0; i < data.length; i++) {
-                var object = data[i];
-                var classificationName = object.name;
-                var scientificName = object.scientific_class_name;
-                if (classificationName == "class") {
-                    $scope.classification.class = scientificName;
-                }
-                if (classificationName == "tribe") {
-                    $scope.classification.tribe = scientificName;
-                }
-                if (classificationName == "subtribe") {
-                    $scope.classification.subtribe = scientificName;
-                }
-
-                if (classificationName == "genus") {
-                    $scope.classification.genus = scientificName;
-                }
-                if (classificationName == "species") {
-                    $scope.classification.species = scientificName;
-                }
-                if (classificationName == "variety") {
-                    $scope.classification.variety = scientificName;
-                }
-                console.log($scope.classification);
-            }
-        });
-
         countryFactory.getCountries().then(function(response) {
             var countryNames = response.data.data;
             $scope.example1data = [];
