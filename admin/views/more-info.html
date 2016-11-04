@@ -105,8 +105,9 @@
 
                 <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
 
-                <button class="split-add" type="button" ng-click="addPlantSplit()" ng-disabled="editPlant.split && !createNew">Add Split</button>
             </div>
+            <button class="split-add" type="button" ng-hide="editPlant.split" ng-click="addPlantSplit()" ng-disabled="editPlant.split && !createNew">Add Split</button>
+
 
 
         </fieldset>
