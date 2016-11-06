@@ -2,6 +2,8 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
     var param1 = $routeParams.accession_number;
 
+    $scope.AuthUser = true;
+
     console.log(param1);
 
     $scope.PlantCountryNames = [];

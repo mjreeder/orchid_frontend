@@ -20,9 +20,9 @@ app.factory('UserFactory', function($http, sessionService, $rootScope) {
     }
 
     data.deleteUser = function(user){
-      $http({
-          method: "DELETE",
-          url: baseUrl,
+      return $http({
+          method: "POST",
+          url: baseUrl + '/delete/' + user.id,
           data: {
               "id": user.id,
               "session_id": $rootScope.userSessionId,
@@ -36,12 +36,25 @@ app.factory('UserFactory', function($http, sessionService, $rootScope) {
             method: "GET",
             url: baseUrl + '/allUsers',
             data: {
-                //"id": user.id,
-                //"session_id": $rootScope.userSessionId,
-                //"session_key": $rootScope.userSessionKey
+
             }
+
         });
     };
+
+    data.changePassword = function(user){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/update_user_password',
+            data:{
+                "id" : user.id,
+                "newPassword" : user.newPassword,
+                "email" : user.email,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        })
+    }
 
     return data;
 });
