@@ -102,6 +102,7 @@ fieldset label {
     display: inline-block;
     width: 125px;
     margin-left: 20px;
+    font-weight: 600;
 }
 
 .labelfirst {
