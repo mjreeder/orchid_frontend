@@ -202,9 +202,9 @@
                 <img src="{{photo.url}}" alt="" class="thumbnail">
                 <div class="photos-buttons">
                     <label for="thumbnail">{{photo.fileName}}</label>
-                    <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: health_score == 'poor', noglowHealth: health_score != 'poor'}">
-                    <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos">
-                    <input type="button" value="Other"  ng-click="otherSelected(photo)" ng-hide="editPlant.photos">
+                    <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
+                    <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
+                    <input type="button" value="Other"  ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'other', noglowHealth: photo.type != 'other'}">
                     <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted" id="photos-delete1">
                 </div>
             </div>
