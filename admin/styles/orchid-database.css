@@ -225,17 +225,20 @@ button {
 }
 
 .filter-left {
-    float: left;
-    width: 35%;
+    /*float: left;*/
+    width: 25%;
+    max-width: 250px;
     margin-left: 20px;
-    margin-top: 90px; 
+    margin-top: 90px;
+    display: inline-block;
 }
 
 
 .table-right {
-  margin-top: 90px; 
-    float: right; 
-    width: 55%; 
+    margin-top: 90px;
+    /*float: right; */
+    width: 55%;
+    display: inline-block;
 }
 
 
