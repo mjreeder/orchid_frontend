@@ -19,6 +19,9 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
     $scope.habitatPictures = [];
     $scope.otherPictures = [];
 
+    $scope.newHabitatList = [];
+    $scope.newOtherList = [];
+
     var newCountrySelections = [];
 
     PlantsFactory.getPlantByAccessionNumber(param1).then(function(response) {
@@ -148,7 +151,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
                     if (data[i].type == "profile") {
                         $scope.plant.image = response.data.data[i];
-                        $scope.theSelectedProfilePicture = data[i].id;
+                        $scope.theSelectedProfilePicture = data[i];
                         $scope.plant_id_url.push(response.data.data[i]);
 
 
@@ -159,7 +162,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
                         if (data[i].type == "habitat") {
                             console.log("we just logged a habitat photo");
-                            $scope.habitatPictures = data[i].id;
+                            $scope.habitatPictures.push(data[i]);
 
                         } else if (data[i].type == "other") {
                             console.log("we just logged a other photo");
@@ -432,50 +435,50 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
 
 
-            //for (var i = 0; i < $scope.habitiatList.length; i++) {
-            //    var habitatInfo = {
-            //        id: $scope.habitiatList[i].id,
-            //        plant_id: $scope.habitiatList[i].plant_id,
-            //        url: $scope.habitiatList[i].url,
-            //        type: "habitat"
-            //    };
-            //    PhotoFactory.updatePhoto(habitatInfo).then(function(response) {
-            //
-            //    });
-            //}
-            //
-            //for (var i = 0; i < $scope.otherList.length; i++) {
-            //
-            //    var otherInformation = {
-            //        id: $scope.otherList[i].id,
-            //        plant_id: $scope.otherList[i].plant_id,
-            //        url: $scope.otherList[i].url,
-            //        type: "other"
-            //    };
-            //    PhotoFactory.updatePhoto(otherInformation).then(function(response) {
-            //
-            //    });
-            //}
+            for (var i = 0; i < $scope.newHabitatList.length; i++) {
+                console.log("we are logging the habitat info");
+                var habitatInfo = {
+                    id: $scope.newHabitatList[i].id,
+                    plant_id: $scope.newHabitatList[i].plant_id,
+                    url: $scope.newHabitatList[i].url,
+                    type: "habitat"
+                };
+                console.log('we are done editing: here is the habitat photo:');
+                console.log(habitatInfo);
+                PhotoFactory.updatePhoto(habitatInfo).then(function(response) {
 
-            //console.log($scope.theSelectedProfilePicture.id);
-            //
-            //console.log($scope.theSelectedProfilePicture.url);
-            //
-            //console.log($scope.theSelectedProfilePicture.plant_id);
+                });
+            }
 
-            //console.log($scope.theSelectedProfilePicture.id);
+            for (var i = 0; i < $scope.otherList.length; i++) {
+
+                var otherInformation = {
+                    id: $scope.otherList[i].id,
+                    plant_id: $scope.otherList[i].plant_id,
+                    url: $scope.otherList[i].url,
+                    type: "other"
+                };
+                PhotoFactory.updatePhoto(otherInformation).then(function(response) {
+
+                });
+            }
 
 
-            //console.log($scope.theSelectedProfilePicture[0].id);
-            var profile = {
-                id: $scope.theSelectedProfilePicture.id,
-                plant_id: $scope.theSelectedProfilePicture.plant_id,
-                url: $scope.theSelectedProfilePicture.url,
-                type: "profile"
-            };
-            PhotoFactory.updatePhoto(profile).then(function(response) {
-                console.log(response);
-            });
+            if ($scope.theSelectedProfilePicture.id != ""){
+                console.log("we are running ")
+                var profile = {
+                    id: $scope.theSelectedProfilePicture.id,
+                    plant_id: $scope.theSelectedProfilePicture.plant_id,
+                    url: $scope.theSelectedProfilePicture.url,
+                    type: "profile"
+                };
+                console.log(profile);
+                PhotoFactory.updatePhoto(profile).then(function(response) {
+                    console.log(response);
+                });
+            } else {
+                console.log("it is empty");
+            }
 
 
 
@@ -754,48 +757,114 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         $rootScope.$broadcast('hi');
     };
 
-    $scope.profileSelected = function(photo) {
-        if (photo.id == $scope.theSelectedProfilePicture.id) {
 
+    $scope.profileSelected = function(photo) {
+        console.log("we have selected the profile function " + photo.id);
+        if (photo.id == $scope.theSelectedProfilePicture.id) {
+            //stays the same
         } else {
+            console.log("we made it to the for loop");
+
+            for (var i = 0; i < $scope.plant_id_url.length; i++){
+                if ($scope.theSelectedProfilePicture.id == $scope.plant_id_url[i].id){
+                    var oldPhoto = $scope.plant_id_url[i];
+                    $scope.plant_id_url[i].type = 'habitat';
+                    console.log("we made it to the profile");
+                    console.log(oldPhoto);
+                    $scope.newHabitatList.push(oldPhoto);
+
+                    break;
+                } else {
+
+                }
+            }
+            photo.type = 'profile';
             $scope.theSelectedProfilePicture = photo;
+
+            console.log("we have changed the profile picture");
+            console.log(photo.id);
+
+            $rootScope.apply;
+
         }
-        console.log("we have changed the profile picture");
-        console.log(photo.id);
+
+
     };
 
     $scope.otherSelected = function(photo) {
-        //var index = $scope.otherList.indexOf(photo);
-        //console.log(index);
-        console.log(_.findIndex($scope.otherList, function(p) {
-            return p.id == photo.id;
-        }));
 
-        //var found = false;
-        //console.log("we are searching for other");
-        //for (var t = 0; t < $scope.otherList.length; t++){
-        //    if ($scope.otherList[t].id == photo.id){
-        //        console.log("we have found the item");
-        //        found = true;
-        //        break;
-        //    } else {
-        //
-        //    }
-        //}
-        //if (found != true){
-        // $scope.otherList.push(photo);
-        //}
-        //
-        //console.log("Here is the list::::");
-        //for (var i = 0; i < $scope.otherList.length; i++){
-        //    console.log($scope.otherList[i]);
-        //}
-        //console.log("::::");
+        var noChange = false;
+        for (var i = 0; i < $scope.otherPictures.length; i++){
+            if(photo.id == $scope.otherPictures[i].id){
+                //do nothing since it is already there
+                noChange = true;
+            }
+        }
+        if(noChange == false){
+            //we need to made a change
+            for (var i = 0; i < $scope.plant_id_url.length; i++){
+                if ($scope.plant_id_url[i].id == photo.id){
+                    var index = i;
+                    break;
+                }
+            }
+
+            $scope.otherList.push(photo);
+            $scope.plant_id_url[index].type = 'other';
+            for(var j = 0; j < $scope.habitatPictures.length; j++){
+                if(photo.id == $scope.habitatPictures[j].id){
+                    $scope.habitatPictures.splice(j, 1);
+                    break;
+                }
+            }
+            for(var j = 0; j < $scope.theSelectedProfilePicture.length; j++){
+                if(photo.id == $scope.theSelectedProfilePicture[j].id){
+                    $scope.theSelectedProfilePicture.splice(j, 1);
+                    break;
+                }
+            }
+
+        }
+
+        $rootScope.apply;
 
 
     };
 
-    $scope.habitatSelected = function() {
+    $scope.habitatSelected = function(photo) {
+
+        var noChange = false;
+        for (var i = 0; i < $scope.habitatPictures.length; i++){
+            if(photo.id == $scope.habitatPictures[i].id){
+                //do nothing since it is already there
+                noChange = true;
+            }
+        }
+        if(noChange == false){
+            //we need to made a change
+            for (var i = 0; i < $scope.plant_id_url.length; i++){
+                if ($scope.plant_id_url[i].id == photo.id){
+                    var index = i;
+                    break;
+                }
+            }
+
+            $scope.habitiatList.push(photo);
+            $scope.plant_id_url[index].type = 'habitat';
+            for(var j = 0; j < $scope.otherPictures.length; j++){
+                if(photo.id == $scope.otherPictures[j].id){
+                    $scope.otherPictures.splice(j, 1);
+                    break;
+                }
+            }
+            if(photo.id == $scope.theSelectedProfilePicture.id) {
+                $scope.theSelectedProfilePicture = "";
+            }
+
+
+        }
+
+        $rootScope.apply;
 
     };
 
