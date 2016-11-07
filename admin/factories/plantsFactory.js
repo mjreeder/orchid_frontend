@@ -138,12 +138,12 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         });
     };
 
-    data.editDescription = function(aaa) {
+    data.editDescription = function(data) {
         return $http({
             method: "PUT",
             url: baseUrl + '/updateDescription',
             data: {
-                "aaa": aaa,
+                "plant": data,
                 "session_id": $rootScope.userSessionId,
                 "session_key": $rootScope.userSessionKey
             }
@@ -153,7 +153,7 @@ app.factory('PlantsFactory', function($http, $rootScope) {
     data.editHybird = function(plant) {
         return $http({
             method: "PUT",
-            url: baseUrl + '/upateHyrbrid',
+            url: baseUrl + '/updateHybrid',
             data: {
                 "plant": plant,
                 "session_id": $rootScope.userSessionId,
