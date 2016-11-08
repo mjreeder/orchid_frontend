@@ -1,6 +1,6 @@
 #container p {
     width: 100%;
-    background-color: black;
+    background-color: #2b2e30;
     color: white;
     height: 40px;
     font-family: Aleo, serif;
@@ -31,7 +31,7 @@
 .divider {
     width: 95%;
     height: 5px;
-    background-color: grey;
+    background-color: #808080;
     display: block;
     margin: 0 auto;
     clear: both;
@@ -43,20 +43,20 @@
 
 #form-users .users input {
     width: 100%;
-    margin-right: 10px;
+  
 }
 
 #form-users {
-    margin-left: 10px;
-    width: 90%;
+    width: 100%;
     position: relative;
 }
 
 #form-users img {
     width: 40px;
     position: absolute;
+    top: 33px;  
 /*    right: 30px; */
-    margin: 30px 0px 0px 30px;
+/*    margin: 30px 0px 0px 30px;*/
 }
 
 #form-users .section {
@@ -67,11 +67,19 @@
 }
 
 
+
+
 #form-users .section label {
-    display: inline-block; 
     width: 20%; 
     padding-right: 15px; 
 
+}
+
+#form-users .section input {
+    width: 10%; 
+    display: inline-block;
+
+    
 }
 
 
@@ -97,6 +105,3 @@
     padding: 30px;
 }
 
-.edit-icon {
-/*    display: none;*/
-}

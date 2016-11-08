@@ -1,15 +1,38 @@
-app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory) {
+app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory) {
 
+    //UserFactory.getAuth().then(function(response){
+    //    console.log("weeeeeee");
+    //    var data = response.data.data;
+    //    console.log(data.authLevel);
+    //    if (data.authLevel == 1){
+    //        $scope.AuthUser = true;
+    //    } else {
+    //        $scope.AuthUser = false;
+    //
+    //    }
+    //    //$rootScope.apply();
+    //    $scope.apply();
+    //});
+    //$scope.AuthUser = false;
+    //
+    //$scope.apply();
+
+    $scope.AuthUser = false;
+
+    $scope.$apply;
+    
     var param1 = $routeParams.accession_number;
 
-    $scope.AuthUser = true;
+    //$scope.AuthUser = true;
 
     console.log(param1);
 
     $scope.PlantCountryNames = [];
     $scope.Tables = [];
     //$scope.createNew = false;
-    $scope.createNew;
+    $scope.createNew = false;
+    $scope.noProfile = true;
+
 
     $scope.allCountires = [];
     $scope.plant_id_url = [];
@@ -18,6 +41,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
     $scope.habitatPictures = [];
     $scope.otherPictures = [];
+    $scope.deletedPictures = [];
 
     $scope.newHabitatList = [];
     $scope.newOtherList = [];
@@ -39,15 +63,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
             }
         });
 
-        // PlantCountryLinkFactory.getCountryByPlantID(plant_id).then(function(response) {
-        //     var plantCountryData = response.data.data;
-        //     for (i = 0; i < plantCountryData.length; i++) {
-        //         var nme = plantCountryData[i].name;
-        //         console.log(nme);
-        //         $scope.PlantCountryNames.push(nme);
-        //         console.log($scope.PlantCountryNames);
-        //     }
-        // });
+
 
         newLink = [];
 
@@ -136,12 +152,6 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
 
         });
 
-        console.log($scope.plant.aaa);
-
-        $scope.createNew = false;
-
-
-
         //todo need to look at why this is not pulling in the correct image
         PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function(response) {
             //console.log(response.data.data);
@@ -153,7 +163,7 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                         $scope.plant.image = response.data.data[i];
                         $scope.theSelectedProfilePicture = data[i];
                         $scope.plant_id_url.push(response.data.data[i]);
-
+                        $scope.noProfile = false;
 
                     } else {
                         //if not profile, add in the rest of the file
@@ -175,7 +185,11 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                 }
 
             }
+
+
         });
+
+        $scope.$apply();
 
         countryFactory.getCountries().then(function(response) {
             var countryNames = response.data.data;
@@ -433,6 +447,18 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
         if ($scope.editPlant.photos == false) {
             $scope.editPlant.photos = true;
 
+            for (var i = 0; i < $scope.deletedPictures.length; i++) {
+                console.log("we are logging the habitat info");
+                var habitatInfo = {
+                    id: $scope.deletedPictures[i].id
+
+                };
+                console.log('we are done editing: here is the habitat photo:');
+                console.log(habitatInfo);
+                PhotoFactory.deletePhoto(habitatInfo).then(function(response) {
+
+                });
+            }
 
 
             for (var i = 0; i < $scope.newHabitatList.length; i++) {
@@ -817,17 +843,57 @@ app.controller('PlantViewController', function($scope, CONFIG, countryFactory, $
                     break;
                 }
             }
-            for(var j = 0; j < $scope.theSelectedProfilePicture.length; j++){
-                if(photo.id == $scope.theSelectedProfilePicture[j].id){
-                    $scope.theSelectedProfilePicture.splice(j, 1);
-                    break;
-                }
+            if(photo.id == $scope.theSelectedProfilePicture.id) {
+                $scope.theSelectedProfilePicture = "";
             }
 
         }
 
         $rootScope.apply;
 
+
+    };
+
+    $scope.deletedSelcted = function(photo){
+        var noChange = false;
+        for (var i = 0; i < $scope.deletedPictures.length; i++){
+            if(photo.id == $scope.deletedPictures[i].id){
+                //do nothing since it is already there
+                noChange = true;
+            }
+        }
+
+        if(noChange == false){
+            //we need to made a change
+            for (var i = 0; i < $scope.plant_id_url.length; i++){
+                if ($scope.plant_id_url[i].id == photo.id){
+                    var index = i;
+                    break;
+                }
+            }
+
+            $scope.deletedPictures.push(photo);
+            $scope.plant_id_url[index].type = 'del';
+            for(var j = 0; j < $scope.habitatPictures.length; j++){
+                if(photo.id == $scope.habitatPictures[j].id){
+                    $scope.habitatPictures.splice(j, 1);
+                    break;
+                }
+            }
+            for(var j = 0; j < $scope.otherPictures.length; j++){
+                if(photo.id == $scope.otherPictures[j].id){
+                    $scope.otherPictures.splice(j, 1);
+                    break;
+                }
+            }
+            if(photo.id == $scope.theSelectedProfilePicture.id) {
+                $scope.theSelectedProfilePicture = "";
+            }
+
+
+        }
+
+        $rootScope.apply;
 
     };
 

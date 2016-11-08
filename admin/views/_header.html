@@ -2,7 +2,7 @@
    
    <div class="upper-heading"> 
         <ul>
-            <li ng-hide="AuthUser"> <a href="#/users/register">Register</a></li>
+            <li ng-show="!AuthUser"> <a href="#/users/register">Register</a></li>
             <li>   <a href="#">Logout</a> </li>
         </ul>
         </div>

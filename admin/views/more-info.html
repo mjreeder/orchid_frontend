@@ -3,8 +3,8 @@
 
         <fieldset id="vitals">
 
-            <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-click="changeProfilePicture()" ng-hide ="createNew">
-            <img src="images/no_plant_icon.svg" alt="" id="thumbnail" ng-click="changeProfilePicture()" ng-hide ="!createNew">
+            <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-show ="!createNew && !noProfile">
+            <img src="images/no_plant_icon.svg" alt="" id="thumbnail"  ng-show ="createNew || noProfile">
 
 
             <button class="edit" ng-click="editCritical()" ng-hide="createNew">
@@ -205,7 +205,7 @@
                     <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
                     <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
                     <input type="button" value="Other"  ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'other', noglowHealth: photo.type != 'other'}">
-                    <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted" id="photos-delete1">
+                    <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{glowHealthPoor: photo.type == 'del', noglowHealth: photo.type != 'del'}">
                 </div>
             </div>
 
@@ -384,8 +384,7 @@
         
         <p class="recent-blooming-date">
                     <span class="blooming-date1">10/16/2014</span>
-                    -
-                    <span class="blooming-date2">12/21/2014</span>
+                    
                 </p>
                 <p class="recent-blooming-comment">
                     Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
@@ -393,32 +392,28 @@
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+           
         </p>
         <p class="recent-blooming-comment">
         </p>
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+           
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+            
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+            
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
@@ -469,8 +464,7 @@
         
         <p class="recent-blooming-date">
                     <span class="blooming-date1">10/16/2014</span>
-                    -
-                    <span class="blooming-date2">12/21/2014</span>
+                   
                 </p>
                 <p class="recent-blooming-comment">
                     Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
@@ -478,32 +472,28 @@
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+           
         </p>
         <p class="recent-blooming-comment">
         </p>
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+            
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+            
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+            
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
@@ -541,18 +531,10 @@
           <fieldset id="weekly-checkup">
         <h1>Current Health Condition</h1>
         
-        
-        <section id="current-health" class="top-margin">
-            <label id="weekly-checkup-health">Current health condition:</label>
-                <button id="poor" ng-click="health_score = 'poor'" ng-class="{glowHealthPoor: health_score == 'poor', noglowHealth: health_score != 'poor'}">Poor</button>
-                <button id="fair" ng-click="health_score = 'fair'" ng-class="{glowHealthFair: health_score == 'fair', noglowHealth: health_score != 'fair'}">Fair</button>
-                <button id="good" ng-click="health_score = 'good'" ng-class="{glowHealthGood: health_score == 'good', noglowHealth: health_score != 'good'}">Good</button>
-<!--            <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition." ng-model="health_comment"></textarea>-->
-        </section>
+    
  <p class="recent-blooming-date">
                     <span class="blooming-date1">10/16/2014</span>
-                    -
-                    <span class="blooming-date2">12/21/2014</span>
+                   
                 </p>
                 <p class="recent-blooming-comment">
                     Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
@@ -560,32 +542,28 @@
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+            
         </p>
         <p class="recent-blooming-comment">
         </p>
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+            
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+            
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
+            
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
