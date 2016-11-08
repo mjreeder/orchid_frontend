@@ -1,5 +1,7 @@
 app.controller('RegisterViewController', function($scope, $rootScope, UserFactory, $route){
 
+    $scope.newUser = false;
+
 
     $scope.allUsers = [];
 
@@ -52,6 +54,16 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
         $route.reload();
 
     };
+
+    $scope.addUser = function(){
+        $scope.newUser = true;
+
+    };
+
+    $scope.saveUser = function(user){
+
+        console.log(user);
+    }
 
 
 

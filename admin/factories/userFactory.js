@@ -31,6 +31,19 @@ app.factory('UserFactory', function($http, sessionService, $rootScope) {
       });
     };
 
+    data.getAuth = function(){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/getAuth',
+            data: {
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey,
+                "key" : $rootScope.userSessionId
+
+            }
+        });
+    }
+
     data.getAllUsers = function(){
         return $http({
             method: "GET",
