@@ -13,6 +13,9 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         //$rootScope.apply();
         //$scope.apply();
     });
+
+    $scope.iFrameURL = "http://localhost:8888/orchid_site/utilities/file_frame.php?session_key=" +$rootScope.userSessionKey +"&session_id=" +$rootScope.userSessionId +"&url_section=blah";
+
     //$scope.AuthUser = false;
     //
     //$scope.apply();
@@ -933,6 +936,21 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         $rootScope.apply;
 
     };
+
+    $scope.uploadFileUrl = function(url, b){
+        var baseURL = "http://s3.amazonaws.com/bsuorchid/";
+        var fileName = url.split(baseURL)[1];
+        var photo = {
+          'plant_id' : $scope.plant.id,
+            'url' : url,
+            'type' : 'habitat',
+            'fileName' : fileName
+        };
+
+        PhotoFactory.createPhoto(photo).then(function (response){
+
+        });
+    }
 
 
 
