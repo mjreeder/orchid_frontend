@@ -3,8 +3,8 @@
 
         <fieldset id="vitals">
 
-            <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-click="changeProfilePicture()" ng-hide ="createNew">
-            <img src="images/no_plant_icon.svg" alt="" id="thumbnail" ng-click="changeProfilePicture()" ng-hide ="!createNew">
+            <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-show ="!createNew && !noProfile">
+            <img src="images/no_plant_icon.svg" alt="" id="thumbnail"  ng-show ="createNew || noProfile">
 
 
             <button class="edit" ng-click="editCritical()" ng-hide="createNew">
@@ -205,7 +205,7 @@
                     <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
                     <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
                     <input type="button" value="Other"  ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'other', noglowHealth: photo.type != 'other'}">
-                    <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted" id="photos-delete1">
+                    <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{glowHealthPoor: photo.type == 'del', noglowHealth: photo.type != 'del'}">
                 </div>
             </div>
 

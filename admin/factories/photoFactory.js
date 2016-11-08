@@ -45,6 +45,20 @@ app.factory('PhotoFactory', function($http, $rootScope) {
                 "session_key": $rootScope.userSessionKey
             }
         });
+    };
+
+    data.deletePhoto = function(photo){
+        console.log("we are here at the delete stage");
+        console.log(photo);
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/deactive',
+            data: {
+                "id": photo.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        });
     }
 
     return data;
