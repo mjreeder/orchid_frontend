@@ -130,7 +130,8 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         //console.log("aaa");
 
         //$scope.plant.id
-        BloomingFactory.getBloomByPlantID($scope.plant.id).then(function(response){
+        var bloomPage = 1;
+        BloomingFactory.getBloomByPlantID($scope.plant.id, bloomPage).then(function(response){
           $scope.blooms = response.data.data;
           console.log(response);
           console.log($scope.blooms);
@@ -199,8 +200,6 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
 
 
         });
-
-        $scope.$apply();
 
         countryFactory.getCountries().then(function(response) {
             var countryNames = response.data.data;
