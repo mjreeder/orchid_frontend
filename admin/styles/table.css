@@ -85,7 +85,7 @@ main table {
 }
 
 thead {
-    background-color: black;
+    background-color: #2b2e30;
     color: white;
     font-family: Aleo, serif;
     font-size: 20px;
@@ -142,8 +142,14 @@ td {
 
 #close {
     position: absolute;
-    right: 15px;
-    top: 15px;
+    right: 20px;
+    top: 28px;
+}
+
+.flower-popup #close img {
+    padding: 0;
+    margin: 0;
+
 }
 
 .flower-popup {
@@ -191,6 +197,12 @@ td {
     font-family: aleo, serif;
     font-size: 18px;
     margin: 0 0 5px 5px;
+
+}
+
+.start-stop-blooming {
+    display: block;
+    margin-left: 30px;
 }
 
 .editPlant {
@@ -209,8 +221,7 @@ td {
     padding: 5px;
     box-sizing: border-box;
     height: 50px;
-    margin-left: -15px;
-    /*    margin: 5px 0 0 0;*/
+    margin: 5px 0 0 0;
 }
 
 .today,
@@ -233,7 +244,7 @@ td {
     font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 10px 15px;
-    margin: 5px 20px;
+    margin: 5px;
     border-radius: 5px;
     display: inline-block;
     float: left;
@@ -253,6 +264,20 @@ td {
     float: right;
 }
 
+.popup-save {
+    background-color: #BA0c2F;
+    text-decoration: none;
+    color: white;
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    float: right;
+    margin: 5px;
+}
+
+
 #edit-button, #move-certain-plants {
     margin: 0 10px 0 5px;
 }
@@ -268,29 +293,10 @@ td {
     font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 10px 15px;
-    margin: 5px 10px;
+    margin: 0 10px;
     border-radius: 5px;
     display: inline-block;
     width: 67px;
-}
-
-.today {
-    /*    margin: 0; */
-}
-
-.today:active {
-    background-color: #BA0C2F;
-}
-
-#current-health button:active {
-    background-color: #BA0C2F;
-}
-
-#current-health {
-    font-family: aleo, serif;
-    font-size: 18px;
-    margin-left: 5px;
-    margin-bottom: 5px;
 }
 
 .flower-popup img {
@@ -321,31 +327,15 @@ td {
     pointer-events: none;
 }
 
-
-
 #more-info {
-    margin-left: -15px;
+    /*margin-left: -15px;*/
 }
 
 #more-info a {
     color: white;
 }
 
-.subsection {
-    margin-left: 30px;
-}
 
-
-/*
-.glowHealth {
-  box-shadow:0 0 20px #BA0C2F;
-  background-color: #BA0C2F;
-}
-
-.noglowHealth {
-  background-color: #808080;
-}
-*/
 
 .glowHealthPoor {
     /*   box-shadow:0 0 20px #BA0C2F;*/
@@ -395,34 +385,35 @@ td {
 
 
 
-table input {
+table input, .popup-flagged input {
     opacity: 0;
     width: auto;
     margin: 8px 20px;
     transform: translateY(-7px);
 }
 
-
 .table-checkbox {
-   background:url(../images/empty_checkbox.svg)center center no-repeat / cover;
+    background:url(../images/empty_checkbox.svg)center center no-repeat / cover;
     height: 20px; 
-  width:20px;
-  display: inline-block;
-  vertical-align:middle;
-  position:relative;
+    width:20px;
+    display: inline-block;
+    vertical-align:middle;
+    position:relative;
     margin: 0;
-} 
+}
+
+#flagged-span {
+    display: inline;
+}
 
 
 input:checked + span {
-  background:url(../images/checked_checkbox.svg) center center no-repeat / cover;
+    background:url(../images/checked_checkbox.svg) center center no-repeat / cover;
 }
 
 
-.top-margin input {
-   display: inline-block;  
-}
-
-
+/*#flagged-checkbox {*/
+    /*opacity: 1;*/
+/*}*/
 
 
