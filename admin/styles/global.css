@@ -207,13 +207,12 @@ table {
 }
 
 .upper-heading ul li  a {
- color: white;  
-    font-size: 16px;
-     font-weight: 200; 
+    color: white;
+    font-size: 14px;
+    font-weight: 200;
     margin-right: 10px; 
     letter-spacing: 1.1px; 
 }
-
 
 header {
     background-color: #BA0C2F;
@@ -232,7 +231,7 @@ header .main-heading li a {
 /*    font-family: Aleo, serif;*/
     font-family: Raleway, sans-serif;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
     text-decoration: none;
     color: black;
     float: top;

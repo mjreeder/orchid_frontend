@@ -6,9 +6,10 @@
     <header class="page-nav">
 
         <h1 id="title">{{current_table_name}} </h1>
-        <div id="A"><a href="#/house/{{room_type}}">
-            <img src="images/backbutton.svg" alt="Back" /></a>
-        </div>
+        <!--<div id="back-button">-->
+            <a href="#/house/{{room_type}}">
+            <img id="back-button" src="images/backbutton.svg" alt="Back" /></a>
+        <!--</div>-->
 
 
 
@@ -48,7 +49,7 @@
             <tr ng-repeat="plant in plantsInTable" ng-class="{alertRow: plant.tagged == true}"  ng-show="showRows">
 
                 <td ng-show="movePlants">
-                   <label> <input type="checkbox" ng-click="wantPlantMoved(plant)"/><span></span></label>
+                   <label> <input type="checkbox" ng-click="wantPlantMoved(plant)"/><span class="table-checkbox"></span></label>
                 </td>
 
                 <td ng-click="showPopup(plant)">{{plant.accession_number}}</td>
@@ -58,7 +59,7 @@
 
                 <td>
                     <label>
-                        <input ng-click="addVarified(plant)" type="checkbox"  ng-model="plant.verified"/><span></span>
+                        <input ng-click="addVarified(plant)" type="checkbox"  ng-model="plant.verified"/><span class="table-checkbox"></span>
                     </label>
                 </td>
                 <td>
@@ -73,19 +74,17 @@
             </tbody>
             </div>
         </table>
+    </div>
     
 
-    <div ng-if="showTable">
-    <button id="save" type="submit" ng-click="updateDates()">Save</button>
+    <div class="table-footer" ng-if="showTable">
+        <button class="save" id="save" type="submit" ng-click="updateDates()">Save</button>
 
 
-    <footer id="moveplants" >
-        <button id="save" type="submit" ng-click="movePlantsFunction()">Edit</button>
-    </footer>
+        <button class="save moveplants" id="edit-button" type="submit" ng-click="movePlantsFunction()">Edit</button>
+        <button class="save moveplants" id="move-certain-plants" type="submit" ng-click="showMoveFunction()">Move Certain Plants</button>
 
-        <footer id="moveplants" >
-            <button id="save" type="submit" ng-click="showMoveFunction()">Move Certain Plants</button>
-        </footer>
+    </div>
 
 
         <!--SHOW POPUPS-->
@@ -94,6 +93,5 @@
         <div ng-include="'views/MoveTable.html'" ng-show="showPopup2"></div>
 
 
-    </div>
 </main>
 </body>
