@@ -95,11 +95,19 @@
     display: block;
 }
 
-#auth,
-#email,
-#lastname,
-#password,
-input {
+#auth input {
+  display: block;
+}
+
+#email input {
+      display: block;
+}
+
+#lastname input {
+      display: block;
+}
+
+#password input {
     display: block;
 }
 
