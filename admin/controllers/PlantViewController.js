@@ -1,25 +1,25 @@
 app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory) {
 
-    //UserFactory.getAuth().then(function(response){
-    //    console.log("weeeeeee");
-    //    var data = response.data.data;
-    //    console.log(data.authLevel);
-    //    if (data.authLevel == 1){
-    //        $scope.AuthUser = true;
-    //    } else {
-    //        $scope.AuthUser = false;
-    //
-    //    }
-    //    //$rootScope.apply();
-    //    $scope.apply();
-    //});
+    UserFactory.getAuth().then(function(response){
+        console.log("weeeeeeewwwwwwww");
+        var data = response.data.data;
+        console.log(data.authLevel);
+        if (data.authLevel == 1){
+            $scope.AuthUser = true;
+        } else {
+            $scope.AuthUser = false;
+
+        }
+        //$rootScope.apply();
+        //$scope.apply();
+    });
     //$scope.AuthUser = false;
     //
     //$scope.apply();
-
-    $scope.AuthUser = false;
-
-    $scope.$apply;
+    //
+    //$scope.AuthUser = false;
+    //
+    //$scope.$apply;
     
     var param1 = $routeParams.accession_number;
 

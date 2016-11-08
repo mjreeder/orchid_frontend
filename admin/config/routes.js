@@ -118,9 +118,13 @@ app.config(function ($routeProvider, CONFIG) {
 var isAuthenticated = function ($q, $rootScope, $location, sessionService) {
     var session = sessionService.hasRecentSession();
     if (session) {
+        $rootScope.isLoggedIn = true;
+
         return true;
     } else {
         $rootScope.redirect = $location.path();
         $location.path("/login");
     }
+
+
 };
