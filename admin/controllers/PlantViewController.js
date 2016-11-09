@@ -517,12 +517,10 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         }
     };
 
+    $scope.newSplit = false;
     $scope.newPlantSplits = [];
-    $scope.addPlantSplit = function() {
-        $scope.newPlantSplits.push({
-            'recipient': '',
-            'timestamp': ''
-        });
+    $scope.addPlantSplitFunction = function() {
+        $scope.newSplit = true;
     }
 
 
@@ -572,10 +570,23 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
                     console.log(response);
                 });
             }
+            var splitData = {
+                "plant_id" : $scope.plant.id,
+                "recipient" : $scope.newPlantSplit.recipient,
+                "timestamp" : $scope.newPlantSplit.timestamp,
+                "note" : $scope.newPlantSplit.note
+            };
+            console.log(splitData);
+            console.log($scope.plant.id);
+            splitFactory.createNewSplit(splitData, $scope.plant.id).then(function(response) {
+                console.log(response);
+            });
         } else {
             $scope.editPlant.split = false;
         }
     }
+
+    $scope.newPlantSplit = {};
 
     $scope.newPlantSplits = [];
     $scope.addPlantSplit = function() {
