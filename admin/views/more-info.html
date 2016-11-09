@@ -440,9 +440,9 @@
 
         <fieldset id="weekly-checkup">
         <h1>Current Health Condition</h1>
-        <p class="recent-blooming-date">
+        <p class="recent-blooming-date" ng-repeat="health in healthData">
             <span class="blooming-date1">{{health.timestamp}}</span>
-            <span class="recent-blooming-comment">{{health.note}}</span>
+            <span class="recent-blooming-comment">{{health.comment}}</span>
         </p>
 
         <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreHealth()">
