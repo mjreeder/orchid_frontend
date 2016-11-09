@@ -138,7 +138,9 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         $scope.getMoreBlooms = function(){
           bloomPage++;
           BloomingFactory.getBloomByPlantID($scope.plant.id, bloomPage).then(function(response){
-            $scope.blooms.push(response.data.data);
+            for(var i = 0; i < response.data.data.length; i++){
+              $scope.blooms.push(response.data.data[i]);
+            }
             for(var i = 0; i < $scope.blooms.length; i++){
               if($scope.blooms[i].end_date == "0000-00-00"){
                 $scope.blooms[i].end_date = "present";
@@ -153,7 +155,9 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         $scope.getMoreSprayed = function(){
           sprayPage++;
           SprayedFactory.getPestByPlantID($scope.plant.id, sprayPage).then(function(response){
-            $scope.sprayed.push(response.data.data);
+            for(var i = 0; i < response.data.data.length; i++){
+              $scope.sprayed.push(response.data.data[i]);
+            }
           })
         }
         $scope.getMoreSprayed();
@@ -163,7 +167,9 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         $scope.getMoreRepotted = function(){
           repotPage++;
           PottingFactory.getBloomByPlantID($scope.plant.id, repotPage).then(function(response){
-            $scope.repotted.push(response.data.data);
+            for(var i = 0; i < response.data.data.length; i++){
+              $scope.repotted.push(response.data.data[i]);
+            }
           })
         }
         $scope.getMoreRepotted();
@@ -173,8 +179,10 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         $scope.getMoreHealth = function(){
           healthPage++;
           HealthFactory.getHealthBtPlantID($scope.plant.id, healthPage).then(function(response){
-            console.log(response.data.data);
-            $scope.healthData.push(response.data.data);
+            for(var i = 0; i < response.data.data.length; i++){
+              $scope.healthData.push(response.data.data[i]);
+            }
+            console.log($scope.healthData);
           })
         }
         $scope.getMoreHealth();
