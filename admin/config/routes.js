@@ -9,6 +9,10 @@ app.config(function ($routeProvider, CONFIG) {
         controller: 'LoginViewController',
         templateUrl: 'views/login.html'
     }).
+    when('/logout', {
+            controller: 'LogoutViewController',
+            templateUrl: 'view/login.html'
+        }).
     when('/house', {
         controller: 'DisplayViewController',
         templateUrl: 'views/Ipad-map.html',
@@ -97,7 +101,7 @@ app.config(function ($routeProvider, CONFIG) {
         controller: 'RegisterViewController',
         templateUrl: 'views/register.html',
         resolve: {
-            'data': isAuthenticated
+            'data': isSuperAuthenticated
         }
     }).
     when('/users/change-password', {
@@ -115,13 +119,55 @@ app.config(function ($routeProvider, CONFIG) {
 
 
 
-var isAuthenticated = function ($q, $rootScope, $location, sessionService) {
+var isAuthenticated = function ($q, $rootScope, $location, sessionService, UserFactory) {
     var session = sessionService.hasRecentSession();
     if (session) {
         $rootScope.isLoggedIn = true;
 
+        UserFactory.getAuth().then(function (response){
+            var data = response.data.data;
+            if (data.authLevel == 1){
+                $scope.AuthUser = true;
+            } else {
+                $scope.AuthUser = false;
+            }
+            $location.refresh();
+        });
         return true;
     } else {
+        $rootScope.redirect = $location.path();
+        $location.path("/login");
+    }
+};
+
+var isSuperAuthenticated = function ($q, $rootScope, $location, sessionService, UserFactory) {
+    var session = sessionService.hasRecentSession();
+    if (session) {
+        $rootScope.isLoggedIn = true;
+        console.log("HEEEE");
+        UserFactory.getAuth().then(function (response){
+            var data = response.data.data;
+
+            if (data.authLevel == 1){
+                $scope.AuthUser = true;
+                return true;
+            } else {
+                $scope.AuthUser = false;
+                return false;
+            }
+
+
+            $location.refresh();
+        });
+        $scope.SuperAdmin = false;
+        return false;
+
+    } else {
+        $rootScope.redirect = $location.path();
+        $location.path("/login");
+        return false;
+    }
+    if(SuperAdmin == false){
         $rootScope.redirect = $location.path();
         $location.path("/login");
     }
