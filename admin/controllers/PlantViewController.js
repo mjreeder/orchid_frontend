@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory) {
+app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory) {
 
     UserFactory.getAuth().then(function(response){
         console.log("weeeeeeewwwwwwww");
@@ -8,7 +8,6 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             $scope.AuthUser = true;
         } else {
             $scope.AuthUser = false;
-
         }
         //$rootScope.apply();
         //$scope.apply();
@@ -23,7 +22,7 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
     //$scope.AuthUser = false;
     //
     //$scope.$apply;
-    
+
     var param1 = $routeParams.accession_number;
 
     //$scope.AuthUser = true;
@@ -132,7 +131,20 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         //console.log("aaa");
         //console.log($scope.plant.date_recieved);
         //console.log("aaa");
-        $scope.splits = [];
+
+        //$scope.plant.id
+        var bloomPage = 1;
+        BloomingFactory.getBloomByPlantID($scope.plant.id, bloomPage).then(function(response){
+          $scope.blooms = response.data.data;
+          console.log(response);
+          console.log($scope.blooms);
+          for(var i = 0; i < $scope.blooms.length; i++){
+            if($scope.blooms[i].end_date == "0000-00-00"){
+              $scope.blooms[i].end_date = "present";
+            }
+          }
+        })
+
         splitFactory.getSplitForPlantId($scope.plant.id).then(function(response) {
             for (var i = 0; i < response.data.data.length; i++) {
 
@@ -191,8 +203,6 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
 
 
         });
-
-        $scope.$apply();
 
         countryFactory.getCountries().then(function(response) {
             var countryNames = response.data.data;

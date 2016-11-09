@@ -37,15 +37,19 @@
      Email <input type="text" name="email" ng-model="user.email">
     </label>
 
-
+  <label id="auth" class="users">
+            Super admin <span class="table-checkbox"></span>
+        </label>
 
     <label id="password" class="users">
       <button ng-click="changePasswordFunction(user)">Change Password</button>
     </label>
+    
     <button ng-click="deleteUserFunction(user)"><img src="images/minus.svg" alt="minus" /></button>
 
     </div>
 
+   
     
     
     <!--<div class="section" ng-repeat="user in allUsers">-->
@@ -108,14 +112,14 @@
 
     <label id="lastname" class="users">
       Last Name <input type="text" name="email" ng-model="user.lastName">
-    </label>
+        </label>
 
     <label id="email" class="users">
      Email <input type="text" name="email" ng-model="user.email">
     </label>
 
         <label id="email" class="users">
-            Auth <input type="text" name="email" ng-model="user.auth">
+            Authority Level <input type="text" name="email" ng-model="user.auth">
         </label>
 
         <label id="email" class="users">
@@ -142,9 +146,11 @@
 </form>
  </div>
  
+<!--
  <div class="divider">
 
 </div>
+-->
 
 <div class="add-user"> 
 <button>
