@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory) {
+app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory) {
 
     UserFactory.getAuth().then(function(response){
         console.log("weeeeeeewwwwwwww");
@@ -129,18 +129,52 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         //console.log($scope.plant.date_recieved);
         //console.log("aaa");
 
-        //$scope.plant.id
-        var bloomPage = 1;
-        BloomingFactory.getBloomByPlantID($scope.plant.id, bloomPage).then(function(response){
-          $scope.blooms = response.data.data;
-          console.log(response);
-          console.log($scope.blooms);
-          for(var i = 0; i < $scope.blooms.length; i++){
-            if($scope.blooms[i].end_date == "0000-00-00"){
-              $scope.blooms[i].end_date = "present";
+        $scope.plant.id = 76;
+        var bloomPage = 0;
+        $scope.blooms = [];
+        $scope.getMoreBlooms = function(){
+          bloomPage++;
+          BloomingFactory.getBloomByPlantID($scope.plant.id, bloomPage).then(function(response){
+            $scope.blooms.push(response.data.data);
+            for(var i = 0; i < $scope.blooms.length; i++){
+              if($scope.blooms[i].end_date == "0000-00-00"){
+                $scope.blooms[i].end_date = "present";
+              }
             }
-          }
-        })
+          })
+        }
+        $scope.getMoreBlooms();
+
+        var sprayPage = 0;
+        $scope.sprayed = [];
+        $scope.getMoreSprayed = function(){
+          sprayPage++;
+          SprayedFactory.getPestByPlantID($scope.plant.id, sprayPage).then(function(response){
+            $scope.sprayed.push(response.data.data);
+          })
+        }
+        $scope.getMoreSprayed();
+
+        var repotPage = 0;
+        $scope.repotted = [];
+        $scope.getMoreRepotted = function(){
+          repotPage++;
+          PottingFactory.getBloomByPlantID($scope.plant.id, repotPage).then(function(response){
+            $scope.repotted.push(response.data.data);
+          })
+        }
+        $scope.getMoreRepotted();
+
+        var healthPage = 0;
+        $scope.healthData = [];
+        $scope.getMoreHealth = function(){
+          healthPage++;
+          HealthFactory.getHealthBtPlantID($scope.plant.id, healthPage).then(function(response){
+            console.log(response.data.data);
+            $scope.healthData.push(response.data.data);
+          })
+        }
+        $scope.getMoreHealth();
 
         splitFactory.getSplitForPlantId($scope.plant.id).then(function(response) {
             for (var i = 0; i < response.data.data.length; i++) {

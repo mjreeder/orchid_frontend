@@ -34,8 +34,14 @@ app.factory('HealthFactory', function($http, $rootScope) {
         })
     }
 
-    data.getHealthBtPlantID = function(id){
-        return $http.get(baseUrl + '/plant_id/' + id);
+    data.getHealthBtPlantID = function(id, page = 1){
+        return $http({
+          method: "GET",
+          url: baseUrl + '/plant_id/' + id,
+          data: {
+            page: page
+          }
+        })
     }
 
     return data;
