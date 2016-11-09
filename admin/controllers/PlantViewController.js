@@ -12,6 +12,9 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         //$rootScope.apply();
         //$scope.apply();
     });
+
+    $scope.iFrameURL = "http://localhost:8888/orchid_site/utilities/file_frame.php?session_key=" +$rootScope.userSessionKey +"&session_id=" +$rootScope.userSessionId +"&url_section=blah";
+
     //$scope.AuthUser = false;
     //
     //$scope.apply();
@@ -558,12 +561,10 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         }
     };
 
+    $scope.newSplit = false;
     $scope.newPlantSplits = [];
-    $scope.addPlantSplit = function() {
-        $scope.newPlantSplits.push({
-            'recipient': '',
-            'timestamp': ''
-        });
+    $scope.addPlantSplitFunction = function() {
+        $scope.newSplit = true;
     }
 
 
@@ -613,10 +614,23 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
                     console.log(response);
                 });
             }
+            var splitData = {
+                "plant_id" : $scope.plant.id,
+                "recipient" : $scope.newPlantSplit.recipient,
+                "timestamp" : $scope.newPlantSplit.timestamp,
+                "note" : $scope.newPlantSplit.note
+            };
+            console.log(splitData);
+            console.log($scope.plant.id);
+            splitFactory.createNewSplit(splitData, $scope.plant.id).then(function(response) {
+                console.log(response);
+            });
         } else {
             $scope.editPlant.split = false;
         }
     }
+
+    $scope.newPlantSplit = {};
 
     $scope.newPlantSplits = [];
     $scope.addPlantSplit = function() {
@@ -977,6 +991,21 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         $rootScope.apply;
 
     };
+
+    $scope.uploadFileUrl = function(url, b){
+        var baseURL = "http://s3.amazonaws.com/bsuorchid/";
+        var fileName = url.split(baseURL)[1];
+        var photo = {
+          'plant_id' : $scope.plant.id,
+            'url' : url,
+            'type' : 'habitat',
+            'fileName' : fileName
+        };
+
+        PhotoFactory.createPhoto(photo).then(function (response){
+
+        });
+    }
 
 
 
