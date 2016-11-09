@@ -11,41 +11,48 @@
             <input type="image" id="mag-glass" name="search-button" src="images/Searchbutton.svg" width="20" ng-click="getPlantsBySearch(searchItem)">
         </form>
     </div>
-
-    <div class="filter-left">
-        <div class="filter-section">
-            <button id="collapse" type="image" id="active"> - </button>
-            <h2>
-                Filter</h2>
-            <hr noshade>
+    <div class="table_cont">
+        <div class="filter-left">
+            <div class="filter-section">
+                <button id="collapse" type="image" id="active">
+                    -
+                </button>
+                <h2>
+                    Filter</h2>
+                <hr noshade>
+            </div>
+            <div class="filter-options">
+                <ul ng-repeat="(key, val) in plants[0]">
+                    <li ng-show="val.key != 'id'">
+                        <div class="editPlant" ng-click="editFilterDisplay(val.key)">
+                            <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/>
+                            <span></span>
+                            <label>{{val.key}}</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="filter-options">
-            <ul ng-repeat="(key, val) in plants[0]">
-                <li ng-show="val.key != 'id'">
-                    <div class="editPlant" ng-click="editFilterDisplay(val.key)">
-                        <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/>  <span></span>
-                        <label>{{val.key}}</label>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
 
-    <div class="table-right">
+        <!-- <div class="table-right">
     <table width="400" class="table" cell padding="10" cell spacing="2">
-        <thead>
-            <tr>
-                <th ng-repeat="(key, val) in plants[0]" ng-show="val.isDisplayed && val.key != 'id'">{{val.key}}</th>
-                <!-- <th ng-repeat="(ind, val) in plantKeys" ng-show="val.isDisplayed">{{val.key.displayName}}</th> -->
-            </tr>
-            <tbody>
-                <tr ng-repeat="plant in plants">
-                    <td ng-repeat="(key, val) in plant" ng-show="val.isDisplayed" ng-click="getMorePlantInfo(plant)">{{val.val}}</td>
-                </tr>
-            </tbody>
-        </thead>
+
     </table>
+    </div> -->
+
+        <div class="table-wrapper">
+            <table id="consumption-data" class="data">
+                <thead>
+                    <tr>
+                        <th ng-repeat="(key, val) in plants[0]" ng-show="val.isDisplayed && val.key != 'id'">{{val.key}}</th>
+                    </tr>
+                    <tbody>
+                        <tr ng-repeat="plant in plants">
+                            <td ng-repeat="(key, val) in plant" ng-show="val.isDisplayed" ng-click="getMorePlantInfo(plant)">{{val.val}}</td>
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
+        </div>
     </div>
-
 </div>
-
