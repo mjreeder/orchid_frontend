@@ -23,7 +23,7 @@
 #search {
     font-family: 'Raleway', sans-serif;
     font-size: 15px;
-    border: 4px solid black;
+    border: 4px solid #2b2e30;
     height: 33px;
     width: 70%;
 }
@@ -98,7 +98,7 @@
 
 /* start of table styling */
 
-.table {
+#orchid-database .table {
     float: right;
     background-color: #DFE0E0;
     width: 100%;
@@ -107,17 +107,18 @@
     margin-right: 20px;
 }
 
-thead {
-    background-color: black;
+#orchid-database thead {
+    background-color: #2b2e30;
     color: white;
     font-family: Aleo;
     font-size: 20px;
     font-weight: 100;
 }
 
-table,
-td,
-th {
+
+#orchid-database table,
+#orchid-database td,
+#orchid-database th {
     border-bottom: 4px solid white;
     border-left: 4px solid white;
     text-align: left;
@@ -125,6 +126,11 @@ th {
     vertical-align: middle;
     padding: 10px;
     height: auto;
+}
+
+
+#orchid-database .table-right th {
+   padding: 20px 0px 20px 10px; 
 }
 
 
@@ -136,7 +142,7 @@ th {
 .filter-section {
     float: left;
     width: 100%;
-    background-color: black;
+    background-color: #2b2e30;
     height: 60px;
     /*    margin-left: 20px;*/
 }
@@ -225,7 +231,7 @@ button {
 }
 
 .filter-left {
-    /*float: left;*/
+    float: left;
     width: 25%;
     max-width: 250px;
     margin-left: 20px;
@@ -236,7 +242,9 @@ button {
 
 .table-right {
     margin-top: 90px;
-    /*float: right; */
+/*    float: right; */
+    float: left; 
+    margin-left: 8%; 
     width: 55%;
     display: inline-block;
 }

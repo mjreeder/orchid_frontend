@@ -1,4 +1,8 @@
-<div>
+
+   <div id="orchid-database"> 
+
+   
+   <div>
     <div id="allplantsh1">
         <h1>All Plants</h1>
     </div>
@@ -23,7 +27,7 @@
             <ul ng-repeat="(key, val) in plants[0]">
                 <li ng-show="val.key != 'id'">
                     <div class="editPlant" ng-click="editFilterDisplay(val.key)">
-                        <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/>  <span></span>
+                        <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/><span class="table-checkbox"></span>
                         <label>{{val.key}}</label>
                     </div>
                 </li>
@@ -49,3 +53,4 @@
 
 </div>
 
+</div>

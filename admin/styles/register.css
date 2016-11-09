@@ -111,6 +111,11 @@
       display: block;
 }
 
+#firstname input {
+   display: block;  
+}
+
+
 #password input {
     display: block;
 }
