@@ -70,8 +70,9 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
           var attributes = Object.keys(response.data.data[i]);
           for (var j = 0; j < attributes.length; j++) {
               var val = attributes[j];
-              //default displays or if key is in the displayAttributes
-              if (attributes[j] == 'accession_number' || attributes[j] == 'name' || displayAttributes.indexOf(attributes[j]) !== -1) {
+              //attributeReplace is for grabbing dual words such as scientific_name
+              var attributeReplace = attributes[j].replace(/[^a-zA-Z ]/g, " ");
+              if (attributes[j] == 'accession_number' || attributes[j] == 'name' || displayAttributes.indexOf(attributeReplace) !== -1) {
                   var attribute = {
                       'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
                       'val': response.data.data[i][val],
@@ -88,6 +89,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
           }
           plants.push(plant);
       }
+      // console.log(plants, displayAttributes);
       return plants;
     }
 
