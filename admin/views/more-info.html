@@ -231,62 +231,23 @@
 
     <fieldset id="graph">
         <h1>Blooming</h1>
-<!--        <button class="edit" ng-click="editBlooming()" ng-hide="createNew">-->
-<!--
-            <img src="images/edit.svg" alt="edit" ng-hide="editPlant.blooming">
-            <img src="images/checkmark.svg" alt="edit" ng-hide="!editPlant.blooming">
--->
-<!--        </button>-->
 
-                <p class="recent-blooming-date">
-                    <span class="blooming-date1">10/16/2014</span>
+                <p class="recent-blooming-date" ng-repeat="bloom in blooms">
+                    <span class="blooming-date1">{{bloom.start_date}}</span>
                     -
-                    <span class="blooming-date2">12/21/2014</span>
+                    <span class="blooming-date2">{{bloom.end_date}}</span>
                 </p>
-                <p class="recent-blooming-comment">
-                    Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-                </p>
-
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
-        </p>
-        <p class="recent-blooming-comment">
-        </p>
-
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-        </p>
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates.
-        </p>
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-            -
-            <span class="blooming-date2">12/21/2014</span>
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-        </p>
+                <span class="recent-blooming-comment clean-span" ng-repeat="bloom in blooms">
+                    <p>{{bloom.note}}</p><br/>
+                </span>
 
         <input type="button" value="View More" id="blooming-view-more" >
 
-       
+
 <!--        START OF BLOOMING GRAPH -->
         <div id="graph-will-be-here">
-            <table> 
-            <tr> 
+            <table>
+            <tr>
             <th>2013-2016</th>
            <th>Jan.</th>
            <th>Feb.</th>
@@ -357,18 +318,18 @@
             <td></td>
             <td></td>
             </tr>
-            
-            
+
+
             </table>
-            
+
         </div>
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
 <!--        END OF BLOOMING GRAPH -->
     </fieldset>
 
@@ -381,10 +342,10 @@
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.hybrid">
         </button>
 -->
-        
+
         <p class="recent-blooming-date">
                     <span class="blooming-date1">10/16/2014</span>
-                    
+
                 </p>
                 <p class="recent-blooming-comment">
                     Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
@@ -392,28 +353,28 @@
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-           
+
         </p>
         <p class="recent-blooming-comment">
         </p>
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-           
+
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            
+
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            
+
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
@@ -421,9 +382,9 @@
 
         <input type="button" value="View More" id="blooming-view-more" >
 
-        
-        
-        
+
+
+
 <!--
 
         <label id="sprayed-for-pests">Sprayed for pests:</label>
@@ -435,7 +396,7 @@
 -->
 <!--        <textarea placeholder="Comment here about pest spraying." name="comments" ng-model="sprayed_note"></textarea>-->
 
-       
+
         </fieldset>
         <!--<section class="top-margin">-->
 <!--
@@ -447,12 +408,12 @@
             </button>
             <label>{{ potting_timestamp | date }}</label>
 -->
-            
+
         <!--</section>-->
-         
-         
-         
-         
+
+
+
+
          <fieldset id="weekly-checkup">
         <h1>Repot</h1>
 <!--
@@ -461,10 +422,10 @@
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.hybrid">
         </button>
 -->
-        
+
         <p class="recent-blooming-date">
                     <span class="blooming-date1">10/16/2014</span>
-                   
+
                 </p>
                 <p class="recent-blooming-comment">
                     Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
@@ -472,28 +433,28 @@
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-           
+
         </p>
         <p class="recent-blooming-comment">
         </p>
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            
+
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            
+
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            
+
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
@@ -501,9 +462,9 @@
 
         <input type="button" value="View More" id="blooming-view-more" >
 
-        
-        
-        
+
+
+
 <!--
 
         <label id="sprayed-for-pests">Sprayed for pests:</label>
@@ -515,26 +476,24 @@
 -->
 <!--        <textarea placeholder="Comment here about pest spraying." name="comments" ng-model="sprayed_note"></textarea>-->
 
-       
+
         </fieldset>
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
+
+
+
+
+
+
+
+
+
+
+
           <fieldset id="weekly-checkup">
         <h1>Current Health Condition</h1>
-        
-    
  <p class="recent-blooming-date">
                     <span class="blooming-date1">10/16/2014</span>
-                   
+
                 </p>
                 <p class="recent-blooming-comment">
                     Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
@@ -542,28 +501,28 @@
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            
+
         </p>
         <p class="recent-blooming-comment">
         </p>
 
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            
+
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            
+
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates.
         </p>
         <p class="recent-blooming-date">
             <span class="blooming-date1">10/16/2014</span>
-            
+
         </p>
         <p class="recent-blooming-comment">
             Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
@@ -582,24 +541,24 @@
 
 
 
- 
-        <div class="end-section"> 
-      
+
+        <div class="end-section">
+
       <div id="back-to-top">
         <img src="images/back-to-top.svg" alt="back to top">
-</div> 
- 
-      
-      
+</div>
+
+
+
        <div id="moreinfo-save">
         <input type="button" ng-click="saveAll()" value="Save All" ng-hide="!editPlant.save">
 </div>
         </div>
-   
 
-   
-  
-    
+
+
+
+
 
     <div ng-include="'views/photoPopup.html'" ng-show="profilePopUp"></div>
 
