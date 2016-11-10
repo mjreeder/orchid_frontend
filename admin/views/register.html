@@ -37,8 +37,8 @@
      Email <input type="text" name="email" ng-model="user.email">
     </label>
 
-  <label id="auth" class="users">
-            Super admin <span class="table-checkbox"></span>
+    <label id="auth" class="users">
+            Super admin <input type="checkbox" ng-model="user.isAuthUser"/><span class="table-checkbox"></span>
         </label>
 
     <label id="password" class="users">
@@ -131,7 +131,6 @@
     <label id="password" class="users">
       <button ng-click="saveUser(user)">Save</button>
     </label>
-    <button ng-click="deleteUserFunction(user)"><img src="images/minus.svg" alt="minus" /></button>
 
     </div>
     
@@ -154,7 +153,7 @@
 
 <div class="add-user"> 
 <button>
-<img src="images/plus.svg" ng-click="addUser()" alt="add user"> </button>
+<img src="images/plus.svg" ng-click="addUser()" ng-hide="newUser" alt="add user"> </button>
 </div>
 
 
