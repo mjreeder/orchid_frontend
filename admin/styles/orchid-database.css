@@ -276,3 +276,12 @@ span {
 input:checked + span {
     background: url(../images/checked_checkbox.svg) center center no-repeat / cover;
 }
+
+
+
+
+#orchid-database .divider {
+    clear: both; 
+    margin-top: 20px;  
+    margin-bottom: 20px; 
+}
