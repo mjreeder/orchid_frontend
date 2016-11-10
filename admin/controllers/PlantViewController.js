@@ -128,11 +128,8 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             image: "",
             dead_date: createDateFromString(plantData.dead_date)
         };
-        //console.log("aaa");
-        //console.log($scope.plant.date_recieved);
-        //console.log("aaa");
 
-        $scope.plant.id = 76;
+
         var bloomPage = 0;
         $scope.blooms = [];
         $scope.getMoreBlooms = function(){
