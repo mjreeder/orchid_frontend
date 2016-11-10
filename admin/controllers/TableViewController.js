@@ -225,25 +225,34 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
     $scope.didMovePlants = false;
 
+    $scope.showButton = false;
+
     var index = 0;
 
     $scope.wantPlantMoved = function(plant) {
-        $scope.added = false;
+        console.log(plant);
+        $scope.added = true;
+        console.log("length of :" + $scope.addedMovePlants.length);
 
-        for (var i = 0; i < $scope.addedMovePlants.length; i++) {
-            if (plant.id == $scope.addedMovePlants[i]) {
-                console.log($scope.addedMovePlants[i].id);
-                index = i;
-                $scope.didMovePlants = true;
+
+
+        for(var i = 0; i < $scope.addedMovePlants.length; i++){
+            if($scope.addedMovePlants[i].id == plant.id) {
                 $scope.addedMovePlants.splice(i, 1);
-                break;
+                $scope.added = false;
+            } else {
 
             }
         }
-        if ($scope.didMovePlants == false) {
+
+        if($scope.added == true){
             $scope.addedMovePlants.push(plant);
+        }
+        console.log($scope.addedMovePlants.length);
+        if($scope.addedMovePlants.length > 0){
+            $scope.showButton = true;
         } else {
-            $scope.addedMovePlants.splice(index, 1);
+            $scope.showButton = false;
         }
     };
 

@@ -1,4 +1,4 @@
-app.controller('MoveTableViewController', function($route, $scope, $rootScope, PlantsFactory, $window){
+app.controller('MoveTableViewController', function($route, $scope, $rootScope, PlantsFactory){
 
     $scope.click = function(){
         console.log("");
@@ -10,7 +10,6 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
     $scope.x = {};
     $scope.$on('abc', function(event, data){
         $scope.addedMovePlants = data.any;
-        console.log($scope.addedMovePlants);
         $scope.hamburger = console.log($scope.addedMovePlants.a[0].accession_number);
         console.log($scope.hamburger);
         $scope.x.name = $scope.addedMovePlants.a[0].accession_number;
@@ -25,7 +24,6 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
         $scope.b ={
             name: $scope.addedMovePlants.a[0]
         };
-
     });
 
     $scope.movePlants = function(){
@@ -43,6 +41,8 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
         } else {
 
         }
+
+        $route.reload();
     };
 
     $scope.loadRoom = function($event){
