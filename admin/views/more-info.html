@@ -106,7 +106,21 @@
                 <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
 
             </div>
-            <button class="split-add" type="button" ng-hide="editPlant.split" ng-click="addPlantSplit()" ng-disabled="editPlant.split && !createNew">Add Split</button>
+            <button class="split-add" type="button" ng-hide="editPlant.split || newSplit" ng-click="addPlantSplitFunction()" ng-disabled="editPlant.split && !createNew">Add Split</button>
+
+
+            <div class="" ng-hide="!newSplit">
+
+                <label for="recipient">Recipient:</label>
+                <input id="recipient" placeholder="John Smith" type='text' ng-model="newPlantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+
+                <label>Split Date:</label>
+                <input placeholder="08/16/2016" type='text' ng-model="newPlantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
+
+                <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="newPlantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+
+            </div>
+
 
 
 
@@ -222,8 +236,9 @@
 
             <div class="photos-group">
                 <div class="photos-add-div" ng-hide="editPlant.photos">
-                    <img src="images/no_plant_icon.svg" alt="Add Photo" id="photos-add" class="thumbnail">
-                    <input type="button" value="Add Photo">
+                    <!--<img src="images/no_plant_icon.svg" alt="Add Photo" id="photos-add" class="thumbnail">-->
+                    <!--<input type="button" value="Add Photo">-->
+                    <iframe ng-src={{iFrameURL}}></iframe>
                 </div>
             </div>
         </fieldset>
@@ -241,7 +256,7 @@
                     <p>{{bloom.note}}</p><br/>
                 </span>
 
-        <input type="button" value="View More" id="blooming-view-more" >
+        <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreBlooms()">
 
 
 <!--        START OF BLOOMING GRAPH -->
@@ -343,44 +358,12 @@
         </button>
 -->
 
-        <p class="recent-blooming-date">
-                    <span class="blooming-date1">10/16/2014</span>
-
-                </p>
-                <p class="recent-blooming-comment">
-                    Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-                </p>
-
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
-        </p>
-        <p class="recent-blooming-comment">
+        <p class="recent-blooming-date" ng-repeat="spray in sprayed">
+            <span class="blooming-date1">{{spray.timestamp}}</span>
+            <span class="recent-blooming-comment">{{spray.note}}</span>
         </p>
 
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-        </p>
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates.
-        </p>
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-        </p>
-
-        <input type="button" value="View More" id="blooming-view-more" >
+        <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreSprayed()">
 
 
 
@@ -423,44 +406,10 @@
         </button>
 -->
 
-        <p class="recent-blooming-date">
-                    <span class="blooming-date1">10/16/2014</span>
-
-                </p>
-                <p class="recent-blooming-comment">
-                    Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-                </p>
-
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
+        <p class="recent-blooming-date" ng-repeat="repot in repotted">
+            <span class="blooming-date1">{{repot.timestamp}}</span>
         </p>
-        <p class="recent-blooming-comment">
-        </p>
-
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-        </p>
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates.
-        </p>
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-        </p>
-
-        <input type="button" value="View More" id="blooming-view-more" >
+        <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreRepotted()">
 
 
 
@@ -489,46 +438,14 @@
 
 
 
-          <fieldset id="weekly-checkup">
+        <fieldset id="weekly-checkup">
         <h1>Current Health Condition</h1>
- <p class="recent-blooming-date">
-                    <span class="blooming-date1">10/16/2014</span>
-
-                </p>
-                <p class="recent-blooming-comment">
-                    Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-                </p>
-
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
-        </p>
-        <p class="recent-blooming-comment">
+        <p class="recent-blooming-date" ng-repeat="health in healthData">
+            <span class="blooming-date1">{{health.timestamp}}</span>
+            <span class="recent-blooming-comment">{{health.comment}}</span>
         </p>
 
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-        </p>
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates.
-        </p>
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">10/16/2014</span>
-
-        </p>
-        <p class="recent-blooming-comment">
-            Here would be the comment associated with the blooming dates. Here would be the comment associated with the blooming dates.
-        </p>
-
-        <input type="button" value="View More" id="blooming-view-more" >
+        <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreHealth()">
 
         <div id="flag"> <label>Flag this plant:</label>
        <label><input type="checkbox" ng-model="flagged" ng-click="disableFlag()"/><span></span></label> </div>

@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory) {
+app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory) {
 
     UserFactory.getAuth().then(function(response){
         console.log("weeeeeeewwwwwwww");
@@ -12,6 +12,9 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         //$rootScope.apply();
         //$scope.apply();
     });
+
+    $scope.iFrameURL = "http://localhost:8888/orchid_site/utilities/file_frame.php?session_key=" +$rootScope.userSessionKey +"&session_id=" +$rootScope.userSessionId +"&url_section=blah";
+
     //$scope.AuthUser = false;
     //
     //$scope.apply();
@@ -129,18 +132,60 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         //console.log($scope.plant.date_recieved);
         //console.log("aaa");
 
-        //$scope.plant.id
-        var bloomPage = 1;
-        BloomingFactory.getBloomByPlantID($scope.plant.id, bloomPage).then(function(response){
-          $scope.blooms = response.data.data;
-          console.log(response);
-          console.log($scope.blooms);
-          for(var i = 0; i < $scope.blooms.length; i++){
-            if($scope.blooms[i].end_date == "0000-00-00"){
-              $scope.blooms[i].end_date = "present";
+        $scope.plant.id = 76;
+        var bloomPage = 0;
+        $scope.blooms = [];
+        $scope.getMoreBlooms = function(){
+          bloomPage++;
+          BloomingFactory.getBloomByPlantID($scope.plant.id, bloomPage).then(function(response){
+            for(var i = 0; i < response.data.data.length; i++){
+              $scope.blooms.push(response.data.data[i]);
             }
-          }
-        })
+            for(var i = 0; i < $scope.blooms.length; i++){
+              if($scope.blooms[i].end_date == "0000-00-00"){
+                $scope.blooms[i].end_date = "present";
+              }
+            }
+          })
+        }
+        $scope.getMoreBlooms();
+
+        var sprayPage = 0;
+        $scope.sprayed = [];
+        $scope.getMoreSprayed = function(){
+          sprayPage++;
+          SprayedFactory.getPestByPlantID($scope.plant.id, sprayPage).then(function(response){
+            for(var i = 0; i < response.data.data.length; i++){
+              $scope.sprayed.push(response.data.data[i]);
+            }
+          })
+        }
+        $scope.getMoreSprayed();
+
+        var repotPage = 0;
+        $scope.repotted = [];
+        $scope.getMoreRepotted = function(){
+          repotPage++;
+          PottingFactory.getBloomByPlantID($scope.plant.id, repotPage).then(function(response){
+            for(var i = 0; i < response.data.data.length; i++){
+              $scope.repotted.push(response.data.data[i]);
+            }
+          })
+        }
+        $scope.getMoreRepotted();
+
+        var healthPage = 0;
+        $scope.healthData = [];
+        $scope.getMoreHealth = function(){
+          healthPage++;
+          HealthFactory.getHealthBtPlantID($scope.plant.id, healthPage).then(function(response){
+            for(var i = 0; i < response.data.data.length; i++){
+              $scope.healthData.push(response.data.data[i]);
+            }
+            console.log($scope.healthData);
+          })
+        }
+        $scope.getMoreHealth();
 
         splitFactory.getSplitForPlantId($scope.plant.id).then(function(response) {
             for (var i = 0; i < response.data.data.length; i++) {
@@ -524,12 +569,10 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         }
     };
 
+    $scope.newSplit = false;
     $scope.newPlantSplits = [];
-    $scope.addPlantSplit = function() {
-        $scope.newPlantSplits.push({
-            'recipient': '',
-            'timestamp': ''
-        });
+    $scope.addPlantSplitFunction = function() {
+        $scope.newSplit = true;
     }
 
 
@@ -579,10 +622,23 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
                     console.log(response);
                 });
             }
+            var splitData = {
+                "plant_id" : $scope.plant.id,
+                "recipient" : $scope.newPlantSplit.recipient,
+                "timestamp" : $scope.newPlantSplit.timestamp,
+                "note" : $scope.newPlantSplit.note
+            };
+            console.log(splitData);
+            console.log($scope.plant.id);
+            splitFactory.createNewSplit(splitData, $scope.plant.id).then(function(response) {
+                console.log(response);
+            });
         } else {
             $scope.editPlant.split = false;
         }
     }
+
+    $scope.newPlantSplit = {};
 
     $scope.newPlantSplits = [];
     $scope.addPlantSplit = function() {
@@ -943,6 +999,21 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         $rootScope.apply;
 
     };
+
+    $scope.uploadFileUrl = function(url, b){
+        var baseURL = "http://s3.amazonaws.com/bsuorchid/";
+        var fileName = url.split(baseURL)[1];
+        var photo = {
+          'plant_id' : $scope.plant.id,
+            'url' : url,
+            'type' : 'habitat',
+            'fileName' : fileName
+        };
+
+        PhotoFactory.createPhoto(photo).then(function (response){
+
+        });
+    }
 
 
 

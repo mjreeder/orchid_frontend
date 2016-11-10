@@ -5,8 +5,14 @@ app.factory('SprayedFactory', function($http, $rootScope) {
 
 
 
-    data.getPestByPlantID = function(plant_id) {
-        return $http.get(baseUrl + "/plant_id/" + plant_id);
+    data.getPestByPlantID = function(plant_id, page = 1) {
+        return $http({
+          method: "GET",
+          url: baseUrl + "/plant_id/" + plant_id,
+          data: {
+            "page": page
+          }
+        });
     }
 
     data.createSplit = function (split) {

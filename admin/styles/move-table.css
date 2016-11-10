@@ -5,7 +5,7 @@
     font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 10px 15px;
-    margin: 5px 0px;
+    margin: 5px 0;
     border-radius: 5px;
     display: inline-block;
 }
@@ -93,15 +93,18 @@
 
 #houses-popup li {
     display: inline-block; 
-     background-color: #808080;
+    background-color: #808080;
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 10px 15px;
-    margin: 5px 15px;
+    margin: 5px 5px;
     border-radius: 5px;
-    
+}
+
+.movepopup-selectedhouse {
+    background: #ba0c2f;
 }
 
 #movepopup-middle {
