@@ -2,180 +2,76 @@
     <p> Welcome Cheryl! </p>
 </div>
 
-<div id="title">
+<div id="register-title">
     <h1> Users: </h1>
 </div>
 
-
-
-
-
-<div class="divider">
-
-</div>
-
-
-
-
-
+<!--<div class="divider"></div>-->
 
 <div id="form-users">
-
     <form action="users">
+        <div class="section" ng-repeat="user in allUsers">
 
-    <div class="section" ng-repeat="user in allUsers">
+                <label id="firstname" class="users">
+              First Name <input type="text" name="firstname" ng-model="user.firstName">
+            </label>
 
-        <label id="firstname" class="users">
-      First Name <input type="text" name="firstname" ng-model="user.firstName">
-    </label>
+            <label id="lastname" class="users">
+              Last Name <input type="text" name="email" ng-model="user.lastName">
+            </label>
 
-    <label id="lastname" class="users">
-      Last Name <input type="text" name="email" ng-model="user.lastName">
-    </label>
+            <label id="email" class="users">
+             Email <input type="text" name="email" ng-model="user.email">
+            </label>
 
-    <label id="email" class="users">
-     Email <input type="text" name="email" ng-model="user.email">
-    </label>
+            <label id="auth" class="users">
+                    Manager <input type="checkbox" ng-model="user.isAuthUser"/><span class="table-checkbox"></span>
+                </label>
 
-    <label id="auth" class="users">
-            Super admin <input type="checkbox" ng-model="user.isAuthUser"/><span class="table-checkbox"></span>
-        </label>
+            <label id="password" class="users">
+              <button ng-click="changePasswordFunction(user)">Change Password</button>
+            </label>
 
-    <label id="password" class="users">
-      <button ng-click="changePasswordFunction(user)">Change Password</button>
-    </label>
-    
-    <button ng-click="deleteUserFunction(user)"><img src="images/minus.svg" alt="minus" /></button>
+            <button id="password" ng-click="deleteUserFunction(user)">Delete User</button>
+        </div>
 
-    </div>
+        <div class="section" ng-show="newUser">
 
-   
-    
-    
-    <!--<div class="section" ng-repeat="user in allUsers">-->
+            <label id="firstname" class="users">
+              First Name <input type="text" name="firstname" ng-model="user.firstName">
+            </label>
 
-        <!--<label id="firstname" class="users">-->
-      <!--First Name <input type="text" name="firstname" ng-model="user.firstName">-->
-    <!--</label>-->
+            <label id="lastname" class="users">
+              Last Name <input type="text" name="email" ng-model="user.lastName">
+            </label>
 
-    <!--<label id="lastname" class="users">-->
-      <!--Last Name <input type="text" name="email" ng-model="user.lastName">-->
-    <!--</label>-->
+            <label id="email" class="users">
+             Email <input type="text" name="email" ng-model="user.email">
+            </label>
 
-    <!--<label id="email" class="users">-->
-     <!--Email <input type="text" name="email" ng-model="user.email">-->
-    <!--</label>-->
+            <label id="email" class="users">
+                Password <input type="text" name="email" ng-model="user.password">
+            </label>
 
+            <label id="auth" class="users">
+                Manager <input type="checkbox" ng-model="user.isAuthUser"/><span class="table-checkbox"></span>
+            </label>
 
+            <label id="password" class="users">
+              <button ng-click="saveUser(user)">Save</button>
+            </label>
 
-    <!--<label id="password" class="users">-->
-      <!--<button ng-click="changePasswordFunction(user)">Change Password</button>-->
-    <!--</label>-->
-    <!--<button ng-click="deleteUserFunction(user)"><img src="images/minus.svg" alt="minus" /></button>-->
+        </div>
 
-    <!--</div>-->
-    <!-- -->
-    
-    
-    
-    <!--<div class="section" ng-repeat="user in allUsers">-->
-
-        <!--<label id="firstname" class="users">-->
-      <!--First Name <input type="text" name="firstname" ng-model="user.firstName">-->
-    <!--</label>-->
-
-    <!--<label id="lastname" class="users">-->
-      <!--Last Name <input type="text" name="email" ng-model="user.lastName">-->
-    <!--</label>-->
-
-    <!--<label id="email" class="users">-->
-     <!--Email <input type="text" name="email" ng-model="user.email">-->
-    <!--</label>-->
-
-
-
-    <!--<label id="password" class="users">-->
-      <!--<button ng-click="changePasswordFunction(user)">Change Password</button>-->
-    <!--</label>-->
-    <!--<button ng-click="deleteUserFunction(user)"><img src="images/minus.svg" alt="minus" /></button>-->
-
-    <!--</div>-->
-    
-    
-    
-    
-    <div class="section" ng-show="newUser">
-
-        <label id="firstname" class="users">
-      First Name <input type="text" name="firstname" ng-model="user.firstName">
-    </label>
-
-    <label id="lastname" class="users">
-      Last Name <input type="text" name="email" ng-model="user.lastName">
-        </label>
-
-    <label id="email" class="users">
-     Email <input type="text" name="email" ng-model="user.email">
-    </label>
-
-        <label id="email" class="users">
-            Authority Level <input type="text" name="email" ng-model="user.auth">
-        </label>
-
-        <label id="email" class="users">
-            Password <input type="text" name="email" ng-model="user.password">
-        </label>
-
-
-
-    <label id="password" class="users">
-      <button ng-click="saveUser(user)">Save</button>
-    </label>
-
-    </div>
-    
-    
-    
-    
-
-    <div ng-include="'views/change-password-admin.html'" ng-hide="changePassword"></div>
-     
-
-
-</form>
- </div>
- 
-<!--
- <div class="divider">
-
-</div>
--->
-
-<div class="add-user"> 
-<button>
-<img src="images/plus.svg" ng-click="addUser()" ng-hide="newUser" alt="add user"> </button>
-</div>
-
-
-
-<!--
-
-<div id="change-password-popup">
- <div>
-    <h1>Change Password</h1>
-    <form class="form-signin">
-       <lable> Email: </lable>
-        <input type="text" id="username" placeholder="Email" required autofocus ng-model="credentials.username">
-
-        <lable><div class="password">New Password: </div> </lable>
-        <input type="password" id="pass" placeholder="Password" required ng-model="credentials.password">
-
-
-        <div id="button">
-        <button ng-click="login(credentials)" type="button"><p> Change Password </p></button></div>
+        <div ng-include="'views/change-password-admin.html'" ng-hide="changePassword"></div>
     </form>
 </div>
+ 
 
+
+<div class="add-user"> 
+    <button ng-click="addUser()">Add User</button>
 </div>
+
 
 
