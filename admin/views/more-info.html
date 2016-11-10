@@ -3,9 +3,8 @@
 
         <fieldset id="vitals">
 
-            <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-show ="!createNew && !noProfile">
-            <img src="images/no_plant_icon.svg" alt="" id="thumbnail"  ng-show ="createNew || noProfile">
-
+            <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-show="!createNew && !noProfile">
+            <img src="images/no_plant_icon.svg" alt="" id="thumbnail" ng-show="createNew || noProfile">
 
             <button class="edit" ng-click="editCritical()" ng-hide="createNew">
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.critical">
@@ -52,433 +51,307 @@
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
 
             <label id="select-country">Country:</label>
-            <select ng-model="selectedCountry" ng-disabled="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)">
-                </br>
-                <option disabled selected value>
-                    Select countries
-                </option>
-                <option ng-repeat="country in allCountires">{{country.name}}</option>
-            </select>
+            <select ng-model="selectedCountry" ng-disabled="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)"></br>
+            <option disabled selected value>
+                Select countries
+            </option>
+            <option ng-repeat="country in allCountires">{{country.name}}</option>
+        </select>
 
-            <div class="grid2x2">
-                <div class="selectedCountry" ng-repeat="country in selectedCountries">
-                    <div>{{country.name}}</div>
-                </div>
+        <div class="grid2x2">
+            <div class="selectedCountry" ng-repeat="country in selectedCountries">
+                <div>{{country.name}}</div>
             </div>
-
-            <br/>
-            <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Comment about the culture."></textarea>
-            <br/>
-        </fieldset>
-
-        <!-- <input type="text" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"> -->
-
-        <fieldset id="accession">
-            <h1>Accession</h1>
-            <button class="edit" ng-click="editAccession()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.accesssion">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.accesssion">
-            </button>
-            <label>Received:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
-            <label id="received-date" >Received Date:</label>
-            <button class="more-calendar">
-                <!--<img src="images/calendaricon.svg" alt="" id="calender_image">-->
-                <input type="date" id="startDateBloom" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"/>
-            </button>
-            <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
-        </fieldset>
-
-        <fieldset id="split">
-            <h1>Split</h1>
-            <button class="edit" ng-click="editSplit()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
-            </button>
-
-            <div class="" ng-repeat="plantSplit in splits">
-
-                <label for="recipient">Recipient:</label>
-                <input id="recipient" placeholder="N/A" type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
-
-                <label>Split Date:</label>
-                <input placeholder="N/A" type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
-
-                <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
-
-            </div>
-            <button class="split-add" type="button" ng-hide="editPlant.split || newSplit" ng-click="addPlantSplitFunction()" ng-disabled="editPlant.split && !createNew">Add Split</button>
-
-
-            <div class="" ng-hide="!newSplit">
-
-                <label for="recipient">Recipient:</label>
-                <input id="recipient" placeholder="John Smith" type='text' ng-model="newPlantSplit.recipient" ng-disabled="editPlant.split && !createNew">
-
-                <label>Split Date:</label>
-                <input placeholder="08/16/2016" type='text' ng-model="newPlantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
-
-                <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="newPlantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
-
-            </div>
-
-
-
-
-        </fieldset>
-
-        <fieldset id="description">
-            <h1>Description</h1>
-            <button class="edit" ng-click="editDescription()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.description">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.description">
-
-            </button>
-            <label></label>
-            <textarea type="textarea" placeholder="Add a description of the plant. The public will be able to see this." ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
-        </fieldset>
-
-        <fieldset id="hybrid">
-            <h1>Hybrid</h1>
-            <button class="edit" ng-click="editHybrid()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.hybrid">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.hybrid">
-            </button>
-            <label class="labelfirst">
-                Parent 1:
-            </label>
-            <input type="text" ng-model="plant.parent_one" ng-disabled="editPlant.hybrid && !createNew">
-
-            <label class="labelfirst">
-                Parent 2:
-            </label>
-
-            <input type="text" ng-model="plant.parent_two" ng-disabled="editPlant.hybrid && !createNew"><br/>
-
-            <label class="labellast">GREX:</label>
-            <input type="text" ng-model="plant.grex_status" ng-disabled="editPlant.hybrid && !createNew">
-
-            <textarea ng-model="plant.hybrid_comment" type="textarea" ng-disabled="editPlant.hybrid && !createNew" placeholder="Comment here about Hybrid."></textarea>
-
-        </fieldset>
-
-        <fieldset id="inactive">
-            <h1>Inactive</h1>
-            <button class="edit" ng-click="editInactive()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.inactive">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.inactive">
-            </button>
-
-            <label for="inactivedate" class="labelfirst">Inactive:</label>
-            <button class="more-calendar">
-                <input type="date" id="inactivedate" ng-model="plant.inactive_date">
-            </button>
-
-            <label for="deaddate">Dead:</label>
-            <button class="more-calendar">
-                <input type="date" id="deaddate" ng-model="plant.inactive_date">
-            </button>
-              <output>{{ plant.dead_date | date }}</output>
-
-            <textarea type="textarea" id="inactivecomment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>
-
-
-
-            <!--<label for="inactivedate" class="labelfirst">Inactive:</label>-->
-            <!--&lt;!&ndash;<input id="check1" type="checkbox">&ndash;&gt;-->
-            <!--<button class="more-calendar">-->
-                <!--&lt;!&ndash;<img src="images/calendaricon.svg" alt="">&ndash;&gt;-->
-                <!--<input type="date" id="inactivedate" ng-model="plant.inactive_date">-->
-            <!--</button>-->
-            <!--&lt;!&ndash;<output>{{ plant.inactive_date | date }}</output>&ndash;&gt;-->
-
-            <!--<label for="deaddate">Dead:</label>-->
-            <!--&lt;!&ndash;<input id="check2" type="checkbox">&ndash;&gt;-->
-            <!--<button class="more-calendar">-->
-                <!--&lt;!&ndash;<img src="images/calendaricon.svg" alt="">&ndash;&gt;-->
-                <!--<input type="date" id="deaddate" ng-model="plant.inactive_date">-->
-            <!--</button>-->
-            <!--<output>{{ plant.dead_date | date }}</output>-->
-            <!---->
-            <!--&lt;!&ndash;            <label for="inactivecomment">Comment:</label>&ndash;&gt;-->
-            <!--<textarea type="textarea" id="inactivecomment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>-->
-        </fieldset>
-
-        <fieldset id="photos">
-            <h1>Photos</h1>
-            <button class="edit" ng-click="editPhotos()" ng-hide="createNew">
-                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.photos">
-                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.photos">
-            </button>
-
-            <!--<h1 ng-repeat="x in plant_id_url">{{x.url}}</h1>-->
-
-            <div class="photos-group" ng-repeat="photo in plant_id_url">
-                <img src="{{photo.url}}" alt="" class="thumbnail">
-                <div class="photos-buttons">
-                    <label for="thumbnail">{{photo.fileName}}</label>
-                    <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
-                    <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
-                    <input type="button" value="Other"  ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'other', noglowHealth: photo.type != 'other'}">
-                    <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{glowHealthPoor: photo.type == 'del', noglowHealth: photo.type != 'del'}">
-                </div>
-            </div>
-
-            <!--<div class="photos-group">-->
-                <!--<img src="http://placebear.com/50/50" alt="" class="thumbnail">-->
-                <!--<div class="photos-buttons">-->
-                    <!--<label>File_Name_for_acienthera_567</label>-->
-                    <!--<input type="button" value="Profile" ng-hide="editPlant.photos" class="photos-selected">-->
-                    <!--<input type="button" value="Habitat" ng-hide="editPlant.photos">-->
-                    <!--<input type="button" value="Other" ng-hide="editPlant.photos">-->
-                    <!--<input type="button" value="Delete" ng-hide="editPlant.photos" id="photos-delete2">-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <div class="photos-group">
-                <div class="photos-add-div" ng-hide="editPlant.photos">
-                    <!--<img src="images/no_plant_icon.svg" alt="Add Photo" id="photos-add" class="thumbnail">-->
-                    <!--<input type="button" value="Add Photo">-->
-                    <iframe ng-src={{iFrameURL}}></iframe>
-                </div>
-            </div>
-        </fieldset>
-    </form>
-
-    <fieldset id="graph">
-        <h1>Blooming</h1>
-
-        <div class="bloom-entry" ng-repeat="bloom in blooms">
-          <p class="recent-blooming-date">
-              <span class="blooming-date1">{{bloom.start_date}}</span>
-              -
-              <span class="blooming-date2">{{bloom.end_date}}</span>
-          </p>
-          <span class="recent-blooming-comment clean-span">
-              <p>{{bloom.note}}</p>
-          </span>
         </div>
 
-        <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreBlooms()">
-
-
-<!--        START OF BLOOMING GRAPH -->
-        <div id="graph-will-be-here">
-            <table>
-            <tr>
-            <th>2013-2016</th>
-           <th>Jan.</th>
-           <th>Feb.</th>
-           <th>Mar.</th>
-           <th>Apr.</th>
-           <th>May</th>
-           <th>Jun.</th>
-           <th>Jul.</th>
-           <th>Aug.</th>
-           <th>Sep.</th>
-           <th>Oct.</th>
-           <th>Nov.</th>
-           <th>Dec.</th>
-            </tr>
-            <tr>
-            <td>2016</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            </tr>
-             <tr>
-            <td>2015</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            </tr>
-             <tr>
-            <td>2014</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            </tr>
-             <tr>
-            <td>2013</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            </tr>
-
-
-            </table>
-
-        </div>
-
-
-
-
-
-
-
-<!--        END OF BLOOMING GRAPH -->
+        <br/>
+        <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Comment about the culture."></textarea>
+        <br/>
     </fieldset>
 
+    <fieldset id="accession">
+        <h1>Accession</h1>
+        <button class="edit" ng-click="editAccession()" ng-hide="createNew">
+            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.accesssion">
+            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.accesssion">
+        </button>
+        <label>Received:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
+        <label id="received-date">Received Date:</label>
+        <button class="more-calendar">
+            <!--<img src="images/calendaricon.svg" alt="" id="calender_image">-->
+            <input type="date" id="startDateBloom" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"/>
+        </button>
+        <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
+    </fieldset>
 
-    <fieldset id="weekly-checkup">
-        <h1>Sprayed for Pests</h1>
-<!--
+    <fieldset id="split">
+        <h1>Split</h1>
+        <button class="edit" ng-click="editSplit()" ng-hide="createNew">
+            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
+            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
+        </button>
+
+        <div class="" ng-repeat="plantSplit in splits">
+
+            <label for="recipient">Recipient:</label>
+            <input id="recipient" placeholder="N/A" type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+
+            <label>Split Date:</label>
+            <input placeholder="N/A" type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
+
+            <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+
+        </div>
+        <button class="split-add" type="button" ng-hide="editPlant.split || newSplit" ng-click="addPlantSplitFunction()" ng-disabled="editPlant.split && !createNew">Add Split</button>
+
+        <div class="" ng-hide="!newSplit">
+
+            <label for="recipient">Recipient:</label>
+            <input id="recipient" placeholder="John Smith" type='text' ng-model="newPlantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+
+            <label>Split Date:</label>
+            <input placeholder="08/16/2016" type='text' ng-model="newPlantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
+
+            <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="newPlantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+
+        </div>
+
+    </fieldset>
+
+    <fieldset id="description">
+        <h1>Description</h1>
+        <button class="edit" ng-click="editDescription()" ng-hide="createNew">
+            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.description">
+            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.description">
+
+        </button>
+        <label></label>
+        <textarea type="textarea" placeholder="Add a description of the plant. The public will be able to see this." ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
+    </fieldset>
+
+    <fieldset id="hybrid">
+        <h1>Hybrid</h1>
         <button class="edit" ng-click="editHybrid()" ng-hide="createNew">
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.hybrid">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.hybrid">
         </button>
--->
+        <label class="labelfirst">
+            Parent 1:
+        </label>
+        <input type="text" ng-model="plant.parent_one" ng-disabled="editPlant.hybrid && !createNew">
 
-        <p class="sprayed-entry" ng-repeat="spray in sprayed">
-            <span class="two-items-view more-info-base text-align-top">{{spray.timestamp}}</span>
-            <span class="two-items-view more-info-base">{{spray.note}}</span>
-        </p>
+        <label class="labelfirst">
+            Parent 2:
+        </label>
 
-        <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreSprayed()">
+        <input type="text" ng-model="plant.parent_two" ng-disabled="editPlant.hybrid && !createNew"><br/>
 
+        <label class="labellast">GREX:</label>
+        <input type="text" ng-model="plant.grex_status" ng-disabled="editPlant.hybrid && !createNew">
 
-
-
-<!--
-
-        <label id="sprayed-for-pests">Sprayed for pests:</label>
-        <button ng-click="sprayed_timestamp = today" class="today">Today</button>
-        <button class="calendar"><img src="images/calendaricon.svg" alt="">
-            <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"/>
-        </button>
-        <output>{{ sprayed_timestamp | date }}</output>
--->
-<!--        <textarea placeholder="Comment here about pest spraying." name="comments" ng-model="sprayed_note"></textarea>-->
-
-
-        </fieldset>
-        <!--<section class="top-margin">-->
-<!--
-            <label>Repot Date:</label>
-            <button ng-click="potting_timestamp = today" class="today">Today</button>
-            <button class="calendar">
-                <img src="images/calendaricon.svg" id="calendar_image" alt="">
-                <input type="date" id="repotDate" ng-model="potting_timestamp"/>
-            </button>
-            <label>{{ potting_timestamp | date }}</label>
--->
-
-        <!--</section>-->
-
-
-
-
-         <fieldset id="weekly-checkup">
-        <h1>Repot</h1>
-<!--
-        <button class="edit" ng-click="editHybrid()" ng-hide="createNew">
-            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.hybrid">
-            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.hybrid">
-        </button>
--->
-
-        <p class="repotting-entry" ng-repeat="repot in repotted">
-            <span class="two-items-view more-info-base">{{repot.timestamp}}</span>
-        </p>
-        <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreRepotted()">
-
-
-
-
-<!--
-
-        <label id="sprayed-for-pests">Sprayed for pests:</label>
-        <button ng-click="sprayed_timestamp = today" class="today">Today</button>
-        <button class="calendar"><img src="images/calendaricon.svg" alt="">
-            <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"/>
-        </button>
-        <output>{{ sprayed_timestamp | date }}</output>
--->
-<!--        <textarea placeholder="Comment here about pest spraying." name="comments" ng-model="sprayed_note"></textarea>-->
-
-
-        </fieldset>
-
-
-
-
-
-
-
-
-
-
-
-        <fieldset id="weekly-checkup">
-        <h1>Current Health Condition</h1>
-        <div class="health-entry" ng-repeat="health in healthData">
-            <span class="two-items-view text-align-top more-info-base">{{health.timestamp}}</span>
-            <span class="two-items-view more-info-base">{{health.score}}:{{health.comment}}</span>
-        </div>
-
-        <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreHealth()">
-
-        <div id="flag"> <label>Flag this plant:</label>
-       <label><input type="checkbox" ng-model="flagged" ng-click="disableFlag()"/><span></span></label> </div>
-        <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
-
-
+        <textarea ng-model="plant.hybrid_comment" type="textarea" ng-disabled="editPlant.hybrid && !createNew" placeholder="Comment here about Hybrid."></textarea>
 
     </fieldset>
 
+    <fieldset id="inactive">
+        <h1>Inactive</h1>
+        <button class="edit" ng-click="editInactive()" ng-hide="createNew">
+            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.inactive">
+            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.inactive">
+        </button>
 
+        <label for="inactivedate" class="labelfirst">Inactive:</label>
+        <button class="more-calendar">
+            <input type="date" id="inactivedate" ng-model="plant.inactive_date">
+        </button>
 
+        <label for="deaddate">Dead:</label>
+        <button class="more-calendar">
+            <input type="date" id="deaddate" ng-model="plant.inactive_date">
+        </button>
+        <output>{{ plant.dead_date | date }}</output>
 
+        <textarea type="textarea" id="inactivecomment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>
 
-        <div class="end-section">
+    </fieldset>
 
-      <div id="back-to-top">
-       <button> Back to Top</button>
-</div>
+    <fieldset id="photos">
+        <h1>Photos</h1>
+        <button class="edit" ng-click="editPhotos()" ng-hide="createNew">
+            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.photos">
+            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.photos">
+        </button>
 
+        <div class="photos-group" ng-repeat="photo in plant_id_url">
+            <img src="{{photo.url}}" alt="" class="thumbnail">
+            <div class="photos-buttons">
+                <label for="thumbnail">{{photo.fileName}}</label>
+                <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
+                <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
+                <input type="button" value="Other" ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'other', noglowHealth: photo.type != 'other'}">
+                <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{glowHealthPoor: photo.type == 'del', noglowHealth: photo.type != 'del'}">
+            </div>
+        </div>
 
+        <div class="photos-group">
+            <div class="photos-add-div" ng-hide="editPlant.photos">
+                <iframe ng-src={{iFrameURL}}></iframe>
+            </div>
+        </div>
+    </fieldset>
+</form>
 
-       <div id="moreinfo-save">
+<fieldset id="graph">
+    <h1>Blooming</h1>
+
+    <div class="bloom-entry" ng-repeat="bloom in blooms">
+        <p class="recent-blooming-date">
+            <span class="blooming-date1">{{bloom.start_date}}</span>
+            -
+            <span class="blooming-date2">{{bloom.end_date}}</span>
+        </p>
+        <span class="recent-blooming-comment clean-span">
+            <p>{{bloom.note}}</p>
+        </span>
+    </div>
+
+    <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreBlooms()">
+
+    <!--        START OF BLOOMING GRAPH -->
+    <div id="graph-will-be-here">
+        <table>
+            <tr>
+                <th>2013-2016</th>
+                <th>Jan.</th>
+                <th>Feb.</th>
+                <th>Mar.</th>
+                <th>Apr.</th>
+                <th>May</th>
+                <th>Jun.</th>
+                <th>Jul.</th>
+                <th>Aug.</th>
+                <th>Sep.</th>
+                <th>Oct.</th>
+                <th>Nov.</th>
+                <th>Dec.</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2015</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2014</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2013</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <!--        END OF BLOOMING GRAPH -->
+</fieldset>
+
+<fieldset id="weekly-checkup">
+    <h1>Sprayed for Pests</h1>
+
+    <p class="sprayed-entry" ng-repeat="spray in sprayed">
+        <span class="two-items-view more-info-base text-align-top">{{spray.timestamp}}</span>
+        <span class="two-items-view more-info-base">{{spray.note}}</span>
+    </p>
+
+    <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreSprayed()">
+
+</fieldset>
+
+<fieldset id="weekly-checkup">
+    <h1>Repot</h1>
+
+    <p class="repotting-entry" ng-repeat="repot in repotted">
+        <span class="two-items-view more-info-base">{{repot.timestamp}}</span>
+    </p>
+    <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreRepotted()">
+
+</fieldset>
+
+<fieldset id="weekly-checkup">
+    <h1>Current Health Condition</h1>
+    <div class="health-entry" ng-repeat="health in healthData">
+        <span class="two-items-view text-align-top more-info-base">{{health.timestamp}}</span>
+        <span class="two-items-view more-info-base">{{health.score}}:{{health.comment}}</span>
+    </div>
+
+    <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreHealth()">
+
+    <div id="flag">
+        <label>Flag this plant:</label>
+        <label><input type="checkbox" ng-model="flagged" ng-click="disableFlag()"/>
+            <span></span>
+        </label>
+    </div>
+    <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
+
+</fieldset>
+
+<div class="end-section">
+
+    <div id="back-to-top">
+        <button>
+            Back to Top</button>
+    </div>
+
+    <div id="moreinfo-save">
         <input type="button" ng-click="saveAll()" value="Save All" ng-hide="!editPlant.save">
+    </div>
 </div>
-        </div>
 
-
-
-
-
-
-    <div ng-include="'views/photoPopup.html'" ng-show="profilePopUp"></div>
+<div ng-include="'views/photoPopup.html'" ng-show="profilePopUp"></div>
 
 </div>
