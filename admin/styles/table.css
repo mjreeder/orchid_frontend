@@ -8,9 +8,10 @@ main nav ul li {
     font-family: Aleo, serif;
     font-size: 20px;
     font-weight: 100;
-    background-color: black;
+    background-color: #2b2e30;
     text-align: center;
     padding: 32px 0 22px 0;
+    margin-bottom: 5px;
 }
 
 main nav ul li a {
@@ -143,7 +144,7 @@ td {
 #close {
     position: absolute;
     right: 20px;
-    top: 28px;
+    top: 20px;
 }
 
 .flower-popup #close img {
@@ -205,6 +206,10 @@ td {
     margin-left: 30px;
 }
 
+.start-stop-blooming label {
+    width: 100px;
+}
+
 .editPlant {
     font-family: aleo, serif;
     font-size: 18px;
@@ -215,7 +220,7 @@ td {
 .flower-popup textarea {
     border: 2px solid #808080;
     font-family: aleo, serif;
-    color: #b3b3b3;
+    color: black;
     font-size: 12px;
     width: 100%;
     padding: 5px;

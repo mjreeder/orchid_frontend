@@ -11,8 +11,6 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
     $scope.$on('abc', function(event, data){
         $scope.addedMovePlants = data.any;
         console.log($scope.addedMovePlants);
-        $scope.lol = "Seth Winslow";
-        console.log($scope.lol);
         $scope.hamburger = console.log($scope.addedMovePlants.a[0].accession_number);
         console.log($scope.hamburger);
         $scope.x.name = $scope.addedMovePlants.a[0].accession_number;
@@ -34,11 +32,9 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
 
         if($scope.changedRoom != "") {
             for (var i = 0; i < $scope.a.length; i++) {
-                console.log($scope.a[i].id);
-                console.log($scope.changedRoom);
+
 
                 var moveInformation = {id: $scope.a[i].id, name: $scope.changedRoom};
-                console.log(moveInformation);
 
                 PlantsFactory.editLocation(moveInformation).then(function (response) {
                     console.log(response);
@@ -50,7 +46,6 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
     };
 
     $scope.loadRoom = function($event){
-        console.log($event.currentTarget.id);
     };
 
     $('body').on('click', 'svg > g', function(){
@@ -58,7 +53,6 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
         var abbreviation = $(this).attr('id');
         $scope.changedRoom = abbreviation;
         $scope.$apply();
-        console.log(abbreviation);
     });
 
     $scope.WarmPopup = false;
