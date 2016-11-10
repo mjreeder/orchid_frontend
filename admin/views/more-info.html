@@ -247,14 +247,16 @@
     <fieldset id="graph">
         <h1>Blooming</h1>
 
-                <p class="recent-blooming-date" ng-repeat="bloom in blooms">
-                    <span class="blooming-date1">{{bloom.start_date}}</span>
-                    -
-                    <span class="blooming-date2">{{bloom.end_date}}</span>
-                </p>
-                <span class="recent-blooming-comment clean-span" ng-repeat="bloom in blooms">
-                    <p>{{bloom.note}}</p><br/>
-                </span>
+        <div class="bloom-entry" ng-repeat="bloom in blooms">
+          <p class="recent-blooming-date">
+              <span class="blooming-date1">{{bloom.start_date}}</span>
+              -
+              <span class="blooming-date2">{{bloom.end_date}}</span>
+          </p>
+          <span class="recent-blooming-comment clean-span">
+              <p>{{bloom.note}}</p>
+          </span>
+        </div>
 
         <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreBlooms()">
 
@@ -358,9 +360,9 @@
         </button>
 -->
 
-        <p class="recent-blooming-date" ng-repeat="spray in sprayed">
-            <span class="blooming-date1">{{spray.timestamp}}</span>
-            <span class="recent-blooming-comment">{{spray.note}}</span>
+        <p class="sprayed-entry" ng-repeat="spray in sprayed">
+            <span class="two-items-view more-info-base text-align-top">{{spray.timestamp}}</span>
+            <span class="two-items-view more-info-base">{{spray.note}}</span>
         </p>
 
         <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreSprayed()">
@@ -406,8 +408,8 @@
         </button>
 -->
 
-        <p class="recent-blooming-date" ng-repeat="repot in repotted">
-            <span class="blooming-date1">{{repot.timestamp}}</span>
+        <p class="repotting-entry" ng-repeat="repot in repotted">
+            <span class="two-items-view more-info-base">{{repot.timestamp}}</span>
         </p>
         <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreRepotted()">
 
@@ -440,10 +442,10 @@
 
         <fieldset id="weekly-checkup">
         <h1>Current Health Condition</h1>
-        <p class="recent-blooming-date" ng-repeat="health in healthData">
-            <span class="blooming-date1">{{health.timestamp}}</span>
-            <span class="recent-blooming-comment">{{health.comment}}</span>
-        </p>
+        <div class="health-entry" ng-repeat="health in healthData">
+            <span class="two-items-view text-align-top more-info-base">{{health.timestamp}}</span>
+            <span class="two-items-view more-info-base">{{health.score}}:{{health.comment}}</span>
+        </div>
 
         <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreHealth()">
 
