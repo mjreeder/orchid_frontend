@@ -9,7 +9,13 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
        var data = response.data.data;
 
         for (var i = 0; i < data.length; i++){
-            $scope.allUsers.push(data[i]);
+            var singleUser = data[i];
+            if(singleUser.authLevel == 1){
+                singleUser.isAuthUser = true;
+            } else {
+                singleUser.isAthUser = false;
+            }
+            $scope.allUsers.push(singleUser);
         }
 
         for (var i = 0; i < $scope.allUsers.length; i ++){
