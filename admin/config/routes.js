@@ -9,17 +9,11 @@ app.config(function ($routeProvider, CONFIG) {
     }).
     when('/login', {
         controller: 'LoginViewController',
-        templateUrl: 'views/login.html',
-        resolve: {
-          'data':isAuthenticated
-        }
+        templateUrl: 'views/login.html'
     }).
     when('/logout', {
             controller: 'LogoutViewController',
-            templateUrl: 'views/login.html',
-            resolve: {
-              'data':isAuthenticated
-            }
+            templateUrl: 'views/login.html'
         }).
     when('/house', {
         controller: 'DisplayViewController',
