@@ -22,4 +22,9 @@ app.service('sessionService', function($rootScope, SessionFactory) {
           return false;
         }
     }
+
+    this.removeSession = function(){
+      localStorage.removeItem("session_key");
+      localStorage.removeItem("session_id");
+    }
 });
