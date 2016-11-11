@@ -163,9 +163,6 @@ var isSuperAuthenticated = function ($q, $rootScope, $location, sessionService, 
                 $scope.AuthUser = false;
                 return false;
             }
-
-
-            $location.refresh();
         });
         $scope.SuperAdmin = false;
         return false;
