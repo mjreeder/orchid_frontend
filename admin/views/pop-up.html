@@ -57,8 +57,6 @@
                 <label>{{ potting_timestamp | date }}</label>
             </section>
 
-            <!--</section>-->
-
             <section id="current-health" class="top-margin">
                 <label>Current health condition:</label>
                     <button id="poor" ng-click="health_score = 'poor'" ng-class="{glowHealthPoor: health_score == 'poor', noglowHealth: health_score != 'poor'}">Poor</button>
@@ -69,10 +67,10 @@
             </section>
 
             <div class="top-margin popup-flagged">
-                <label>Flag this plant:</label>
+                <label>Flag this plant:
                 <input id="flagged-checkbox" type="checkbox" ng-model="flagged" ng-click="disableFlag()"/>
                 <span id="flagged-span" class="table-checkbox"></span>
-                <!--</label>-->
+                </label>
                 <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
             </div>
 

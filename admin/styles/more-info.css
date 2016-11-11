@@ -222,7 +222,7 @@ input[type="date"] {
 */
 
 #inactive input:disabled {
-    border: 0px;
+    border: none;
 }
 
 
