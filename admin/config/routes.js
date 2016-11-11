@@ -125,8 +125,6 @@ app.config(function ($routeProvider, CONFIG) {
     });
 });
 
-
-
 var isAuthenticated = function ($q, $rootScope, $location, sessionService, UserFactory) {
     var session = sessionService.hasRecentSession();
     if (session) {
@@ -135,11 +133,10 @@ var isAuthenticated = function ($q, $rootScope, $location, sessionService, UserF
         UserFactory.getAuth().then(function (response){
             var data = response.data.data;
             if (data.authLevel == 1){
-                $scope.AuthUser = true;
+                $rootScope.AuthUser = true;
             } else {
-                $scope.AuthUser = false;
+                $rootScope.AuthUser = false;
             }
-            $location.refresh();
         });
         return true;
     } else {
@@ -150,6 +147,7 @@ var isAuthenticated = function ($q, $rootScope, $location, sessionService, UserF
 
 var isSuperAuthenticated = function ($q, $rootScope, $location, sessionService, UserFactory) {
     var session = sessionService.hasRecentSession();
+    var superAdmin = true;
     if (session) {
         $rootScope.isLoggedIn = true;
         console.log("HEEEE");
@@ -157,14 +155,14 @@ var isSuperAuthenticated = function ($q, $rootScope, $location, sessionService, 
             var data = response.data.data;
 
             if (data.authLevel == 1){
-                $scope.AuthUser = true;
+                $rootScope.AuthUser = true;
                 return true;
             } else {
-                $scope.AuthUser = false;
+                $rootScope.AuthUser = false;
                 return false;
             }
         });
-        $scope.SuperAdmin = false;
+        superAdmin = false;
         return false;
 
     } else {
@@ -172,7 +170,7 @@ var isSuperAuthenticated = function ($q, $rootScope, $location, sessionService, 
         $location.path("/login");
         return false;
     }
-    if(SuperAdmin == false){
+    if(superAdmin == false){
         $rootScope.redirect = $location.path();
         $location.path("/login");
     }
