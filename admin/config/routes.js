@@ -11,7 +11,7 @@ app.config(function ($routeProvider, CONFIG) {
     }).
     when('/logout', {
             controller: 'LogoutViewController',
-            templateUrl: 'view/login.html'
+            templateUrl: 'views/login.html'
         }).
     when('/house', {
         controller: 'DisplayViewController',
