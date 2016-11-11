@@ -206,7 +206,7 @@ table {
 
 }
 
-li.logout {
+a.logout {
     cursor: pointer;
 }
 
