@@ -185,7 +185,7 @@ td {
     font-size: 26px;
     letter-spacing: 3px;
     background-color: #dfe0e0;
-    /*    padding:20px 0px; */
+    padding:20px 0px;
     width: 100%;
     height: 30px;
 }
@@ -383,12 +383,19 @@ td {
 
 
 
-
+#current-health label, #sprayed-for-pests, #repot label {
+    margin-top: 15px;
+    display: inline-block;
+}
 
 
 /* checkbox styling */
 
-
+.popup-flagged label {
+    margin-right: 10px;
+    margin-top: 10px;
+    display: inline-block;
+}
 
 table input, .popup-flagged input {
     opacity: 0;
@@ -408,17 +415,6 @@ table input, .popup-flagged input {
 }
 
 #flagged-span {
-    display: inline;
+    margin-left: 8px;
 }
-
-
-input:checked + span {
-    background:url(../images/checked_checkbox.svg) center center no-repeat / cover;
-}
-
-
-/*#flagged-checkbox {*/
-    /*opacity: 1;*/
-/*}*/
-
 
