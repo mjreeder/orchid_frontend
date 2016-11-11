@@ -3,15 +3,23 @@ app.config(function ($routeProvider, CONFIG) {
     when('/', {
         controller: 'HomePageController',
         templateUrl: CONFIG.homeTemplate,
-
+        resolve: {
+          'data':isAuthenticated
+        }
     }).
     when('/login', {
         controller: 'LoginViewController',
-        templateUrl: 'views/login.html'
+        templateUrl: 'views/login.html',
+        resolve: {
+          'data':isAuthenticated
+        }
     }).
     when('/logout', {
             controller: 'LogoutViewController',
-            templateUrl: 'views/login.html'
+            templateUrl: 'views/login.html',
+            resolve: {
+              'data':isAuthenticated
+            }
         }).
     when('/house', {
         controller: 'DisplayViewController',
