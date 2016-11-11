@@ -2,8 +2,9 @@
 
    <div class="upper-heading">
         <ul>
-            <li ng-show="AuthUser"> <a href="#/users/register">Register</a></li>
-            <li>   <a href="#/logout">Logout</a> </li>
+            <li ng-show="$root.AuthUser"> <a href="#/users/register">Register</a></li>
+            <li ng-show="$root.isLoggedIn"><a href="#/logout">Logout</a></li>
+            <li ng-show="!$root.isLoggedIn"><a href="#/login">Login</a></li>
         </ul>
         </div>
 
