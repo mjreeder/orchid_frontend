@@ -204,15 +204,9 @@
 <fieldset id="graph">
     <h1>Blooming</h1>
 
-    <div class="bloom-entry" ng-repeat="bloom in blooms">
-        <p class="recent-blooming-date">
-            <span class="blooming-date1">{{bloom.start_date}}</span>
-            -
-            <span class="blooming-date2">{{bloom.end_date}}</span>
-        </p>
-        <span class="recent-blooming-comment clean-span">
-            <p>{{bloom.note}}</p>
-        </span>
+    <div class="bloooming-entry" ng-repeat="bloom in blooms">
+        <span class="more-info-base two-items-view text-align-top">{{bloom.start_date}} - {{bloom.end_date}}</span>
+        <span class="more-info-base two-items-view">{{bloom.note}}</span>
     </div>
 
     <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreBlooms()">
