@@ -162,12 +162,12 @@
 
         <label for="inactivedate" class="labelfirst">Inactive:</label>
         <button class="more-calendar">
-            <input type="date" id="inactivedate" ng-model="plant.inactive_date">
+            <input type="date" id="inactive-disabled" ng-model="plant.inactive_date">
         </button>
 
         <label for="deaddate">Dead:</label>
         <button class="more-calendar">
-            <input type="date" id="deaddate" ng-model="plant.inactive_date">
+            <input type="date" id="deaddate" id="inactive-disabled" ng-model="plant.inactive_date">
         </button>
         <output>{{ plant.dead_date | date }}</output>
 
