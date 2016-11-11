@@ -1,4 +1,4 @@
-app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $timeout) {
+app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $timeout, $location) {
 
 
     console.log($scope.userSessionId);
@@ -17,6 +17,11 @@ app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $
           //$rootScope.apply();
           //$scope.apply();
       });
+    }
+
+    $scope.logoutUser = function(){
+      $rootScope.redirect = $location.path();
+      $location.path("/logout");
     }
 
 });

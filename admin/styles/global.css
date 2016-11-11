@@ -206,6 +206,10 @@ table {
 
 }
 
+li.logout {
+    cursor: pointer;
+}
+
 .upper-heading ul li  a {
     color: white;
     font-size: 14px;
