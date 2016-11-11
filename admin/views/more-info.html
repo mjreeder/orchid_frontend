@@ -3,7 +3,7 @@
 
         <fieldset id="vitals">
 
-            <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-show="!createNew && !noProfile">
+            <img ng-src="{{plant.image.url}}" alt="" id="thumbnail" ng-show="!createNew && !noProfile">
             <img src="images/no_plant_icon.svg" alt="" id="thumbnail" ng-show="createNew || noProfile">
 
             <button class="edit" ng-click="editCritical()" ng-hide="createNew">
@@ -155,21 +155,21 @@
 
     <fieldset id="inactive">
         <h1>Inactive</h1>
-        <button class="edit" ng-click="editInactive()" ng-hide="createNew">
+        <button class="edit" ng-click="editInactive()" ng-hide="creatNew">
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.inactive">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.inactive">
         </button>
 
         <label for="inactivedate" class="labelfirst">Inactive:</label>
         <button class="more-calendar">
-            <input type="date" id="inactivedate" ng-model="plant.inactive_date">
+            <input type="date" id="inactivedate" ng-model="plant.inactive_date" ng-disabled="editPlant.inactive && !createNew">
         </button>
 
         <label for="deaddate">Dead:</label>
         <button class="more-calendar">
-            <input type="date" id="deaddate" ng-model="plant.inactive_date">
+            <input type="date" id="deaddate" ng-model="plant.inactive_date" ng-disabled="editPlant.inactive && !createNew">
         </button>
-        <output>{{ plant.dead_date | date }}</output>
+        <!--<output>{{ plant.dead_date | date }}</output>-->
 
         <textarea type="textarea" id="inactivecomment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>
 
@@ -183,7 +183,7 @@
         </button>
 
         <div class="photos-group" ng-repeat="photo in plant_id_url">
-            <img src="{{photo.url}}" alt="" class="thumbnail">
+            <img ng-src="{{photo.url}}" alt="" class="thumbnail">
             <div class="photos-buttons">
                 <label for="thumbnail">{{photo.fileName}}</label>
                 <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
