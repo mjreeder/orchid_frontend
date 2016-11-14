@@ -18,9 +18,10 @@
                         <option ng-repeat="table in Tables">{{table.name}}</option>
                     </select>
                 </label>
-                <br/>
-                <label><input placeholder="Scientific Name" type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="editPlant.critical && !createNew"></label><br/>
-                <label><input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label><br/>
+                <label><input placeholder="Scientific Name" type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="editPlant.critical && !createNew"></label>
+                <label><input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label>
+                <label id="verified-label" for="verified">Last Verified:</label>
+                <input type="date" id="verified" placeholder="" ng-disabled="editPlant.critical">
             </div>
         </fieldset>
 
@@ -51,7 +52,7 @@
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
 
             <label id="select-country">Country:</label>
-            <select ng-model="selectedCountry" ng-disabled="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)"></br>
+            <select ng-model="selectedCountry" ng-hide="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)"></br>
             <option disabled selected value>
                 Select countries
             </option>
@@ -184,6 +185,10 @@
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.photos">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.photos">
         </button>
+
+        <div class="split-holder">
+            This plant has no photos.
+        </div>
 
         <div class="photos-group" ng-repeat="photo in plant_id_url">
             <img src="{{photo.url}}" alt="" class="thumbnail">
