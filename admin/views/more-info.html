@@ -15,13 +15,16 @@
                 <label><input placeholder="Accession Number" type="text" ng-model="plant.accession_number" name="accession" ng-disabled="editPlant.critical && !createNew"></label>
                 <label id="location"><img src="images/location.svg" alt="Location">
                     <select ng-model="plant.locationName.name" ng-disabled="editPlant.critical && !createNew">
+                        <option selected value>
+                            Table
+                        </option>
                         <option ng-repeat="table in Tables">{{table.name}}</option>
                     </select>
                 </label>
                 <label><input placeholder="Scientific Name" type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="editPlant.critical && !createNew"></label>
                 <label><input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label>
                 <label id="verified-label" for="verified">Last Verified:</label>
-                <input type="date" id="verified" placeholder="" ng-disabled="editPlant.critical">
+                <input type="date" id="verified" class="more-calendar" ng-disabled="editPlant.critical && !createNew">
             </div>
         </fieldset>
 
@@ -194,7 +197,7 @@
             <img src="{{photo.url}}" alt="" class="thumbnail">
             <div class="photos-buttons">
                 <label for="thumbnail">{{photo.fileName}}</label>
-                <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
+                <input class="selected-photo" type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
                 <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
                 <input type="button" value="Other" ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'other', noglowHealth: photo.type != 'other'}">
                 <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{glowHealthPoor: photo.type == 'del', noglowHealth: photo.type != 'del'}">
