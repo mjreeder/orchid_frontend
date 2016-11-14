@@ -33,7 +33,7 @@ textarea {
     border: 2px solid #808080;
     font-size: 16px;
     resize: vertical;
-    color: #b3b3b3;
+    color: black;
     width: 95%;
     height: 50px;
     display: block;
@@ -56,7 +56,7 @@ select:focus {
 
 input {
     margin-top: 10px;
-    width: 225px;
+    width: 220px;
 }
 
 input:disabled {
@@ -100,7 +100,7 @@ fieldset label {
     font-family: Raleway, sans-serif;
     font-size: 18px;
     display: inline-block;
-    width: 125px;
+    width: 115px;
     margin-left: 20px;
     font-weight: 600;
 }
@@ -154,6 +154,11 @@ fieldset {
     width: 130px;
 }
 
+#description label,
+#weekly-checkup label {
+    width: 95%;
+}
+
 
 /*VITALS*/
 
@@ -164,7 +169,7 @@ fieldset {
 }
 
 #vitals div {
-    width: 70%;
+    width: 69%;
     float: right;
     margin: 20px 0 0 0;
     position: relative;
@@ -211,26 +216,9 @@ fieldset {
     margin: 15px 0;
 }
 
-
-/*
-input[type="date"] {
-    margin: 5px 10px 5px 0;
-    width: auto;
-    transform: translateY(-25%);
-    border: none;
-}
-*/
-
 #inactive input:disabled {
     border: none;
 }
-
-
-/*
-#inactive input:disabled {
-    border: 2px solid black;
-}
-*/
 
 
 /*PHOTOS*/
@@ -265,6 +253,10 @@ input[type="date"] {
     display: inline-block;
 }
 
+#match-photos-button {
+    width: auto;
+}
+
 .photos-buttons {
     margin: 30px 10px 20px 0;
 }
@@ -280,7 +272,7 @@ input[type="date"] {
 }
 
 .photos-add-div input {
-    margin: 58px 0 0 0;
+    margin: 58px 0 0 20px;
 }
 
 .photos-group {
@@ -294,6 +286,12 @@ input[type="date"] {
 
 /*SPLIT*/
 
+.split-holder {
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
 .split-add {
     margin: 0 0 20px 40px;
     border: none;
@@ -304,10 +302,6 @@ input[type="date"] {
     font-size: 14px;
     display: inline-block;
     width: 100px;
-}
-
-#split_date {
-    /*margin-left: 158px;*/
 }
 
 #graphsvg {
@@ -454,7 +448,7 @@ input[type="date"] {
     margin: 0 0 15px 20px;
 }
 
-#blooming-view-more {
+.blooming-view-more {
     background-color: #808080;
     text-decoration: none;
     color: white;
@@ -486,10 +480,6 @@ span.three-items-view {
   width: 30%;
 }
 
-span.two-items-view {
-  width: 49%;
-}
-
 .text-align-top {
   vertical-align: top;
 }
@@ -497,6 +487,15 @@ span.two-items-view {
 .health-entry, .sprayed-entry, .repotting-entry, .bloooming-entry {
   margin: 0 0 15px 20px;
 }
+
+span.span-date {
+    width: 28%;
+}
+
+span.span-comment {
+    width: 70%;
+}
+
 
 /* START OF BLOOMING GRAPH */
 
