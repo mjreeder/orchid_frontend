@@ -75,8 +75,8 @@
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.accesssion">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.accesssion">
         </button>
-        <label>Received:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
-        <label id="received-date">Received Date:</label>
+        <label>From:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
+        <label id="received-date">Date:</label>
         <button class="more-calendar">
             <!--<img src="images/calendaricon.svg" alt="" id="calender_image">-->
             <input type="date" id="startDateBloom" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"/>
@@ -90,6 +90,10 @@
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
         </button>
+
+        <div class="split-holder">
+            This plant has not been split.
+        </div>
 
         <div class="" ng-repeat="plantSplit in splits">
 
@@ -123,9 +127,9 @@
         <button class="edit" ng-click="editDescription()" ng-hide="createNew">
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.description">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.description">
-
         </button>
-        <label></label>
+
+        <label>Provide a description that will be visible to the public:</label>
         <textarea type="textarea" placeholder="Add a description of the plant. The public will be able to see this." ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
     </fieldset>
 
@@ -169,10 +173,9 @@
         <button class="more-calendar">
             <input type="date" id="deaddate" id="inactive-disabled" ng-model="plant.dead_date" ng-disabled="editPlant.inactive && !createNew">
         </button>
-        <output>{{ plant.dead_date | date }}</output>
+        <!--<output>{{ plant.dead_date | date }}</output>-->
 
         <textarea type="textarea" id="inactivecomment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>
-
     </fieldset>
 
     <fieldset id="photos">
@@ -192,10 +195,11 @@
                 <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{glowHealthPoor: photo.type == 'del', noglowHealth: photo.type != 'del'}">
             </div>
         </div>
-            <button ng-click="changeProfilePicture()">Match Photos</button>
+
 
         <div class="photos-group">
             <div class="photos-add-div" ng-hide="editPlant.photos">
+                <input type="button" value="Match Photos" id="match-photos-button" ng-click="changeProfilePicture()">
                 <iframe ng-src={{iFrameURL}}></iframe>
             </div>
 
@@ -207,11 +211,11 @@
     <h1>Blooming</h1>
 
     <div class="bloooming-entry" ng-repeat="bloom in blooms">
-        <span class="more-info-base two-items-view text-align-top">{{bloom.start_date}} - {{bloom.end_date}}</span>
-        <span class="more-info-base two-items-view">{{bloom.note}}</span>
+        <span class="more-info-base two-items-view text-align-top span-date">{{bloom.start_date}} - {{bloom.end_date}}</span>
+        <span class="more-info-base two-items-view span-comment">{{bloom.note}}</span>
     </div>
 
-    <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreBlooms()">
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()">
 
     <!--        START OF BLOOMING GRAPH -->
     <div id="graph-will-be-here">
@@ -299,11 +303,11 @@
     <h1>Sprayed for Pests</h1>
 
     <p class="sprayed-entry" ng-repeat="spray in sprayed">
-        <span class="two-items-view more-info-base text-align-top">{{spray.timestamp}}</span>
-        <span class="two-items-view more-info-base">{{spray.note}}</span>
+        <span class=" more-info-base text-align-top span-date">{{spray.timestamp}}</span>
+        <span class=" more-info-base span-comment">{{spray.note}}</span>
     </p>
 
-    <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreSprayed()">
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()">
 
 </fieldset>
 
@@ -311,28 +315,20 @@
     <h1>Repot</h1>
 
     <p class="repotting-entry" ng-repeat="repot in repotted">
-        <span class="two-items-view more-info-base">{{repot.timestamp}}</span>
+        <span class=" more-info-base">{{repot.timestamp}}</span>
     </p>
-    <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreRepotted()">
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()">
 
 </fieldset>
 
 <fieldset id="weekly-checkup">
     <h1>Current Health Condition</h1>
     <div class="health-entry" ng-repeat="health in healthData">
-        <span class="two-items-view text-align-top more-info-base">{{health.timestamp}}</span>
-        <span class="two-items-view more-info-base">{{health.score}}:{{health.comment}}</span>
+        <span class=" text-align-top more-info-base span-date">{{health.timestamp}}</span>
+        <span class=" more-info-base span-comment">{{health.score}}:{{health.comment}}</span>
     </div>
 
-    <input type="button" value="View More" id="blooming-view-more" ng-click="getMoreHealth()">
-
-    <div id="flag">
-        <label>Flag this plant:</label>
-        <label><input type="checkbox" ng-model="flagged" ng-click="disableFlag()"/>
-            <span></span>
-        </label>
-    </div>
-    <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreHealth()">
 
 </fieldset>
 
