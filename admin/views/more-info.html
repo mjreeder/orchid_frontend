@@ -192,11 +192,13 @@
                 <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{glowHealthPoor: photo.type == 'del', noglowHealth: photo.type != 'del'}">
             </div>
         </div>
+            <button ng-click="changeProfilePicture()">Match Photos</button>
 
         <div class="photos-group">
             <div class="photos-add-div" ng-hide="editPlant.photos">
                 <iframe ng-src={{iFrameURL}}></iframe>
             </div>
+
         </div>
     </fieldset>
 </form>

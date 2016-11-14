@@ -5,7 +5,8 @@ app.controller('LoginViewController', function($scope, $rootScope, $location, Se
     SessionFactory.login(credentials).then(function (response) {
       sessionService.createStoredSession(response.data.data.session_key, response.data.data.session_id);
       if($rootScope.redirect){
-        $location.path($rootScope.redirect);
+        //$location.path($rootScope.redirect);
+        $location.path('/house/display')
       }
       else{
         $location.path('/');

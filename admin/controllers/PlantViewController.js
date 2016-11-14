@@ -48,6 +48,8 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
     $scope.newHabitatList = [];
     $scope.newOtherList = [];
 
+    $scope.similarPhotos = [];
+
     var newCountrySelections = [];
 
     PlantsFactory.getPlantByAccessionNumber(param1).then(function(response) {
@@ -129,6 +131,23 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             dead_date: createDateFromString(plantData.dead_date)
         };
 
+        var speciesName  = $scope.plant.species;
+        var id = $scope.plant.id;
+
+        PhotoFactory.getSimilarPhotos(speciesName).then(function (response){
+            var photoData = response.data.data;
+            for (var i = 0; i < photoData.length; i++) {
+                if(photoData[i].plant_id == id){
+
+                } else {
+                    $scope.similarPhotos.push(photoData[i]);
+                }
+            }
+
+            for (var i = 0; i < $scope.similarPhotos.length; i++) {
+               console.log($scope.similarPhotos[i]);
+            }
+        });
 
         var bloomPage = 0;
         $scope.blooms = [];
@@ -707,12 +726,14 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
     $scope.profilePopUp = false;
 
     $scope.changeProfilePicture = function() {
-        if ($scope.editPlant.critical == false) {
+        if ($scope.editPlant.photos == false) {
+            console.log("show the pop up");
             $scope.profilePopUp = !$scope.profilePopUp;
         } else {
             //Do nothing since the section is not editable
         }
     };
+
 
 
     $scope.editCritical = function() {
@@ -843,8 +864,50 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             }
         });
         $scope.showPopup2 = !$scope.showPopup2;
-        $rootScope.$broadcast('hi');
     };
+
+    $scope.addPhotoList = [];
+
+    $scope.newPhotoLink = function (photo){
+        var changed = false;
+        for (var i = 0; i < $scope.addPhotoList.length; i++){
+            if(photo.id == $scope.addPhotoList[i].id){
+                $scope.addPhotoList.splice(i, 1);
+                changed = true;
+                console.log("we have deleted the photo");
+            }
+        }
+        if(changed == false){
+            //we need to made a change
+            //for (var i = 0; i < $scope.plant_id_url.length; i++){
+            //    if ($scope.plant_id_url[i].id == photo.id){
+            //        var index = i;
+            //        break;
+            //    }
+            //}
+
+            console.log("we have added the photo");
+
+            $scope.addPhotoList.push(photo);
+        }
+
+    };
+
+    $scope.saveNewPhotos = function(){
+        for(var k = 0; k < $scope.addPhotoList.length; k++){
+            var photoInfo = {
+                'plant_id' : $scope.plant.id,
+                'url' : $scope.addPhotoList[k].url,
+                'type' : "Habitat",
+                'fileName' : $scope.addPhotoList[k].fileName
+            }
+            PhotoFactory.createPhoto(photoInfo).then(function (response){
+                console.log("we are done creating the photo");
+                console.log(response);
+
+            })
+        }
+    }
 
 
     $scope.profileSelected = function(photo) {
@@ -1011,9 +1074,5 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
 
         });
     }
-
-
-
-
 
 });
