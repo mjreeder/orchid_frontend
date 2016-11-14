@@ -120,7 +120,6 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             origin_comment: plantData.origin_comment,
             last_varified: createDateFromString(plantData.last_varified),
             is_donation: plantData.is_donation,
-            aaa: new Date(2014, 02, 03),
             class: plantData.class_name,
             tribe: plantData.tribe_name,
             subtribe: plantData.subtribe_name,
@@ -148,6 +147,12 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
                console.log($scope.similarPhotos[i]);
             }
         });
+
+        //FIXING THE DEAD AND INACTIVE DATES
+        //var dead_date = $scope.plant.dead_date;
+        //if (dead_date == 'NULL'){
+        //    $scope.plant.dead_date = "NUL";
+        //}
 
         var bloomPage = 0;
         $scope.blooms = [];
