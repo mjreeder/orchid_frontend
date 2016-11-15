@@ -88,7 +88,7 @@
         <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
     </fieldset>
 
-    <fieldset id="split">
+    <fieldset id="split" ng-hide="createNew">
         <h1>Split</h1>
         <button class="edit" ng-click="editSplit()" ng-hide="createNew">
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
@@ -182,7 +182,7 @@
         <textarea type="textarea" id="inactivecomment" ng-model="plant.inactive_comment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>
     </fieldset>
 
-    <fieldset id="photos">
+    <fieldset id="photos" ng-hide="createNew">
         <h1>Photos</h1>
         <button class="edit" ng-click="editPhotos()" ng-hide="createNew">
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.photos">
@@ -215,7 +215,7 @@
     </fieldset>
 </form>
 
-<fieldset id="graph">
+<fieldset id="graph" ng-hide="createNew">
     <h1>Blooming</h1>
 
     <div class="bloooming-entry" ng-repeat="bloom in blooms">
@@ -307,7 +307,7 @@
     <!--        END OF BLOOMING GRAPH -->
 </fieldset>
 
-<fieldset id="weekly-checkup">
+<fieldset id="weekly-checkup" ng-hide="createNew">
     <h1>Sprayed for Pests</h1>
 
     <p class="sprayed-entry" ng-repeat="spray in sprayed">
@@ -319,7 +319,7 @@
 
 </fieldset>
 
-<fieldset id="weekly-checkup">
+<fieldset id="weekly-checkup" ng-hide="createNew">
     <h1>Repot</h1>
 
     <p class="repotting-entry" ng-repeat="repot in repotted">
@@ -329,7 +329,7 @@
 
 </fieldset>
 
-<fieldset id="weekly-checkup">
+<fieldset id="weekly-checkup" ng-hide="createNew">
     <h1>Current Health Condition</h1>
     <div class="health-entry" ng-repeat="health in healthData">
         <span class=" text-align-top more-info-base span-date">{{health.timestamp}}</span>
