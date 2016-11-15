@@ -24,7 +24,7 @@
                 <label><input placeholder="Scientific Name" type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="editPlant.critical && !createNew"></label>
                 <label><input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label>
                 <label id="verified-label" for="verified">Last Verified:</label>
-                <input type="date" id="verified" class="more-calendar" ng-disabled="editPlant.critical && !createNew">
+                <input type="date" id="verified" class="more-calendar" ng-model="verifiedDate" ng-disabled="editPlant.critical && !createNew">
             </div>
         </fieldset>
 
@@ -179,7 +179,7 @@
         </button>
         <!--<output>{{ plant.dead_date | date }}</output>-->
 
-        <textarea type="textarea" id="inactivecomment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>
+        <textarea type="textarea" id="inactivecomment" ng-model="plant.inactive_comment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>
     </fieldset>
 
     <fieldset id="photos">
