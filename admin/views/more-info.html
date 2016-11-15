@@ -54,21 +54,31 @@
             <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
 
-            <label id="select-country">Country:</label>
-            <select ng-model="selectedCountry" ng-hide="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)"></br>
-            <option disabled selected value>
-                Select countries
-            </option>
-            <option ng-repeat="country in allCountires">{{country.name}}</option>
-        </select>
+            <label id="add-country" ng-hide="editPlant.culture">Add:</label>
+                <select id="add-country-select" ng-model="selectedCountry" ng-hide="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)"></br>
+                    <option disabled selected value>Select countries</option>
+                    <option ng-repeat="country in allCountires">{{country.name}}</option>
+                </select>
+            <label id="delete-country" ng-hide="editPlant.culture">Delete:</label>
+            <select id="delete-country-select" ng-model="selectedCountry" ng-hide="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)"></br>
+                <option disabled selected value>Select countries</option>
+                <option ng-repeat="country in allCountires">{{country.name}}</option>
+            </select>
 
-        <div class="grid2x2">
-            <div class="selectedCountry" ng-repeat="country in selectedCountries">
-                <div>{{country.name}}</div>
+        <!--<div class="grid2x2" ng-hide=" !editPlant.culture">-->
+            <!--<div class="selectedCountry" ng-repeat="country in selectedCountries">-->
+                <!--<div>{{country.name}}</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+            <div class="country-list" ng-hide=" !editPlant.culture">
+                <label id="countries-label">Countries:</label>
+                <ul class="selected-countries" ng-repeat="country in selectedCountries">
+                    <li>{{country.name}}</li>
+                </ul>
             </div>
-        </div>
 
-        <br/>
         <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Comment about the culture."></textarea>
         <br/>
     </fieldset>

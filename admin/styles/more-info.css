@@ -75,7 +75,7 @@ textarea:disabled {
     color: black;
 }
 
-#select-country {
+#add-country, #select-country {
     margin-top: 10px;
 }
 
@@ -87,9 +87,30 @@ select {
 }
 
 #culture select {
-    width: 200px;
-    margin: 15px 0;
+    width: 225px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
+
+#add-country-select {
+    margin-right: 4px;
+}
+
+#delete-country-select {
+    margin-left: 2px;
+}
+
+.country-list {
+    margin: 20px 0 20px 0;
+}
+
+.selected-countries {
+    margin: 7.5px 0 0 50px;
+}
+
+/*.selected-countries ul {*/
+    /*margin: 1.5px 0 1.5px 20px;*/
+/*}*/
 
 select:disabled {
     border: none;
@@ -338,10 +359,6 @@ input#verified {
     height: 30px;
     width: auto;
     top: 5px;
-}
-
-.selectedCountry {
-    padding-top: 11px;
 }
 
 .grid2x2 {
