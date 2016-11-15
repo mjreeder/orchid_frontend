@@ -1,4 +1,4 @@
-#change-password-admin  {
+#delete-user-admin  {
     background-color: rgba(0, 0, 0, .7);
     position: fixed;
     top: 0;
@@ -8,7 +8,7 @@
     overflow: auto;
 }
 
-#change-password-admin .flower-popup {
+#delete-user-admin .flower-popup {
     background-color: white;
     border: 4px solid #2b2e30;
     display: block;

@@ -303,7 +303,7 @@ input:checked + span {
 
 .pagination #previous button {
     border: none;
-    background: #2b2e30;
+    background: #808080;
     color: white;
     border-radius: 8px;
     padding: 15px 0px;
@@ -318,12 +318,11 @@ input:checked + span {
 
 .pagination ul {
     display: inline-block;
-    margin: -50px auto;
     float: left;
     width: 50%;
-    margin-left: 26%;
+    margin-top: 13px;
     text-align: center; 
-/*    transform: translate(-50%, -50%);*/
+
 }
 
 .pagination ul li {
@@ -356,7 +355,7 @@ margin-right: 0;
 
 .pagination #next button {
     border: none;
-    background: #ba0c2f;
+    background: #808080;
     color: white;
     border-radius: 8px;
     padding: 15px 0px;
