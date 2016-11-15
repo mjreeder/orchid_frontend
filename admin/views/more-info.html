@@ -54,21 +54,24 @@
             <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
 
-            <label id="select-country">Country:</label>
-            <select ng-model="selectedCountry" ng-hide="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)"></br>
-            <option disabled selected value>
-                Select countries
-            </option>
-            <option ng-repeat="country in allCountires">{{country.name}}</option>
-        </select>
+            <label id="add-country" ng-hide="editPlant.culture">Add:</label>
+                <select id="add-country-select" ng-model="selectedCountry" ng-hide="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)"></br>
+                    <option disabled selected value>Select countries</option>
+                    <option ng-repeat="country in allCountires">{{country.name}}</option>
+                </select>
+            <label id="delete-country" ng-hide="editPlant.culture">Delete:</label>
+            <select id="delete-country-select" ng-model="selectedCountry" ng-hide="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)"></br>
+                <option disabled selected value>Select countries</option>
+                <option ng-repeat="country in allCountires">{{country.name}}</option>
+            </select>
 
-        <div class="grid2x2">
-            <div class="selectedCountry" ng-repeat="country in selectedCountries">
-                <div>{{country.name}}</div>
+            <div class="country-list" ng-hide=" !editPlant.culture">
+                <label id="countries-label">Countries:</label>
+                <ul class="selected-countries" ng-repeat="country in selectedCountries">
+                    <li>{{country.name}}</li>
+                </ul>
             </div>
-        </div>
 
-        <br/>
         <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Comment about the culture."></textarea>
         <br/>
     </fieldset>
@@ -82,7 +85,6 @@
         <label>From:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
         <label id="received-date">Date:</label>
         <button class="more-calendar">
-            <!--<img src="images/calendaricon.svg" alt="" id="calender_image">-->
             <input type="date" id="startDateBloom" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"/>
         </button>
         <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
@@ -223,7 +225,7 @@
         <span class="more-info-base two-items-view span-comment">{{bloom.note}}</span>
     </div>
 
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()">
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
 
     <!--        START OF BLOOMING GRAPH -->
     <div id="graph-will-be-here">
@@ -315,7 +317,7 @@
         <span class=" more-info-base span-comment">{{spray.note}}</span>
     </p>
 
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()">
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">
 
 </fieldset>
 
@@ -325,7 +327,7 @@
     <p class="repotting-entry" ng-repeat="repot in repotted">
         <span class=" more-info-base">{{repot.timestamp}}</span>
     </p>
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()">
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()" ng-show="repottedMoreShow">
 
 </fieldset>
 
@@ -336,7 +338,7 @@
         <span class=" more-info-base span-comment">{{health.score}}:{{health.comment}}</span>
     </div>
 
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreHealth()">
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreHealth()" ng-show="healthMoreShow">
 
 </fieldset>
 
@@ -347,8 +349,8 @@
             Back to Top</button>
     </div>
 
-    <div id="moreinfo-save" ng-hide="!createNew">
-        <input type="button" ng-click="saveAll()" value="Save All" ng-hide="!createNew">
+    <div id="moreinfo-save-button">
+        <input type="button" ng-click="saveAll()" value="Save All" ng-hide="!editPlant.save">
     </div>
 </div>
 

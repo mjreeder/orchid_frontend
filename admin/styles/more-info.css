@@ -75,7 +75,7 @@ textarea:disabled {
     color: black;
 }
 
-#select-country {
+#add-country, #select-country {
     margin-top: 10px;
 }
 
@@ -87,9 +87,30 @@ select {
 }
 
 #culture select {
-    width: 200px;
-    margin: 15px 0;
+    width: 225px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
+
+#add-country-select {
+    margin-right: 4px;
+}
+
+#delete-country-select {
+    margin-left: 2px;
+}
+
+.country-list {
+    margin: 20px 0 20px 0;
+}
+
+.selected-countries {
+    margin: 7.5px 0 0 50px;
+}
+
+/*.selected-countries ul {*/
+    /*margin: 1.5px 0 1.5px 20px;*/
+/*}*/
 
 select:disabled {
     border: none;
@@ -340,10 +361,6 @@ input#verified {
     top: 5px;
 }
 
-.selectedCountry {
-    padding-top: 11px;
-}
-
 .grid2x2 {
     min-height: 100%;
     display: flex;
@@ -382,32 +399,20 @@ input#verified {
 
 /*SAVE*/
 
-#moreinfo-save input {
-    border: none;
-    background: #ba0c2F;
-    color: white;
-    border-radius: 8px;
-    padding: 15px 0px;
-    font-size: 18px;
-    display: inline-block;
-    float: right;
-    width: 15%;
-    margin-right: 20px; 
-    margin-top: 0px;
-    margin-bottom: 20px;
-}
+
 
 #back-to-top button {
     display: inline-block;
     float: left;
-    margin-left: 20px;
+/*    margin-left: 20px;*/
     margin-bottom: 20px;
     border: none;
-    background: #2b2e30;
+    background: #808080;
     color: white;
-    border-radius: 8px;
-    padding: 15px 25px;
-    font-size: 18px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif; 
 }
 
 #moreinfo-save {
@@ -420,6 +425,23 @@ input#verified {
     display: block;
 }
 
+
+
+#moreinfo-save-button input {
+    border: none;
+    background: #ba0c2F;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    display: inline-block;
+    float: right; 
+/*    margin-right: 20px; */
+    margin-top: 0px;
+    margin-bottom: 20px;
+    width: auto; 
+      
+}
 
 /*WEEKLY CHECKUP*/
 

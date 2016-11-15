@@ -302,19 +302,20 @@ input:checked + span {
     border: none;
     background: #808080;
     color: white;
-    border-radius: 8px;
-    padding: 15px 10px;
-    font-size: 18px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
     display: inline-block;
     float: left;
     margin-top: 0;
     margin-bottom: 20px;
+    font-family: 'Raleway', sans-serif;
 }
 
 .pagination ul {
     display: inline-block;
     float: left;
-    width: 50%;
+    width: 60%;
     margin-top: 13px;
     text-align: center; 
 
@@ -352,13 +353,13 @@ margin-right: 0;
     border: none;
     background: #808080;
     color: white;
-    border-radius: 8px;
-    padding: 15px 0px;
-    font-size: 18px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
     display: inline-block;
     float: right;
-    width: 25%;
 /*    margin-right: 20px;*/
     margin-bottom: 20px;
 /*    margin-top: -112px;*/
+     font-family: 'Raleway', sans-serif;
 }
