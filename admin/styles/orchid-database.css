@@ -318,12 +318,11 @@ input:checked + span {
 
 .pagination ul {
     display: inline-block;
-    margin: -50px auto;
     float: left;
     width: 50%;
-    margin-left: 26%;
+    margin-top: 13px;
     text-align: center; 
-/*    transform: translate(-50%, -50%);*/
+
 }
 
 .pagination ul li {
