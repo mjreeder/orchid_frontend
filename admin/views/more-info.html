@@ -225,7 +225,7 @@
         <span class="more-info-base two-items-view span-comment">{{bloom.note}}</span>
     </div>
 
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()">
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
 
     <!--        START OF BLOOMING GRAPH -->
     <div id="graph-will-be-here">
@@ -317,7 +317,7 @@
         <span class=" more-info-base span-comment">{{spray.note}}</span>
     </p>
 
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()">
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">
 
 </fieldset>
 
@@ -327,7 +327,7 @@
     <p class="repotting-entry" ng-repeat="repot in repotted">
         <span class=" more-info-base">{{repot.timestamp}}</span>
     </p>
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()">
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()" ng-show="repottedMoreShow">
 
 </fieldset>
 
@@ -338,7 +338,7 @@
         <span class=" more-info-base span-comment">{{health.score}}:{{health.comment}}</span>
     </div>
 
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreHealth()">
+    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreHealth()" ng-show="healthMoreShow">
 
 </fieldset>
 

@@ -54,6 +54,12 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
     $scope.verifiedDate = "";
     $scope.splits = [];
 
+    //View More Toggles
+    $scope.bloomingMoreShow = true;
+    $scope.sprayedMoreShow = true;
+    $scope.repottedMoreShow = true;
+    $scope.healthMoreShow = true;
+
 
     var newCountrySelections = [];
 
@@ -165,8 +171,12 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         $scope.getMoreBlooms = function(){
           bloomPage++;
           BloomingFactory.getBloomByPlantID($scope.plant.id, bloomPage).then(function(response){
-            for(var i = 0; i < response.data.data.length; i++){
-              $scope.blooms.push(response.data.data[i]);
+            var data = response.data.data;
+            if(data.length < 5){
+              $scope.bloomingMoreShow = false;
+            }
+            for(var i = 0; i < data.length; i++){
+              $scope.blooms.push(data[i]);
             }
             for(var i = 0; i < $scope.blooms.length; i++){
               if($scope.blooms[i].end_date == "0000-00-00"){
@@ -182,8 +192,12 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         $scope.getMoreSprayed = function(){
           sprayPage++;
           SprayedFactory.getPestByPlantID($scope.plant.id, sprayPage).then(function(response){
-            for(var i = 0; i < response.data.data.length; i++){
-              $scope.sprayed.push(response.data.data[i]);
+            var data = response.data.data;
+            if(data.length < 5){
+              $scope.sprayedMoreShow = false;
+            }
+            for(var i = 0; i < data.length; i++){
+              $scope.sprayed.push(data[i]);
             }
           })
         }
@@ -194,8 +208,12 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         $scope.getMoreRepotted = function(){
           repotPage++;
           PottingFactory.getBloomByPlantID($scope.plant.id, repotPage).then(function(response){
-            for(var i = 0; i < response.data.data.length; i++){
-              $scope.repotted.push(response.data.data[i]);
+            var data = response.data.data;
+            if(data.length < 5){
+              $scope.repottedMoreShow = false;
+            }
+            for(var i = 0; i < data.length; i++){
+              $scope.repotted.push(data[i]);
             }
           })
         }
@@ -206,6 +224,10 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         $scope.getMoreHealth = function(){
           healthPage++;
           HealthFactory.getHealthBtPlantID($scope.plant.id, healthPage).then(function(response){
+            var data = response.data.data;
+            if(data.length < 5){
+              $scope.healthMoreShow = false;
+            }
             for(var i = 0; i < response.data.data.length; i++){
               $scope.healthData.push(response.data.data[i]);
             }
