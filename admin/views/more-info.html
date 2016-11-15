@@ -65,13 +65,6 @@
                 <option ng-repeat="country in allCountires">{{country.name}}</option>
             </select>
 
-        <!--<div class="grid2x2" ng-hide=" !editPlant.culture">-->
-            <!--<div class="selectedCountry" ng-repeat="country in selectedCountries">-->
-                <!--<div>{{country.name}}</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-
             <div class="country-list" ng-hide=" !editPlant.culture">
                 <label id="countries-label">Countries:</label>
                 <ul class="selected-countries" ng-repeat="country in selectedCountries">
@@ -92,7 +85,6 @@
         <label>From:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
         <label id="received-date">Date:</label>
         <button class="more-calendar">
-            <!--<img src="images/calendaricon.svg" alt="" id="calender_image">-->
             <input type="date" id="startDateBloom" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"/>
         </button>
         <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>

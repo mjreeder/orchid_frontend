@@ -173,8 +173,8 @@ td {
     border: 4px solid black;
     position: absolute;
     left: 50%;
-    top: 0;
-    transform: translate(-50%, 0%);
+    top: 50%;
+    transform: translate(-50%, -50%);
     padding-bottom: 10px;
     box-sizing: border-box;
 }
@@ -249,7 +249,7 @@ td {
     font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 10px 15px;
-    margin: 5px;
+    margin: 15px 5px 5px 5px;
     border-radius: 5px;
     display: inline-block;
     float: left;
@@ -279,7 +279,7 @@ td {
     border-radius: 5px;
     display: inline-block;
     float: right;
-    margin: 5px;
+    margin: 15px 5px 5px 5px;
 }
 
 
@@ -332,15 +332,9 @@ td {
     pointer-events: none;
 }
 
-#more-info {
-    /*margin-left: -15px;*/
-}
-
 #more-info a {
     color: white;
 }
-
-
 
 .glowHealthPoor {
     /*   box-shadow:0 0 20px #BA0C2F;*/

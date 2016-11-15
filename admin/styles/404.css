@@ -1,23 +1,13 @@
-
-/*
-.w404 {
-    position: relative;
-}
-*/
-
 .w404 h1 {
     display: block; 
     margin: 0 auto; 
-/*    text-align: center;*/
+    text-align: center;
     margin-top: 30px; 
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 600;
     font-size: 100px;
     letter-spacing: 8px;
-    padding-bottom: 70px; 
-    
-   
-    
+    padding-bottom: 70px;
 }
 
 .w404 h2 {
@@ -51,11 +41,6 @@ margin-top: 50px;
     position:fixed; 
     top: 150px; 
     left: 30px;
-/*
-    position: absolute;
-    left: 40px;
-    
-*/
 }
 
 #water-404 .can2 img {
@@ -63,13 +48,7 @@ margin-top: 50px;
     position:fixed; 
     top: 150px; 
     right: 30px;
-/*
-    position: absolute;
-    right: 40px;
-*/
 }
-
-
 
 @media screen and (max-width: 660px) {
  #water-404 .can1 img {
