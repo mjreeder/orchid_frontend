@@ -117,23 +117,37 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       if(!data.note){
         return;
       }
-      data.timestamp = $scope.today;
-      if(objectIsNew('bloomingComment')){
+      if(!data.timestamp){
+        data.timestamp = $scope.today;
+      }
+      var isRecent = checkForRecent($scope.blooming_start_date);
+      if(objectIsNew('bloomingComment') || !isRecent){
         Bloom_CommentFactory.createBloom_Comment(data).then(function(){})
       } else {
         Bloom_CommentFactory.updateBloom_Comment(data).then(function(){})
       }
     }
 
+    var checkForRecent = function(day){
+      var start = moment(day);
+      var end = moment($scope.today);
+      var startYearDate = start.dayOfYear();
+      var endYearDate = end.dayOfYear();
+      var isRecent = daysBetweenDates(startYearDate, endYearDate, 7);
+      return isRecent;
+    }
+
     var handleSprayed = function() {
       var data = prepareForFactory('sprayed');
-      data.timestamp = $scope.today;
       if(!data.note){
         return;
       }
-      if(objectIsNew('sprayed')){
-        SprayedFactory.createSplit(data).then(function(response){
-        });
+      if(!data.timestamp){
+        data.timestamp = $scope.today;
+      }
+      var isRecent = checkForRecent($scope.sprayed_timestamp);
+      if(objectIsNew('sprayed') || !isRecent){
+        SprayedFactory.createSplit(data).then(function(response){});
       } else {
         SprayedFactory.updateSplit(data).then(function(){})
       }
@@ -141,7 +155,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handlePotting = function(){
       var data = prepareForFactory('potting');
-      if(objectIsNew('potting')){
+      var isRecent = checkForRecent($scope.potting_timestamp);
+      if(objectIsNew('potting') || !isRecent){
         PottingFactory.createPest(data).then(function(){})
       } else {
         PottingFactory.updatePotting(data).then(function(){})
@@ -150,11 +165,14 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleHealth = function(){
       var data = prepareForFactory('health');
-      data.timestamp = $scope.today;
       if(!data.score || !data.comment){
         return;
       }
-      if(objectIsNew('health')){
+      if(!data.timestamp){
+        data.timestamp = $scope.today;
+      }
+      var isRecent = checkForRecent($scope.health_timestamp);
+      if(objectIsNew('health') || !isRecent){
         HealthFactory.createHealth(data).then(function(){});
       } else {
         HealthFactory.editHealth(data).then(function(){})
