@@ -399,32 +399,20 @@ input#verified {
 
 /*SAVE*/
 
-#moreinfo-save input {
-    border: none;
-    background: #ba0c2F;
-    color: white;
-    border-radius: 8px;
-    padding: 15px 0px;
-    font-size: 18px;
-    display: inline-block;
-    float: right;
-    width: 15%;
-    margin-right: 20px; 
-    margin-top: 0px;
-    margin-bottom: 20px;
-}
+
 
 #back-to-top button {
     display: inline-block;
     float: left;
-    margin-left: 20px;
+/*    margin-left: 20px;*/
     margin-bottom: 20px;
     border: none;
-    background: #2b2e30;
+    background: #808080;
     color: white;
-    border-radius: 8px;
-    padding: 15px 25px;
-    font-size: 18px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif; 
 }
 
 #moreinfo-save {
@@ -437,6 +425,23 @@ input#verified {
     display: block;
 }
 
+
+
+#moreinfo-save-button input {
+    border: none;
+    background: #ba0c2F;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    display: inline-block;
+    float: right; 
+/*    margin-right: 20px; */
+    margin-top: 0px;
+    margin-bottom: 20px;
+    width: auto; 
+      
+}
 
 /*WEEKLY CHECKUP*/
 

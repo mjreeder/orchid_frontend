@@ -223,13 +223,13 @@ header .main-heading li a {
     margin-left: 20px;
     float: right;
     background-color: white;
-    padding: 15px 10px;
-    width: 15%;
-    max-width: 125px;
-    border-radius: 8px;
+    padding: 10px 15px;
+/*    width: 15%;*/
+/*    max-width: 125px;*/
+    border-radius: 5px;
     font-family: Raleway, sans-serif;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     text-decoration: none;
     color:  #2b2e30;
     margin-top: -10px;
