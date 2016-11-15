@@ -67,11 +67,16 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                         TagFactory.getPestByPlantID(plant.id).then(function(response) {
                             var tagResponse = response.data.data;
 
+                            console.log("we are looking at the data");
+                            console.log(tagResponse);
 
                             for (var i = 0; i < $scope.plantsInTable.length; i++) {
                                 if ($scope.plantsInTable[i].id == tagResponse.plant_id) {
-                                    $scope.plantsInTable[i].tagged = true;
-                                    console.log($scope.plantsInTable[i]);
+                                    if(tagResponse.active == 1){
+                                        $scope.plantsInTable[i].tagged = true;
+                                        console.log($scope.plantsInTable[i]);
+                                    }
+
                                 }
                                 $scope.plantsInTable[i].addObeject = "value3";
 
@@ -291,8 +296,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
             $scope.popupShow = false;
         }
     });
-
-    $scope.name = "biiy jean";
 
     $scope.showMoveFunction = function() {
         console.log("we are going to the pop up");

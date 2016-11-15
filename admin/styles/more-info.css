@@ -210,6 +210,10 @@ label#verified-label {
     padding-left: 5px;
 }
 
+input#verified {
+    padding: 2px;
+}
+
 /*INACTIVE*/
 
 #inactive label {
@@ -263,6 +267,10 @@ label#verified-label {
     font-size: 14px;
     margin: 0 10px 0 0;
     display: inline-block;
+}
+
+.selected-photo {
+    background: #ba0c2F;
 }
 
 #match-photos-button {

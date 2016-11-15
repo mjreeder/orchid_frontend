@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory) {
+app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory) {
 
     UserFactory.getAuth().then(function(response){
         console.log("weeeeeeewwwwwwww");
@@ -49,6 +49,11 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
     $scope.newOtherList = [];
 
     $scope.similarPhotos = [];
+
+    $scope.verifiedObject = {};
+    $scope.verifiedDate = "";
+    $scope.splits = [];
+
 
     var newCountrySelections = [];
 
@@ -148,11 +153,12 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             }
         });
 
-        //FIXING THE DEAD AND INACTIVE DATES
-        //var dead_date = $scope.plant.dead_date;
-        //if (dead_date == 'NULL'){
-        //    $scope.plant.dead_date = "NUL";
-        //}
+        VerifiedFactory.getLastVerifiedDate(id).then(function (response){
+            var data = response.data.data;
+            $scope.verifiedObject = data[0];
+            $scope.verifiedDate = createDateFromString(data[0].verified_date);
+
+        });
 
         var bloomPage = 0;
         $scope.blooms = [];
@@ -683,6 +689,21 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
     $scope.editInactive = function() {
         if ($scope.editPlant.inactive == false) {
             $scope.editPlant.inactive = true;
+
+            var dead_date_object = new Date($scope.plant.dead_date);
+            var inactive_date_object = new Date($scope.plant.inactive_date);
+
+            //
+            var inactiveInformation = {
+                dead_date: dead_date_object,
+                inactive_date: inactive_date_object,
+                inactive_comment: $scope.plant.inactive_comment,
+                id: $scope.plant.id
+            };
+            PlantsFactory.editInactivePlant(inactiveInformation).then(function(response){
+
+            });
+
         } else {
             $scope.editPlant.inactive = false;
         }
@@ -764,6 +785,23 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             PlantsFactory.editCritialPlantTable(criticalPlantTable).then(function(response) {
                 console.log(response.data);
             });
+
+            var dataAsString = createDateFromString($scope.verifiedObject.verified_data);
+            if (dataAsString == $scope.verifiedDate){
+                //information is the same
+            } else {
+                var newDateFromModel = new Date($scope.verifiedDate);
+                var verifiedInformation = {
+                    plant_id: $scope.plant.id,
+                    verified_date: newDateFromModel,
+                    id: $scope.verifiedObject.id,
+                    active: 1
+                };
+
+                VerifiedFactory.updateVerified(verifiedInformation).then(function (response){
+
+                });
+            }
 
         } else {
             $scope.editPlant.critical = false;
@@ -896,6 +934,12 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             $scope.addPhotoList.push(photo);
         }
 
+    };
+
+    $scope.deleteCountry = function(country){
+      //adding the list to the delete country list
+        //adding that country back to the orginal country list
+        //sending the network reuqest to make the changes
     };
 
     $scope.saveNewPhotos = function(){
