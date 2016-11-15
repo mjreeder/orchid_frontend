@@ -349,8 +349,8 @@
             Back to Top</button>
     </div>
 
-    <div id="moreinfo-save-button">
-        <input type="button" ng-click="saveAll()" value="Save All" ng-hide="!editPlant.save">
+    <div id="moreinfo-save-button" ng-hide="!createNew">
+        <input type="button" ng-click="saveAll()" value="Save All" ng-hide="!createNew || !editPlant.save">
     </div>
 </div>
 
