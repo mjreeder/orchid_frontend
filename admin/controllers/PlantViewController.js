@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory) {
+app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll) {
 
     UserFactory.getAuth().then(function(response){
         console.log("weeeeeeewwwwwwww");
@@ -15,19 +15,7 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
 
     $scope.iFrameURL = "http://localhost:8888/orchid_site/utilities/file_frame.php?session_key=" +$rootScope.userSessionKey +"&session_id=" +$rootScope.userSessionId +"&url_section=blah";
 
-    //$scope.AuthUser = false;
-    //
-    //$scope.apply();
-    //
-    //$scope.AuthUser = false;
-    //
-    //$scope.$apply;
-
     var param1 = $routeParams.accession_number;
-
-    //$scope.AuthUser = true;
-
-    console.log(param1);
 
     $scope.PlantCountryNames = [];
     $scope.Tables = [];
@@ -77,8 +65,6 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
 
             }
         });
-
-
 
         newLink = [];
 
@@ -1145,5 +1131,11 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
 
         });
     }
+
+    $scope.scrollToFunction = function(){
+        console.log("we are in the top");
+        $location.hash("top");
+        $anchorScroll();
+    };
 
 });
