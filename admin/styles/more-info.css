@@ -16,7 +16,8 @@ a {
 #photos,
 #graph,
 #split,
-#weekly-checkup {
+#weekly-checkup,
+#special-collection {
     position: relative;
     overflow: auto;
 }
@@ -86,7 +87,7 @@ select {
     background-color: white;
 }
 
-#culture select {
+#culture select, #special-collection select {
     width: 225px;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -108,9 +109,10 @@ select {
     margin: 7.5px 0 0 50px;
 }
 
-/*.selected-countries ul {*/
-    /*margin: 1.5px 0 1.5px 20px;*/
-/*}*/
+#special-collection select {
+    margin-left: 4px;
+    border: 1px solid black;
+}
 
 select:disabled {
     border: none;
@@ -560,4 +562,17 @@ label span {
 
 .clean-span {
     background: none;
+}
+
+#collection-button {
+    width: auto;
+    border: none;
+    background: #808080;
+    color: white;
+    border-radius: 8px;
+    padding: 15px 10px;
+    font-size: 14px;
+    margin: 0 0 20px 10px;
+    display: inline-block;
+    font-family: Raleway, sans-serif;
 }
