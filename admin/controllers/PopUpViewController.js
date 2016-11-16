@@ -1,7 +1,6 @@
 app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootScope, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, Bloom_CommentFactory, TagFactory){
 
     $scope.plant = {};
-    $scope.health_condition = "";
     $scope.flagWasDisabled = false;
     $scope.createBloomPressed = false;
     $scope.startNewBloomTodayDisable = true;
@@ -17,6 +16,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.$on('current-plant', function(event, data){
       destroy();
       $scope.plant = data;
+      $scope.data = {};
       concatObjects(data, 'plant');
       init();
     })
@@ -68,7 +68,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleBloom = function() {
       var data = prepareForFactory('blooming');
-      if(objectIsNew('blooming') && $scope.createBloomPressed){
+      if(objectIsNew('blooming') || $scope.createBloomPressed){
         BloomingFactory.createBloom(data).then(function(){})
       } else {
         BloomingFactory.updateBloom(data).then(function(){})
@@ -121,7 +121,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         data.timestamp = $scope.today;
       }
       var isRecent = checkForRecent($scope.blooming_start_date);
-      if(objectIsNew('bloomingComment') || !isRecent){
+      if(objectsMatch('bloomingComment')){
+        return;
+      }
+      if(objectIsNew('bloomingComment') || (!isRecent)){
         Bloom_CommentFactory.createBloom_Comment(data).then(function(){})
       } else {
         Bloom_CommentFactory.updateBloom_Comment(data).then(function(){})
@@ -146,7 +149,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         data.timestamp = $scope.today;
       }
       var isRecent = checkForRecent($scope.sprayed_timestamp);
-      if(objectIsNew('sprayed') || !isRecent){
+      if(objectsMatch('sprayed')){
+        return;
+      }
+      if(objectIsNew('sprayed') || (!isRecent)){
         SprayedFactory.createSplit(data).then(function(response){});
       } else {
         SprayedFactory.updateSplit(data).then(function(){})
@@ -156,7 +162,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handlePotting = function(){
       var data = prepareForFactory('potting');
       var isRecent = checkForRecent($scope.potting_timestamp);
-      if(objectIsNew('potting') || !isRecent){
+      if(objectsMatch('potting')){
+        return;
+      }
+      if(objectIsNew('potting') || (!isRecent)){
         PottingFactory.createPest(data).then(function(){})
       } else {
         PottingFactory.updatePotting(data).then(function(){})
@@ -172,7 +181,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         data.timestamp = $scope.today;
       }
       var isRecent = checkForRecent($scope.health_timestamp);
-      if(objectIsNew('health') || !isRecent){
+      if(objectsMatch('health')){
+        return;
+      }
+      if(objectIsNew('health') || (!isRecent)){
         HealthFactory.createHealth(data).then(function(){});
       } else {
         HealthFactory.editHealth(data).then(function(){})
@@ -183,7 +195,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       var data = prepareForFactory('flag');
       if(!$scope.flagged && $scope.flagWasDisabled){
         TagFactory.deactivateTag(data).then(function(){})
-      } else if(!$scope.flagged){
+      } else if(!$scope.flagged || objectsMatch('flag')){
         return;
       } else {
         if(objectIsNew('flag')){
@@ -192,6 +204,15 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           TagFactory.updateTag(data).then(function(){})
         }
       }
+    }
+
+    var objectsMatch = function(field){
+      var newData = extractData(field);
+      console.log(newData);
+      var oldData = extractData(field, $scope.data);
+      console.log(oldData);
+      console.log(field + ' ' + _.isEqual(newData, oldData));
+      return _.isEqual(newData, oldData);
     }
 
     var prepareForFactory = function(field){
@@ -216,6 +237,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     //These requests are async, but since they do not equire each other's data we will execute them concurently
     var init = function(){
+      $scope.data = {};
       if(!objectIsNew('plant')){
         handleBloomInit();
         handleSprayedInit();
@@ -324,13 +346,16 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       for(key in data){
         if(data.hasOwnProperty(key)){
           $scope[prefix + '_' + key] = data[key];
+          $scope.data[prefix + '_' + key] = data[key];
         }
       }
     }
 
     //get all items which have the current prefix in the scope.data object
-    var extractData = function(prefix){
-      var data = $scope;
+    var extractData = function(prefix, data){
+      if(data == undefined){
+        data = $scope;
+      }
       var temp = {};
       for(key in data){
         if(data.hasOwnProperty(key)){
