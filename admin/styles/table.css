@@ -33,13 +33,11 @@ main nav ul {
 }
 
 #current-health textarea {
-    color: #808080;
     font-size: 14px;
     font-family: 'Raleway', sans-serif;
 }
 
 .top-margin textarea {
-    color: #808080;
     font-size: 16px;
     font-family: 'Raleway', sans-serif;
 }
@@ -252,7 +250,6 @@ td {
 .flower-popup textarea {
     border: 2px solid #808080;
     font-family: 'Raleway' , serif;
-    color: #808080;
     font-size: 14px;
     width: 100%;
     padding: 5px;
