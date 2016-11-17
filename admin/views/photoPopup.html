@@ -11,7 +11,7 @@
         <div class="photos-group" ng-repeat="photo in similarPhotos">
             <img src="{{photo.url}}" alt="" class="thumbnail">
             <div class="photos-buttons">
-                <label for="thumbnail">{{photo.fileName}}</label>
+                <label >{{photo.fileName}}</label>
                 <input type="button" value="Select" ng-click="newPhotoLink(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
             </div>
 
