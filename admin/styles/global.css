@@ -237,23 +237,64 @@ header .main-heading li a {
 }
 
 @media screen and (max-width: 900px) {
-    header li a {
+    .main-heading ul li a {
         font-size: 16px;
     }
 }
+/*
 
 @media screen and (max-width: 645px) {
-    header li a {
-        padding: 15px 10px;
+    .main-heading ul li a {
+    
+    }
+}
+*/
+
+
+/* start of responsiveness*/
+
+/*
+@media screen and (max-width: 600px) {
+    .main-heading ul li a {
+        display: block; 
+        width: 100%; 
+        margin-bottom: 15px; 
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main-heading ul {  
+        float: left;
+        margin-top: -35px; 
+        
+    }
+}
+*/
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+    .main-heading ul li a {
+        display: block; 
+        width: 100%; 
+        margin-bottom: 15px; 
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main-heading ul {  
+        float: left;
+/*        margin-top: -35px; */
+        
     }
 }
 
 
-@media screen and (max-width: 540px) {
-    header li a {
-        display: inline-block; 
-    }
-}
+
+
 
 
 /*
