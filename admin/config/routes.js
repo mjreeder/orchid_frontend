@@ -166,7 +166,7 @@ var isSuperAuthenticated = function ($rootScope, $location, sessionService, User
     }
     if(superAdmin == false){
         $rootScope.redirect = $location.path();
-        $location.path("/login");
+        $location.path("/home");
     }
 
 
