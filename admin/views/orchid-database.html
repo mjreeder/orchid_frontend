@@ -1,6 +1,5 @@
 <div id="orchid-database">
 
-
     <div>
         <div id="allplantsh1">
             <h1>All Plants</h1>
@@ -17,16 +16,19 @@
 
         <div class="filter-left">
             <div class="filter-section">
-                <button id="collapse" type="image" id="active"> - </button>
+                <button id="collapse" type="image" id="active">
+                    -
+                </button>
                 <h2>
-                Filter</h2>
+                    Filter</h2>
                 <hr noshade>
             </div>
             <div class="filter-options">
                 <ul ng-repeat="(key, val) in plants[0]">
                     <li ng-show="val.key != 'id'">
                         <div class="editPlant" ng-click="editFilterDisplay(val.key)">
-                            <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed" /><span class="table-checkbox"></span>
+                            <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/>
+                            <span class="table-checkbox"></span>
                             <label>{{val.key}}</label>
                         </div>
                     </li>
@@ -48,70 +50,50 @@
                     </tbody>
                 </thead>
             </table>
-            
-            
-                <div class="pagination">
- <div class="divider">
 
-    </div> 
-        <div id="previous">
-            <button> Previous </button>
+            <div class="pagination">
+                <div class="divider"></div>
+                <div id="previous">
+                    <button ng-click="previousPage()">
+                        Previous
+                    </button>
+                </div>
+
+
+
+
+
+
+                <ul>
+                  <li>
+                      <a ng-class="isCurrentPage(1) ? 'active_class' : 'pagination-ul'" ng-click='shifSlotsAndChangePage(1)'>1</a>
+                  </li>
+                    <li ng-repeat="page in pageArray track by $index">
+                        <a ng-class="isCurrentPage(page) ? 'active_class' : 'pagination-ul'" ng-click='shifSlotsAndChangePage(page, $index)'>{{page}}</a>
+                    </li>
+                    <li>
+                        <a ng-class="isCurrentPage(numberOfPages) ? 'active_class' : 'pagination-ul'" ng-click='shifSlotsAndChangePage(numberOfPages)'>{{numberOfPages}}</a>
+                    </li>
+                </ul>
+
+
+
+
+
+
+
+
+
+
+
+                <div id="next">
+                    <button ng-click="nextPage()">
+                        Next
+                    </button>
+                </div>
+            </div>
         </div>
 
-<ul> 
-
-<li><a href="#">1</a></li>
-<li><a href="#">2</a></li>
-<li><a href="#">3</a></li>
-<li><a href="#">4</a></li>
-<li><a href="#">5</a></li>
-</ul>
-
-
-        <div id="next">
-            <button> Next </button>
-        </div>
     </div>
-        </div>
-
-    </div>
-
-
-
-   
-
-
-<!-- pagination -->
-
-<!--
-    <div class="pagination">
- <div class="divider">
-
-    </div> 
-        <div id="previous">
-            <button> Previous </button>
-        </div>
-
-<ul> 
-
-<li><a href="#">1</a></li>
-<li><a href="#">2</a></li>
-<li><a href="#">3</a></li>
-<li><a href="#">4</a></li>
-<li><a href="#">5</a></li>
-<li><a href="#">6</a></li>
-<li><a href="#">7</a></li>
-<li><a href="#">8</a></li>
-<li><a href="#">9</a></li>
-</ul>
-
-
-        <div id="next">
-            <button> Next </button>
-        </div>
-    </div>
--->
-
-
 
 </div>

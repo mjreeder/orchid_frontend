@@ -54,9 +54,9 @@
 
 /*
 @media screen and (max-width: 790px) {
-  .searchbox { 
+  .searchbox {
     width: 90%;
-    
+
  }
 }
 */
@@ -80,14 +80,14 @@
 
 @media screen and (max-width: 480px) {
    .searchbox-and-icon {
-   float: left;  
+   float: left;
  }
 }
 
 @media screen and (max-width: 580px) {
    #allplantsh1 h1 {
-   font-size: 20px;  
-    
+   font-size: 20px;
+
  }
 }
 */
@@ -103,7 +103,6 @@
     width: 100%;
     border-collapse: collapse;
     width: 100%;
-
 }
 
 #orchid-database thead {
@@ -114,9 +113,7 @@
     font-weight: 100;
 }
 
-#orchid-database table,
-#orchid-database td,
-#orchid-database th {
+#orchid-database table, #orchid-database td, #orchid-database th {
     border-bottom: 4px solid white;
     border-left: 4px solid white;
     text-align: left;
@@ -201,7 +198,7 @@
 /*
 button {
     width: 30px;
-    float: left; 
+    float: left;
     z-index: 10;
 }
 */
@@ -218,10 +215,10 @@ button {
     position: absolute;
     /*
     width: 30px
-    float: left; 
+    float: left;
     position: relative;
-    display: inline; 
-    margin-top: -37px; 
+    display: inline;
+    margin-top: -37px;
     padding: 5px;
 */
 }
@@ -243,6 +240,7 @@ button {
     margin-left: 8%;
     width: 55%;
     display: inline-block;
+    overflow-x: scroll;
 }
 
 
@@ -269,7 +267,7 @@ span {
     position: relative;
 }
 
-input:checked + span {
+input:checked+span {
     background: url(../images/checked_checkbox.svg) center center no-repeat / cover;
 }
 
@@ -277,7 +275,7 @@ input:checked + span {
     clear: both;
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 100%; 
+    width: 100%;
 }
 
 
@@ -285,20 +283,19 @@ input:checked + span {
 
 #orchid-database .pagination .divider {
     clear: both;
-/*    margin-top: 20px;*/
+    /*    margin-top: 20px;*/
     margin-bottom: 20px;
- width: 100%;    
+    width: 100%;
 }
-
 
 .pagination {
     margin-top: 30px;
     float: left;
-/*    margin-left: -3%;*/
-/*    width: 53%;*/
-    width: 100%; 
+    /*    margin-left: -3%;*/
+    /*    width: 53%;*/
+    width: 100%;
     display: inline-block;
-    border-top: 5px solid #808080; 
+    border-top: 5px solid #808080;
 }
 
 .pagination #previous button {
@@ -311,7 +308,7 @@ input:checked + span {
     display: inline-block;
     float: left;
     width: 25%;
-/*    margin-left: 20px;*/
+    /*    margin-left: 20px;*/
     margin-top: 0;
     margin-bottom: 20px;
 }
@@ -322,8 +319,8 @@ input:checked + span {
     float: left;
     width: 50%;
     margin-left: 26%;
-    text-align: center; 
-/*    transform: translate(-50%, -50%);*/
+    text-align: center;
+    /*    transform: translate(-50%, -50%);*/
 }
 
 .pagination ul li {
@@ -332,26 +329,38 @@ input:checked + span {
     margin-right: 10px;
 }
 
-
 .pagination ul li:first-child {
-margin-left: 10px; 
+    margin-left: 10px;
 }
 
 .pagination ul li:last-child {
-margin-right: 0; 
+    margin-right: 0;
 }
 
-
-.pagination ul li a {
+/*.pagination ul li a {
     font-size: 20px;
     font-weight: 600;
     color: black;
+    cursor: pointer;
+}*/
+
+.pagination-ul{
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+  cursor: pointer;
 }
 
 .pagination ul li a:active {
     color: #ba0c2f;
     font-size: 25px;
     font-weight: 800;
+}
+
+.active_class{
+  color: #ba0c2f;
+  font-size: 25px;
+  font-weight: 800;
 }
 
 .pagination #next button {
@@ -364,7 +373,7 @@ margin-right: 0;
     display: inline-block;
     float: right;
     width: 25%;
-/*    margin-right: 20px;*/
+    /*    margin-right: 20px;*/
     margin-bottom: 20px;
-/*    margin-top: -112px;*/
+    /*    margin-top: -112px;*/
 }
