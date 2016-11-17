@@ -60,12 +60,12 @@
                     <option ng-repeat="country in allCountires">{{country.name}}</option>
                 </select>
             <label id="delete-country" ng-hide="editPlant.culture">Delete:</label>
-            <select id="delete-country-select" ng-model="selectedCountry" ng-hide="editPlant.culture && !createNew" ng-change="selectCountry(selectedCountry)"></br>
+            <select id="delete-country-select" ng-model="deselectedCountry" ng-hide="editPlant.culture && !createNew" ng-change="deselectCountryFunction(deselectedCountry)"></br>
                 <option disabled selected value>Select countries</option>
-                <option ng-repeat="country in allCountires">{{country.name}}</option>
+                <option ng-repeat="country in selectedCountries">{{country.name}}</option>
             </select>
 
-            <div class="country-list" ng-hide=" !editPlant.culture">
+            <div class="country-list" ng-hide="!editPlant.culture">
                 <label id="countries-label">Countries:</label>
                 <ul class="selected-countries" ng-repeat="country in selectedCountries">
                     <li>{{country.name}}</li>
