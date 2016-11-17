@@ -48,8 +48,6 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
         var data = response.data.data;
         for (var i = 0; i < data.length; i++){
             $scope.plantIDURL = data[i];
-            console.log(data[i].url);
-
             $scope.plantsURL[i] = data[i];
         }
 
@@ -69,7 +67,6 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
                         }else {
 
                         }
-
                     }
                     if (value == true){
                         break;
@@ -82,16 +79,6 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
             });
 
         }
-
-
-        //console.log("AAAAA");
-        //for(var t = 0; t < $scope.plantsURL.length; t++){
-        //    console.log($scope.plantsURL[t]);
-        //}
-        //console.log("AAAAA");
-
-
-
 
     });
 
@@ -161,18 +148,7 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
         //if they do, then we will update the url
 
         // the old url is going to  change to an other photo with the same plant_id
-
-
-
-
     }
-
-
-
-
-
-
-
 
 });
 
