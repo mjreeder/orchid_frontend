@@ -150,23 +150,16 @@ var isSuperAuthenticated = function ($rootScope, $location, sessionService, User
 
             if (data.authLevel == 1){
                 $rootScope.AuthUser = true;
-                return true;
             } else {
+                $rootScope.redirect = $location.path();
+                $location.path("/");
                 $rootScope.AuthUser = false;
-                return false;
             }
         });
-        superAdmin = false;
-        return false;
-
     } else {
         $rootScope.redirect = $location.path();
         $location.path("/login");
         return false;
-    }
-    if(superAdmin == false){
-        $rootScope.redirect = $location.path();
-        $location.path("/home");
     }
 
 
