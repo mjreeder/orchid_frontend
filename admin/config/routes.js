@@ -103,7 +103,7 @@ app.config(function ($routeProvider, CONFIG) {
         controller: 'RegisterViewController',
         templateUrl: 'views/register.html',
         resolve: {
-            'data': isAuthenticated
+            'data': isSuperAuthenticated
         }
     }).
     when('/users/change-password', {
