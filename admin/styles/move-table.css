@@ -1,3 +1,9 @@
+.move-popup {
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0);
+}
+
 #move-plants-button {
     background-color: #ba0c2f;
     text-decoration: none;
