@@ -24,6 +24,7 @@ app.service('sessionService', function($rootScope, SessionFactory) {
     }
 
     this.removeSession = function(){
+      $rootScope.isLoggedIn = false;
       localStorage.removeItem("session_key");
       localStorage.removeItem("session_id");
     }
