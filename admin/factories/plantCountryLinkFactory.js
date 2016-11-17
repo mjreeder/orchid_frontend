@@ -22,18 +22,19 @@ app.factory('PlantCountryLinkFactory', function($http, $rootScope) {
         });
     }
 
-    data.updatePest = function(plant_country_link){
-        $http({
+
+    data.deleteRelationship = function(plant_country_link){
+        return $http({
             method: "PUT",
-            url: baseUrl + '/update',
+            url: baseUrl + '/delete',
             data: {
-                "plant_id": plant_country_link.plantId,
-                "country_id": plant_country_link.countryId,
-                "id": plant_country_link.id,
+                "country_id": plant_country_link.country_id,
+                "plant_id": plant_country_link.plant_id,
                 "session_id": $rootScope.userSessionId,
                 "session_key": $rootScope.userSessionKey
             }
         });
+
     }
 
     return data;
