@@ -119,7 +119,7 @@ app.config(function ($routeProvider, CONFIG) {
     });
 });
 
-var isAuthenticated = function ($q, $rootScope, $location, sessionService, UserFactory) {
+var isAuthenticated = function ($rootScope, $location, sessionService, UserFactory) {
     var session = sessionService.hasRecentSession();
     if (session) {
         $rootScope.isLoggedIn = true;
@@ -139,7 +139,7 @@ var isAuthenticated = function ($q, $rootScope, $location, sessionService, UserF
     }
 };
 
-var isSuperAuthenticated = function ($q, $rootScope, $location, sessionService, UserFactory) {
+var isSuperAuthenticated = function ($rootScope, $location, sessionService, UserFactory) {
     var session = sessionService.hasRecentSession();
     var superAdmin = true;
     if (session) {
