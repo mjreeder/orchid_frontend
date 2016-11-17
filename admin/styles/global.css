@@ -249,6 +249,14 @@ header .main-heading li a {
 }
 
 
+@media screen and (max-width: 540px) {
+    header li a {
+        display: inline-block; 
+    }
+}
+
+
+/*
 @media screen and (max-width: 520px) {
     header li a {
         width: 50%; 
@@ -265,10 +273,11 @@ header .main-heading li a {
 
 @media screen and (max-width: 450px) {
     header li {
-/*       width: 40%;*/
+       width: 40%;
        padding: 5px 0px; 
     }
 }
+*/
 
 
 

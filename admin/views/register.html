@@ -15,7 +15,9 @@
 <div id="form-users">
     <form action="users">
         <div class="section" ng-repeat="user in allUsers">
-
+        <div class="icon"> 
+<button id="icon"> <img src="images/edit.svg" alt="edit icon"></button>
+               <button id="icon"><img src="images/checkmark.svg" alt="save icon"></button> </div>
                 <label id="firstname" class="users">
               First Name <input type="text" name="firstname" ng-model="user.firstName">
             </label>
