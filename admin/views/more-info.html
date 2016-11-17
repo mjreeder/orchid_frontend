@@ -59,6 +59,7 @@
                     <option disabled selected value>Select countries</option>
                     <option ng-repeat="country in allCountires">{{country.name}}</option>
                 </select>
+
             <label id="delete-country" ng-hide="editPlant.culture">Delete:</label>
             <select id="delete-country-select" ng-model="deselectedCountry" ng-hide="editPlant.culture && !createNew" ng-change="deselectCountryFunction(deselectedCountry)"></br>
                 <option disabled selected value>Select countries</option>
@@ -73,8 +74,31 @@
             </div>
 
         <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Comment about the culture."></textarea>
-        <br/>
     </fieldset>
+
+
+        <fieldset id="special-collection">
+            <h1>Special Collections</h1>
+            <button class="edit" ng-click="" ng-hide="createNew" ng-hide="edit">
+                <img src="images/edit.svg" alt="edit" >
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.taxonommy">
+            </button>
+
+            <label for="select-collection">Collection:</label>
+                <select name="Choose Collection" id="select-collection">
+                    <option disabled selected value="Collections">Collections</option>
+                    <option value="Collection 1">Collection 1</option>
+                    <option value="Collection 2">Collection 2</option>
+                    <option value="Collection 3">Collection 3</option>
+                    <option value="Add New">New Collection</option>
+                </select>
+            </br>
+
+            <label ></label>
+            <input type="text">
+            <input type="button" id="collection-button" value="Create New Collection">
+        </fieldset>
+
 
     <fieldset id="accession">
         <h1>Accession</h1>
@@ -88,44 +112,6 @@
             <input type="date" id="startDateBloom" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"/>
         </button>
         <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
-    </fieldset>
-
-    <fieldset id="split" ng-hide="createNew">
-        <h1>Split</h1>
-        <button class="edit" ng-click="editSplit()" ng-hide="createNew">
-            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
-            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
-        </button>
-
-        <div class="split-holder">
-            This plant has not been split.
-        </div>
-
-        <div class="" ng-repeat="plantSplit in splits">
-
-            <label for="recipient">Recipient:</label>
-            <input id="recipient" placeholder="N/A" type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
-
-            <label>Split Date:</label>
-            <input placeholder="N/A" type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
-
-            <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
-
-        </div>
-        <button class="split-add" type="button" ng-hide="editPlant.split || newSplit" ng-click="addPlantSplitFunction()" ng-disabled="editPlant.split && !createNew">Add Split</button>
-
-        <div class="" ng-hide="!newSplit">
-
-            <label for="recipient">Recipient:</label>
-            <input id="recipient" placeholder="John Smith" type='text' ng-model="newPlantSplit.recipient" ng-disabled="editPlant.split && !createNew">
-
-            <label>Split Date:</label>
-            <input placeholder="08/16/2016" type='text' ng-model="newPlantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
-
-            <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="newPlantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
-
-        </div>
-
     </fieldset>
 
     <fieldset id="description">
@@ -216,6 +202,45 @@
         </div>
     </fieldset>
 </form>
+
+    <fieldset id="split" ng-hide="createNew">
+        <h1>Split</h1>
+        <button class="edit" ng-click="editSplit()" ng-hide="createNew">
+            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
+            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
+        </button>
+
+        <div class="split-holder">
+            This plant has not been split.
+        </div>
+
+        <div class="" ng-repeat="plantSplit in splits">
+
+            <label for="recipient">Recipient:</label>
+            <input id="recipient" placeholder="N/A" type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+
+            <label>Split Date:</label>
+            <input placeholder="N/A" type='text' ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
+
+            <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+
+        </div>
+        <button class="split-add" type="button" ng-hide="editPlant.split || newSplit" ng-click="addPlantSplitFunction()" ng-disabled="editPlant.split && !createNew">Add Split</button>
+
+        <div class="" ng-hide="!newSplit">
+
+            <label for="recipient">Recipient:</label>
+            <input id="recipient" placeholder="John Smith" type='text' ng-model="newPlantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+
+            <label>Split Date:</label>
+            <input placeholder="08/16/2016" type='text' ng-model="newPlantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
+
+            <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="newPlantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+
+        </div>
+
+    </fieldset>
+
 
 <fieldset id="graph" ng-hide="createNew">
     <h1>Blooming</h1>
