@@ -2,6 +2,19 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
 
     $scope.newUser = false;
 
+    $scope.editUsers = false;
+
+    $scope.startEditingUser = function(){
+        if($scope.editUsers == false){
+            $scope.editUsers = true;
+        } else {
+            $scope.editUsers = false;
+            //TODO SAVE THE INFORMATION THAT IS CHANGED
+
+        }
+
+    };
+
 
     $scope.allUsers = [];
 
@@ -24,11 +37,28 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
 
     });
     $scope.changePassword = true;
+    $scope.deleteUser = true;
+
+    $scope.deleteUserPopUp = function(user){
+        $scope.deleteUser = false;
+    };
+
+    $scope.$on('changePassword', function(event, data) {
+        if (data == true) {
+            $scope.changePassword = true;
+        }
+    });
+
+    $scope.$on('deleteUser2', function(event, data) {
+        if (data == true) {
+            $scope.deleteUser = true;
+        }
+    });
+
 
 
     $scope.changePasswordFunction = function(user){
         console.log(user);
-        console.log("we are here");
         $scope.changePassword = false;
     };
 

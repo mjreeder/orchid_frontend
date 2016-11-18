@@ -10,7 +10,9 @@ app.controller('ChangePasswordAdminViewController', function($scope, $route, $ro
    });
 
 
-
+    $scope.closePopUp = function(){
+        $rootScope.$broadcast('changePassword', true);
+    }
 
 
 
