@@ -304,6 +304,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         data = data.data.data;
         if(data.active == 1){
           $scope.flagged = true;
+        } else {
+          return;
         }
         concatObjects(data, 'flag');
       })
