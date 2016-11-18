@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll) {
+app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll, SpecialCollectionsFactory, $route) {
 
     UserFactory.getAuth().then(function(response){
         console.log("weeeeeeewwwwwwww");
@@ -47,6 +47,11 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
     $scope.sprayedMoreShow = true;
     $scope.repottedMoreShow = true;
     $scope.healthMoreShow = true;
+
+    //COLLECTIONS
+    $scope.allCollections = [];
+    $scope.selectedCollectionName = "";
+
 
 
     var newCountrySelections = [];
@@ -166,6 +171,26 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
 
         var speciesName  = $scope.plant.species;
         var id = $scope.plant.id;
+
+        SpecialCollectionsFactory.getAllSpecialCollections().then(function(response){
+            var responseAllCollections = response.data.data;
+            for(var i = 0; i < responseAllCollections.length; i++){
+                $scope.allCollections.push(responseAllCollections[i]);
+            }
+
+        });
+
+        if($scope.plant.special_collections_id != null) {
+            SpecialCollectionsFactory.getSpecialCollectionById($scope.plant.special_collections_id).then(function (response) {
+                //var responseAllCollections = response.data.data;
+                console.log(response.data.data.name);
+
+                $scope.selectedCollectionName = response.data.data.name;
+
+            });
+        }
+
+
 
         PhotoFactory.getSimilarPhotos(speciesName).then(function (response){
             var photoData = response.data.data;
@@ -382,7 +407,8 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             inactive: false,
             photos: false,
             save: false,
-            split: false
+            split: false,
+            speical_collections: false
         };
     } else {
         $scope.editPlant = {
@@ -395,12 +421,61 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             inactive: true,
             photos: true,
             save: true,
-            split: true
+            split: true,
+            speical_collections: true
 
         };
+    }
+
+    $scope.newCollectionName = "";
+
+    $scope.createNewCollection = function(){
+        if($scope.newCollectionName == ""){
+            //DO NOTHING SINCE IT IS EMPTY
+        } else {
+            var newCollection = {
+                "name" : $scope.newCollectionName
+            };
+
+            SpecialCollectionsFactory.createSpecialCollection(newCollection).then(function (response){
+                //TODO maybe look at display a note say that is was created
+                //console.log(response.data.data);
+                $scope.allCollections.push(response.data.data[0]);
+            });
+            $scope.selectedCollectionName = $scope.newCollectionName;
+            $scope.newCollectionName = "";
+
+            SpecialCollectionsFactory.getAllSpecialCollections().then(function(response){
+                var responseAllCollections = response.data.data;
+                for(var i = 0; i < responseAllCollections.length; i++){
+                    $scope.allCollections.push(responseAllCollections[i]);
+                }
+
+            });
+
+        }
+
+    }
 
 
 
+    $scope.editSpecialCollections = function(){
+        if ($scope.editPlant.speical_collections == false) {
+            $scope.editPlant.speical_collections = true;
+
+            var speicalCollectionRelationshipData = {
+                'id' :  $scope.plant.id,
+                'name' : $scope.selectedCollectionName
+            }
+
+            PlantsFactory.updateCollection(speicalCollectionRelationshipData).then(function(response){
+                console.log(response);
+            });
+
+
+        } else {
+            $scope.editPlant.speical_collections = false;
+        }
     }
 
 
