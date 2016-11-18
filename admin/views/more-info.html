@@ -85,14 +85,14 @@
             </button>
 
             <label for="select-collection">Collection:</label>
-                <select name="Choose Collection" id="select-collection" ng-model="selectedCollectionName" ng-disabled="editPlant.speical_collections && !createNew">
+                <select name="Choose Collection" id="select-collection" ng-model="selectedCollectionName" ng-disabled="!editPlant.speical_collections && !createNew">
                     <option ng-repeat="collection in allCollections">{{collection.name}}</option>
                 </select>
             </br>
 
             <label ></label>
-            <input type="text" ng-disabled="editPlant.speical_collections && !createNew" ng-model="newCollectionName">
-            <input type="button" id="collection-button" value="Create New Collection" ng-click="createNewCollection()" ng-hide="editPlant.speical_collections">
+            <input type="text" ng-disabled="editPlant.speical_collections && !createNew"   ng-model="newCollectionName" ng-hide="editPlant.speical_collections">
+            <input type="button" id="collection-button" value="Create New Collection" ng-click="createNewCollection()" ng-hide="editPlant.speical_collections" ng-show="createNew">
         </fieldset>
 
 

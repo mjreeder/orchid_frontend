@@ -1,18 +1,6 @@
 app.controller('PlantViewController', function($scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll, SpecialCollectionsFactory, $route) {
 
-    UserFactory.getAuth().then(function(response){
-        console.log("weeeeeeewwwwwwww");
-        var data = response.data.data;
-        console.log(data.authLevel);
-        if (data.authLevel == 1){
-            $scope.AuthUser = true;
-        } else {
-            $scope.AuthUser = false;
-        }
-        //$rootScope.apply();
-        //$scope.apply();
-    });
-
+    
     $scope.iFrameURL = "http://localhost:8888/orchid_site/utilities/file_frame.php?session_key=" +$rootScope.userSessionKey +"&session_id=" +$rootScope.userSessionId +"&url_section=blah";
 
     var param1 = $routeParams.accession_number;
@@ -52,6 +40,23 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
     $scope.allCollections = [];
     $scope.selectedCollectionName = "";
 
+    SpecialCollectionsFactory.getAllSpecialCollections().then(function(response){
+        var responseAllCollections = response.data.data;
+        for(var i = 0; i < responseAllCollections.length; i++){
+            $scope.allCollections.push(responseAllCollections[i]);
+        }
+    });
+
+    countryFactory.getCountries().then(function(response) {
+        var countryNames = response.data.data;
+
+        for (var i = 0; i < countryNames.length; i++) {
+            $scope.allCountires.push(countryNames[i]);
+        }
+
+    });
+
+    //todo look at be able to change the collections after it has already been set
 
 
     var newCountrySelections = [];
@@ -88,7 +93,7 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             $scope.allCountires = $scope.allCountires.filter(function(countryObject) {
                 if (countryObject.name == $scope.selectedCountry) {
                     $scope.selectedCountries.push(countryObject);
-                    //newCountrySelections.push(countryObject);
+                    newCountrySelections.push(countryObject);
 
 
 
@@ -113,7 +118,7 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             $scope.selectedCountries = $scope.selectedCountries.filter(function (countryObject){
                if (countryObject.name == $scope.deselectedCountry){
                    $scope.allCountires.push(countryObject);
-                   //newCountryAllSelections.push(countryObject);
+                   newCountryAllSelections.push(countryObject);
 
                }
                 return countryObject.name !== $scope.deselectedCountry;
@@ -172,13 +177,6 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
         var speciesName  = $scope.plant.species;
         var id = $scope.plant.id;
 
-        SpecialCollectionsFactory.getAllSpecialCollections().then(function(response){
-            var responseAllCollections = response.data.data;
-            for(var i = 0; i < responseAllCollections.length; i++){
-                $scope.allCollections.push(responseAllCollections[i]);
-            }
-
-        });
 
         if($scope.plant.special_collections_id != null) {
             SpecialCollectionsFactory.getSpecialCollectionById($scope.plant.special_collections_id).then(function (response) {
@@ -189,8 +187,6 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
 
             });
         }
-
-
 
         PhotoFactory.getSimilarPhotos(speciesName).then(function (response){
             var photoData = response.data.data;
@@ -308,6 +304,18 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
 
         });
 
+        countryFactory.getCountries().then(function(response) {
+            $scope.allCountires = [];
+            var countryNames = response.data.data;
+
+            for (var i = 0; i < countryNames.length; i++) {
+                if (countryHasPlant(countryNames[i]) === false) {
+                    $scope.allCountires.push(countryNames[i]);
+
+                }
+            }
+        });
+
         LocationFactory.getTableNameFromID($scope.plant.location_id).then(function(response) {
             $scope.plant.locationName = response.data.data;
 
@@ -347,15 +355,7 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
 
         });
 
-        countryFactory.getCountries().then(function(response) {
-            var countryNames = response.data.data;
-            $scope.example1data = [];
-            for (var i = 0; i < countryNames.length; i++) {
-                if (countryHasPlant(countryNames[i]) === false) {
-                    $scope.allCountires.push(countryNames[i]);
-                }
-            }
-        });
+
 
     }, function(error) {
         var param1 = $routeParams.accession_number;
@@ -457,8 +457,6 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
 
     }
 
-
-
     $scope.editSpecialCollections = function(){
         if ($scope.editPlant.speical_collections == false) {
             $scope.editPlant.speical_collections = true;
@@ -466,7 +464,7 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             var speicalCollectionRelationshipData = {
                 'id' :  $scope.plant.id,
                 'name' : $scope.selectedCollectionName
-            }
+            };
 
             PlantsFactory.updateCollection(speicalCollectionRelationshipData).then(function(response){
                 console.log(response);
@@ -477,7 +475,6 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
             $scope.editPlant.speical_collections = false;
         }
     }
-
 
 
     $scope.saveCulture = {
@@ -948,8 +945,6 @@ app.controller('PlantViewController', function($scope, UserFactory, CONFIG, coun
                 id: $scope.plant.id,
                 origin_comment: $scope.plant.origin_comment
             };
-
-
 
             console.log("HERE IS THE LIST FOR THE NEW COUNTRY SELECTIONS")
             for(var i = 0; i < newCountrySelections.length; i++) {
