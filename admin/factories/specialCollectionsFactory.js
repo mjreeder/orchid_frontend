@@ -1,4 +1,4 @@
-app.factory('SpecialCollectionsFactory', function($http) {
+app.factory('SpecialCollectionsFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = 'http://localhost:8888/orchid_site/public/api/special_collection';

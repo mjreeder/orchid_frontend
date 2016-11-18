@@ -202,6 +202,20 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         })
     }
 
+    data.updateCollection = function(data){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateSpecialCollection',
+            data: {
+                'name' : data.name,
+                'id' : data.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        })
+    };
+
+
 
 
     return data;

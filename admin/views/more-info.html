@@ -79,24 +79,20 @@
 
         <fieldset id="special-collection">
             <h1>Special Collections</h1>
-            <button class="edit" ng-click="" ng-hide="createNew" ng-hide="edit">
-                <img src="images/edit.svg" alt="edit" >
-                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.taxonommy">
+            <button class="edit" ng-click="editSpecialCollections()" ng-hide="createNew">
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.speical_collections">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.speical_collections">
             </button>
 
             <label for="select-collection">Collection:</label>
-                <select name="Choose Collection" id="select-collection">
-                    <option disabled selected value="Collections">Collections</option>
-                    <option value="Collection 1">Collection 1</option>
-                    <option value="Collection 2">Collection 2</option>
-                    <option value="Collection 3">Collection 3</option>
-                    <option value="Add New">New Collection</option>
+                <select name="Choose Collection" id="select-collection" ng-model="selectedCollectionName" ng-disabled="editPlant.speical_collections && !createNew">
+                    <option ng-repeat="collection in allCollections">{{collection.name}}</option>
                 </select>
             </br>
 
             <label ></label>
-            <input type="text">
-            <input type="button" id="collection-button" value="Create New Collection">
+            <input type="text" ng-disabled="editPlant.speical_collections && !createNew" ng-model="newCollectionName">
+            <input type="button" id="collection-button" value="Create New Collection" ng-click="createNewCollection()" ng-hide="editPlant.speical_collections">
         </fieldset>
 
 

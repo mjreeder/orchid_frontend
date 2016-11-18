@@ -16,35 +16,38 @@
     <form action="users">
         <div class="section" ng-repeat="user in allUsers">
         <div class="icon"> 
-<button id="icon"> <img src="images/edit.svg" alt="edit icon"></button>
-               <button id="icon"><img src="images/checkmark.svg" alt="save icon"></button> </div>
+                <button id="icon" ng-click="startEditingUser()">
+                        <img src="images/edit.svg" alt="edit icon" ng-hide="editUsers">
+                        <img src="images/checkmark.svg" alt="save icon" ng-hide="!editUsers">
+                </button>
+        </div>
                 <label id="firstname" class="users">
-              First Name <input type="text" name="firstname" ng-model="user.firstName">
+              First Name <input type="text" name="firstname" ng-model="user.firstName" ng-disabled="!editUsers">
             </label>
 
             <label id="lastname" class="users">
-              Last Name <input type="text" name="email" ng-model="user.lastName">
+              Last Name <input type="text" name="email" ng-model="user.lastName" ng-disabled="!editUsers">
             </label>
 
             <label id="email" class="users">
-             Email <input type="text" name="email" ng-model="user.email">
+             Email <input type="text" name="email" ng-model="user.email" ng-disabled="!editUsers">
             </label>
 
             <label id="auth" class="users">
-                    Manager <input type="checkbox" ng-model="user.isAuthUser"/><span class="table-checkbox"></span>
+                    Manager <input type="checkbox" ng-model="user.isAuthUser" ng-disabled="!editUsers" /><span class="table-checkbox" ></span>
                 </label>
 
             <label id="password" class="users">
               <button ng-click="changePasswordFunction(user)">Change Password</button>
             </label>
 
-            <button id="password" ng-click="deleteUserFunction(user)">Delete User</button>
+            <button id="password" ng-click="deleteUserPopUp()">Delete User</button>
         </div>
 
         <div class="section" ng-show="newUser">
 
             <label id="firstname" class="users">
-              First Name <input type="text" name="firstname" ng-model="user.firstName">
+              First Name <input type="text" name="firstname" ng-model="editUsers" >
             </label>
 
             <label id="lastname" class="users">
@@ -68,6 +71,7 @@
             </label>
 
         </div>
+        <div ng-include="'views/delete-user.html'" ng-hide="deleteUser"></div>
 
         <div ng-include="'views/change-password-admin.html'" ng-hide="changePassword"></div>
     </form>
