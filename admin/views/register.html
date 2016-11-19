@@ -22,11 +22,11 @@
                 </button>
         </div>
                 <label id="firstname" class="users">
-              First Name <input type="text" name="firstname" ng-model="user.firstName" ng-disabled="!editUsers">
+              First Name <input type="text" name="firstname" ng-model="user.first_name" ng-disabled="!editUsers">
             </label>
 
             <label id="lastname" class="users">
-              Last Name <input type="text" name="email" ng-model="user.lastName" ng-disabled="!editUsers">
+              Last Name <input type="text" name="email" ng-model="user.last_name" ng-disabled="!editUsers">
             </label>
 
             <label id="email" class="users">
@@ -34,7 +34,7 @@
             </label>
 
             <label id="auth" class="users">
-                    Manager <input type="checkbox" ng-model="user.isAuthUser" ng-disabled="!editUsers" /><span class="table-checkbox" ></span>
+                    Manager <input type="checkbox" ng-click="changeAuthLevel(user)" ng-model="user.isAuthUser" ng-disabled="!editUsers" /><span class="table-checkbox" ></span>
                 </label>
 
             <label id="password" class="users">
