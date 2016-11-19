@@ -10,7 +10,7 @@ app.controller('DeleteUserViewController', function($scope, $rootScope, UserFact
 
         for (var i = 0; i < data.length; i++){
             var singleUser = data[i];
-            if(singleUser.authLevel == 1){
+            if(singleUser.auth_level == 1){
                 singleUser.isAuthUser = true;
             } else {
                 singleUser.isAthUser = false;
