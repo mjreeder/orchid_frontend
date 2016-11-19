@@ -8,20 +8,19 @@
         </div>
         <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
 
-        <div class="photos-group" ng-repeat="photo in similarPhotos">
-            <img src="{{photo.url}}" alt="" class="thumbnail">
-            <div class="photos-buttons">
+        <div class="no-photos-match">
+            <p>There are no matching photos for this plant.</p>
+        </div>
+
+        <div class="formcontent" ng-repeat="photo in similarPhotos">
+            <div class="matching-photos"> <!--This is the div that repeats-->
+                <img src="{{photo.url}}" alt="" class="thumbnail">
                 <label >{{photo.fileName}}</label>
                 <input type="button" value="Select" ng-click="newPhotoLink(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
             </div>
-
         </div>
 
-
-        <input type="button" value="Save" ng-click="saveNewPhotos()" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
-
-
-
+        <input type="button" value="Add" ng-click="saveNewPhotos()" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
 
     </form>
 
