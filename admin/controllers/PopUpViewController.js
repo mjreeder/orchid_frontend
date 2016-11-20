@@ -62,7 +62,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       handleSprayed();
       handlePotting();
       handleHealth();
-      handleTag();
+        handleTag();
       $scope.closePopUp();
     }
 
@@ -191,19 +191,18 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       }
     }
 
+    var createTag = false;
+
+    $scope.flagggedPlant = [];
     var handleTag = function(){
-      var data = prepareForFactory('flag');
-      if(!$scope.flagged && $scope.flagWasDisabled){
-        TagFactory.deactivateTag(data).then(function(){})
-      } else if(!$scope.flagged || objectsMatch('flag')){
-        return;
-      } else {
-        if(objectIsNew('flag')){
-          TagFactory.createTag(data).then(function(){})
+        $scope.taggedPlant[0].note  = $scope.flag_note;
+        if(createTag == false){
+            TagFactory.updateTag($scope.taggedPlant[0]).then(function (response){
+            })
         } else {
-          TagFactory.updateTag(data).then(function(){})
+            TagFactory.createTag($scope.taggedPlant[0]).then(function(response){
+            })
         }
-      }
     }
 
     var objectsMatch = function(field){
@@ -299,14 +298,31 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       })
     }
 
+    $scope.taggedPlant = [];
     var handleTagInit = function(){
+        $scope.taggedPlant = [];
       TagFactory.getPestByPlantID($scope.plant.id).then(function(data){
-        data = data.data.data;
-        if(data.active == 1){
-          $scope.flagged = true;
-        } else {
-          return;
-        }
+          var data2 = data.data.data;
+          //CHECK IF THERE IS DATA TO READ IN
+          if(data2 != ""){
+              $scope.taggedPlant.push(data2);
+              createTag = false;
+              if(data2.active == 1){
+                  $scope.flagged = true;
+                  $scope.flag_note = data2.note;
+              } else {
+                  $scope.flagged = false;
+                  $scope.flag_note = data2.note;
+                  return;
+              }
+          } else {
+              createTag = true;
+              $scope.taggedPlant.push({
+                  plant_id: $scope.plant.id,
+                  active: 0,
+                  note: ""
+              });
+          }
         concatObjects(data, 'flag');
       })
     }
@@ -393,7 +409,15 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     $scope.disableFlag = function(){
-      $scope.flagWasDisabled = true;
+      var plant_id = $scope.plant.id;
+        $scope.flagWasDisabled = false;
+        if($scope.taggedPlant.length == 1){
+            if($scope.flagged){
+                $scope.taggedPlant[0].active = 1;
+            }
+            if(!$scope.flagged){
+                $scope.taggedPlant[0].active = 0;
+            }
+        }
     }
-
 });
