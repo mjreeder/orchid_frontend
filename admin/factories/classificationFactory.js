@@ -1,7 +1,7 @@
 app.factory('ClassificationFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/classification';
+    var baseUrl = location.origin +'/orchid_site/public/api/classification';
 
     data.getAllClassifications = function(user) {
         $http.get(baseUrl);
