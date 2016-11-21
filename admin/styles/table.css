@@ -379,7 +379,7 @@ td {
 
 .glowHealthPoor {
     /*   box-shadow:0 0 20px #BA0C2F;*/
-    background-color: #BA0C2F;
+    background-color: #BA0C2F !important;
 }
 
 .glowHealthFair {
