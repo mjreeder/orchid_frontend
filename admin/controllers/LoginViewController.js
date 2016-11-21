@@ -11,6 +11,8 @@ app.controller('LoginViewController', function($scope, $rootScope, $location, Se
       else{
         $location.path('/');
       }
+    }).catch(function(e){
+      alert("Login Failed");
     });
 
   }
