@@ -4,7 +4,7 @@
     <form class="add-photo-popup">
 
         <div class="center">
-            <h1>{{ plant_accession_number }}</h1>
+            <h1>Photo Match</h1>
         </div>
         <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
 
@@ -18,8 +18,11 @@
         </div>
 
 
-        <input type="button" value="Save" ng-click="saveNewPhotos()" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
+        <input type="button" value="Save" ng-click="saveNewPhotos()" ng-hide="editPlant.photos || !similarPhotos.length" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
 
+        <div class="photos-buttons" ng-show="!similarPhotos.length">
+            <h1>No Photos to match. Check Species Name.</h1>
+        </div>
 
 
 

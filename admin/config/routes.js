@@ -126,7 +126,7 @@ var isAuthenticated = function ($rootScope, $location, sessionService, UserFacto
 
         UserFactory.getAuth().then(function (response){
             var data = response.data.data;
-            if (data.authLevel == 1){
+            if (data.auth_level == 1){
                 $rootScope.AuthUser = true;
             } else {
                 $rootScope.AuthUser = false;
@@ -148,7 +148,7 @@ var isSuperAuthenticated = function ($rootScope, $location, sessionService, User
         UserFactory.getAuth().then(function (response){
             var data = response.data.data;
 
-            if (data.authLevel == 1){
+            if (data.auth_level == 1){
                 $rootScope.AuthUser = true;
             } else {
                 $rootScope.redirect = $location.path();

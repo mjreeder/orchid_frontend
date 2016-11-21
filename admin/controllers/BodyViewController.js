@@ -7,8 +7,7 @@ app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $
       UserFactory.getAuth().then(function(response){
           console.log("weeeeeeewwwwwwww");
           var data = response.data.data;
-          console.log(data.authLevel);
-          if (data.authLevel == 1){
+          if (data.auth_level == 1){
               $rootScope.AuthUser = true;
           } else {
               $rootScope.AuthUser = false;

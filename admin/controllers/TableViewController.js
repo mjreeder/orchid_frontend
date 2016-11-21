@@ -59,6 +59,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
                     for (var i = 0; i < $scope.plantsInTable.length; i++) {
                         var plant = $scope.plantsInTable[i];
+                        console.log(plant);
 
 
                         console.log(plant.id);
@@ -84,7 +85,21 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
                         });
 
-                        var prom = new Promise((resolve, reject) => {
+                        //var prom = new Promise((resolve, reject) => {
+                        //        //GETTING THE VERIFIED RECORDS FOR ALL THE PLANTS
+                        //        VerifiedFactory.getLastVerifiedDate(plant.id).then(function (response){
+                        //            var verifiedResponse = response.data.data;
+                        //
+                        //
+                        //
+                        //            resolve(verifiedResponse);
+                        //
+                        //        },
+                        //    function (error){
+                        //        reject(error);
+                        //    });
+                        //});
+                        var prom = new Promise(function(resolve, reject) {
                                 //GETTING THE VERIFIED RECORDS FOR ALL THE PLANTS
                                 VerifiedFactory.getLastVerifiedDate(plant.id).then(function (response){
                                     var verifiedResponse = response.data.data;
@@ -94,17 +109,17 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                                     resolve(verifiedResponse);
 
                                 },
-                            function (error){
-                                reject(error);
+                            function (err){
+                                reject(err);
                             });
                         });
 
                         promArray.push(prom);
                     }
 
-                    Promise.all(promArray).then(success => {
+                    Promise.all(promArray).then(function (success) {
                         //console.log("This is the data");
-                        //console.log(promArray);
+                        //console.log(success);
 
                         var updateList = [];
                         console.log("we have some data");
@@ -117,7 +132,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                             }
                         }
 
-                console.log(updateList.length);
+                        console.log(updateList.length);
 
                         for (var p = 0; p < updateList.length; p++){
                             var id = updateList[p].plant_id;
@@ -130,17 +145,16 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                             }
                         }
 
-                for (var t = 0; t < $scope.plantsInTable.length; t++){
+                        for (var t = 0; t < $scope.plantsInTable.length; t++){
 
-                    if($scope.plantsInTable[t].last_varified == "0000-00-00"){
-                        $scope.plantsInTable[t].last_varified = "N/A";
-                    }
-                }
+                            if($scope.plantsInTable[t].last_varified == "0000-00-00"){
+                                $scope.plantsInTable[t].last_varified = "N/A";
+                            }
+                        }
 
-                $scope.$apply();
+                        $scope.$apply();
 
-            }, error => {
-
+                    }, function (error) {
                     });
 
                 }

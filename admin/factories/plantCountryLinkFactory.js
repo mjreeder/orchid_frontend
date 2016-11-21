@@ -10,12 +10,14 @@ app.factory('PlantCountryLinkFactory', function($http, $rootScope) {
     }
 
     data.createPlantCountryLink = function (plant_country_link) {
+
+
         return $http({
             method: "POST",
             url: baseUrl + '/create',
             data: {
-                "plant_id": plant_country_link.plantId,
-                "country_id": plant_country_link.countryId,
+                "plant_id": plant_country_link.plant_id,
+                "country_id": plant_country_link.country_id,
                 "session_id": $rootScope.userSessionId,
                 "session_key": $rootScope.userSessionKey
             }
