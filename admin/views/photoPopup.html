@@ -4,21 +4,26 @@
     <form class="add-photo-popup">
 
         <div class="center">
-            <h1>{{ plant_accession_number }}</h1>
+            <h1>Photo Match</h1>
         </div>
         <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
 
+        <div class="photos-group" ng-repeat="photo in similarPhotos">
+            <img src="{{photo.url}}" alt="" class="thumbnail">
+            <div class="photos-buttons">
+                <label >{{photo.fileName}}</label>
+                <input type="button" value="Select" ng-click="newPhotoLink(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
+            </div>
 
-        <h2>Add this photo:</h2>
-        <img src="images/no-photo.svg" alt="">
-
-        <h2>Select category:</h2>
-        <p>This can be changed later.</p>
-
-        <div class="photos-buttons">
-            <input type="button" value="Habitat" ng-hide="!editPlant.photos">
-            <input type="button" value="Other" ng-hide="!editPlant.photos">
         </div>
+
+
+        <input type="button" value="Save" ng-click="saveNewPhotos()" ng-hide="editPlant.photos || !similarPhotos.length" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
+
+        <div class="photos-buttons" ng-show="!similarPhotos.length">
+            <h1>No Photos to match. Check Species Name.</h1>
+        </div>
+
 
 
     </form>

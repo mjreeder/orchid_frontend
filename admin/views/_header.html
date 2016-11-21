@@ -1,9 +1,9 @@
 <header ng-controller="BodyViewController">
 
-   <div class="upper-heading">
+   <div class="upper-heading"  id="top">
         <ul>
             <li ng-show="$root.AuthUser"> <a href="#/users/register">Register</a></li>
-            <li ng-show="$root.isLoggedIn"><a href="#/logout">Logout</a></li>
+            <li ng-show="$root.isLoggedIn"><a class="logout" ng-click="logoutUser()">Logout</a></li>
             <li ng-show="!$root.isLoggedIn"><a href="#/login">Login</a></li>
         </ul>
         </div>

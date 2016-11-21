@@ -7,7 +7,40 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 
 <!-- font style -->
-  <link rel="stylesheet" href="<link href="https://apso.bsu.edu/tools/fonts/css?family=Raleway:300,400,500,600,700,800>
+    <link href="https://apso.bsu.edu/tools/fonts/css?family=Raleway:300,400,500,600,700,800">
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/orchid-database.css">
+    <link rel="stylesheet" href="styles/warmhouse.css">
+    <link rel="stylesheet" href="styles/Ipad-map.css">
+    <link rel="stylesheet" href="styles/coolhouse.css">
+    <link rel="stylesheet" href="styles/more-info.css">
+    <link rel="stylesheet" href="styles/table.css">
+    <link rel="stylesheet" href="styles/register.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/change-password.css">
+    <link rel="stylesheet" href="styles/404.css">
+    <link rel="stylesheet" href="styles/move-table.css">
+    <link rel="stylesheet" href="styles/change-password-admin.css">
+    <link rel="stylesheet" href="styles/delete-user.css">
+    <link rel="stylesheet" href="styles/photoPopup.css">
+
+  <!-- App -->
+
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/orchid_favicon_32px.png">
+    <title>Orchid Admin</title>
+</head>
+
+<body>
+
+    <div ng-include="'views/_header.html'"></div>
+    <div ng-view></div>
+
+
 
     <!--Angular Scripts-->
 
@@ -21,12 +54,16 @@
 
 
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- App -->
+
     <script src="app.js"></script>
+
 
     <!-- Config -->
     <script src="config/config.js"></script>
     <script src="config/routes.js"></script>
+
+    <!-- services -->
+    <script src="services/sessionService.js"></script>
 
     <!-- Factories -->
     <script src="factories/bloom_commentFactory.js"></script>
@@ -44,13 +81,13 @@
     <script src="factories/sessionFactory.js"></script>
     <script src="factories/splitFactory.js"></script>
     <script src="factories/sprayedFactory.js"></script>
+    <script src="factories/specialCollectionsFactory.js"></script>
     <script src="factories/tagFactory.js"></script>
     <script src="factories/userFactory.js"></script>
     <script src="factories/plantCountryLinkFactory.js"></script>
     <script src="factories/countryFactory.js"></script>
     <script src="factories/OAuthFactory.js"></script>
     <script src="factories/verifiedFactory.js"></script>
-
 
     <!--Controllers-->
     <script src="controllers/HomePageController.js"></script>
@@ -65,40 +102,13 @@
     <script src="controllers/TableViewController.js"></script>
     <script src="controllers/RegisterViewController.js"></script>
     <script src="controllers/MoveTableViewController.js"></script>
-        <script src="controllers/ChangePasswordAdminViewController.js"></script>
+    <script src="controllers/ChangePasswordAdminViewController.js"></script>
     <!--<script src="controllers/AuthViewController.js"></script> COMMENT FOR NOW-->
     <script src="controllers/PhotoViewController.js"></script>
-  <script src="controllers/BodyViewController.js"></script>
-  <script src="controllers/LogoutViewController.js"></script>
+    <script src="controllers/BodyViewController.js"></script>
+    <script src="controllers/LogoutViewController.js"></script>
+    <script src="controllers/DeleteUserViewController.js"></script>
 
-    <!-- services -->
-    <script src="services/sessionService.js"></script>
-
-    <!-- Style Sheets -->
-    <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/orchid-database.css">
-    <link rel="stylesheet" href="styles/warmhouse.css">
-    <link rel="stylesheet" href="styles/Ipad-map.css">
-    <link rel="stylesheet" href="styles/coolhouse.css">
-    <link rel="stylesheet" href="styles/more-info.css">
-    <link rel="stylesheet" href="styles/table.css">
-    <link rel="stylesheet" href="styles/register.css">
-    <link rel="stylesheet" href="styles/login.css">
-    <link rel="stylesheet" href="styles/change-password.css">
-    <link rel="stylesheet" href="styles/404.css">
-    <link rel="stylesheet" href="styles/move-table.css">
-    <link rel="stylesheet" href="styles/change-password-admin.css">
-
-
-
-    <link rel="icon" type="image/png" sizes="32x32" href="images/orchid_favicon_32px.png">
-    <title>Orchid Admin</title>
-</head>
-
-<body>
-
-    <div ng-include="'views/_header.html'"></div>
-    <div ng-view></div>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $timeout) {
+app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $timeout, $location) {
 
 
     console.log($scope.userSessionId);
@@ -7,8 +7,7 @@ app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $
       UserFactory.getAuth().then(function(response){
           console.log("weeeeeeewwwwwwww");
           var data = response.data.data;
-          console.log(data.authLevel);
-          if (data.authLevel == 1){
+          if (data.auth_level == 1){
               $rootScope.AuthUser = true;
           } else {
               $rootScope.AuthUser = false;
@@ -17,6 +16,11 @@ app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $
           //$rootScope.apply();
           //$scope.apply();
       });
+    }
+
+    $scope.logoutUser = function(){
+      $rootScope.redirect = $location.path();
+      $location.path("/logout");
     }
 
 });
