@@ -132,7 +132,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                             }
                         }
 
-                console.log(updateList.length);
+                        console.log(updateList.length);
 
                         for (var p = 0; p < updateList.length; p++){
                             var id = updateList[p].plant_id;
@@ -145,17 +145,16 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                             }
                         }
 
-                for (var t = 0; t < $scope.plantsInTable.length; t++){
+                        for (var t = 0; t < $scope.plantsInTable.length; t++){
 
-                    if($scope.plantsInTable[t].last_varified == "0000-00-00"){
-                        $scope.plantsInTable[t].last_varified = "N/A";
-                    }
-                }
+                            if($scope.plantsInTable[t].last_varified == "0000-00-00"){
+                                $scope.plantsInTable[t].last_varified = "N/A";
+                            }
+                        }
 
-                $scope.$apply();
+                        $scope.$apply();
 
-            }, function (error) {
-
+                    }, function (error) {
                     });
 
                 }
