@@ -1,0 +1,38 @@
+.no-photos-match p {
+    text-align: center;
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    margin: 30px;
+}
+
+.matching-photos {
+    display: block;
+    overflow: hidden;
+}
+
+.matching-photos img {
+    margin: 0 20px 20px 0;
+    width: 20%;
+    height: auto;
+    max-height: 75px;
+}
+
+.matching-photos label {
+    width: 55%;
+    margin: 10px 0 0 0;
+    float: left;
+    display: inline-block;
+
+}
+
+.matching-photos input[type="button"] {
+    float: right;
+    display: inline-block;
+    margin: 10px 0 10px 0;
+}
+
+.add-photo-popup>input[type="button"] {
+    float: right;
+    margin: 0 15px 15px 0;
+    width: 60px;
+}
