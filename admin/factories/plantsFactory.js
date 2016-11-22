@@ -1,7 +1,7 @@
 app.factory('PlantsFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/plants';
+    var baseUrl = location.origin +'/orchid_site/public/api/plants';
 
     data.getPaginatedPlants = function(alpha, index) {
         return $http.get(baseUrl + "/alpha/" + alpha + "/" + index);

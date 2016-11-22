@@ -1,9 +1,10 @@
 app.factory('SessionFactory', function($http) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/users';
+    var baseUrl = location.origin +'/orchid_site/public/api/users';
 
     data.login = function(credentials) {
+
         return $http({
             method: "POST",
             url: baseUrl + '/login',

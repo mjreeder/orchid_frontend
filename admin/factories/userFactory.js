@@ -1,7 +1,7 @@
 app.factory('UserFactory', function($http, sessionService, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/users';
+    var baseUrl = location.origin +'/orchid_site/public/api/users';
 
     data.newUser = function(user) {
       return $http({

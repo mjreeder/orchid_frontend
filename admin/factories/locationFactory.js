@@ -1,7 +1,7 @@
 app.factory('LocationFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/location';
+    var baseUrl = location.origin +'/orchid_site/public/api/location';
 
     data.getTableLocations = function() {
         return $http.get(baseUrl);

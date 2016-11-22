@@ -73,7 +73,7 @@
                 </ul>
             </div>
 
-        <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Comment about the culture."></textarea>
+        <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Add a description of about the culture of this plant that will appear to the public."></textarea>
     </fieldset>
 
 
@@ -118,7 +118,7 @@
         </button>
 
         <label>Provide a description that will be visible to the public:</label>
-        <textarea type="textarea" placeholder="Add a description of the plant. The public will be able to see this." ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
+        <textarea type="textarea" placeholder="Add a description of the plant." ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
     </fieldset>
 
     <fieldset id="hybrid">
@@ -341,7 +341,7 @@
 <fieldset id="weekly-checkup" ng-hide="createNew">
     <h1>Sprayed for Pests</h1>
     <div class="split-holder" ng-show="!sprayed.length">
-        This plant has no sprayed information.
+        This plant has no record of being sprayed for pests.
     </div>
 
 
@@ -370,7 +370,7 @@
 <fieldset id="weekly-checkup" ng-hide="createNew">
     <h1>Current Health Condition</h1>
     <div class="split-holder" ng-show="!healthData.length">
-        This plant has no health info.
+        This plant has no health record.
     </div>
     <div class="health-entry" ng-repeat="health in healthData">
         <span class=" text-align-top more-info-base span-date">{{health.timestamp}}</span>

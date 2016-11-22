@@ -1,7 +1,7 @@
 app.factory('splitFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/split';
+    var baseUrl = location.origin +'/orchid_site/public/api/split';
 
     data.getSplitForPlantId = function(plant_id) {
         return $http.get(baseUrl + "/plant_id/" + plant_id);
