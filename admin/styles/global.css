@@ -213,7 +213,7 @@ a.logout {
 }
 
 header {
-    background-color: #BA0C2F;
+    background-color: #cbd4c2;
     height: 150px;
     width: 100%; 
 }
@@ -222,8 +222,8 @@ header .main-heading li a {
     list-style-type: none;
     margin-left: 20px;
     float: right;
-    background-color: white;
-    padding: 10px 15px;
+    color: white; 
+
 /*    width: 15%;*/
 /*    max-width: 125px;*/
     border-radius: 5px;
@@ -352,7 +352,7 @@ header .main-heading li a {
 
 body {
     font-family: Raleway, sans-serif;
-    color: black;
+    color: #2b2e30;
 }
 
 button {
