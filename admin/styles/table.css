@@ -5,13 +5,14 @@ a {
 main nav ul li {
     float: left;
     width: 33.333333333%;
-    font-family: Aleo, serif;
+    font-family: 'Aleo', serif;
     font-size: 20px;
     font-weight: 100;
     background-color: #01997b;
     text-align: center;
     padding: 15px 0;
     margin-bottom: 5px;
+    font-weight: 400;
 }
 
 main nav ul li a {
@@ -24,12 +25,12 @@ main nav ul {
 }
 
 #active {
-    color: black;
+    color: #2b2e30;
     font-weight: 400;
     background-color: white;
-    padding: 20px 30px 20px 30px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    padding: 15px 30px 15px 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 #current-health textarea {
