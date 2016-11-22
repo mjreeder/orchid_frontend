@@ -72,6 +72,50 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.origianlSelectedCountries = [];
 
+    $scope.selectedCountry;
+    $scope.deselectedCountry;
+
+    $scope.selectedCountries = [];
+
+    $scope.selectCountry = function() {
+        console.log("here are the countires");
+        $scope.allCountires.splice($scope.allCountires.indexOf($scope.selectedCountry.name));
+
+        $scope.allCountires = $scope.allCountires.filter(function(countryObject) {
+            if (countryObject.name == $scope.selectedCountry) {
+                $scope.selectedCountries.push(countryObject);
+                newCountrySelections.push(countryObject);
+            }
+            return countryObject.name !== $scope.selectedCountry;
+        });
+        $scope.selectedCountry = '';
+
+        $scope.selectedCountries.sort(function (a, b){
+            var textA = a.name.toUpperCase();
+            var textB = b.name.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1:0;
+        });
+    };
+
+    $scope.deselectCountryFunction = function(country){
+        $scope.selectedCountries = $scope.selectedCountries.filter(function (countryObject){
+
+            if (countryObject.name == $scope.deselectedCountry){
+                $scope.allCountires.push(countryObject);
+                newCountryAllSelections.push(countryObject);
+            }
+
+            return countryObject.name !== $scope.deselectedCountry;
+        });
+        $scope.deselectedCountry = '';
+
+        $scope.allCountires.sort(function (a, b){
+            var textA = a.name.toUpperCase();
+            var textB = b.name.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1:0;
+        });
+    }
+
     PlantsFactory.getPlantByAccessionNumber(param1).then(function(response) {
         var plantData = response.data.data[0];
         console.log(plantData);
@@ -89,54 +133,10 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         newLink = [];
 
-        $scope.selectedCountry;
-        $scope.deselectedCountry;
-
-        $scope.selectedCountries = [];
 
 
-        $scope.selectCountry = function() {
-            console.log("here are the countires");
-            $scope.allCountires.splice($scope.allCountires.indexOf($scope.selectedCountry.name));
 
-            $scope.allCountires = $scope.allCountires.filter(function(countryObject) {
-                if (countryObject.name == $scope.selectedCountry) {
-                    $scope.selectedCountries.push(countryObject);
-                    newCountrySelections.push(countryObject);
-                }
-                return countryObject.name !== $scope.selectedCountry;
-            });
-            $scope.selectedCountry = '';
 
-            $scope.selectedCountries.sort(function (a, b){
-                var textA = a.name.toUpperCase();
-                var textB = b.name.toUpperCase();
-                return (textA < textB) ? -1 : (textA > textB) ? 1:0;
-            });
-        };
-
-        $scope.deselectCountryFunction = function(country){
-            $scope.selectedCountries = $scope.selectedCountries.filter(function (countryObject){
-                console.log("here are the objects");
-                console.log(countryObject.name);
-                console.log($scope.deselectedCountry);
-                console.log("here are the objects");
-
-                if (countryObject.name == $scope.deselectedCountry){
-                   $scope.allCountires.push(countryObject);
-                   newCountryAllSelections.push(countryObject);
-                }
-
-                return countryObject.name !== $scope.deselectedCountry;
-            });
-            $scope.deselectedCountry = '';
-
-            $scope.allCountires.sort(function (a, b){
-                var textA = a.name.toUpperCase();
-                var textB = b.name.toUpperCase();
-                return (textA < textB) ? -1 : (textA > textB) ? 1:0;
-            });
-        }
 
         $scope.plant = {
             id: plantData.id,
