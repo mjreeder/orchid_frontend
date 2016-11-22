@@ -191,7 +191,7 @@ table {
 .upper-heading ul {
     position: absolute;
     top: 17px; 
-    right: 50px;
+    right: 30px;
 }
 
 .upper-heading ul li {
@@ -205,8 +205,8 @@ a.logout {
 }
 
 .upper-heading ul li  a {
-    color: white;
-    font-size: 14px;
+    color: #2b2e30;
+    font-size: 16px;
     font-weight: 200;
     margin-right: 10px; 
     letter-spacing: 1.1px; 
@@ -216,6 +216,20 @@ header {
     background-color: #cbd4c2;
     height: 150px;
     width: 100%; 
+    position: relative;
+}
+
+
+header .main-heading ul {
+    position: absolute; 
+    bottom: -30px; 
+   right: -20px; 
+    
+}
+
+
+header .main-heading ul li {
+  display: inline-block;    
 }
 
 header .main-heading li a {
@@ -223,18 +237,18 @@ header .main-heading li a {
     margin-left: 20px;
     float: right;
     color: white; 
-
 /*    width: 15%;*/
 /*    max-width: 125px;*/
     border-radius: 5px;
     font-family: Raleway, sans-serif;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 22px;
     text-decoration: none;
     color:  #2b2e30;
-    margin-top: -10px;
     text-align: center;
 }
+
+
 
 @media screen and (max-width: 900px) {
     .main-heading ul li a {
