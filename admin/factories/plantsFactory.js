@@ -7,8 +7,16 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http.get(baseUrl + "/alpha/" + alpha + "/" + index);
     }
 
+    data.getAllPaginatedPlants = function(index){
+      return $http.get(baseUrl + "/page/" + index);
+    }
+
     data.getAllPlants = function() {
         return $http.get(baseUrl);
+    }
+
+    data.getAmountOfPages = function(){
+      return $http.get(baseUrl + "/pages/amount");
     }
 
     data.getPlantById = function(id) {
