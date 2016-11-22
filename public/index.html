@@ -8,8 +8,9 @@
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="../app.js"></script>
+    <script src="./controllers/mainController.js"></script>
 </head>
-<body ng-app="orchidApp">
+<body ng-app="orchidApp" >
 <header>
     <h1>
         <a ui-sref="home"><img src="images/livingplantwhite.svg" alt="Rinard Orchid Greenhouse"></a>
@@ -24,7 +25,7 @@
     </nav>
 </header>
 
-<main ui-view>
+<main ui-view ng-controller="mainController as main">
      
 </main>
 

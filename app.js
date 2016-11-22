@@ -2,7 +2,7 @@ var orchidApp = angular.module('orchidApp', ['ui.router']);
 
 orchidApp.config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/404');
     $stateProvider
         .state('home', {
             url: '/home',
@@ -20,8 +20,8 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/collections',
             templateUrl: './views/refactored/viewcollections.html'
         })
-        .state('notFound', {
+        .state('404', {
             url: '*path',
             templateUrl: './views/refactored/404.html'
-        });
+        })
 });
