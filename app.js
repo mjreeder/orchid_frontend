@@ -20,6 +20,18 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/collections',
             templateUrl: './views/refactored/viewcollections.html'
         })
+        .state('special-collections', {
+            url: '/special_collections',
+            templateUrl: './views/refactored/special-collections.html'
+        })
+        .state('alphabetical', {
+            url: '/alphabet',
+            templateUrl: './views/refactored/alphabetical.html'
+        })
+        .state('place-of-origin', {
+            url: '/origin',
+            templateUrl: './views/refactored/place-of-origin.html'
+        })
         .state('404', {
             url: '*path',
             templateUrl: './views/refactored/404.html'
