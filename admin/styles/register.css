@@ -1,5 +1,5 @@
 #container {
-  background-color: #2b2e30; 
+  background-color: #01997b; 
     height: 60px; 
     width: 100%; 
     position: relative; 
@@ -8,12 +8,15 @@
 
 #container p {
     color: white;
-    font-family: Aleo, serif;
+    font-family: 'Aleo', serif;
     font-weight: 300;
     font-size: 20px;
     position: absolute; 
     width: 75%; 
+    font-weight: 400; 
     padding: 20px 0px 0px 30px;
+    
+    
 }
 
 
@@ -21,6 +24,7 @@
     margin: 30px 50px 0px 30px;
     font-size: 16px;
     line-height: 1.3;
+     margin-bottom: 30px;
 }
 
 
@@ -33,6 +37,7 @@
     text-align: left;
     font-family: 'aleo', "Times New Roman", serif;
     font-size: 24px;
+    background-color: #eaeee7;
 }
 
 #form-users .section,
@@ -41,7 +46,7 @@
     /*margin: 10px 30px 30px 30px;*/
     margin: 0 auto;
     width: 95%;
-    border-top: 5px solid #808080;
+    border-top: 5px solid #01997b;
     padding: 20px 0 20px 10px;
 }
 
@@ -88,12 +93,14 @@
     display: block;
 }
 
+
+
 #form-users .section button,
 div.add-user button {
-    background-color: #808080;
-    padding: 10px 15px;
+/*    background-color: #808080;*/
+/*    padding: 10px 15px;*/
     font-size: 14px;
-    border-radius: 5px;
+/*    border-radius: 5px;*/
     margin: 0 0 10px 0;
     color: white;
 }

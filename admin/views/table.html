@@ -8,9 +8,10 @@
         <h1 id="title">{{current_table_name}} </h1>
         <!--<div id="back-button">-->
             <a href="#/house/{{room_type}}">
+            <div class="delete-button-new"> 
             <button id="back-button"> 
             Back
-            </button>   </a>
+            </button></div>   </a>
             
 <!--
             
@@ -85,11 +86,14 @@
     
 
     <div class="table-footer" ng-if="showTable">
+       <div class="button-new">
         <button class="save" id="save" type="submit" ng-click="updateDates()">Save</button>
+         </div>
 
-
-        <button class="moveplants" id="edit-button" type="submit" ng-click="movePlantsFunction()">Edit</button>
-        <button class="save moveplants" id="move-certain-plants" type="submit" ng-show="showButton" ng-hide="!showButton" ng-click="showMoveFunction()">Move Certain Plants</button>
+<div class="button-new"> 
+        <button class="moveplants" id="edit-button" type="submit" ng-click="movePlantsFunction()">Edit</button></div>
+        <div class="button-new"> 
+        <button class="save moveplants" id="move-certain-plants" type="submit" ng-show="showButton" ng-hide="!showButton" ng-click="showMoveFunction()">Move Selected Plants</button></div>
 
     </div>
 
