@@ -1,37 +1,20 @@
 app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $location, PlantsFactory, classificationLinkFactory) {
   var displayAttributes = [];
   $scope.currentPage = 1;
-  $scope.toEllipsiedPage = 5;
-  $scope.pageArray = [];
-  $scope.totalPlants = 175;
-  $scope.numberOfPages = 7;
-  $scope.reverseEllipsePoint;
-  $scope.maxSize = 4;
+  $scope.numberOfPages;
+  $scope.maxSize = 3;
+  $scope.searchItem;
 
-
-
-
-  $scope.isCurrentPage = function(number) {
-    if (number == $scope.currentPage) {
-      return true;
-    }
-  }
-
-  $scope.previousPage = function() {
-
-  }
-
-  $scope.nextPage = function() {
-
-  }
-
-  $scope.getPlantsBySearch = function(searchItem) {
-    if (searchItem == '') {
+  //ng-change function for search bar
+  $scope.getPlantsBySearch = function() {
+    //if search goes empty, bring back to default
+    if ($scope.searchItem == '') {
       displayAttributes = [];
-      displayAll();
       getPaginatedPlants();
     } else {
+      // set current page to one, set on displayAttributes on and call getPaginatedPlants
       $scope.currentPage = 1;
+      displayAll();
       getPaginatedPlants();
     }
   }
@@ -62,6 +45,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
     }
   }
 
+  //helper function to turn on all attributes
   function displayAll() {
     displayAttributes = [];
     for (var i = 0; i < $scope.plants.length; i++) {
@@ -75,6 +59,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
     }
   }
 
+  // function to link the plant to the more info page with corresponding id
   $scope.getMorePlantInfo = function(plant) {
     for (var i = 0; i < plant.length; i++) {
       if (plant[i].key == 'accession number') {
@@ -83,27 +68,27 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
     }
   }
 
+  // ng-change function when a new page in the paginator is clicked, or next/previous
   $scope.pageChange = function(){
     getPaginatedPlants();
   }
 
-  // function to get plants based on first letter and index
-  // each plant becomes a list of attributes
-  // each attribute is an object that contains the display name:key
-  // the value:val and isDisplayed
+  // function to get plants based on desired index
+  // sets pagination data from response
   function getPaginatedPlants() {
-    console.log($scope.currentPage);
+    // checks if there is a search item for different api call
     if ($scope.searchItem == null || $scope.searchItem == undefined || $scope.searchItem == '') {
       PlantsFactory.getAllPaginatedPlants($scope.currentPage).then(function(response) {
-        // $scope.numberOfPages = response.data.data.pages;
+        $scope.numberOfPages = response.data.data.pages;
         $scope.totalPlants = response.data.data.total;
-        response.data.data = response.data.data.plants;
         $scope.plants = placePlantAttributes(response);
       });
     } else {
-      PlantsFactory.getPlantBySearch(searchItem, $scope.currentPage).then(function(response) {
-        $scope.plants = placePlantAttributes(response);
+      PlantsFactory.getPlantBySearch($scope.searchItem, $scope.currentPage).then(function(response) {
+        $scope.totalPlants = response.data.data.total;
         $scope.numberOfPages = response.data.data.pages;
+        $scope.plants = placePlantAttributes(response);
+
       });
     }
 
@@ -111,9 +96,9 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
 
   function placePlantAttributes(response) {
     var plants = [];
-    for (var i = 0; i < response.data.data.length; i++) {
+    for (var i = 0; i < response.data.data.plants.length; i++) {
       var plant = [];
-      var attributes = Object.keys(response.data.data[i]);
+      var attributes = Object.keys(response.data.data.plants[i]);
       for (var j = 0; j < attributes.length; j++) {
         var val = attributes[j];
         //attributeReplace is for grabbing dual words such as scientific_name
@@ -121,13 +106,13 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
         if (attributes[j] == 'accession_number' || attributes[j] == 'name' || displayAttributes.indexOf(attributeReplace) !== -1) {
           var attribute = {
             'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
-            'val': response.data.data[i][val],
+            'val': response.data.data.plants[i][val],
             'isDisplayed': true
           }
         } else {
           var attribute = {
             'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
-            'val': response.data.data[i][val],
+            'val': response.data.data.plants[i][val],
             'isDisplayed': false
           }
         }
@@ -139,5 +124,6 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
     return plants;
   }
 
+  // initialize plants for page
   getPaginatedPlants();
 });

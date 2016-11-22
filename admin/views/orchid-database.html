@@ -37,6 +37,7 @@
         </div>
 
         <div class="table-right">
+          <div class="inner-table-right">
             <table width="400" class="table" cell padding="10" cell spacing="2">
                 <thead>
                     <tr>
@@ -50,38 +51,11 @@
                     </tbody>
                 </thead>
             </table>
-
-            <div class="pagination">
-                <div class="divider"></div>
-                <!-- <div id="previous">
-                    <button ng-click="previousPage()">
-                        Previous
-                    </button>
-                </div> -->
-
+          </div>
+            <div class="page">
+              <div class="divider"></div>
                  <ul uib-pagination total-items="totalPlants" num-pages="numberOfPages" ng-model="currentPage" ng-change="pageChange(number)" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false" items-per-page="20"></ul>
             </div>
-
-            <!-- // then somewhere else on the page .... -->
-
-            <!-- <ul>
-                    <li>
-                        <a ng-class="isCurrentPage(1) ? 'active_class' : 'pagination-ul'" ng-click='shifSlotsAndChangePage(1)'>1</a>
-                    </li>
-                    <li ng-repeat="page in pageArray track by $index">
-                        <a ng-class="isCurrentPage(page) ? 'active_class' : 'pagination-ul'" ng-click='shifSlotsAndChangePage(page, $index)'>{{page}}</a>
-                    </li>
-                    <li>
-                        <a ng-class="isCurrentPage(numberOfPages) ? 'active_class' : 'pagination-ul'" ng-click='shifSlotsAndChangePage(numberOfPages)'>{{numberOfPages}}</a>
-                    </li>
-                </ul> -->
-
-            <!-- <div id="next">
-                <button ng-click="nextPage()">
-                    Next
-                </button>
-            </div> -->
-
         </div>
     </div>
 
