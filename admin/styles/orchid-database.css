@@ -54,9 +54,9 @@
 
 /*
 @media screen and (max-width: 790px) {
-  .searchbox { 
+  .searchbox {
     width: 90%;
-    
+
  }
 }
 */
@@ -80,14 +80,14 @@
 
 @media screen and (max-width: 480px) {
    .searchbox-and-icon {
-   float: left;  
+   float: left;
  }
 }
 
 @media screen and (max-width: 580px) {
    #allplantsh1 h1 {
-   font-size: 20px;  
-    
+   font-size: 20px;
+
  }
 }
 */
@@ -201,7 +201,7 @@
 /*
 button {
     width: 30px;
-    float: left; 
+    float: left;
     z-index: 10;
 }
 */
@@ -218,10 +218,10 @@ button {
     position: absolute;
     /*
     width: 30px
-    float: left; 
+    float: left;
     position: relative;
-    display: inline; 
-    margin-top: -37px; 
+    display: inline;
+    margin-top: -37px;
     padding: 5px;
 */
 }
@@ -277,7 +277,7 @@ input:checked + span {
     clear: both;
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 100%; 
+    width: 100%;
 }
 
 
@@ -286,16 +286,16 @@ input:checked + span {
 #orchid-database .pagination .divider {
     clear: both;
     margin-bottom: 20px;
- width: 100%;    
+ width: 100%;
 }
 
 
 .pagination {
     margin-top: 30px;
     float: left;
-    width: 100%; 
+    width: 100%;
     display: inline-block;
-    border-top: 5px solid #808080; 
+    border-top: 5px solid #808080;
 }
 
 .pagination #previous button {
@@ -312,12 +312,26 @@ input:checked + span {
     font-family: 'Raleway', sans-serif;
 }
 
+.pagination-sm>li:first-child>a, .pagination-sm>li:first-child>span{
+  border: none;
+  background: #808080;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  display: inline-block;
+  float: left;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-family: 'Raleway', sans-serif;
+}
+
 .pagination ul {
     display: inline-block;
     float: left;
     width: 60%;
     margin-top: 13px;
-    text-align: center; 
+    text-align: center;
 
 }
 
@@ -329,11 +343,11 @@ input:checked + span {
 
 
 .pagination ul li:first-child {
-margin-left: 10px; 
+margin-left: 10px;
 }
 
 .pagination ul li:last-child {
-margin-right: 0; 
+margin-right: 0;
 }
 
 
@@ -362,4 +376,19 @@ margin-right: 0;
     margin-bottom: 20px;
 /*    margin-top: -112px;*/
      font-family: 'Raleway', sans-serif;
+}
+
+.pagination-sm>li:last-child>a, .pagination-sm>li:last-child>span {
+  border: none;
+  background: #808080;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  display: inline-block;
+  float: right;
+/*    margin-right: 20px;*/
+  margin-bottom: 20px;
+/*    margin-top: -112px;*/
+   font-family: 'Raleway', sans-serif;
 }
