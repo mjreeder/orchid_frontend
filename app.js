@@ -26,7 +26,8 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('alphabetical', {
             url: '/alphabet',
-            templateUrl: './views/refactored/alphabetical.html'
+            templateUrl: './views/refactored/alphabetical.html',
+            controller: 'alphabetController'
         })
         .state('place-of-origin', {
             url: '/origin',
