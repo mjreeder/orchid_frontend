@@ -181,10 +181,10 @@
             <img src="{{photo.url}}" alt="" class="thumbnail">
             <div class="photos-buttons">
                 <label for="thumbnail">{{photo.fileName}}</label>
-                <input class="selected-photo" type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
-                <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
-                <input type="button" value="Other" ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'other', noglowHealth: photo.type != 'other'}">
-                <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{glowHealthPoor: photo.type == 'del', noglowHealth: photo.type != 'del'}">
+                <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
+                <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
+                <input type="button" value="Other" ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'other', noglowHealth: photo.type != 'other'}">
+                <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{selectedPhoto: photo.type == 'del', noglowHealth: photo.type != 'del'}">
             </div>
         </div>
 
