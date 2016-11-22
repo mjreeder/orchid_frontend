@@ -355,7 +355,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var getLastComment = function(data){
       data = data.data.data;
-      var lastComment = data[data.length-1];
+      var lastComment = data[0];
       return lastComment;
     }
 
