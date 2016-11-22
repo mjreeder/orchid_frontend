@@ -1,7 +1,7 @@
 app.factory('HealthFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/health';
+    var baseUrl = location.origin +'orchid_site/public/api/health';
 
     data.createHealth = function(healthLink) {
         return $http({
@@ -34,7 +34,10 @@ app.factory('HealthFactory', function($http, $rootScope) {
         })
     }
 
-    data.getHealthBtPlantID = function(id, page = 1){
+    data.getHealthBtPlantID = function(id, page){
+        if(page == undefined){
+            page = 1;
+        }
         return $http({
           method: "GET",
           url: baseUrl + '/plant_id/' + id + '/page/' + page

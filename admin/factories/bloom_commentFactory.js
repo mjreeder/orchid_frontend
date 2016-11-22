@@ -1,7 +1,7 @@
 app.factory('Bloom_CommentFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/bloom_comment';
+    var baseUrl = location.origin +'/orchid_site/public/api/bloom_comment';
 
 
 

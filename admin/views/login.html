@@ -2,14 +2,23 @@
    <div class="login">
     <h1>Login</h1>
     <form class="form-signin">
+       <div class="login-content"> 
         <lable> Email: </lable>
         <input type="text" id="username" placeholder="Email" required autofocus ng-model="credentials.username">
         
         <lable class="password">Password:</lable>
         <input type="password" id="pass" placeholder="Password" required ng-model="credentials.password">
-        
+        </div>
        
         <div id="login-button">
-        <button ng-click="login(credentials)" type="button">Log in</button></div>
+        <button ng-click="login(credentials)" type="button">Login</button></div>
     </form>
+    
+    
+    
+   
+</div>
+
+<div id="login-img"> 
+ <img src="images/benny.svg" alt="benny">
 </div>

@@ -1,7 +1,7 @@
 app.factory('PestFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/pest';
+    var baseUrl = location.origin +'/orchid_site/public/api/pest';
 
 
 

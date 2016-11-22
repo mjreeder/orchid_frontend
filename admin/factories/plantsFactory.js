@@ -1,7 +1,7 @@
 app.factory('PlantsFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/plants';
+    var baseUrl = location.origin +'/orchid_site/public/api/plants';
 
     data.getPaginatedPlants = function(alpha, index) {
         return $http.get(baseUrl + "/alpha/" + alpha + "/" + index);
@@ -27,7 +27,7 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http.get(baseUrl + '/table/' + id);
     }
 
-    data.createNewPlant = function(plant) {
+    data.createNew = function(plant) {
         return $http({
             method: "POST",
             url: baseUrl + '/createPlant',
@@ -38,6 +38,15 @@ app.factory('PlantsFactory', function($http, $rootScope) {
             }
         });
     };
+
+    data.checkAccessionNumber = function(accession_number){
+        return $http({
+            method: "GET",
+            url: baseUrl + '/checkAccessionNumber/' + accession_number,
+            data: {
+            }
+        });
+    }
 
 
 
@@ -201,6 +210,20 @@ app.factory('PlantsFactory', function($http, $rootScope) {
 
         })
     }
+
+    data.updateCollection = function(data){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateSpecialCollection',
+            data: {
+                'name' : data.name,
+                'id' : data.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        })
+    };
+
 
 
 

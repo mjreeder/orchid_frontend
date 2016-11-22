@@ -1,22 +1,40 @@
 app.factory('UserFactory', function($http, sessionService, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/users';
+    var baseUrl = location.origin +'/orchid_site/public/api/users';
 
     data.newUser = function(user) {
       return $http({
           method: "POST",
           url: baseUrl,
           data: {
-              "fisrtName"   : user.firstName,
-              "lastName"    : user.lastName,
+              "first_name"   : user.first_name,
+              "last_name"    : user.last_name,
               "email"       : user.email,
               "password"    : user.password,
-              "authLevel"   : user.authLevel,
+              "auth_level"   : user.auth_level,
               "session_id"  : $rootScope.userSessionKey,
               "session_key" : $rootScope.userSessionId
           }
       });
+    }
+
+    data.updateUser = function (user){
+        console.log("here is one user");
+        console.log(user);
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/update',
+            data: {
+                "first_name"   : user.first_name,
+                "last_name"    : user.last_name,
+                "email"       : user.email,
+                "auth_level"   : user.auth_level,
+                "id" : user.id,
+                "session_id"  : $rootScope.userSessionKey,
+                "session_key" : $rootScope.userSessionId
+            }
+        })
     }
 
     data.deleteUser = function(user){

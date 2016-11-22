@@ -1,11 +1,14 @@
 app.factory('PottingFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = 'http://localhost:8888/orchid_site/public/api/potting';
+    var baseUrl = location.origin +'/orchid_site/public/api/potting';
 
 
 
-    data.getBloomByPlantID = function(plant_id, page = 1) {
+    data.getBloomByPlantID = function(plant_id, page) {
+        if (page == undefined){
+            page = 1;
+        }
         return $http({
           method: "GET",
           url: baseUrl + "/plant_id/" + plant_id + "/page/" + page

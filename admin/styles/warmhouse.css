@@ -9,7 +9,7 @@ main nav ul li {
     font-family: Aleo;
     font-size: 20px;
     font-weight: 100;
-    background-color: black;
+    background-color: #01997b;
     text-align: center;
     padding: 22px 0;
 }
@@ -21,7 +21,7 @@ main nav ul li a {
 
 
 #active {
-    color: black;
+    color: #2b2e30;
     font-weight: 400;
     background-color: white;
     padding: 20px 30px 20px 30px; 

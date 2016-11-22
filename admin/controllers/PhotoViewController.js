@@ -4,6 +4,7 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
         console.log("");
     };
 
+
     $scope.changedRoom = "";
 
     $scope.plantsURL = [];
@@ -13,87 +14,73 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
     $scope.chosenPicrture = "";
 
     $scope.x = {};
+    var plant_id;
     $scope.$on('abc', function(event, data){
+        console.log("this is the end");
         $scope.addedMovePlants = data.any;
-        console.log($scope.addedMovePlants);
-        $scope.lol = "Seth Winslow";
-        console.log($scope.lol);
+        console.log($scope.addedMovePlants.plant_id);
+        plant_id = $scope.addedMovePlants.plant_id;
+        $scope.reloadFunction(plant_id);
+
         $scope.hamburger = console.log($scope.addedMovePlants.a[0].accession_number);
         console.log($scope.hamburger);
         $scope.x.name = $scope.addedMovePlants.a[0].accession_number;
-        $scope.a = [];
-        $scope.accession_number = "00000";
-
-
-        for (var t = 0; t < $scope.addedMovePlants.a.length; t++){
-            $scope.a[t] = $scope.addedMovePlants.a[t];
-        }
-
-        for (var a = 0; a < $scope.addedMovePlants.a.length; a++){
-            console.log($scope.a[a]);
-        }
-        $scope.b ={
-            name: $scope.addedMovePlants.a[0]
-        };
 
 
     });
-
-
 
     $scope.plantIDURL = [];
 
 
-    PhotoFactory.getPhtosByPlantID(2).then(function(response){
-        var data = response.data.data;
-        for (var i = 0; i < data.length; i++){
-            $scope.plantIDURL = data[i];
-            console.log(data[i].url);
+    $scope.reloadFunction = function(plant_id){
+        console.log("THIS IS THE PLANT ID" + plant_id);
 
-            $scope.plantsURL[i] = data[i];
-        }
+        PhotoFactory.getPhtosByPlantID(plant_id).then(function(response){
+            var data = response.data.data;
+            for (var i = 0; i < data.length; i++){
+                $scope.plantIDURL = data[i];
+                $scope.plantsURL[i] = data[i];
+            }
 
-        var value = false;
+            var value = false;
 
-        if($scope.plant.species != ""){
-            //console.log("we are getting here");
+            if($scope.plant.species != ""){
 
-            PhotoFactory.getSimilarPhotos($scope.plant.species).then(function (response) {
-                var data2 = response.data.data;
-                for (var i = 0; i < data.length; i++){
-                    var singlePhoto = data2[i];
-                    for (var p = 0; p < $scope.plantsURL.length; p++){
-                        if(singlePhoto.url == $scope.plantsURL[p]){
-                            value = true;
-                            break;
-                        }else {
+                PhotoFactory.getSimilarPhotos($scope.plant.species).then(function (response) {
+                    var data2 = response.data.data;
+                    for (var i = 0; i < data.length; i++){
+                        var singlePhoto = data2[i];
+                        for (var p = 0; p < $scope.plantsURL.length; p++){
+                            if(singlePhoto.url == $scope.plantsURL[p]){
+                                value = true;
+                                break;
+                            }else {
 
+                            }
                         }
-
+                        if (value == true){
+                            break;
+                        }
                     }
-                    if (value == true){
-                        break;
+                    if(value == false){
+                        var lengthOfPlantsURL = $scope.plantsURL.length;
+                        $scope.plantsURL[lengthOfPlantsURL] = data2[i];
                     }
-                }
-                if(value == false){
-                    var lengthOfPlantsURL = $scope.plantsURL.length;
-                    $scope.plantsURL[lengthOfPlantsURL] = data2[i];
-                }
-            });
+                });
 
-        }
+            }
 
+        });
 
-        //console.log("AAAAA");
-        //for(var t = 0; t < $scope.plantsURL.length; t++){
-        //    console.log($scope.plantsURL[t]);
-        //}
-        //console.log("AAAAA");
+    }
 
 
 
 
-    });
+
+
+
+
 
 
     $scope.clickedPhoto = function(photo){
@@ -162,17 +149,18 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
 
         // the old url is going to  change to an other photo with the same plant_id
 
-
-
-
+        closePop();
     }
 
 
+    var closePop = function(){
+        console.log("we are closing the pop up");
 
-
-
-
-
+    }
+    $scope.closePopUp = function(){
+        console.log("close the pop up");
+        $rootScope.$broadcast('photoMatcher', false);
+    }
 
 });
 

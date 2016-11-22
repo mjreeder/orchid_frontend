@@ -8,9 +8,9 @@ main nav ul li {
     font-family: Aleo, serif;
     font-size: 20px;
     font-weight: 100;
-    background-color: #2b2e30;
+    background-color: #01997b;
     text-align: center;
-    padding: 32px 0 22px 0;
+    padding: 15px 0;
     margin-bottom: 5px;
 }
 
@@ -32,6 +32,16 @@ main nav ul {
     border-top-right-radius: 8px;
 }
 
+#current-health textarea {
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.top-margin textarea {
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+}
+
 
 /*page nav*/
 
@@ -44,22 +54,21 @@ main nav ul {
     height: auto;
 }
 
-
 #back-button {
-    /*display: inline;*/
+    /*    display: inline;*/
     position: absolute;
     top: 0;
     left: 5px;
     margin: 0;
     width: 60px;
-}
-
-#back-button {
-
-}
-
-#back-button a {
-    margin: 0;
+    background-color: #808080;
+    text-decoration: none;
+    color: white;
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
 }
 
 #title {
@@ -108,24 +117,49 @@ th {
     font-size: 18px;
 }
 
+
 /*td:nth-child(1) {*/
-    /*!*width: 20%;*!*/
+
+
+/*!*width: 20%;*!*/
+
+
 /*}*/
+
 
 /*td:nth-child(2) {*/
-    /*!*width: 40%*!*/
+
+
+/*!*width: 40%*!*/
+
+
 /*}*/
+
 
 /*td:nth-child(3) {*/
-    /*!*width: 20%;*!*/
+
+
+/*!*width: 20%;*!*/
+
+
 /*}*/
+
 
 /*td:nth-child(4) {*/
-    /*max-width: 60px;*/
+
+
+/*max-width: 60px;*/
+
+
 /*}*/
 
+
 /*td:nth-child(5) {*/
-    /*max-width: 60px;*/
+
+
+/*max-width: 60px;*/
+
+
 /*}*/
 
 td {
@@ -135,8 +169,6 @@ td {
 .flagged {
     background-color: #4D4D4D;
 }
-
-
 
 
 /*POP UP*/
@@ -150,7 +182,6 @@ td {
 .flower-popup #close img {
     padding: 0;
     margin: 0;
-
 }
 
 .flower-popup {
@@ -170,11 +201,11 @@ td {
 .flower-popup form {
     width: 75%;
     background-color: white;
-    border: 4px solid black;
+    border: 4px solid #2b2e30;
     position: absolute;
     left: 50%;
-    top: 0;
-    transform: translate(-50%, 0%);
+    top: 50%;
+    transform: translate(-50%, -50%);
     padding-bottom: 10px;
     box-sizing: border-box;
 }
@@ -185,7 +216,7 @@ td {
     font-size: 26px;
     letter-spacing: 3px;
     background-color: #dfe0e0;
-    padding:20px 0px;
+    padding: 20px 0px;
     width: 100%;
     height: 30px;
 }
@@ -198,7 +229,6 @@ td {
     font-family: aleo, serif;
     font-size: 18px;
     margin: 0 0 5px 5px;
-
 }
 
 .start-stop-blooming {
@@ -219,9 +249,8 @@ td {
 
 .flower-popup textarea {
     border: 2px solid #808080;
-    font-family: aleo, serif;
-    color: black;
-    font-size: 12px;
+    font-family: 'Raleway' , sans-serif;
+    font-size: 14px;
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
@@ -249,13 +278,25 @@ td {
     font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 10px 15px;
-    margin: 5px;
+    margin: 15px 5px 5px 5px;
     border-radius: 5px;
     display: inline-block;
     float: left;
 }
- .save {
+
+.save {
     background-color: #BA0c2F;
+    text-decoration: none;
+    color: white;
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+#edit-button {
+    background-color: #808080;
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
@@ -279,11 +320,11 @@ td {
     border-radius: 5px;
     display: inline-block;
     float: right;
-    margin: 5px;
+    margin: 15px 5px 5px 5px;
 }
 
-
-#edit-button, #move-certain-plants {
+#edit-button,
+#move-certain-plants {
     margin: 0 10px 0 5px;
 }
 
@@ -301,7 +342,7 @@ td {
     margin: 0 10px;
     border-radius: 5px;
     display: inline-block;
-    width: 67px;
+    /*    width: 67px;*/
 }
 
 .flower-popup img {
@@ -332,19 +373,13 @@ td {
     pointer-events: none;
 }
 
-#more-info {
-    /*margin-left: -15px;*/
-}
-
 #more-info a {
     color: white;
 }
 
-
-
 .glowHealthPoor {
     /*   box-shadow:0 0 20px #BA0C2F;*/
-    background-color: #BA0C2F;
+    background-color: #BA0C2F !important;
 }
 
 .glowHealthFair {
@@ -375,15 +410,16 @@ td {
 }
 
 #main-table table span {
- width: 100%;    
+    width: 100%;
 }
+
 #main-table td label {
- margin-left: 0;
+    margin-left: 0;
 }
 
-
-
-#current-health label, #sprayed-for-pests, #repot label {
+#current-health label,
+#sprayed-for-pests,
+#repot label {
     margin-top: 15px;
     display: inline-block;
 }
@@ -397,7 +433,8 @@ td {
     display: inline-block;
 }
 
-table input, .popup-flagged input {
+table input,
+.popup-flagged input {
     opacity: 0;
     width: auto;
     margin: 8px 20px;
@@ -405,16 +442,15 @@ table input, .popup-flagged input {
 }
 
 .table-checkbox {
-    background:url(../images/empty_checkbox.svg)center center no-repeat / cover;
-    height: 20px; 
-    width:20px;
+    background: url(../images/empty_checkbox.svg)center center no-repeat / cover;
+    height: 20px;
+    width: 20px;
     display: inline-block;
-    vertical-align:middle;
-    position:relative;
+    vertical-align: middle;
+    position: relative;
     margin: 0;
 }
 
 #flagged-span {
     margin-left: 8px;
 }
-

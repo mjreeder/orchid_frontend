@@ -103,7 +103,7 @@ app.config(function ($routeProvider, CONFIG) {
         controller: 'RegisterViewController',
         templateUrl: 'views/register.html',
         resolve: {
-            'data': isAuthenticated
+            'data': isSuperAuthenticated
         }
     }).
     when('/users/change-password', {
@@ -119,14 +119,14 @@ app.config(function ($routeProvider, CONFIG) {
     });
 });
 
-var isAuthenticated = function ($q, $rootScope, $location, sessionService, UserFactory) {
+var isAuthenticated = function ($rootScope, $location, sessionService, UserFactory) {
     var session = sessionService.hasRecentSession();
     if (session) {
         $rootScope.isLoggedIn = true;
 
         UserFactory.getAuth().then(function (response){
             var data = response.data.data;
-            if (data.authLevel == 1){
+            if (data.auth_level == 1){
                 $rootScope.AuthUser = true;
             } else {
                 $rootScope.AuthUser = false;
@@ -139,7 +139,7 @@ var isAuthenticated = function ($q, $rootScope, $location, sessionService, UserF
     }
 };
 
-var isSuperAuthenticated = function ($q, $rootScope, $location, sessionService, UserFactory) {
+var isSuperAuthenticated = function ($rootScope, $location, sessionService, UserFactory) {
     var session = sessionService.hasRecentSession();
     var superAdmin = true;
     if (session) {
@@ -148,25 +148,18 @@ var isSuperAuthenticated = function ($q, $rootScope, $location, sessionService, 
         UserFactory.getAuth().then(function (response){
             var data = response.data.data;
 
-            if (data.authLevel == 1){
+            if (data.auth_level == 1){
                 $rootScope.AuthUser = true;
-                return true;
             } else {
+                $rootScope.redirect = $location.path();
+                $location.path("/");
                 $rootScope.AuthUser = false;
-                return false;
             }
         });
-        superAdmin = false;
-        return false;
-
     } else {
         $rootScope.redirect = $location.path();
         $location.path("/login");
         return false;
-    }
-    if(superAdmin == false){
-        $rootScope.redirect = $location.path();
-        $location.path("/login");
     }
 
 

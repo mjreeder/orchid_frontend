@@ -189,15 +189,9 @@ table {
 /*END RESET*/
 
 .upper-heading ul {
- position: absolute; 
+    position: absolute;
     top: 17px; 
-   right: 50px; 
-    
-/*
-    top:-46px; 
-    right: -20px; 
-*/
-
+    right: 30px;
 }
 
 .upper-heading ul li {
@@ -211,51 +205,113 @@ a.logout {
 }
 
 .upper-heading ul li  a {
-    color: white;
-    font-size: 14px;
+    color: #2b2e30;
+    font-size: 16px;
     font-weight: 200;
     margin-right: 10px; 
     letter-spacing: 1.1px; 
 }
 
 header {
-    background-color: #BA0C2F;
+    background-color: #cbd4c2;
     height: 150px;
     width: 100%; 
+    position: relative;
+}
+
+
+header .main-heading ul {
+    position: absolute; 
+    bottom: -30px; 
+   right: -20px; 
+    
+}
+
+
+header .main-heading ul li {
+  display: inline-block;    
 }
 
 header .main-heading li a {
     list-style-type: none;
     margin-left: 20px;
     float: right;
-    background-color: white;
-    padding: 15px 10px;
-    width: 15%;
-    border-radius: 8px;
-/*    font-family: Aleo, serif;*/
+    color: white; 
+/*    width: 15%;*/
+/*    max-width: 125px;*/
+    border-radius: 5px;
     font-family: Raleway, sans-serif;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 22px;
     text-decoration: none;
     color:  #2b2e30;
-    float: top;
-    margin-top: -10px;
     text-align: center;
 }
 
+
+
 @media screen and (max-width: 900px) {
-    header li a {
+    .main-heading ul li a {
         font-size: 16px;
     }
 }
+/*
 
 @media screen and (max-width: 645px) {
-    header li a {
-        padding: 15px 10px;
+    .main-heading ul li a {
+    
+    }
+}
+*/
+
+
+/* start of responsiveness*/
+
+/*
+@media screen and (max-width: 600px) {
+    .main-heading ul li a {
+        display: block; 
+        width: 100%; 
+        margin-bottom: 15px; 
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main-heading ul {  
+        float: left;
+        margin-top: -35px; 
+        
+    }
+}
+*/
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+    .main-heading ul li a {
+        display: block; 
+        width: 100%; 
+        margin-bottom: 15px; 
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main-heading ul {  
+        float: left;
+/*        margin-top: -35px; */
+        
     }
 }
 
 
+
+
+
+
+/*
 @media screen and (max-width: 520px) {
     header li a {
         width: 50%; 
@@ -272,10 +328,11 @@ header .main-heading li a {
 
 @media screen and (max-width: 450px) {
     header li {
-/*       width: 40%;*/
+       width: 40%;
        padding: 5px 0px; 
     }
 }
+*/
 
 
 
@@ -309,7 +366,7 @@ header .main-heading li a {
 
 body {
     font-family: Raleway, sans-serif;
-    color: black;
+    color: #2b2e30;
 }
 
 button {

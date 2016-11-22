@@ -8,8 +8,15 @@
         <h1 id="title">{{current_table_name}} </h1>
         <!--<div id="back-button">-->
             <a href="#/house/{{room_type}}">
-            <img id="back-button" src="images/backbutton.svg" alt="Back" /></a>
-        <!--</div>-->
+            <button id="back-button"> 
+            Back
+            </button>   </a>
+            
+<!--
+            
+            <img id="back-button" src="images/backbutton.svg" alt="Back" />
+-->
+<!--        </div>-->
 
 
 
@@ -81,7 +88,7 @@
         <button class="save" id="save" type="submit" ng-click="updateDates()">Save</button>
 
 
-        <button class="save moveplants" id="edit-button" type="submit" ng-click="movePlantsFunction()">Edit</button>
+        <button class="moveplants" id="edit-button" type="submit" ng-click="movePlantsFunction()">Edit</button>
         <button class="save moveplants" id="move-certain-plants" type="submit" ng-show="showButton" ng-hide="!showButton" ng-click="showMoveFunction()">Move Certain Plants</button>
 
     </div>

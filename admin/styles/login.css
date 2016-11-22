@@ -1,41 +1,61 @@
 div.login {
-    padding: 15px;
     box-sizing: border-box;
     font-family: Aleo, 'Times New Roman', Times, serif;
+    width: 40%; 
+    display: block;
+    background-color: #eaeee7; 
+    margin: 50px auto;  
 }
 
 .login h1 {
-    display: block;
-    margin: 0 auto;
-    padding: 30px 0px;
+/*    display: block;*/
+/*    margin: 0 auto;*/
+    color: white; 
+    padding: 20px 0px 20px 0px;
     text-align: center;
     font-size: 22px;
+    width: 100%; 
+    background-color: #01997b;
+    margin-bottom: 10px; 
 
 }
+
+
 
 .form-signin {
-    background-color: #DFE0E0;
-    width: 40%;
-    max-width: 400px;
-    display: block;
-    margin: 0 auto;
-    padding: 20px 30px 0px 20px; 
+    background-color: #eaeee7;
+/*    width: 90%; */
+/*    display: block;*/
+/*    margin: 0 auto;*/
+/*    padding: 20px 30px 0px 20px; */
+  
 }
 
-.login lable {
+
+
+
+.login .login-content lable {
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: normal;
     font-size: 18px;
-    letter-spacing: 1.2px;
-    color: black;
-    padding: 15px 5px 10px 0;
+    letter-spacing: 1.2px; 
+    color: #2b2e30;
+    margin: 20px 0px; 
+    
 }
 
 .form-signin input {
-    width: 100%;
-    margin: 5px 0 15px 0;
-    
+    width: 95%;
+    margin: 10px 0; 
+    background-color: white; 
+    border: none; 
+/*
+      margin: 0 0 15px 0;
+    margin-right: 2.5%; 
+*/
 }
+    
+
 
 /*.password {*/
        /*padding: 0px 5px 5px 20px;*/
@@ -52,13 +72,15 @@ div.login {
 #login-button button {
     display: block; 
     margin: 0 auto; 
-    background-color: #2b2e30;
+    background-color: #808080;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
-    padding: 15px 20px;
-    border-radius: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 10px; 
     margin-bottom: 20px;
+    font-family: 'Raleway', sans-serif; 
 }
 
 /*h6 a {*/
@@ -71,3 +93,27 @@ div.login {
     /*margin-bottom: 30px; */
     /*margin: 20px;*/
 /*}*/
+
+
+
+
+
+.login-content {
+    width: 95%; 
+    display: block;
+    margin: 0 auto; 
+
+/*
+    padding-left: 2.5%;
+    padding-right: 2.5%
+*/
+    
+}
+
+
+#login-img img {
+   width: 60%; 
+    position: absolute; 
+    bottom: 0px;
+    right: 30px;  
+}

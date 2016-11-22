@@ -6,6 +6,15 @@ a {
     text-decoration: none;
 }
 
+input[type="button"] {
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+}
+
+
 #taxonomic,
 #vitals,
 #culture,
@@ -16,9 +25,15 @@ a {
 #photos,
 #graph,
 #split,
-#weekly-checkup {
+#weekly-checkup,
+#special-collection {
     position: relative;
     overflow: auto;
+}
+
+#vitals {
+    margin: 0 auto;
+    margin-top: 20px;
 }
 
 input,
@@ -33,7 +48,7 @@ textarea {
     border: 2px solid #808080;
     font-size: 16px;
     resize: vertical;
-    color: #b3b3b3;
+    color: black;
     width: 95%;
     height: 50px;
     display: block;
@@ -56,7 +71,9 @@ select:focus {
 
 input {
     margin-top: 10px;
-    width: 225px;
+    width: 220px;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }
 
 input:disabled {
@@ -73,20 +90,42 @@ textarea:disabled {
     color: black;
 }
 
-#select-country {
+#add-country, #select-country {
     margin-top: 10px;
 }
 
 select {
     font-size: 18px;
     color: black;
-    border: none;
+    border: 1px solid black;
     background-color: white;
 }
 
-#culture select {
-    width: 200px;
-    margin: 15px 0;
+#culture select, #special-collection select {
+    width: 225px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#add-country-select {
+    margin-right: 4px;
+}
+
+#delete-country-select {
+    margin-left: 2px;
+}
+
+.country-list {
+    margin: 20px 0 20px 0;
+}
+
+.selected-countries {
+    margin: 7.5px 0 0 50px;
+}
+
+#special-collection select {
+    margin-left: 4px;
+    border: 1px solid black;
 }
 
 select:disabled {
@@ -100,7 +139,7 @@ fieldset label {
     font-family: Raleway, sans-serif;
     font-size: 18px;
     display: inline-block;
-    width: 125px;
+    width: 115px;
     margin-left: 20px;
     font-weight: 600;
 }
@@ -116,22 +155,22 @@ fieldset label {
 fieldset h1 {
     font-family: Aleo, serif;
     font-size: 24px;
-    margin-left: 5px;
     text-align: left;
-    padding: 0 5px 20px;
+    padding: 20px 20px;
+    background: #eaeee7;
 }
 
 fieldset {
-    border-bottom: 5px solid #808080;
-    margin: 20px auto;
+    border-bottom: 5px solid #01997b;
+    margin: 0 auto;
     max-width: 800px;
 }
 
 .edit {
     position: absolute;
     width: 40px;
-    top: 0;
-    right: 0;
+    top: 12px;
+    right: 1.5%;
 }
 
 #accession button.more-calendar {
@@ -154,24 +193,35 @@ fieldset {
     width: 130px;
 }
 
+#description label,
+#weekly-checkup label {
+    width: 95%;
+    margin-top: 15px;
+}
+
 
 /*VITALS*/
 
 #thumbnail {
     width: 25%;
-    padding: 20px;
+    padding: 0 20px 20px;
     float: left;
 }
 
 #vitals div {
-    width: 70%;
+    width: 63%;
     float: right;
-    margin: 20px 0 0 0;
+    margin: 0 50px 0 0;
     position: relative;
 }
 
 #vitals label {
-    width: 250px;
+    width: 225px;
+    margin: 0;
+}
+
+label#location {
+    width: 115px;
 }
 
 #vitals input {
@@ -179,7 +229,8 @@ fieldset {
     font-size: 18px;
     padding: 5px;
     border: 2px solid black;
-    margin: 15px 0;
+    margin: 15px 10px 15px 0;
+    width: 200px;
 }
 
 #vitals input:disabled {
@@ -192,6 +243,14 @@ fieldset {
     transform: translateY(5px);
 }
 
+label#verified-label {
+    width: 115px;
+    padding-left: 5px;
+}
+
+input#verified {
+    padding: 2px;
+}
 
 /*INACTIVE*/
 
@@ -199,9 +258,6 @@ fieldset {
     width: 75px;
     padding: 10px 10px 10px 0;
 }
-
-
-/*input[type="date"]*/
 
 #inactive input {
     font-family: Raleway, sans-serif;
@@ -211,35 +267,23 @@ fieldset {
     margin: 15px 0;
 }
 
-
-/*
-input[type="date"] {
-    margin: 5px 10px 5px 0;
-    width: auto;
-    transform: translateY(-25%);
-    border: none;
-}
-*/
-
 #inactive input:disabled {
     border: none;
 }
-
-
-/*
-#inactive input:disabled {
-    border: 2px solid black;
-}
-*/
 
 
 /*PHOTOS*/
 
+#photos h1,
+#weekly-checkup h1,
+#graph h1 {
+    margin-bottom: 20px;
+}
+
 #photos label {
     margin: 10px 0 10px;
-    width: 500px;
+    width: auto;
     display: block;
-    vertical-align: middle;
 }
 
 .thumbnail {
@@ -248,25 +292,50 @@ input[type="date"] {
     vertical-align: middle;
     width: 20%;
     max-width: 120px;
-    margin: 20px 20px 20px 20px;
-    float: left;
+    margin: 0 20px 20px 20px;
 }
 
 .photos-buttons input,
 .photos-add-div input {
-    width: 100px;
+    width: 79px;
     border: none;
-    background: #808080;
-    color: white;
+    background: #cbd4c2;
+    color: #2b2e30;
     border-radius: 8px;
-    padding: 15px 10px;
+    padding: 10px 15px;
     font-size: 14px;
     margin: 0 10px 0 0;
     display: inline-block;
 }
 
+.add-photo-popup input[type="button"] {
+    width:auto;
+    border: none;
+    background: #808080;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    margin: 0 10px 0 0;
+    display: inline-block;
+}
+
+input[type="button"].selectedPhoto {
+    background: #01997b;
+    color: white;
+}
+
+#match-photos-button {
+    width: auto;
+    background-color: #01997b;
+    color: white;
+}
+
 .photos-buttons {
     margin: 30px 10px 20px 0;
+    display:inline-block;
+    vertical-align: center;
+    width: 65%;
 }
 
 #photos-delete1,
@@ -275,12 +344,12 @@ input[type="date"] {
 }
 
 #photos {
-    margin: 20px auto 0;
+    /*margin: 20px auto 0;*/
     padding: 0 0 20px 0;
 }
 
 .photos-add-div input {
-    margin: 58px 0 0 0;
+    margin: 0 0 0 20px;
 }
 
 .photos-group {
@@ -292,7 +361,22 @@ input[type="date"] {
 }
 
 
+
+
+
+
+
+
+
+
+
 /*SPLIT*/
+
+.split-holder {
+    width: 95%;
+    margin: 20px auto;
+    margin-bottom: 20px;
+}
 
 .split-add {
     margin: 0 0 20px 40px;
@@ -304,10 +388,6 @@ input[type="date"] {
     font-size: 14px;
     display: inline-block;
     width: 100px;
-}
-
-#split_date {
-    /*margin-left: 158px;*/
 }
 
 #graphsvg {
@@ -324,10 +404,6 @@ input[type="date"] {
     height: 30px;
     width: auto;
     top: 5px;
-}
-
-.selectedCountry {
-    padding-top: 11px;
 }
 
 .grid2x2 {
@@ -368,20 +444,7 @@ input[type="date"] {
 
 /*SAVE*/
 
-#moreinfo-save input {
-    border: none;
-    background: #ba0c2F;
-    color: white;
-    border-radius: 8px;
-    padding: 15px 0px;
-    font-size: 18px;
-    display: inline-block;
-    float: right;
-    width: 15%;
-    margin-right: 20px; 
-    margin-top: 0px;
-    margin-bottom: 20px;
-}
+
 
 #back-to-top button {
     display: inline-block;
@@ -389,11 +452,12 @@ input[type="date"] {
     margin-left: 20px;
     margin-bottom: 20px;
     border: none;
-    background: #2b2e30;
+    background: #01997b;
     color: white;
-    border-radius: 8px;
-    padding: 15px 25px;
-    font-size: 18px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif; 
 }
 
 #moreinfo-save {
@@ -406,6 +470,23 @@ input[type="date"] {
     display: block;
 }
 
+
+
+#moreinfo-save-button input {
+    border: none;
+    background: #ba0c2F;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    display: inline-block;
+    float: right; 
+/*    margin-right: 20px; */
+    margin-top: 0px;
+    margin-bottom: 20px;
+    width: auto; 
+      
+}
 
 /*WEEKLY CHECKUP*/
 
@@ -424,10 +505,6 @@ input[type="date"] {
 #weekly-checkup .top-margin {
     margin-bottom: 50px;
 }
-
-
-/*ADD PHOTO POPUP*/
-
 
 /*BLOOMING*/
 
@@ -454,14 +531,14 @@ input[type="date"] {
     margin: 0 0 15px 20px;
 }
 
-#blooming-view-more {
-    background-color: #808080;
+.blooming-view-more {
+    background-color: #01997b;
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 10px 15px;
-    margin: 5px 15px 15px 60px;
+    margin: 5px 15px 25px 60px;
     border-radius: 5px;
     display: inline-block;
     border: none;
@@ -486,10 +563,6 @@ span.three-items-view {
   width: 30%;
 }
 
-span.two-items-view {
-  width: 49%;
-}
-
 .text-align-top {
   vertical-align: top;
 }
@@ -497,6 +570,15 @@ span.two-items-view {
 .health-entry, .sprayed-entry, .repotting-entry, .bloooming-entry {
   margin: 0 0 15px 20px;
 }
+
+span.span-date {
+    width: 28%;
+}
+
+span.span-comment {
+    width: 70%;
+}
+
 
 /* START OF BLOOMING GRAPH */
 
@@ -519,4 +601,24 @@ label span {
 
 .clean-span {
     background: none;
+}
+
+#collection-button {
+    width: auto;
+    border: none;
+    background: #808080;
+    color: white;
+    border-radius: 8px;
+    padding: 15px 10px;
+    font-size: 14px;
+    margin: 0 0 20px 10px;
+    display: inline-block;
+    font-family: Raleway, sans-serif;
+}
+
+iframe {
+    height: 44px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 5px;
 }
