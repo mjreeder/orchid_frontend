@@ -3,11 +3,18 @@
     <h1>Alphabetical</h1>
     <ul id="tabs">
 
-        <li class="active">
-            <a href="">A - G</a></li>
-        <li><a href="">H - N</a></li>
-        <li><a href="">O - U</a></li>
-        <li><a href="">V - Z</a></li>
+        <li class="option">
+            <span  ng-show="expanded != 'A'" ng-click="expand($event, 'A', 'G')">A - G</span>
+            <span  ng-show="expanded == 'A'"></span>
+        </li>
+        <li>
+            <span class="option">H - N</span>
+        </li>
+        <li>
+            <span class="option">O - U</span></li>
+        <li>
+            <span class="option">V - Z</span>
+        </li>
 
     </ul>
 </menu>

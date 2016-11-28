@@ -17,21 +17,25 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: './views/refactored/contact.html'
         })
         .state('view-collections', {
-            url: '/collections',
+            url: '/view_collections',
             templateUrl: './views/refactored/viewcollections.html'
         })
         .state('special-collections', {
-            url: '/special_collections',
-            templateUrl: './views/refactored/special-collections.html'
+            url: '/collections/:collection',
+            templateUrl: './views/refactored/collections.html'
         })
         .state('alphabetical', {
-            url: '/alphabet',
+            url: '/alphabet/:letter',
             templateUrl: './views/refactored/alphabetical.html',
             controller: 'alphabetController'
         })
-        .state('place-of-origin', {
-            url: '/origin',
+        .state('countries', {
+            url: '/country',
             templateUrl: './views/refactored/place-of-origin.html'
+        })
+        .state('subtribe', {
+            url: '/sub_tribe'
+            //TODO: sub tribe html
         })
         .state('404', {
             url: '*path',
