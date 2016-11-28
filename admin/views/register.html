@@ -21,7 +21,7 @@
                         <img src="images/checkmark.svg" alt="save icon" ng-hide="!editUsers">
                 </button>
         </div>
-                <label id="firstname" class="users">
+            <label id="firstname" class="users">
               First Name <input type="text" name="firstname" ng-model="user.first_name" ng-disabled="!editUsers">
             </label>
 
@@ -42,30 +42,30 @@
               <button ng-click="changePasswordFunction(user)">Change Password</button>
                </div>
             </label>
-<div class="delete-button-new"> 
-            <button id="password" ng-click="deleteUserPopUp()">Delete User</button></div>
+        <div class="delete-button-new">
+            <button id="password" ng-click="deleteUserPopUp(user)">Delete User</button></div>
         </div>
 
         <div class="section" ng-show="newUser">
 
             <label id="firstname" class="users">
-              First Name <input type="text" name="firstname" ng-model="editUsers" >
+              First Name <input type="text" name="newUser.first_name" ng-model="editUsers" >
             </label>
 
             <label id="lastname" class="users">
-              Last Name <input type="text" name="email" ng-model="user.lastName">
+              Last Name <input type="text" name="email" ng-model="newUser.first_name">
             </label>
 
             <label id="email" class="users">
-             Email <input type="text" name="email" ng-model="user.email">
+             Email <input type="text" name="email" ng-model="newUser.first_name">
             </label>
 
             <label id="email" class="users">
-                Password <input type="text" name="email" ng-model="user.password">
+                Password <input type="text" name="email" ng-model="newUser.password">
             </label>
 
             <label id="auth" class="users">
-                Manager <input type="checkbox" ng-model="user.isAuthUser"/><span class="table-checkbox"></span>
+                Manager <input type="checkbox" ng-model="newUser.first_name"/><span class="table-checkbox"></span>
             </label>
 
             <label id="password" class="users">
@@ -78,12 +78,8 @@
         <div ng-include="'views/change-password-admin.html'" ng-hide="changePassword"></div>
     </form>
 </div>
- 
 
 
-<div class="add-user"> 
+<div class="add-user">
     <button ng-click="addUser()">Add User</button>
 </div>
-
-
-

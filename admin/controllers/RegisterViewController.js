@@ -13,20 +13,16 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             $scope.editUsers = false;
             //TODO SAVE THE INFORMATION THAT IS CHANGED
 
-            console.log("check user");
             checkUserModelInformation();
 
 
             for(var i = 0; i < $scope.updateUsers.length; i++){
                 var user = $scope.updateUsers[i];
                 UserFactory.updateUser(user).then(function (response){
-                    console.log(response);
+
                 });
             }
-
-
         }
-
     };
 
     $scope.updateUsers = [];
@@ -90,9 +86,7 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
 
         }
 
-        for (var i = 0; i < $scope.allUsers.length; i ++){
-            console.log($scope.allUsers);
-        }
+
 
     });
 
@@ -110,10 +104,6 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             $scope.oringialUsers.push(singleUser);
 
         }
-
-        for (var i = 0; i < $scope.allUsers.length; i ++){
-        }
-
     });
 
     $scope.changePassword = true;
@@ -121,6 +111,19 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
 
     $scope.deleteUserPopUp = function(user){
         $scope.deleteUser = false;
+
+        var number;
+        for (var index = 0; index < $scope.allUsers.length; index++){
+
+            if (user.id == $scope.allUsers[index].id){
+                number = index;
+            }
+        }
+        $rootScope.$broadcast('deleteUserData', {
+            user: {
+                'specificUser': $scope.allUsers[number]
+            }
+        });
     };
 
     $scope.$on('changePassword', function(event, data) {
@@ -136,33 +139,30 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
     });
 
 
-
     $scope.changePasswordFunction = function(user){
         $scope.changePassword = false;
+
     };
 
     $scope.changePasswordFunction = function(user) {
         $scope.changePassword =false;
-
         var number;
         for (var index = 0; index < $scope.allUsers.length; index++){
+
             if (user.id == $scope.allUsers[index].id){
                 number = index;
             }
         }
+
         $rootScope.$broadcast('changePasswordData', {
             user: {
                 'specificUser': $scope.allUsers[number]
             }
         });
-        //$rootScope.$broadcast('hi');
     };
 
     $scope.deleteUserFunction = function(user){
 
-        UserFactory.deleteUser(user).then(function (response) {
-
-        });
 
         $route.reload();
 
@@ -175,8 +175,7 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
 
     $scope.saveUser = function(user){
 
-        console.log(user);
-    }
+    };
 
     var userAdded = false;
 
@@ -189,7 +188,6 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
        }
 
         //SEEING WHO IT IS
-        console.log(user);
 
         //ADD THIS USER TO A ARRAY FOR NEW SUBMISSION
 
@@ -210,22 +208,5 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             $scope.changeUser.push(user);
         }
 
-        console.log("here are the users that are currently in the change user array");
-        for (var i = 0; i < $scope.changeUser.length; i++){
-            console.log($scope.changeUser[i]);
-        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 });

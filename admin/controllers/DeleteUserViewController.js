@@ -5,6 +5,10 @@ app.controller('DeleteUserViewController', function($scope, $rootScope, UserFact
 
     $scope.allUsers = [];
 
+    $scope.$on('deleteUserData', function(event, data){
+        $scope.speificUser = data.user.specificUser;
+    });
+
     UserFactory.getAllUsers().then(function (response){
         var data = response.data.data;
 
@@ -17,24 +21,15 @@ app.controller('DeleteUserViewController', function($scope, $rootScope, UserFact
             }
             $scope.allUsers.push(singleUser);
         }
-
-        for (var i = 0; i < $scope.allUsers.length; i ++){
-            console.log($scope.allUsers[i]);
-        }
-
     });
 
-    $scope.deleteUserFunction = function(user){
-
+    $scope.deleteUserFunctionPopUp = function(user){
         UserFactory.deleteUser(user).then(function (response) {
-            console.log('doe');
-            console.log(response);
+
         });
-
+        $scope.closePopUp();
         $route.reload();
-
     };
-
 
     $scope.closePopUp = function(){
         $rootScope.$broadcast('deleteUser2', true);
