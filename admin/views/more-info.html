@@ -55,13 +55,13 @@
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
 
             <label id="add-country" >Add:</label>
-                <select id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)"></br>
+                <select id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew"></br>
                     <option disabled selected value>Select countries</option>
                     <option ng-repeat="country in allCountires">{{country.name}}</option>
                 </select>
 
             <label id="delete-country"  >Delete:</label>
-            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)"></br>
+            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew"></br>
                 <option disabled selected value>Select countries</option>
                 <option ng-repeat="country in selectedCountries">{{country.name}}</option>
             </select>
