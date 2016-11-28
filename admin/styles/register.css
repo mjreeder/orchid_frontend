@@ -125,15 +125,10 @@ div.add-user button {
 }
 
 #form-users .section .icon #icon{
-    width: 40px;
     display: inline-block;
     padding: 0;
-    background-color: white; 
     width: 68px;
     text-align: right;
-    /*position: absolute;*/
-    /*top: 5px;*/
-    /*left: 5px;*/
 }
 
 #icon img {
