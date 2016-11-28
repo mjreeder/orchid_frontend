@@ -5,7 +5,6 @@
     position: relative; 
 }
 
-
 #container p {
     color: white;
     font-family: 'Aleo', serif;
@@ -15,19 +14,15 @@
     width: 75%; 
     font-weight: 400; 
     padding: 20px 0px 0px 30px;
-    
-    
 }
 
-
-#register-title p {
+#register-p {
     margin: 30px 50px 0px 30px;
     font-size: 16px;
     line-height: 1.3;
-     margin-bottom: 30px;
+    margin-bottom: 30px;
+    position: relative;
 }
-
-
 
 #register-title h1 {
     display: block;
@@ -38,6 +33,10 @@
     font-family: 'aleo', "Times New Roman", serif;
     font-size: 24px;
     background-color: #eaeee7;
+}
+
+#register-title {
+    position: relative;
 }
 
 #form-users .section,
@@ -71,6 +70,14 @@
     width: 40%;
     padding-right: 15px;
     display: block;
+    font-size: 18px;
+    margin-top: 15px;
+    font-family: Raleway, sans-serif;
+    font-weight: 600;
+}
+
+#form-users .section input {
+    margin-top: 5px;
 }
 
 #auth input {
@@ -93,14 +100,9 @@
     display: block;
 }
 
-
-
 #form-users .section button,
 div.add-user button {
-/*    background-color: #808080;*/
-/*    padding: 10px 15px;*/
     font-size: 14px;
-/*    border-radius: 5px;*/
     margin: 0 0 10px 0;
     color: white;
 }
@@ -114,13 +116,29 @@ div.add-user button {
     padding: 0px 30px 30px 30px;
 }
 
-
+#icon p {
+    font-family: Raleway;
+    font-size: 16px;
+    color: black;
+    display: inline-block;
+    vertical-align: bottom;
+}
 
 #form-users .section .icon #icon{
-    width: 40px;
     display: inline-block;
-    float: right;
-    padding: 0; 
-    background-color: white; 
-    width: 28px; 
+    padding: 0;
+    width: 68px;
+    text-align: right;
+}
+
+#icon img {
+    width: 28px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+div.icon {
+    position: absolute;
+    top: 12px;
+    right: 26px;
 }

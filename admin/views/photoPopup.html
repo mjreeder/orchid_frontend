@@ -12,7 +12,9 @@
             <div class="matching-photos">
                 <img src="{{photo.url}}" alt="" class="thumbnail">
                 <label >{{photo.fileName}}</label>
-                <input type="button" value="Select" ng-click="newPhotoLink(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
+                <div class="button-new">
+                    <input type="button" value="Select" ng-click="newPhotoLink(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
+                </div>
             </div>
         </div>
 

@@ -2,74 +2,71 @@
     <p> Welcome Cheryl! </p>
 </div>
 
-<div id="register-title">
+<div id="register-p">
    <p> Welcome to your Current Registration Record. Here you will be able to create new users and delete old users. You may also edit any current user and change any current user's  login password. </p>
-   
-   
-   
-    <h1> Users: </h1>
 </div>
 
-<!--<div class="divider"></div>-->
+<div id="register-title">
+    <h1> Users: </h1>
+    <div class="icon">
+        <button id="icon" ng-click="startEditingUser()">
+            <p ng-hide="!editUsers">Save</p>
+            <img src="images/edit.svg" alt="edit icon" ng-hide="editUsers">
+            <img src="images/checkmark.svg" alt="save icon" ng-hide="!editUsers">
+        </button>
+    </div>
+</div>
 
 <div id="form-users">
     <form action="users">
         <div class="section" ng-repeat="user in allUsers">
-        <div class="icon"> 
-                <button id="icon" ng-click="startEditingUser()">
-                        <img src="images/edit.svg" alt="edit icon" ng-hide="editUsers">
-                        <img src="images/checkmark.svg" alt="save icon" ng-hide="!editUsers">
-                </button>
-        </div>
-            <label id="firstname" class="users">
-              First Name <input type="text" name="firstname" ng-model="user.first_name" ng-disabled="!editUsers">
-            </label>
 
-            <label id="lastname" class="users">
-              Last Name <input type="text" name="email" ng-model="user.last_name" ng-disabled="!editUsers">
-            </label>
+            <label id="firstname" class="users">First Name</label>
+            <input type="text" name="firstname" ng-model="user.first_name" ng-disabled="!editUsers">
 
-            <label id="email" class="users">
-             Email <input type="text" name="email" ng-model="user.email" ng-disabled="!editUsers">
-            </label>
+            <label id="lastname" class="users">Last Name</label>
+            <input type="text" name="email" ng-model="user.last_name" ng-disabled="!editUsers">
 
-            <label id="auth" class="users">
-                    Manager <input type="checkbox" ng-click="changeAuthLevel(user)" ng-model="user.isAuthUser" ng-disabled="!editUsers" /><span class="table-checkbox" ></span>
-                </label>
+            <label id="email" class="users">Email</label>
+            <input type="text" name="email" ng-model="user.email" ng-disabled="!editUsers">
+
+            <label id="auth" class="users">Manager
+            <input type="checkbox" ng-click="changeAuthLevel(user)" ng-model="user.isAuthUser" ng-disabled="!editUsers" /><span class="table-checkbox" ></span>
+            </label>
 
             <label id="password" class="users">
-             <div class="button-new">
-              <button ng-click="changePasswordFunction(user)">Change Password</button>
-               </div>
+                <div class="button-new">
+                    <button ng-click="changePasswordFunction(user)">Change Password</button>
+                </div>
             </label>
-        <div class="delete-button-new">
-            <button id="password" ng-click="deleteUserPopUp(user)">Delete User</button></div>
+
+        <div class="button-new">
+            <button id="password" ng-click="deleteUserPopUp()">Delete User</button></div>
         </div>
+
 
         <div class="section" ng-show="newUser">
+            <label id="firstname" class="users">First Name </label>
+            <input type="text" name="firstname" ng-model="editUsers" >
 
-            <label id="firstname" class="users">
-              First Name <input type="text" name="newUser.first_name" ng-model="editUsers" >
-            </label>
+            <label id="lastname" class="users">Last Name</label>
+            <input type="text" name="email" ng-model="user.lastName">
 
-            <label id="lastname" class="users">
-              Last Name <input type="text" name="email" ng-model="newUser.first_name">
-            </label>
 
-            <label id="email" class="users">
-             Email <input type="text" name="email" ng-model="newUser.first_name">
-            </label>
+            <label id="email" class="users">Email</label>
+            <input type="text" name="email" ng-model="user.email">
 
-            <label id="email" class="users">
-                Password <input type="text" name="email" ng-model="newUser.password">
-            </label>
+            <label id="email" class="users">Password</label>
+            <input type="text" name="email" ng-model="user.password">
 
-            <label id="auth" class="users">
-                Manager <input type="checkbox" ng-model="newUser.first_name"/><span class="table-checkbox"></span>
+            <label id="auth" class="users">Manager
+            <input type="checkbox" ng-model="user.isAuthUser"/><span class="table-checkbox"></span>
             </label>
 
             <label id="password" class="users">
-              <button ng-click="saveUser(user)">Save</button>
+                <div class="button-new">
+                    <button ng-click="saveUser(user)">Save</button>
+                </div>
             </label>
 
         </div>
@@ -78,8 +75,12 @@
         <div ng-include="'views/change-password-admin.html'" ng-hide="changePassword"></div>
     </form>
 </div>
+ 
 
 
-<div class="add-user">
+<div class="add-user button-new">
     <button ng-click="addUser()">Add User</button>
 </div>
+
+
+
