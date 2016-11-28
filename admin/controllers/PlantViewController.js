@@ -133,11 +133,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         newLink = [];
 
-
-
-
-
-
         $scope.plant = {
             id: plantData.id,
             accession_number: plantData.accession_number,
@@ -178,6 +173,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             image: "",
             dead_date: createDateFromString(plantData.dead_date)
         };
+
+        $scope.originalAccessionNumber = $scope.plant.accession_number;
 
         var speciesName  = $scope.plant.species;
         var id = $scope.plant.id;
@@ -531,42 +528,52 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     var promArray2 = [];
 
 
+
     $scope.saveAll = function() {
 
-        if ($scope.plantLocation === ""){
+        $scope.AccessionHasBeenChecked = false;
+
+        //DETERMINE IF THE TABLE IS EMPT
+        if ($scope.plantLocation == "" || $scope.plantLocation == undefined ){
             $scope.tableError = true;
         } else {
-            console.log($scope.plantLocation);
             $scope.tableError = false;
-
         }
 
-        if($scope.plant.accession_number == undefined || $scope.plant.accession_number == ""){
+        if ($scope.plant.accession_number == undefined || $scope.plant.accession_number == ""){
             $scope.accessionError = true;
+            if($scope.accessionError == true && $scope.tableError == true){
+                window.alert("Accession Error & No Table Given");
+            }else{
+                if($scope.accessionError == true){
+                    window.alert("Accession Error.");
+                }
+                if($scope.tableError == true){
+                    window.alert("Table Error.");
+                }
+            }
+
         } else {
 
             var prom = new Promise(function(resolve, reject) {
-
                 PlantsFactory.checkAccessionNumber($scope.plant.accession_number).then(function (response){
                     var accessionResponse = response.data.data;
                     resolve(accessionResponse);
                 });
             });
 
-
-
             promArray.push(prom);
+
             Promise.all(promArray).then(function (success) {
 
                 var updateList = [];
-                console.log("we have some data");
-                console.log(success.length);
+
+                console.log(success);
                 for (var i = 0; i < success.length; i++){
                     if (success[i] != ""){
                         updateList.push(success[i][0]);
                     }
                 }
-
 
                 var value = updateList[((updateList.length)-1)];
                 if(value == true){
@@ -575,13 +582,33 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                     $scope.accessionError = false;
                 }
 
-
-
                 $scope.$apply();
 
+                promArray = [];
 
-                $scope.continueForwaring();
+                //Checking the status of the errors.
 
+                $scope.AccessionHasBeenChecked = true;
+
+                if($scope.accessionError == true || $scope.tableError == true) {
+                    if($scope.tableError == true && $scope.accessionError == true){
+                        window.alert("Accession Error & No Table Given");
+                    }
+                    else if($scope.tableError == true){
+                        window.alert("Please enter a table");
+                    } else if($scope.accessionError == true){
+                        window.alert("Accession Error. Please enter number.");
+                    }
+                    $scope.accessionError = false;
+                    $scope.tableError = false;
+                } else {
+                    if ($scope.AccessionHasBeenChecked == true){
+                        $scope.continueForwaring();
+                    } else {
+                        window.alert("error")
+                    }
+
+                }
 
 
             }, function (error) {
@@ -591,17 +618,14 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
 
 
-        $scope.continueForwaring();
-
-
-
     };
 
     $scope.continueForwaring = function(){
+
+        //Getting the collection ID or setting it to null
         if($scope.selectedCollectionName == ""){
-            console.log("nothing in eqeuals");
             //SETTING THE COLLECTION ID TO NOTHING SINCE THERE IS NONE
-            $scope.collectionID = "NULL";
+            $scope.collectionID = null;
         } else {
             //GETTING THE CORRECT ID FOR THE COLLECTIONS
             for(var i = 0; i < $scope.allCollections.length; i++){
@@ -612,124 +636,177 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             }
         }
 
-
-
-        if($scope.plantLocation == ""){
-            $scope.tableError = true;
-            console.log("there is not locationname");
-        } else {
-            $scope.tableError == false;
-
-            console.log('it is real');
-            for(var i = 0; i < $scope.Tables.length; i++){
-                if($scope.plantLocation == $scope.Tables[i].name){
-                    $scope.tableID = $scope.Tables[i].id;
-                    $scope.tableError == false;
-                    break;
-                }
+        //Getting the table ID
+        for(var i = 0; i < $scope.Tables.length; i++){
+            if($scope.plantLocation == $scope.Tables[i].name){
+                $scope.tableID = $scope.Tables[i].id;
+                $scope.tableError == false;
+                break;
             }
         }
 
-
-        //$scope.tableError == true || $scope.accessionError == true
-
-        if(false){
-            if($scope.tableError == true && $scope.accessionError == true) {
-                $window.alert("1)Accession Number Match Found. 2) Please enter table");
-            } else {
-                if ($scope.tableError == true) {
-                    $window.alert("No Table Definied");
-
-                    $scope.tableError = false;
-                }
-                if ($scope.accessionError == true) {
-                    $window.alert("Accession already assigned. Please enter new Number");
-                }
-            }
+        var date_recieved_object;
+        if($scope.plant.date_recieved == null){
+            date_recieved_object = null;
         } else {
-            console.log("there is no error");
+            date_recieved_object = $scope.plant.date_recieved;
+        }
 
-            var date_recieved_object;
-            if($scope.plant.date_recieved == null){
-                date_recieved_object = null;
-            } else {
-                date_recieved_object = $scope.plant.date_recieved;
+        checkData();
+
+        var data = {
+            "accession_number" : $scope.plant.accession_number,
+            "name" : $scope.plant.name,
+            "scientific_name" : $scope.plant.scientific_name,
+            "class_name" : $scope.plant.class,
+            "tribe_name" : $scope.plant.tribe,
+            "subtribe_name" : $scope.plant.subtribe,
+            "genus_name" : $scope.plant.genus,
+            "distribution" : $scope.plant.distribution,
+            "variety_name" : $scope.plant.variety,
+            "authority" : $scope.plant.authority,
+            "species_name" : $scope.plant.species,
+            "habitat" : $scope.plant.habitat,
+            "origin_comment" : $scope.plant.origin_comment,
+            "received_from" : $scope.plant.received_from,
+            "donation_comment": $scope.plant.donation_comment,
+            "date_received": date_recieved_object,
+            "description": $scope.plant.description,
+            "parent_one": $scope.plant.parent_one,
+            "parent_two" : $scope.plant.parent_two,
+            "grex_status" : $scope.plant.grex_status,
+            "hybrid_comment" : $scope.plant.hybrid_comment,
+            "location_id" : $scope.tableID,
+            "special_collections_id" : $scope.collectionID
+        };
+
+        console.log("here are the countries");
+        for(var i = 0; i < $scope.selectedCountries.length; i++){
+            console.log($scope.selectedCountries[i]);
+        }
+
+        var plant = {
+            "data" : data
+        };
+
+        var prom2 = new Promise(function(resolve, reject) {
+            PlantsFactory.createNew(plant).then(function(response){
+                console.log(response);
+                var newPlantInfo = response.data.data;
+                resolve(newPlantInfo);
+            });
+        });
+
+        promArray2.push(prom2);
+        Promise.all(promArray2).then(function (success) {
+
+            var updateList = []
+            for (var i = 0; i < success.length; i++){
+                if (success[i] != ""){
+                    console.log(success[i]);
+                    $scope.newPlantID = success[i].id;
+                    $scope.newAcceessionNumer = success[i].accession_number;
+                }
             }
 
+            $scope.createNewPlantCountryLink();
 
 
-            var data = {
-                "accession_number" : $scope.plant.accession_number,
-                "name" : $scope.plant.name,
-                "scientific_name" : $scope.plant.scientific_name,
-                "class_name" : $scope.plant.class,
-                "tribe_name" : $scope.plant.tribe,
-                "subtribe_name" : $scope.plant.subtribe,
-                "genus_name" : $scope.plant.genus,
-                "distribution" : $scope.plant.distribution,
-                "variety_name" : $scope.plant.variety,
-                "authority" : $scope.plant.authority,
-                "species_name" : $scope.plant.species,
-                "habitat" : $scope.plant.habitat,
-                "origin_comment" : $scope.plant.origin_comment,
-                "received_from" : $scope.plant.received_from,
-                "donation_comment": $scope.plant.donation_comment,
-                "date_received": date_recieved_object,
-                "description": $scope.plant.description,
-                "parent_one": $scope.plant.parent_one,
-                "parent_two" : $scope.plant.parent_two,
-                "grex_status" : $scope.plant.grex_status,
-                "hybrid_comment" : $scope.plant.hybrid_comment,
-                "location_id" : $scope.tableID,
-                "special_collections_id" : $scope.collectionID
+            $scope.$apply();
+
+        }, function (error) {
+
+        });
+
+    };
+
+    $scope.createNewPlantCountryLink = function(){
+        console.log("here are the countries that are linked together");
+        for(var i = 0; i < $scope.selectedCountries.length; i++){
+            var p_c_link = {
+                'plant_id' : $scope.newPlantID,
+                'country_id': $scope.selectedCountries[i].id
             };
-
-            //Putting it to the object
-            var plant = {
-                "data" : data
-            };
-
-            var prom2 = new Promise(function(resolve, reject) {
-
-                PlantsFactory.createNew(plant).then(function(response){
-                    console.log(response);
-                    var newPlantInfo = response.data.data;
-                    resolve(newPlantInfo);
-                    //console.log(newPlantInfo);
-
-                });
-            });
-
-            promArray2.push(prom2);
-
-            Promise.all(promArray2).then(function (success) {
-
-                var updateList = [];
-                console.log("we have some data");
-                for (var i = 0; i < success.length; i++){
-                    if (success[i] != ""){
-                       console.log(success[i]);
-                        $scope.newAcceessionNumer = success[i].accession_number;
-
-                    }
-                }
-
-                $scope.forwardToPage($scope.newAcceessionNumer);
-
-                $scope.$apply();
-
-
-            }, function (error) {
-
-            });
-
+            PlantCountryLinkFactory.createPlantCountryLink(p_c_link).then(function(response){
+                console.log(response);
+            })
         }
+        $scope.forwardToPage();
 
 
     };
 
+    //PUTS UNDEFINDS TO STRINGS
+    function checkData(){
+
+        if($scope.plant.scientific_name == undefined){
+            $scope.plant.scientific_name = "";
+        }
+        if($scope.plant.name == undefined){
+            $scope.plant.name = "";
+        }
+        if($scope.plant.class == undefined){
+            $scope.plant.class = "";
+        }
+
+        if($scope.plant.tribe == undefined){
+            $scope.plant.tribe = "";
+        }
+
+        if($scope.plant.species == undefined){
+            $scope.plant.species = "";
+        }
+        if($scope.plant.authority == undefined){
+            $scope.plant.authority = "";
+        }
+        if($scope.plant.variety == undefined){
+            $scope.plant.variety = "";
+        }
+
+        if($scope.plant.subtribe == undefined){
+            $scope.plant.subtribe = "";
+        }
+
+        if($scope.plant.genus == undefined){
+            $scope.plant.genus = "";
+        }
+        if($scope.plant.distribution == undefined){
+            $scope.plant.distribution = "";
+        }
+
+        if($scope.plant.habitat == undefined){
+            $scope.plant.habitat = "";
+        }
+
+        if($scope.plant.origin_comment == undefined){
+            $scope.plant.origin_comment = "";
+        }
+        if($scope.plant.received_from == undefined){
+            $scope.plant.received_from = "";
+        }
+        if($scope.plant.donation_comment == undefined){
+            $scope.plant.donation_comment = "";
+        }
+
+        if($scope.plant.description == undefined){
+            $scope.plant.description = "";
+        }
+        if($scope.plant.parent_one == undefined){
+            $scope.plant.parent_one = "";
+        }
+        if($scope.plant.parent_two == undefined){
+            $scope.plant.parent_two = "";
+        }
+        if($scope.plant.grex_status == undefined){
+            $scope.plant.grex_status = "";
+        }
+        if($scope.plant.hybrid_comment == undefined){
+            $scope.plant.hybrid_comment = "";
+        }
+    }
+
     $scope.forwardToPage = function(){
-        $location.path('/plant/' + $scope.newAcceessionNumer+ '#top');
+        $location.path('/plant/' + $scope.newAcceessionNumer);
         $route.reload();
     };
 
@@ -1145,23 +1222,22 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         if ($scope.editPlant.critical == false) {
             $scope.editPlant.critical = true;
 
+            for(var i = 0; i < $scope.Tables.length; i++){
+                if($scope.plantLocation == $scope.Tables[i].name){
+                    $scope.tableID = $scope.Tables[i].id;
+                    $scope.tableError == false;
+                    break;
+                }
+            }
+
             var criticalPlantInformation = {
                 scientific_name: $scope.plant.scientific_name,
                 name: $scope.plant.name,
-                location_id: 7,
+                location_id: $scope.tableID,
                 id: $scope.plant.id,
                 accession_number: $scope.plant.accession_number
             };
             PlantsFactory.editCriticalPlant(criticalPlantInformation).then(function(response) {
-                console.log(response.data);
-            });
-
-            var criticalPlantTable = {
-                name: $scope.plant.locationName.name,
-                id: $scope.plant.id
-            }
-
-            PlantsFactory.editCritialPlantTable(criticalPlantTable).then(function(response) {
                 console.log(response.data);
             });
 
