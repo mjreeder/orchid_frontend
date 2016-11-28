@@ -1,7 +1,13 @@
 .move-popup {
     left: 50%;
-    top: 20px;
     transform: translate(-50%, 0);
+  
+}
+
+
+#move-form-content {
+     background-color: white; 
+     
 }
 
 #move-plants-button {
@@ -44,7 +50,7 @@
 }
 
 .move-popup-housename li {
-    font-size: 20px;
+/*    font-size: 20px;*/
     font-weight: 100;
     font-family: Aleo, serif;
     text-align: left;
@@ -68,7 +74,6 @@
 }  
 
 .move-popup .header {
-  background-color: #dfe0e0;
  width: 100%; 
 } 
 
@@ -83,9 +88,10 @@
 
 .move-popup .header  h1 {
  text-align: center;
+color: white; 
     font-family: aleo, serif;
     font-size: 26px;
-    background-color: #dfe0e0;
+    background-color: #01997b;
     padding: 20px 0px; 
     width: 100%;
     height: 30px;
@@ -100,18 +106,17 @@
 
 #houses-popup li {
     display: inline-block; 
-    background-color: #808080;
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
-    font-size: 14px;
+/*    font-size: 14px;*/
     padding: 10px 15px;
     margin: 5px 5px;
     border-radius: 5px;
 }
 
 .movepopup-selectedhouse {
-    background: #ba0c2f;
+    background: #01997b;
 }
 
 #movepopup-middle {
