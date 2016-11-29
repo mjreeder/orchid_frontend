@@ -3,14 +3,12 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
     var param1 = $routeParams.table_name;
 
     LocationFactory.getTableNameFromID(param1).then(function(response) {
-        //$scope.current_table_name = response.data.data.name;
-        //console.log($scope.table_name.name);
+
     });
 
     $scope.showTable = false;
     $scope.plantsInTable = [];
-
-
+    $scope.removeDaters = [];
 
 
     LocationFactory.checkTable(param1).then(function(response) {
@@ -35,7 +33,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
             //GETTING THE LOCATION AND THE VERIFICATION INFORMATION FOR EACH PLANT
 
             PlantsFactory.getByLocationID($scope.id).then(function(response) {
-                console.log("here is the data");
                 console.log(response.data.data);
                 if (response.data[0] == false) {
                     $scope.showTable = false;
@@ -46,6 +43,23 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
                     $scope.plantsInTable = response.data.data;
                     console.log($scope.plantsInTable);
+
+                    for(var i = 0; i < $scope.plantsInTable.length; i++){
+                        console.log("Hers is the dead date: "  + $scope.plantsInTable[i].inactive_date);
+                        var in_date = $scope.plantsInTable[i].inactive_date;
+                        var de_date = $scope.plantsInTable[i].dead_date;
+                        if(in_date != "0000-00-00"){
+                            console.log(in_date);
+
+                            console.log("we have found one!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                            $scope.removeDaters.push(i);
+
+                        }
+                    }
+
+                    for(var t = 0; t < $scope.removeDaters.length; t++){
+                        $scope.plantsInTable.splice($scope.removeDaters[t], 1);
+                    }
 
                     for (var i = 0; i < $scope.plantsInTable.length; i++) {
 
