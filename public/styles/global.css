@@ -219,13 +219,13 @@ header img {
 }
 
 header nav {
-    background-color: rgba(255, 255, 255, .7);
+    background-color: rgba(255, 255, 255, .2);
 }
 
 header ul {
     list-style: none;
-    padding: 30px;
     display: flex;
+    padding: 10px; 
     justify-content: space-between;
     max-width: 800px;
     margin: 0 auto;
@@ -234,9 +234,10 @@ header ul {
 
 /* mouse over link */
 
-header ul li a:hover {
-    transition: .5sec ease;
-    color: #ba0c2f;
+header ul li:hover {
+   background-color: rgba(0, 0, 0, .2); 
+    color: black; 
+
 }
 
 @media screen and (max-width: 300px) {
@@ -271,13 +272,16 @@ header ul li a:hover {
 
 header a {
     font-family: Aleo, 'Times New Roman', Times, serif;
-    font-weight: 100;
+    font-weight:400;
+    color: white; 
+    font-size: 24px; 
 }
 
 header li {
     display: inline-block;
-    font-size: 22px;
-    color: black;
+    transition: .7s ease;
+    padding: 15px 25px; 
+   
 }
 
 footer {
@@ -303,10 +307,10 @@ a {
 
 main {
     margin-bottom: 30px;
-    max-width: 800px;
+    max-width: 400px;
     width: 100%;
     margin: 0 auto 50px;
-    background-color: rgba(255, 255, 255, .7);
+    background-color: rgba(255, 255, 255, .2);
     padding: 30px;
 }
 
@@ -316,11 +320,11 @@ main {
     font-size: 18px;
     max-width: 220px;
     float: right;
-    width: 20%
+    width: 20%;
 }
 
 .whitebox {
-    background-color: white;
+    background-color: rgba(0, 0, 0, .3);
     padding: 10px 20px;
 }
 
@@ -335,13 +339,15 @@ main aside li {
     margin-left: 25px;
 }
 
-hr {
-    width: 190px;
-    height: 1.4px;
-    background: black;
-    border-style: none;
-    align-items: center;
-}
+/*
+    hr {
+        width: 190px;
+        height: 1.4px;
+        background: black;
+        border-style: none;
+        align-items: center;
+    }
+*/
 
 #search {
     width: 180px;
@@ -357,9 +363,14 @@ hr {
     letter-spacing: .5px;
 }
 
+
+.menubox li a {
+ transition: .5sec ease;   
+}
+
+
 .menubox li a:hover {
-    color: #ba0c2f;
-    transition: .5sec ease;
+    color: #cccccc; 
 }
 
 main h4 {

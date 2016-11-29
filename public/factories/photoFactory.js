@@ -1,4 +1,6 @@
-app.factory('PhotoFactory', function($http, $rootScope) {
+var orchidApp = angular.module('orchidApp');
+
+orchidApp.factory('PhotoFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = location.origin +'/orchid_site/public/api/photos';

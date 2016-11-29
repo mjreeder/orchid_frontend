@@ -1,7 +1,16 @@
 <link rel="stylesheet" href="styles/plant.css">
 <article>
-    <!--            <h1>Lady Slippers</h1>-->
-    <img src="http://placekitten.com/740/500" alt="">
+                <h1>{{NAMEOFPAGE}}</h1>
+    <div class="w3-content w3-section" style="max-width:500px">
+        <ul > <!--ng-reapet="imagesURL in allimagesURL" -->
+            <li><img class="mySlides" src="http://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg" style="width:100%"> </li>
+            <li><img class="mySlides" src="http://i164.photobucket.com/albums/u8/hemi1hemi/COLOR/COL9-6.jpg" style="width:100%"> </li>
+            <li><img class="mySlides" src="http://assets.barcroftmedia.com.s3-website-eu-west-1.amazonaws.com/assets/images/recent-images-11.jpg" style="width:100%"> </li>
+
+
+        </ul>
+
+    </div>
 
     <!--SIDE MENU-->
     <aside class="menubox">
@@ -14,65 +23,36 @@
         <section class="whitebox">
             <ul>
                 <li>
-                    <h4> Orchids </h4>
-                </li>
-
-                <li>
-                    <a href="special-collections.html">
-                        <div id="special">Special Collections</div>
-                    </a>
-                </li>
-                <!--
-                                            <section class="special">
-                                                <ul>
-                                                    <li><a href="collection1.html" id="collection1">Collection 1</a></li>
-                                                    <li><a href="collection2.html" id="collection2">Collection 2</a></li>
-                                                    <li><a href="collection3.html" id="collection3">Collection 3</a></li>
-                                                    <li><a href="collection4.html" id="collection4">Collection 4</a></li>
-                                                </ul>
-                                            </section>
-                -->
-                <li>
-                    <a href="alphabetical.html">
-                        <div id="alphabetical"> Alphabetical</div>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="place-of-origin.html">
-                        <div id="place">Place of Origin</div>
-                    </a>
-                </li>
-                <!--
-                                            <section class="countries">
-                                                <ul>
-                                                    <li><a href="">Asia</a></li>
-                                                    <li><a href="">Africa</a></li>
-                                                    <li><a href="europe.html">Europe</a></li>
-                                                    <li><a href="">North America</a></li>
-                                                </ul>
-                                            </section>
-                -->
-                <li><a href="whats-in-bloom.html" id="bloom">What's in Bloom</a></li>
-                <li><a href="subfamilies.html">Subfamilies</a></li>
-                <!--
-                                            <section class="subfam">
-                                               <ul>
-                                                    <li><a href="subfam1.html" id="subfam1">Subfam 1</a></li>
-                                                    <li><a href="subfam2.html" id="subfam2">Subfam 2</a></li>
-                                                    <li><a href="subfam3.html" id="subfam3">Subfam 3</a></li>
-                                                    <li><a href="subfam4.html" id="subfam4">Subfam 4</a></li>
-                                                </ul>
-                                            </section>
-                -->
-
-
-                <li><a href="images.html">Images</a></li>
-                <hr/>
-                <li>
                     <a href="">
-                        <h4>Ferns</h4></a>
+                        <h4> Orchids </h4></a>
                 </li>
+                <li><a ui-sref="generalCollections">Special Collections</a></li>
+                <section class="special">
+                    <ul>
+                        <li><a ui-sref="specificCollection">Speical Collection 1</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 2</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 3</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 4</a></li>
+                    </ul>
+                </section>
+                <li><a ui-sref="alphabetical">Alphabetical</a></li>
+                <li>
+                    <a ui-sref="countries">
+                        <div id="place">Countries</div>
+                    </a>
+                </li>
+                <li><a ui-sref="blooming">What's in Bloom</a></li>
+                <li><a ui-sref="subtribe">Subtribes</a></li>
+                <section class="special">
+                    <ul>
+                        <li><a ui-sref="specificSubTribe" id="collection1">Subtribe 1</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection2">Subtribe 2</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection3">Subtribe 3</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection4">Subtribe 4</a></li>
+                    </ul>
+                </section>
+                <hr/>
+
             </ul>
         </section>
     </aside>
@@ -81,33 +61,32 @@
     <section class="sectiontwo">
         <section id="taxonomic" class="property-box transparent-box">
             <ul>
-                <li><b>Class:</b> Denise Blankenberger</li>
-                <li><b>Phylum:</b> Name</li>
-                <li><b>Family:</b> Name</li>
-                <li><b>Genus:</b> Name</li>
-                <li><b>Species:</b> Name</li>
+                <li><b>Class:</b>{{plant.class_name}}</li>
+                <li><b>Tribe:</b>{{plant.tribe_name}}</li>
+                <li><b>Subtribe:</b>{{plant.subtribe_name}}</li>
+                <li><b>Genus:</b>{{plant.genus_name}}</li>
+                <li><b>Species:</b>{{plant.species_name}}</li>
+                <li><b>Variety:</b>{{plant.variety_name}}</li>
             </ul>
         </section>
 
         <section id="hybrid" class="property-box transparent-box">
             <ul>
-                <li><b>Parent 1:</b> Name</li>
-                <li><b>Parent 2:</b> Name</li>
-                <li><b>GREX:</b> Name</li>
-                <li><b>Status:</b> Name</li>
+                <li><b>Parent 1:</b>{{plant.parent_one}}</li>
+                <li><b>Parent 2:</b>{{plant.parent_two}}</li>
+                <li><b>GREX:</b>{{plant.grex_status}}</li>
+                <li><b>Status:</b>{{plant.hybrid_status}}</li>
             </ul>
         </section>
     </section>
 
     <section id="description" class="transparent-box">
-        <p><b>Description:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit nesciunt dolorum quia nam
-            quas tempora dicta architecto atque, deserunt, similique enim rerum eos doloremque libero quae sint quis
-            explicabo dolor.</p>
+        <p><b>Description:</b> {{plant.description}}</p>
         <br>
-        <p><b>Culture:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit nesciunt dolorum quia nam quas
-            tempora dicta architecto atque, deserunt, similique enim rerum eos doloremque libero quae sint quis
-            explicabo dolor.</p>
+        <p><b>Culture:</b>{{plant.culture}}</p>
     </section>
+
+
 
     <section id="chart">
         <h3>Flowering Calendar</h3>
