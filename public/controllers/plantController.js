@@ -1,9 +1,12 @@
-orchidApp.controller('plantController', function($scope, $location, $state, $stateParams, PlantsFactory) {
+orchidApp.controller('plantController', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
 
     $scope.NAMEOFPAGE = $stateParams.accession_number;
 
     $scope.noPlant = false;
     $scope.plantInformation = "";
+    $scope.photoInformation = "";
+    $scope.url = "";
+    $scope.plant = {};
 
     if($scope.NAMEOFPAGE == ""){
         console.log('there is nothing to display');
@@ -18,6 +21,7 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
 
                 $scope.noPlant = true;
                 $scope.plantInformation = response.data.data[0];
+
                 $scope.createPlant();
             }
         });
@@ -28,6 +32,8 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
     $scope.createPlant = function(){
         console.log($scope.plantInformation);
         $scope.plant = {
+            'id': $scope.plantInformation.id,
+
             'class_name' : $scope.plantInformation.class_name,
             'species_name' : $scope.plantInformation.species_name,
             'variety_name' : $scope.plantInformation.variety_name,
@@ -42,9 +48,23 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
 
             'description' : $scope.plantInformation.description,
             'culture' : $scope.plantInformation.culture
-        }
+        };
 
-        
+        PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function (response){
+            $scope.photoInformation = response.data.data;
+            console.log(response.data.data);
+            $scope.url = $scope.photoInformation[1].url;
+
+        });
+
+        //for(var i = 0; i < $scope.photoInformation.length; i++){
+        //
+        //}
+
+
+
+
+
     };
 
 

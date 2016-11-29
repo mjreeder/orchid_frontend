@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="styles/plant.css">
 <article>
                 <h1>{{NAMEOFPAGE}}</h1>
-    <img src="http://placekitten.com/740/500" alt="">
+    <img src="{{url}}" alt="">
 
     <!--SIDE MENU-->
     <aside class="menubox">
@@ -17,29 +17,29 @@
                     <a href="">
                         <h4> Orchids </h4></a>
                 </li>
-                <li><a href="">Special Collections</a></li>
+                <li><a ui-sref="generalCollections">Special Collections</a></li>
                 <section class="special">
                     <ul>
-                        <li><a href="collection1.html" id="collection1">Speical Collection 1</a></li>
-                        <li><a href="collection2.html" id="collection2">Speical Collection 2</a></li>
-                        <li><a href="collection3.html" id="collection3">Speical Collection 3</a></li>
-                        <li><a href="collection4.html" id="collection4">Speical Collection 4</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 1</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 2</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 3</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 4</a></li>
                     </ul>
                 </section>
-                <li><a href="alphabetical.html">Alphabetical</a></li>
+                <li><a ui-sref="alphabetical">Alphabetical</a></li>
                 <li>
-                    <a href="country.html">
-                        <div id="place">Place of Origin</div>
+                    <a ui-sref="countries">
+                        <div id="place">Countries</div>
                     </a>
                 </li>
-                <li><a href="">What's in Bloom</a></li>
-                <li><a href="">Subtribes</a></li>
+                <li><a ui-sref="blooming">What's in Bloom</a></li>
+                <li><a ui-sref="subtribe">Subtribes</a></li>
                 <section class="special">
                     <ul>
-                        <li><a href="collection1.html" id="collection1">Subtribe 1</a></li>
-                        <li><a href="collection2.html" id="collection2">Subtribe 2</a></li>
-                        <li><a href="collection3.html" id="collection3">Subtribe 3</a></li>
-                        <li><a href="collection4.html" id="collection4">Subtribe 4</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection1">Subtribe 1</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection2">Subtribe 2</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection3">Subtribe 3</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection4">Subtribe 4</a></li>
                     </ul>
                 </section>
                 <hr/>
