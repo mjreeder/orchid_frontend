@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="styles/plant.css">
 <article>
                 <h1>{{NAMEOFPAGE}}</h1>
-    <img src="http://placekitten.com/740/500" alt="">
+    <img src="{{url}}" alt="">
 
     <!--SIDE MENU-->
     <aside class="menubox">
@@ -17,29 +17,29 @@
                     <a href="">
                         <h4> Orchids </h4></a>
                 </li>
-                <li><a href="">Special Collections</a></li>
+                <li><a ui-sref="generalCollections">Special Collections</a></li>
                 <section class="special">
                     <ul>
-                        <li><a href="collection1.html" id="collection1">Speical Collection 1</a></li>
-                        <li><a href="collection2.html" id="collection2">Speical Collection 2</a></li>
-                        <li><a href="collection3.html" id="collection3">Speical Collection 3</a></li>
-                        <li><a href="collection4.html" id="collection4">Speical Collection 4</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 1</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 2</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 3</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 4</a></li>
                     </ul>
                 </section>
-                <li><a href="alphabetical.html">Alphabetical</a></li>
+                <li><a ui-sref="alphabetical">Alphabetical</a></li>
                 <li>
-                    <a href="country.html">
-                        <div id="place">Place of Origin</div>
+                    <a ui-sref="countries">
+                        <div id="place">Countries</div>
                     </a>
                 </li>
-                <li><a href="">What's in Bloom</a></li>
-                <li><a href="">Subtribes</a></li>
+                <li><a ui-sref="blooming">What's in Bloom</a></li>
+                <li><a ui-sref="subtribe">Subtribes</a></li>
                 <section class="special">
                     <ul>
-                        <li><a href="collection1.html" id="collection1">Subtribe 1</a></li>
-                        <li><a href="collection2.html" id="collection2">Subtribe 2</a></li>
-                        <li><a href="collection3.html" id="collection3">Subtribe 3</a></li>
-                        <li><a href="collection4.html" id="collection4">Subtribe 4</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection1">Subtribe 1</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection2">Subtribe 2</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection3">Subtribe 3</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection4">Subtribe 4</a></li>
                     </ul>
                 </section>
                 <hr/>
@@ -52,32 +52,29 @@
     <section class="sectiontwo">
         <section id="taxonomic" class="property-box transparent-box">
             <ul>
-                <li><b>Class:</b> Denise Blankenberger</li>
-                <li><b>Phylum:</b> Name</li>
-                <li><b>Family:</b> Name</li>
-                <li><b>Genus:</b> Name</li>
-                <li><b>Species:</b> Name</li>
+                <li><b>Class:</b>{{plant.class_name}}</li>
+                <li><b>Tribe:</b>{{plant.tribe_name}}</li>
+                <li><b>Subtribe:</b>{{plant.subtribe_name}}</li>
+                <li><b>Genus:</b>{{plant.genus_name}}</li>
+                <li><b>Species:</b>{{plant.species_name}}</li>
+                <li><b>Variety:</b>{{plant.variety_name}}</li>
             </ul>
         </section>
 
         <section id="hybrid" class="property-box transparent-box">
             <ul>
-                <li><b>Parent 1:</b> Name</li>
-                <li><b>Parent 2:</b> Name</li>
-                <li><b>GREX:</b> Name</li>
-                <li><b>Status:</b> Name</li>
+                <li><b>Parent 1:</b>{{plant.parent_one}}</li>
+                <li><b>Parent 2:</b>{{plant.parent_two}}</li>
+                <li><b>GREX:</b>{{plant.grex_status}}</li>
+                <li><b>Status:</b>{{plant.hybrid_status}}</li>
             </ul>
         </section>
     </section>
 
     <section id="description" class="transparent-box">
-        <p><b>Description:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit nesciunt dolorum quia nam
-            quas tempora dicta architecto atque, deserunt, similique enim rerum eos doloremque libero quae sint quis
-            explicabo dolor.</p>
+        <p><b>Description:</b> {{plant.description}}</p>
         <br>
-        <p><b>Culture:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit nesciunt dolorum quia nam quas
-            tempora dicta architecto atque, deserunt, similique enim rerum eos doloremque libero quae sint quis
-            explicabo dolor.</p>
+        <p><b>Culture:</b>{{plant.culture}}</p>
     </section>
 
     <section id="chart">

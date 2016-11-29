@@ -54,6 +54,10 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
         return $http.get(baseUrl + '/subtribe/' + subtribe);
     };
 
+    data.specificCommonName = function(commonName){
+        return $http.get(baseUrl + '/specificCommonName/' + commonName);
+    }
+
 
 
 
