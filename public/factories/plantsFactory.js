@@ -27,17 +27,34 @@ app.factory('PlantsFactory', function($http, $rootScope) {
         return $http.get(baseUrl + '/table/' + id);
     };
 
-    data.getPhoto = function(){
-        return $http({
-            method: "GET",
-            url: "https://api.box.com/2.0/files/98747341454/thumbnail.jpg",
-            headers: {
-                'Authorization': 'Bearer SpfobNxpqmsUeSz2D5m17FSp2mnVJEWt',
-                'Content-Type': 'application/json'
-            }
-
-        })
+    //get the current Blooming ones
+    data.getCurrentBlooming = function(){
+        return $http.get(baseUrl + '/getBlooming');
     };
+
+    //get the countries
+    data.getCountries = function(countries){
+        return $http.get(baseUrl + '/getCountries/' + countries);
+    };
+
+    //get the collections
+    data.getCollections = function(collection){
+        return $http.get(baseUrl + '/getCollections/' + collection);
+    };
+
+    //get the common name
+    data.getCollections = function(letter){
+        return $http.get(baseUrl + '/commonName/' + letter);
+    };
+
+    //get the subtribes
+    data.getCollections = function(subtribe){
+        return $http.get(baseUrl + '/subtribe/' + subtribe);
+    };
+
+
+
+
 
     return data;
 });

@@ -8,5 +8,9 @@ app.factory('countryFactory', function($http) {
         return $http.get(baseUrl);
     };
 
+    data.getCurrentCountires = function(id){
+        return $http.get(baseUrl+ '/currentCountries');
+    };
+
     return data;
 });
