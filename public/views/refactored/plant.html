@@ -1,7 +1,13 @@
 <link rel="stylesheet" href="styles/plant.css">
 <article>
                 <h1>{{NAMEOFPAGE}}</h1>
-    <img src="{{url}}" alt="">
+    <div class="w3-content w3-section" style="max-width:500px">
+        <ul ng-reapet="imagesURL in allimagesURL">
+            <li>        <img class="mySlides" src="{{imagesURL}}" style="width:100%"> </li>
+
+        </ul>
+
+    </div>
 
     <!--SIDE MENU-->
     <aside class="menubox">
@@ -76,6 +82,8 @@
         <br>
         <p><b>Culture:</b>{{plant.culture}}</p>
     </section>
+
+
 
     <section id="chart">
         <h3>Flowering Calendar</h3>

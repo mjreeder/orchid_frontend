@@ -4,9 +4,11 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
 
     $scope.noPlant = false;
     $scope.plantInformation = "";
-    $scope.photoInformation = "";
+    $scope.photoInformation = [];
     $scope.url = "";
     $scope.plant = {};
+
+    $scope.allimagesURL =[];
 
     if($scope.NAMEOFPAGE == ""){
         console.log('there is nothing to display');
@@ -51,15 +53,27 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
         };
 
         PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function (response){
-            $scope.photoInformation = response.data.data;
-            console.log(response.data.data);
-            $scope.url = $scope.photoInformation[1].url;
+            console.log(response);
+
+            var data = response.data.data;
+            for(var i = 0; i < data.length; i ++){
+                $scope.allimagesURL.push(data[i].url);
+            }
 
         });
+        
 
-        //for(var i = 0; i < $scope.photoInformation.length; i++){
-        //
-        //}
+
+
+        for(var i = 0; i < $scope.photoInformation.length; i++){
+            console.log($scope.photoInformation[i].url);
+            allimagesURL.add($scope.photoInformation[i].url);
+        }
+
+        console.log($scope.allimagesURL.length);
+        for(var i = 0; i < $scope.allimagesURL.length; i++){
+           console.log($scope.allimagesURL[i]);
+        }
 
 
 
@@ -67,6 +81,20 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
 
     };
 
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}
+        x[myIndex-1].style.display = "block";
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+    }
 
 
     console.log("WE ARE AT THE PLANT VIEW CONTROLLER");
