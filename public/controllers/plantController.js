@@ -2,15 +2,53 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
 
     $scope.NAMEOFPAGE = $stateParams.accession_number;
 
-    //$scope.NAMEOFPAGE = "HELLO";
+    $scope.noPlant = false;
+    $scope.plantInformation = "";
 
-    console.log("WE ARE AT THE PLANT VIEW CONTROLLER");
+    if($scope.NAMEOFPAGE == ""){
+        console.log('there is nothing to display');
+    } else {
+        PlantsFactory.specificCommonName($scope.NAMEOFPAGE).then(function (response) {
+            console.log(response);
+            if (response.data.data[0] == false) {
+                $scope.noPlant = false;
+                //route to 404 if not found
+                $location.path('/404');
+            } else {
 
-    console.log("WE ARE AT THE PLANT VIEW CONTROLLER");
-    console.log("WE ARE AT THE PLANT VIEW CONTROLLER");
-    console.log("WE ARE AT THE PLANT VIEW CONTROLLER");
-    console.log("WE ARE AT THE PLANT VIEW CONTROLLER");
-    console.log("WE ARE AT THE PLANT VIEW CONTROLLER");
+                $scope.noPlant = true;
+                $scope.plantInformation = response.data.data[0];
+                $scope.createPlant();
+            }
+        });
+
+
+    }
+
+    $scope.createPlant = function(){
+        console.log($scope.plantInformation);
+        $scope.plant = {
+            'class_name' : $scope.plantInformation.class_name,
+            'species_name' : $scope.plantInformation.species_name,
+            'variety_name' : $scope.plantInformation.variety_name,
+            'subtribe_name' : $scope.plantInformation.subtribe_name,
+            'tribe_name' : $scope.plantInformation.tribe_name,
+            'genus_name' : $scope.plantInformation.genus_name,
+
+            'parent_one' : $scope.plantInformation.parent_one,
+            'parent_two' : $scope.plantInformation.parent_two,
+            'grex_status' : $scope.plantInformation.grex_status,
+            'hybrid_status' : $scope.plantInformation.hybrid_status,
+
+            'description' : $scope.plantInformation.description,
+            'culture' : $scope.plantInformation.culture
+        }
+
+        
+    };
+
+
+
     console.log("WE ARE AT THE PLANT VIEW CONTROLLER");
 
 
