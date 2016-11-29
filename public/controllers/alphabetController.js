@@ -82,7 +82,8 @@ orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$s
     };
 
     var onLetterClick = function(letter) {
-      console.log('clicked ' + letter);
+        console.log('clicked ' + letter);
+        $state.go('alphabetical.search', {letter: letter});
     };
 
     console.log($scope.letter);

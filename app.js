@@ -26,9 +26,14 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
             controller: 'specialCollectionsController'
         })
         .state('alphabetical', {
-            url: '/alphabet/:letter',
+            url: '/alphabet',
+            abstract: true,
             templateUrl: './views/refactored/alphabetical.html',
             controller: 'alphabetController'
+        })
+        .state('alphabetical.search', {
+            url: '/:letter',
+            controller: 'letterSearchController'
         })
         .state('blooming', {
             url: '/blooming',
