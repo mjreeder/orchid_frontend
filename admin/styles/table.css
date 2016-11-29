@@ -385,17 +385,17 @@ td {
 
 .glowHealthPoor {
     /*   box-shadow:0 0 20px #BA0C2F;*/
-    background-color: #BA0C2F !important;
+    background-color: #EF645F;
 }
 
 .glowHealthFair {
     /*  box-shadow:0 0 20px #F3C467;*/
-    background-color: #F3C467;
+    background-color: #FDE48F;
 }
 
 .glowHealthGood {
     /*  box-shadow:0 0 20px #61d166;*/
-    background-color: #61d166;
+    background-color: #01997B;
 }
 
 .noglowHealth {
