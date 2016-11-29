@@ -60,6 +60,11 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: './views/refactored/plant.html',
             controller: 'plantController'
         })
+        .state('specificCollection', {
+            url: '/collections/:collection',
+            templateUrl: './views/refactored/generalCategory.html',
+            controller: 'specificSpecialCollectionsController'
+        })
         .state('404', {
             url: '*path',
             templateUrl: './views/refactored/404.html'
