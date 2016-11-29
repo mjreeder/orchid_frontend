@@ -33,9 +33,13 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/country',
             templateUrl: './views/refactored/place-of-origin.html'
         })
+        .state('blooming', {
+            url: '/blooming',
+            templateUrl: './views/refactored/blooming.html'
+        })
         .state('subtribe', {
-            url: '/sub_tribe'
-            //TODO: sub tribe html
+            url: '/sub_tribe',
+            templateUrl: './views/refactored/subtribes.html'
         })
         .state('404', {
             url: '*path',

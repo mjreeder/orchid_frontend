@@ -2,20 +2,18 @@
 <menu>
     <h1>Alphabetical</h1>
     <ul id="tabs">
-        <li class="option" data-start-letter="A" data-end-letter="G" data-expanded="false">
-            <span ng-click="toggleExpanded($event)">A - G</span>
-            <span></span>
+
+        <li class="option">
+            <span  ng-show="expanded != 'A'" ng-click="expand($event, 'A', 'G')">A - G</span>
+            <span  ng-show="expanded == 'A'"></span>
         </li>
-        <li class="option" data-start-letter="H" data-end-letter="N" data-expanded="false">
-            <span ng-click="toggleExpanded($event)">H - N</span>
-            <span></span>
+        <li>
+            <span class="option">H - N</span>
         </li>
-        <li class="option" data-start-letter="O" data-end-letter="U" data-expanded="false">
-            <span ng-click="toggleExpanded($event)">O - U</span>
-            <span></span>
-        <li class="option" data-start-letter="V" data-end-letter="Z" data-expanded="false">
-            <span ng-click="toggleExpanded($event)">V - Z</span>
-            <span></span>
+        <li>
+            <span class="option">O - U</span></li>
+        <li>
+            <span class="option">V - Z</span>
         </li>
 
     </ul>
