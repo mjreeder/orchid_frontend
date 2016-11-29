@@ -1,6 +1,11 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('bloomingController', ['$scope', '$location', '$state', '$stateParams', function($scope, $location, $state, $stateParams) {
+orchidApp.controller('bloomingController', function($scope, $location, $state, $stateParams, PlantsFactory) {
 
 
-    console.log('blooming controller loaded');
-}]);
+    $scope.NAMEOFPAGE = "BLOOOOOOOOMMMMMMIIIINNNGGGG";
+
+    PlantsFactory.getCurrentBlooming().then(function (response){
+        console.log(response);
+    });
+
+
+});

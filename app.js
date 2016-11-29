@@ -13,29 +13,52 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: './views/refactored/about.html'
         })
         .state('contact', {
-            url: '/about',
+            url: '/contact',
             templateUrl: './views/refactored/contact.html'
         })
         .state('view-collections', {
-            url: '/view_collections',
-            templateUrl: './views/refactored/viewcollections.html'
+            url: '/menu',
+            templateUrl: './views/refactored/menu.html'
         })
-        .state('special-collections', {
-            url: '/collections/:collection',
-            templateUrl: './views/refactored/collections.html'
+        .state('generalCollections', {
+            url: '/collections',
+            templateUrl: './views/refactored/generalCategory.html',
+            controller: 'specialCollectionsController'
         })
         .state('alphabetical', {
             url: '/alphabet/:letter',
             templateUrl: './views/refactored/alphabetical.html',
             controller: 'alphabetController'
         })
+        .state('blooming', {
+            url: '/blooming',
+            templateUrl: './views/refactored/generalCategory.html',
+            controller: 'bloomingController'
+        })
         .state('countries', {
             url: '/country',
-            templateUrl: './views/refactored/place-of-origin.html'
+            templateUrl: './views/refactored/generalCategory.html',
+            controller: 'countriesController'
+        })
+        .state('specificCountry', {
+            url: '/country/:country',
+            templateUrl: './views/refactored/generalCategory.html',
+            controller: 'specificCountryController'
         })
         .state('subtribe', {
-            url: '/sub_tribe'
-            //TODO: sub tribe html
+            url: '/sub_tribe',
+            templateUrl: './views/refactored/generalCategory.html',
+            controller: 'subtribeController'
+        })
+        .state('specificSubTribe', {
+            url: '/sub_tribe/:tribe',
+            templateUrl: './views/refactored/generalCategory.html',
+            controller: 'specificSubTribeController'
+        })
+        .state('specificPlant', {
+            url: '/plant/:accession_number',
+            templateUrl: './views/refactored/plant.html',
+            controller: 'plantController'
         })
         .state('404', {
             url: '*path',

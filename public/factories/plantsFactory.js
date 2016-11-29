@@ -1,4 +1,6 @@
-app.factory('PlantsFactory', function($http, $rootScope) {
+var orchidApp = angular.module('orchidApp');
+
+orchidApp.factory('PlantsFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = location.origin +'/orchid_site/public/api/plants';

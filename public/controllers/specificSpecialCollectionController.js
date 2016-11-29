@@ -3,4 +3,11 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
 
 
     console.log('SPECIFIC special Collections controller loaded');
+    console.log('SPECIFIC special Collections controller loaded');
+    console.log('SPECIFIC special Collections controller loaded');
+    console.log('SPECIFIC special Collections controller loaded');
+    console.log('SPECIFIC special Collections controller loaded');
+    console.log('SPECIFIC special Collections controller loaded');
+    console.log('SPECIFIC special Collections controller loaded');
+
 }]);

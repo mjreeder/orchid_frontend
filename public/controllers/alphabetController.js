@@ -4,6 +4,8 @@ orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$s
     $scope.letter = $stateParams.letter;
     $scope.expanded = '';
 
+    $scope.NAMEOFPAGE = "ALPHA";
+
     $scope.expand = function(event, startLetter, endLetter) {
         console.log('expand');
         var element = event.target;
