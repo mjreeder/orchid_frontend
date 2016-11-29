@@ -20,7 +20,7 @@ main menu h1  {
 }
 
 main menu {
-    background-color: rgba(0, 0, 0, .4);
+    background-color: rgba(225, 225, 225, .2);
 
     
 }
@@ -67,7 +67,8 @@ main {
 }
 
 .active {
-    background-color: rgba(250, 250, 250, .7);
+/*    background-color: rgba(250, 250, 250, .7);*/
+    background-color: white; 
     padding: 10px 15px 10px 15px;
     color: black;
     border-top-left-radius: 8px;
@@ -111,10 +112,12 @@ body {
     width: 20%
 }
 
+/*
 .whitebox {
     background-color: white;
     padding: 10px 20px;
 }
+*/
 
 @media screen and (max-width: 804px){
     .whitebox {
@@ -134,13 +137,7 @@ main aside li {
     margin-left: 25px;
 }
 
-hr {
-    width: 190px;
-    height: 1.4px;
-    background: black;
-    border-style: none;
-    align-items: center;
-}
+
 
 #search {
     width: 100%;
@@ -162,9 +159,11 @@ hr {
 	}
 }
 
-
+.menubox li a {
+ transition: .4s ease;    
+}
 .menubox li a:hover {
-    color: #ba0c2f;
+    color: #dddddd;
     transition: .5sec ease;
 }
 
@@ -180,7 +179,8 @@ main h4 {
 }
 
 #grid {
-    background-color: rgba(225, 225, 225, .7);
+/*    background-color: rgba(225, 225, 225, .7);*/
+    background-color: white; 
     overflow: hidden;
     position: inline-block;
 }
