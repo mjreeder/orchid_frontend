@@ -85,16 +85,11 @@
     </div>
     
 
-    <div class="table-footer" ng-if="showTable">
-       <div class="button-new">
+    <div class="table-footer button-new" ng-if="showTable">
         <button class="save" id="save" type="submit" ng-click="updateDates()">Save</button>
-         </div>
 
-<div class="button-new"> 
-        <button class="moveplants" id="edit-button" type="submit" ng-click="movePlantsFunction()">Edit</button></div>
-        <div class="button-new"> 
-        <button class="save moveplants" id="move-certain-plants" type="submit" ng-show="showButton" ng-hide="!showButton" ng-click="showMoveFunction()">Move Selected Plants</button></div>
-
+        <button class="moveplants" id="edit-button" type="submit" ng-click="movePlantsFunction()">Edit</button>
+        <button class="save moveplants" id="move-certain-plants" type="submit" ng-show="showButton" ng-hide="!showButton" ng-click="showMoveFunction()">Move Selected Plants</button>
     </div>
 
 
