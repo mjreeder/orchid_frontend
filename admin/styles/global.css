@@ -174,9 +174,8 @@ header {
 
 header .main-heading ul {
     position: absolute;
-    bottom: -30px;
-    right: -20px;
-
+    bottom: 30px;
+    right: 40px;
 }
 
 
@@ -307,9 +306,6 @@ header .main-heading li a {
 
 
 
-#main-nav ul {
-    padding: 60px;
-}
 
 #logo {
     width: 97px;
@@ -336,19 +332,19 @@ input[type="button"] {
 }
 
 
-.button-new button {
+.button-new button, .button-new input {
     background-color: #01997b;
     color: white;
-    -webkit-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
-    -moz-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
-    box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
     padding: 10px 15px;
     font-family: 'Raleway', sans-serif;
     text-align: center;
     border-radius: 5px;
     font-weight: 600;
+    border: none;
 }
-
 
 
 
