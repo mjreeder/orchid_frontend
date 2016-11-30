@@ -17,7 +17,7 @@
                     <label>Start of Bloom:</label>
                     <button ng-click="blooming_start_date = today" class="today" ng-disabled="startNewBloomTodayDisable" ng-class="{customNgDisabled: startNewBloomTodayDisable}">Today</button>
                     <button class="calendar"><img src="images/calendaricon.svg" alt="">
-                        <input type="date" id="startDateBloom" ng-model="blooming_start_date"/>
+                        <input type="date" id="startDateBloom" ng-model="blooming_start_date" ng-disabled="startNewBloomTodayDisable"/>
                     </button>
                     <output>{{ blooming_start_date | date }}</output>
                 </div>
@@ -26,7 +26,7 @@
                     <label>End of Bloom:</label>
                     <button ng-click="blooming_end_date = today" class="today" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}">Today</button>
                     <button class="calendar"><img src="images/calendaricon.svg" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}" alt="">
-                        <input type="date" id="endDateBloom" ng-model="blooming_end_date"/>
+                        <input type="date" id="endDateBloom" ng-model="blooming_end_date" ng-disabled="disableEndBloom"/>
                     </button>
                     <output>{{ blooming_end_date | date }}</output>
                 </div>

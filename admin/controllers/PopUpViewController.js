@@ -4,6 +4,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.flagWasDisabled = false;
     $scope.createBloomPressed = false;
     $scope.startNewBloomTodayDisable = true;
+    $scope.disableEndBloom = true;
 
     $scope.startNewBloom = function(){
       $scope.blooming_start_date = $scope.today;
@@ -27,6 +28,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       $scope.flagWasDisabled = false;
       $scope.createBloomPressed = false;
       $scope.startNewBloomTodayDisable = true;
+      $scope.disableEndBloom = true;
     }
 
     var cleanPrefixes = function(){
@@ -269,8 +271,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var disableNewBloomToday = function(){
       if(objectIsNew('blooming')){
         $scope.startNewBloomTodayDisable = true;
+        $scope.disableEndBloom = true;
       } else {
         $scope.startNewBloomTodayDisable = false;
+        $scope.disableEndBloom = false;
       }
     }
 
