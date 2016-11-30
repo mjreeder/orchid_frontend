@@ -2,63 +2,47 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
     var param1 = $routeParams.table_name;
 
-    LocationFactory.getTableNameFromID(param1).then(function(response) {
-
-    });
-
     $scope.showTable = false;
     $scope.plantsInTable = [];
-    $scope.removeDaters = [];
-
 
     LocationFactory.checkTable(param1).then(function(response) {
-        //var answer = response.data;
-        //console.log(response.data.data.name);
-        var help = response.data.data[0];
+        var booleanValue = response.data.data[0];
 
-        console.log(help);
-
-
-        if (help == false) {
-
+        if (booleanValue == false) {
             $location.path('#/404');
-
-
         } else {
+            //we are in a legal table
             $scope.current_table_name = param1;
             $scope.id = response.data.data.id;
             $scope.room_type = response.data.data.room;
-            console.log($scope.room_type);
 
             //GETTING THE LOCATION AND THE VERIFICATION INFORMATION FOR EACH PLANT
-
             PlantsFactory.getByLocationID($scope.id).then(function(response) {
-                console.log(response.data.data);
                 if (response.data[0] == false) {
                     $scope.showTable = false;
-
                 } else {
-
                     $scope.showTable = true;
-
                     $scope.plantsInTable = response.data.data;
-                    console.log($scope.plantsInTable);
 
                     for(var i = 0; i < $scope.plantsInTable.length; i++){
-                        console.log("Hers is the dead date: "  + $scope.plantsInTable[i].inactive_date);
                         var in_date = $scope.plantsInTable[i].inactive_date;
-                        var de_date = $scope.plantsInTable[i].dead_date;
-                        if(in_date != "0000-00-00"){
-                            console.log(in_date);
 
-                            console.log("we have found one!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                            $scope.removeDaters.push(i);
+                        if(in_date == "0000-00-00" || in_date == null){
+                            //do nothing since there is no date.
+                        } else {
 
+                            $scope.plantsInTable.splice(i, 1);
                         }
                     }
 
-                    for(var t = 0; t < $scope.removeDaters.length; t++){
-                        $scope.plantsInTable.splice($scope.removeDaters[t], 1);
+                    for(var i = 0; i < $scope.plantsInTable.length; i++){
+                        var de_date = $scope.plantsInTable[i].dead_date;
+
+                        if(de_date == "0000-00-00" || de_date == null){
+                            //do nothing since there is no date.
+                        } else {
+                            $scope.plantsInTable.splice(i, 1);
+                        }
                     }
 
                     for (var i = 0; i < $scope.plantsInTable.length; i++) {
@@ -69,27 +53,17 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
                     var promArray = [];
 
-
-
                     for (var i = 0; i < $scope.plantsInTable.length; i++) {
                         var plant = $scope.plantsInTable[i];
-                        console.log(plant);
-
-
-                        console.log(plant.id);
 
                         //UPDATING THE COLOR OF THE PLANTS
                         TagFactory.getPestByPlantID(plant.id).then(function(response) {
                             var tagResponse = response.data.data;
 
-                            console.log("we are looking at the data");
-                            console.log(tagResponse);
-
                             for (var i = 0; i < $scope.plantsInTable.length; i++) {
                                 if ($scope.plantsInTable[i].id == tagResponse.plant_id) {
                                     if(tagResponse.active == 1){
                                         $scope.plantsInTable[i].tagged = true;
-                                        console.log($scope.plantsInTable[i]);
                                     }
 
                                 }
@@ -99,68 +73,38 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
                         });
 
-                        //var prom = new Promise((resolve, reject) => {
-                        //        //GETTING THE VERIFIED RECORDS FOR ALL THE PLANTS
-                        //        VerifiedFactory.getLastVerifiedDate(plant.id).then(function (response){
-                        //            var verifiedResponse = response.data.data;
-                        //
-                        //
-                        //
-                        //            resolve(verifiedResponse);
-                        //
-                        //        },
-                        //    function (error){
-                        //        reject(error);
-                        //    });
-                        //});
                         var prom = new Promise(function(resolve, reject) {
                                 //GETTING THE VERIFIED RECORDS FOR ALL THE PLANTS
                                 VerifiedFactory.getLastVerifiedDate(plant.id).then(function (response){
                                     var verifiedResponse = response.data.data;
-
-
-
                                     resolve(verifiedResponse);
-
                                 },
                             function (err){
                                 reject(err);
                             });
                         });
-
                         promArray.push(prom);
                     }
 
                     Promise.all(promArray).then(function (success) {
-                        //console.log("This is the data");
-                        //console.log(success);
-
                         var updateList = [];
-                        console.log("we have some data");
                         for (var i = 0; i < success.length; i++){
                             if (success[i] != ""){
                                 var id = success[i][0].plant_id;
-                                console.log(id);
                                 updateList.push(success[i][0]);
-
                             }
                         }
-
-                        console.log(updateList.length);
 
                         for (var p = 0; p < updateList.length; p++){
                             var id = updateList[p].plant_id;
                             for (var t = 0; t < $scope.plantsInTable.length; t++){
-
                                 if (id == $scope.plantsInTable[t].id){
                                     $scope.plantsInTable[t].last_varified = updateList[p].verified_date;
-                                    console.log($scope.plantsInTable[t]);
                                 }
                             }
                         }
 
                         for (var t = 0; t < $scope.plantsInTable.length; t++){
-
                             if($scope.plantsInTable[t].last_varified == "0000-00-00"){
                                 $scope.plantsInTable[t].last_varified = "N/A";
                             }
@@ -174,12 +118,9 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                 }
 
                 $scope.showRows = $scope.plantsInTable[0];
-
             });
         }
     });
-
-
 
     var formatVerification = function(){
       for(var i = 0; i < $scope.plantsInTable.length; i++){
@@ -197,7 +138,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
     var checkIfDateIsToday = function(dateString){
       var previousDay = moment(dateString).dayOfYear();
-      var previousYear = moment(dateString).year()
+      var previousYear = moment(dateString).year();
       var currentDay = moment().dayOfYear();
       var currentYear = moment().year();
       if((previousDay == currentDay) && (previousYear == currentYear)){
@@ -210,7 +151,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
     $scope.movePlants = false;
 
     $scope.movePlantsFunction = function() {
-        console.log("hello");
         if ($scope.movePlants == false) {
             $scope.movePlants = true;
 
@@ -219,31 +159,11 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
         }
     };
 
-
-
-
-
-
-
-    //LocationFactory.getTableNameFromID(4).then(function (response) {
-    //    console.log(response.data);
-    //   //
-    //   $scope.table_name = response.data;
-    //    console.log("HELLO");
-    //    console.log($scope.table_name);
-    //   // console.log($scope.table_name);
-    //});
-
     $scope.addedPlants = [];
 
     $scope.added = false;
 
-    var index = 0;
-
-
     $scope.addVarified = function(plant) {
-        console.log("we are added the plants into the section");
-        console.log(plant.id);
         for (var i = 0; i < $scope.addedPlants.length; i++){
             if ($scope.addedPlants[i] == plant.id){
                 break;
@@ -253,22 +173,14 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
         $scope.addedPlants[$scope.addedPlants.length] = plant;
     };
 
-
     $scope.addedMovePlants = [];
 
     $scope.didMovePlants = false;
 
     $scope.showButton = false;
 
-    var index = 0;
-
     $scope.wantPlantMoved = function(plant) {
-        console.log(plant);
         $scope.added = true;
-        console.log("length of :" + $scope.addedMovePlants.length);
-
-
-
         for(var i = 0; i < $scope.addedMovePlants.length; i++){
             if($scope.addedMovePlants[i].id == plant.id) {
                 $scope.addedMovePlants.splice(i, 1);
@@ -281,7 +193,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
         if($scope.added == true){
             $scope.addedMovePlants.push(plant);
         }
-        console.log($scope.addedMovePlants.length);
         if($scope.addedMovePlants.length > 0){
             $scope.showButton = true;
         } else {
@@ -289,26 +200,17 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
         }
     };
 
-
     $scope.updateDates = function() {
-        console.log("WE ARE IN THE UPDATE SECTION");
         for (var i = 0; i < $scope.addedPlants.length; i++) {
-            console.log($scope.addedPlants[i].id);
             var information = {
                 plant_id: $scope.addedPlants[i].id
             };
-            console.log(information);
 
             VerifiedFactory.createVerified(information).then(function (response){
-                console.log(response);
             });
         }
         $route.reload();
     };
-
-
-
-
 
     $scope.popupShow = false;
 
@@ -326,7 +228,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
     });
 
     $scope.showMoveFunction = function() {
-        console.log("we are going to the pop up");
         $rootScope.$broadcast('abc', {
             any: {
                 'a': $scope.addedMovePlants

@@ -1219,43 +1219,52 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
 
     $scope.editCritical = function() {
+        $scope.checkedTable = false;
         if ($scope.editPlant.critical == false) {
-            $scope.editPlant.critical = true;
 
             for(var i = 0; i < $scope.Tables.length; i++){
                 if($scope.plantLocation == $scope.Tables[i].name){
                     $scope.tableID = $scope.Tables[i].id;
-                    $scope.tableError == false;
+                    $scope.checkedTable = true;
                     break;
+                } else {
+                    $scope.checkedTable = false;
                 }
             }
 
-            var criticalPlantInformation = {
-                scientific_name: $scope.plant.scientific_name,
-                name: $scope.plant.name,
-                location_id: $scope.tableID,
-                id: $scope.plant.id,
-                accession_number: $scope.plant.accession_number
-            };
-            PlantsFactory.editCriticalPlant(criticalPlantInformation).then(function(response) {
-                console.log(response.data);
-            });
-
-            var dataAsString = createDateFromString($scope.verifiedObject.verified_data);
-            if (dataAsString == $scope.verifiedDate){
-                //information is the same
+            if($scope.checkedTable == false){
+                window.alert("Please select a table from the list.");
             } else {
-                var newDateFromModel = new Date($scope.verifiedDate);
-                var verifiedInformation = {
-                    plant_id: $scope.plant.id,
-                    verified_date: newDateFromModel,
-                    id: $scope.verifiedObject.id,
-                    active: 1
+                $scope.editPlant.critical = true;
+
+
+                var criticalPlantInformation = {
+                    scientific_name: $scope.plant.scientific_name,
+                    name: $scope.plant.name,
+                    location_id: $scope.tableID,
+                    id: $scope.plant.id,
+                    accession_number: $scope.plant.accession_number
                 };
-
-                VerifiedFactory.updateVerified(verifiedInformation).then(function (response){
-
+                PlantsFactory.editCriticalPlant(criticalPlantInformation).then(function (response) {
+                    console.log(response.data);
                 });
+
+                var dataAsString = createDateFromString($scope.verifiedObject.verified_data);
+                if (dataAsString == $scope.verifiedDate) {
+                    //information is the same
+                } else {
+                    var newDateFromModel = new Date($scope.verifiedDate);
+                    var verifiedInformation = {
+                        plant_id: $scope.plant.id,
+                        verified_date: newDateFromModel,
+                        id: $scope.verifiedObject.id,
+                        active: 1
+                    };
+
+                    VerifiedFactory.updateVerified(verifiedInformation).then(function (response) {
+
+                    });
+                }
             }
 
         } else {
