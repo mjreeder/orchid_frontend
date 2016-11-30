@@ -33,7 +33,9 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('alphabetical.search', {
             url: '/:letter',
-            controller: 'letterSearchController'
+            controller: 'letterSearchController',
+            parent: 'alphabetical',
+            templateUrl: './views/refactored/alphabetGrid.html'
         })
         .state('blooming', {
             url: '/blooming',
