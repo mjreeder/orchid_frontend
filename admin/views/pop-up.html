@@ -4,11 +4,11 @@
         <div class="center">
             <h1>{{ plant_accession_number }}</h1>
         </div>
-        
+
         <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt="close"></button>
-        
-        
-<div class="formcontent"> 
+
+
+<div class="formcontent">
         <!--<section>-->
         <div class="top-margin">
             <label>Blooming:</label>
@@ -75,13 +75,13 @@
             </div>
 <div class="button-new">
             <button id="more-info">
-                <a ng-href='#/plant/{{plant_accession_number}}' >More Information</a>
+                <a ng-click="moreInfo()">More Information</a>
             </button>
              </div>
 <div class="button-new">
             <button class="popup-save" type="submit" ng-click="submitPopUp()">Save</button>
-        </div> 
-        
+        </div>
+
         </div>
         </form>
     </section>

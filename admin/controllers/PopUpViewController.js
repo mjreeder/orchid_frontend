@@ -54,26 +54,59 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     $scope.today = new Date();
 
-    $scope.submitPopUp = function(){
+    $scope.submitPopUp = function(callback){
       if(!bloomDateIsValid()){
         alert('There must be 7 days between the bloom start and end!');
         return;
       }
+      if(!callback){
+        asyncNetwork();
+      } else {
+        syncNetwork(callback);
+      }
+    }
+
+    var asyncNetwork = function() {
       handleBloom();
       handleBloomingComment();
       handleSprayed();
       handlePotting();
       handleHealth();
-        handleTag();
+      handleTag();
       $scope.closePopUp();
     }
 
-    var handleBloom = function() {
+    var syncNetwork = function(callback) {
+      handleBloom(function(){
+        handleSprayed(function(){
+          handleBloomingComment(function(){
+            handlePotting(function(){
+              handleHealth(function(){
+                handleTag(function(){
+                  $scope.closePopUp();
+                  callback();
+                })
+              })
+            })
+          })
+        })
+      })
+    }
+
+    var handleBloom = function(callback) {
       var data = prepareForFactory('blooming');
       if(objectIsNew('blooming') || $scope.createBloomPressed){
-        BloomingFactory.createBloom(data).then(function(){})
+        BloomingFactory.createBloom(data).then(function(){
+          if(callback){
+            callback();
+          }
+        })
       } else {
-        BloomingFactory.updateBloom(data).then(function(){})
+        BloomingFactory.updateBloom(data).then(function(){
+          if(callback){
+            callback();
+          }
+        })
       }
     }
 
@@ -114,9 +147,12 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       return ((yearNumber % 4 == 0) && (yearNumber % 100 != 0)) || (yearNumber % 400 == 0);
     }
 
-    var handleBloomingComment = function(){
+    var handleBloomingComment = function(callback){
       var data = prepareForFactory('bloomingComment');
       if(!data.note){
+        if(callback){
+          callback();
+        }
         return;
       }
       if(!data.timestamp){
@@ -127,9 +163,17 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         return;
       }
       if(objectIsNew('bloomingComment') || (!isRecent)){
-        Bloom_CommentFactory.createBloom_Comment(data).then(function(){})
+        Bloom_CommentFactory.createBloom_Comment(data).then(function(){
+          if(callback){
+            callback();
+          }
+        })
       } else {
-        Bloom_CommentFactory.updateBloom_Comment(data).then(function(){})
+        Bloom_CommentFactory.updateBloom_Comment(data).then(function(){
+          if(callback){
+            callback();
+          }
+        })
       }
     }
 
@@ -142,9 +186,12 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       return isRecent;
     }
 
-    var handleSprayed = function() {
+    var handleSprayed = function(callback) {
       var data = prepareForFactory('sprayed');
       if(!data.note){
+        if(callback){
+          callback();
+        }
         return;
       }
       if(!data.timestamp){
@@ -152,31 +199,56 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       }
       var isRecent = checkForRecent($scope.sprayed_timestamp);
       if(objectsMatch('sprayed')){
+        if(callback){
+          callback();
+        }
         return;
       }
       if(objectIsNew('sprayed') || (!isRecent)){
-        SprayedFactory.createSplit(data).then(function(response){});
+        SprayedFactory.createSplit(data).then(function(response){
+          if(callback){
+            callback();
+          }
+        });
       } else {
-        SprayedFactory.updateSplit(data).then(function(){})
+        SprayedFactory.updateSplit(data).then(function(){
+          if(callback){
+            callback();
+          }
+        })
       }
     }
 
-    var handlePotting = function(){
+    var handlePotting = function(callback){
       var data = prepareForFactory('potting');
       var isRecent = checkForRecent($scope.potting_timestamp);
       if(objectsMatch('potting')){
+        if(callback){
+          callback();
+        }
         return;
       }
       if(objectIsNew('potting') || (!isRecent)){
-        PottingFactory.createPest(data).then(function(){})
+        PottingFactory.createPest(data).then(function(){
+          if(callback){
+            callback();
+          }
+        })
       } else {
-        PottingFactory.updatePotting(data).then(function(){})
+        PottingFactory.updatePotting(data).then(function(){
+          if(callback){
+            callback();
+          }
+        })
       }
     }
 
-    var handleHealth = function(){
+    var handleHealth = function(callback){
       var data = prepareForFactory('health');
       if(!data.score || !data.comment){
+        if(callback){
+          callback();
+        }
         return;
       }
       if(!data.timestamp){
@@ -184,35 +256,49 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       }
       var isRecent = checkForRecent($scope.health_timestamp);
       if(objectsMatch('health')){
+        if(callback){
+          callback();
+        }
         return;
       }
       if(objectIsNew('health') || (!isRecent)){
-        HealthFactory.createHealth(data).then(function(){});
+        HealthFactory.createHealth(data).then(function(){
+          if(callback){
+            callback();
+          }
+        });
       } else {
-        HealthFactory.editHealth(data).then(function(){})
+        HealthFactory.editHealth(data).then(function(){
+          if(callback){
+            callback();
+          }
+        })
       }
     }
 
     var createTag = false;
 
     $scope.flagggedPlant = [];
-    var handleTag = function(){
+    var handleTag = function(callback){
         $scope.taggedPlant[0].note  = $scope.flag_note;
         if(createTag == false){
             TagFactory.updateTag($scope.taggedPlant[0]).then(function (response){
+              if(callback){
+                callback();
+              }
             })
         } else {
             TagFactory.createTag($scope.taggedPlant[0]).then(function(response){
+              if(callback){
+                callback();
+              }
             })
         }
     }
 
     var objectsMatch = function(field){
       var newData = extractData(field);
-      console.log(newData);
       var oldData = extractData(field, $scope.data);
-      console.log(oldData);
-      console.log(field + ' ' + _.isEqual(newData, oldData));
       return _.isEqual(newData, oldData);
     }
 
@@ -424,4 +510,12 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             }
         }
     }
+
+    $scope.moreInfo = function(){
+      $scope.submitPopUp(function(){
+        var dest = "/plant/" + $scope.plant_accession_number;
+        $location.url(dest);
+      });
+    }
+
 });
