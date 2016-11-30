@@ -13,7 +13,7 @@
             </button>
 
             <div>
-                <label><input placeholder="Accession Number" type="text" ng-model="plant.accession_number" name="accession" ng-disabled="editPlant.critical && !createNew"></label>
+                <label><input placeholder="Accession Number" type="text" ng-model="plant.accession_number" name="accession" ng-disabled="!createNew"></label>
                 <label id="location"><img src="images/location.svg" alt="Location">
                     <select ng-model="plantLocation" ng-disabled="editPlant.critical && !createNew">
                         <option selected value>
