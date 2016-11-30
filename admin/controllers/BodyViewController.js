@@ -1,11 +1,6 @@
 app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $timeout, $location) {
-
-
-    console.log($scope.userSessionId);
-    console.log('we are in the body');
     if($scope.AuthUser){
       UserFactory.getAuth().then(function(response){
-          console.log("weeeeeeewwwwwwww");
           var data = response.data.data;
           if (data.auth_level == 1){
               $rootScope.AuthUser = true;
@@ -13,8 +8,6 @@ app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $
               $rootScope.AuthUser = false;
 
           }
-          //$rootScope.apply();
-          //$scope.apply();
       });
     }
 
