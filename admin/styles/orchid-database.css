@@ -303,7 +303,7 @@ input:checked+span {
 
 .page #previous button {
     border: none;
-    background: #808080;
+    background: #01997B;
     color: white;
     border-radius: 5px;
     padding: 10px 15px;
@@ -313,11 +313,14 @@ input:checked+span {
     margin-top: 0;
     margin-bottom: 20px;
     font-family: 'Raleway', sans-serif;
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
 }
 
 .pagination-sm>li:first-child>a, .pagination-sm>li:first-child>span {
     border: none;
-    background: #808080;
+    background: #01997B;
     color: white;
     border-radius: 5px;
     padding: 10px 15px;
@@ -327,6 +330,10 @@ input:checked+span {
     margin-top: 0;
     margin-bottom: 20px;
     font-family: 'Raleway', sans-serif;
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    width: 58px;
 }
 
 .pagination-sm>li:first-child>a:active, .pagination-sm>li:first-child>span {
@@ -387,22 +394,24 @@ input:checked+span {
 
 .pagination-sm>li:last-child>a, .pagination-sm>li:last-child>span {
     border: none;
-    background: #808080;
+    background: #01997B;
     color: white;
     border-radius: 5px;
     padding: 10px 15px;
     font-size: 14px;
     display: inline-block;
     float: right;
-    /*    margin-right: 20px;*/
+    width: 58px;
     margin-bottom: 20px;
-    /*    margin-top: -112px;*/
     font-family: 'Raleway', sans-serif;
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
 }
 
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
     z-index: 0 !important;
-    color: red !important;
+    color: #01997B !important;
     font-weight: bold !important;
     /*padding-left: 18%;*/
     cursor: default !important;
@@ -410,9 +419,9 @@ input:checked+span {
     border-color: white !important;
 }
 
-.pagination{
-  padding-left: 18%;
-}
+/*.pagination{*/
+  /*padding-left: 18%;*/
+/*}*/
 
 .pagination>li>a, .pagination>li>span {
     position: relative;

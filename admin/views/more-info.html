@@ -48,7 +48,7 @@
 
         <fieldset id="culture">
             <h1>Culture</h1>
-            <button class="edit" ng-click="editCulture()" ng-hide="createNew">
+            <button class="edit" ng-click="!editCulture()" ng-hide="createNew">
                 <p ng-hide="editPlant.culture">Save</p>
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.culture">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.culture">
@@ -57,19 +57,19 @@
             <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
 
-            <label id="add-country" >Add:</label>
-                <select id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew"></br>
+            <label ng-hide="editPlant.culture" id="add-country" >Add:</label>
+                <select  id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-hide="editPlant.culture"></br>
                     <option disabled selected value>Select countries</option>
                     <option ng-repeat="country in allCountires">{{country.name}}</option>
                 </select>
 
-            <label id="delete-country"  >Delete:</label>
-            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew"></br>
+            <label id="delete-country" ng-hide="editPlant.culture"  >Delete:</label>
+            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-hide="editPlant.culture"></br>
                 <option disabled selected value>Select countries</option>
                 <option ng-repeat="country in selectedCountries">{{country.name}}</option>
             </select>
 
-            <div class="country-list">
+            <div class="country-list" ng-hide="!editPlant.culture">
                 <label id="countries-label">Countries:</label>
                 <ul class="selected-countries" ng-repeat="country in selectedCountries">
                     <li>{{country.name}}</li>
