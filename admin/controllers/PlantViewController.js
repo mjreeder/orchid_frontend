@@ -780,6 +780,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.forwardToPage = function(){
         $location.path('/plant/' + $scope.newAcceessionNumer);
         $route.reload();
+        $scope.scrollToFunction();
     };
 
     $scope.otherList = [];
