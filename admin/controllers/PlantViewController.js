@@ -193,9 +193,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 }
             }
 
-            for (var i = 0; i < $scope.similarPhotos.length; i++) {
-               console.log($scope.similarPhotos[i]);
-            }
         });
 
         VerifiedFactory.getLastVerifiedDate(id).then(function (response){
@@ -331,7 +328,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             for(var i = 0; i < response.data.data.length; i++){
               $scope.healthData.push(response.data.data[i]);
             }
-            console.log($scope.healthData);
           })
         }
         $scope.getMoreHealth();
@@ -340,7 +336,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             for (var i = 0; i < response.data.data.length; i++) {
                 var timestamp = new Date(response.data.data[i].timestamp);
                 response.data.data[i].timestamp = timestamp;
-                console.log(response.data.data[i]);
                 $scope.splits.push(response.data.data[i]);
             }
         });
@@ -352,11 +347,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             for (var i = 0; i < response.data.data.length; i++) {
                 $scope.origianlSelectedCountries.push(response.data.data[i][0]);
-            }
-
-
-            for (var i = 0; i < $scope.origianlSelectedCountries.length; i++) {
-                console.log($scope.origianlSelectedCountries[i]);
             }
 
         });
@@ -379,7 +369,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         //todo need to look at why this is not pulling in the correct image
         PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function(response) {
-            //console.log(response.data.data);
             if (response.data.data != "") {
                 var data = response.data.data;
                 for (var i = 0; i < data.length; i++) {
@@ -417,7 +406,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         if (param1 == "create") {
             $scope.createNew = true;
-            console.log();
             $scope.plant = {
                 image: 'images/no_plant_icon.svg'
             };
@@ -488,7 +476,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             SpecialCollectionsFactory.createSpecialCollection(newCollection).then(function (response){
                 //TODO maybe look at display a note say that is was created
-                //console.log(response.data.data);
                 $scope.allCollections.push(response.data.data[0]);
             });
             $scope.selectedCollectionName = $scope.newCollectionName;
@@ -963,11 +950,15 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             $scope.editPlant.photos = true;
 
             for (var i = 0; i < $scope.deletedPictures.length; i++) {
-                var habitatInfo = {
-                    id: $scope.deletedPictures[i].id
+                var deleteInfo = {
+                    id: $scope.deletedPictures[i].id,
+                    plant_id: $scope.deletedPictures[i].plant_id,
+                    url: $scope.deletedPictures[i].url,
+                    type: $scope.deletedPictures[i].type
 
                 };
-                PhotoFactory.deletePhoto(habitatInfo).then(function(response) {
+
+                PhotoFactory.deletePhoto(deleteInfo).then(function(response) {
 
                 });
             }
@@ -977,7 +968,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                     id: $scope.newHabitatList[i].id,
                     plant_id: $scope.newHabitatList[i].plant_id,
                     url: $scope.newHabitatList[i].url,
-                    type: "habitat"
+                    type: "habitat",
+                    fileName: $scope.newHabitatList[i].fileName
                 };
 
                 PhotoFactory.updatePhoto(habitatInfo).then(function(response) {
@@ -991,32 +983,29 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                     id: $scope.otherList[i].id,
                     plant_id: $scope.otherList[i].plant_id,
                     url: $scope.otherList[i].url,
+                    fileName: $scope.otherList[i].fileName,
                     type: "other"
                 };
+
                 PhotoFactory.updatePhoto(otherInformation).then(function(response) {
 
                 });
             }
 
 
-            if ($scope.theSelectedProfilePicture.id != ""){
-                console.log("we are running ")
+            if ($scope.theSelectedProfilePicture.id != "" || scope.theSelectedProfilePicture.id == undefined){
                 var profile = {
                     id: $scope.theSelectedProfilePicture.id,
                     plant_id: $scope.theSelectedProfilePicture.plant_id,
                     url: $scope.theSelectedProfilePicture.url,
+                    fileName: $scope.theSelectedProfilePicture.fileName,
                     type: "profile"
                 };
-                console.log(profile);
+
                 PhotoFactory.updatePhoto(profile).then(function(response) {
-                    console.log(response);
                 });
             } else {
-                console.log("it is empty");
             }
-
-
-
 
         } else {
             $scope.editPlant.photos = false;
@@ -1027,8 +1016,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.newPlantSplits = [];
     $scope.addPlantSplitFunction = function() {
         $scope.newSplit = true;
-    }
-
+    };
 
     $scope.editTaxonomy = function() {
         if ($scope.editPlant.taxonommy == false) {
@@ -1043,7 +1031,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 variety_name: $scope.plant.variety,
                 authority: $scope.plant.authority,
                 id: $scope.plant.id
-            }
+            };
 
             PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function(response) {
 
@@ -1468,7 +1456,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                     var oldPhoto = $scope.plant_id_url[i];
                     $scope.plant_id_url[i].type = 'habitat';
                     $scope.newHabitatList.push(oldPhoto);
-
                     break;
                 } else {
 
@@ -1476,15 +1463,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             }
             photo.type = 'profile';
             $scope.theSelectedProfilePicture = photo;
-
-            console.log("we have changed the profile picture");
-            console.log(photo.id);
-
             $rootScope.apply;
-
         }
-
-
     };
 
     $scope.otherSelected = function(photo) {
@@ -1496,10 +1476,10 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 noChange = true;
             }
         }
-        if(noChange == false){
+        if(noChange == false) {
             //we need to made a change
-            for (var i = 0; i < $scope.plant_id_url.length; i++){
-                if ($scope.plant_id_url[i].id == photo.id){
+            for (var i = 0; i < $scope.plant_id_url.length; i++) {
+                if ($scope.plant_id_url[i].id == photo.id) {
                     var index = i;
                     break;
                 }
@@ -1507,21 +1487,17 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             $scope.otherList.push(photo);
             $scope.plant_id_url[index].type = 'other';
-            for(var j = 0; j < $scope.habitatPictures.length; j++){
-                if(photo.id == $scope.habitatPictures[j].id){
-                    $scope.habitatPictures.splice(j, 1);
+            for (var j = 0; j < $scope.newHabitatList.length; j++) {
+                if (photo.id == $scope.newHabitatList[j].id) {
+                    $scope.newHabitatList.splice(j, 1);
                     break;
                 }
             }
-            if(photo.id == $scope.theSelectedProfilePicture.id) {
+            if (photo.id == $scope.theSelectedProfilePicture.id) {
                 $scope.theSelectedProfilePicture = "";
             }
-
         }
-
         $rootScope.apply;
-
-
     };
 
     $scope.deletedSelcted = function(photo){
@@ -1544,12 +1520,16 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             $scope.deletedPictures.push(photo);
             $scope.plant_id_url[index].type = 'del';
-            for(var j = 0; j < $scope.habitatPictures.length; j++){
-                if(photo.id == $scope.habitatPictures[j].id){
-                    $scope.habitatPictures.splice(j, 1);
+
+            //seeing if it is in the habitiat list
+            for(var j = 0; j < $scope.newHabitatList.length; j++){
+                if(photo.id == $scope.newHabitatList[j].id){
+                    $scope.newHabitatList.splice(j, 1);
                     break;
                 }
             }
+
+            //seeing if it is in the other list
             for(var j = 0; j < $scope.otherPictures.length; j++){
                 if(photo.id == $scope.otherPictures[j].id){
                     $scope.otherPictures.splice(j, 1);
@@ -1559,8 +1539,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             if(photo.id == $scope.theSelectedProfilePicture.id) {
                 $scope.theSelectedProfilePicture = "";
             }
-
-
         }
 
         $rootScope.apply;
@@ -1570,23 +1548,26 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.habitatSelected = function(photo) {
 
         var noChange = false;
-        for (var i = 0; i < $scope.habitatPictures.length; i++){
-            if(photo.id == $scope.habitatPictures[i].id){
+        for (var i = 0; i < $scope.newHabitatList.length; i++){
+            if(photo.id == $scope.newHabitatList[i].id){
                 //do nothing since it is already there
                 noChange = true;
             }
         }
         if(noChange == false){
             //we need to made a change
+            var index;
             for (var i = 0; i < $scope.plant_id_url.length; i++){
                 if ($scope.plant_id_url[i].id == photo.id){
-                    var index = i;
+                    index = i;
                     break;
                 }
             }
 
-            $scope.habitiatList.push(photo);
+            $scope.newHabitatList.push(photo);
             $scope.plant_id_url[index].type = 'habitat';
+
+            //seeing if it is in the other list
             for(var j = 0; j < $scope.otherPictures.length; j++){
                 if(photo.id == $scope.otherPictures[j].id){
                     $scope.otherPictures.splice(j, 1);

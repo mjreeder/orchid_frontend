@@ -1,9 +1,9 @@
-<section class="flower-popup" ng-controller="MoveTableViewController">
+<section class="flower-popup move-popup-section" ng-controller="MoveTableViewController">
 
     <form class="move-popup">
-       <div class="header"> 
+       <div class="header center">
             <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
-            <h1>Move Plants</h1>
+            <h1 >Move Plants</h1>
         </div>
         
 <div class="formcontent" id=move-form-content>
@@ -37,9 +37,9 @@
 
         </div>
 
-        <div ng-include="'views/moveWarmhouse.html'" ng-show="WarmPopup"></div>
-        <div ng-include="'views/moveCoolHouse.html'" ng-show="CoolPopup"></div>
-        <div ng-include="'views/moveDisplay.html'" ng-show="DisplayPopup"></div>
+        <div class="house-svg-div" ng-include="'views/moveWarmhouse.html'" ng-show="WarmPopup"></div>
+        <div class="house-svg-div" ng-include="'views/moveCoolHouse.html'" ng-show="CoolPopup"></div>
+        <div class="house-svg-div" ng-include="'views/moveDisplay.html'" ng-show="DisplayPopup"></div>
 </div>
 
     </form>
