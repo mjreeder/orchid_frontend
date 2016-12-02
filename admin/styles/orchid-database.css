@@ -24,7 +24,7 @@
     font-family: 'Raleway', sans-serif;
     font-size: 15px;
     border: 4px solid #01997b;
-    border-radius: 5px; 
+    border-radius: 5px;
     height: 33px;
     width: 70%;
 }
@@ -346,7 +346,7 @@ input:checked+span {
     margin-top: 13px;
     text-align: center;
     width: 100%;
-    margin-left: none; 
+    margin-left: none;
 }
 
 
@@ -365,7 +365,7 @@ input:checked+span {
 }
 
 .page ul li a {
-    font-size: 20px;
+    font-size: 24px;
     padding-left: 5.6%;
     font-weight: 600;
     color: black;
@@ -373,7 +373,7 @@ input:checked+span {
 
 .page ul li a:active {
     color: #01997b;
-    font-size: 25px;
+    font-size: 28px;
     font-weight: 800;
 }
 
@@ -425,8 +425,8 @@ input:checked+span {
 
 .pagination>li>a, .pagination>li>span {
     position: relative;
-    float: left;
-    padding: 6px 12px;
+    /*float: left;*/
+    padding: 6px 1px;
     margin-left: -1px;
     line-height: 1.42857143;
     color: #337ab7;
