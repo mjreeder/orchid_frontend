@@ -277,7 +277,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
           var options = {
             selectable: true,
-            editable: true,
+            editable: false,
+            stack: false,
             min: minDate,
             max: maxDate
           };
