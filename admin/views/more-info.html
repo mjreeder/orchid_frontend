@@ -15,7 +15,7 @@
             <div>
                 <label><input placeholder="Accession Number" type="text" ng-model="plant.accession_number" name="accession" ng-disabled="!createNew"></label>
                 <label id="location"><img src="images/location.svg" alt="Location">
-                    <select ng-model="plantLocation" ng-disabled="editPlant.critical && !createNew">
+                    <select class="round" ng-model="plantLocation" ng-disabled="editPlant.critical && !createNew">
                         <option selected value>
                             Table
                         </option>
@@ -25,7 +25,8 @@
                 <label><input placeholder="Scientific Name" type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="editPlant.critical && !createNew"></label>
                 <label><input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label>
                 <label id="verified-label" for="verified" ng-hide="createNew">Last Verified:</label>
-                <input type="date" id="verified" class="more-calendar" ng-model="verifiedDate" ng-disabled="editPlant.critical && !createNew" ng-hide="createNew">
+                <input type="date" id="verified" class="more-calendar" ng-model="verifiedDate" ng-disabled="editPlant.critical && !createNew" ng-hide="createNew" class="round">
+
             </div>
         </fieldset>
 
@@ -89,7 +90,7 @@
             </button>
 
             <label for="select-collection">Collection:</label>
-                <select name="Choose Collection" id="select-collection" ng-model="selectedCollectionName" ng-disabled="editPlant.speical_collections && !createNew">
+                <select class="round" name="Choose Collection" id="select-collection" ng-model="selectedCollectionName" ng-disabled="editPlant.speical_collections && !createNew">
                     <option ng-repeat="collection in allCollections">{{collection.name}}</option>
                 </select>
             </br>
@@ -171,7 +172,7 @@
 
         <label for="deaddate">Dead:</label>
         <button class="more-calendar">
-            <input type="date" id="deaddate" id="inactive-disabled" ng-model="plant.dead_date" ng-disabled="editPlant.inactive && !createNew">
+            <input type="date" id="deaddate" id="inactive-disabled" placeholder="1" ng-model="plant.dead_date" ng-disabled="editPlant.inactive && !createNew">
         </button>
         <!--<output>{{ plant.dead_date | date }}</output>-->
 
@@ -355,52 +356,47 @@
     <!--        END OF BLOOMING GRAPH -->
 </fieldset>
 
-<fieldset id="weekly-checkup" ng-hide="createNew">
-    <h1>Sprayed for Pests</h1>
-    <div class="split-holder" ng-show="!sprayed.length">
-        This plant has no record of being sprayed for pests.
-    </div>
+    <fieldset id="weekly-checkup" ng-hide="createNew">
+        <h1>Sprayed for Pests</h1>
+        <div class="split-holder" ng-show="!sprayed.length">
+            This plant has no record of being sprayed for pests.
+        </div>
+        <p class="sprayed-entry" ng-repeat="spray in sprayed">
+            <span class=" more-info-base text-align-top span-date">{{spray.timestamp}}</span>
+            <span class=" more-info-base span-comment">{{spray.note}}</span>
+        </p>
+        <div class="button-new">
+            <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">
+        </div>
+    </fieldset>
 
+    <fieldset id="weekly-checkup" ng-hide="createNew">
+        <h1>Repot</h1>
+        <div class="split-holder" ng-show="!repotted.length">
+            This plant has no potting information.
+        </div>
+        <p class="repotting-entry" ng-repeat="repot in repotted">
+            <span class=" more-info-base">{{repot.timestamp}}</span>
+        </p>
+        <div class="button-new">
+            <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()" ng-show="repottedMoreShow">
+        </div>
+    </fieldset>
 
-    <p class="sprayed-entry" ng-repeat="spray in sprayed">
-        <span class=" more-info-base text-align-top span-date">{{spray.timestamp}}</span>
-        <span class=" more-info-base span-comment">{{spray.note}}</span>
-    </p>
-    <div class="button-new">
-        <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">
-    </div>
+    <fieldset id="weekly-checkup" ng-hide="createNew">
+        <h1>Health Condition</h1>
+        <div class="split-holder" ng-show="!healthData.length">
+            This plant has no health record.
+        </div>
+        <div class="health-entry" ng-repeat="health in healthData">
+            <span class="text-align-top more-info-base span-date">{{health.timestamp}}</span>
+            <span class="more-info-base span-comment">{{health.score}}:</br>{{health.comment}}</span>
+        </div>
+        <div class="button-new">
+            <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreHealth()" ng-show="healthMoreShow">
+        </div>
 
-</fieldset>
-
-<fieldset id="weekly-checkup" ng-hide="createNew">
-    <h1>Repot</h1>
-    <div class="split-holder" ng-show="!repotted.length">
-        This plant has no potting information.
-    </div>
-
-    <p class="repotting-entry" ng-repeat="repot in repotted">
-        <span class=" more-info-base">{{repot.timestamp}}</span>
-    </p>
-    <div class="button-new">
-        <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()" ng-show="repottedMoreShow">
-    </div>
-
-</fieldset>
-
-<fieldset id="weekly-checkup" ng-hide="createNew">
-    <h1>Current Health Condition</h1>
-    <div class="split-holder" ng-show="!healthData.length">
-        This plant has no health record.
-    </div>
-    <div class="health-entry" ng-repeat="health in healthData">
-        <span class=" text-align-top more-info-base span-date">{{health.timestamp}}</span>
-        <span class=" more-info-base span-comment">{{health.score}}:{{health.comment}}</span>
-    </div>
-    <div class="button-new">
-        <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreHealth()" ng-show="healthMoreShow">
-    </div>
-
-</fieldset>
+    </fieldset>
 
 <div class="end-section">
 

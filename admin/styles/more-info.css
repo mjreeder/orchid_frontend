@@ -8,10 +8,29 @@ a {
 
 input[type="button"] {
     cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
 }
+
+select.round {
+    background: #eaeee7 url("../images/down-arrow.png") right no-repeat fixed;
+    background-size: 10px 10px;
+}
+
 
 button {
     cursor: pointer;
+}
+
+textarea, input, button, select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
@@ -93,7 +112,8 @@ input:disabled {
     font-family: Raleway, sans-serif;
     font-size: 18px;
     background: none;
-    -webkit-appearance: none;
+    -webkit-text-fill-color: black;
+    opacity: 1;
 }
 
 textarea:disabled {
@@ -103,6 +123,8 @@ textarea:disabled {
     font-size: 16px;
     color: black;
     background: none;
+    -webkit-text-fill-color: black;
+    opacity:1;
 }
 
 #add-country, #select-country {
@@ -149,6 +171,8 @@ select:disabled {
     background: none;
     font-size: 18px;
     color: black;
+    -webkit-text-fill-color: black;
+    opacity: 1;
 }
 
 fieldset label {
@@ -185,7 +209,7 @@ fieldset {
 
 .edit {
     position: absolute;
-    width: 79px;
+    width: 89px;
     top: 12px;
     right: 1.5%;
     text-align: right;
@@ -208,17 +232,16 @@ fieldset {
 #accession button.more-calendar {
     position: relative;
     opacity: 1;
-    width: 200px;
+    /*width: 200px;*/
     display: inline;
     margin-top: 0;
     text-align: left;
 }
 
 .more-calendar input {
-    width: auto;
     margin: 0;
     font-size: 18px;
-    padding: 0;
+    padding: 4px;
 }
 
 #received-date {
@@ -253,7 +276,7 @@ fieldset {
 }
 
 label#location {
-    width: 121px;
+    width: 134px;
 }
 
 #vitals input {
@@ -269,6 +292,9 @@ label#location {
 #vitals input:disabled {
     border: 2px solid #eaeee7;
     background: none;
+    -webkit-text-fill-color: black;
+    color: black;
+    opacity: 1;
 }
 
 #location img {
@@ -295,11 +321,9 @@ input#verified {
 
 #inactive input {
     margin: 15px 0 0 0;
+    /*height: 27px;*/
 }
 
-#inactive input:disabled {
-    border: none;
-}
 
 
 /*PHOTOS*/
@@ -653,4 +677,9 @@ iframe {
     display: inline-block;
     vertical-align: top;
     margin-left: 5px;
+}
+
+
+.span-comment {
+    line-height:1.3;
 }
