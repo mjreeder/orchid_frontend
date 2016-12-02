@@ -252,8 +252,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         $scope.loadBloomGraph = function(year) {
           document.getElementById("bloom_timeline").innerHTML = "";
           var container = document.getElementById('bloom_timeline');
-          var newdata = $scope.blooms.map(function(bloomObj) {
-            if (bloomObj.end_date !== "0000-00-00") {
+          var newdata = $scope.blooms.map(function(bloomObj) {;
+            if (bloomObj.end_date !== "0000-00-00" && bloomObj.end_date !== "present") {
               var timeLineBloom = {
                 id: bloomObj.id,
                 start: bloomObj.start_date,
@@ -270,26 +270,20 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             return timeLineBloom
           });
 
-          var maxDate = new Date(year.year + "/12/31");
+          var maxDate = new Date("December 31, " + year.year + " 12:00:00");
+          var minDate = new Date("January 1, " + year.year + " 12:00:00");
+          var testMin = moment(minDate).format("MM/DD/YYYY");
+          var testMax = moment(maxDate).format("MM/DD/YYYY");
 
-          var yearOldDate = new Date((year.year - 1) + "/12/31");
-
-          yearOldDate = new Date(yearOldDate);
           var options = {
-            align: 'center',
             selectable: true,
             editable: true,
-            min: yearOldDate,
+            min: minDate,
             max: maxDate
           };
 
           var timeline = new vis.Timeline(container, newdata, options);
-          timeline.on('select', onSelect);
 
-          function onSelect(properties) {
-            // toolTip??
-            console.log('selected items: ' + properties);
-          }
         }
 
         var sprayPage = 0;
