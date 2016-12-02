@@ -1,4 +1,4 @@
-app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootScope, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, Bloom_CommentFactory, TagFactory) {
+app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootScope, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, Bloom_CommentFactory, TagFactory, $route) {
 
     $scope.plant = {};
     $scope.flagWasDisabled = false;
@@ -64,6 +64,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         } else {
             syncNetwork(callback);
         }
+        $route.reload();
     }
 
     var asyncNetwork = function() {
