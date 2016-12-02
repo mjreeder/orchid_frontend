@@ -271,90 +271,18 @@
     <div class="button-new">
         <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
     </div>
-    <!--        START OF BLOOMING GRAPH -->
 
-
-
-    <div id="graph-will-be-here" ng-hide="!blooms.length">
-        <table>
-            <tr>
-                <th>2013-2016</th>
-                <th>Jan.</th>
-                <th>Feb.</th>
-                <th>Mar.</th>
-                <th>Apr.</th>
-                <th>May</th>
-                <th>Jun.</th>
-                <th>Jul.</th>
-                <th>Aug.</th>
-                <th>Sep.</th>
-                <th>Oct.</th>
-                <th>Nov.</th>
-                <th>Dec.</th>
-            </tr>
-            <tr>
-                <td>2016</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2015</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2014</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2013</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-        </table>
-
+    <div ng-repeat="year in bloomYears">
+      <input type="button" value="{{year.year}}" class="blooming-view-year" ng-click="loadBloomGraph(year)">
     </div>
 
+    <!--        START OF BLOOMING GRAPH -->
+    <div id="bloom_timeline" ng-hide="!blooms.length">
+
+    </div>
     <!--        END OF BLOOMING GRAPH -->
 </fieldset>
+
 
     <fieldset id="weekly-checkup" ng-hide="createNew">
         <h1>Sprayed for Pests</h1>
@@ -369,6 +297,39 @@
             <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">
         </div>
     </fieldset>
+
+
+
+<!--<fieldset id="weekly-checkup" ng-hide="createNew">-->
+    <!--<h1>Sprayed for Pests</h1>-->
+    <!--<div class="split-holder" ng-show="!sprayed.length">-->
+        <!--This plant has no record of being sprayed for pests.-->
+    <!--</div>-->
+
+
+    <!--<p class="sprayed-entry" ng-repeat="spray in sprayed">-->
+        <!--<span class=" more-info-base text-align-top span-date">{{spray.timestamp}}</span>-->
+        <!--<span class=" more-info-base span-comment">{{spray.note}}</span>-->
+    <!--</p>-->
+    <!--<div class="button-new">-->
+        <!--<input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">-->
+    <!--</div>-->
+
+<!--</fieldset>-->
+
+<!--<fieldset id="weekly-checkup" ng-hide="createNew">-->
+    <!--<h1>Repot</h1>-->
+    <!--<div class="split-holder" ng-show="!repotted.length">-->
+        <!--This plant has no potting information.-->
+    <!--</div>-->
+
+    <!--<p class="repotting-entry" ng-repeat="repot in repotted">-->
+        <!--<span class=" more-info-base">{{repot.timestamp}}</span>-->
+    <!--</p>-->
+    <!--<div class="button-new">-->
+        <!--<input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()" ng-show="repottedMoreShow">-->
+    <!--</div>-->
+
 
     <fieldset id="weekly-checkup" ng-hide="createNew">
         <h1>Repot</h1>

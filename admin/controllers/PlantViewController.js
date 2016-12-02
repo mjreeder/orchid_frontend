@@ -211,24 +211,81 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         var bloomPage = 0;
         $scope.blooms = [];
-        $scope.getMoreBlooms = function(){
+        $scope.bloomYears = [];
+        $scope.getMoreBlooms = function() {
           bloomPage++;
-          BloomingFactory.getBloomByPlantID($scope.plant.id, bloomPage).then(function(response){
+          BloomingFactory.getBloomByPlantID($scope.plant.id, bloomPage).then(function(response) {
             var data = response.data.data;
-            if(data.length < 5){
+            if (data.length < 5) {
               $scope.bloomingMoreShow = false;
             }
-            for(var i = 0; i < data.length; i++){
+            for (var i = 0; i < data.length; i++) {
               $scope.blooms.push(data[i]);
+              if (isInBloomYears(data[i]) == false) {
+                $scope.bloomYears.push({
+                  "year": moment(data[i].start_date, "YYYY/MM/DD").year(),
+                  "dateObj": data[i].start_date
+                })
+              }
             }
-            for(var i = 0; i < $scope.blooms.length; i++){
-              if($scope.blooms[i].end_date == "0000-00-00"){
+
+            $scope.loadBloomGraph($scope.bloomYears[0]);
+            for (var i = 0; i < $scope.blooms.length; i++) {
+              if ($scope.blooms[i].end_date == "0000-00-00") {
                 $scope.blooms[i].end_date = "present";
               }
             }
           })
         }
+
         $scope.getMoreBlooms();
+
+        function isInBloomYears(year) {
+          for (var i = 0; i < $scope.bloomYears.length; i++) {
+            if ($scope.bloomYears[i].year == moment(year.start_date, "YYYY/MM/DD").year()) {
+              return true;
+            }
+          }
+          return false;
+        }
+        //TODO pull out bloom graph to service
+        $scope.loadBloomGraph = function(year) {
+          document.getElementById("bloom_timeline").innerHTML = "";
+          var container = document.getElementById('bloom_timeline');
+          var newdata = $scope.blooms.map(function(bloomObj) {;
+            if (bloomObj.end_date !== "0000-00-00" && bloomObj.end_date !== "present") {
+              var timeLineBloom = {
+                id: bloomObj.id,
+                start: bloomObj.start_date,
+                end: bloomObj.end_date,
+                className: "full_bloom"
+              };
+            } else {
+              var timeLineBloom = {
+                id: bloomObj.id,
+                start: bloomObj.start_date,
+                className: "incomplete_bloom"
+              };
+            }
+            return timeLineBloom
+          });
+
+          var maxDate = new Date("December 31, " + year.year + " 12:00:00");
+          var minDate = new Date("January 1, " + year.year + " 12:00:00");
+          var testMin = moment(minDate).format("MM/DD/YYYY");
+          var testMax = moment(maxDate).format("MM/DD/YYYY");
+
+          var options = {
+            selectable: true,
+            editable: false,
+            stack: false,
+            min: minDate,
+            max: maxDate
+          };
+
+          var timeline = new vis.Timeline(container, newdata, options);
+
+        }
 
         var sprayPage = 0;
         $scope.sprayed = [];
