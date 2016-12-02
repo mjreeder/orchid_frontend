@@ -8,12 +8,30 @@ a {
 
 input[type="button"] {
     cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
 }
+
+select.round {
+    background: #eaeee7 url("../images/down-arrow.png") right no-repeat fixed;
+    background-size: 10px 10px;
+}
+
 
 button {
     cursor: pointer;
 }
 
+textarea, input, button, select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 #taxonomic,
 #vitals,
@@ -36,23 +54,22 @@ button {
     margin-top: 20px;
 }
 
-input,
-textarea {
+input, textarea {
     font-family: Raleway, sans-serif;
     font-size: 18px;
     padding: 6px;
     border: 2px solid #A8B89A;
-    -webkit-border-radius:5px;
-    -moz-border-radius:5px;
-    border-radius:5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     background: #eaeee7;
 }
 
 textarea {
     border: 2px solid #eaeee7;
-    -webkit-border-radius:5px;
-    -moz-border-radius:5px;
-    border-radius:5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     background: #eaeee7;
     font-size: 16px;
     resize: vertical;
@@ -64,9 +81,7 @@ textarea {
     margin: 10px auto 20px;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
+input:focus, textarea:focus, select:focus {
     outline: none;
 }
 
@@ -86,14 +101,15 @@ input {
 
 input:disabled {
     border: 2px solid #eaeee7;
-    -webkit-border-radius:5px;
-    -moz-border-radius:5px;
-    border-radius:5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     color: black;
     font-family: Raleway, sans-serif;
     font-size: 18px;
     background: none;
-    -webkit-appearance: none;
+    -webkit-text-fill-color: black;
+    opacity: 1;
 }
 
 textarea:disabled {
@@ -103,6 +119,8 @@ textarea:disabled {
     font-size: 16px;
     color: black;
     background: none;
+    -webkit-text-fill-color: black;
+    opacity:1;
 }
 
 #add-country, #select-country {
@@ -149,6 +167,8 @@ select:disabled {
     background: none;
     font-size: 18px;
     color: black;
+    -webkit-text-fill-color: black;
+    opacity: 1;
 }
 
 fieldset label {
@@ -180,12 +200,11 @@ fieldset {
     border-bottom: 5px solid #01997b;
     margin: 0 auto;
     max-width: 800px;
-    
 }
 
 .edit {
     position: absolute;
-    width: 79px;
+    width: 89px;
     top: 12px;
     right: 1.5%;
     text-align: right;
@@ -208,25 +227,23 @@ fieldset {
 #accession button.more-calendar {
     position: relative;
     opacity: 1;
-    width: 200px;
+    /*width: 200px;*/
     display: inline;
     margin-top: 0;
     text-align: left;
 }
 
 .more-calendar input {
-    width: auto;
     margin: 0;
     font-size: 18px;
-    padding: 0;
+    padding: 4px;
 }
 
 #received-date {
     width: 130px;
 }
 
-#description label,
-#weekly-checkup label {
+#description label, #weekly-checkup label {
     width: 95%;
     margin-top: 15px;
 }
@@ -253,7 +270,7 @@ fieldset {
 }
 
 label#location {
-    width: 121px;
+    width: 134px;
 }
 
 #vitals input {
@@ -269,6 +286,9 @@ label#location {
 #vitals input:disabled {
     border: 2px solid #eaeee7;
     background: none;
+    -webkit-text-fill-color: black;
+    color: black;
+    opacity: 1;
 }
 
 #location img {
@@ -286,6 +306,7 @@ input#verified {
     padding: 2px;
 }
 
+
 /*INACTIVE*/
 
 #inactive label {
@@ -295,18 +316,14 @@ input#verified {
 
 #inactive input {
     margin: 15px 0 0 0;
+    /*height: 27px;*/
 }
 
-#inactive input:disabled {
-    border: none;
-}
 
 
 /*PHOTOS*/
 
-#photos h1,
-#weekly-checkup h1,
-#graph h1 {
+#photos h1, #weekly-checkup h1, #graph h1 {
     margin-bottom: 20px;
 }
 
@@ -325,17 +342,16 @@ input#verified {
     margin: 0 20px 20px 20px;
 }
 
-.photos-buttons input,
-.photos-add-div input {
+.photos-buttons input, .photos-add-div input {
     width: 79px;
     font-size: 14px;
     margin: 0 10px 0 0;
     display: inline-block;
     background-color: #01997b;
     color: white;
-    -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
-    -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
-    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
     padding: 10px 15px;
     font-family: 'Raleway', sans-serif;
     text-align: center;
@@ -345,7 +361,7 @@ input#verified {
 }
 
 .add-photo-popup input[type="button"] {
-    width:auto;
+    width: auto;
     border: none;
     background: #808080;
     color: white;
@@ -369,13 +385,12 @@ input[type="button"].selectedPhoto {
 
 .photos-buttons {
     margin: 30px 10px 20px 0;
-    display:inline-block;
+    display: inline-block;
     vertical-align: center;
     width: 65%;
 }
 
-#photos-delete1,
-#photos-delete2 {
+#photos-delete1, #photos-delete2 {
     margin: 0 0 0 60px;
     background: #EF645F;
 }
@@ -392,16 +407,6 @@ input[type="button"].selectedPhoto {
 .photos-group {
     overflow: auto;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /*SPLIT*/
@@ -429,8 +434,7 @@ input[type="button"].selectedPhoto {
     height: auto;
 }
 
-#graph .startnewbloom,
-#graph output {
+#graph .startnewbloom, #graph output {
     display: block;
 }
 
@@ -478,8 +482,6 @@ input[type="button"].selectedPhoto {
 
 /*SAVE*/
 
-
-
 #back-to-top button {
     display: inline-block;
     float: left;
@@ -498,8 +500,6 @@ input[type="button"].selectedPhoto {
     display: block;
 }
 
-
-
 #moreinfo-save-button input {
     font-size: 14px;
     display: inline-block;
@@ -509,6 +509,7 @@ input[type="button"].selectedPhoto {
     margin-bottom: 20px;
     width: auto;
 }
+
 
 /*WEEKLY CHECKUP*/
 
@@ -528,10 +529,10 @@ input[type="button"].selectedPhoto {
     margin-bottom: 50px;
 }
 
+
 /*BLOOMING*/
 
-.blooming-date1,
-.blooming-date2 {
+.blooming-date1, .blooming-date2 {
     background: none;
     height: auto;
     width: 100px;
@@ -567,30 +568,55 @@ input[type="button"].selectedPhoto {
     width: 125px;
 }
 
+.blooming-view-year {
+    background-color: #01997b;
+    text-decoration: none;
+    color: white;
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+    margin: 5px 15px 25px 60px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    width: 60px;
+}
+
+.vis-item.incomplete_bloom {
+    background-color: red;
+    border-color: red;
+}
+
+.vis-item.full_bloom {
+    background-color: #01997b;
+    border-color: #01997b;
+}
+
 #graph {
     overflow: hidden;
 }
 
+
 /* More info health, blooming, sprayed, potting table data */
 
 span.more-info-base {
-  background: none;
-  font-family: Raleway, sans-serif;
-  margin: 0 0 15px 0;
-  font-size: 18px;
+    background: none;
+    font-family: Raleway, sans-serif;
+    margin: 0 0 15px 0;
+    font-size: 18px;
 }
 
 span.three-items-view {
-  display: inline-block;
-  width: 30%;
+    display: inline-block;
+    width: 30%;
 }
 
 .text-align-top {
-  vertical-align: top;
+    vertical-align: top;
 }
 
 .health-entry, .sprayed-entry, .repotting-entry, .bloooming-entry {
-  margin: 0 0 15px 20px;
+    margin: 0 0 15px 20px;
 }
 
 span.span-date {
@@ -653,4 +679,9 @@ iframe {
     display: inline-block;
     vertical-align: top;
     margin-left: 5px;
+}
+
+
+.span-comment {
+    line-height:1.3;
 }

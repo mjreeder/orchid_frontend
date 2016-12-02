@@ -167,7 +167,7 @@ th {
 /*}*/
 
 td {
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .flagged {
@@ -179,8 +179,8 @@ td {
 
 #close {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 26px;
+    top: 26px;
 }
 
 .flower-popup #close img {
@@ -263,6 +263,7 @@ td {
     box-sizing: border-box;
     height: 50px;
     margin: 5px 0 0 0;
+    background: white;
 }
 
 .today,
@@ -330,7 +331,7 @@ td {
 
 #edit-button,
 #move-certain-plants {
-    margin: 0 10px 0 5px;
+    margin: 0 10px 30px 5px;
 }
 
 .table-footer {

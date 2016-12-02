@@ -2,7 +2,6 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
   var displayAttributes = [];
   $scope.currentPage = 1;
   $scope.numberOfPages = 0;
-  $scope.maxSize = 3;
   $scope.searchItem;
 
   //ng-change function for search bar
