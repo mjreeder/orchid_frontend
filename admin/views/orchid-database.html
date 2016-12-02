@@ -25,8 +25,8 @@
             </div>
             <div class="filter-options">
                 <ul ng-repeat="(key, val) in plants[0]">
-                    <li ng-show="val.key != 'id'">
-                        <div class="editPlant" ng-click="editFilterDisplay(val.key)">
+                   <li ng-show="val.key != 'id' && val.key != 'is donation' && val.key != 'username' && val.key != 'description' && val.key != 'inactive comment' && val.key != 'dead' && val.key != 'size' && val.key != 'value' && val.key != 'culture' &&  val.key != 'hybrid comment' && val.key != 'hybrid status' && val.key != 'origin comment' && val.key != 'donation comment' && val.key != 'value'">
+                <div class="editPlant" ng-click="editFilterDisplay(val.key)">
                             <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/>
                             <span class="table-checkbox"></span>
                             <label>{{val.key}}</label>

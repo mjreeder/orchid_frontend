@@ -70,7 +70,7 @@
                         <input ng-click="addVarified(plant)" type="checkbox"  ng-model="plant.verified"/><span class="table-checkbox"></span>
                     </label>
                 </td>
-                <td>
+                <td ><!-- ng-class="{alertRow: plant.isToday == true}" -->
                     <label>
                         <p>{{plant.last_varified}}</p>
                     </label>

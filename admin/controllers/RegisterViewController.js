@@ -172,10 +172,59 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
         $scope.newUser = true;
 
     };
+    $scope.sendNewRequest = false;
 
     $scope.saveUser = function(user){
-
+        checkNewUserData(user);
     };
+
+    var checkNewUserData = function(user){
+        console.log(user);
+        if(user == undefined){
+            window.alert("Please fill in data");
+            return;
+        }
+        if(user.isAuthUser == undefined || user.isAuthUser == null ){
+            user.isAuthUser  = false;
+        } else {
+            user.isAuthUser  = true;
+        }
+
+        if(user.firstName == null || user.firstName == null || user.email == null || user.password == null){
+            window.alert("Please fill in all fields for a new user");
+            return;
+        }
+
+        if(user.lastName == "" || user.firstName == "" || user.email == "" || user.password == ""){
+            window.alert("Please fill in all fields for a new user");
+        } else {
+            $scope.sendNewRequest = true;
+            $scope.sendUserData(user);
+        }
+    };
+    $scope.sendUserData = function(user){
+        var authData = 0;
+        if(user.isAuthUser == true){
+            authData = 1;
+        } else {
+            authData = 2;
+        }
+
+        var userData = {
+            "first_name" : user.firstName,
+            "last_name" : user.lastName,
+            "email" : user.email,
+            "password" : user.password,
+            "auth_level" : authData
+        }
+
+        UserFactory.newUser(userData).then(function (response){
+           console.log(response);
+        });
+
+    }
+
+
 
     var userAdded = false;
 
