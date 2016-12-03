@@ -62,16 +62,20 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
             if ($scope.saveID == undefined || $scope.saveID == null) {
 
             } else {
+                $($scope.saveID).find('[style*= "fill: #19977b"]').css('fill', '#FFFFFF');
                 $($scope.saveID).find('[style*= "fill: rgb(25, 151, 123)"]').css('fill', '#FFFFFF');
+
             }
             $scope.saveID = "";
             $scope.saveID = this;
 
             //if the color has not been changged
-            $(this).find('[style*="FFFFFF"]').css('fill', '#19977B');
+            $(this).find('[style*="FFFFFF"]').css('fill', '#19977b');
 
             //this is for the color that has already been changed
             $(this).find('[style*="fill: rgb(255, 255, 255)"]').css('fill', '#19977B');
+            $(this).find('[style*="ffffff"]').css('fill', '#19977b');
+
 
             $scope.$apply();
         }
