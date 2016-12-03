@@ -216,10 +216,25 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             "email" : user.email,
             "password" : user.password,
             "auth_level" : authData
-        }
+        };
 
-        UserFactory.newUser(userData).then(function (response){
-           console.log(response);
+        var promArray = [];
+
+        var prom = new Promise(function(resolve, reject) {
+            UserFactory.newUser(userData).then(function (response){
+                var userResponse = response.data.data;
+                resolve(userResponse);
+            });
+        });
+
+        promArray.push(prom);
+
+        Promise.all(promArray).then(function (success) {
+            $scope.$apply();
+
+            $route.reload();
+        }, function (error) {
+
         });
 
     }
