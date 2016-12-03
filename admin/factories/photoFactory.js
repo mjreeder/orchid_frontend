@@ -29,10 +29,6 @@ app.factory('PhotoFactory', function($http, $rootScope) {
     }
 
     data.updatePhoto = function(photo){
-        //console.log(photo);
-        //console.log($rootScope.userSessionId);
-        //console.log($rootScope.userSessionKey);
-
         return $http({
             method: "PUT",
             url: baseUrl + '/update',
@@ -42,6 +38,7 @@ app.factory('PhotoFactory', function($http, $rootScope) {
                 "type": photo.type,
                 "id": photo.id,
                 "active": photo.active,
+                "fileName" : photo.fileName,
                 "session_id": $rootScope.userSessionId,
                 "session_key": $rootScope.userSessionKey
             }

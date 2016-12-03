@@ -2,7 +2,6 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
   var displayAttributes = [];
   $scope.currentPage = 1;
   $scope.numberOfPages = 0;
-  $scope.maxSize = 3;
   $scope.searchItem;
 
   //ng-change function for search bar
@@ -51,7 +50,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
     displayAttributes = [];
     for (var i = 0; i < $scope.plants.length; i++) {
       for (var j = 0; j < $scope.plants[i].length; j++) {
-        if ($scope.plants[i][j].key !== 'id') {
+        if ($scope.plants[i][j].key !== 'id' && $scope.plants[i][j].key !== 'username' && $scope.plants[i][j].key !== 'description' && $scope.plants[i][j].key !== 'inactive comment' && $scope.plants[i][j].key !== 'dead' && $scope.plants[i][j].key !== 'size' && $scope.plants[i][j].key !== 'value' && $scope.plants[i][j].key !== 'culture' && $scope.plants[i][j].key !== 'culture' && $scope.plants[i][j].key !== 'is donation' && $scope.plants[i][j].key !== 'hybrid comment' && $scope.plants[i][j].key !== 'hybrid status' && $scope.plants[i][j].key !== 'origin comment' && $scope.plants[i][j].key !== 'donation comment' && $scope.plants[i][j].key !== 'value' ) {
           $scope.plants[i][j].isDisplayed = true;
           displayAttributes.push($scope.plants[i][j].key)
         }
@@ -79,6 +78,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
   function getPaginatedPlants() {
     // checks if there is a search item for different api call
     if ($scope.searchItem == null || $scope.searchItem == undefined || $scope.searchItem == '') {
+      //changes the location and special collections id into name
       PlantsFactory.getAllPaginatedPlants($scope.currentPage).then(function(response) {
         $scope.numberOfPages = response.data.data.pages;
         $scope.totalPlants = response.data.data.total;
@@ -86,6 +86,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
       });
     } else {
       PlantsFactory.getPlantBySearch($scope.searchItem, $scope.currentPage).then(function(response) {
+        //changes the location and special collections id into name
         $scope.totalPlants = response.data.data.total;
         $scope.numberOfPages = response.data.data.pages;
         $scope.plants = placePlantAttributes(response);
@@ -95,6 +96,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
 
   }
 
+  ///this is where we get rid of the name stuff
   function placePlantAttributes(response) {
     var plants = [];
     for (var i = 0; i < response.data.data.plants.length; i++) {

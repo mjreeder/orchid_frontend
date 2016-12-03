@@ -36,36 +36,36 @@
 
             <label id="password" class="users">
                 <div class="button-new">
-                    <button ng-click="changePasswordFunction(user)">Change Password</button>
+                    <button ng-disabled="!editUsers" ng-click="changePasswordFunction(user)">Change Password</button>
                 </div>
             </label>
 
         <div class="button-new">
-            <button id="password" ng-click="deleteUserPopUp(user)">Delete User</button></div>
+            <button id="password" ng-disabled="!editUsers" ng-click="deleteUserPopUp(user)">Delete User</button></div>
         </div>
 
 
         <div class="section" ng-show="newUser">
             <label id="firstname" class="users">First Name </label>
-            <input type="text" name="firstname" ng-model="editUsers" >
+            <input type="text" name="firstname" ng-model="nUser.firstName" >
 
             <label id="lastname" class="users">Last Name</label>
-            <input type="text" name="email" ng-model="user.lastName">
+            <input type="text" name="email" ng-model="nUser.lastName">
 
 
             <label id="email" class="users">Email</label>
-            <input type="text" name="email" ng-model="user.email">
+            <input type="text" name="email" ng-model="nUser.email">
 
             <label id="email" class="users">Password</label>
-            <input type="text" name="email" ng-model="user.password">
+            <input type="text" name="email" ng-model="nUser.password">
 
             <label id="auth" class="users">Manager
-            <input type="checkbox" ng-model="user.isAuthUser"/><span class="table-checkbox"></span>
+            <input type="checkbox" ng-model="nUser.isAuthUser"/><span class="table-checkbox"></span>
             </label>
 
             <label id="password" class="users">
                 <div class="button-new">
-                    <button ng-click="saveUser(user)">Save</button>
+                    <button ng-click="saveUser(nUser)">Save</button>
                 </div>
             </label>
 
@@ -79,7 +79,7 @@
 
 
 <div class="add-user button-new">
-    <button ng-click="addUser()">Add User</button>
+    <button ng-click="addUser()" ng-hide="newUser">Add User</button>
 </div>
 
 

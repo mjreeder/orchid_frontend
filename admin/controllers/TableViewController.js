@@ -48,6 +48,8 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                     for (var i = 0; i < $scope.plantsInTable.length; i++) {
 
                         $scope.plantsInTable[i].last_varified = "0000-00-00";
+                        $scope.plantsInTable[i].isToday = false;
+
 
                     }
 
@@ -64,6 +66,8 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                                 if ($scope.plantsInTable[i].id == tagResponse.plant_id) {
                                     if(tagResponse.active == 1){
                                         $scope.plantsInTable[i].tagged = true;
+                                    } else {
+
                                     }
 
                                 }
@@ -99,7 +103,19 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                             var id = updateList[p].plant_id;
                             for (var t = 0; t < $scope.plantsInTable.length; t++){
                                 if (id == $scope.plantsInTable[t].id){
+                                    console.log(updateList[p].verified_date);
                                     $scope.plantsInTable[t].last_varified = updateList[p].verified_date;
+                                    //console.log( $scope.plantsInTable[t].isToday);
+                                    console.log($scope.plantsInTable[t].last_varified);
+                                    if(checkIfDateIsToday($scope.plantsInTable[t].last_varified)){
+                                        $scope.plantsInTable[t].isToday = true;
+                                        console.log( $scope.plantsInTable[p].isToday);
+                                    }else {
+                                        console.log( $scope.plantsInTable[p].isToday);
+
+                                    }
+
+
                                 }
                             }
                         }
@@ -107,6 +123,14 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                         for (var t = 0; t < $scope.plantsInTable.length; t++){
                             if($scope.plantsInTable[t].last_varified == "0000-00-00"){
                                 $scope.plantsInTable[t].last_varified = "N/A";
+                                $scope.plantsInTable[t].isToday = false;
+
+                            } else {
+                                //if(checkIfDateIsToday(plantsInTable[t].last_varified)){
+                                //    $scope.plantsInTable[t].isToday = true;
+                                //} else {
+                                //    $scope.plantsInTable[t].isToday = false;
+                                //}
                             }
                         }
 
@@ -137,11 +161,13 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
     };
 
     var checkIfDateIsToday = function(dateString){
+        //console.log(dateString);
       var previousDay = moment(dateString).dayOfYear();
       var previousYear = moment(dateString).year();
       var currentDay = moment().dayOfYear();
       var currentYear = moment().year();
       if((previousDay == currentDay) && (previousYear == currentYear)){
+          //console.log(previousDay + "   " + currentDay + "    "+ previousYear + "   " + currentYear);
         return true;
       } else {
         return false;

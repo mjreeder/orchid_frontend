@@ -24,7 +24,7 @@
     font-family: 'Raleway', sans-serif;
     font-size: 15px;
     border: 4px solid #01997b;
-    border-radius: 5px; 
+    border-radius: 5px;
     height: 33px;
     width: 70%;
 }
@@ -238,14 +238,13 @@ button {
     margin-top: 90px;
     /*    float: right; */
     float: left;
-
     margin-left: 8%;
     width: 55%;
     display: inline-block;
 }
 
-.inner-table-right{
-  overflow-x: scroll;
+.inner-table-right {
+    overflow-x: scroll;
 }
 
 
@@ -274,7 +273,7 @@ span {
 
 input:checked+span {
     background: url(../images/checked_checkbox.svg) center center no-repeat / cover;
-    background-image:  url(../images/checked_checkbox.svg);
+    background-image: url(../images/checked_checkbox.svg);
 }
 
 #orchid-database .divider {
@@ -313,9 +312,9 @@ input:checked+span {
     margin-top: 0;
     margin-bottom: 20px;
     font-family: 'Raleway', sans-serif;
-    -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
-    -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
-    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
 }
 
 .pagination-sm>li:first-child>a, .pagination-sm>li:first-child>span {
@@ -330,14 +329,14 @@ input:checked+span {
     margin-top: 0;
     margin-bottom: 20px;
     font-family: 'Raleway', sans-serif;
-    -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
-    -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
-    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
     width: 58px;
 }
 
-.pagination-sm>li:first-child>a:active, .pagination-sm>li:first-child>span {
-  /*here is where the previous button bootstrap animation would be overwritten */
+.pagination-sm>li:first-child >a:active, .pagination-sm>li:first-child>span:active {
+    font-size: 14px;
 }
 
 .page ul {
@@ -346,9 +345,8 @@ input:checked+span {
     margin-top: 13px;
     text-align: center;
     width: 100%;
-    margin-left: none; 
+    margin-left: none;
 }
-
 
 .page ul li {
     display: inline;
@@ -365,7 +363,7 @@ input:checked+span {
 }
 
 .page ul li a {
-    font-size: 20px;
+    font-size: 21px;
     padding-left: 5.6%;
     font-weight: 600;
     color: black;
@@ -404,9 +402,9 @@ input:checked+span {
     width: 58px;
     margin-bottom: 20px;
     font-family: 'Raleway', sans-serif;
-    -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
-    -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
-    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
 }
 
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
@@ -419,15 +417,24 @@ input:checked+span {
     border-color: white !important;
 }
 
+.pagination-sm>li:last-child>a, .pagination-sm>li:last-child>span {
+  font-size: 14px !important;
+}
+
 /*.pagination{*/
-  /*padding-left: 18%;*/
+
+
+/*padding-left: 18%;*/
+
+
 /*}*/
 
 .pagination>li>a, .pagination>li>span {
     position: relative;
-    float: left;
-    padding: 6px 12px;
+    /*float: left;*/
+    padding: 6px 1px;
     margin-left: -1px;
+    font-size: 0px;
     line-height: 1.42857143;
     color: #337ab7;
     text-decoration: none;
@@ -435,6 +442,6 @@ input:checked+span {
     border: white !important;
 }
 
-.pagination>li>a, .pagination>li:nth-child(0)>span{
-  padding-left: 18%;
+.pagination>li>a, .pagination>li:nth-child(0)>span {
+    padding-left: 18%;
 }
