@@ -40,9 +40,10 @@
             <div class="top-margin">
                 <label id="sprayed-for-pests">Sprayed for pests:</label>
                 <button ng-click="sprayed_timestamp = today" class="today">Today</button>
-                <button class="calendar"><img src="images/calendaricon.svg" alt="">
+                <button class="calendar"><img src="images/calendaricon.svg" alt="" ng-show="$root.ios">
                     <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"/>
                 </button>
+                <input type="date" id="sprayedDate" ng-model="sprayed_timestamp" ng-show="!$root.ios"/>
                 <output>{{ sprayed_timestamp | date }}</output>
 
                 <textarea placeholder="Comment here about pest spraying." name="comments" cols="70" rows="4" ng-model="sprayed_note"></textarea>
