@@ -48,11 +48,33 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
     $scope.loadRoom = function($event){
     };
 
+    $scope.saveID = undefined;
+
     $('body').on('click', 'svg > g', function(){
-        $scope.changed = true;
         var abbreviation = $(this).attr('id');
-        $scope.changedRoom = abbreviation;
-        $scope.$apply();
+        //Specific Check if is the background
+        if(abbreviation == "Background"){
+
+        }else {
+            $scope.changed = true;
+            
+            $scope.changedRoom = abbreviation;
+            if ($scope.saveID == undefined || $scope.saveID == null) {
+
+            } else {
+                $($scope.saveID).find('[style*= "fill: rgb(25, 151, 123)"]').css('fill', '#FFFFFF');
+            }
+            $scope.saveID = "";
+            $scope.saveID = this;
+
+            //if the color has not been changged
+            $(this).find('[style*="FFFFFF"]').css('fill', '#19977B');
+
+            //this is for the color that has already been changed
+            $(this).find('[style*="fill: rgb(255, 255, 255)"]').css('fill', '#19977B');
+
+            $scope.$apply();
+        }
     });
 
     $scope.WarmPopup = false;
