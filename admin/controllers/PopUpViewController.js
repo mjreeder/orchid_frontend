@@ -190,10 +190,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleSprayed = function(callback) {
         var data = prepareForFactory('sprayed');
         if (!data.note) {
-            if (callback) {
-                callback();
-            }
-            return;
+          data.note = ""
         }
         if (!data.timestamp) {
             data.timestamp = $scope.today;
@@ -246,11 +243,14 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleHealth = function(callback) {
         var data = prepareForFactory('health');
-        if (!data.score || !data.comment) {
+        if (!data.score) {
             if (callback) {
                 callback();
             }
             return;
+        }
+        if(!data.comment){
+          data.comment = "";
         }
         if (!data.timestamp) {
             data.timestamp = $scope.today;
@@ -281,7 +281,11 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     $scope.flagggedPlant = [];
     var handleTag = function(callback) {
-        $scope.taggedPlant[0].note = $scope.flag_note;
+        if($scope.flag_note){
+          $scope.taggedPlant[0].note = $scope.flag_note;
+        } else {
+          $scope.taggedPlant[0] = "";
+        }
         if (createTag == false) {
             TagFactory.updateTag($scope.taggedPlant[0]).then(function(response) {
                 if (callback) {
