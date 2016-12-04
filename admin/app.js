@@ -4,11 +4,9 @@ var app = angular.module('orchid', [
 ]);
 
 app.run(function($rootScope){
-  var setIosFlag = function(){
-    if(bowser.ios){
-      $rootScope.ios = true;
-    } else {
-      $rootScope.ios = false;
-    }
+  if(bowser.ios){
+    $rootScope.ios = true;
+  } else {
+    $rootScope.ios = false;
   }
 })
