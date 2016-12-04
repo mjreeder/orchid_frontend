@@ -448,10 +448,20 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         return data;
     }
 
-    var getLastComment = function(data) {
-        data = data.data.data;
-        var lastComment = data[0];
-        return lastComment;
+    var getLastComment = function(data, timeStampsReversed) {
+        if(!timeStampsReversed){
+          timeStampsReversed = false;
+        }
+        var lastComment = "";
+        if(timeStampsReversed){
+          data = data.data.data;
+          lastComment = data[data.length - 1];
+          return lastComment;
+        } else {
+          data = data.data.data;
+          lastComment = data[0];
+          return lastComment;
+        }
     }
 
     //Add data to scope object
