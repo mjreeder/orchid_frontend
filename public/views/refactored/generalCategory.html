@@ -53,54 +53,14 @@
 
 <section id="grid">
     <section id="plants">
+        <div ng-show="collectionOfItems.length == 0">Nothing to see here...</div>
         <ul>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                    <h3>SOMETHING</h3></a>
-            </li>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                    <h3>SOMETHING</h3></a>
-            </li>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                    <h3>SOMETHING</h3></a>
-            </li>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                <h3>SOMETHING</h3></a>
-            </li>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                <h3>SOMETHING</h3></a>
-            </li>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                <h3>SOMETHING</h3></a>
-            </li>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                <h3>SOMETHING</h3></a>
-            </li>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                <h3>SOMETHING</h3></a>
-            </li>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                <h3>SOMETHING</h3></a>
-            </li>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                <h3>SOMETHING</h3></a>
-            </li>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                <h3>SOMETHING</h3></a>
-            </li>
-            <li>
-                <a ui-sref="specificPlant"><img src="http://placekitten.com/300/300" alt="">
-                <h3>SOMETHING</h3></a>
+            <li ng-repeat="item in collectionOfItems" ng-click="moveTo(item)">
+                <img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
+                <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">
+
+                <h3>{{item.name}}</h3></a>
+
             </li>
         </ul>
     </section>
