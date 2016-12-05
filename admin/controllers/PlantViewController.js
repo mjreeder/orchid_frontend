@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($window, $scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll, SpecialCollectionsFactory, $route) {
+app.controller('PlantViewController', function($window, $scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, bloomService, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll, SpecialCollectionsFactory, $route) {
 
 
     $scope.iFrameURL = location.origin +"/orchid_site/utilities/file_frame.php?session_key=" +$rootScope.userSessionKey +"&session_id=" +$rootScope.userSessionId +"&url_section=blah";
@@ -250,41 +250,13 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
           }
           return false;
         }
-        //TODO pull out bloom graph to service
+
+        // function to load bloom graph for a given calender year,
         $scope.loadBloomGraph = function(year) {
           document.getElementById("bloom_timeline").innerHTML = "";
           var container = document.getElementById('bloom_timeline');
-          var newdata = $scope.blooms.map(function(bloomObj) {;
-            if (bloomObj.end_date !== "0000-00-00" && bloomObj.end_date !== "present") {
-              var timeLineBloom = {
-                start: bloomObj.start_date,
-                end: bloomObj.end_date,
-                className: "full_bloom"
-              };
-            } else {
-              var timeLineBloom = {
-                start: bloomObj.start_date,
-                className: "incomplete_bloom"
-              };
-            }
-            return timeLineBloom
-          });
-          
-          var maxDate = new Date("December 31, " + year.year + " 12:00:00");
-          var minDate = new Date("January 1, " + year.year + " 12:00:00");
-          var testMin = moment(minDate).format("MM/DD/YYYY");
-          var testMax = moment(maxDate).format("MM/DD/YYYY");
-
-          var options = {
-            selectable: false,
-            editable: false,
-            stack: false,
-            min: minDate,
-            max: maxDate
-          };
-
-          var timeline = new vis.Timeline(container, newdata, options);
-
+          var graphData = bloomService.loadBloomGraphData($scope.blooms, year);
+          var timeline = new vis.Timeline(container, graphData.data, graphData.options);
         }
 
         var sprayPage = 0;
