@@ -269,7 +269,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             }
             return timeLineBloom
           });
-          console.log(newdata);
+          
           var maxDate = new Date("December 31, " + year.year + " 12:00:00");
           var minDate = new Date("January 1, " + year.year + " 12:00:00");
           var testMin = moment(minDate).format("MM/DD/YYYY");
