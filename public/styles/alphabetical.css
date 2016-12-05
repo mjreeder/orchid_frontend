@@ -105,7 +105,14 @@ body {
     font-size: 18px;
     float: right;
     width: calc(25% - 10px); 
+   
 }
+
+
+#alphabet-menu {
+ margin-top: 10px; 
+}
+
 
 /*
 .whitebox {
@@ -146,6 +153,7 @@ main aside li {
     font-family: 'Raleway', sans-serif;
     border: none;
     letter-spacing: .5px;
+
 }
 
 @media screen and (max-width: 804px){
@@ -171,6 +179,9 @@ main h4 {
 .box {
     float: right;
     margin: 30px 20px;
+    position: absolute;
+    bottom: -20px;
+    right: 0px;
 }
 
 #grid {
