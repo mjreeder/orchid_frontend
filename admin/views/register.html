@@ -28,10 +28,10 @@
             <input type="text" name="email" ng-model="user.last_name" ng-disabled="!editUsers">
 
             <label id="email" class="users">Email</label>
-            <input type="text" name="email" ng-model="user.email" ng-disabled="!editUsers">
+            <input type="text" name="email" ng-model="user.email" ng-disabled="!editUsers || user.warning">
 
             <label id="auth" class="users">Manager
-            <input type="checkbox" ng-click="changeAuthLevel(user)" ng-model="user.isAuthUser" ng-disabled="!editUsers" /><span class="table-checkbox" ></span>
+            <input type="checkbox" ng-click="changeAuthLevel(user)" ng-model="user.isAuthUser" ng-disabled="!editUsers || user.warning" /><span class="table-checkbox" ></span>
             </label>
 
             <label id="password" class="users">
@@ -41,7 +41,7 @@
             </label>
 
         <div class="button-new">
-            <button id="password" ng-disabled="!editUsers" ng-click="deleteUserPopUp(user)">Delete User</button></div>
+            <button id="password" ng-disabled="!editUsers || user.current" ng-click="deleteUserPopUp(user)">Delete User</button></div>
         </div>
 
 
