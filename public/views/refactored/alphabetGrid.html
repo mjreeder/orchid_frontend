@@ -1,0 +1,57 @@
+
+        
+            <aside class="menubox" id="alphabet-menu">
+
+        
+        <section class="whitebox">
+            <ul>
+
+                <li><a ui-sref="generalCollections">Special Collections</a></li>
+                <section class="special">
+                    <ul>
+                        <li><a ui-sref="specificCollection">Speical Collection 1</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 2</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 3</a></li>
+                        <li><a ui-sref="specificCollection">Speical Collection 4</a></li>
+                    </ul>
+                </section>
+                <li><a ui-sref="alphabetical">Alphabetical</a></li>
+                <li>
+                    <a ui-sref="countries">
+                        <div id="place">Countries</div>
+                    </a>
+                </li>
+                <li><a ui-sref="blooming">What's in Bloom</a></li>
+                <li><a ui-sref="subtribe">Subtribes</a></li>
+                <section class="special">
+                    <ul>
+                        <li><a ui-sref="specificSubTribe" id="collection1">Subtribe 1</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection2">Subtribe 2</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection3">Subtribe 3</a></li>
+                        <li><a ui-sref="specificSubTribe" id="collection4">Subtribe 4</a></li>
+                    </ul>
+                </section>
+
+
+            </ul>
+        </section>
+    </aside>
+
+   <section id="grid">
+   
+    <section ng-show="loading == true">
+        LOADING...
+    </section>
+
+       <section id="plants" ng-show="loading == false">
+           <div ng-show="plants.length == 0">Nothing to see here...</div>
+           <ul>
+               <li ng-repeat="plant in plants">
+                   <a ui-sref="specificPlant({plant: {{plant.name}} })"><img src="{{plant.picture}}" ng-hide="!plant.hasPicture" alt="">
+                       <img src="./images/no_plant_icon.svg" ng-hide="plant.hasPicture" alt="">
+                       <h3>{{plant.name}}</h3>
+                   </a>
+               </li>
+           </ul>
+       </section>
+</section>

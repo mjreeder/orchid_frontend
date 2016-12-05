@@ -219,13 +219,13 @@ header img {
 }
 
 header nav {
-    background-color: rgba(255, 255, 255, .7);
+    background-color: rgba(255, 255, 255, .2);
 }
 
 header ul {
     list-style: none;
-    padding: 30px;
     display: flex;
+    padding: 10px; 
     justify-content: space-between;
     max-width: 800px;
     margin: 0 auto;
@@ -234,9 +234,10 @@ header ul {
 
 /* mouse over link */
 
-header ul li a:hover {
-    transition: .5sec ease;
-    color: #ba0c2f;
+header ul li:hover {
+   background-color: rgba(0, 0, 0, .2); 
+    color: black; 
+
 }
 
 @media screen and (max-width: 300px) {
@@ -271,13 +272,17 @@ header ul li a:hover {
 
 header a {
     font-family: Aleo, 'Times New Roman', Times, serif;
-    font-weight: 100;
+    font-weight:400;
+    color: white; 
+    font-size: 24px; 
+    padding: 15px 25px; 
 }
 
 header li {
     display: inline-block;
-    font-size: 22px;
-    color: black;
+    transition: .7s ease;
+    
+   
 }
 
 footer {
@@ -303,25 +308,29 @@ a {
 
 main {
     margin-bottom: 30px;
-    max-width: 800px;
+    max-width: 400px;
     width: 100%;
     margin: 0 auto 50px;
-    background-color: rgba(255, 255, 255, .7);
+    background-color: rgba(255, 255, 255, .2);
     padding: 30px;
 }
+
+
 
 .menubox {
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 400;
     font-size: 18px;
-    max-width: 220px;
-    float: right;
-    width: 20%
+/*    max-width: 220px;*/
+/*    float: right;*/
+    width: 20%;
 }
 
 .whitebox {
-    background-color: white;
+/*    background-color: rgba(255, 255, 255, .4);*/
+    background-color: white; 
     padding: 10px 20px;
+    width: 100%; 
 }
 
 main aside li {
@@ -335,18 +344,20 @@ main aside li {
     margin-left: 25px;
 }
 
-hr {
-    width: 190px;
-    height: 1.4px;
-    background: black;
-    border-style: none;
-    align-items: center;
-}
+/*
+    hr {
+        width: 190px;
+        height: 1.4px;
+        background: black;
+        border-style: none;
+        align-items: center;
+    }
+*/
 
 #search {
     width: 180px;
     height: 30px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, .6);
     color: white;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
@@ -357,9 +368,14 @@ hr {
     letter-spacing: .5px;
 }
 
+
+.menubox li a {
+ transition: .5sec ease;   
+}
+
+
 .menubox li a:hover {
-    color: #ba0c2f;
-    transition: .5sec ease;
+    color: #cccccc; 
 }
 
 main h4 {
@@ -367,12 +383,30 @@ main h4 {
     letter-spacing: 1px;
     font-size: 22px;
 }
+menu {
+ position: relative;    
+}
 
 .box {
-    float: right;
-    margin: 30px 20px;
+    position: absolute;
+    bottom: -20px; 
+    right: 0px; 
 }
 
 #firstChild a{
     color:red;
+    
+}
+
+
+
+.menubox {
+width: 20%; 
+}
+
+
+
+#main-plant main {
+max-width: 800px; 
+    width: 100%; 
 }
