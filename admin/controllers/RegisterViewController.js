@@ -169,6 +169,7 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
                 'specificUser': $scope.allUsers[number]
             }
         });
+        return false;
     };
 
     $scope.$on('changePassword', function(event, data) {
