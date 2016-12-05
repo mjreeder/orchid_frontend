@@ -1,11 +1,20 @@
 <link rel="stylesheet" href="styles/plant.css">
+<link rel="stylesheet" href="styles/global.css">
+<link rel="stylesheet" href="styles/alphabetical.css">
+
+<!--<link rel="stylesheet" href="styles/alpabetical.css">-->
+<div id="main-plant">
+<main> 
 <article>
-                <h1>{{NAMEOFPAGE}}</h1>
+<!--                <h1>{{NAMEOFPAGE}}</h1>-->
+   <h1>Name of plant</h1>
     <div class="w3-content w3-section" style="max-width:500px">
         <ul > <!--ng-reapet="imagesURL in allimagesURL" -->
             <li><img class="mySlides" src="http://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg" style="width:100%"> </li>
+<!--
             <li><img class="mySlides" src="http://i164.photobucket.com/albums/u8/hemi1hemi/COLOR/COL9-6.jpg" style="width:100%"> </li>
             <li><img class="mySlides" src="http://assets.barcroftmedia.com.s3-website-eu-west-1.amazonaws.com/assets/images/recent-images-11.jpg" style="width:100%"> </li>
+-->
 
 
         </ul>
@@ -15,17 +24,9 @@
     <!--SIDE MENU-->
     <aside class="menubox">
 
-        <div class="box">
-            <div class="container1">
-                <input type="search" id="search" placeholder="Search. . .">
-            </div>
-        </div>
         <section class="whitebox">
             <ul>
-                <li>
-                    <a href="">
-                        <h4> Orchids </h4></a>
-                </li>
+            
                 <li><a ui-sref="generalCollections">Special Collections</a></li>
                 <section class="special">
                     <ul>
@@ -51,7 +52,7 @@
                         <li><a ui-sref="specificSubTribe" id="collection4">Subtribe 4</a></li>
                     </ul>
                 </section>
-                <hr/>
+            
 
             </ul>
         </section>
@@ -89,7 +90,9 @@
 
 
     <section id="chart">
-        <h3>Flowering Calendar</h3>
+        <h3>Blooming Calendar</h3>
         <img src="images/flowering_chart.svg" alt="flowering chart">
     </section>
 </article>
+</main>
+ </div>

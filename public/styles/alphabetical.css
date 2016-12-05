@@ -269,3 +269,9 @@ main h4 {
 #plants li img {
   padding: 5px;    
 }
+
+
+#main-plant main {
+max-width: 800px; 
+    width: 100%; 
+}

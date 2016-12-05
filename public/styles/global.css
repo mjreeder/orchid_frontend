@@ -315,6 +315,8 @@ main {
     padding: 30px;
 }
 
+
+
 .menubox {
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 400;
@@ -400,4 +402,11 @@ menu {
 
 .menubox {
 width: 20%; 
+}
+
+
+
+#main-plant main {
+max-width: 800px; 
+    width: 100%; 
 }
