@@ -23,6 +23,7 @@
   "dependencies": {
     "moment": "^2.16.0",
     "angular-bootstrap": "^2.2.0",
-    "bowser": "^1.5.0"
+    "bowser": "^1.5.0",
+    "vis": "^4.17.0"
   }
 }
