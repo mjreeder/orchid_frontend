@@ -136,7 +136,11 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var datesFromNewYear = function(startYearDate, endYearDate, daysInYear) {
-        if (startYearDate > endYearDate) {
+        var startYear = moment($scope.blooming_start_date);
+        var endYear = moment($scope.blooming_end_date);
+        if(endYear < startYear) {
+          return 0
+        } else if (startYearDate > endYearDate) {
             return daysInYear - startYearDate + endYearDate;
         }
         return 0;
