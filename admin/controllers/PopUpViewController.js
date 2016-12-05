@@ -1,3 +1,5 @@
+//This page stores the old data on init in $scope.data, but all assignments are to $scope . Breaking this flow will make the check to see if an item is new fail.
+
 app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootScope, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, Bloom_CommentFactory, TagFactory, $route) {
 
     $scope.plant = {};
@@ -5,6 +7,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.createBloomPressed = false;
     $scope.startNewBloomTodayDisable = true;
     $scope.disableEndBloom = true;
+    $scope.bloomIsActive = false;
+    $scope.newBloomText = "Start New Bloom";
 
     $scope.startNewBloom = function() {
         $scope.blooming_start_date = $scope.today;
@@ -12,6 +16,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         $scope.disableEndBloom = true;
         $scope.createBloomPressed = true;
         $scope.startNewBloomTodayDisable = false;
+        $scope.bloomIsActive = true;
+        $scope.newBloomText = "In Bloom";
     }
 
     $scope.$on('current-plant', function(event, data) {
@@ -29,6 +35,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         $scope.createBloomPressed = false;
         $scope.startNewBloomTodayDisable = true;
         $scope.disableEndBloom = true;
+        $scope.bloomIsActive = false;
+        $scope.newBloomText = "Start New Bloom";
     }
 
     var cleanPrefixes = function() {
@@ -360,7 +368,15 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             concatObjects(data, 'blooming');
             setTodayEndBloomState();
             disableNewBloomToday();
+            setBloomingState();
         })
+    }
+
+    var setBloomingState = function() {
+      if(!$scope.blooming_end_date){
+        $scope.bloomIsActive = true;
+        $scope.newBloomText = "In Bloom";
+      }
     }
 
     var disableNewBloomToday = function() {
