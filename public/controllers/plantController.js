@@ -74,12 +74,11 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
         for(var i = 0; i < $scope.allimagesURL.length; i++){
            console.log($scope.allimagesURL[i]);
         }
-
-
-
-
-
     };
+
+    $scope.goBack = function() {
+        window.history.back();
+    }
 
     var myIndex = 0;
     carousel();
