@@ -275,12 +275,13 @@ header a {
     font-weight:400;
     color: white; 
     font-size: 24px; 
+    padding: 15px 25px; 
 }
 
 header li {
     display: inline-block;
     transition: .7s ease;
-    padding: 15px 25px; 
+    
    
 }
 
@@ -318,14 +319,16 @@ main {
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 400;
     font-size: 18px;
-    max-width: 220px;
-    float: right;
+/*    max-width: 220px;*/
+/*    float: right;*/
     width: 20%;
 }
 
 .whitebox {
-    background-color: rgba(0, 0, 0, .3);
+/*    background-color: rgba(255, 255, 255, .4);*/
+    background-color: white; 
     padding: 10px 20px;
+    width: 100%; 
 }
 
 main aside li {
@@ -352,7 +355,7 @@ main aside li {
 #search {
     width: 180px;
     height: 30px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, .6);
     color: white;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
@@ -378,12 +381,23 @@ main h4 {
     letter-spacing: 1px;
     font-size: 22px;
 }
+menu {
+ position: relative;    
+}
 
 .box {
-    float: right;
-    margin: 30px 20px;
+    position: absolute;
+    bottom: -20px; 
+    right: 0px; 
 }
 
 #firstChild a{
     color:red;
+    
+}
+
+
+
+.menubox {
+width: 20%; 
 }
