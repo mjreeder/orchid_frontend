@@ -12,7 +12,7 @@
         <!--<section>-->
         <div class="top-margin">
             <label>Blooming:</label>
-            <button class="startnewbloom" ng-click="startNewBloom()">Start New Bloom</button>
+            <button ng-disabled="bloomIsActive" ng-class="{customNgDisabled: bloomIsActive}" class="startnewbloom" ng-click="startNewBloom()">{{newBloomText}}</button>
                 <div class="start-stop-blooming">
                     <label>Start of Bloom:</label>
                     <button ng-click="blooming_start_date = today" class="today" ng-disabled="startNewBloomTodayDisable" ng-class="{customNgDisabled: startNewBloomTodayDisable}">Today</button>
