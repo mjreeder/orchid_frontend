@@ -1,8 +1,22 @@
 var orchidApp = angular.module('orchidApp');
-orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$stateParams', function($scope, $location, $state, $stateParams) {
+orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$stateParams', 'countryFactory', 'PlantsFactory', function($scope, $location, $state, $stateParams, countryFactory, PlantsFactory) {
     $scope.NAMEOFPAGE = $stateParams.country;
 
-    $scope.NAMEOFPAGE = "ALLL OF THE COUNTRIES COUNTRIESSSSSSS";
+    $scope.NAMEOFPAGE = "Countries";
+    $scope.collectionOfItems = [];
 
-    console.log('countries controller loaded');
+
+    countryFactory.getCurrentCountires().then(function (response){
+      $scope.collectionOfItems = response.data.data;
+    });
+
+
+    $scope.moveTo = function(item){
+        $location.path('/country/' + item.name);
+    }
+
+
+
+
+
 }]);

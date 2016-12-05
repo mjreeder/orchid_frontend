@@ -1,11 +1,11 @@
-var orchidApp = angular.module('orchidApp');
+//var orchidApp = angular.module('orchidApp');
 
 orchidApp.factory('PhotoFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = location.origin +'/orchid_site/public/api/photos';
 
-    data.getPhtosByPlantID = function(plant_id) {
+    data.getPhotosByPlantID = function(plant_id) {
         return $http.get(baseUrl + "/plant_id/" + plant_id);
     };
 
