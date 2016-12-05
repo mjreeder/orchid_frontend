@@ -284,7 +284,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         if($scope.flag_note){
           $scope.taggedPlant[0].note = $scope.flag_note;
         } else {
-          $scope.taggedPlant[0] = "";
+          $scope.taggedPlant[0].note = "";
         }
         if (createTag == false) {
             TagFactory.updateTag($scope.taggedPlant[0]).then(function(response) {
