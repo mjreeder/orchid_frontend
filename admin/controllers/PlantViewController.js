@@ -257,28 +257,26 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
           var newdata = $scope.blooms.map(function(bloomObj) {;
             if (bloomObj.end_date !== "0000-00-00" && bloomObj.end_date !== "present") {
               var timeLineBloom = {
-                id: bloomObj.id,
                 start: bloomObj.start_date,
                 end: bloomObj.end_date,
                 className: "full_bloom"
               };
             } else {
               var timeLineBloom = {
-                id: bloomObj.id,
                 start: bloomObj.start_date,
                 className: "incomplete_bloom"
               };
             }
             return timeLineBloom
           });
-
+          console.log(newdata);
           var maxDate = new Date("December 31, " + year.year + " 12:00:00");
           var minDate = new Date("January 1, " + year.year + " 12:00:00");
           var testMin = moment(minDate).format("MM/DD/YYYY");
           var testMax = moment(maxDate).format("MM/DD/YYYY");
 
           var options = {
-            selectable: true,
+            selectable: false,
             editable: false,
             stack: false,
             min: minDate,
