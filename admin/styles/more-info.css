@@ -410,7 +410,7 @@ input[type="button"].selectedPhoto {
 }
 
 .photoDeleted {
-    opacity: .55;
+    opacity: .35;
     height: auto;
     display: inline-block;
     vertical-align: middle;

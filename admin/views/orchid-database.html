@@ -1,24 +1,16 @@
 <div id="orchid-database">
-
-    <div>
-        <div id="allplantsh1">
+        <div id="database-heading">
             <h1>All Plants</h1>
-        </div>
-
-        <div class="searchbox-and-icon">
-            <form>
-                <div class="searchbox">
+            <div class="searchbox-and-icon">
+                <form>
                     <input type="search" id="search" placeholder="Search. . ." name="databasesearch" ng-model="searchItem" ng-change="getPlantsBySearch(searchItem)">
-                </div>
-                <input type="image" id="mag-glass" name="search-button" src="images/Searchbutton.svg" width="20" ng-click="getPlantsBySearch(searchItem)">
-            </form>
+                    <input type="button" id="mag-glass" name="search-button" ng-click="getPlantsBySearch(searchItem)">
+                </form>
+            </div>
         </div>
 
         <div class="filter-left">
             <div class="filter-section">
-                <button id="collapse" type="image" id="active">
-                    -
-                </button>
                 <h2>
                     Database Sections</h2>
                 <hr noshade>
@@ -26,10 +18,10 @@
             <div class="filter-options">
                 <ul ng-repeat="(key, val) in plants[0]">
                    <li ng-show="val.key != 'id' && val.key != 'is donation' && val.key != 'username' && val.key != 'description' && val.key != 'inactive comment' && val.key != 'dead' && val.key != 'size' && val.key != 'value' && val.key != 'culture' &&  val.key != 'hybrid comment' && val.key != 'hybrid status' && val.key != 'origin comment' && val.key != 'donation comment' && val.key != 'value'">
-                <div class="editPlant" ng-click="editFilterDisplay(val.key)">
+                        <div class="editPlant" ng-click="editFilterDisplay(val.key)">
                             <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/>
                             <span class="table-checkbox"></span>
-                            <label>{{val.key | capitalize}}</label>
+                            <label class="filter-option" >{{val.key | capitalize}}</label>
                         </div>
                     </li>
                 </ul>
@@ -57,8 +49,5 @@
                  <ul uib-pagination total-items="totalPlants" num-pages="numberOfPages" ng-model="currentPage" ng-change="pageChange(number)" max-size="2" class="pagination-sm" boundary-link-numbers="true" rotate="false" items-per-page="30"></ul>
             </div>
         </div>
-    </div>
-
-</div>
 
 </div>
