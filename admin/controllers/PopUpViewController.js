@@ -37,6 +37,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         $scope.disableEndBloom = true;
         $scope.bloomIsActive = false;
         $scope.newBloomText = "Start New Bloom";
+        $scope.flagged = false;
     }
 
     var cleanPrefixes = function() {
