@@ -29,7 +29,7 @@
                     <button class="calendar"><img src="images/calendaricon.svg" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}" alt="" ng-show="$root.ios">
                         <input type="date" id="endDateBloom" ng-model="blooming_end_date" ng-disabled="disableEndBloom"/>
                     </button>
-                    <input type="date" id="endDateBloom" ng-model="blooming_end_date" ng-disabled="disableEndBloom"/>
+                    <input type="date" id="endDateBloom" ng-show="!$root.ios" ng-model="blooming_end_date" ng-disabled="disableEndBloom"/>
                     <output ng-show="$root.ios">{{ blooming_end_date | date }}</output>
                 </div>
 
