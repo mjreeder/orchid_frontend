@@ -1638,8 +1638,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         };
 
         PhotoFactory.createPhoto(photo).then(function (response){
-
+            $scope.editPlant.photos = true;
+            $scope.plant_id_url.push(data);
         });
+        $route.reload();
+
     }
 
     $scope.scrollToFunction = function(){
