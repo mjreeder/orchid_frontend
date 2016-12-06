@@ -6,6 +6,15 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
 
     $scope.collectionOfItems = [];
     $scope.genericPicture = true;
+    $scope.dynamicSidebarContent = {
+        specialCollections : ["Special Test 1", "Special Test 2"],
+        subtribes: ["Subtribe Test 1", "Subtribe Test 2"]
+    };
+
+    var init = function() {
+        $scope.dynamicSidebarContent.specialCollections; //= factory call to pull in collections; TODO
+        $scope.dynamicSidebarContent.subtribes; //= factory call to pull in subtribes; TODO
+    };
 
     $scope.idForSpeicalCollection = 0;
     var promArray = [];
@@ -111,17 +120,7 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
         }, function (error) {
 
         });
-    }
+    };
 
-
-
-
-
-
-
-
-
-
-
-
+    init();
 }]);

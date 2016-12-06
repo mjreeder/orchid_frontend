@@ -244,12 +244,15 @@ main h4 {
     font-size: 18px;
     background-color: rgba(0, 0, 0, .4);
     color: white;
-padding: 5px 0px 5px 5px ; 
+padding: 5px 10px ;  
     letter-spacing: 1px;
     position:absolute;
-    bottom: 0;
-    width: 100%;
-    margin: 5px 0px 5px 5px;
+    left: 5px; 
+    right: 5px; 
+    bottom: 5px;
+    margin: 0px; 
+    line-height: 1.2; 
+    
 }
 
 
@@ -311,7 +314,7 @@ article h1 {
 
 .back-button {
     position: absolute; 
-    top: 30px; 
+    top: 40px; 
     left: 30px; 
 
    
@@ -319,6 +322,7 @@ article h1 {
 
 .back-button a {
    background-color: white; 
+    color: #bcbcbc; 
     border: 2px solid #bcbcbc; 
     padding: 10px 15px; 
     border-radius: 5px; 
@@ -339,6 +343,11 @@ article h1 {
 }
 
 
+
+main article .mySlides img {
+    width: 100%; 
+    
+}
 
 
 

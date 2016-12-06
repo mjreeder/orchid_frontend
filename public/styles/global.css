@@ -234,9 +234,8 @@ header ul {
 
 /* mouse over link */
 
-header ul li:hover {
-   background-color: rgba(0, 0, 0, .2); 
-    color: black; 
+header a:hover {
+  transform: scale(2); 
 
 }
 

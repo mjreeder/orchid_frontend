@@ -155,6 +155,7 @@ td {
 
 .formcontent {
     padding: 15px;
+    /*margin-top: 85px;*/
 }
 
 .flower-popup form {
@@ -169,18 +170,6 @@ td {
     padding-bottom: 10px;
     box-sizing: border-box;
     margin-top: 2.5%;
-}
-
-.center {
-    position: fixed;
-    top:0;
-    left:0;
-    right:0;
-    overflow:hidden;
-}
-
-.form-content {
-    padding-top: 85px;
 }
 
 .center h1 {
@@ -353,17 +342,15 @@ td {
 }
 
 .glowHealthPoor {
-    /*   box-shadow:0 0 20px #BA0C2F;*/
     background-color: #EF645F;
 }
 
-.glowHealthFair {
-    /*  box-shadow:0 0 20px #F3C467;*/
+#current-health button.glowHealthFair {
     background-color: #FDE48F;
+    color: #2b2e30;
 }
 
 .glowHealthGood {
-    /*  box-shadow:0 0 20px #61d166;*/
     background-color: #01997B;
 }
 
@@ -442,4 +429,9 @@ table input,
     text-align: center;
     border-radius: 5px;
     font-weight: 600;
+}
+
+#no-plants-table {
+    text-align: center;
+    padding: 10px;
 }
