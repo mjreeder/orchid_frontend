@@ -67,7 +67,7 @@
 
                 <td>
                     <label>
-                        <input ng-click="addVarified(plant)" type="checkbox"  ng-model="plant.verified"/><span class="table-checkbox"></span>
+                        <input ng-click="addVarified(plant)" ng-checked="plant.isToday" type="checkbox"  ng-model="plant.verified"/><span class="table-checkbox"></span>
                     </label>
                 </td>
                 <td ><!-- ng-class="{alertRow: plant.isToday == true}" -->
@@ -83,7 +83,9 @@
             </div>
         </table>
     </div>
-    
+
+    <h1 ng-show="!SHOWTHISNOW">No Plants to Show</h1>
+
 
     <div class="table-footer button-new" ng-if="showTable">
         <button class="save" id="save" type="submit" ng-click="updateDates()">Save</button>

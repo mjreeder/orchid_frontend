@@ -1,39 +1,47 @@
 main h1 {
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 400;
-    color: black;
-    font-size: 50px;
+    color: white;
+    font-size: 40px;
     margin: 10px 0 30px 0;
     text-align:center;
 }
 
+/*
 main h2 {
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 400;
-    font-size: 25px;
+    font-size: 2px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     margin: 10px 0 25px 0;
     text-align: center;
 }
+*/
 
 main li {
-    margin: 20px 20px;
+    text-align: center; 
+    border-top: 2px solid #efefef; 
+    width: 100%;
+    margin: 0 auto; 
+    transition: .5s  ease; 
+     padding: 20px 30px;  
+}
+
+
+main li:first-child {
+ border-top: 0px;    
 }
 
 #orchids {
-    width: 47%;
-    float: left;
+    width: 100%;
+   display: block; 
+    margin: 0 auto; 
 }
 
 main ul {
     background: white;
     padding: 10px;
-}
-
-#ferns {
-    width: 47%;
-    float: right;
 }
 
 #viewcollection {
@@ -43,13 +51,14 @@ main ul {
 
 
 /* mouse over link */
-main #viewcollection a:hover {
-    color: #ab0c2f;
+main #viewcollection li:hover {
+    background-color: #dddddd;
 }
 
 
 main #viewcollection li{
      font-family: Aleo, 'Times New Roman', Times, serif;
-    font-weight: 100;
-    font-size: 20px; 
+    font-weight: 400;
+    font-size: 24px; 
+    
 }

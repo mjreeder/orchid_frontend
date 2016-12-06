@@ -11,7 +11,6 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
       displayAttributes = [];
       getPaginatedPlants();
     } else {
-      console.log($scope.numberOfPages);
       // set current page to one, set on displayAttributes on and call getPaginatedPlants
       $scope.currentPage = 1;
       displayAll();

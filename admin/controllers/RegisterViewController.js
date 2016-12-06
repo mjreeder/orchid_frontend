@@ -155,20 +155,26 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
     $scope.deleteUser = true;
 
     $scope.deleteUserPopUp = function(user){
-        $scope.deleteUser = false;
+        if(user.warning == true){
+            window.alert('Error. Can not delete current user');
+        } else {
+            $scope.deleteUser = false;
 
-        var number;
-        for (var index = 0; index < $scope.allUsers.length; index++){
+            var number;
+            for (var index = 0; index < $scope.allUsers.length; index++){
 
-            if (user.id == $scope.allUsers[index].id){
-                number = index;
+                if (user.id == $scope.allUsers[index].id){
+                    number = index;
+                }
             }
+            $rootScope.$broadcast('deleteUserData', {
+                user: {
+                    'specificUser': $scope.allUsers[number]
+                }
+            });
+            return false;
         }
-        $rootScope.$broadcast('deleteUserData', {
-            user: {
-                'specificUser': $scope.allUsers[number]
-            }
-        });
+
     };
 
     $scope.$on('changePassword', function(event, data) {
@@ -186,7 +192,7 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
 
     $scope.changePasswordFunction = function(user){
         if(user.warning == true){
-            window.alert("this is the current user");
+            window.alert("Warning. This is the current user.");
         }
         $scope.changePassword = false;
 

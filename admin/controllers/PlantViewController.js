@@ -1,7 +1,7 @@
-app.controller('PlantViewController', function($window, $scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll, SpecialCollectionsFactory, $route) {
+app.controller('PlantViewController', function($window, $scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, bloomService, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll, SpecialCollectionsFactory, $route) {
 
 
-    $scope.iFrameURL = "http://localhost:8888/orchid_site/utilities/file_frame.php?session_key=" +$rootScope.userSessionKey +"&session_id=" +$rootScope.userSessionId +"&url_section=blah";
+    $scope.iFrameURL = location.origin +"/orchid_site/utilities/file_frame.php?session_key=" +$rootScope.userSessionKey +"&session_id=" +$rootScope.userSessionId +"&url_section=blah";
 
     var param1 = $routeParams.accession_number;
 
@@ -160,12 +160,12 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             origin_comment: plantData.origin_comment,
             last_varified: createDateFromString(plantData.last_varified),
             is_donation: plantData.is_donation,
-            class: plantData.class_name,
-            tribe: plantData.tribe_name,
-            subtribe: plantData.subtribe_name,
-            genus: plantData.genus_name,
-            species: plantData.species_name,
-            variety: plantData.variety_name,
+            class: plantData.class,
+            tribe: plantData.tribe,
+            subtribe: plantData.subtribe,
+            genus: plantData.genus,
+            species: plantData.species,
+            variety: plantData.variety,
             image: "",
             dead_date: createDateFromString(plantData.dead_date)
         };
@@ -173,7 +173,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         //assigning the table to plant.
         $scope.plantLocation = plantData.location;
 
-        console.log($scope.plant);
 
         $scope.originalAccessionNumber = $scope.plant.accession_number;
 
@@ -190,12 +189,29 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         PhotoFactory.getSimilarPhotos(speciesName).then(function (response){
             var photoData = response.data.data;
+            var count = 0;
             for (var i = 0; i < photoData.length; i++) {
+                var didAdd = false;
+
                 if(photoData[i].plant_id == id){
 
                 } else {
-                    $scope.similarPhotos.push(photoData[i]);
+
+                    for(var t = 0; t < $scope.similarPhotos.length; t++){
+                        if($scope.similarPhotos[t].url == photoData[i].url){
+                            didAdd = true;
+                            break;
+                        } else {
+                        }
+                    }
+                    if(didAdd == false){
+                        $scope.similarPhotos.push(photoData[i]);
+                    }
                 }
+            }
+
+            for(var i = 0;i < $scope.similarPhotos.length; i++){
+                $scope.similarPhotos[i].checked = false;
             }
 
         });
@@ -250,43 +266,13 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
           }
           return false;
         }
-        //TODO pull out bloom graph to service
+
+        // function to load bloom graph for a given calender year,
         $scope.loadBloomGraph = function(year) {
           document.getElementById("bloom_timeline").innerHTML = "";
           var container = document.getElementById('bloom_timeline');
-          var newdata = $scope.blooms.map(function(bloomObj) {;
-            if (bloomObj.end_date !== "0000-00-00" && bloomObj.end_date !== "present") {
-              var timeLineBloom = {
-                id: bloomObj.id,
-                start: bloomObj.start_date,
-                end: bloomObj.end_date,
-                className: "full_bloom"
-              };
-            } else {
-              var timeLineBloom = {
-                id: bloomObj.id,
-                start: bloomObj.start_date,
-                className: "incomplete_bloom"
-              };
-            }
-            return timeLineBloom
-          });
-
-          var maxDate = new Date("December 31, " + year.year + " 12:00:00");
-          var minDate = new Date("January 1, " + year.year + " 12:00:00");
-          var testMin = moment(minDate).format("MM/DD/YYYY");
-          var testMax = moment(maxDate).format("MM/DD/YYYY");
-
-          var options = {
-            selectable: true,
-            editable: false,
-            stack: false,
-            min: minDate,
-            max: maxDate
-          };
-
-          var timeline = new vis.Timeline(container, newdata, options);
-
+          var graphData = bloomService.loadBloomGraphData($scope.blooms, year);
+          var timeline = new vis.Timeline(container, graphData.data, graphData.options);
         }
 
         var sprayPage = 0;
@@ -1041,7 +1027,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             Promise.all(promArray).then(function (success) {
                 $scope.$apply();
 
-                console.log("we are done...going to clean the page.");
                 $route.reload();
             }, function (error) {
 
@@ -1453,16 +1438,29 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.newPhotoLink = function (photo){
         var changed = false;
+
+        for(var i = 0; i < $scope.similarPhotos.length; i++){
+            //$scope.similarPhotos[i].checked = false;
+            var index = -1;
+            if($scope.similarPhotos[i].id == photo.id) {
+                index = i;
+                break;
+            }
+        }
+
         for (var i = 0; i < $scope.addPhotoList.length; i++){
             if(photo.id == $scope.addPhotoList[i].id){
                 $scope.addPhotoList.splice(i, 1);
+                $scope.similarPhotos[index].checked = false;
                 changed = true;
             }
         }
         if(changed == false){
             $scope.addPhotoList.push(photo);
+            $scope.similarPhotos[index].checked = true;
+            $scope.addPhotoList.checked = true;
+
         }
-        $scope.saveNewPhotos();
 
     };
 
@@ -1483,6 +1481,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             PhotoFactory.createPhoto(photoInfo).then(function (response){
             });
         }
+        $route.reload();
 
         $rootScope.$broadcast('photoMatcher', false);
 

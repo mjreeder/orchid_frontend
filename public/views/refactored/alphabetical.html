@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="styles/alphabetical.css">
+
+<menu>
+    <h1>{{NAMEOFPAGE}}</h1>
+    
+  <div class="box">
+            <div class="container1">
+                <input type="search" id="search" placeholder="Search. . ." ng-model="searchBox">
+            </div>
+        </div>
+    <ul id="tabs">
+        <li class="option" data-start-letter="A" data-end-letter="G" data-expanded="false">
+            <span ng-click="toggleExpanded($event)">A - G</span>
+            <span></span>
+        </li>
+        <li class="option" data-start-letter="H" data-end-letter="N" data-expanded="false">
+            <span ng-click="toggleExpanded($event)">H - N</span>
+            <span></span>
+        </li>
+        <li class="option" data-start-letter="O" data-end-letter="U" data-expanded="false">
+            <span ng-click="toggleExpanded($event)">O - U</span>
+            <span></span>
+        <li class="option" data-start-letter="V" data-end-letter="Z" data-expanded="false">
+            <span ng-click="toggleExpanded($event)">V - Z</span>
+            <span></span>
+        </li>
+
+    </ul>
+</menu>
+<div ui-view>
+    //The grid with the search results will get injected here.
+</div>

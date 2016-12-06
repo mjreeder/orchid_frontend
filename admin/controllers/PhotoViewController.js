@@ -16,14 +16,9 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
     $scope.x = {};
     var plant_id;
     $scope.$on('abc', function(event, data){
-        console.log("this is the end");
         $scope.addedMovePlants = data.any;
-        console.log($scope.addedMovePlants.plant_id);
         plant_id = $scope.addedMovePlants.plant_id;
         $scope.reloadFunction(plant_id);
-
-        $scope.hamburger = console.log($scope.addedMovePlants.a[0].accession_number);
-        console.log($scope.hamburger);
         $scope.x.name = $scope.addedMovePlants.a[0].accession_number;
 
 
@@ -33,7 +28,6 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
 
 
     $scope.reloadFunction = function(plant_id){
-        console.log("THIS IS THE PLANT ID" + plant_id);
 
         PhotoFactory.getPhtosByPlantID(plant_id).then(function(response){
             var data = response.data.data;
@@ -74,24 +68,12 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
 
     }
 
-
-
-
-
-
-
-
-
-
     $scope.clickedPhoto = function(photo){
         $scope.chosenPicrture = photo;
     };
 
     $scope.submitChange = function(){
-        //create a new entry in the backend if the plant does not have a profile pcture
 
-        console.log("we are here at the submit change");
-        console.log($scope.plant.id);
         if($scope.plant.image != ""){
             //update the old picture to go to other
             var photoInformation = {
@@ -112,8 +94,6 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
                     url: $scope.chosenPicrture.url,
                     type: "profile"
                 };
-                console.log(photoInformation2);
-
                 PhotoFactory.updatePhoto(photoInformation2).then(function (response){
 
                 });
@@ -123,7 +103,6 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
                     url: $scope.chosenPicrture.url,
                     type: "profile"
                 };
-                console.log(photoInformation4);
 
                 PhotoFactory.createPhoto(photoInformation4).then(function (response){
 
@@ -145,20 +124,16 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
 
         }
 
-        //if they do, then we will update the url
 
-        // the old url is going to  change to an other photo with the same plant_id
 
         closePop();
     }
 
 
     var closePop = function(){
-        console.log("we are closing the pop up");
 
     }
     $scope.closePopUp = function(){
-        console.log("close the pop up");
         $rootScope.$broadcast('photoMatcher', false);
     }
 
