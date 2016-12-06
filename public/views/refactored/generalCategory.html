@@ -4,7 +4,7 @@
     
     <div class="box">
             <div class="container1">
-                <input type="search" id="search" placeholder="  Search. . .">
+                <input type="search" id="search" placeholder="  Search. . ." ng-model="searchBox">
             </div>
         </div>
 </menu>
@@ -55,7 +55,7 @@
     <section id="plants">
         <div ng-show="collectionOfItems.length == 0">Nothing to see here...</div>
         <ul>
-            <li ng-repeat="item in collectionOfItems" ng-click="moveTo(item)">
+            <li ng-repeat="item in collectionOfItems | filter:searchBox" ng-click="moveTo(item)">
                 <img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
                 <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">
 

@@ -7,14 +7,15 @@
             <img src="images/no_plant_icon.svg" alt="" id="thumbnail" ng-show="createNew || noProfile">
 
             <button class="edit" ng-click="editCritical()" ng-hide="createNew">
+                <p ng-hide="editPlant.critical">Save</p>
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.critical">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.critical">
             </button>
 
             <div>
-                <label><input placeholder="Accession Number" type="text" ng-model="plant.accession_number" name="accession" ng-disabled="editPlant.critical && !createNew"></label>
+                <label><input placeholder="Accession Number" type="text" ng-model="plant.accession_number" name="accession" ng-disabled="!createNew"></label>
                 <label id="location"><img src="images/location.svg" alt="Location">
-                    <select ng-model="plantLocation" ng-disabled="editPlant.critical && !createNew">
+                    <select class="round" ng-model="plantLocation" ng-disabled="editPlant.critical && !createNew">
                         <option selected value>
                             Table
                         </option>
@@ -24,13 +25,15 @@
                 <label><input placeholder="Scientific Name" type="text" ng-model="plant.scientific_name" name="scientific" ng-disabled="editPlant.critical && !createNew"></label>
                 <label><input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label>
                 <label id="verified-label" for="verified" ng-hide="createNew">Last Verified:</label>
-                <input type="date" id="verified" class="more-calendar" ng-model="verifiedDate" ng-disabled="editPlant.critical && !createNew" ng-hide="createNew">
+                <input type="date" id="verified" class="more-calendar" ng-model="verifiedDate" ng-disabled="editPlant.critical && !createNew" ng-hide="createNew" class="round">
+
             </div>
         </fieldset>
 
         <fieldset id="taxonomic">
             <h1>Taxonomic Rank</h1>
             <button class="edit" ng-click="editTaxonomy()" ng-hide="createNew" ng-hide="edit">
+                <p ng-hide="editPlant.taxonommy">Save</p>
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.taxonommy">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.taxonommy">
             </button>
@@ -46,7 +49,8 @@
 
         <fieldset id="culture">
             <h1>Culture</h1>
-            <button class="edit" ng-click="editCulture()" ng-hide="createNew">
+            <button class="edit" ng-click="!editCulture()" ng-hide="createNew">
+                <p ng-hide="editPlant.culture">Save</p>
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.culture">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.culture">
             </button>
@@ -54,19 +58,19 @@
             <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
 
-            <label id="add-country" >Add:</label>
-                <select id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)"></br>
+            <label ng-hide="editPlant.culture" id="add-country" >Add:</label>
+                <select  id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-hide="editPlant.culture"></br>
                     <option disabled selected value>Select countries</option>
                     <option ng-repeat="country in allCountires">{{country.name}}</option>
                 </select>
 
-            <label id="delete-country"  >Delete:</label>
-            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)"></br>
+            <label id="delete-country" ng-hide="editPlant.culture"  >Delete:</label>
+            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-hide="editPlant.culture"></br>
                 <option disabled selected value>Select countries</option>
                 <option ng-repeat="country in selectedCountries">{{country.name}}</option>
             </select>
 
-            <div class="country-list" ">
+            <div class="country-list" ng-hide="!editPlant.culture">
                 <label id="countries-label">Countries:</label>
                 <ul class="selected-countries" ng-repeat="country in selectedCountries">
                     <li>{{country.name}}</li>
@@ -80,25 +84,31 @@
         <fieldset id="special-collection">
             <h1>Special Collections</h1>
             <button class="edit" ng-click="editSpecialCollections()" ng-hide="createNew">
+                <p ng-hide="editPlant.speical_collections">Save</p>
                 <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.speical_collections">
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.speical_collections">
             </button>
 
             <label for="select-collection">Collection:</label>
-                <select name="Choose Collection" id="select-collection" ng-model="selectedCollectionName" ng-disabled="editPlant.speical_collections && !createNew">
+                <select class="round" name="Choose Collection" id="select-collection" ng-model="selectedCollectionName" ng-disabled="editPlant.speical_collections && !createNew">
                     <option ng-repeat="collection in allCollections">{{collection.name}}</option>
                 </select>
             </br>
 
+
             <label ></label>
             <input type="text" ng-disabled="editPlant.speical_collections && !createNew"   ng-model="newCollectionName" ng-hide="editPlant.speical_collections">
-            <input type="button" id="collection-button" value="Create New Collection" ng-click="createNewCollection()" ng-hide="editPlant.speical_collections">
+            <div class="button-new collection-button-div">
+                <input type="button" class="collection-button" value="Create New Collection" ng-click="createNewCollection()" ng-hide="editPlant.speical_collections">
+            </div>
+
         </fieldset>
 
 
     <fieldset id="accession">
         <h1>Accession</h1>
         <button class="edit" ng-click="editAccession()" ng-hide="createNew">
+            <p ng-hide="!editPlant.accession">Save</p>
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.accesssion">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.accesssion">
         </button>
@@ -113,6 +123,7 @@
     <fieldset id="description">
         <h1>Description</h1>
         <button class="edit" ng-click="editDescription()" ng-hide="createNew">
+            <p ng-hide="editPlant.description">Save</p>
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.description">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.description">
         </button>
@@ -124,6 +135,7 @@
     <fieldset id="hybrid">
         <h1>Hybrid</h1>
         <button class="edit" ng-click="editHybrid()" ng-hide="createNew">
+            <p ng-hide="editPlant.hybrid">Save</p>
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.hybrid">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.hybrid">
         </button>
@@ -138,7 +150,7 @@
 
         <input type="text" ng-model="plant.parent_two" ng-disabled="editPlant.hybrid && !createNew"><br/>
 
-        <label class="labellast">GREX:</label>
+        <label>GREX:</label>
         <input type="text" ng-model="plant.grex_status" ng-disabled="editPlant.hybrid && !createNew">
 
         <textarea ng-model="plant.hybrid_comment" type="textarea" ng-disabled="editPlant.hybrid && !createNew" placeholder="Comment here about Hybrid."></textarea>
@@ -148,6 +160,7 @@
     <fieldset id="inactive" ng-hide="createNew">
         <h1>Inactive</h1>
         <button class="edit" ng-click="editInactive()" ng-hide="createNew">
+            <p ng-hide="editPlant.inactive">Save</p>
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.inactive">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.inactive">
         </button>
@@ -159,7 +172,7 @@
 
         <label for="deaddate">Dead:</label>
         <button class="more-calendar">
-            <input type="date" id="deaddate" id="inactive-disabled" ng-model="plant.dead_date" ng-disabled="editPlant.inactive && !createNew">
+            <input type="date" id="deaddate" id="inactive-disabled" placeholder="1" ng-model="plant.dead_date" ng-disabled="editPlant.inactive && !createNew">
         </button>
         <!--<output>{{ plant.dead_date | date }}</output>-->
 
@@ -169,6 +182,7 @@
     <fieldset id="photos" ng-hide="createNew">
         <h1>Photos</h1>
         <button class="edit" ng-click="editPhotos()" ng-hide="createNew">
+            <p ng-hide="editPlant.photos">Save</p>
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.photos">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.photos">
         </button>
@@ -178,19 +192,20 @@
         </div>
 
         <div class="photos-group" ng-repeat="photo in plant_id_url">
-            <img src="{{photo.url}}" alt="" class="thumbnail">
-            <div class="photos-buttons">
+            <img src="{{photo.url}}" alt="" ng-class="{photoDeleted: photo.type == 'del', thumbnail: photo.type != 'del'}">
+            <div class="photos-buttons button-new">
                 <label for="thumbnail">{{photo.fileName}}</label>
                 <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
                 <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
                 <input type="button" value="Other" ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'other', noglowHealth: photo.type != 'other'}">
-                <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{selectedPhoto: photo.type == 'del', noglowHealth: photo.type != 'del'}">
+                <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{deletePhoto: photo.type == 'del', noglowHealth: photo.type != 'del'}">
+                <p class="delete-photo-warning" ng-hide="editPlant.photos">The photo will not be deleted until you hit the save button. If you do not want to delete this photo, select an option above.</p>
             </div>
         </div>
 
 
         <div class="photos-group">
-            <div class="photos-add-div" ng-hide="editPlant.photos">
+            <div class="photos-add-div button-new" ng-hide="editPlant.photos">
                 <input type="button" value="Match Photos" id="match-photos-button" ng-click="changeProfilePicture()">
                 <iframe ng-src={{iFrameURL}}></iframe>
             </div>
@@ -202,6 +217,7 @@
     <fieldset id="split" ng-hide="createNew">
         <h1>Split</h1>
         <button class="edit" ng-click="editSplit()" ng-hide="createNew">
+            <p ng-hide="editPlant.split">Save</p>
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
         </button>
@@ -221,7 +237,9 @@
             <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
 
         </div>
-        <button class="split-add" type="button" ng-hide="editPlant.split || newSplit" ng-click="addPlantSplitFunction()" ng-disabled="editPlant.split && !createNew">Add Split</button>
+        <div class="button-new">
+            <button class="split-add" type="button" ng-hide="editPlant.split || newSplit" ng-click="addPlantSplitFunction()" ng-disabled="editPlant.split && !createNew">Add Split</button>
+        </div>
 
         <div class="" ng-hide="!newSplit">
 
@@ -251,144 +269,72 @@
         <span class="more-info-base two-items-view span-comment">{{bloom.note}}</span>
     </div>
 
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
-
-    <!--        START OF BLOOMING GRAPH -->
-
-
-
-    <div id="graph-will-be-here" ng-hide="!blooms.length">
-        <table>
-            <tr>
-                <th>2013-2016</th>
-                <th>Jan.</th>
-                <th>Feb.</th>
-                <th>Mar.</th>
-                <th>Apr.</th>
-                <th>May</th>
-                <th>Jun.</th>
-                <th>Jul.</th>
-                <th>Aug.</th>
-                <th>Sep.</th>
-                <th>Oct.</th>
-                <th>Nov.</th>
-                <th>Dec.</th>
-            </tr>
-            <tr>
-                <td>2016</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2015</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2014</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2013</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-        </table>
-
+    <div class="button-new">
+        <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
     </div>
 
+    <div ng-repeat="year in bloomYears">
+      <input type="button" value="{{year.year}}" class="blooming-view-year" ng-click="loadBloomGraph(year)">
+    </div>
+
+    <!--        START OF BLOOMING GRAPH -->
+    <div id="bloom_timeline" ng-hide="!blooms.length">
+
+    </div>
     <!--        END OF BLOOMING GRAPH -->
 </fieldset>
 
-<fieldset id="weekly-checkup" ng-hide="createNew">
-    <h1>Sprayed for Pests</h1>
-    <div class="split-holder" ng-show="!sprayed.length">
-        This plant has no record of being sprayed for pests.
-    </div>
 
+    <fieldset id="weekly-checkup" ng-hide="createNew">
+        <h1>Sprayed for Pests</h1>
+        <div class="split-holder" ng-show="!sprayed.length">
+            This plant has no record of being sprayed for pests.
+        </div>
+        <p class="sprayed-entry" ng-repeat="spray in sprayed">
+            <span class=" more-info-base text-align-top span-date">{{spray.timestamp}}</span>
+            <span class=" more-info-base span-comment">{{spray.note}}</span>
+        </p>
+        <div class="button-new">
+            <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">
+        </div>
+    </fieldset>
 
-    <p class="sprayed-entry" ng-repeat="spray in sprayed">
-        <span class=" more-info-base text-align-top span-date">{{spray.timestamp}}</span>
-        <span class=" more-info-base span-comment">{{spray.note}}</span>
-    </p>
+    <fieldset id="weekly-checkup" ng-hide="createNew">
+        <h1>Repot</h1>
+        <div class="split-holder" ng-show="!repotted.length">
+            This plant has no potting information.
+        </div>
+        <p class="repotting-entry" ng-repeat="repot in repotted">
+            <span class=" more-info-base">{{repot.timestamp}}</span>
+        </p>
+        <div class="button-new">
+            <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()" ng-show="repottedMoreShow">
+        </div>
+    </fieldset>
 
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">
+    <fieldset id="weekly-checkup" ng-hide="createNew">
+        <h1>Health Condition</h1>
+        <div class="split-holder" ng-show="!healthData.length">
+            This plant has no health record.
+        </div>
+        <div class="health-entry" ng-repeat="health in healthData">
+            <span class="text-align-top more-info-base span-date">{{health.timestamp}}</span>
+            <span class="more-info-base span-comment">{{health.score}}:</br>{{health.comment}}</span>
+        </div>
+        <div class="button-new">
+            <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreHealth()" ng-show="healthMoreShow">
+        </div>
 
-</fieldset>
-
-<fieldset id="weekly-checkup" ng-hide="createNew">
-    <h1>Repot</h1>
-    <div class="split-holder" ng-show="!repotted.length">
-        This plant has no potting information.
-    </div>
-
-    <p class="repotting-entry" ng-repeat="repot in repotted">
-        <span class=" more-info-base">{{repot.timestamp}}</span>
-    </p>
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()" ng-show="repottedMoreShow">
-
-</fieldset>
-
-<fieldset id="weekly-checkup" ng-hide="createNew">
-    <h1>Current Health Condition</h1>
-    <div class="split-holder" ng-show="!healthData.length">
-        This plant has no health record.
-    </div>
-    <div class="health-entry" ng-repeat="health in healthData">
-        <span class=" text-align-top more-info-base span-date">{{health.timestamp}}</span>
-        <span class=" more-info-base span-comment">{{health.score}}:{{health.comment}}</span>
-    </div>
-
-    <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreHealth()" ng-show="healthMoreShow">
-
-</fieldset>
+    </fieldset>
 
 <div class="end-section">
 
-    <div id="back-to-top">
+    <div id="back-to-top" class="button-new">
         <button ng-click="scrollToFunction()">
             Back to Top</button>
     </div>
 
-    <div id="moreinfo-save-button" ng-hide="!createNew">
+    <div id="moreinfo-save-button" class="button-new" ng-hide="!createNew">
         <input type="button" ng-click="saveAll()" value="Save All" ng-hide="!createNew || !editPlant.save">
     </div>
 </div>

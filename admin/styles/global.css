@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -136,61 +136,13 @@ table {
     border-spacing: 0;
 }
 
-@font-face {
-    font-family: 'Aleo';
-    src: url("../fonts/aleo/aleo-regular.eot");
-    src: url("../fonts/aleo/aleo-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-regular.woff") format("woff"), url("../fonts/aleo/aleo-regular.ttf") format("truetype"), url("../fonts/aleo/aleo-regular.svg#aleoregular") format("svg");
-    font-weight: 400;
-    font-weight: normal;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: 'Aleo';
-    src: url("../fonts/aleo/aleo-light.eot");
-    src: url("../fonts/aleo/aleo-light.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-light.woff") format("woff"), url("../fonts/aleo/aleo-light.ttf") format("truetype"), url("../fonts/aleo/aleo-light.svg#aleolight") format("svg");
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Aleo';
-    src: url("../fonts/aleo/aleo-bold.eot");
-    src: url("../fonts/aleo/aleo-bold.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-bold.woff") format("woff"), url("../fonts/aleo/aleo-bold.ttf") format("truetype"), url("../fonts/aleo/aleo-bold.svg#aleobold") format("svg");
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Aleo';
-    src: url("../fonts/aleo/aleo-italic.eot");
-    src: url("../fonts/aleo/aleo-italic.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-italic.woff") format("woff"), url("../fonts/aleo/aleo-italic.ttf") format("truetype"), url("../fonts/aleo/aleo-italic.svg#aleoitalic") format("svg");
-    font-weight: 400;
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Aleo';
-    src: url("../fonts/aleo/aleo-lightitalic.eot");
-    src: url("../fonts/aleo/aleo-lightitalic.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-lightitalic.woff") format("woff"), url("../fonts/aleo/aleo-lightitalic.ttf") format("truetype"), url("../fonts/aleo/aleo-lightitalic.svg#aleolightitalic") format("svg");
-    font-weight: 100;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Aleo';
-    src: url("../fonts/aleo/aleo-bolditalic.eot");
-    src: url("../fonts/aleo/aleo-bolditalic.eot?#iefix") format("embedded-opentype"), url("../fonts/aleo/aleo-bolditalic.woff") format("woff"), url("../fonts/aleo/aleo-bolditalic.ttf") format("truetype"), url("../fonts/aleo/aleo-bolditalic.svg#aleobolditalic") format("svg");
-    font-weight: 700;
-    font-style: italic;
-}
 
 /*END RESET*/
 
 .upper-heading ul {
     position: absolute;
-    top: 17px; 
+    top: 17px;
     right: 30px;
 }
 
@@ -206,43 +158,43 @@ a.logout {
 
 .upper-heading ul li  a {
     color: #2b2e30;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 200;
-    margin-right: 10px; 
-    letter-spacing: 1.1px; 
+    margin-right: 10px;
+    letter-spacing: 1.1px;
 }
 
 header {
     background-color: #cbd4c2;
     height: 150px;
-    width: 100%; 
+    width: 100%;
     position: relative;
 }
 
 
 header .main-heading ul {
-    position: absolute; 
-    bottom: -30px; 
-   right: -20px; 
-    
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
 }
 
 
 header .main-heading ul li {
-  display: inline-block;    
+    display: inline-block;
+    font-size: 20px;
 }
 
 header .main-heading li a {
     list-style-type: none;
-    margin-left: 20px;
+    margin-left: 28px;
     float: right;
-    color: white; 
-/*    width: 15%;*/
-/*    max-width: 125px;*/
+    color: white;
+    /*    width: 15%;*/
+    /*    max-width: 125px;*/
     border-radius: 5px;
     font-family: Raleway, sans-serif;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 20px;
     text-decoration: none;
     color:  #2b2e30;
     text-align: center;
@@ -252,14 +204,14 @@ header .main-heading li a {
 
 @media screen and (max-width: 900px) {
     .main-heading ul li a {
-        font-size: 16px;
+        font-size: 20px;
     }
 }
 /*
 
 @media screen and (max-width: 645px) {
     .main-heading ul li a {
-    
+
     }
 }
 */
@@ -270,17 +222,17 @@ header .main-heading li a {
 /*
 @media screen and (max-width: 600px) {
     .main-heading ul li a {
-        display: block; 
-        width: 100%; 
-        margin-bottom: 15px; 
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .main-heading ul {  
+    .main-heading ul {
         float: left;
-        margin-top: -35px; 
-        
+        margin-top: -35px;
+
     }
 }
 */
@@ -292,17 +244,17 @@ header .main-heading li a {
 
 @media screen and (max-width: 600px) {
     .main-heading ul li a {
-        display: block; 
-        width: 100%; 
-        margin-bottom: 15px; 
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .main-heading ul {  
+    .main-heading ul {
         float: left;
-/*        margin-top: -35px; */
-        
+        /*        margin-top: -35px; */
+
     }
 }
 
@@ -314,22 +266,22 @@ header .main-heading li a {
 /*
 @media screen and (max-width: 520px) {
     header li a {
-        width: 50%; 
+        width: 50%;
         padding: 5px 10px;
-        margin-top: 0px; 
-        margin-bottom: 5px; 
+        margin-top: 0px;
+        margin-bottom: 5px;
     }
 }
 @media screen and (max-width: 520px) {
     header li {
-       margin-top: -30px;  
+       margin-top: -30px;
     }
 }
 
 @media screen and (max-width: 450px) {
     header li {
        width: 40%;
-       padding: 5px 0px; 
+       padding: 5px 0px;
     }
 }
 */
@@ -339,7 +291,7 @@ header .main-heading li a {
 /*
 @media screen and (max-width: 700px) {
     header li:nth-child(2) {
-       padding: 15px 40px; 
+       padding: 15px 40px;
         margin-top: 20px;
     }
 }
@@ -354,9 +306,6 @@ header .main-heading li a {
 
 
 
-#main-nav ul {
-    padding: 60px;
-}
 
 #logo {
     width: 97px;
@@ -365,16 +314,41 @@ header .main-heading li a {
 }
 
 body {
-    font-family: Raleway, sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: #2b2e30;
 }
 
 button {
     border: none;
     background: none;
+
 }
+
+
 
 button,
 input[type="button"] {
     outline: none;
 }
+
+
+.button-new button, .button-new input {
+    background-color: #01997b;
+    color: white;
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    padding: 10px 15px;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 600;
+    border: none;
+}
+
+
+
+
+header .main-heading ul li a {
+    font-size: 20px;
+} 

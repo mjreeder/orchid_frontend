@@ -1,18 +1,22 @@
 .move-popup {
     left: 50%;
-    top: 20px;
-    transform: translate(-50%, 0);
+    transform: translateX(-50%);
+    padding: 0;
+    background: none;
+}
+
+
+.move-popup-section form {
+     background-color: white;
 }
 
 #move-plants-button {
-    background-color: #ba0c2f;
-    text-decoration: none;
-    color: white;
-    font-family: Raleway, sans-serif;
     font-size: 14px;
-    padding: 10px 15px;
     margin: 5px 0;
-    border-radius: 5px;
+    display: inline-block;
+}
+
+.button-new-move {
     display: inline-block;
 }
 
@@ -20,12 +24,6 @@
     padding: 50px; 
     top: 20px; 
 }
-
-.move-popup-housename {
-    background: none;
-    /*margin-top: 20px;*/
-}
-
 
 #move-plant-list {
     width: 100%;
@@ -44,21 +42,17 @@
 }
 
 .move-popup-housename li {
-    font-size: 20px;
-    font-weight: 100;
-    font-family: Aleo, serif;
-    text-align: left;
-    padding: 20px 10px 10px 20px;
+    padding: 0 5px 10px 0;
     display: inline-block;
 }
 
-.move-popup-housename li:hover {
-    color: #BA0C2F;
-}
+/*.move-popup-housename li:hover {*/
+    /*color: #BA0C2F;*/
+/*}*/
 
-.move-popup-housename li:active {
-    color: #ba0c2f;
-}
+/*.move-popup-housename li:active {*/
+    /*color: #ba0c2f;*/
+/*}*/
 
 #table-and-button {
     text-align: right;
@@ -68,7 +62,6 @@
 }  
 
 .move-popup .header {
-  background-color: #dfe0e0;
  width: 100%; 
 } 
 
@@ -77,21 +70,7 @@
     display: inline;
     margin: 0; 
     padding: 20px 0;
-   
-  
 }
-
-.move-popup .header  h1 {
- text-align: center;
-    font-family: aleo, serif;
-    font-size: 26px;
-    background-color: #dfe0e0;
-    padding: 20px 0px; 
-    width: 100%;
-    height: 30px;
-}
-
-
 
 #houses-popup {
     margin-top: 20px;
@@ -99,23 +78,32 @@
 }
 
 #houses-popup li {
-    display: inline-block; 
-    background-color: #808080;
-    text-decoration: none;
-    color: white;
-    font-family: Raleway, sans-serif;
+    display: inline-block;
+}
+
+.button-new-house {
     font-size: 14px;
-    padding: 10px 15px;
-    margin: 5px 5px;
-    border-radius: 5px;
 }
 
 .movepopup-selectedhouse {
-    background: #ba0c2f;
+    background: #01997b;
 }
 
 #movepopup-middle {
     width: 100%; 
     border-top: 2px solid black;
     margin: 20px 0 0 0;
+}
+
+.house-svg {
+    width: 100%;
+    display:block;
+}
+
+.house-svg-div {
+    width: 100%;
+}
+
+button.selected-house-movetable {
+    background: #00604D;
 }

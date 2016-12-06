@@ -1,6 +1,4 @@
-
-        
-            <aside class="menubox" id="alphabet-menu">
+<aside class="menubox" id="alphabet-menu">
 
         
         <section class="whitebox">
@@ -45,13 +43,16 @@
 
        <section id="plants" ng-show="loading == false">
            <div ng-show="plants.length == 0">Nothing to see here...</div>
-           <ul>
-               <li ng-repeat="plant in plants">
-                   <a ui-sref="specificPlant({plant: {{plant.name}} })"><img src="{{plant.picture}}" ng-hide="!plant.hasPicture" alt="">
-                       <img src="./images/no_plant_icon.svg" ng-hide="plant.hasPicture" alt="">
-                       <h3>{{plant.name}}</h3>
-                   </a>
-               </li>
-           </ul>
+           <section ng-show="plants.length > 0">
+               <span ng-repeat="i in getNumberOfPages() track by $index" ng-click="getNewPage($index+1)">{{$index+1}}</span>
+               <ul>
+                   <li ng-repeat="plant in plants | filter: searchBox">
+                       <a ui-sref="specificPlant({plant: {{plant.name}} })"><img src="{{plant.picture}}" ng-hide="!plant.hasPicture" alt="">
+                           <img src="./images/no_plant_icon.svg" ng-hide="plant.hasPicture" alt="">
+                           <h3>{{plant.name}}</h3>
+                       </a>
+                   </li>
+               </ul>
+           </section>
        </section>
 </section>

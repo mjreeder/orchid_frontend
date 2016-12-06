@@ -8,12 +8,30 @@ a {
 
 input[type="button"] {
     cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
 }
+
+select.round {
+    background: #eaeee7 url("../images/down-arrow.png") right no-repeat fixed;
+    background-size: 10px 10px;
+}
+
 
 button {
     cursor: pointer;
 }
 
+textarea, input, button, select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 #taxonomic,
 #vitals,
@@ -36,16 +54,23 @@ button {
     margin-top: 20px;
 }
 
-input,
-textarea {
+input, textarea {
     font-family: Raleway, sans-serif;
     font-size: 18px;
-    padding: 5px;
-    border: 2px solid black;
+    padding: 6px;
+    border: 2px solid #A8B89A;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #eaeee7;
 }
 
 textarea {
-    border: 2px solid #808080;
+    border: 2px solid #eaeee7;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #eaeee7;
     font-size: 16px;
     resize: vertical;
     color: black;
@@ -56,9 +81,7 @@ textarea {
     margin: 10px auto 20px;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
+input:focus, textarea:focus, select:focus {
     outline: none;
 }
 
@@ -77,17 +100,27 @@ input {
 }
 
 input:disabled {
-    border: none;
+    border: 2px solid #eaeee7;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     color: black;
     font-family: Raleway, sans-serif;
     font-size: 18px;
+    background: none;
+    -webkit-text-fill-color: black;
+    opacity: 1;
 }
 
 textarea:disabled {
-    border: 2px #808080 solid;
+    border: 2px #eaeee7 solid;
+    border-radius: 5px;
     font-family: Raleway, sans-serif;
     font-size: 16px;
     color: black;
+    background: none;
+    -webkit-text-fill-color: black;
+    opacity:1;
 }
 
 #add-country, #select-country {
@@ -97,8 +130,10 @@ textarea:disabled {
 select {
     font-size: 18px;
     color: black;
-    border: 1px solid black;
-    background-color: white;
+    margin-left: 4px;
+    border: 1px solid #A8B89A;
+    background: #eaeee7;
+    padding: 2px;
 }
 
 #culture select, #special-collection select {
@@ -125,14 +160,15 @@ select {
 
 #special-collection select {
     margin-left: 4px;
-    border: 1px solid black;
 }
 
 select:disabled {
-    border: none;
+    border: 2px solid #eaeee7;
     background: none;
     font-size: 18px;
     color: black;
+    -webkit-text-fill-color: black;
+    opacity: 1;
 }
 
 fieldset label {
@@ -149,7 +185,7 @@ fieldset label {
 }
 
 .labellast {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 fieldset h1 {
@@ -168,33 +204,46 @@ fieldset {
 
 .edit {
     position: absolute;
-    width: 40px;
+    width: 89px;
     top: 12px;
     right: 1.5%;
+    text-align: right;
+}
+
+.edit img {
+    width: 28px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.edit p {
+    font-family: Raleway;
+    font-size: 16px;
+    color: black;
+    display: inline-block;
+    vertical-align: bottom;
 }
 
 #accession button.more-calendar {
     position: relative;
     opacity: 1;
-    width: 200px;
+    /*width: 200px;*/
     display: inline;
     margin-top: 0;
     text-align: left;
 }
 
 .more-calendar input {
-    width: auto;
     margin: 0;
     font-size: 18px;
-    padding: 0;
+    padding: 4px;
 }
 
 #received-date {
     width: 130px;
 }
 
-#description label,
-#weekly-checkup label {
+#description label, #weekly-checkup label {
     width: 95%;
     margin-top: 15px;
 }
@@ -221,20 +270,25 @@ fieldset {
 }
 
 label#location {
-    width: 115px;
+    width: 134px;
 }
 
 #vitals input {
     font-family: Raleway, sans-serif;
     font-size: 18px;
-    padding: 5px;
-    border: 2px solid black;
+    padding: 6px;
+    border: 2px solid #A8B89A;
     margin: 15px 10px 15px 0;
     width: 200px;
+    background: #eaeee7;
 }
 
 #vitals input:disabled {
-    border: none;
+    border: 2px solid #eaeee7;
+    background: none;
+    -webkit-text-fill-color: black;
+    color: black;
+    opacity: 1;
 }
 
 #location img {
@@ -252,6 +306,7 @@ input#verified {
     padding: 2px;
 }
 
+
 /*INACTIVE*/
 
 #inactive label {
@@ -260,23 +315,15 @@ input#verified {
 }
 
 #inactive input {
-    font-family: Raleway, sans-serif;
-    font-size: 18px;
-    padding: 5px;
-    border: 2px solid black;
-    margin: 15px 0;
+    margin: 15px 0 0 0;
+    /*height: 27px;*/
 }
 
-#inactive input:disabled {
-    border: none;
-}
 
 
 /*PHOTOS*/
 
-#photos h1,
-#weekly-checkup h1,
-#graph h1 {
+#photos h1, #weekly-checkup h1, #graph h1 {
     margin-bottom: 20px;
 }
 
@@ -292,36 +339,31 @@ input#verified {
     vertical-align: middle;
     width: 20%;
     max-width: 120px;
-    margin: 0 20px 20px 20px;
+    margin: 0 20px;
 }
 
-.photos-buttons input,
-.photos-add-div input {
+.photos-buttons input, .photos-add-div input {
     width: 79px;
-    border: none;
-    background: #cbd4c2;
-    color: #2b2e30;
-    border-radius: 8px;
-    padding: 10px 15px;
     font-size: 14px;
     margin: 0 10px 0 0;
     display: inline-block;
+    background-color: #01997b;
+    color: white;
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    padding: 10px 15px;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 600;
+    border: none;
 }
 
-.add-photo-popup input[type="button"] {
-    width:auto;
-    border: none;
-    background: #808080;
-    color: white;
-    border-radius: 8px;
-    padding: 10px 15px;
-    font-size: 14px;
-    margin: 0 10px 0 0;
-    display: inline-block;
-}
+
 
 input[type="button"].selectedPhoto {
-    background: #01997b;
+    background: #00604D;
     color: white;
 }
 
@@ -332,19 +374,18 @@ input[type="button"].selectedPhoto {
 }
 
 .photos-buttons {
-    margin: 30px 10px 20px 0;
-    display:inline-block;
-    vertical-align: center;
+    margin: 0 10px 0 0;
+    display: inline-block;
+    vertical-align: middle;
     width: 65%;
 }
 
-#photos-delete1,
-#photos-delete2 {
+#photos-delete1, #photos-delete2 {
     margin: 0 0 0 60px;
+    background: #EF645F;
 }
 
 #photos {
-    /*margin: 20px auto 0;*/
     padding: 0 0 20px 0;
 }
 
@@ -354,20 +395,29 @@ input[type="button"].selectedPhoto {
 
 .photos-group {
     overflow: auto;
+    margin: 15px 0;
 }
 
-.photos-selected {
-    background-color: #F3C467
+.delete-photo-warning {
+    font-family: "Raleway", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    display: inline-block;
+    margin: 10px 0 0 0;
+    line-height:1.2;
+    width: 80%;
+    opacity: 1;
 }
 
-
-
-
-
-
-
-
-
+.photoDeleted {
+    opacity: .55;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20%;
+    max-width: 120px;
+    margin: 0 20px;
+}
 
 
 /*SPLIT*/
@@ -395,8 +445,7 @@ input[type="button"].selectedPhoto {
     height: auto;
 }
 
-#graph .startnewbloom,
-#graph output {
+#graph .startnewbloom, #graph output {
     display: block;
 }
 
@@ -444,20 +493,12 @@ input[type="button"].selectedPhoto {
 
 /*SAVE*/
 
-
-
 #back-to-top button {
     display: inline-block;
     float: left;
     margin-left: 20px;
     margin-bottom: 20px;
-    border: none;
-    background: #01997b;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 15px;
     font-size: 14px;
-    font-family: 'Raleway', sans-serif; 
 }
 
 #moreinfo-save {
@@ -470,23 +511,16 @@ input[type="button"].selectedPhoto {
     display: block;
 }
 
-
-
 #moreinfo-save-button input {
-    border: none;
-    background: #ba0c2F;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 15px;
     font-size: 14px;
     display: inline-block;
-    float: right; 
-/*    margin-right: 20px; */
+    float: right;
+    margin-right: 20px;
     margin-top: 0px;
     margin-bottom: 20px;
-    width: auto; 
-      
+    width: auto;
 }
+
 
 /*WEEKLY CHECKUP*/
 
@@ -506,10 +540,10 @@ input[type="button"].selectedPhoto {
     margin-bottom: 50px;
 }
 
+
 /*BLOOMING*/
 
-.blooming-date1,
-.blooming-date2 {
+.blooming-date1, .blooming-date2 {
     background: none;
     height: auto;
     width: 100px;
@@ -545,30 +579,55 @@ input[type="button"].selectedPhoto {
     width: 125px;
 }
 
+.blooming-view-year {
+    background-color: #01997b;
+    text-decoration: none;
+    color: white;
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+    margin: 5px 15px 25px 60px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    width: 60px;
+}
+
+.vis-item.incomplete_bloom {
+    background-color: red;
+    border-color: red;
+}
+
+.vis-item.full_bloom {
+    background-color: #01997b;
+    border-color: #01997b;
+}
+
 #graph {
     overflow: hidden;
 }
 
+
 /* More info health, blooming, sprayed, potting table data */
 
 span.more-info-base {
-  background: none;
-  font-family: Raleway, sans-serif;
-  margin: 0 0 15px 0;
-  font-size: 18px;
+    background: none;
+    font-family: Raleway, sans-serif;
+    margin: 0 0 15px 0;
+    font-size: 18px;
 }
 
 span.three-items-view {
-  display: inline-block;
-  width: 30%;
+    display: inline-block;
+    width: 30%;
 }
 
 .text-align-top {
-  vertical-align: top;
+    vertical-align: top;
 }
 
 .health-entry, .sprayed-entry, .repotting-entry, .bloooming-entry {
-  margin: 0 0 15px 20px;
+    margin: 0 0 15px 20px;
 }
 
 span.span-date {
@@ -603,17 +662,27 @@ label span {
     background: none;
 }
 
-#collection-button {
+.collection-button {
     width: auto;
-    border: none;
-    background: #808080;
-    color: white;
-    border-radius: 8px;
-    padding: 15px 10px;
+    /*border: none;*/
+    /*color: white;*/
     font-size: 14px;
     margin: 0 0 20px 10px;
     display: inline-block;
-    font-family: Raleway, sans-serif;
+    /*display: inline-block;*/
+    /*background-color: #01997b;*/
+    /*-webkit-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);*/
+    /*-moz-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);*/
+    /*box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);*/
+    /*padding: 10px 15px;*/
+    /*font-family: 'Raleway', sans-serif;*/
+    /*text-align: center;*/
+    /*border-radius: 5px;*/
+    /*font-weight: 600;*/
+}
+
+.collection-button-div {
+    display: inline-block;
 }
 
 iframe {
@@ -621,4 +690,9 @@ iframe {
     display: inline-block;
     vertical-align: top;
     margin-left: 5px;
+}
+
+
+.span-comment {
+    line-height:1.3;
 }

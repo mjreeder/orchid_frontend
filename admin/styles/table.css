@@ -5,13 +5,14 @@ a {
 main nav ul li {
     float: left;
     width: 33.333333333%;
-    font-family: Aleo, serif;
+    font-family: 'Aleo', serif;
     font-size: 20px;
     font-weight: 100;
     background-color: #01997b;
     text-align: center;
     padding: 15px 0;
     margin-bottom: 5px;
+    font-weight: 400;
 }
 
 main nav ul li a {
@@ -24,12 +25,12 @@ main nav ul {
 }
 
 #active {
-    color: black;
+    color: #2b2e30;
     font-weight: 400;
     background-color: white;
-    padding: 20px 30px 20px 30px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    padding: 15px 30px 15px 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 #current-health textarea {
@@ -61,10 +62,10 @@ main nav ul {
     left: 5px;
     margin: 0;
     width: 60px;
-    background-color: #808080;
+/*    background-color: #808080;*/
     text-decoration: none;
     color: white;
-    font-family: Raleway, sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 14px;
     padding: 10px 15px;
     border-radius: 5px;
@@ -89,17 +90,19 @@ main nav ul {
 
 main table {
     margin: 0 auto;
-    background-color: #DFE0E0;
+    background-color: #eaeee7;
     border-collapse: collapse;
     width: 95%;
 }
 
 thead {
-    background-color: #2b2e30;
+    background-color: #01997b;
     color: white;
-    font-family: Aleo, serif;
+    font-family: 'Aleo', serif;
     font-size: 20px;
     font-weight: 100;
+    font-weight: 400;
+   
 }
 
 table,
@@ -111,59 +114,15 @@ th {
     vertical-align: middle;
     padding: 5px;
     height: auto;
+     padding: 15px 0px; 
 }
 
 th {
     font-size: 18px;
 }
 
-
-/*td:nth-child(1) {*/
-
-
-/*!*width: 20%;*!*/
-
-
-/*}*/
-
-
-/*td:nth-child(2) {*/
-
-
-/*!*width: 40%*!*/
-
-
-/*}*/
-
-
-/*td:nth-child(3) {*/
-
-
-/*!*width: 20%;*!*/
-
-
-/*}*/
-
-
-/*td:nth-child(4) {*/
-
-
-/*max-width: 60px;*/
-
-
-/*}*/
-
-
-/*td:nth-child(5) {*/
-
-
-/*max-width: 60px;*/
-
-
-/*}*/
-
 td {
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .flagged {
@@ -175,8 +134,8 @@ td {
 
 #close {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 26px;
+    top: 26px;
 }
 
 .flower-popup #close img {
@@ -191,23 +150,26 @@ td {
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+/*    padding: 50px 0px 0px 0px; */
 }
 
 .formcontent {
     padding: 15px;
+    /*margin-top: 85px;*/
 }
 
 .flower-popup form {
     width: 75%;
-    background-color: white;
-    border: 4px solid #2b2e30;
+    max-height: 95%;
+    overflow: auto; 
+    -webkit-overflow-scrolling: touch; 
+    background-color: #eaeee7; 
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     padding-bottom: 10px;
     box-sizing: border-box;
+    margin-top: 2.5%;
 }
 
 .center h1 {
@@ -215,10 +177,10 @@ td {
     font-family: aleo, serif;
     font-size: 26px;
     letter-spacing: 3px;
-    background-color: #dfe0e0;
-    padding: 20px 0px;
+    background-color: #01997b;
+    padding: 30px 0px 30px 0px;
     width: 100%;
-    height: 30px;
+    color: white;
 }
 
 .top-margin {
@@ -248,7 +210,6 @@ td {
 }
 
 .flower-popup textarea {
-    border: 2px solid #808080;
     font-family: 'Raleway' , sans-serif;
     font-size: 14px;
     width: 100%;
@@ -256,6 +217,8 @@ td {
     box-sizing: border-box;
     height: 50px;
     margin: 5px 0 0 0;
+    background: white;
+    border: 2px solid #A8B89A;
 }
 
 .today,
@@ -272,7 +235,6 @@ td {
 }
 
 #more-info {
-    background-color: #BA0c2F;
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
@@ -285,10 +247,9 @@ td {
 }
 
 .save {
-    background-color: #BA0c2F;
     text-decoration: none;
     color: white;
-    font-family: Raleway, sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 14px;
     padding: 10px 15px;
     border-radius: 5px;
@@ -296,7 +257,7 @@ td {
 }
 
 #edit-button {
-    background-color: #808080;
+/*    background-color: #808080;*/
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
@@ -325,7 +286,7 @@ td {
 
 #edit-button,
 #move-certain-plants {
-    margin: 0 10px 0 5px;
+    margin: 0 10px 30px 5px;
 }
 
 .table-footer {
@@ -356,15 +317,18 @@ td {
     position: relative;
 }
 
-.calendar input {
+.flower-popup input[type="date"] {
     -webkit-appearance: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    position: absolute;
+    background: white;
+    margin: 0;
 }
+
+.flower-popup input[type="date"]:disabled {
+    background: none;
+    border: none;
+}
+
+
 
 .calendar img {
     margin: 0;
@@ -378,18 +342,16 @@ td {
 }
 
 .glowHealthPoor {
-    /*   box-shadow:0 0 20px #BA0C2F;*/
-    background-color: #BA0C2F !important;
+    background-color: #EF645F;
 }
 
-.glowHealthFair {
-    /*  box-shadow:0 0 20px #F3C467;*/
-    background-color: #F3C467;
+#current-health button.glowHealthFair {
+    background-color: #FDE48F;
+    color: #2b2e30;
 }
 
 .glowHealthGood {
-    /*  box-shadow:0 0 20px #61d166;*/
-    background-color: #61d166;
+    background-color: #01997B;
 }
 
 .noglowHealth {
@@ -397,7 +359,7 @@ td {
 }
 
 .alertRow {
-    background-color: #F3C467;
+    background-color: #fde48f;
 }
 
 .customNgDisabled {
@@ -443,8 +405,9 @@ table input,
 
 .table-checkbox {
     background: url(../images/empty_checkbox.svg)center center no-repeat / cover;
-    height: 20px;
-    width: 20px;
+    background-image: url(../images/empty_checkbox.svg);
+    height: 40px;
+    width: 40px;
     display: inline-block;
     vertical-align: middle;
     position: relative;
@@ -453,4 +416,22 @@ table input,
 
 #flagged-span {
     margin-left: 8px;
+}
+
+.today:active {
+    background-color: #01997b;
+    color: white;
+    -webkit-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
+    -moz-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
+    box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
+    padding: 10px 15px;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+#no-plants-table {
+    text-align: center;
+    padding: 10px;
 }

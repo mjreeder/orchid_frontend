@@ -13,20 +13,16 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             $scope.editUsers = false;
             //TODO SAVE THE INFORMATION THAT IS CHANGED
 
-            console.log("check user");
             checkUserModelInformation();
 
 
             for(var i = 0; i < $scope.updateUsers.length; i++){
                 var user = $scope.updateUsers[i];
                 UserFactory.updateUser(user).then(function (response){
-                    console.log(response);
+
                 });
             }
-
-
         }
-
     };
 
     $scope.updateUsers = [];
@@ -69,6 +65,45 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
         }
 
     }
+    var promArray = [];
+
+    var prom = new Promise(function(resolve, reject) {
+        UserFactory.getAuth().then(function (response){
+            var data = response.data.data;
+            resolve(data);
+        });
+    });
+
+    promArray.push(prom);
+
+    Promise.all(promArray).then(function (success) {
+
+        console.log(success);
+
+        $scope.currentUser = success[0].email;
+        console.log($scope.currentUser);
+        $scope.$apply();
+
+    }, function (error) {
+
+    });
+
+    //UserFactory.getAllUsers().then(function (response){
+    //    var data = response.data.data;
+    //
+    //    for (var i = 0; i < data.length; i++){
+    //        var singleUser = data[i];
+    //        if(singleUser.auth_level == 1){
+    //            singleUser.isAuthUser = true;
+    //        } else {
+    //            singleUser.isAthUser = false;
+    //        }
+    //
+    //        $scope.allUsers.push(singleUser);
+    //
+    //    }
+    //});
+
 
 
     $scope.allUsers = [];
@@ -85,14 +120,18 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             } else {
                 singleUser.isAthUser = false;
             }
+            if(singleUser.email == $scope.currentUser){
+                singleUser.warning = true;
+            } else {
+                singleUser.warning = false;
+            }
 
             $scope.allUsers.push(singleUser);
+            //$scope.$apply();
 
         }
 
-        for (var i = 0; i < $scope.allUsers.length; i ++){
-            console.log($scope.allUsers);
-        }
+
 
     });
 
@@ -110,17 +149,32 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             $scope.oringialUsers.push(singleUser);
 
         }
-
-        for (var i = 0; i < $scope.allUsers.length; i ++){
-        }
-
     });
 
     $scope.changePassword = true;
     $scope.deleteUser = true;
 
     $scope.deleteUserPopUp = function(user){
-        $scope.deleteUser = false;
+        if(user.warning == true){
+            window.alert('Error. Can not delete current user');
+        } else {
+            $scope.deleteUser = false;
+
+            var number;
+            for (var index = 0; index < $scope.allUsers.length; index++){
+
+                if (user.id == $scope.allUsers[index].id){
+                    number = index;
+                }
+            }
+            $rootScope.$broadcast('deleteUserData', {
+                user: {
+                    'specificUser': $scope.allUsers[number]
+                }
+            });
+            return false;
+        }
+
     };
 
     $scope.$on('changePassword', function(event, data) {
@@ -136,33 +190,36 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
     });
 
 
-
     $scope.changePasswordFunction = function(user){
+        if(user.warning == true){
+            window.alert("Warning. This is the current user.");
+        }
         $scope.changePassword = false;
+
     };
 
     $scope.changePasswordFunction = function(user) {
+        if(user.warning == true){
+            window.alert("this is the current user");
+        }
         $scope.changePassword =false;
-
         var number;
         for (var index = 0; index < $scope.allUsers.length; index++){
+
             if (user.id == $scope.allUsers[index].id){
                 number = index;
             }
         }
+
         $rootScope.$broadcast('changePasswordData', {
             user: {
                 'specificUser': $scope.allUsers[number]
             }
         });
-        //$rootScope.$broadcast('hi');
     };
 
     $scope.deleteUserFunction = function(user){
 
-        UserFactory.deleteUser(user).then(function (response) {
-
-        });
 
         $route.reload();
 
@@ -172,11 +229,74 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
         $scope.newUser = true;
 
     };
+    $scope.sendNewRequest = false;
 
     $scope.saveUser = function(user){
+        checkNewUserData(user);
+    };
 
+    var checkNewUserData = function(user){
         console.log(user);
+        if(user == undefined){
+            window.alert("Please fill in data");
+            return;
+        }
+        if(user.isAuthUser == undefined || user.isAuthUser == null ){
+            user.isAuthUser  = false;
+        } else {
+            user.isAuthUser  = true;
+        }
+
+        if(user.firstName == null || user.firstName == null || user.email == null || user.password == null){
+            window.alert("Please fill in all fields for a new user");
+            return;
+        }
+
+        if(user.lastName == "" || user.firstName == "" || user.email == "" || user.password == ""){
+            window.alert("Please fill in all fields for a new user");
+        } else {
+            $scope.sendNewRequest = true;
+            $scope.sendUserData(user);
+        }
+    };
+    $scope.sendUserData = function(user){
+        var authData = 0;
+        if(user.isAuthUser == true){
+            authData = 1;
+        } else {
+            authData = 2;
+        }
+
+        var userData = {
+            "first_name" : user.firstName,
+            "last_name" : user.lastName,
+            "email" : user.email,
+            "password" : user.password,
+            "auth_level" : authData
+        };
+
+        var promArray = [];
+
+        var prom = new Promise(function(resolve, reject) {
+            UserFactory.newUser(userData).then(function (response){
+                var userResponse = response.data.data;
+                resolve(userResponse);
+            });
+        });
+
+        promArray.push(prom);
+
+        Promise.all(promArray).then(function (success) {
+            $scope.$apply();
+
+            $route.reload();
+        }, function (error) {
+
+        });
+
     }
+
+
 
     var userAdded = false;
 
@@ -189,7 +309,6 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
        }
 
         //SEEING WHO IT IS
-        console.log(user);
 
         //ADD THIS USER TO A ARRAY FOR NEW SUBMISSION
 
@@ -210,22 +329,5 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             $scope.changeUser.push(user);
         }
 
-        console.log("here are the users that are currently in the change user array");
-        for (var i = 0; i < $scope.changeUser.length; i++){
-            console.log($scope.changeUser[i]);
-        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 });

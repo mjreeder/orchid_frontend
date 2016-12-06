@@ -1,41 +1,45 @@
-<section class="flower-popup" ng-controller="MoveTableViewController">
-
+<section class="flower-popup move-popup-section" ng-controller="MoveTableViewController">
 
     <form class="move-popup">
-       <div class="header"> 
-        <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
-
-        <h1>Move Plants</h1>
+       <div class="header center">
+            <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt=""></button>
+            <h1 >Move Plants</h1>
         </div>
         
-        
-        <div class="formcontent"> 
+<div class="formcontent" id=move-form-content>
         <p>These are the plants you have selected:</p>
         <div id="move-plant-list">
-        <ul ng-repeat="plant in a">
-            <li>{{plant.accession_number}}</li>
-        </ul>
-        </div>
-
-        <div id="movepopup-middle">
-        <div id="table-and-button">
-        <h1>{{changedRoom}}</h1>
-        <button id="move-plants-button" ng-show="changed" ng-click="movePlants()">Move</button>
-        </div>
-
-        <div id="houses-popup">
-            <ul class="move-popup-housename">
-                <li  ng-click="showDisplayPopup()">Display</li>
-                <li  ng-click="showWarmPopup()">Warmhouse</li>
-                <li  ng-click="showCoolPopup()">Coolhouse</li>
+            <ul ng-repeat="plant in a">
+                <li>{{plant.accession_number}}</li>
             </ul>
         </div>
 
+        <div id="movepopup-middle">
+            <div id="table-and-button">
+                <h1>{{changedRoom}}</h1>
+                <div class="button-new button-new-move">
+                    <button id="move-plants-button" ng-show="changed" ng-click="movePlants()">Move</button>
+                </div>
+            </div>
+
+            <div id="houses-popup">
+                <ul class="move-popup-housename">
+                   <li class="button-new">
+                        <button class="button-new-house" ng-click="showDisplayPopup()">Display</button></li>
+                    <li class="button-new">
+                        <button class="button-new-house" ng-click="showWarmPopup()">Warmhouse</button>
+                    </li>
+                    <li class="button-new">
+                         <button class="button-new-house" ng-click="showCoolPopup()">Coolhouse </button>
+                    </li>
+                </ul>
+            </div>
+
         </div>
 
-        <div ng-include="'views/moveWarmhouse.html'" ng-show="WarmPopup"></div>
-        <div ng-include="'views/moveCoolHouse.html'" ng-show="CoolPopup"></div>
-        <div ng-include="'views/moveDisplay.html'" ng-show="DisplayPopup"></div>
+        <div class="house-svg-div" ng-include="'views/moveWarmhouse.html'" ng-show="WarmPopup"></div>
+        <div class="house-svg-div" ng-include="'views/moveCoolHouse.html'" ng-show="CoolPopup"></div>
+        <div class="house-svg-div" ng-include="'views/moveDisplay.html'" ng-show="DisplayPopup"></div>
 </div>
 
     </form>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 
 <!-- font style -->
-    <link href="https://apso.bsu.edu/tools/fonts/css?family=Raleway:300,400,500,600,700,800">
+    <link href="https://apso.bsu.edu/tools/fonts/css?family=Aleo:100,400,700|Raleway:300,400,500,600,700" rel="stylesheet">
 
     <!-- Style Sheets -->
     <link rel="stylesheet" href="styles/global.css">
@@ -52,9 +52,12 @@
 
     <script src="../bower_components/lodash/dist/lodash.js"></script>
 
-
+    <script src="../bower_components/vis/dist/vis.js"></script>
+    <link rel="stylesheet" href="../bower_components/vis/dist/vis.css"></link>
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>    <!-- <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.2.0.js"></script> -->
+    <script src="../bower_components/bowser/src/bowser.js"></script>
     <script src="app.js"></script>
 
 
@@ -62,8 +65,12 @@
     <script src="config/config.js"></script>
     <script src="config/routes.js"></script>
 
+    <!-- Filters -->
+    <script src="filters/capitalizeFilter.js"></script>
+
     <!-- services -->
     <script src="services/sessionService.js"></script>
+    <script src="services/bloomService.js"></script>
 
     <!-- Factories -->
     <script src="factories/bloom_commentFactory.js"></script>

@@ -48,6 +48,18 @@ app.factory('VerifiedFactory', function($http, sessionService, $rootScope) {
         });
     };
 
+    data.createSpecifcVerifiedDate = function(verifiedInformation){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/createSpecificDate',
+            data: {
+                "plant_id": verifiedInformation.plant_id,
+                "verified_date": verifiedInformation.verified_date,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        });
+    };
 
 
     return data;
