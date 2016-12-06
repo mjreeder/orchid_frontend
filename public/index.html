@@ -6,8 +6,11 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles/global.css">
     <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="../app.js"></script>
+    <script src="../bower_components/vis/dist/vis.js"></script>
+    <link rel="stylesheet" href="../bower_components/vis/dist/vis.css"></link>
 
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
@@ -36,8 +39,8 @@
     <script src="./controllers/plantController.js"></script>
     <script src="./controllers/specificSubTribeController.js"></script>
 
-
-
+    <!-- Services -->
+    <script src="./services/bloomGraphService.js"></script>
 
 
 </head>
@@ -57,7 +60,7 @@
 </header>
 
 <main ui-view ng-controller="mainController as main">
-     
+
 </main>
 
 <footer>

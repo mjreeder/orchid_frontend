@@ -15,7 +15,7 @@ main h1 {
     font-size: 30px;
     color: white;
     letter-spacing: 1.5px;
-     background-color: rgba(0, 0, 0, .4); 
+     background-color: rgba(0, 0, 0, .4);
     padding: 40px 0 40px 0;
 }
 
@@ -52,7 +52,7 @@ main article img{
     color: white;
     letter-spacing: 1.5px;
     background-color: rgba(0, 0, 0, .4);
-    padding: 40px 0; 
+    padding: 40px 0;
     margin: -30px 0 30px 0;
 }
 
@@ -71,8 +71,8 @@ main article img{
  max-width: 800px;
     width: 100%;
     margin: 0 auto 0px;
-    background-color: white; 
-    padding: 30px; 
+    background-color: white;
+    padding: 30px;
 }
 
 
@@ -140,7 +140,7 @@ hr {
     font-size: 18px;
     width: 80px;
     display: inline-block;
-} 
+}
 
 .property-box {
     min-height: 170px;
@@ -159,7 +159,7 @@ hr {
 
 
 #description {
-    margin: 200px 0;
+    margin: 130px 0;
     display: block;
 }
 
@@ -168,14 +168,17 @@ hr {
     font-weight: 400;
     font-size: 18px;
     letter-spacing: .5px
-    
+
 }
 
 #description p {
     line-height: 20px;
 }
 
-
+#bloom-buttons{
+  margin: 150px 0;
+  display: block;
+}
 #chart h3 {
     text-align: center;
     margin-bottom: 50px;
@@ -187,4 +190,14 @@ hr {
     padding: 20px;
     display: block;
     margin-top: -170px;
+}
+
+.vis-item.incomplete_bloom {
+    background-color: red;
+    border-color: red;
+}
+
+.vis-item.full_bloom {
+    background-color: #01997b;
+    border-color: #01997b;
 }

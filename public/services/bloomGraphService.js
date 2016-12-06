@@ -1,4 +1,4 @@
-app.service('bloomService', function($rootScope) {
+orchidApp.service('bloomService', function($rootScope) {
 
   //function to create the bloom graph
   this.loadBloomGraphData = function(blooms, year) {
