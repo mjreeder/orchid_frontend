@@ -7,8 +7,8 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
     $scope.collectionOfItems = [];
     $scope.genericPicture = true;
     $scope.dynamicSidebarContent = {
-        specialCollections : ["Special Test 1", "Special Test 2"],
-        subtribes: ["Subtribe Test 1", "Subtribe Test 2"]
+        specialCollections : [{name: "Special Test 2", id: 1}, {name:"Special Test 2", id: 2}],
+        subtribes: [{name: "Subtribe Test 1", id: 1}, {name:"Subtribe Test 2", id: 2}]
     };
 
     var init = function() {
@@ -120,6 +120,10 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
         }, function (error) {
 
         });
+    };
+
+    $scope.goToSpecificCollection = function(id) {
+        $state.go('specificCollection', {id: id});
     };
 
     init();
