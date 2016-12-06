@@ -81,7 +81,11 @@
 }
 
 #auth input {
-    display: block;
+    display: inline-block;
+}
+
+#auth input:disabled {
+    opacity: 0;
 }
 
 #email input {
