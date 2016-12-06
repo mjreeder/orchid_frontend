@@ -41,7 +41,7 @@
             </label>
 
         <div class="button-new">
-            <button id="password" ng-disabled="!editUsers || user.current" ng-click="deleteUserPopUp(user)">Delete User</button></div>
+            <button id="password" ng-disabled="!editUsers" ng-click="deleteUserPopUp(user)">Delete User</button></div>
         </div>
 
 
@@ -57,7 +57,7 @@
             <input type="text" name="email" ng-model="nUser.email">
 
             <label id="email" class="users">Password</label>
-            <input type="text" name="email" ng-model="nUser.password">
+            <input type="password" name="email" ng-model="nUser.password">
 
             <label id="auth" class="users">Manager
             <input type="checkbox" ng-model="nUser.isAuthUser"/><span class="table-checkbox"></span>
