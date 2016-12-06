@@ -4,6 +4,7 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
     $scope.loading = true;
     $scope.plants = [];
     $scope.picture = [];
+    var pages = 0;
 
 
 
@@ -17,7 +18,7 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
             console.log("SUCCESS: ", response.data);
             $scope.plants = response.data.plants;
             resolve(response.data.plants);
-
+            pages = response.data.pages;
             $scope.loading = false;
         }).error(function(response) {
             console.log("ERROR: ", response);
@@ -85,6 +86,24 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
 
             $scope.$apply();
 
+        });
+    };
+
+    $scope.getNumberOfPages = function() {
+        return new Array(pages);
+    };
+
+    $scope.getNewPage = function(pageNumber) {
+        $scope.loading = true;
+        PlantsFactory.getPaginatedPlants($scope.letter, pageNumber, 12).success(function(response) {
+            console.log("SUCCESS: ", response);
+            if(response.data.plants) {
+                $scope.plants = response.data.plants;
+            }
+            $scope.loading = false;
+        }).error(function(response) {
+            console.log("ERROR:", response);
+            $scope.loading = false;
         });
     };
 
