@@ -336,10 +336,10 @@ input#verified {
 .thumbnail {
     height: auto;
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: middle;
     width: 20%;
     max-width: 120px;
-    margin: 0 20px 20px 20px;
+    margin: 0 20px;
 }
 
 .photos-buttons input, .photos-add-div input {
@@ -374,9 +374,9 @@ input[type="button"].selectedPhoto {
 }
 
 .photos-buttons {
-    margin: 30px 10px 15px 0;
+    margin: 0 10px 0 0;
     display: inline-block;
-    vertical-align: center;
+    vertical-align: middle;
     width: 65%;
 }
 
@@ -386,7 +386,6 @@ input[type="button"].selectedPhoto {
 }
 
 #photos {
-    /*margin: 20px auto 0;*/
     padding: 0 0 20px 0;
 }
 
@@ -396,6 +395,7 @@ input[type="button"].selectedPhoto {
 
 .photos-group {
     overflow: auto;
+    margin: 15px 0;
 }
 
 .delete-photo-warning {
