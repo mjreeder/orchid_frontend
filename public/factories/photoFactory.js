@@ -13,5 +13,22 @@ orchidApp.factory('PhotoFactory', function($http, $rootScope) {
         return $http.get(baseUrl + "/getSimilarPlants/" + name);
     };
 
+    data.oneCountryPhoto = function(country_id){
+        return $http.get(baseUrl + "/onePhotoCountry/" + country_id);
+    };
+
+    data.onePhotoCollections = function(sp){
+        return $http.get(baseUrl + "/onePhotoCollections/" + sp);
+    };
+
+    data.onePhotoTribe = function(tribe){
+        return $http.get(baseUrl + "/onePhotoTribe/" + tribe);
+    };
+
+
+
+
+
+
     return data;
 });

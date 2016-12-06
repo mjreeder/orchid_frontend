@@ -1,5 +1,5 @@
 var orchidApp = angular.module('orchidApp');
-orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$state', '$stateParams', 'SpeicalCollectionsFactory', function($scope, $location, $state, $stateParams, SpeicalCollectionsFactory) {
+orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$state', '$stateParams', 'SpeicalCollectionsFactory', 'PhotoFactory', function($scope, $location, $state, $stateParams, SpeicalCollectionsFactory, PhotoFactory) {
 
 
     $scope.NAMEOFPAGE = "Special Collections";
@@ -12,32 +12,11 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
 
     var promArray2 = [];
 
-    var prom = new Promise(function(resolve, reject) {
-        SpeicalCollectionsFactory.getSpeicalCollections().then(function(response){
-            resolve(response);
-        });
-    });
-
-    promArray.push(prom);
-
-    Promise.all(promArray).then(function (success) {
-        console.log(success);
-
-        for (var i = 0; i < success.length; i++){
-            $scope.collectionOfItems = success[0].data.data;
-        }
-
-        $scope.$apply();
-
-    }, function (error) {
-
-    });
-
     $scope.moveTo = function(name){
 
         var prom2 = new Promise(function(resolve, reject) {
             SpeicalCollectionsFactory.getBySpecificID(name.id).then(function(response){
-               resolve(response);
+                resolve(response);
             });
         });
 
@@ -56,8 +35,6 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
 
         });
 
-
-
     }
 
     $scope.locationPath = function(id){
@@ -68,6 +45,80 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
         }
 
     }
+
+    var prom = new Promise(function(resolve, reject) {
+        SpeicalCollectionsFactory.getSpeicalCollections().then(function(response){
+            resolve(response);
+        });
+    });
+
+    promArray.push(prom);
+
+    Promise.all(promArray).then(function (success) {
+        console.log(success);
+
+        for (var i = 0; i < success.length; i++){
+            $scope.collectionOfItems = success[0].data.data;
+        }
+
+        $scope.$apply();
+        $scope.loadPictures();
+    }, function (error) {
+
+    });
+
+
+    var pictureArray = [];
+    var syncArray = [];
+
+    $scope.loadPictures = function(){
+
+        for(var i = 0 ; i < $scope.collectionOfItems.length; i++){
+            //console.log($scope.collectionOfItems[i].id);
+
+            var prom = new Promise(function(resolve, reject) {
+                PhotoFactory.onePhotoCollections($scope.collectionOfItems[i].id).then(function (response){
+                    resolve(response.data.data);
+                });
+            });
+
+            pictureArray.push(prom);
+            syncArray.push($scope.collectionOfItems[i].id);
+        }
+
+        Promise.all(pictureArray).then(function (success) {
+
+            for(var i = 0; i < success.length; i++){
+                var sp_id = syncArray[i];
+                var data = success[i];
+                if(data.length == 0){
+                } else {
+                    for(var t = 0; t < $scope.collectionOfItems.length; t++) {
+                        if($scope.collectionOfItems[t].id == sp_id){
+                            $scope.collectionOfItems[t].picture = data[0].url;
+                            $scope.collectionOfItems[t].hasPicture = true;
+                        }
+                    }
+                }
+            }
+
+            for(var i = 0; i < $scope.collectionOfItems.length; i++){
+                console.log($scope.collectionOfItems[i].picture);
+            }
+
+            $scope.$apply();
+
+        }, function (error) {
+
+        });
+    }
+
+
+
+
+
+
+
 
 
 
