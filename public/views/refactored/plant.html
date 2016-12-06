@@ -14,10 +14,12 @@
  </div>
 <main> 
 <article>
-                <h1>{{NAMEOFPAGE}}Name of plant</h1>
+                <h1>{{NAMEOFPAGE}}name of plant</h1>
     <div class="w3-content w3-section" style="max-width:500px">
         <ul > <!--ng-reapet="imagesURL in allimagesURL" -->
             <li><img class="mySlides" src="http://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg" style="width:100%"> </li>
+<img src="images/arrows" alt="right arrow">
+<img src="images/arrows" alt="left arrow">
 <!--
             <li><img class="mySlides" src="http://i164.photobucket.com/albums/u8/hemi1hemi/COLOR/COL9-6.jpg" style="width:100%"> </li>
             <li><img class="mySlides" src="http://assets.barcroftmedia.com.s3-website-eu-west-1.amazonaws.com/assets/images/recent-images-11.jpg" style="width:100%"> </li>
@@ -41,6 +43,7 @@
                 <li><b>Variety:</b>{{plant.variety_name}}</li>
             </ul>
         </section>
+    
 
         <section id="hybrid" class="property-box transparent-box">
             <ul>
@@ -51,17 +54,19 @@
             </ul>
         </section>
     </section>
+     <hr> 
 
     <section id="description" class="transparent-box">
         <p><b>Description:</b> {{plant.description}}</p>
         <br>
         <p><b>Culture:</b>{{plant.culture}}</p>
     </section>
+     <hr> 
 
 
 
     <section id="chart">
-        <h3>Blooming Calendar</h3>
+        <h3>Blooming History</h3>
         <img src="images/flowering_chart.svg" alt="flowering chart">
     </section>
 </article>
