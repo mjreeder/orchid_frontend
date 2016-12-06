@@ -456,15 +456,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             return;
         }
         var stringVal = data[variable];
-        stringVal = stringVal.split('-');
-        for (var i = 0; i < stringVal.length; i++) {
-            var currentItem = stringVal[i];
-            if (currentItem[0] == '0') {
-                stringVal[i] = currentItem.substring(1, currentItem.length);
-            }
-        }
-        stringVal[1] = parseInt(stringVal[1] - 1);
-        var formattedDate = new Date(stringVal[0], stringVal[1], stringVal[2]);
+        var temp = moment(stringVal);
+        var formattedDate = temp.toDate();
         data[variable] = formattedDate;
         return data;
     }
