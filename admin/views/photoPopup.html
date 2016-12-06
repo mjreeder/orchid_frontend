@@ -19,7 +19,9 @@
             </div>
         </div>
 
-        <input type="button" value="Save" ng-click="saveNewPhotos()" ng-hide="editPlant.photos || !similarPhotos.length" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
+        <div class="button-new" id="match-save">
+            <input type="button" value="Save" ng-click="saveNewPhotos()" ng-hide="editPlant.photos || !similarPhotos.length" ng-class="{glowHealthPoor: photo.type == 'aaaa', noglowHealth: photo.type != 'aaaa'}">
+        </div>
 
         <div class="no-photos-match" ng-show="!similarPhotos.length">
             <p>There are no matching photos for this plant.</p>

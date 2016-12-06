@@ -42,3 +42,21 @@
     margin: 0 15px 15px 0;
     width: 60px;
 }
+
+.add-photo-popup input[type="button"] {
+    width: auto;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    margin: 0 10px 0 0;
+    display: inline-block;
+}
+
+.selectedMatchPhotos {
+    background: #EF645F;
+}
+
+#match-save {
+    float: right;
+    margin: 15px;
+}
