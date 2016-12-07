@@ -14,7 +14,7 @@
                 <label >{{photo.fileName}}</label>
                 <!-- photo.checked is the value to see if they are in the array-->
                 <div class="button-new">
-                    <input type="button" value="Select" ng-click="newPhotoLink(photo)" ng-hide="editPlant.photos" ng-class="{glowHealthPoor: photo.checked == true, noglowHealth: photo.checked == false}">
+                    <input type="button" value="Select" ng-click="newPhotoLink(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto:photo.clicked != 'NO', noglowHealth: photo.clicked == 'NO'}">
                 </div>
             </div>
         </div>

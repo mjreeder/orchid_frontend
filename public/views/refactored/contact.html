@@ -5,21 +5,21 @@
     <section class="intro">
         <p>Get in touch with us!</p>
     </section>
-    <form action="input" id="form">
+    <form id="form">
         <div id="name-section">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" size="22" maxlength="30" required="required"
-                   placeholder="Jane Doe"/>
+                   ng-model="contact.from_name" placeholder="Jane Doe"/>
         </div>
         <div id="email-section">
             <label for="email">Email</label>
             <input type="text" id="email" name="email" size="22" maxlength="30" required="required"
-                   placeholder="janedoe@mail.com"/>
+                   ng-model="contact.from_email" placeholder="janedoe@mail.com"/>
         </div>
         <div id="subject-section">
             <label for="subject">Subject</label>
             <input type="text" id="subject" name="subject" size="22" maxlength="30" required="required"
-                   placeholder="Question"/>
+                   ng-model="contact.subject" placeholder="Question"/>
         </div>
 
 
@@ -28,11 +28,11 @@
             <label for="message">Message</label>
 
             <textarea name="message" id="message" name="message" cols="90" rows="4" required="required"
-                      placeholder="Enter your message here"></textarea>
+                      ng-model="contact.message"placeholder="Enter your message here"></textarea>
 
         </div>
         <div id="submit-container">
-            <input type="submit" value="Send" id="button"/>
+            <button ng-click="submit()">Submit</button>
         </div>
     </form>
 

@@ -211,7 +211,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             }
 
             for(var i = 0;i < $scope.similarPhotos.length; i++){
-                $scope.similarPhotos[i].checked = false;
+                $scope.similarPhotos[i].clicked = "NO";
             }
 
         });
@@ -1451,13 +1451,13 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         for (var i = 0; i < $scope.addPhotoList.length; i++){
             if(photo.id == $scope.addPhotoList[i].id){
                 $scope.addPhotoList.splice(i, 1);
-                $scope.similarPhotos[index].checked = false;
+                $scope.similarPhotos[index].clicked = "NO";
                 changed = true;
             }
         }
         if(changed == false){
             $scope.addPhotoList.push(photo);
-            $scope.similarPhotos[index].checked = true;
+            $scope.similarPhotos[index].clicked = "YES";
             $scope.addPhotoList.checked = true;
 
         }
