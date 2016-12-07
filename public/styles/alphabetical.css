@@ -483,7 +483,8 @@ main article .mySlides img {
 @media screen and (max-width: 500px){
    #plants li {
     width: 100%;
-       height: auto;  
+       height: auto; 
+       display: block; 
    }
 }
 

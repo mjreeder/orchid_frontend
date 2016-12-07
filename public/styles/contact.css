@@ -28,7 +28,7 @@ main label {
 }
 
 #name-section {
-    width: 45%;
+    width: 100%;
     float: left;
 }
 
@@ -121,6 +121,7 @@ main form input {
     width: 428px;
 }
 
+/*
 @media screen and (max-width: 500px) {
  main form input {
    width: 100%;   
@@ -135,6 +136,7 @@ main form input {
      
  }
 }
+*/
 
 
 
@@ -464,8 +466,22 @@ main {
     }
 }
 
-@media screen and (min-width: 530px) {
+
+@media screen and (max-width: 530px) {
     main form input { 
+        width: 100%; 
+    }
+}
+
+
+@media screen and (max-width: 530px) {
+   #name input  { 
+        width: 100%; 
+    }
+}
+
+@media screen and (min-width: 530px) {
+   #name input  { 
         width: 100%; 
     }
 }
