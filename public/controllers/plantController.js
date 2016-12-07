@@ -7,8 +7,11 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
     $scope.photoInformation = [];
     $scope.url = "";
     $scope.plant = {};
+    $scope.haveProfilePicture = false;
 
     $scope.allimagesURL =[];
+
+    $scope.profilePicture = "";
 
 
     console.log($scope.NAMEOFPAGE);
@@ -78,11 +81,22 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
                 $scope.allimagesURL.push(data[r].url);
             }
 
+            var foundProfilePicture = false;
             for(var i = 0;i < $scope.allimagesURL.length; i++){
                 console.log($scope.allimagesURL[i]);
+                if($scope.allimagesURL[i].type == "profile"){
+                    $scope.profilePicture = $scope.allimagesURL[i];
+                    foundProfilePicture = faslse = true;
+                    $scope.haveProfilePicture = true;
+                }
             }
-
-
+            if(foundProfilePicture == false){
+                for(var i = 0;i < $scope.allimagesURL.length; i++){
+                    $scope.profilePicture = $scope.allimagesURL[i];
+                    $scope.haveProfilePicture = true;
+                    break;
+                }
+            }
             $scope.$apply();
 
         }, function (error) {
@@ -100,8 +114,11 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
 
         console.log($scope.allimagesURL.length);
         for(var i = 0; i < $scope.allimagesURL.length; i++){
-           console.log($scope.allimagesURL[i]);
+           console.log($scope.allimagesURL[0] + "asdfasdfads");
+
         }
+        $scope.oneURL = $scope.allimagesURL[0];
+        $scope.$apply();
     };
 
     $scope.goBack = function() {
