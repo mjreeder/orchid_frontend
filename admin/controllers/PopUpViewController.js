@@ -81,7 +81,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         handleSprayed();
         handlePotting();
         handleHealth();
-        handleTag();
+        handleTag(function(){
+            $route.reload();
+        });
         $scope.closePopUp();
     }
 
@@ -92,7 +94,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                     handlePotting(function() {
                         handleHealth(function() {
                             handleTag(function() {
-                                $scope.closePopUp();
                                 callback();
                             })
                         })
@@ -173,6 +174,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         }
         var isRecent = checkForRecent($scope.blooming_start_date);
         if (objectsMatch('bloomingComment')) {
+            if(callback){
+                callback();
+            }
             return;
         }
         if (objectIsNew('bloomingComment') || (!isRecent)) {
