@@ -3,9 +3,9 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 374.7 374.9" enable-background="new 0 0 374.7 374.9" xml:space="preserve">
-<g opacity="0.4">
-	<rect x="0.2" y="0" fill="#CCD5C3" width="374.5" height="374.5"/>
-	<polyline opacity="0.4" fill="#CCD5C3" points="0,374.9 0,0 374.7,0 374.7,374.9 	"/>
+<g>
+	<rect x="0.2" y="0" fill="#EAEDE7" width="374.5" height="374.5"/>
+	<polyline opacity="0.4" fill="#EAEDE7" points="0,374.9 0,0 374.7,0 374.7,374.9 	"/>
 </g>
 <g>
 	<g>

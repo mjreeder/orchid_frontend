@@ -65,3 +65,32 @@ main h3 {
     position: absolute;
     right: 40px;
 }
+
+
+@media screen and (max-width: 600px) {
+ .can1 {
+  display: none;   
+ }
+}
+
+
+@media screen and (max-width: 600px) {
+ .can2 {
+  display: none;    
+ }
+}
+
+
+@media screen and (max-width: 400px) {
+ h2 {
+  font-size:16px; 
+ }
+}
+
+
+
+@media screen and (max-width: 400px) {
+ h3 {
+  font-size: 14px; 
+ }
+}
