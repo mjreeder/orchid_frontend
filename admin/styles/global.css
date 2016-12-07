@@ -171,13 +171,11 @@ header {
     position: relative;
 }
 
-
 header .main-heading ul {
     position: absolute;
     bottom: 30px;
     right: 40px;
 }
-
 
 header .main-heading ul li {
     display: inline-block;
@@ -188,9 +186,6 @@ header .main-heading li a {
     list-style-type: none;
     margin-left: 28px;
     float: right;
-    color: white;
-    /*    width: 15%;*/
-    /*    max-width: 125px;*/
     border-radius: 5px;
     font-family: Raleway, sans-serif;
     font-weight: 500;
@@ -199,8 +194,6 @@ header .main-heading li a {
     color:  #2b2e30;
     text-align: center;
 }
-
-
 
 @media screen and (max-width: 900px) {
     .main-heading ul li a {
@@ -321,10 +314,7 @@ body {
 button {
     border: none;
     background: none;
-
 }
-
-
 
 button,
 input[type="button"] {
@@ -345,9 +335,6 @@ input[type="button"] {
     font-weight: 600;
     border: none;
 }
-
-
-
 
 header .main-heading ul li a {
     font-size: 20px;

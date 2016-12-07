@@ -7,10 +7,9 @@ main nav ul li {
     width: 33.333333333%;
     font-family: 'Aleo', serif;
     font-size: 20px;
-    font-weight: 100;
     background-color: #01997b;
     text-align: center;
-    padding: 15px 0;
+    padding: 28px 0 14px;
     margin-bottom: 5px;
     font-weight: 400;
 }
@@ -56,13 +55,11 @@ main nav ul {
 }
 
 #back-button {
-    /*    display: inline;*/
     position: absolute;
     top: 0;
     left: 5px;
     margin: 0;
     width: 60px;
-/*    background-color: #808080;*/
     text-decoration: none;
     color: white;
     font-family: 'Raleway', sans-serif;
@@ -100,7 +97,6 @@ thead {
     color: white;
     font-family: 'Aleo', serif;
     font-size: 20px;
-    font-weight: 100;
     font-weight: 400;
    
 }
@@ -112,9 +108,8 @@ th {
     border-left: 4px solid white;
     text-align: center;
     vertical-align: middle;
-    padding: 5px;
     height: auto;
-     padding: 15px 0px; 
+    padding: 15px 0;
 }
 
 th {
@@ -150,12 +145,10 @@ td {
     left: 0;
     width: 100%;
     height: 100%;
-/*    padding: 50px 0px 0px 0px; */
 }
 
 .formcontent {
     padding: 15px;
-    /*margin-top: 85px;*/
 }
 
 .flower-popup form {
@@ -178,7 +171,7 @@ td {
     font-size: 26px;
     letter-spacing: 3px;
     background-color: #01997b;
-    padding: 30px 0px 30px 0px;
+    padding: 30px 0 30px 0;
     width: 100%;
     color: white;
 }
@@ -257,7 +250,6 @@ td {
 }
 
 #edit-button {
-/*    background-color: #808080;*/
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
@@ -303,7 +295,6 @@ td {
     margin: 0 10px;
     border-radius: 5px;
     display: inline-block;
-    /*    width: 67px;*/
 }
 
 .flower-popup img {
@@ -327,8 +318,6 @@ td {
     background: none;
     border: none;
 }
-
-
 
 .calendar img {
     margin: 0;
@@ -404,8 +393,8 @@ table input,
 }
 
 .table-checkbox {
-    background: url(../images/empty_checkbox.svg)center center no-repeat / cover;
-    background-image: url(../images/empty_checkbox.svg);
+    background: url(../images/empty_checkbox.svg)center center no-repeat;
+    /*background-image: url(../images/empty_checkbox.svg);*/
     height: 40px;
     width: 40px;
     display: inline-block;
@@ -421,9 +410,9 @@ table input,
 .today:active {
     background-color: #01997b;
     color: white;
-    -webkit-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
-    -moz-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
-    box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
+    -webkit-box-shadow: 2px 2px 11px 0 rgba(0,0,0,0.43);
+    -moz-box-shadow: 2px 2px 11px 0 rgba(0,0,0,0.43);
+    box-shadow: 2px 2px 11px 0 rgba(0,0,0,0.43);
     padding: 10px 15px;
     font-family: 'Raleway', sans-serif;
     text-align: center;

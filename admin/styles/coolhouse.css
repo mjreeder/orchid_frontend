@@ -6,10 +6,9 @@ main img {
 main nav ul li {
     float: left;
     width: 33.333333333%;
-    font-family: Aleo;
+    font-family: Aleo, serif;
     font-size: 20px;
     font-weight: 100;
-    background-color: black;
     text-align: center;
     padding: 22px 0;
 }
@@ -19,9 +18,8 @@ main nav ul li a {
     color: white;
 }
 
-
 #active {
-    color: black;
+    color: #2b2e30;
     font-weight: 400;
     background-color: white;
     padding: 20px 30px 20px 30px; 
