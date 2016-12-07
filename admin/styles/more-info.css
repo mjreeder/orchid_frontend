@@ -66,7 +66,6 @@ input, textarea {
 }
 
 textarea {
-    border: 2px solid #eaeee7;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -137,17 +136,17 @@ select {
 }
 
 #culture select, #special-collection select {
-    width: 225px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    width: 223px;
+    margin-bottom:15px;
+    margin-top:15px;
 }
 
 #add-country-select {
-    margin-right: 4px;
+    margin-left: -5px;
 }
 
 #delete-country-select {
-    margin-left: 2px;
+    margin-left: -8px;
 }
 
 .country-list {
@@ -155,7 +154,8 @@ select {
 }
 
 .selected-countries {
-    margin: 7.5px 0 0 50px;
+    margin: 0 0 0 50px;
+    line-height:1.5;
 }
 
 #special-collection select {
@@ -217,7 +217,7 @@ fieldset {
 }
 
 .edit p {
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 16px;
     color: black;
     display: inline-block;
@@ -339,7 +339,7 @@ input#verified {
     vertical-align: middle;
     width: 20%;
     max-width: 120px;
-    margin: 0 20px 20px 20px;
+    margin: 0 20px;
 }
 
 .photos-buttons input, .photos-add-div input {
@@ -360,17 +360,7 @@ input#verified {
     border: none;
 }
 
-.add-photo-popup input[type="button"] {
-    width: auto;
-    border: none;
-    background: #808080;
-    color: white;
-    border-radius: 8px;
-    padding: 10px 15px;
-    font-size: 14px;
-    margin: 0 10px 0 0;
-    display: inline-block;
-}
+
 
 input[type="button"].selectedPhoto {
     background: #00604D;
@@ -384,9 +374,9 @@ input[type="button"].selectedPhoto {
 }
 
 .photos-buttons {
-    margin: 30px 10px 20px 0;
+    margin: 0 10px 0 0;
     display: inline-block;
-    vertical-align: center;
+    vertical-align: middle;
     width: 65%;
 }
 
@@ -396,7 +386,6 @@ input[type="button"].selectedPhoto {
 }
 
 #photos {
-    /*margin: 20px auto 0;*/
     padding: 0 0 20px 0;
 }
 
@@ -406,6 +395,28 @@ input[type="button"].selectedPhoto {
 
 .photos-group {
     overflow: auto;
+    margin: 15px 0;
+}
+
+.delete-photo-warning {
+    font-family: "Raleway", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    display: inline-block;
+    margin: 10px 0 0 0;
+    line-height:1.2;
+    width: 80%;
+    opacity: 1;
+}
+
+.photoDeleted {
+    opacity: .35;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20%;
+    max-width: 120px;
+    margin: 0 20px;
 }
 
 
@@ -414,7 +425,6 @@ input[type="button"].selectedPhoto {
 .split-holder {
     width: 95%;
     margin: 20px auto;
-    margin-bottom: 20px;
 }
 
 .split-add {

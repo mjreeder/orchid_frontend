@@ -11,6 +11,11 @@ app.factory('SpecialCollectionsFactory', function($http, $rootScope) {
         return $http.get(baseUrl + '/id/' + id);
     };
 
+    data.getSpecificSpecialCollectionID = function(id){
+        return $http.get(baseUrl + "/getSpecificCollectionID/" + id);
+    }
+
+
     data.createSpecialCollection = function (specialCollection) {
         return $http({
             method: "POST",

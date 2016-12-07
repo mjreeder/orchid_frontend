@@ -1,42 +1,49 @@
-#allplantsh1 {
-    /*    width: 33.333333333%;*/
-    font-family: 'Aleo';
+#database-heading {
+    margin: 40px 0 20px;
+}
+
+#database-heading h1 {
+    font-family: Aleo, serif;
     font-size: 30px;
     font-weight: 400;
-    color: black;
-    margin-bottom: 40px;
-    position: absolute;
-    left: 30px;
-    top: 175px;
-    /*    padding: 30px;*/
-    /*    text-align: left; */
-    /*    margin-left: -90px; */
+    color: #2b2e30;
+    margin: 20px;
+    display: inline-block;
+    width: 30%;
+    max-width: 250px;
 }
 
 .searchbox-and-icon {
     width: 35%;
-    position: absolute;
-    top: 170px;
-    right: 0px;
+    display: inline-block;
+    /*position: absolute;*/
+    /*top: 170px;*/
+    /*right: 0px;*/
 }
 
 #search {
     font-family: 'Raleway', sans-serif;
     font-size: 15px;
-    border: 4px solid #01997b;
-    border-radius: 5px;
+    border: 3px solid #A8B89A;
     height: 33px;
-    width: 70%;
+    width: 200px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    margin: 0 5px 0 20px;
 }
 
 #mag-glass {
-    /*    float: right;*/
-    position: absolute;
-    top: 0px;
-    left: 70%;
     width: 20px;
-    /*    margin: -33px 40px 0 0;*/
     border: none;
+    background-color: white;
+    margin:0;
+    padding: 0 0 10px 0;
+    background-image: url(../images/Searchbutton.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+
 }
 
 
@@ -125,7 +132,8 @@
 }
 
 #orchid-database .table-right th {
-    padding: 20px 0px 20px 10px;
+    padding: 20px 10px 20px 10px;
+    white-space:nowrap;
 }
 
 
@@ -176,6 +184,10 @@
     border-bottom: 4px solid white;
 }
 
+label.filter-option {
+    padding-left: 5px;
+}
+
 
 /*
 .filter-options li:first-child {
@@ -195,51 +207,20 @@
     margin-left: 0px;
 }
 
-
-/*
-button {
-    width: 30px;
-    float: left;
-    z-index: 10;
-}
-*/
-
-#collapse {
-    font-family: 'Raleway', sans-serif;
-    font-size: 45px;
-    font-weight: 600;
-    color: white;
-    display: inline-block;
-    margin-left: 10px;
-    line-height: .4;
-    margin-top: 15px;
-    position: absolute;
-    /*
-    width: 30px
-    float: left;
-    position: relative;
-    display: inline;
-    margin-top: -37px;
-    padding: 5px;
-*/
-}
-
 .filter-left {
     float: left;
     width: 30%;
     max-width: 250px;
     margin-left: 20px;
-    margin-top: 90px;
+    /*margin-top: 90px;*/
     display: inline-block;
     margin-bottom: 30px;
 }
 
 .table-right {
-    margin-top: 90px;
-    /*    float: right; */
-    float: left;
-    margin-left: 8%;
-    width: 55%;
+    margin-left: 35px;
+    min-width: 50%;
+    max-width: 68%;
     display: inline-block;
 }
 
@@ -366,7 +347,7 @@ input:checked+span {
     font-size: 21px;
     padding-left: 5.6%;
     font-weight: 600;
-    color: black;
+    color: #2b2e30;
 }
 
 .page ul li a:active {

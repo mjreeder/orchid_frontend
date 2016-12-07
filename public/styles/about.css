@@ -12,7 +12,7 @@ main p {
 }
 
 main img {
-    width: 350px;
+    width: 75%;
     margin: 0 auto;
     display: block;
 }
@@ -24,10 +24,13 @@ main figcaption {
 }
 
 
+main figcaption a {
+ transition: .5s ease;   
+}
+
 /* mouse over link */
 main figcaption a:hover {
-    transition: .5sec ease;
-    color: #ba0c2f;
+    color: #bbbbbb;
 }
 
 main {

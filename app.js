@@ -14,7 +14,8 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('contact', {
             url: '/contact',
-            templateUrl: './views/refactored/contact.html'
+            templateUrl: './views/refactored/contact.html',
+            controller: 'contactController'
         })
         .state('view-collections', {
             url: '/menu',

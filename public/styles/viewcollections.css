@@ -19,6 +19,9 @@ main h2 {
 }
 */
 
+
+
+
 main li {
     text-align: center; 
     border-top: 2px solid #efefef; 
@@ -28,10 +31,6 @@ main li {
      padding: 20px 30px;  
 }
 
-
-main li:first-child {
- border-top: 0px;    
-}
 
 #orchids {
     width: 100%;

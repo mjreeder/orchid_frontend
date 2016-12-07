@@ -59,7 +59,19 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
 
     data.checkAccessionNumber = function(accessionNumber){
         return $http.get(baseUrl + '/checkAccessionNumber/' + accessionNumber);
-    }
+    };
+
+    data.getPlantsFromSubTribe = function(subtribe){
+        return $http.get(baseUrl + "/getPlantsFromSubTribe/" + subtribe);
+    };
+
+    data.topFiveCollection = function(accessionNumber){
+        return $http.get(baseUrl + '/topFiveCollections');
+    };
+
+    data.topFiveSubtribes = function(subtribe){
+        return $http.get(baseUrl + "/topFiveSpecies");
+    };
 
 
 

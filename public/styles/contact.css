@@ -112,7 +112,8 @@ main a {
 main form input {
     padding: 2px;
     font-size: 15px;
-    border: 2px solid #000000;
+    border: 2px solid #bcbcbc;
+    border-radius: 5px; 
     box-sizing: border-box; 
 }
 
@@ -160,7 +161,8 @@ main form textarea {
     width: 428px;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
-    border: 2px solid #000000;
+    border: 2px solid #bcbcbc;
+    border-radius: 5px; 
     position: inline-block;
     vertical-align: top;
 }
@@ -174,21 +176,34 @@ main form textarea {
 }
 */
 
+
+
+
+
 #button {
-    padding: 8px 40px;
-    color: white;
-    background-color: black;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 100;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-}
+   background-color: white; 
+    color: #bcbcbc; 
+    border: 2px solid #bcbcbc; 
+    padding: 8px 40px; 
+    border-radius: 5px; 
+     font-family: 'Raleway', sans-serif; 
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, .1);  
+    font-weight: 600;
+    font-size: 14px;
+    transition: .5s ease; 
+    cursor: pointer; 
+    
+} 
+
+
 
 #button:hover {
-    background-color: #ba0c2f;
-    transition: .5s ease;
+    background-color: #bcbcbc; 
+    color: white;  
+    
 }
+
+
 
 
 /*
@@ -274,12 +289,38 @@ main span {
     height: 50px;
     position: relative;
     top: 20px;
-    width: 50px;
-    display: inline-block;
-    margin-right: 20px;
-    margin-left: 175px;
+    
+    display:  block;
+
 }
 
+.facebook {
+display: inline-block; 
+    width: 50px; 
+    margin-right: 20px; 
+}
+
+.instagram {
+display: inline-block; 
+    width: 50px; 
+}
+
+#social-media {
+display: block; 
+    margin: 0 auto; 
+    width: 20%; 
+margin-top: 20px; 
+}
+
+
+
+
+/*
+.face-inta {
+ display: block; 
+    margin: 0 auto; 
+}
+*/
 
 /*
 @media screen and (max-width: 430px){
@@ -292,21 +333,25 @@ main span {
 .facebook span {
     background: transparent url(../images/facebook.svg) center top no-repeat;
     transition: .5s ease;
-    margin-bottom: 20px;
+
 
 }
 
+/*
 .facebook p {
     margin-left: 100px;
     margin-top: -40px;
     margin-bottom: 15px;
 }
+*/
+/*
 
 .instagram p {
     margin-left: -170px;
     margin-top: -30px;
     margin-bottom: 15px;
 }
+*/
 
 
 /* mouse over link */
@@ -318,7 +363,6 @@ main span {
 .instagram span {
     background: transparent url(../images/instagram.svg) center top no-repeat;
     transition: .5s ease;
-    margin-bottom: 10px;
    
 }
 
@@ -340,9 +384,14 @@ main ul li a:hover {
 
 /* mouse over link */
 
+.visit p a {
+  transition: .5s ease;   
+}
+
+ 
 .visit p a:hover {
-    transition: .5sec ease;
-    color: #ab0c2f;
+   
+    color: #bbbbbb;
 }
 
 .location {
@@ -385,4 +434,38 @@ main {
     margin: 0 auto 0px;
     background-color: white; 
     padding: 30px; 
+}
+
+
+/*
+@media screen and (max-width: 500px) {
+    #contact-form { 
+        width: 50%; 
+    }
+}
+*/
+
+@media screen and (max-width: 530px) {
+    main form { 
+        width: 300px; 
+    }
+}
+
+@media screen and (max-width: 400px) {
+    main form { 
+        width: 200px; 
+    }
+}
+
+
+@media screen and (max-width: 530px) {
+    main form input { 
+        width: 100%; 
+    }
+}
+
+@media screen and (min-width: 530px) {
+    main form input { 
+        width: 100%; 
+    }
 }

@@ -192,13 +192,14 @@
         </div>
 
         <div class="photos-group" ng-repeat="photo in plant_id_url">
-            <img src="{{photo.url}}" alt="" class="thumbnail">
+            <img src="{{photo.url}}" alt="" ng-class="{photoDeleted: photo.type == 'del', thumbnail: photo.type != 'del'}">
             <div class="photos-buttons button-new">
                 <label for="thumbnail">{{photo.fileName}}</label>
                 <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
                 <input type="button" value="Habitat" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
                 <input type="button" value="Other" ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'other', noglowHealth: photo.type != 'other'}">
                 <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{deletePhoto: photo.type == 'del', noglowHealth: photo.type != 'del'}">
+                <p class="delete-photo-warning" ng-hide="editPlant.photos || photo.type != 'del'" >The photo will not be deleted until you hit the save button. If you do not want to delete this photo, select an option above.</p>
             </div>
         </div>
 
@@ -297,39 +298,6 @@
             <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">
         </div>
     </fieldset>
-
-
-
-<!--<fieldset id="weekly-checkup" ng-hide="createNew">-->
-    <!--<h1>Sprayed for Pests</h1>-->
-    <!--<div class="split-holder" ng-show="!sprayed.length">-->
-        <!--This plant has no record of being sprayed for pests.-->
-    <!--</div>-->
-
-
-    <!--<p class="sprayed-entry" ng-repeat="spray in sprayed">-->
-        <!--<span class=" more-info-base text-align-top span-date">{{spray.timestamp}}</span>-->
-        <!--<span class=" more-info-base span-comment">{{spray.note}}</span>-->
-    <!--</p>-->
-    <!--<div class="button-new">-->
-        <!--<input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">-->
-    <!--</div>-->
-
-<!--</fieldset>-->
-
-<!--<fieldset id="weekly-checkup" ng-hide="createNew">-->
-    <!--<h1>Repot</h1>-->
-    <!--<div class="split-holder" ng-show="!repotted.length">-->
-        <!--This plant has no potting information.-->
-    <!--</div>-->
-
-    <!--<p class="repotting-entry" ng-repeat="repot in repotted">-->
-        <!--<span class=" more-info-base">{{repot.timestamp}}</span>-->
-    <!--</p>-->
-    <!--<div class="button-new">-->
-        <!--<input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()" ng-show="repottedMoreShow">-->
-    <!--</div>-->
-
 
     <fieldset id="weekly-checkup" ng-hide="createNew">
         <h1>Repot</h1>

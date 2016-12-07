@@ -7,10 +7,9 @@ main nav ul li {
     width: 33.333333333%;
     font-family: 'Aleo', serif;
     font-size: 20px;
-    font-weight: 100;
     background-color: #01997b;
     text-align: center;
-    padding: 15px 0;
+    padding: 28px 0 14px;
     margin-bottom: 5px;
     font-weight: 400;
 }
@@ -56,13 +55,11 @@ main nav ul {
 }
 
 #back-button {
-    /*    display: inline;*/
     position: absolute;
     top: 0;
     left: 5px;
     margin: 0;
     width: 60px;
-/*    background-color: #808080;*/
     text-decoration: none;
     color: white;
     font-family: 'Raleway', sans-serif;
@@ -100,7 +97,6 @@ thead {
     color: white;
     font-family: 'Aleo', serif;
     font-size: 20px;
-    font-weight: 100;
     font-weight: 400;
    
 }
@@ -112,59 +108,13 @@ th {
     border-left: 4px solid white;
     text-align: center;
     vertical-align: middle;
-    padding: 5px;
     height: auto;
-     padding: 15px 0px; 
+    padding: 15px 0;
 }
 
 th {
     font-size: 18px;
 }
-
-
-/*td:nth-child(1) {*/
-
-
-/*!*width: 20%;*!*/
-
-
-/*}*/
-
-
-/*td:nth-child(2) {*/
-
-
-/*!*width: 40%*!*/
-
-
-/*}*/
-
-
-/*td:nth-child(3) {*/
-
-
-/*!*width: 20%;*!*/
-
-
-/*}*/
-
-
-/*td:nth-child(4) {*/
-
-
-/*max-width: 60px;*/
-
-
-/*}*/
-
-
-/*td:nth-child(5) {*/
-
-
-/*max-width: 60px;*/
-
-
-/*}*/
 
 td {
     vertical-align: middle;
@@ -195,7 +145,6 @@ td {
     left: 0;
     width: 100%;
     height: 100%;
-/*    padding: 50px 0px 0px 0px; */
 }
 
 .formcontent {
@@ -222,10 +171,9 @@ td {
     font-size: 26px;
     letter-spacing: 3px;
     background-color: #01997b;
-    padding: 30px 0px 30px 0px;
+    padding: 30px 0 30px 0;
     width: 100%;
-/*    height: 90px;*/
-    color: white; 
+    color: white;
 }
 
 .top-margin {
@@ -255,7 +203,6 @@ td {
 }
 
 .flower-popup textarea {
-    border: none; 
     font-family: 'Raleway' , sans-serif;
     font-size: 14px;
     width: 100%;
@@ -264,6 +211,7 @@ td {
     height: 50px;
     margin: 5px 0 0 0;
     background: white;
+    border: 2px solid #A8B89A;
 }
 
 .today,
@@ -302,7 +250,6 @@ td {
 }
 
 #edit-button {
-/*    background-color: #808080;*/
     text-decoration: none;
     color: white;
     font-family: Raleway, sans-serif;
@@ -348,7 +295,6 @@ td {
     margin: 0 10px;
     border-radius: 5px;
     display: inline-block;
-    /*    width: 67px;*/
 }
 
 .flower-popup img {
@@ -362,14 +308,15 @@ td {
     position: relative;
 }
 
-.calendar input {
+.flower-popup input[type="date"] {
     -webkit-appearance: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    position: absolute;
+    background: white;
+    margin: 0;
+}
+
+.flower-popup input[type="date"]:disabled {
+    background: none;
+    border: none;
 }
 
 .calendar img {
@@ -384,17 +331,15 @@ td {
 }
 
 .glowHealthPoor {
-    /*   box-shadow:0 0 20px #BA0C2F;*/
     background-color: #EF645F;
 }
 
-.glowHealthFair {
-    /*  box-shadow:0 0 20px #F3C467;*/
+#current-health button.glowHealthFair {
     background-color: #FDE48F;
+    color: #2b2e30;
 }
 
 .glowHealthGood {
-    /*  box-shadow:0 0 20px #61d166;*/
     background-color: #01997B;
 }
 
@@ -448,8 +393,8 @@ table input,
 }
 
 .table-checkbox {
-    background: url(../images/empty_checkbox.svg)center center no-repeat / cover;
-    background-image: url(../images/empty_checkbox.svg);
+    background: url(../images/empty_checkbox.svg)center center no-repeat;
+    /*background-image: url(../images/empty_checkbox.svg);*/
     height: 40px;
     width: 40px;
     display: inline-block;
@@ -465,12 +410,17 @@ table input,
 .today:active {
     background-color: #01997b;
     color: white;
-    -webkit-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
-    -moz-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
-    box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.43);
+    -webkit-box-shadow: 2px 2px 11px 0 rgba(0,0,0,0.43);
+    -moz-box-shadow: 2px 2px 11px 0 rgba(0,0,0,0.43);
+    box-shadow: 2px 2px 11px 0 rgba(0,0,0,0.43);
     padding: 10px 15px;
     font-family: 'Raleway', sans-serif;
     text-align: center;
     border-radius: 5px;
     font-weight: 600;
+}
+
+#no-plants-table {
+    text-align: center;
+    padding: 10px;
 }

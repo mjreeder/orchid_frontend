@@ -160,42 +160,89 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             origin_comment: plantData.origin_comment,
             last_varified: createDateFromString(plantData.last_varified),
             is_donation: plantData.is_donation,
-            class: plantData.class_name,
-            tribe: plantData.tribe_name,
-            subtribe: plantData.subtribe_name,
-            genus: plantData.genus_name,
-            species: plantData.species_name,
-            variety: plantData.variety_name,
+            class: plantData.class,
+            tribe: plantData.tribe,
+            subtribe: plantData.subtribe,
+            genus: plantData.genus,
+            species: plantData.species,
+            variety: plantData.variety,
             image: "",
             dead_date: createDateFromString(plantData.dead_date)
         };
+        console.log($scope.plant);
 
         //assigning the table to plant.
         $scope.plantLocation = plantData.location;
 
-        console.log($scope.plant);
 
         $scope.originalAccessionNumber = $scope.plant.accession_number;
 
         var speciesName  = $scope.plant.species;
         var id = $scope.plant.id;
 
+        var promArray1 = [];
 
-        if($scope.plant.special_collections_id != null) {
-            SpecialCollectionsFactory.getSpecialCollectionById($scope.plant.special_collections_id).then(function (response) {
-                $scope.selectedCollectionName = response.data.data.name;
+        console.log("adasdfashdlfjasdlkf jasdlkfjadkls;fj lkasdf");
 
+        var prom = new Promise(function(resolve, reject) {
+            SpecialCollectionsFactory.getSpecificSpecialCollectionID(id).then(function(response){
+                resolve(response.data.data);
             });
-        }
+
+        });
+
+        promArray1.push(prom);
+
+        Promise.all(promArray1).then(function (success) {
+
+            console.log(success[0]);
+            var data = success[0];
+            console.log();
+
+            $scope.plant.special_collections_id = data[0].special_collections_id;
+            console.log($scope.plant.special_collections_id);
+            $scope.loadSpecialCollection( $scope.plant.special_collections_id);
+
+
+
+        }, function (error) {
+
+        });
+
+
+
+        //if($scope.plant.special_collections_id != null) {
+        //
+        //
+        //} else {
+        //    console.log('there is not specialca collction id');
+        //}
 
         PhotoFactory.getSimilarPhotos(speciesName).then(function (response){
             var photoData = response.data.data;
+            var count = 0;
             for (var i = 0; i < photoData.length; i++) {
+                var didAdd = false;
+
                 if(photoData[i].plant_id == id){
 
                 } else {
-                    $scope.similarPhotos.push(photoData[i]);
+
+                    for(var t = 0; t < $scope.similarPhotos.length; t++){
+                        if($scope.similarPhotos[t].url == photoData[i].url){
+                            didAdd = true;
+                            break;
+                        } else {
+                        }
+                    }
+                    if(didAdd == false){
+                        $scope.similarPhotos.push(photoData[i]);
+                    }
                 }
+            }
+
+            for(var i = 0;i < $scope.similarPhotos.length; i++){
+                $scope.similarPhotos[i].clicked = "NO";
             }
 
         });
@@ -434,6 +481,20 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         };
     }
+
+    $scope.loadSpecialCollection = function(id){
+        if($scope.plant.special_collections_id == undefined){
+            console.log('asdfasdf');
+
+        } else {
+            console.log('asdfasdfasdads' + $scope.plant.special_collections_id);
+            SpecialCollectionsFactory.getSpecialCollectionById($scope.plant.special_collections_id).then(function (response) {
+                $scope.selectedCollectionName = response.data.data.name;
+
+            });
+        }
+    }
+
 
     $scope.newCollectionName = "";
 
@@ -1011,7 +1072,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             Promise.all(promArray).then(function (success) {
                 $scope.$apply();
 
-                console.log("we are done...going to clean the page.");
                 $route.reload();
             }, function (error) {
 
@@ -1423,16 +1483,29 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.newPhotoLink = function (photo){
         var changed = false;
+
+        for(var i = 0; i < $scope.similarPhotos.length; i++){
+            //$scope.similarPhotos[i].checked = false;
+            var index = -1;
+            if($scope.similarPhotos[i].id == photo.id) {
+                index = i;
+                break;
+            }
+        }
+
         for (var i = 0; i < $scope.addPhotoList.length; i++){
             if(photo.id == $scope.addPhotoList[i].id){
                 $scope.addPhotoList.splice(i, 1);
+                $scope.similarPhotos[index].clicked = "NO";
                 changed = true;
             }
         }
         if(changed == false){
             $scope.addPhotoList.push(photo);
+            $scope.similarPhotos[index].clicked = "YES";
+            $scope.addPhotoList.checked = true;
+
         }
-        $scope.saveNewPhotos();
 
     };
 
@@ -1453,6 +1526,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             PhotoFactory.createPhoto(photoInfo).then(function (response){
             });
         }
+        $route.reload();
 
         $rootScope.$broadcast('photoMatcher', false);
 
@@ -1609,8 +1683,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         };
 
         PhotoFactory.createPhoto(photo).then(function (response){
-
+            $scope.editPlant.photos = true;
+            $scope.plant_id_url.push(data);
         });
+        $route.reload();
+
     }
 
     $scope.scrollToFunction = function(){

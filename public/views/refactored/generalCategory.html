@@ -4,7 +4,7 @@
     
     <div class="box">
             <div class="container1">
-                <input type="search" id="search" placeholder="  Search. . .">
+                <input type="search" id="search" placeholder="Search. . ." ng-model="searchBox">
             </div>
         </div>
 </menu>
@@ -23,13 +23,13 @@
                 <li><a ui-sref="generalCollections">Special Collections</a></li>
                 <section class="special">
                     <ul>
-                        <li><a ui-sref="specificCollection">Speical Collection 1</a></li>
-                        <li><a ui-sref="specificCollection">Speical Collection 2</a></li>
-                        <li><a ui-sref="specificCollection">Speical Collection 3</a></li>
-                        <li><a ui-sref="specificCollection">Speical Collection 4</a></li>
+                        <li ng-repeat="collection in dynamicSidebarContent.specialCollections">
+                            <a ui-sref="specificCollection({ collection: collection.special_collections_id })">{{collection.name}}</a></li>
+
                     </ul>
                 </section>
-                <li><a ui-sref="alphabetical">Alphabetical</a></li>
+
+                <li><a ui-sref="alphabetical.search({ letter: A })">Alphabetical</a></li>
                 <li>
                     <a ui-sref="countries">
                         <div id="place">Countries</div>
@@ -39,10 +39,7 @@
                 <li><a ui-sref="subtribe">Subtribes</a></li>
                 <section class="special">
                     <ul>
-                        <li><a ui-sref="specificSubTribe" id="collection1">Subtribe 1</a></li>
-                        <li><a ui-sref="specificSubTribe" id="collection2">Subtribe 2</a></li>
-                        <li><a ui-sref="specificSubTribe" id="collection3">Subtribe 3</a></li>
-                        <li><a ui-sref="specificSubTribe" id="collection4">Subtribe 4</a></li>
+                        <li ng-repeat="subtribe in dynamicSidebarContent.subtribes"><a ui-sref="specificSubTribe({ tribe: subtribe.tribe_name })">{{subtribe.tribe_name}}</a></li>
                     </ul>
                 </section>
         
@@ -55,9 +52,12 @@
     <section id="plants">
         <div ng-show="collectionOfItems.length == 0">Nothing to see here...</div>
         <ul>
-            <li ng-repeat="item in collectionOfItems" ng-click="moveTo(item)">
-                <img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
-                <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">
+            <li ng-repeat="item in collectionOfItems | filter:searchBox" ng-click="moveTo(item)">
+<!--                <a><img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">-->
+               
+                  <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}">
+                      <img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
+                      <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">
 
                 <h3>{{item.name}}</h3></a>
 

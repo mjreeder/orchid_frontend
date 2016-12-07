@@ -126,11 +126,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                                 $scope.plantsInTable[t].isToday = false;
 
                             } else {
-                                //if(checkIfDateIsToday(plantsInTable[t].last_varified)){
-                                //    $scope.plantsInTable[t].isToday = true;
-                                //} else {
-                                //    $scope.plantsInTable[t].isToday = false;
-                                //}
+                               
                             }
                         }
 
@@ -142,7 +138,16 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                 }
 
                 $scope.showRows = $scope.plantsInTable[0];
+                for(var i = 0; i < $scope.plantsInTable.length; i++){
+                    if(!$scope.plantsInTable[i]){
+                        $scope.SHOWTHISNOW = false;
+                    } else {
+                        $scope.SHOWTHISNOW = true;
+                    }
+                }
             });
+
+
         }
     });
 

@@ -81,7 +81,11 @@
 }
 
 #auth input {
-    display: block;
+    display: inline-block;
+}
+
+#auth input:disabled {
+    opacity: 0;
 }
 
 #email input {
@@ -119,7 +123,7 @@ div.add-user button {
 #icon p {
     font-family: Raleway;
     font-size: 16px;
-    color: black;
+    color: #2b2e30;
     display: inline-block;
     vertical-align: bottom;
 }

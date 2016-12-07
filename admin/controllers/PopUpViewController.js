@@ -1,3 +1,5 @@
+//This page stores the old data on init in $scope.data, but all assignments are to $scope . Breaking this flow will make the check to see if an item is new fail.
+
 app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootScope, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, Bloom_CommentFactory, TagFactory, $route) {
 
     $scope.plant = {};
@@ -5,6 +7,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.createBloomPressed = false;
     $scope.startNewBloomTodayDisable = true;
     $scope.disableEndBloom = true;
+    $scope.bloomIsActive = false;
+    $scope.newBloomText = "Start New Bloom";
 
     $scope.startNewBloom = function() {
         $scope.blooming_start_date = $scope.today;
@@ -12,6 +16,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         $scope.disableEndBloom = true;
         $scope.createBloomPressed = true;
         $scope.startNewBloomTodayDisable = false;
+        $scope.bloomIsActive = true;
+        $scope.newBloomText = "In Bloom";
     }
 
     $scope.$on('current-plant', function(event, data) {
@@ -29,6 +35,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         $scope.createBloomPressed = false;
         $scope.startNewBloomTodayDisable = true;
         $scope.disableEndBloom = true;
+        $scope.bloomIsActive = false;
+        $scope.newBloomText = "Start New Bloom";
+        $scope.flagged = false;
     }
 
     var cleanPrefixes = function() {
@@ -64,7 +73,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         } else {
             syncNetwork(callback);
         }
-        $route.reload();
     }
 
     var asyncNetwork = function() {
@@ -136,7 +144,11 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var datesFromNewYear = function(startYearDate, endYearDate, daysInYear) {
-        if (startYearDate > endYearDate) {
+        var startYear = moment($scope.blooming_start_date);
+        var endYear = moment($scope.blooming_end_date);
+        if(endYear < startYear) {
+          return 0
+        } else if (startYearDate > endYearDate) {
             return daysInYear - startYearDate + endYearDate;
         }
         return 0;
@@ -356,7 +368,15 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             concatObjects(data, 'blooming');
             setTodayEndBloomState();
             disableNewBloomToday();
+            setBloomingState();
         })
+    }
+
+    var setBloomingState = function() {
+      if(!$scope.blooming_end_date){
+        $scope.bloomIsActive = true;
+        $scope.newBloomText = "In Bloom";
+      }
     }
 
     var disableNewBloomToday = function() {
@@ -435,15 +455,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             return;
         }
         var stringVal = data[variable];
-        stringVal = stringVal.split('-');
-        for (var i = 0; i < stringVal.length; i++) {
-            var currentItem = stringVal[i];
-            if (currentItem[0] == '0') {
-                stringVal[i] = currentItem.substring(1, currentItem.length);
-            }
-        }
-        stringVal[1] = parseInt(stringVal[1] - 1);
-        var formattedDate = new Date(stringVal[0], stringVal[1], stringVal[2]);
+        var temp = moment(stringVal);
+        var formattedDate = temp.toDate();
         data[variable] = formattedDate;
         return data;
     }
