@@ -18,7 +18,7 @@
 
                     </ul>
                 </section>
-                <li><a ui-sref="alphabetical">Alphabetical</a></li>
+                <li ng-click="reload()"><a>Alphabetical</a></li>
                 <li>
                     <a ui-sref="countries">
                         <div id="place">Countries</div>
@@ -49,13 +49,9 @@
                <span ng-repeat="i in getNumberOfPages() track by $index" ng-click="getNewPage($index+1)"></span>
                <ul>
                    <li ng-repeat="plant in plants | filter: searchBox" >
-                       <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}">
-                         <img src="./images/no_photo.svg" ng-hide="plant.hasPicture" alt=""> 
-                          
-
-                          
-                          
-
+                       <a ui-sref="specificPlant({accession_number: {{plant.accession_number}} })"ng-style="{'background-image':'url('+plant.picture+')'}">
+                         <img src="./images/no_photo.svg" ng-show="!plant.hasPicture"  alt="">
+                           <img src="{{plant.picture}}" ng-hide="!plant.hasPicture" alt="">
                            <h3>{{plant.name}}</h3>
                        </a>
                    </li>

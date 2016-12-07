@@ -1,6 +1,9 @@
 var orchidApp = angular.module('orchidApp');
 orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'PlantsFactory', 'PhotoFactory', function($scope, $stateParams, PlantsFactory, PhotoFactory, countryFactory) {
     $scope.letter = $stateParams.letter;
+    if($scope.letter == ""){
+        $location.path('/alphabet/A');
+    }
     $scope.loading = true;
     $scope.plants = [];
     $scope.picture = [];
@@ -10,16 +13,43 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
 
     var PromArray = [];
     var picturePromArray = [];
+    var pictureSideArray = [];
+    $scope.STOPLOADING = false;
+
 
 
 
     var prom = new Promise(function (resolve, reject){
         PlantsFactory.getPaginatedPlants($scope.letter, 1, 12).success(function(response) {
-            console.log("SUCCESS: ", response.data);
+            //console.log("SUCCESS: ", response.data);
             $scope.plants = response.data.plants;
+
+            //if(undefined !== $scope.plants && $scope.plants.length){
+            //    console.log('asdfasdf');
+            //} else {
+            //    console.log('HEY');
+            //}
+
+
             resolve(response.data.plants);
             pages = response.data.pages;
-            $scope.loading = false;
+
+
+            if ($scope.plants && $scope.plants.length) {
+                for (var q = 0; q < $scope.plants.length; q++) {
+                    $scope.plants[q].hasPicture = false;
+                    $scope.plants[q].picture = "";
+                }
+                $scope.loading = false;
+            } else{
+                $scope.STOPLOADING = true;
+                $scope.loading = false;
+                $scope.plants.length = 0;
+            }
+
+
+
+
         }).error(function(response) {
             console.log("ERROR: ", response);
             $scope.loading = false;
@@ -34,59 +64,70 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
 
 
 
+
     var xyz = function(){
 
-        console.log($scope.plants.length);
-        for(var i = 0; i < $scope.plants.length; i++){
-            //console.log($scope.plants[i].id);
-            var prom = new Promise(function (resolve, reject){
-                PhotoFactory.getPhotosByPlantID($scope.plants[i].id).then(function(response) {
-                    //var photoResponseData = response.data.data;
-                    //$scope.picture.push(photoResponseData);
-                    resolve(response);
+        if($scope.STOPLOADING == false) {
+
+
+            for (var i = 0; i < $scope.plants.length; i++) {
+                var prom = new Promise(function (resolve, reject) {
+                    PhotoFactory.getPhotosByPlantID($scope.plants[i].id).then(function (response) {
+                        //var photoResponseData = response.data.data;
+                        //$scope.picture.push(photoResponseData);
+                        resolve(response.data.data);
+                    });
                 });
-            });
-            picturePromArray.push(prom);
-        }
-
-        Promise.all(picturePromArray).then(function (success){
-            var updateList = [];
-
-            //console.log(success);
-            for (var i = 0; i < success.length; i++){
-                if (success[i].data.data != ""){
-                    updateList.push(success[i].data.data);
-                }
-                //console.log(success[i].data.data);
+                picturePromArray.push(prom);
+                pictureSideArray.push($scope.plants[i].id);
             }
 
-            for (var i = 0; i < updateList.length; i++){
-                for(var j = 0; j < $scope.plants.length; j++){
+            Promise.all(picturePromArray).then(function (success) {
+                var updateList = [];
+                var q = 0;
+                //for(q = 0; q < $scope.plants.length; q++){
+                //    $scope.plants[].hasPicture = false;
+                //}
+                var foundPhoto = false;
 
-                    if(updateList[i][0].plant_id == $scope.plants[j].id && updateList[i][0].type == 'profile') {
-                        var plant = $scope.plants[j];
-                        plant.picture = updateList[i][0].url;
-                        plant.hasPicture = true;
-                        $scope.plants[j] = plant;
 
-                        break;
+                var i = 0;
+                var j = 0;
+                for (i = 0; i < success.length; i++) {
+                    var data = success[i];
+                    foundPhoto = false;
+                    if (data.length > 0) {
+                        for (var t = 0; t < data.length; t++) {
+                            for (var j = 0; j < $scope.plants.length; j++) {
+                                if ($scope.plants[j].id == data[t].plant_id) {
+                                    if ($scope.plants[j].hasPicture == false) {
+                                        $scope.plants[j].picture = data[t].url;
+                                        $scope.plants[j].hasPicture = true;
+                                        foundPhoto = true;
+                                        break;
+                                    } else {
+                                    }
+
+
+                                } else {
+
+                                }
+                            }
+                            if (foundPhoto == true) {
+                                break;
+                            }
+                        }
                     } else {
 
                     }
+
                 }
-            }
 
-            for(var  i = 0; i < $scope.plants.length; i++){
-                if ($scope.plants[i].hasPicture == undefined || $scope.plants[i].hasPicture == null){
-                    $scope.plants[i].hasPicture = false;
-                }
-            }
 
-            console.log($scope.plants);
+                $scope.$apply();
 
-            $scope.$apply();
-
-        });
+            });
+        }
     };
 
     $scope.getNumberOfPages = function() {

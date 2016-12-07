@@ -28,7 +28,8 @@
 
                     </ul>
                 </section>
-                <li><a ui-sref="alphabetical">Alphabetical</a></li>
+
+                <li><a ui-sref="alphabetical.search({ letter: A })">Alphabetical</a></li>
                 <li>
                     <a ui-sref="countries">
                         <div id="place">Countries</div>
@@ -54,15 +55,10 @@
             <li ng-repeat="item in collectionOfItems | filter:searchBox" ng-click="moveTo(item)">
 <!--                <a><img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">-->
                
-                  <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}"><img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
-                  <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">
-   
-               
-               
-              
-                     
-                       
-                       
+                  <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}">
+                      <img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
+                      <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">
+
                 <h3>{{item.name}}</h3></a>
 
             </li>

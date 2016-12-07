@@ -1,20 +1,31 @@
 var orchidApp = angular.module('orchidApp');
-orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$stateParams', 'PlantsFactory', function($scope, $location, $state, $stateParams, PlantsFactory) {
+orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$stateParams', 'PlantsFactory', 'PhotoFactory', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
     $scope.NAMEOFPAGE = "Alphabetical";
     var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     $scope.tabs = {};
     $scope.letter = $stateParams.letter;
+    if($scope.letter == undefined){
+        $location.path('/alphabet/A');
+    }
     $scope.expanded = null;
 
     var initTabs = function() {
         var tabs = document.getElementById('tabs').children;
-        for(var i=0; i<tabs.length; i++) {
-            var tab = tabs[i];
-            var key = tab.dataset.startLetter;
-            $scope.tabs[key] = { parent: tab };
-            tab.dataset.expanded = false;
+        if(tabs.length != undefined) {
+
+
+            for (var i = 0; i < tabs.length; i++) {
+                var tab = tabs[i];
+                var key = tab.dataset.startLetter;
+                $scope.tabs[key] = {parent: tab};
+                tab.dataset.expanded = false;
+            }
         }
     };
+
+    $scope.reload = function(){
+        $location.path('/alphabet/A');
+    }
 
     initTabs();
 
@@ -48,7 +59,6 @@ orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$s
 
     Promise.all(promArray1).then(function (success) {
 
-        console.log(success);
 
         var specialCollectionsData = success[0];
         var speciesCollectionsData = success[1];
@@ -76,25 +86,12 @@ orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$s
             }
         }
 
-        //for(i = 0; i < speciesCollectionsData.length; i++){
-        //    if(speciesCollectionsData[i].tribe_name == ""){
-        //
-        //    } else {
-        //        var name = speciesCollectionsData[i].tribe_name;
-        //        speciesCollectionsData[i].name = name;
-        //        $scope.collectionOfItems.push(speciesCollectionsData[i]);
-        //    }
-        //}
-
-        for(i = 0; i < $scope.dynamicSidebarContent.subtribes.length; i++){
-            console.log($scope.dynamicSidebarContent.subtribes[i]);
-        }
-        //$scope.continueLoad();
         $scope.$apply();
 
     }, function (error) {
 
     });
+
 
     $scope.toggleExpanded = function(event) {
         var tab = event.target.parentElement;
@@ -165,6 +162,4 @@ orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$s
         $state.go('alphabetical.search', {letter: letter});
     };
 
-    console.log($scope.letter);
-    console.log('alphabet controller loaded');
 }]);
