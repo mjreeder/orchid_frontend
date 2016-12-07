@@ -36,12 +36,12 @@
 
             <label id="password" class="users">
                 <div class="button-new">
-                    <button ng-disabled="!editUsers" ng-click="changePasswordFunction(user)">Change Password</button>
+                    <button ng-disabled="!editUsers" ng-hide="!editUsers" ng-click="changePasswordFunction(user)">Change Password</button>
                 </div>
             </label>
 
         <div class="button-new">
-            <button id="password" ng-disabled="!editUsers" ng-click="deleteUserPopUp(user)">Delete User</button></div>
+            <button id="password" ng-disabled="!editUsers" ng-hide="!editUsers" ng-click="deleteUserPopUp(user)">Delete User</button></div>
         </div>
 
 
