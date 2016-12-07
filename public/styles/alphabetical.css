@@ -491,10 +491,20 @@ main article .mySlides img {
 
 
 
-@media screen and (max-width: 400px){
+@media screen and (max-width: 500px){
    #main-plant article h1 {
        font-size: 18px;
        margin-top: 50px; 
+
+   }
+}
+
+
+
+@media screen and (max-width: 500px){
+   #main-plant article h3 {
+       font-size: 18px;
+       margin: 20px; 
 
    }
 }
