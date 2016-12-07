@@ -48,7 +48,7 @@
                <ul>
                    <li ng-repeat="plant in plants | filter: searchBox" >
                        <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}">
-                          <img src="./images/no_plant_icon.svg" ng-hide="plant.hasPicture" alt="">  
+                         <img src="./images/no_photo.svg" ng-hide="plant.hasPicture" alt=""> 
                           
 
                           
