@@ -1,8 +1,8 @@
 app.config(function ($routeProvider, CONFIG) {
     $routeProvider.
     when('/', {
-        controller: 'HomePageController',
-        templateUrl: CONFIG.homeTemplate,
+        controller: 'DisplayViewController',
+        templateUrl: 'views/Ipad-map.html',
         resolve: {
           'data':isAuthenticated
         }
