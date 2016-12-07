@@ -247,11 +247,12 @@ main h4 {
 padding: 5px 10px ;  
     letter-spacing: 1px;
     position:absolute;
-    left: 5px; 
-    right: 5px; 
-    bottom: 5px;
+    left: 0px; 
+    right: 0px; 
+    bottom: 0px;
     margin: 0px; 
     line-height: 1.2; 
+    
     
 }
 
@@ -348,6 +349,46 @@ main article .mySlides img {
     width: 100%; 
     
 }
+
+
+
+
+
+
+/* picture cropping */
+
+
+#plants li {
+    height: 0; 
+    width: 25%; 
+/*    padding-top: 25%; */
+    padding: 25% 10px 0;
+    margin-bottom: 10px; 
+}
+
+
+#plants a {
+    display: block; 
+    height: 100%; 
+    position: absolute; 
+    top: 5px;
+    left: 5px; 
+    right: 5px; 
+    bottom: 5px; 
+    background-size: cover; 
+    background-position: center center; 
+    background-image: url(../images/no_plant_icon.svg);
+    
+}
+/*
+#plants li img {
+ width: 100%;
+    height: auto; 
+}
+*/
+
+
+/*#plants li img */
 
 
 

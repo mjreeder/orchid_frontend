@@ -46,9 +46,14 @@
            <section ng-show="plants.length > 0">
                <span ng-repeat="i in getNumberOfPages() track by $index" ng-click="getNewPage($index+1)">{{$index+1}}</span>
                <ul>
-                   <li ng-repeat="plant in plants | filter: searchBox">
-                       <a ui-sref="specificPlant({plant: {{plant.name}} })"><img src="{{plant.picture}}" ng-hide="!plant.hasPicture" alt="">
-                           <img src="./images/no_plant_icon.svg" ng-hide="plant.hasPicture" alt="">
+                   <li ng-repeat="plant in plants | filter: searchBox" >
+                       <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}">
+                          <img src="./images/no_plant_icon.svg" ng-hide="plant.hasPicture" alt="">  
+                          
+
+                          
+                          
+
                            <h3>{{plant.name}}</h3>
                        </a>
                    </li>
