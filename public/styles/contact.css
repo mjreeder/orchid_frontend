@@ -445,4 +445,27 @@ main {
 }
 */
 
+@media screen and (max-width: 530px) {
+    main form { 
+        width: 300px; 
+    }
+}
 
+@media screen and (max-width: 400px) {
+    main form { 
+        width: 200px; 
+    }
+}
+
+
+@media screen and (max-width: 530px) {
+    main form input { 
+        width: 100%; 
+    }
+}
+
+@media screen and (min-width: 530px) {
+    main form input { 
+        width: 100%; 
+    }
+}
