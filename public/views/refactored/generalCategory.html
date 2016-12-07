@@ -24,7 +24,7 @@
                 <section class="special">
                     <ul>
                         <li ng-repeat="collection in dynamicSidebarContent.specialCollections">
-                            <a ui-sref="specificCollection({ collection: collection.id })">{{collection.name}}</a></li>
+                            <a ui-sref="specificCollection({ collection: collection.special_collections_id })">{{collection.name}}</a></li>
 
                     </ul>
                 </section>
@@ -38,7 +38,7 @@
                 <li><a ui-sref="subtribe">Subtribes</a></li>
                 <section class="special">
                     <ul>
-                        <li ng-repeat="subtribe in dynamicSidebarContent.subtribes"><a ui-sref="specificSubTribe" id="collection1">{{subtribe.tribe_name}}</a></li>
+                        <li ng-repeat="subtribe in dynamicSidebarContent.subtribes"><a ui-sref="specificSubTribe({ tribe: subtribe.tribe_name })">{{subtribe.tribe_name}}</a></li>
                     </ul>
                 </section>
         

@@ -75,17 +75,37 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
             $scope.dynamicSidebarContent.specialCollections.push(specialCollectionsData[i]);
         }
         i = 0;
-        for(i = 0; i < speciesCollectionsData.length; i++){
-            if(speciesCollectionsData[i].species_name == ""){
+        var lengthOfSpecies = 0;
+        if (speciesCollectionsData.length > 5){
+            lengthOfSpecies = 6;
+        } else {
+            lengthOfSpecies = speciesCollectionsData.length;
+        }
+        for(i = 0; i < lengthOfSpecies; i++){
+            if(speciesCollectionsData[i].tribe_name == ""){
 
             } else {
+                var name = speciesCollectionsData[i].tribe_name;
+                speciesCollectionsData[i].name = name;
                 $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
+
             }
         }
+
+        //for(i = 0; i < speciesCollectionsData.length; i++){
+        //    if(speciesCollectionsData[i].tribe_name == ""){
+        //
+        //    } else {
+        //        var name = speciesCollectionsData[i].tribe_name;
+        //        speciesCollectionsData[i].name = name;
+        //        $scope.collectionOfItems.push(speciesCollectionsData[i]);
+        //    }
+        //}
 
         for(i = 0; i < $scope.dynamicSidebarContent.subtribes.length; i++){
             console.log($scope.dynamicSidebarContent.subtribes[i]);
         }
+        $scope.continueLoad();
         $scope.$apply();
 
     }, function (error) {

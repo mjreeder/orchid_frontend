@@ -1,16 +1,21 @@
-<aside class="menubox" id="alphabet-menu">
+<!--<aside class="menubox" >-->
+    <aside class="menubox" id="alphabet-menu">
 
-        
+
         <section class="whitebox">
             <ul>
-
+                <li>
+                    <!--
+                                        <a href="">
+                                            <h4> Orchids </h4></a>
+                    -->
+                </li>
                 <li><a ui-sref="generalCollections">Special Collections</a></li>
                 <section class="special">
                     <ul>
-                        <li><a ui-sref="specificCollection">Speical Collection 1</a></li>
-                        <li><a ui-sref="specificCollection">Speical Collection 2</a></li>
-                        <li><a ui-sref="specificCollection">Speical Collection 3</a></li>
-                        <li><a ui-sref="specificCollection">Speical Collection 4</a></li>
+                        <li ng-repeat="collection in dynamicSidebarContent.specialCollections">
+                            <a ui-sref="specificCollection({ collection: collection.special_collections_id })">{{collection.name}}</a></li>
+
                     </ul>
                 </section>
                 <li><a ui-sref="alphabetical">Alphabetical</a></li>
@@ -23,10 +28,7 @@
                 <li><a ui-sref="subtribe">Subtribes</a></li>
                 <section class="special">
                     <ul>
-                        <li><a ui-sref="specificSubTribe" id="collection1">Subtribe 1</a></li>
-                        <li><a ui-sref="specificSubTribe" id="collection2">Subtribe 2</a></li>
-                        <li><a ui-sref="specificSubTribe" id="collection3">Subtribe 3</a></li>
-                        <li><a ui-sref="specificSubTribe" id="collection4">Subtribe 4</a></li>
+                        <li ng-repeat="subtribe in dynamicSidebarContent.subtribes"><a ui-sref="specificSubTribe({ tribe: subtribe.tribe_name })">{{subtribe.tribe_name}}</a></li>
                     </ul>
                 </section>
 

@@ -113,15 +113,15 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
         //    } else {
         //        var name = speciesCollectionsData[i].tribe_name;
         //        speciesCollectionsData[i].name = name;
+        //        $scope.collectionOfItems.push(speciesCollectionsData[i]);
         //    }
         //}
 
-        for(i = 0; i < $scope.collectionOfItems.length; i++){
-            console.log($scope.collectionOfItems[i]);
+        for(i = 0; i < $scope.dynamicSidebarContent.subtribes.length; i++){
+            console.log($scope.dynamicSidebarContent.subtribes[i]);
         }
-        $scope.$apply();
-
         $scope.continueLoad();
+        $scope.$apply();
 
     }, function (error) {
 
