@@ -6,6 +6,9 @@ body {
     background-attachment: fixed;
 }
 
+.bloom-timeline{
+  padding-bottom: 30px;
+}
 
 }
 main h1 {

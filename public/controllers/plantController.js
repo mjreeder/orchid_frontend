@@ -28,11 +28,9 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
       var bloomPage = 0;
       $scope.getMoreBlooms = function() {
         bloomPage++;
-        BloomingFactory.getBloomByPlantID($scope.plantInformation.id, bloomPage).then(function(response) {
+        BloomingFactory.getAllBloomByPlantID($scope.plantInformation.id).then(function(response) {
           var data = response.data.data;
-          if (data.length < 5) {
-            $scope.bloomingMoreShow = false;
-          }
+          console.log(data);
           for (var i = 0; i < data.length; i++) {
             $scope.blooms.push(data[i]);
             if (isInBloomYears(data[i]) == false) {
@@ -71,10 +69,18 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
 
   //scope function to display the bllom graph
   $scope.loadBloomGraph = function(year) {
-    document.getElementById("bloom_timeline").innerHTML = "";
-    var container = document.getElementById('bloom_timeline');
-    var graphData = bloomService.loadBloomGraphData($scope.blooms, year);
-    var timeline = new vis.Timeline(container, graphData.data, graphData.options);
+    document.getElementById("bloom_timeline_spot").innerHTML = "";
+    var container = document.getElementById('bloom_timeline_spot');
+    for (var i = 0; i < $scope.bloomYears.length; i++) {
+      var timeline = document.createElement("div");
+      timeline.className = "bloom-timeline";
+      var element = document.getElementById("bloom_timeline_spot");
+      element.appendChild(timeline);
+      var graphData = bloomService.loadBloomGraphData($scope.blooms, $scope.bloomYears[i]);
+      var timeline = new vis.Timeline(container, graphData.data, graphData.options);
+    }
+
+
   }
 
   $scope.createPlant = function() {

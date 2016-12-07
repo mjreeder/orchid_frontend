@@ -72,20 +72,13 @@
 
                 </section>
 
-                <section id="bloom-buttons">
-                    <div class="button-new">
-                        <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
-                    </div>
-
-                    <div ng-repeat="year in bloomYears">
-                        <input type="button" value="{{year.year}}" class="blooming-view-year" ng-click="loadBloomGraph(year)">
-                    </div>
-                </section>
-
                 <section id="chart">
 
                     <h3>Blooming Calendar</h3>
                     <!--        START OF BLOOMING GRAPH -->
+                    <div id="bloom_timeline_spot">
+
+                    </div>
                     <div id="bloom_timeline" ng-hide="!blooms.length"></div>
                     <!--        END OF BLOOMING GRAPH -->
                 </section>

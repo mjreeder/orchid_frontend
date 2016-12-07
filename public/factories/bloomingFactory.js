@@ -12,5 +12,12 @@ orchidApp.factory('BloomingFactory', function($http, $rootScope) {
         });
     };
 
+    data.getAllBloomByPlantID  = function(plant_id) {
+        return $http({
+            method: "GET",
+            url: baseUrl + "/get_all/blooms/plant_id/" + plant_id
+        });
+    };
+
     return data;
 });
