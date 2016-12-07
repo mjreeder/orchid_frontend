@@ -105,10 +105,58 @@ hr {
     float: left;
     margin-bottom: 30px;
 }
+
+@media screen and (max-width: 600px){
+   #taxonomic {
+    width: 100%;
+       float: none; 
+       margin-bottom: 0; 
+   }
+}
+
+@media screen and (max-width: 400px){
+   #taxonomic li {
+       font-size: 14px; 
+   }
+}
+
+@media screen and (max-width: 400px){
+   #taxonomic li b {
+       font-size: 14px; 
+   }
+}
+
+
+
 #hybrid {
     width: 48%;
     float: right;
 }
+
+
+@media screen and (max-width: 600px){
+   #hybrid {
+    width: 100%;
+       float: none; 
+       margin-bottom: 0; 
+       height: 100px; 
+   }
+}
+
+@media screen and (max-width: 400px){
+   #hybrid li {
+       font-size: 14px; 
+
+   }
+}
+
+
+@media screen and (max-width: 400px){
+   #hybrid li b {
+       font-size: 14px; 
+   }
+}
+
 #taxonomic li {
     margin-bottom: 10px;
 }
@@ -127,6 +175,7 @@ hr {
 }
 .sectiontwo {
     max-width: 800px;
+    height: auto;
 }
 
 /*

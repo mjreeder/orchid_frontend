@@ -380,6 +380,19 @@ article h1 {
    
 }
 
+
+
+/*
+@media screen and (max-width: 400px){
+   .back-button{
+   width: 100%; 
+       display: block; 
+       margin: 0 auto; 
+
+   }
+*/
+    
+    
 .back-button a {
    background-color: white; 
     color: #bcbcbc; 
@@ -394,6 +407,12 @@ article h1 {
     
 } 
 
+/*
+@media screen and (max-width: 400px){
+   .back-button a {
+    padding: 20px 40px; 
+   }
+*/
 
 
 .back-button a:hover {
@@ -453,7 +472,7 @@ main article .mySlides img {
 
 
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 700px){
    #plants li {
     width: 50%;
        height: auto;  
@@ -461,9 +480,33 @@ main article .mySlides img {
 }
 
 
-@media screen and (max-width: 400px){
+@media screen and (max-width: 500px){
    #plants li {
     width: 100%;
        height: auto;  
    }
 }
+
+
+
+
+
+@media screen and (max-width: 400px){
+   #main-plant article h1 {
+       font-size: 18px;
+       margin-top: 50px; 
+
+   }
+}
+
+
+
+
+/*
+@media screen and (max-width: 400px){
+   .back-button{
+   width: 100%; 
+       display: block; 
+       margin: 0 auto; 
+
+   }*/
