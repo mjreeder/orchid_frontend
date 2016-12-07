@@ -24,7 +24,7 @@
 #search {
     font-family: 'Raleway', sans-serif;
     font-size: 15px;
-    border: 3px solid #01997b;
+    border: 3px solid #A8B89A;
     height: 33px;
     width: 200px;
     -webkit-border-radius:5px;
@@ -219,8 +219,8 @@ label.filter-option {
 
 .table-right {
     margin-left: 35px;
-    min-width: 30%;
-    max-width: 70%;
+    min-width: 50%;
+    max-width: 68%;
     display: inline-block;
 }
 
@@ -347,7 +347,7 @@ input:checked+span {
     font-size: 21px;
     padding-left: 5.6%;
     font-weight: 600;
-    color: black;
+    color: #2b2e30;
 }
 
 .page ul li a:active {

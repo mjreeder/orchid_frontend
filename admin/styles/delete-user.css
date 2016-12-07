@@ -29,7 +29,6 @@
     text-align: center; 
 }
 
-
 #delete-user-admin .user-name {
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 400;
@@ -43,21 +42,16 @@
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 400;
     font-size: 18px;
-    letter-spacing: 1.2px;
-    color: black;
-    margin: 0 auto;
-    margin-top: 50px;
+    color: #2b2e30;
+    margin: 50px auto 30px;
     padding: 20px 5px 5px 20px;
-    margin-bottom: 30px;
     display: block;
 }
-
 
 #delete-user-admin.password {
   display: block;
     margin: 0 auto; 
 }
-
 
 #delete-user-admin .password input {
     width: 95%; 
@@ -69,11 +63,9 @@
 
 #delete-user-admin #button {
     display: inline-block;
-    margin: 0 auto;
+    margin: 10px auto 0;
     width: 100%;
     text-align: center;
-    margin-top: 10px;
-  
 }
 
 #delete-user-admin #button button { 
