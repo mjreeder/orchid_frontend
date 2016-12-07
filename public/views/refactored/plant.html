@@ -61,10 +61,8 @@
     
     <section class="chart">
         <h3>More Photos </h3>
-        <ul> 
-        <li> <img src="http://www.aos.org/AOS/media/Content-Images/Orchids/orchid-care-phal.jpg" alt="flowers"> </li>
-       <li> <img src="http://www.aos.org/AOS/media/Content-Images/Orchids/orchid-care-phal.jpg" alt="flowers"></li>
-        <li><img src="http://www.aos.org/AOS/media/Content-Images/Orchids/orchid-care-phal.jpg" alt="flowers"></li>
+        <ul ng-repeat="photo in allimagesURL">
+            <li> <img src="{{photo}}" alt="flowers"> </li>
         </ul>
         
     </section>
