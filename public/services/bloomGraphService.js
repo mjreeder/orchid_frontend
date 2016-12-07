@@ -28,7 +28,8 @@ orchidApp.service('bloomService', function($rootScope) {
       editable: false,
       stack: false,
       min: minDate,
-      max: maxDate
+      max: maxDate,
+      zoomMin: 1000000000
     };
 
     var bloomGraphData = {
