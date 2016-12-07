@@ -26,8 +26,13 @@ main menu {
 }
 
 <!--
+#plants li h3 {
+    transition: .5s ease; 
+}
+
+
 #plants li  h3:hover {
-    color: #ba0c2f;
+    color: #bbbbbb;
     
 }
 -->
@@ -53,11 +58,12 @@ main {
     letter-spacing: 2px;
     padding-bottom: 10px;
     padding-top: 10px;
+     transition: color .5s ease;
 }
 
 .option:hover {
-    color: #ba0c2f;
-    transition: color .5s ease;
+    color: #bbbbbb;
+   
     cursor: pointer;
 }
 
@@ -76,10 +82,11 @@ main {
 
 .letter {
     padding:0 20px;
+    transition: color .5s ease;
 }
 .letter:hover {
-    color: #ba0c2f;
-    transition: color .5s ease;
+    color: #bbbbbb;
+    
     cursor: pointer;
 }
 
@@ -153,6 +160,7 @@ main aside li {
     font-family: 'Raleway', sans-serif;
     border: none;
     letter-spacing: .5px;
+    padding: 10px; 
 
 }
 
@@ -241,7 +249,7 @@ main h4 {
 #plants li h3 {
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     background-color: rgba(0, 0, 0, .4);
     color: white;
 padding: 5px 10px ;  
@@ -271,7 +279,7 @@ padding: 5px 10px ;
 
 
 #plants li img {
-  padding: 5px;    
+/*  padding: 5px;    */
 }
 
 
@@ -380,15 +388,6 @@ main article .mySlides img {
     background-image: url(../images/no_plant_icon.svg);
     
 }
-/*
-#plants li img {
- width: 100%;
-    height: auto; 
-}
-*/
-
-
-/*#plants li img */
 
 
 
