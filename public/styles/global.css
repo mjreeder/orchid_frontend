@@ -244,7 +244,7 @@ header a:hover {
 
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 400px) {
     header ul {
         display: block;
         width: 100%;
@@ -253,7 +253,7 @@ header a:hover {
     }
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width:400px) {
     header ul li {
         display: block;
         max-width: 100%;
@@ -262,13 +262,15 @@ header a:hover {
     }
 }
 
-@media screen and (max-width: 300px) {
+
+
+@media screen and (max-width: 400px) {
     header ul li:last-child {
        padding-bottom: 0px;  
     }
 }
     
-}@media screen and (max-width: 300px) {
+}@media screen and (max-width: 400px) {
     header ul li a{
     margin: 20px; 
     } 

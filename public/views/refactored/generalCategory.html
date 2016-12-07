@@ -52,9 +52,17 @@
         <div ng-show="collectionOfItems.length == 0">Nothing to see here...</div>
         <ul>
             <li ng-repeat="item in collectionOfItems | filter:searchBox" ng-click="moveTo(item)">
-                <a><img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
-                <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">
-
+<!--                <a><img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">-->
+               
+                  <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}"><img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
+                  <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">
+   
+               
+               
+              
+                     
+                       
+                       
                 <h3>{{item.name}}</h3></a>
 
             </li>

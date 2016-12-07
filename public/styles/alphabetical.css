@@ -164,11 +164,16 @@ main aside li {
 
 }
 
-@media screen and (max-width: 804px){
-    #search {
-		display: none;
-	}
+
+@media screen and (max-width: 800px) {
+   #search {
+        display: block;
+        width: 100%;
+
+ 
+    }
 }
+
 
 .menubox li a {
  transition: .4s ease;    
@@ -388,7 +393,6 @@ main article .mySlides img {
 /*    background-image: url(../images/no_plant_icon.svg);*/
     
 }
-
 
 
 
