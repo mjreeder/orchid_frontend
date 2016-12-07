@@ -4,86 +4,74 @@
 
 <!--<link rel="stylesheet" href="styles/alpabetical.css">-->
 
+
+
 <div id="main-plant-2">
 
     <div id="main-plant">
         <div class="back-button">
-            <a href="#">
-                Back
-            </a>
+            <a ng-click="goBack()"> Back </a>
         </div>
         <main>
             <article>
-                <h1>{{NAMEOFPAGE}}Name of plant</h1>
-                <div class="w3-content w3-section" style="max-width:500px">
-                    <ul >
-                        <!--ng-reapet="imagesURL in allimagesURL" -->
-                        <li><img class="mySlides" src="http://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg" style="width:100%">
-                        </li>
-                        <!--
-            <li><img class="mySlides" src="http://i164.photobucket.com/albums/u8/hemi1hemi/COLOR/COL9-6.jpg" style="width:100%"> </li>
-            <li><img class="mySlides" src="http://assets.barcroftmedia.com.s3-website-eu-west-1.amazonaws.com/assets/images/recent-images-11.jpg" style="width:100%"> </li>
--->
 
-                    </ul>
+                <h1>{{NAMEOFPAGE}}</h1>
 
-                </div>
+
+                <img src="{{profilePicture}}" ng-show="haveProfilePicture" width="100%" />
 
                 <!--ARTICLE-->
                 <section class="sectiontwo">
                     <section id="taxonomic" class="property-box transparent-box">
                         <ul>
-                            <li>
-                                <b>Class:</b>{{plant.class_name}}</li>
-                            <li>
-                                <b>Tribe:</b>{{plant.tribe_name}}</li>
-                            <li>
-                                <b>Subtribe:</b>{{plant.subtribe_name}}</li>
-                            <li>
-                                <b>Genus:</b>{{plant.genus_name}}</li>
-                            <li>
-                                <b>Species:</b>{{plant.species_name}}</li>
-                            <li>
-                                <b>Variety:</b>{{plant.variety_name}}</li>
+                            <li><b>Class:</b>{{plant.class_name}}</li>
+                            <li><b>Tribe:</b>{{plant.tribe_name}}</li>
+                            <li><b>Subtribe:</b>{{plant.subtribe_name}}</li>
+                            <li><b>Genus:</b>{{plant.genus_name}}</li>
+                            <li><b>Species:</b>{{plant.species_name}}</li>
+                            <li><b>Variety:</b>{{plant.variety_name}}</li>
                         </ul>
                     </section>
+
 
                     <section id="hybrid" class="property-box transparent-box">
                         <ul>
-                            <li>
-                                <b>Parent 1:</b>{{plant.parent_one}}</li>
-                            <li>
-                                <b>Parent 2:</b>{{plant.parent_two}}</li>
-                            <li>
-                                <b>GREX:</b>{{plant.grex_status}}</li>
-                            <li>
-                                <b>Status:</b>{{plant.hybrid_status}}</li>
+                            <li><b>Parent 1:</b>{{plant.parent_one}}</li>
+                            <li><b>Parent 2:</b>{{plant.parent_two}}</li>
+                            <li><b>GREX:</b>{{plant.grex_status}}</li>
+                            <li><b>Status:</b>{{plant.hybrid_status}}</li>
                         </ul>
                     </section>
                 </section>
+                <hr>
 
                 <section id="description" class="transparent-box">
-                    <p>
-                        <b>Description:</b>
-                        {{plant.description}}</p>
+                    <p><b>Description:</b> {{plant.description}}</p>
                     <br>
-                    <p>
-                        <b>Culture:</b>{{plant.culture}}</p>
-
+                    <p><b>Culture:</b>{{plant.culture}}</p>
                 </section>
+
 
                 <section id="chart">
 
                     <h3>Blooming Calendar</h3>
-                   <div id="blooming-history"> 
-                   Below is the history of this plant, depicting current and past blooming periods. Zoom into the calendar to view specific time periods of blooming. Click and drag to move side to side through the calendar. 
-                   </div>
+                    <div id="blooming-history">
+                        Below is the history of this plant, depicting current and past blooming periods. Zoom into the calendar to view specific time periods of blooming. Click and drag to move side to side through the calendar.
+                    </div>
                     <!--        START OF BLOOMING GRAPH -->
                     <div id="bloom_timeline_spot">
 
                     </div>
                     <div id="bloom_timeline" ng-hide="!blooms.length"></div>
                     <!--        END OF BLOOMING GRAPH -->
+                </section>
+
+                <section class="chart">
+                    <h3>More Photos </h3>
+                    <ul ng-repeat="photo in allimagesURL">
+                        <li> <img src="{{photo}}" alt="flowers"> </li>
+                    </ul>
+
                 </section>
             </article>
         </main>
