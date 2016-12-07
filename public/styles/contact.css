@@ -384,9 +384,14 @@ main ul li a:hover {
 
 /* mouse over link */
 
+.visit p a {
+  transition: .5s ease;   
+}
+
+ 
 .visit p a:hover {
-    transition: .5sec ease;
-    color: #ab0c2f;
+   
+    color: #bbbbbb;
 }
 
 .location {

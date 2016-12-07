@@ -3,16 +3,16 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
     $scope.NAMEOFPAGE = $stateParams.tribe;
 
-    $scope.tribes = [];
-    $scope.tribes.push({name:"tribe1"});
-    $scope.tribes.push({name:"tribe2"});
-    $scope.tribes.push({name:"tribe3"});
-    $scope.tribes.push({name:"tribe4"});
-    $scope.tribes.push({name:"tribe5"});
-    $scope.tribes.push({name:"tribe6"});
+    //$scope.tribes = [];
+    //$scope.tribes.push({name:"tribe1"});
+    //$scope.tribes.push({name:"tribe2"});
+    //$scope.tribes.push({name:"tribe3"});
+    //$scope.tribes.push({name:"tribe4"});
+    //$scope.tribes.push({name:"tribe5"});
+    //$scope.tribes.push({name:"tribe6"});
 
 
-    $scope.collectionOfItems = [];
+    $scope.allItems = [];
 
     $scope.moveTo = function(item){
         $location.path('/plant/' + item.accession_number);
@@ -27,6 +27,7 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
         });
 
     });
+    $scope.collectionOfItems = [];
 
     array.push(prom);
 
@@ -43,52 +44,141 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
         $scope.$apply();
 
-        $scope.continueLoading();
+        //$scope.continueLoading();
     }, function (error) {
 
     });
 
-    $scope.continueLoading = function(){
-        var photoArray = [];
-        for(var  i = 0; i < $scope.collectionOfItems.length; i++){
-            $scope.collectionOfItems[i].hasPicture = false;
+    $scope.dynamicSidebarContent = {
+        specialCollections : [],
+        subtribes: []
+    };
+
+    var init = function() {
+        $scope.dynamicSidebarContent.specialCollections; //= factory call to pull in collections; TODO
+        $scope.dynamicSidebarContent.subtribes; //= factory call to pull in subtribes; TODO
+    };
 
 
-            var prom = new Promise(function(resolve, reject) {
-                PhotoFactory.getPhotosByPlantID($scope.collectionOfItems[i].id).then(function (response){
-                    resolve(response);
-                })
-            });
+    var promArray1 = [];
 
-            photoArray.push(prom);
+    var prom1 = new Promise(function(resolve, reject) {
+        PlantsFactory.topFiveCollection().then(function (response){
+            resolve(response.data.data);
+        })
+    });
+
+    promArray1.push(prom1);
+
+    var prom2 = new Promise(function(resolve, reject) {
+        PlantsFactory.topFiveSubtribes().then(function (response){
+            resolve(response.data.data);
+        })
+    });
+    promArray1.push(prom2);
+
+    Promise.all(promArray1).then(function (success) {
+
+        console.log(success);
+
+        var specialCollectionsData = success[0];
+        var speciesCollectionsData = success[1];
+
+        var i = 0;
+
+        for(i = 0; i < specialCollectionsData.length; i++){
+            $scope.dynamicSidebarContent.specialCollections.push(specialCollectionsData[i]);
+        }
+        i = 0;
+        var lengthOfSpecies = 0;
+        if (speciesCollectionsData.length > 5){
+            lengthOfSpecies = 6;
+        } else {
+            lengthOfSpecies = speciesCollectionsData.length;
+        }
+        for(i = 0; i < lengthOfSpecies; i++){
+            if(speciesCollectionsData[i].tribe_name == ""){
+
+            } else {
+                var name = speciesCollectionsData[i].tribe_name;
+                speciesCollectionsData[i].name = name;
+                $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
+
+            }
+        }
+
+        //for(i = 0; i < speciesCollectionsData.length; i++){
+        //    if(speciesCollectionsData[i].tribe_name == ""){
+        //
+        //    } else {
+        //        var name = speciesCollectionsData[i].tribe_name;
+        //        speciesCollectionsData[i].name = name;
+        //    }
+        //}
+
+        for(i = 0; i < $scope.collectionOfItems.length; i++){
+            console.log($scope.collectionOfItems[i]);
         }
         $scope.$apply();
 
+        $scope.continueLoad();
 
-        Promise.all(photoArray).then(function (success) {
-            var cleanList = [];
+    }, function (error) {
 
-            for(var i = 0; i < success.length; i++){
+    });
 
-                console.log(success[i].data.data.length);
+    $scope.continueLoad = function(){
+        var photoArray = [];
+        console.log($scope.collectionOfItems.length);
+        for(var  i = 0; i < $scope.collectionOfItems.length; i++){
+            $scope.collectionOfItems[i].hasPicture = false;
 
-                for (var j = 0; j < success[i].data.data.length; j++){
-                    console.log(success[i].data.data[j]);
-                    cleanList.push(success[i].data.data[j])
+            console.log($scope.collectionOfItems[i].id);
 
+            if($scope.collectionOfItems[i].id == undefined){
 
-                }
+            } else {
+                PhotoFactory.getPhotosByPlantID($scope.collectionOfItems[i].id).then(function (response){
+                    console.log(response);
+                });
+                var prom = new Promise(function(resolve, reject) {
+                    PhotoFactory.getPhotosByPlantID($scope.collectionOfItems[i].id).then(function (response){
+                        resolve(response);
+                    })
+                });
+
+                photoArray.push(prom);
 
             }
 
-            console.log(cleanList);
+
+
+        }
+
+        Promise.all(photoArray).then(function (success) {
+            var cleanList = [];
+            console.log(success);
+
+            for(var i = 0; i < success.length; i++){
+                for (var j = 0; j < success[i].data.data.length; j++){
+                    cleanList.push(success[i].data.data[j])
+                }
+                console.log(success[i].data.data);
+                if(success[i].data.data.length == undefined){
+
+                }else {
+                    console.log(success[i].data.data.length);
+                }
+            }
+
 
             for(var t = 0; t < cleanList.length; t++){
                 console.log(cleanList[t].plant_id);
                 for(var i = 0; i < $scope.collectionOfItems.length; i++){
-                    //$scope.collectionOfItems[i].hasPicture = false;
+                    $scope.collectionOfItems[i].hasPicture = false;
                     console.log(cleanList[t].url);
-                    if (cleanList[t].plant_id == $scope.collectionOfItems[i].id && cleanList[t].type == 'profile'){
+
+                    if (cleanList[t].plant_id == $scope.collectionOfItems[i].id){
                         $scope.collectionOfItems[i].picture = cleanList[t].url;
                         $scope.collectionOfItems[i].hasPicture = true;
                         break;
@@ -102,7 +192,7 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
         }, function (error) {
 
-            $state.go("404")
+            //$state.go("404")
         });
 
     }

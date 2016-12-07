@@ -44,7 +44,7 @@
        <section id="plants" ng-show="loading == false">
            <div ng-show="plants.length == 0">Nothing to see here...</div>
            <section ng-show="plants.length > 0">
-               <span ng-repeat="i in getNumberOfPages() track by $index" ng-click="getNewPage($index+1)">{{$index+1}}</span>
+               <span ng-repeat="i in getNumberOfPages() track by $index" ng-click="getNewPage($index+1)"></span>
                <ul>
                    <li ng-repeat="plant in plants | filter: searchBox" >
                        <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}">
