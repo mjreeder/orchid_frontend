@@ -1,5 +1,5 @@
 var orchidApp = angular.module('orchidApp');
-orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$stateParams', function($scope, $location, $state, $stateParams) {
+orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$stateParams', 'PlantsFactory', function($scope, $location, $state, $stateParams, PlantsFactory) {
     $scope.NAMEOFPAGE = "Alphabetical";
     var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     $scope.tabs = {};
@@ -17,6 +17,84 @@ orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$s
     };
 
     initTabs();
+
+    $scope.dynamicSidebarContent = {
+        specialCollections : [],
+        subtribes: []
+    };
+
+    var init = function() {
+        $scope.dynamicSidebarContent.specialCollections; //= factory call to pull in collections; TODO
+        $scope.dynamicSidebarContent.subtribes; //= factory call to pull in subtribes; TODO
+    };
+
+
+    var promArray1 = [];
+
+    var prom1 = new Promise(function(resolve, reject) {
+        PlantsFactory.topFiveCollection().then(function (response){
+            resolve(response.data.data);
+        })
+    });
+
+    promArray1.push(prom1);
+
+    var prom2 = new Promise(function(resolve, reject) {
+        PlantsFactory.topFiveSubtribes().then(function (response){
+            resolve(response.data.data);
+        })
+    });
+    promArray1.push(prom2);
+
+    Promise.all(promArray1).then(function (success) {
+
+        console.log(success);
+
+        var specialCollectionsData = success[0];
+        var speciesCollectionsData = success[1];
+
+        var i = 0;
+
+        for(i = 0; i < specialCollectionsData.length; i++){
+            $scope.dynamicSidebarContent.specialCollections.push(specialCollectionsData[i]);
+        }
+        i = 0;
+        var lengthOfSpecies = 0;
+        if (speciesCollectionsData.length > 5){
+            lengthOfSpecies = 6;
+        } else {
+            lengthOfSpecies = speciesCollectionsData.length;
+        }
+        for(i = 0; i < lengthOfSpecies; i++){
+            if(speciesCollectionsData[i].tribe_name == ""){
+
+            } else {
+                var name = speciesCollectionsData[i].tribe_name;
+                speciesCollectionsData[i].name = name;
+                $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
+
+            }
+        }
+
+        //for(i = 0; i < speciesCollectionsData.length; i++){
+        //    if(speciesCollectionsData[i].tribe_name == ""){
+        //
+        //    } else {
+        //        var name = speciesCollectionsData[i].tribe_name;
+        //        speciesCollectionsData[i].name = name;
+        //        $scope.collectionOfItems.push(speciesCollectionsData[i]);
+        //    }
+        //}
+
+        for(i = 0; i < $scope.dynamicSidebarContent.subtribes.length; i++){
+            console.log($scope.dynamicSidebarContent.subtribes[i]);
+        }
+        //$scope.continueLoad();
+        $scope.$apply();
+
+    }, function (error) {
+
+    });
 
     $scope.toggleExpanded = function(event) {
         var tab = event.target.parentElement;
