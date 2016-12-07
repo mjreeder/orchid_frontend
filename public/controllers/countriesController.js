@@ -5,7 +5,15 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
     $scope.NAMEOFPAGE = "Countries";
     $scope.collectionOfItems = [];
     $scope.plantsOfCountry = [];
+    $scope.dynamicSidebarContent = {
+        specialCollections : ["Special Test 1", "Special Test 2"],
+        subtribes: ["Subtribe Test 1", "Subtribe Test 2"]
+    };
 
+    var init = function() {
+        $scope.dynamicSidebarContent.specialCollections; //= factory call to pull in collections; TODO
+        $scope.dynamicSidebarContent.subtribes; //= factory call to pull in subtribes; TODO
+    };
 
     $scope.moveTo = function(item){
         $location.path('/country/' + item.name);
@@ -87,10 +95,5 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
         });
     }
 
-
-
-
-
-
-
+    init();
 }]);

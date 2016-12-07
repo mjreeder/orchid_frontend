@@ -2,6 +2,7 @@ var orchidApp = angular.module('orchidApp');
 orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$location', '$state', '$stateParams', 'SpeicalCollectionsFactory', 'PhotoFactory', function($scope, $location, $state, $stateParams, SpeicalCollectionsFactory, PhotoFactory) {
 
     var collectionNumber =  $stateParams.collection;
+    console.log("Specific Collection: ", collectionNumber);
 
     $scope.collectionOfItems = [];
 

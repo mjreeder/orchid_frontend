@@ -16,6 +16,10 @@
                 <div class="start-stop-blooming">
                     <label>Start of Bloom:</label>
                     <button ng-click="blooming_start_date = today" class="today" ng-disabled="startNewBloomTodayDisable" ng-class="{customNgDisabled: startNewBloomTodayDisable}">Today</button>
+                    <button class="calendar" ng-show="$root.ios">
+                        <img src="images/calendaricon.svg" alt=""/>
+                        <input type="date" id="startDateBloom" ng-model="blooming_start_date" ng-disabled="startNewBloomTodayDisable"/>
+                    </button>
                     <input type="date" id="startDateBloom" ng-show="!$root.ios" ng-model="blooming_start_date" ng-disabled="startNewBloomTodayDisable"/>
                     <output ng-show="$root.ios">{{ blooming_start_date | date }}</output>
                 </div>
@@ -23,7 +27,11 @@
                 <div class="start-stop-blooming">
                     <label>End of Bloom:</label>
                     <button ng-click="blooming_end_date = today" class="today" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}">Today</button>
-                    <input type="date" id="endDateBloom" ng-model="blooming_end_date" ng-disabled="disableEndBloom"/>
+                    <button class="calendar" ng-show="$root.ios">
+                        <img src="images/calendaricon.svg" ng-disabled="disableEndBloom" ng-class="{customNgDisabled: disableEndBloom}" alt=""/>
+                        <input type="date" id="endDateBloom" ng-model="blooming_end_date" ng-disabled="disableEndBloom"/>
+                    </button>
+                    <input type="date" id="endDateBloom" ng-show="!$root.ios" ng-model="blooming_end_date" ng-disabled="disableEndBloom"/>
                     <output ng-show="$root.ios">{{ blooming_end_date | date }}</output>
                 </div>
 
@@ -36,6 +44,10 @@
             <div class="top-margin">
                 <label id="sprayed-for-pests">Sprayed for pests:</label>
                 <button ng-click="sprayed_timestamp = today" class="today">Today</button>
+                <button class="calendar" ng-show="$root.ios">
+                    <img src="images/calendaricon.svg" alt=""/>
+                    <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"/>
+                </button>
                 <input type="date" id="sprayedDate" ng-model="sprayed_timestamp" ng-show="!$root.ios"/>
                 <output ng-show="$root.ios">{{ sprayed_timestamp | date }}</output>
 
@@ -45,6 +57,10 @@
             <section id="repot" class="top-margin">
                 <label>Repot Date:</label>
                 <button ng-click="potting_timestamp = today" class="today">Today</button>
+                <button ng-show="$root.ios" class="calendar">
+                    <img src="images/calendaricon.svg" alt=""/>
+                    <input type="date" id="repotDate" ng-model="potting_timestamp"/>
+                </button>
                 <input ng-show="!$root.ios"type="date" id="repotDate" ng-model="potting_timestamp"/>
                 <label ng-show="$root.ios">{{ potting_timestamp | date }}</label>
             </section>
