@@ -169,6 +169,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             image: "",
             dead_date: createDateFromString(plantData.dead_date)
         };
+        console.log($scope.plant);
 
         //assigning the table to plant.
         $scope.plantLocation = plantData.location;
@@ -179,13 +180,43 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         var speciesName  = $scope.plant.species;
         var id = $scope.plant.id;
 
+        var promArray1 = [];
 
-        if($scope.plant.special_collections_id != null) {
-            SpecialCollectionsFactory.getSpecialCollectionById($scope.plant.special_collections_id).then(function (response) {
-                $scope.selectedCollectionName = response.data.data.name;
+        console.log("adasdfashdlfjasdlkf jasdlkfjadkls;fj lkasdf");
 
+        var prom = new Promise(function(resolve, reject) {
+            SpecialCollectionsFactory.getSpecificSpecialCollectionID(id).then(function(response){
+                resolve(response.data.data);
             });
-        }
+
+        });
+
+        promArray1.push(prom);
+
+        Promise.all(promArray1).then(function (success) {
+
+            console.log(success[0]);
+            var data = success[0];
+            console.log();
+
+            $scope.plant.special_collections_id = data[0].special_collections_id;
+            console.log($scope.plant.special_collections_id);
+            $scope.loadSpecialCollection( $scope.plant.special_collections_id);
+
+
+
+        }, function (error) {
+
+        });
+
+
+
+        //if($scope.plant.special_collections_id != null) {
+        //
+        //
+        //} else {
+        //    console.log('there is not specialca collction id');
+        //}
 
         PhotoFactory.getSimilarPhotos(speciesName).then(function (response){
             var photoData = response.data.data;
@@ -450,6 +481,20 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         };
     }
+
+    $scope.loadSpecialCollection = function(id){
+        if($scope.plant.special_collections_id == undefined){
+            console.log('asdfasdf');
+
+        } else {
+            console.log('asdfasdfasdads' + $scope.plant.special_collections_id);
+            SpecialCollectionsFactory.getSpecialCollectionById($scope.plant.special_collections_id).then(function (response) {
+                $scope.selectedCollectionName = response.data.data.name;
+
+            });
+        }
+    }
+
 
     $scope.newCollectionName = "";
 
