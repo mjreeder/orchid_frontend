@@ -1,7 +1,7 @@
 main nav ul li {
     float: left;
     width: 33.333333333%;
-    font-family: Aleo;
+    font-family: Aleo, serif;
     font-size: 20px;
     font-weight: 100;
     background-color: black;
@@ -13,7 +13,6 @@ main nav ul li a {
     text-decoration: none;
     color: white;
 }
-
 
 #active {
     color: black;
