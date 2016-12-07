@@ -73,7 +73,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         } else {
             syncNetwork(callback);
         }
-        $route.reload();
     }
 
     var asyncNetwork = function() {
