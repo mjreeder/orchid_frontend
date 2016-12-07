@@ -45,6 +45,16 @@ main menu {
     /*margin-bottom: 10px;    */
 }
 
+
+@media screen and (max-width: 800px){
+   #tabs li {
+    width: 100%;
+       display: block;
+        margin: 0 auto; 
+       text-align: center; 
+   }
+}
+
 main {
     background: none;
     max-width: none;
@@ -90,6 +100,17 @@ main {
     cursor: pointer;
 }
 
+
+@media screen and (max-width: 400px) {
+   .letter {
+      padding: 10px;  
+    }
+}
+
+
+
+
+
 #plants {
     width: 100%;
     display: block; 
@@ -97,6 +118,12 @@ main {
     padding: 20px; 
     
 }
+
+
+
+
+
+
 
 body {
     position: relative;
@@ -116,6 +143,25 @@ body {
 }
 
 
+@media screen and (max-width: 900px) {
+   .menubox {
+      float: none; 
+       width: 100%; 
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+   .whitebox ul {
+      display: block; 
+       width: 100%;
+       text-align: center; 
+       margin: 0 auto; 
+    }
+}
+
+
+
 #alphabet-menu {
  margin-top: 10px; 
 }
@@ -128,11 +174,6 @@ body {
 }
 */
 
-@media screen and (max-width: 804px){
-    .whitebox {
-		display: none;
-	}
-}
 
 
 main aside li {
@@ -170,9 +211,20 @@ main aside li {
         display: block;
         width: 100%;
 
+        
+
  
     }
 }
+@media screen and (max-width: 900px) {
+   #search {
+      display: none; 
+    }
+}
+
+
+
+
 
 
 .menubox li a {
@@ -213,6 +265,13 @@ main h4 {
 
 
 
+@media screen and (max-width: 900px) {
+   #plants section {
+      float: none; 
+       width: 100%; 
+       margin: 0;
+    }
+}
 
 
 
@@ -221,7 +280,7 @@ main h4 {
 
 @media screen and (max-width: 933px){
    #plants li {
-    width: 30%;    
+    width: 60%;    
    }
 }
 
@@ -393,6 +452,9 @@ main article .mySlides img {
 /*    background-image: url(../images/no_plant_icon.svg);*/
     
 }
+
+
+
 
 
 
