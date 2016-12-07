@@ -269,18 +269,9 @@
         <span class="more-info-base two-items-view span-comment">{{bloom.note}}</span>
     </div>
 
-    <div class="button-new">
-        <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
-    </div>
-
-    <div class="blooming-years">
-        <div ng-repeat="year in bloomYears">
-          <input type="button" value="{{year.year}}" class="blooming-view-year" ng-click="loadBloomGraph(year)">
-        </div>
-    </div>
 
     <!--        START OF BLOOMING GRAPH -->
-    <div id="bloom_timeline" ng-hide="!blooms.length">
+    <div id="bloom_timeline_spot" ng-hide="!blooms.length">
 
     </div>
     <!--        END OF BLOOMING GRAPH -->

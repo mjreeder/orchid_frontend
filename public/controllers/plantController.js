@@ -32,9 +32,7 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
       $scope.plantInformation = response.data.data[0];
 
       //get plant blooms for bloom graph
-      var bloomPage = 0;
       $scope.getMoreBlooms = function() {
-        bloomPage++;
         BloomingFactory.getAllBloomByPlantID($scope.plantInformation.id).then(function(response) {
           var data = response.data.data;
           console.log(data);
@@ -86,8 +84,6 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
       var graphData = bloomService.loadBloomGraphData($scope.blooms, $scope.bloomYears[i]);
       var timeline = new vis.Timeline(container, graphData.data, graphData.options);
     }
-
-
   }
 
   $scope.createPlant = function() {
