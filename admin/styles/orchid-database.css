@@ -9,7 +9,7 @@
     color: #2b2e30;
     margin: 20px;
     display: inline-block;
-    width: 30%;
+    width: 33%;
     max-width: 250px;
 }
 
@@ -209,7 +209,7 @@ label.filter-option {
 
 .filter-left {
     float: left;
-    width: 30%;
+    width: 33%;
     max-width: 250px;
     margin-left: 20px;
     /*margin-top: 90px;*/
@@ -220,7 +220,7 @@ label.filter-option {
 .table-right {
     margin-left: 35px;
     min-width: 50%;
-    max-width: 68%;
+    max-width: 60%;
     display: inline-block;
 }
 

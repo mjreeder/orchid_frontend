@@ -585,7 +585,7 @@ input[type="button"].selectedPhoto {
     font-family: Raleway, sans-serif;
     font-size: 14px;
     padding: 10px 15px;
-    margin: 5px 15px 25px 60px;
+    margin: 5px 0 9px 15px;
     border-radius: 5px;
     display: inline-block;
     border: none;
@@ -604,6 +604,19 @@ input[type="button"].selectedPhoto {
 
 #graph {
     overflow: hidden;
+}
+
+#bloom_timeline {
+    margin: 0 20px 20px 20px;
+}
+
+div.blooming-years {
+    width: 95%;
+    padding: 0 2.5% 0 2.5%;
+}
+
+div.blooming-years div {
+    display: inline-block;
 }
 
 

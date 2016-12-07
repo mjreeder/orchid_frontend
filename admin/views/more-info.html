@@ -273,8 +273,10 @@
         <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
     </div>
 
-    <div ng-repeat="year in bloomYears">
-      <input type="button" value="{{year.year}}" class="blooming-view-year" ng-click="loadBloomGraph(year)">
+    <div class="blooming-years">
+        <div ng-repeat="year in bloomYears">
+          <input type="button" value="{{year.year}}" class="blooming-view-year" ng-click="loadBloomGraph(year)">
+        </div>
     </div>
 
     <!--        START OF BLOOMING GRAPH -->
