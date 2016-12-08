@@ -593,31 +593,31 @@ input[type="button"].selectedPhoto {
 }
 
 .vis-item.incomplete_bloom {
-    background-color: red;
-    border-color: red;
+    background-color: #01997b;
+    border-color: #01997b;
 }
 
 .vis-item.full_bloom {
-    background-color: #01997b;
-    border-color: #01997b;
+    background-color: #FF9EDE;
+    border-color: #FF9EDE;
 }
 
 #graph {
     overflow: hidden;
 }
 
-#bloom_timeline {
+#bloom_timeline_spot {
     margin: 0 20px 20px 20px;
 }
 
-div.blooming-years {
-    width: 95%;
-    padding: 0 2.5% 0 2.5%;
-}
+/*div.blooming-years {*/
+    /*width: 95%;*/
+    /*padding: 0 2.5% 0 2.5%;*/
+/*}*/
 
-div.blooming-years div {
-    display: inline-block;
-}
+/*div.blooming-years div {*/
+    /*display: inline-block;*/
+/*}*/
 
 
 /* More info health, blooming, sprayed, potting table data */
