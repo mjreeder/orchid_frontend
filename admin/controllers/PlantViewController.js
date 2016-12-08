@@ -84,7 +84,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             }
             return countryObject.name !== $scope.selectedCountry;
         });
-        //empty out selected country for next country
+
+        //empty out selected country
         $scope.selectedCountry = '';
 
         //sort the selected countries
