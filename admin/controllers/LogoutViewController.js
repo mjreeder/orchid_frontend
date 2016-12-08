@@ -2,5 +2,4 @@ app.controller('LogoutViewController', function($http, $location, sessionService
     sessionService.removeSession();
     $window.alert("Logged Out. Goodbye");
     $location.path("/login");
-
 });

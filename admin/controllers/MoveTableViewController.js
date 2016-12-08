@@ -6,13 +6,9 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
     $scope.changedRoom = "";
     $scope.changed = false;
 
-
-    $scope.x = {};
     $scope.$on('abc', function(event, data){
         $scope.addedMovePlants = data.any;
-        $scope.hamburger = console.log($scope.addedMovePlants.a[0].accession_number);
-        console.log($scope.hamburger);
-        $scope.x.name = $scope.addedMovePlants.a[0].accession_number;
+
         $scope.a = [];
         for (var t = 0; t < $scope.addedMovePlants.a.length; t++){
             $scope.a[t] = $scope.addedMovePlants.a[t];
@@ -30,7 +26,6 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
 
         if($scope.changedRoom != "") {
             for (var i = 0; i < $scope.a.length; i++) {
-
 
                 var moveInformation = {id: $scope.a[i].id, name: $scope.changedRoom};
 
@@ -50,6 +45,9 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
 
     $scope.saveID = undefined;
 
+    /*
+    CHANGING the COLORS on the SVGs
+     */
     $('body').on('click', 'svg > g', function(){
         var abbreviation = $(this).attr('id');
         //Specific Check if is the background
@@ -64,8 +62,8 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
             } else {
                 $($scope.saveID).find('[style*= "fill: #19977b"]').css('fill', '#FFFFFF');
                 $($scope.saveID).find('[style*= "fill: rgb(25, 151, 123)"]').css('fill', '#FFFFFF');
-
             }
+
             $scope.saveID = "";
             $scope.saveID = this;
 
@@ -75,8 +73,7 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
             //this is for the color that has already been changed
             $(this).find('[style*="fill: rgb(255, 255, 255)"]').css('fill', '#19977B');
             $(this).find('[style*="ffffff"]').css('fill', '#19977b');
-
-
+            
             $scope.$apply();
         }
     });

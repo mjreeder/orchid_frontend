@@ -15,7 +15,6 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
 
             checkUserModelInformation();
 
-
             for(var i = 0; i < $scope.updateUsers.length; i++){
                 var user = $scope.updateUsers[i];
                 UserFactory.updateUser(user).then(function (response){
@@ -88,24 +87,6 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
 
     });
 
-    //UserFactory.getAllUsers().then(function (response){
-    //    var data = response.data.data;
-    //
-    //    for (var i = 0; i < data.length; i++){
-    //        var singleUser = data[i];
-    //        if(singleUser.auth_level == 1){
-    //            singleUser.isAuthUser = true;
-    //        } else {
-    //            singleUser.isAthUser = false;
-    //        }
-    //
-    //        $scope.allUsers.push(singleUser);
-    //
-    //    }
-    //});
-
-
-
     $scope.allUsers = [];
 
     $scope.oringialUsers = [];
@@ -127,14 +108,8 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             }
 
             $scope.allUsers.push(singleUser);
-            //$scope.$apply();
-
         }
-
-
-
     });
-
 
     UserFactory.getAllUsers().then(function (response){
         var data = response.data.data;
@@ -147,7 +122,6 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
                 singleUser.isAthUser = false;
             }
             $scope.oringialUsers.push(singleUser);
-
         }
     });
 
@@ -174,7 +148,6 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             });
             return false;
         }
-
     };
 
     $scope.$on('changePassword', function(event, data) {
@@ -195,7 +168,6 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             window.alert("Warning. This is the current user.");
         }
         $scope.changePassword = false;
-
     };
 
     $scope.changePasswordFunction = function(user) {
@@ -219,16 +191,13 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
     };
 
     $scope.deleteUserFunction = function(user){
-
-
         $route.reload();
-
     };
 
     $scope.addUser = function(){
         $scope.newUser = true;
-
     };
+
     $scope.sendNewRequest = false;
 
     $scope.saveUser = function(user){
@@ -293,10 +262,7 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
         }, function (error) {
 
         });
-
-    }
-
-
+    };
 
     var userAdded = false;
 
@@ -307,10 +273,6 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
        } else {
            user.auth_level = 1;
        }
-
-        //SEEING WHO IT IS
-
-        //ADD THIS USER TO A ARRAY FOR NEW SUBMISSION
 
         for(var i = 0; i < $scope.changeUser.length; i++){
             if (user.id == $scope.changeUser[i].id){

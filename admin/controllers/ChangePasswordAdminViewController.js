@@ -28,8 +28,4 @@ app.controller('ChangePasswordAdminViewController', function($scope, $route, $ro
            $route.reload();
        }
    }
-
-
-
-
 });

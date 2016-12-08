@@ -58,14 +58,14 @@
             <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
 
-            <label ng-hide="editPlant.culture" id="add-country" >Add:</label>
-                <select  id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-hide="editPlant.culture"></br>
+            <label ng-hide="editPlant.culture" ng-show="createNew" id="add-country" >Add:</label>
+                <select  id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew"></br>
                     <option disabled selected value>Select countries</option>
                     <option ng-repeat="country in allCountires">{{country.name}}</option>
                 </select>
 
-            <label id="delete-country" ng-hide="editPlant.culture"  >Delete:</label>
-            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-hide="editPlant.culture"></br>
+            <label id="delete-country" ng-hide="editPlant.culture" ng-show="createNew"  >Delete:</label>
+            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew" ></br>
                 <option disabled selected value>Select countries</option>
                 <option ng-repeat="country in selectedCountries">{{country.name}}</option>
             </select>
@@ -202,7 +202,6 @@
                 <p class="delete-photo-warning" ng-hide="editPlant.photos || photo.type != 'del'" >The photo will not be deleted until you hit the save button. If you do not want to delete this photo, select an option above.</p>
             </div>
         </div>
-
 
         <div class="photos-group">
             <div class="photos-add-div button-new" ng-hide="editPlant.photos">
