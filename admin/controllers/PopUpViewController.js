@@ -278,19 +278,11 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             }
             return;
         }
-        if (objectIsNew('health') || (!isRecent)) {
-            HealthFactory.createHealth(data).then(function() {
-                if (callback) {
-                    callback();
-                }
-            });
-        } else {
-            HealthFactory.editHealth(data).then(function() {
-                if (callback) {
-                    callback();
-                }
-            })
-        }
+        HealthFactory.createHealth(data).then(function() {
+            if (callback) {
+                callback();
+            }
+        });
     }
 
     var createTag = false;
