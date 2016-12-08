@@ -76,7 +76,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.selectedCountries = [];
 
     $scope.selectCountry = function() {
-      
+        //loop over the all countries and only return those that are not the selected country
         $scope.allCountires = $scope.allCountires.filter(function(countryObject) {
             if (countryObject.name == $scope.selectedCountry) {
                 $scope.selectedCountries.push(countryObject);
@@ -84,8 +84,10 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             }
             return countryObject.name !== $scope.selectedCountry;
         });
+        //empty out selected country for next country
         $scope.selectedCountry = '';
 
+        //sort the selected countries
         $scope.selectedCountries.sort(function (a, b){
             var textA = a.name.toUpperCase();
             var textB = b.name.toUpperCase();
