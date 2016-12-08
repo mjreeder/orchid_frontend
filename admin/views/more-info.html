@@ -58,14 +58,14 @@
             <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
 
-            <label ng-hide="editPlant.culture" ng-show="createNew" id="add-country" >Add:</label>
-                <select  id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew"></br>
+            <label ng-hide="editPlant.culture" id="add-country" >Add:</label>
+                <select  id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-hide="editPlant.culture"></br>
                     <option disabled selected value>Select countries</option>
                     <option ng-repeat="country in allCountires">{{country.name}}</option>
                 </select>
 
-            <label id="delete-country" ng-hide="editPlant.culture" ng-show="createNew"  >Delete:</label>
-            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew" ></br>
+            <label id="delete-country" ng-hide="editPlant.culture"  >Delete:</label>
+            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-hide="editPlant.culture"></br>
                 <option disabled selected value>Select countries</option>
                 <option ng-repeat="country in selectedCountries">{{country.name}}</option>
             </select>
@@ -203,6 +203,7 @@
             </div>
         </div>
 
+
         <div class="photos-group">
             <div class="photos-add-div button-new" ng-hide="editPlant.photos">
                 <input type="button" value="Match Photos" id="match-photos-button" ng-click="changeProfilePicture()">
@@ -268,9 +269,18 @@
         <span class="more-info-base two-items-view span-comment">{{bloom.note}}</span>
     </div>
 
+    <div class="button-new">
+        <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
+    </div>
+
+    <div class="blooming-years">
+        <div ng-repeat="year in bloomYears">
+          <input type="button" value="{{year.year}}" class="blooming-view-year" ng-click="loadBloomGraph(year)">
+        </div>
+    </div>
 
     <!--        START OF BLOOMING GRAPH -->
-    <div id="bloom_timeline_spot" ng-hide="!blooms.length">
+    <div id="bloom_timeline" ng-hide="!blooms.length">
 
     </div>
     <!--        END OF BLOOMING GRAPH -->
