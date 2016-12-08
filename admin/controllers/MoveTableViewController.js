@@ -59,19 +59,19 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
             $scope.changedRoom = abbreviation;
             if ($scope.saveID == undefined || $scope.saveID == null) {
 
-            } else {
-                $($scope.saveID).find('[style*= "fill: #19977b"]').css('fill', '#FFFFFF');
-                $($scope.saveID).find('[style*= "fill: rgb(25, 151, 123)"]').css('fill', '#FFFFFF');
+            } else {//fill:#EAEEE7;
+                $($scope.saveID).find('[style*= "fill: #19977b"]').css('fill', '#EAEEE7');
+                $($scope.saveID).find('[style*= "fill: rgb(25, 151, 123)"]').css('fill', '#EAEEE7');
             }
 
             $scope.saveID = "";
             $scope.saveID = this;
 
             //if the color has not been changged
-            $(this).find('[style*="FFFFFF"]').css('fill', '#19977b');
+            $(this).find('[style*="EAEEE7"]').css('fill', '#19977b');
 
             //this is for the color that has already been changed
-            $(this).find('[style*="fill: rgb(255, 255, 255)"]').css('fill', '#19977B');
+            $(this).find('[style*="fill: rgb(234, 238, 231)"]').css('fill', '#19977B');
             $(this).find('[style*="ffffff"]').css('fill', '#19977b');
             
             $scope.$apply();

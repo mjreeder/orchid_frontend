@@ -200,7 +200,6 @@ hr {
 }
 .chart h3 {
     text-align: center;
-    margin-bottom: 50px;
     font-family: Aleo, 'Times New Roman', Times, serif;
     font-weight: 400;
     font-size: 30px;
@@ -229,6 +228,7 @@ hr {
 #blooming-history {
     text-align: center;
     line-height: 1.3;
+    margin-bottom: 30px; 
 }
 
 
