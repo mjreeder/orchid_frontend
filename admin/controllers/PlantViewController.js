@@ -1321,6 +1321,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         var dataAsString = createDateFromString($scope.verifiedObject.verified_data);
         if (dataAsString == $scope.verifiedDate) {
           //information is the same, no need to send it on
+        } else if(dateIsFuture($scope.verifiedObject.verified_data)){
+          alert("Verify date cannot be set in the future.");
         } else {
           if ($scope.isVerified == true) {
             var newDateFromModel = new Date($scope.verifiedDate);
@@ -1349,6 +1351,16 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
       $scope.editPlant.critical = false;
     }
   };
+
+  var dateIsFuture = function(string){
+    var verifyDate = moment(string);
+    var today = new Date();
+    if (verifyDate.isAfter(today)) {
+        return false;
+    } else {
+      return true;
+    }
+  }
 
   /*
    Connect to the correct section -Seth

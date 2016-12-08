@@ -326,17 +326,17 @@ input:checked+span {
     margin-top: 13px;
     text-align: center;
     width: 100%;
-    margin-left: none;
+    margin-left: 0;
 }
 
 .page ul li {
     display: inline;
     margin: 0 auto;
-    margin-right: 10px;
+    padding: 4px;
 }
 
 .page ul li:first-child {
-    margin-left: 10px;
+    /*margin-left: 10px;*/
 }
 
 .page ul li:last-child {
@@ -344,16 +344,16 @@ input:checked+span {
 }
 
 .page ul li a {
-    font-size: 21px;
-    padding-left: 5.6%;
+    font-size: 16px;
+    padding: 3px;
     font-weight: 600;
     color: #2b2e30;
 }
 
 .page ul li a:active {
     color: #01997b;
-    font-size: 25px;
-    font-weight: 800;
+    /*font-size: 25px;*/
+    /*font-weight: 800;*/
 }
 
 .page #next button {
