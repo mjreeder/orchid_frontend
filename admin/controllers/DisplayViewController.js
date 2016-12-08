@@ -6,7 +6,11 @@ app.controller('DisplayViewController', function(CONFIG, $scope, $location, Plan
 
     $('svg').on('click', '> g', function(){
         var abbreviation = $(this).attr('id');
-        $location.path("/table/" + abbreviation);
+        if(abbreviation == "Background"){
+
+        } else {
+            $location.path("/table/" + abbreviation);
+        }
 
     });
 

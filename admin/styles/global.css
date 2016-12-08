@@ -148,7 +148,7 @@ table {
 
 .upper-heading ul li {
     display: inline-block;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 
 }
 
@@ -158,10 +158,9 @@ a.logout {
 
 .upper-heading ul li  a {
     color: #2b2e30;
-    font-size: 18px;
+    font-size: 13px;
     font-weight: 200;
     margin-right: 10px;
-    letter-spacing: 1.1px;
 }
 
 header {
@@ -195,11 +194,11 @@ header .main-heading li a {
     text-align: center;
 }
 
-@media screen and (max-width: 900px) {
-    .main-heading ul li a {
-        font-size: 20px;
-    }
-}
+/*@media screen and (max-width: 900px) {*/
+    /*.main-heading ul li a {*/
+        /*font-size: 14px;*/
+    /*}*/
+/*}*/
 /*
 
 @media screen and (max-width: 645px) {
@@ -338,4 +337,9 @@ input[type="button"] {
 
 header .main-heading ul li a {
     font-size: 20px;
-} 
+}
+
+.svg-padding {
+    margin: 0 2.5%;
+    width: 95%;
+}
