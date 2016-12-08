@@ -38,12 +38,13 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.taxonommy">
             </button>
 
-            <label class="labelfirst">Class:</label><input type="text" ng-model="plant.class" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Genus:</label><input type="text" ng-model="plant.genus" ng-disabled="editPlant.taxonommy && !createNew"><br/>
+            <label class="labelfirst">Phylum:</label><input type="text" ng-model="plant.phylum" ng-disabled="editPlant.taxonommy && !createNew">
+            <label>Class:</label><input type="text" ng-model="plant.class" ng-disabled="editPlant.taxonommy && !createNew">
+            <label>Genus:</label><input type="text" ng-model="plant.genus" ng-disabled="editPlant.taxonommy && !createNew">
             <label>Tribe:</label><input type="text" ng-model="plant.tribe" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Species:</label><input type="text" ng-model="plant.species" ng-disabled="editPlant.taxonommy && !createNew"><br/>
+            <label>Species:</label><input type="text" ng-model="plant.species" ng-disabled="editPlant.taxonommy && !createNew">
             <label>Subtribe:</label><input type="text" ng-model="plant.subtribe" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Variety:</label><input type="text" ng-model="plant.variety" ng-disabled="editPlant.taxonommy && !createNew"><br/>
+            <label>Variety:</label><input type="text" ng-model="plant.variety" ng-disabled="editPlant.taxonommy && !createNew">
             <label class="labellast">Authority:</label><input type="text" ng-model="plant.authority" ng-disabled="editPlant.taxonommy && !createNew">
         </fieldset>
 
@@ -255,6 +256,17 @@
 
     </fieldset>
 
+    <fieldset id="notes">
+        <h1>General Notes</h1>
+        <button class="edit" ng-click="editNotes()" ng-hide="createNew">
+            <p ng-hide="editPlant.notes">Save</p>
+            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.notes">
+            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.notes">
+        </button>
+
+        <label>Take general notes over the flower here. This will not be seen by the public.</label>
+        <textarea type="textarea" placeholder="General notes" ng-model="plant.notes" ng-disabled="editPlant.notes && !createNew"></textarea>
+    </fieldset>
 
 <fieldset id="graph" ng-hide="createNew">
     <h1>Blooming</h1>
