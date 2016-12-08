@@ -9,7 +9,7 @@
     color: #2b2e30;
     margin: 20px;
     display: inline-block;
-    width: 30%;
+    width: 33%;
     max-width: 250px;
 }
 
@@ -209,7 +209,7 @@ label.filter-option {
 
 .filter-left {
     float: left;
-    width: 30%;
+    width: 33%;
     max-width: 250px;
     margin-left: 20px;
     /*margin-top: 90px;*/
@@ -220,7 +220,7 @@ label.filter-option {
 .table-right {
     margin-left: 35px;
     min-width: 50%;
-    max-width: 68%;
+    max-width: 60%;
     display: inline-block;
 }
 
@@ -326,17 +326,17 @@ input:checked+span {
     margin-top: 13px;
     text-align: center;
     width: 100%;
-    margin-left: none;
+    margin-left: 0;
 }
 
 .page ul li {
     display: inline;
     margin: 0 auto;
-    margin-right: 10px;
+    padding: 4px;
 }
 
 .page ul li:first-child {
-    margin-left: 10px;
+    /*margin-left: 10px;*/
 }
 
 .page ul li:last-child {
@@ -344,16 +344,16 @@ input:checked+span {
 }
 
 .page ul li a {
-    font-size: 21px;
-    padding-left: 5.6%;
+    font-size: 16px;
+    padding: 3px;
     font-weight: 600;
     color: #2b2e30;
 }
 
 .page ul li a:active {
     color: #01997b;
-    font-size: 25px;
-    font-weight: 800;
+    /*font-size: 25px;*/
+    /*font-weight: 800;*/
 }
 
 .page #next button {

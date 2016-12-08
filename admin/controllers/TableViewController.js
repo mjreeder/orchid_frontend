@@ -49,8 +49,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
                         $scope.plantsInTable[i].last_varified = "0000-00-00";
                         $scope.plantsInTable[i].isToday = false;
-
-
                     }
 
                     var promArray = [];
@@ -69,12 +67,9 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                                     } else {
 
                                     }
-
                                 }
                                 $scope.plantsInTable[i].addObeject = "value3";
-
                             }
-
                         });
 
                         var prom = new Promise(function(resolve, reject) {
@@ -114,8 +109,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                                         console.log( $scope.plantsInTable[p].isToday);
 
                                     }
-
-
                                 }
                             }
                         }
@@ -129,12 +122,10 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                                
                             }
                         }
-
                         $scope.$apply();
 
                     }, function (error) {
                     });
-
                 }
 
                 $scope.showRows = $scope.plantsInTable[0];
@@ -146,8 +137,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                     }
                 }
             });
-
-
         }
     });
 

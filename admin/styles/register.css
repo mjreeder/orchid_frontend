@@ -107,8 +107,12 @@
 #form-users .section button,
 div.add-user button {
     font-size: 14px;
-    margin: 0 0 10px 0;
+    margin: 0 0 15px 0;
     color: white;
+}
+
+button#delete-user {
+    background: #EF645F;
 }
 
 #form-users .users input:last-child {

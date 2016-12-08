@@ -12,9 +12,16 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
   $scope.allimagesURL = [];
   $scope.bloomingMoreShow = true;
 
+  $scope.haveProfilePicture = false;
+
+  $scope.allimagesURL =[];
+
+  $scope.profilePicture = "";
+
   console.log($scope.NAMEOFPAGE);
   PlantsFactory.getPlantByAccessionNumber($scope.NAMEOFPAGE).then(function(response) {
-    console.log(response);
+    var data = response.data.data[0];
+    $scope.NAMEOFPAGE = data.name;
     if (response.data.data[0] == false) {
       $scope.noPlant = false;
       //route to 404 if not found
@@ -25,9 +32,7 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
       $scope.plantInformation = response.data.data[0];
 
       //get plant blooms for bloom graph
-      var bloomPage = 0;
       $scope.getMoreBlooms = function() {
-        bloomPage++;
         BloomingFactory.getAllBloomByPlantID($scope.plantInformation.id).then(function(response) {
           var data = response.data.data;
           console.log(data);
@@ -79,8 +84,6 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
       var graphData = bloomService.loadBloomGraphData($scope.blooms, $scope.bloomYears[i]);
       var timeline = new vis.Timeline(container, graphData.data, graphData.options);
     }
-
-
   }
 
   $scope.createPlant = function() {
@@ -104,51 +107,81 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
       'culture': $scope.plantInformation.culture
     };
 
-    PhotoFactory.getPhotosByPlantID($scope.plant.id).then(function(response) {
-      console.log(response);
+    //var data = response.data.data;
+    //resolve(data);
+    var promArray = [];
 
-      var data = response.data.data;
-      for (var i = 0; i < data.length; i++) {
-        $scope.allimagesURL.push(data[i].url);
-      }
+    var prom = new Promise(function(resolve, reject) {
+        PhotoFactory.getPhotosByPlantID($scope.plant.id).then(function (response){
+            var data = response.data.data;
+            resolve(data);
+        });
+    });
+
+    promArray.push(prom);
+
+    Promise.all(promArray).then(function (success) {
+
+        var data= success[0];
+
+        $scope.allimagesURL = [];
+        console.log(data.length);
+        console.log($scope.allimagesURL.length);
+
+        var r = 0;
+        for(r = 0; r < data.length; r++){
+            $scope.allimagesURL.push(data[r].url);
+        }
+
+        var foundProfilePicture = false;
+        for(var i = 0;i < $scope.allimagesURL.length; i++){
+            console.log($scope.allimagesURL[i]);
+            if($scope.allimagesURL[i].type == "profile"){
+                $scope.profilePicture = $scope.allimagesURL[i];
+                foundProfilePicture = faslse = true;
+                $scope.haveProfilePicture = true;
+            }
+        }
+        if(foundProfilePicture == false){
+            for(var i = 0;i < $scope.allimagesURL.length; i++){
+                $scope.profilePicture = $scope.allimagesURL[i];
+                $scope.haveProfilePicture = true;
+                break;
+            }
+        }
+        $scope.$apply();
+
+    }, function (error) {
 
     });
 
 
 
 
-    for (var i = 0; i < $scope.photoInformation.length; i++) {
-      console.log($scope.photoInformation[i].url);
-      allimagesURL.add($scope.photoInformation[i].url);
+
+    for(var i = 0; i < $scope.photoInformation.length; i++){
+        console.log($scope.photoInformation[i].url);
+        $scope.allimagesURL.add($scope.photoInformation[i].url);
     }
 
     console.log($scope.allimagesURL.length);
-    for (var i = 0; i < $scope.allimagesURL.length; i++) {
-      console.log($scope.allimagesURL[i]);
-    }
+    for(var i = 0; i < $scope.allimagesURL.length; i++){
+       console.log($scope.allimagesURL[0] + "asdfasdfads");
 
+    }
+    $scope.oneURL = $scope.allimagesURL[0];
 
 
 
 
   };
 
-  var myIndex = 0;
-  carousel();
-
-  function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-    }
-    myIndex++;
-    if (myIndex > x.length) {
-      myIndex = 1
-    }
-    x[myIndex - 1].style.display = "block";
-    setTimeout(carousel, 2000); // Change image every 2 seconds
+  $scope.goBack = function() {
+      window.history.back();
   }
+
+  var myIndex = 0;
+
 
 
   console.log("WE ARE AT THE PLANT VIEW CONTROLLER");

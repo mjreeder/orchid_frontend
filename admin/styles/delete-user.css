@@ -8,6 +8,10 @@
     overflow: auto;
 }
 
+#delete-user-admin .formcontent {
+    background: #eaeee7;
+}
+
 #delete-user-admin .flowerpopup {
     background-color: white;
     border: none;

@@ -81,7 +81,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         handleSprayed();
         handlePotting();
         handleHealth();
-        handleTag();
+        handleTag(function() {
+            $route.reload();
+        });
         $scope.closePopUp();
     }
 
@@ -92,7 +94,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                     handlePotting(function() {
                         handleHealth(function() {
                             handleTag(function() {
-                                $scope.closePopUp();
                                 callback();
                             })
                         })
@@ -146,8 +147,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var datesFromNewYear = function(startYearDate, endYearDate, daysInYear) {
         var startYear = moment($scope.blooming_start_date);
         var endYear = moment($scope.blooming_end_date);
-        if(endYear < startYear) {
-          return 0
+        if (endYear < startYear) {
+            return 0
         } else if (startYearDate > endYearDate) {
             return daysInYear - startYearDate + endYearDate;
         }
@@ -173,6 +174,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         }
         var isRecent = checkForRecent($scope.blooming_start_date);
         if (objectsMatch('bloomingComment')) {
+            if (callback) {
+                callback();
+            }
             return;
         }
         if (objectIsNew('bloomingComment') || (!isRecent)) {
@@ -202,7 +206,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleSprayed = function(callback) {
         var data = prepareForFactory('sprayed');
         if (!data.note) {
-          data.note = ""
+            data.note = ""
         }
         if (!data.timestamp) {
             data.timestamp = $scope.today;
@@ -261,8 +265,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             }
             return;
         }
-        if(!data.comment){
-          data.comment = "";
+        if (!data.comment) {
+            data.comment = "";
         }
         if (!data.timestamp) {
             data.timestamp = $scope.today;
@@ -274,29 +278,21 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             }
             return;
         }
-        if (objectIsNew('health') || (!isRecent)) {
-            HealthFactory.createHealth(data).then(function() {
-                if (callback) {
-                    callback();
-                }
-            });
-        } else {
-            HealthFactory.editHealth(data).then(function() {
-                if (callback) {
-                    callback();
-                }
-            })
-        }
+        HealthFactory.createHealth(data).then(function() {
+            if (callback) {
+                callback();
+            }
+        });
     }
 
     var createTag = false;
 
     $scope.flagggedPlant = [];
     var handleTag = function(callback) {
-        if($scope.flag_note){
-          $scope.taggedPlant[0].note = $scope.flag_note;
+        if ($scope.flag_note) {
+            $scope.taggedPlant[0].note = $scope.flag_note;
         } else {
-          $scope.taggedPlant[0].note = "";
+            $scope.taggedPlant[0].note = "";
         }
         if (createTag == false) {
             TagFactory.updateTag($scope.taggedPlant[0]).then(function(response) {
@@ -373,10 +369,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var setBloomingState = function() {
-      if(!$scope.blooming_end_date){
-        $scope.bloomIsActive = true;
-        $scope.newBloomText = "In Bloom";
-      }
+        if (!$scope.blooming_end_date) {
+            $scope.bloomIsActive = true;
+            $scope.newBloomText = "In Bloom";
+        }
     }
 
     var disableNewBloomToday = function() {
@@ -462,18 +458,18 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var getLastComment = function(data, timeStampsReversed) {
-        if(!timeStampsReversed){
-          timeStampsReversed = false;
+        if (!timeStampsReversed) {
+            timeStampsReversed = false;
         }
         var lastComment = "";
-        if(timeStampsReversed){
-          data = data.data.data;
-          lastComment = data[data.length - 1];
-          return lastComment;
+        if (timeStampsReversed) {
+            data = data.data.data;
+            lastComment = data[data.length - 1];
+            return lastComment;
         } else {
-          data = data.data.data;
-          lastComment = data[0];
-          return lastComment;
+            data = data.data.data;
+            lastComment = data[0];
+            return lastComment;
         }
     }
 

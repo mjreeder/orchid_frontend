@@ -2,7 +2,6 @@ app.controller('DeleteUserViewController', function($scope, $rootScope, UserFact
 
     $scope.newUser = false;
 
-
     $scope.allUsers = [];
 
     $scope.$on('deleteUserData', function(event, data){

@@ -6,7 +6,6 @@ app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $
               $rootScope.AuthUser = true;
           } else {
               $rootScope.AuthUser = false;
-
           }
       });
     }
@@ -15,5 +14,4 @@ app.controller('BodyViewController', function($scope, UserFactory, $rootScope, $
       $rootScope.redirect = $location.path();
       $location.path("/logout");
     }
-
 });

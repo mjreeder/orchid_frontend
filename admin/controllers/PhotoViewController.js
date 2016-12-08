@@ -1,31 +1,15 @@
 app.controller('PhotoViewController', function($route, $scope, $rootScope, PlantsFactory, $window, PhotoFactory){
 
-    $scope.click = function(){
-        console.log("");
-    };
-
-
-    $scope.changedRoom = "";
-
     $scope.plantsURL = [];
-    //todo look at the method that is going to close the pop up.
 
-
-    $scope.chosenPicrture = "";
-
-    $scope.x = {};
     var plant_id;
     $scope.$on('abc', function(event, data){
         $scope.addedMovePlants = data.any;
         plant_id = $scope.addedMovePlants.plant_id;
         $scope.reloadFunction(plant_id);
-        $scope.x.name = $scope.addedMovePlants.a[0].accession_number;
-
-
     });
 
     $scope.plantIDURL = [];
-
 
     $scope.reloadFunction = function(plant_id){
 
@@ -61,16 +45,9 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
                         $scope.plantsURL[lengthOfPlantsURL] = data2[i];
                     }
                 });
-
             }
-
         });
-
     }
-
-    $scope.clickedPhoto = function(photo){
-        $scope.chosenPicrture = photo;
-    };
 
     $scope.submitChange = function(){
 
@@ -107,10 +84,7 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
                 PhotoFactory.createPhoto(photoInformation4).then(function (response){
 
                 });
-
             }
-
-
         } else {
 
             var photoInformation3 = {
@@ -121,22 +95,13 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
             PhotoFactory.createPhoto(photoInformation3).then(function (response){
 
             });
-
         }
-
-
-
         closePop();
-    }
+    };
 
-
-    var closePop = function(){
-
-    }
     $scope.closePopUp = function(){
         $rootScope.$broadcast('photoMatcher', false);
     }
-
 });
 
 
