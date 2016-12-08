@@ -76,8 +76,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.selectedCountries = [];
 
     $scope.selectCountry = function() {
-        $scope.allCountires.splice($scope.allCountires.indexOf($scope.selectedCountry.name));
-
+      
         $scope.allCountires = $scope.allCountires.filter(function(countryObject) {
             if (countryObject.name == $scope.selectedCountry) {
                 $scope.selectedCountries.push(countryObject);
@@ -772,6 +771,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.createNewPlantCountryLink = function(){
         for(var i = 0; i < $scope.selectedCountries.length; i++){
+          console.log('derp');
             var p_c_link = {
                 'plant_id' : $scope.newPlantID,
                 'country_id': $scope.selectedCountries[i].id
