@@ -5,7 +5,7 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/404');
     $stateProvider
         .state('home', {
-            url: '/',
+            url: '',
             templateUrl: './views/refactored/menu.html'
         })
         .state('about', {

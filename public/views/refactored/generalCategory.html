@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="styles/alphabetical.css">
 <menu>
     <h1>{{NAMEOFPAGE}}</h1>
-    
+
     <div class="box">
             <div class="container1">
                 <input type="search" id="search" placeholder="Search. . ." ng-model="searchBox">
@@ -11,7 +11,7 @@
 
     <aside class="menubox">
 
-        
+
         <section class="whitebox">
             <ul>
                 <li>
@@ -42,7 +42,7 @@
                         <li ng-repeat="subtribe in dynamicSidebarContent.subtribes"><a ui-sref="specificSubTribe({ tribe: subtribe.tribe_name })">{{subtribe.tribe_name}}</a></li>
                     </ul>
                 </section>
-        
+
 
             </ul>
         </section>
@@ -50,11 +50,11 @@
 
 <section id="grid">
     <section id="plants">
-        <div ng-show="collectionOfItems.length == 0">Nothing to see here...</div>
+        <div ng-show="collectionOfItems.length == 0">No plants to load</div>
         <ul>
             <li ng-repeat="item in collectionOfItems | filter:searchBox" ng-click="moveTo(item)">
 <!--                <a><img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">-->
-               
+
                   <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}">
                       <img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
                       <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">

@@ -38,12 +38,13 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.taxonommy">
             </button>
 
-            <label class="labelfirst">Class:</label><input type="text" ng-model="plant.class" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Genus:</label><input type="text" ng-model="plant.genus" ng-disabled="editPlant.taxonommy && !createNew"><br/>
+            <label class="labelfirst">Phylum:</label><input type="text" ng-model="plant.phylum" ng-disabled="editPlant.taxonommy && !createNew">
+            <label>Class:</label><input type="text" ng-model="plant.class" ng-disabled="editPlant.taxonommy && !createNew">
+            <label>Genus:</label><input type="text" ng-model="plant.genus" ng-disabled="editPlant.taxonommy && !createNew">
             <label>Tribe:</label><input type="text" ng-model="plant.tribe" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Species:</label><input type="text" ng-model="plant.species" ng-disabled="editPlant.taxonommy && !createNew"><br/>
+            <label>Species:</label><input type="text" ng-model="plant.species" ng-disabled="editPlant.taxonommy && !createNew">
             <label>Subtribe:</label><input type="text" ng-model="plant.subtribe" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Variety:</label><input type="text" ng-model="plant.variety" ng-disabled="editPlant.taxonommy && !createNew"><br/>
+            <label>Variety:</label><input type="text" ng-model="plant.variety" ng-disabled="editPlant.taxonommy && !createNew">
             <label class="labellast">Authority:</label><input type="text" ng-model="plant.authority" ng-disabled="editPlant.taxonommy && !createNew">
         </fieldset>
 
@@ -57,15 +58,17 @@
 
             <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
+            <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Add a description of about the culture of this plant that will appear to the public."></textarea>
+
 
             <label ng-hide="editPlant.culture" ng-show="createNew" id="add-country" >Add:</label>
-                <select  id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew"></br>
+                <select  id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-show="createNew" ng-hide="editPlant.culture"></br>
                     <option disabled selected value>Select countries</option>
                     <option ng-repeat="country in allCountires">{{country.name}}</option>
                 </select>
 
             <label id="delete-country" ng-hide="editPlant.culture" ng-show="createNew"  >Delete:</label>
-            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew" ></br>
+            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-show="createNew" ng-hide="editPlant.culture"></br>
                 <option disabled selected value>Select countries</option>
                 <option ng-repeat="country in selectedCountries">{{country.name}}</option>
             </select>
@@ -77,8 +80,9 @@
                 </ul>
             </div>
 
-        <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Add a description of about the culture of this plant that will appear to the public."></textarea>
-    </fieldset>
+            <textarea ng-model="plant.countries_note" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Add a description about the countries information."></textarea>
+
+        </fieldset>
 
 
         <fieldset id="special-collection">
@@ -203,6 +207,7 @@
             </div>
         </div>
 
+
         <div class="photos-group">
             <div class="photos-add-div button-new" ng-hide="editPlant.photos">
                 <input type="button" value="Match Photos" id="match-photos-button" ng-click="changeProfilePicture()">
@@ -254,6 +259,17 @@
 
     </fieldset>
 
+    <fieldset id="notes">
+        <h1>General Notes</h1>
+        <button class="edit" ng-click="editGeneralNote()" ng-hide="createNew">
+            <p ng-hide="editPlant.notes">Save</p>
+            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.notes">
+            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.notes">
+        </button>
+
+        <label>Take general notes over the flower here. This will not be seen by the public.</label>
+        <textarea type="textarea" placeholder="General notes" ng-model="plant.general_note" ng-disabled="editPlant.notes && !createNew"></textarea>
+    </fieldset>
 
 <fieldset id="graph" ng-hide="createNew">
     <h1>Blooming</h1>
@@ -268,9 +284,18 @@
         <span class="more-info-base two-items-view span-comment">{{bloom.note}}</span>
     </div>
 
+    <div class="button-new">
+        <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
+    </div>
+
+    <div class="blooming-years">
+        <div ng-repeat="year in bloomYears">
+          <input type="button" value="{{year.year}}" class="blooming-view-year" ng-click="loadBloomGraph(year)">
+        </div>
+    </div>
 
     <!--        START OF BLOOMING GRAPH -->
-    <div id="bloom_timeline_spot" ng-hide="!blooms.length">
+    <div id="bloom_timeline" ng-hide="!blooms.length">
 
     </div>
     <!--        END OF BLOOMING GRAPH -->

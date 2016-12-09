@@ -55,7 +55,7 @@ div.login {
 }
 
 #login-img img {
-    width: 55%;
+    height: 40vh;
     position: absolute; 
     bottom: 0;
     right: 30px;

@@ -44,7 +44,8 @@ textarea, input, button, select {
 #graph,
 #split,
 #weekly-checkup,
-#special-collection {
+#special-collection,
+#notes {
     position: relative;
     overflow: auto;
 }
@@ -243,7 +244,7 @@ fieldset {
     width: 130px;
 }
 
-#description label, #weekly-checkup label {
+#description label, #weekly-checkup label, #notes label {
     width: 95%;
     margin-top: 15px;
 }
