@@ -10,6 +10,11 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.bloomIsActive = false;
     $scope.newBloomText = "Start New Bloom";
 
+    //TODO these variables do not follow the structure of the page
+    var createTag = false;
+    $scope.flagggedPlant = [];
+    $scope.taggedPlant = [];
+
     $scope.startNewBloom = function() {
         $scope.blooming_start_date = $scope.today;
         $scope.blooming_end_date = null;
@@ -38,6 +43,11 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         $scope.bloomIsActive = false;
         $scope.newBloomText = "Start New Bloom";
         $scope.flagged = false;
+
+        //TODO these variables do not follow the structure of the page
+        var createTag = false;
+        $scope.flagggedPlant = [];
+        $scope.taggedPlant = [];
     }
 
     var cleanPrefixes = function() {
@@ -285,9 +295,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         });
     }
 
-    var createTag = false;
-
-    $scope.flagggedPlant = [];
     var handleTag = function(callback) {
         if ($scope.flag_note) {
             $scope.taggedPlant[0].note = $scope.flag_note;
@@ -409,7 +416,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         })
     }
 
-    $scope.taggedPlant = [];
     var handleTagInit = function() {
         $scope.taggedPlant = [];
         TagFactory.getPestByPlantID($scope.plant.id).then(function(data) {
