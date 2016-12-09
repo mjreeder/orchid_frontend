@@ -46,7 +46,7 @@ main {
     width: 100%;
     margin: 0 auto 0px;
     background-color: white; 
-    padding: 30px; 
+    padding: 30px 30px 100px 30px; 
 }
 
 body {
@@ -59,4 +59,9 @@ body {
 
 main p {
     line-height: 140%;
+    max-width: 500px; 
+    display: block;
+    margin: 0 auto; 
+    margin-bottom: 30px; 
+    font-size: 14px; 
 }

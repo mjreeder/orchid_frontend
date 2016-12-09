@@ -23,6 +23,7 @@
                 <section class="sectiontwo">
                     <section id="taxonomic" class="property-box transparent-box">
                         <ul>
+                           <li><b>Phylum:</b>{{plant.phylum_name}}</li>
                             <li><b>Class:</b>{{plant.class_name}}</li>
                             <li><b>Tribe:</b>{{plant.tribe_name}}</li>
                             <li><b>Subtribe:</b>{{plant.subtribe_name}}</li>
@@ -50,10 +51,11 @@
                     <p><b>Culture:</b>{{plant.culture}}</p>
                 </section>
 
-
+   <hr>
                 <section class="chart">
 
                     <h3>Blooming Calendar</h3>
+                    <div id="key"><img src="images/bloom-graph-key.svg" alt="Bloom Graph Key"> </div>
                    
                     <!--        START OF BLOOMING GRAPH -->
                     <div id="bloom_timeline_spot" ng-hide="!blooms.length">
@@ -61,7 +63,7 @@
                     </div>
                     <!--        END OF BLOOMING GRAPH -->
                      <div id="blooming-history">
-                        Below is the history of this plant, depicting current and past blooming periods. Zoom into the calendar to view specific time periods of blooming. Click and drag to move side to side through the calendar.
+                        Above is the history of this plant, depicting current and past blooming periods. Zoom into the calendar to view specific time periods of blooming. Click and drag to move side to side through the calendar.
                     </div>
                 </section>
 
