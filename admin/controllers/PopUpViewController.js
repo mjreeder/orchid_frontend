@@ -9,6 +9,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     $scope.disableEndBloom = true;
     $scope.bloomIsActive = false;
     $scope.newBloomText = "Start New Bloom";
+    $scope.today = new Date();
 
     //TODO these variables do not follow the structure of the page
     var createTag = false;
@@ -70,8 +71,6 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             }
         }
     }
-
-    $scope.today = new Date();
 
     $scope.submitPopUp = function(callback) {
         if (!bloomDateIsValid()) {
