@@ -81,6 +81,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             alert('Blooms are not allowed to overlap!');
             return;
         }
+        if(bloomStartsInFuture()){
+          alert('Bloom cannot start in the future!');
+          return;
+        }
         if (!callback) {
             asyncNetwork();
         } else {
@@ -139,6 +143,20 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       oldBloom = moment(oldBloom);
       newBloom = moment(newBloom);
       if(oldBloom.isAfter(newBloom)){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    var bloomStartsInFuture = function() {
+      var today = $scope.today;
+      var bloomStart = $scope.blooming_start_date;
+      console.log($scope.blooming_start_date);
+      today = moment($scope.today);
+      bloomStart = moment($scope.bloomStart);
+      console.log(bloomStart.isAfter(today));
+      if(bloomStart.isAfter(today, 'day')){
         return true;
       } else {
         return false;
