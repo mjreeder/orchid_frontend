@@ -58,15 +58,17 @@
 
             <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
             <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
+            <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Add a description of about the culture of this plant that will appear to the public."></textarea>
 
-            <label ng-hide="editPlant.culture" id="add-country" >Add:</label>
-                <select  id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-hide="editPlant.culture"></br>
+
+            <label ng-hide="editPlant.culture" ng-show="createNew" id="add-country" >Add:</label>
+                <select  id="add-country-select" ng-model="selectedCountry" ng-change="selectCountry(selectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-show="createNew" ng-hide="editPlant.culture"></br>
                     <option disabled selected value>Select countries</option>
                     <option ng-repeat="country in allCountires">{{country.name}}</option>
                 </select>
 
-            <label id="delete-country" ng-hide="editPlant.culture"  >Delete:</label>
-            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-hide="editPlant.culture"></br>
+            <label id="delete-country" ng-hide="editPlant.culture" ng-show="createNew"  >Delete:</label>
+            <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-show="createNew" ng-hide="editPlant.culture"></br>
                 <option disabled selected value>Select countries</option>
                 <option ng-repeat="country in selectedCountries">{{country.name}}</option>
             </select>
@@ -78,8 +80,9 @@
                 </ul>
             </div>
 
-        <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Add a description of about the culture of this plant that will appear to the public."></textarea>
-    </fieldset>
+            <textarea ng-model="plant.countries_note" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Add a description about the countries information."></textarea>
+
+        </fieldset>
 
 
         <fieldset id="special-collection">
@@ -258,14 +261,14 @@
 
     <fieldset id="notes">
         <h1>General Notes</h1>
-        <button class="edit" ng-click="editNotes()" ng-hide="createNew">
+        <button class="edit" ng-click="editGeneralNote()" ng-hide="createNew">
             <p ng-hide="editPlant.notes">Save</p>
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.notes">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.notes">
         </button>
 
         <label>Take general notes over the flower here. This will not be seen by the public.</label>
-        <textarea type="textarea" placeholder="General notes" ng-model="plant.notes" ng-disabled="editPlant.notes && !createNew"></textarea>
+        <textarea type="textarea" placeholder="General notes" ng-model="plant.general_note" ng-disabled="editPlant.notes && !createNew"></textarea>
     </fieldset>
 
 <fieldset id="graph" ng-hide="createNew">

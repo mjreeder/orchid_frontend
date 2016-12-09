@@ -54,9 +54,19 @@ app.factory('PlantsFactory', function($http, $rootScope) {
             data: {
             }
         });
-    }
+    };
 
-
+    data.updateGeneralNotes = function (plant){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/updateGeneralNotes',
+            data: {
+                "plant" : plant,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        });
+    };
 
     data.updateVarifiedDate = function(id) {
         return $http({

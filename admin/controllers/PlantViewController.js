@@ -168,10 +168,12 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             genus: plantData.genus,
             species: plantData.species,
             variety: plantData.variety,
+            phylum: plantData.phylum,
             image: "",
-            dead_date: createDateFromString(plantData.dead_date)
+            dead_date: createDateFromString(plantData.dead_date),
+            general_note: plantData.general_note,
+            countries_note: plantData.countries_note
         };
-        console.log($scope.plant);
 
         //assigning the table to plant.
         $scope.plantLocation = plantData.location;
@@ -205,20 +207,10 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             console.log($scope.plant.special_collections_id);
             $scope.loadSpecialCollection( $scope.plant.special_collections_id);
 
-
-
         }, function (error) {
 
         });
 
-
-
-        //if($scope.plant.special_collections_id != null) {
-        //
-        //
-        //} else {
-        //    console.log('there is not specialca collction id');
-        //}
 
         PhotoFactory.getSimilarPhotos(speciesName).then(function (response){
             var photoData = response.data.data;
@@ -419,11 +411,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
 
         });
-
-
     }, function(error) {
         var param1 = $routeParams.accession_number;
-
         if (param1 == "create") {
             $scope.createNew = true;
             $scope.plant = {
@@ -440,7 +429,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             countryFactory.getCountries().then(function(response) {
                 var countryNames = response.data.data;
                 $scope.example1data = [];
-
             });
 
         } else {
@@ -451,7 +439,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     var createDateFromString = function(string){
       return moment(string).toDate();
-    }
+    };
 
     if ($scope.createNew) {
         $scope.editPlant = {
@@ -465,7 +453,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             photos: false,
             save: false,
             split: false,
-            speical_collections: false
+            speical_collections: false,
+            notes: false
         };
     } else {
         $scope.editPlant = {
@@ -479,24 +468,21 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             photos: true,
             save: true,
             split: true,
-            speical_collections: true
-
+            speical_collections: true,
+            notes: true
         };
     }
 
     $scope.loadSpecialCollection = function(id){
         if($scope.plant.special_collections_id == undefined){
-            console.log('asdfasdf');
 
         } else {
-            console.log('asdfasdfasdads' + $scope.plant.special_collections_id);
             SpecialCollectionsFactory.getSpecialCollectionById($scope.plant.special_collections_id).then(function (response) {
                 $scope.selectedCollectionName = response.data.data.name;
 
             });
         }
-    }
-
+    };
 
     $scope.newCollectionName = "";
 
@@ -537,14 +523,16 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             };
 
             PlantsFactory.updateCollection(speicalCollectionRelationshipData).then(function(response){
+            }, function(error){
+                window.alert('Error. Logging out.');
+                $location.path('/logout');
             });
 
 
         } else {
             $scope.editPlant.speical_collections = false;
         }
-    }
-
+    };
 
     $scope.saveCulture = {
         taxonommy: false,
@@ -611,13 +599,15 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                     window.alert("Table Error. (1)Please select a valid table");
                 }
             }
-
         } else {
 
             var prom = new Promise(function(resolve, reject) {
                 PlantsFactory.checkAccessionNumber($scope.plant.accession_number).then(function (response){
                     var accessionResponse = response.data.data;
                     resolve(accessionResponse);
+                }, function(error){
+                    window.alert('Error. Logging out.');
+                    $location.path('/logout');
                 });
             });
 
@@ -645,7 +635,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 promArray = [];
 
                 //Checking the status of the errors.
-
                 $scope.AccessionHasBeenChecked = true;
 
                 if($scope.accessionError == true || $scope.tableError == true) {
@@ -666,17 +655,10 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                     } else {
                         window.alert("Error. Please try again.")
                     }
-
                 }
-
-
             }, function (error) {
-
             });
         }
-
-
-
     };
 
     $scope.continueForwaring = function(){
@@ -736,7 +718,10 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             "grex_status" : $scope.plant.grex_status,
             "hybrid_comment" : $scope.plant.hybrid_comment,
             "location_id" : $scope.tableID,
-            "special_collections_id" : $scope.collectionID
+            "special_collections_id" : $scope.collectionID,
+            "general_note": $scope.plant.general_note,
+            "phylum_name": $scope.plant.phylum,
+            "countries_note" : $scope.plant.countries_note
         };
 
         var plant = {
@@ -747,6 +732,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             PlantsFactory.createNew(plant).then(function(response){
                 var newPlantInfo = response.data.data;
                 resolve(newPlantInfo);
+            }, function(error){
+                window.alert('Error. Logging out.');
+                $location.path('/logout');
             });
         });
 
@@ -854,6 +842,15 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         if($scope.plant.hybrid_comment == undefined){
             $scope.plant.hybrid_comment = "";
         }
+        if($scope.plant.general_note == undefined){
+            $scope.plant.general_note = "";
+        }
+        if($scope.plant.phylum_name == undefined){
+            $scope.plant.phylum_name = "";
+        }
+        if($scope.plant.countries_note == undefined){
+            $scope.plant.countries_note = "";
+        }
     }
 
     $scope.forwardToPage = function(){
@@ -924,8 +921,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             $scope.habitiatList[lengthList] = photo;
         }
 
-
-
         for (var i = 0; i < $scope.otherList.length; i++) {
 
             if ($scope.otherList[i].id == photo.id) {
@@ -938,19 +933,12 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 $scope.deleteList.splice(i, 1);
             }
         }
-
-
-
     };
 
     var DValue = false;
     $scope.delete = function(photo) {
 
-
         for (var i = 0; i < $scope.deleteList.length; i++) {
-
-
-
             if ($scope.deleteList[i].id == photo.id) {
                 //they are matching
                 DValue = true;
@@ -985,15 +973,12 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             $scope.editPlant.photos = true;
             var promArray = [];
 
-
-
             for (var i = 0; i < $scope.deletedPictures.length; i++) {
                 var deleteInfo = {
                     id: $scope.deletedPictures[i].id,
                     plant_id: $scope.deletedPictures[i].plant_id,
                     url: $scope.deletedPictures[i].url,
                     type: $scope.deletedPictures[i].type
-
                 };
 
                 var prom = new Promise(function(resolve, reject) {
@@ -1099,6 +1084,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             $scope.editPlant.taxonommy = true;
 
             var taxonmicPlantInformation = {
+                phylum_name: $scope.plant.phylum,
                 class_name: $scope.plant.class,
                 tribe_name: $scope.plant.tribe,
                 subtribe_name: $scope.plant.subtribe,
@@ -1111,6 +1097,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function(response) {
 
+            }, function(error){
+                window.alert('Error. Logging out.');
+                $location.path('/logout');
             });
 
         } else {
@@ -1196,6 +1185,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             PlantsFactory.editInactivePlant(inactiveInformation).then(function(response){
 
+            }, function(error){
+                window.alert('Error. Logging out.');
+                $location.path('/logout');
             });
 
         } else {
@@ -1235,6 +1227,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             $scope.editAccession();
             var x = $scope.accession_number;
             $location.path('/plant/' + x);
+        }, function(error){
+            window.alert('Error. Logging out.');
+            $location.path('/logout');
         });
 
     };
@@ -1285,9 +1280,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             if($scope.checkedTable == false){
                 window.alert("Please select a table from the list.");
             } else {
-                $scope.editPlant.critical = true;
-
-
                 var criticalPlantInformation = {
                     scientific_name: $scope.plant.scientific_name,
                     name: $scope.plant.name,
@@ -1296,12 +1288,20 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                     accession_number: $scope.plant.accession_number
                 };
                 PlantsFactory.editCriticalPlant(criticalPlantInformation).then(function (response) {
+                }, function(error){
+                    window.alert('Error. Logging out.');
+                    $location.path('/logout');
                 });
 
                 var dataAsString = createDateFromString($scope.verifiedObject.verified_data);
-                if (dataAsString == $scope.verifiedDate) {
-                    //information is the same, no need to send it on
-                } else {
+
+                if (dataAsString == $scope.verifiedDate || $scope.verifiedDate == undefined) {
+                    $scope.editPlant.critical = true;
+                }
+                //else if(dateIsFuture(dataAsString)){ 
+                //    alert("Verify date cannot be set in the future."); 
+                //}
+                else {
                     if($scope.isVerified == true) {
                         var newDateFromModel = new Date($scope.verifiedDate);
                         var verifiedInformation = {
@@ -1314,6 +1314,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                         VerifiedFactory.updateVerified(verifiedInformation).then(function (response) {
 
                         });
+                        $scope.editPlant.critical = true;
+
                     } else {
                         var newDateFromModel = new Date($scope.verifiedDate);
                         var verifiedSpecificInformation = {
@@ -1322,6 +1324,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                         };
                         VerifiedFactory.createSpecifcVerifiedDate(verifiedSpecificInformation).then(function (response){
                         });
+                        $scope.editPlant.critical = true;
                     }
                 }
             }
@@ -1329,6 +1332,17 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         } else {
             $scope.editPlant.critical = false;
         }
+    };
+
+    var dateIsFuture = function(string){ 
+        console.log(string);
+        var verifyDate = moment(string); 
+        var today = new Date(); 
+        if (verifyDate.isAfter(today)) { 
+            return false; 
+        } else { 
+            return true; 
+        } 
     };
 
     $scope.deleteCountryList = [];
@@ -1344,7 +1358,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 habitat: $scope.plant.habitat,
                 location_id: 3,
                 id: $scope.plant.id,
-                origin_comment: $scope.plant.origin_comment
+                origin_comment: $scope.plant.origin_comment,
+                countries_note: $scope.plant.countries_note
             };
 
             var alreadyAdded = false;
@@ -1405,6 +1420,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             PlantsFactory.editCulturePlant(culturePlantInformation).then(function() {
 
+            }, function(error){
+                window.alert('Error. Logging out.');
+                $location.path('/logout');
             });
 
         } else {
@@ -1433,6 +1451,10 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             }
 
             PlantsFactory.editAccessionPlant(accessionPlantInformation).then(function(response) {
+
+            }, function(error){
+                window.alert('Error. Logging out.');
+                $location.path('/logout');
             });
         } else {
             $scope.editPlant.accesssion = false;
@@ -1448,6 +1470,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             };
 
             PlantsFactory.editDescription(descriptionPlantInformation).then(function(response) {
+            }, function(error){
+                window.alert('Error. Logging out.');
+                $location.path('/logout');
             });
         } else {
             $scope.editPlant.description = false;
@@ -1467,12 +1492,36 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             };
 
             PlantsFactory.editHybird(hybridPlantInformation).then(function(response) {
+            }, function(error){
+                window.alert('Error. Logging out.');
+                $location.path('/logout');
             });
         } else {
             $scope.editPlant.hybrid = false;
 
         }
-    }
+    };
+
+    $scope.editGeneralNote = function() {
+        if ($scope.editPlant.notes == false) {
+            $scope.editPlant.notes = true;
+
+            var generalNotesInformation = {
+                general_note: $scope.plant.general_note,
+                id: $scope.plant.id
+            };
+
+            PlantsFactory.updateGeneralNotes(generalNotesInformation).then(function(response) {
+            }, function(error){
+                window.alert('Error. Logging out.');
+                $location.path('/logout');
+            });
+
+        } else {
+            $scope.editPlant.notes = false;
+
+        }
+    };
 
     $scope.click = function() {
     }
@@ -1692,10 +1741,4 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         $route.reload();
 
     }
-
-    $scope.scrollToFunction = function(){
-        $location.hash("top");
-        $anchorScroll();
-    };
-
 });
