@@ -1298,9 +1298,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 if (dataAsString == $scope.verifiedDate || $scope.verifiedDate == undefined) {
                     $scope.editPlant.critical = true;
                 }
-                //else if(dateIsFuture(dataAsString)){ 
-                //    alert("Verify date cannot be set in the future."); 
-                //}
+                else if(dateIsFuture($scope.verifiedDate)){ 
+                   alert("Verify date cannot be set in the future."); 
+                }
                 else {
                     if($scope.isVerified == true) {
                         var newDateFromModel = new Date($scope.verifiedDate);
@@ -1335,13 +1335,12 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     };
 
     var dateIsFuture = function(string){ 
-        console.log(string);
         var verifyDate = moment(string); 
         var today = new Date(); 
         if (verifyDate.isAfter(today)) { 
-            return false; 
-        } else { 
             return true; 
+        } else { 
+            return false; 
         } 
     };
 
