@@ -50,25 +50,28 @@
 </head>
 <body ng-app="orchidApp">
 <header>
-    <h1>
-        <a href="#"><img src="images/livingplantwhite.svg" alt="Rinard Orchid Greenhouse"></a>
-    </h1>
+        <h1>
+            <a href="#"><img src="images/livingplantwhite.svg" alt="Rinard Orchid Greenhouse"></a>
+        </h1>
 
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a ui-sref="about">About</a></li>
-            <li><a ui-sref="contact">Contact</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a ui-sref="about">About</a></li>
+                <li><a ui-sref="contact">Contact</a></li>
+            </ul>
+        </nav>
 </header>
 
-<main ui-view ng-controller="mainController as main">
+<main ui-view ng-controller="mainController as main" class="content">
+    <!--<div  class="content-wrapper">-->
 
+
+    <!--</div>-->
 </main>
 
-<footer>
-    <a href="http://cms.bsu.edu/"><img src="images/benny.svg" alt="Ball State University"></a>
+<footer class="sticky-footer">
+    <a href="http://cms.bsu.edu/" target="_blank"><img src="images/benny.svg" alt="Ball State University"></a>
 </footer>
 </body>
 </html>
