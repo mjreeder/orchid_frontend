@@ -13,5 +13,10 @@ app.controller('DisplayViewController', function(CONFIG, $scope, $location, Plan
         }
 
     });
+    
+    $scope.moveRoom = function(room){
+        $location.path("/table/" + room);
+
+    }
 
 });
