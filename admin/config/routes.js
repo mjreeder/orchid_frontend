@@ -113,6 +113,13 @@ app.config(function ($routeProvider, CONFIG) {
             'data': isSuperAuthenticated
         }
     }).
+        when('/users/help', {
+            controller: 'HelpViewController',
+            templateUrl: 'views/help.html',
+            resolve: {
+                'data': isAuthenticated
+            }
+        }).
     when('/users/change-password', {
         controller: '404ViewController',
         templateUrl: 'views/change-password.html',
