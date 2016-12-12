@@ -454,7 +454,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleHealthInit = function() {
         HealthFactory.getHealthBtPlantID($scope.plant.id).then(function(data) {
-            var lastComment = getLastComment(data);
+            var lastComment = getLastComment(data, true);
             lastComment = formatTimeStamp('timestamp', lastComment);
             concatObjects(lastComment, 'health');
         })
