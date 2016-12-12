@@ -85,6 +85,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           alert('Bloom cannot start in the future!');
           return;
         }
+        if(bloomEndIsBeforeStart()){
+          alert('Bloom ending cannot be before start.');
+          return;
+        }
         if (!callback) {
             asyncNetwork();
         } else {
@@ -159,6 +163,17 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       oldBloom = moment(oldBloom);
       newBloom = moment(newBloom);
       if(oldBloom.isAfter(newBloom)){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    var bloomEndIsBeforeStart = function() {
+      var bloomStart = $scope.blooming_start_date;
+      var bloomEnd = $scope.blooming_end_date;
+      bloomStart = moment(bloomStart);
+      if(bloomStart.isAfter(bloomEnd)){
         return true;
       } else {
         return false;
