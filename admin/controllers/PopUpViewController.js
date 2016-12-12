@@ -145,8 +145,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var convertDateToString = function(date){
       var day = date.getDate();
-      var month = date.getMonth();
-      var year = date.getYear();
+      var month = date.getMonth() + 1;
+      var year = date.getYear() + 1900;
       return year + "-" + month + "-" + day;
     }
 
