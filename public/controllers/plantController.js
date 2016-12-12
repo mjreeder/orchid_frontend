@@ -18,7 +18,6 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
 
   $scope.profilePicture = "";
 
-  console.log($scope.NAMEOFPAGE);
   PlantsFactory.getPlantByAccessionNumber($scope.NAMEOFPAGE).then(function(response) {
     var data = response.data.data[0];
     $scope.NAMEOFPAGE = data.name;
@@ -91,12 +90,13 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
     $scope.plant = {
       'id': $scope.plantInformation.id,
 
-      'class_name': $scope.plantInformation.class_name,
-      'species_name': $scope.plantInformation.species_name,
-      'variety_name': $scope.plantInformation.variety_name,
-      'subtribe_name': $scope.plantInformation.subtribe_name,
-      'tribe_name': $scope.plantInformation.tribe_name,
-      'genus_name': $scope.plantInformation.genus_name,
+      'class_name': $scope.plantInformation.class,
+      'species_name': $scope.plantInformation.species,
+      'variety_name': $scope.plantInformation.variety,
+      'subtribe_name': $scope.plantInformation.subtribe,
+      'tribe_name': $scope.plantInformation.tribe,
+      'genus_name': $scope.plantInformation.genus,
+        'phylum_name' : $scope.plantInformation.phylum,
 
       'parent_one': $scope.plantInformation.parent_one,
       'parent_two': $scope.plantInformation.parent_two,
@@ -107,8 +107,6 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
       'culture': $scope.plantInformation.culture
     };
 
-    //var data = response.data.data;
-    //resolve(data);
     var promArray = [];
 
     var prom = new Promise(function(resolve, reject) {
@@ -125,8 +123,6 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
         var data= success[0];
 
         $scope.allimagesURL = [];
-        console.log(data.length);
-        console.log($scope.allimagesURL.length);
 
         var r = 0;
         for(r = 0; r < data.length; r++){
@@ -135,7 +131,6 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
 
         var foundProfilePicture = false;
         for(var i = 0;i < $scope.allimagesURL.length; i++){
-            console.log($scope.allimagesURL[i]);
             if($scope.allimagesURL[i].type == "profile"){
                 $scope.profilePicture = $scope.allimagesURL[i];
                 foundProfilePicture = faslse = true;
@@ -155,36 +150,18 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
 
     });
 
-
-
-
-
     for(var i = 0; i < $scope.photoInformation.length; i++){
-        console.log($scope.photoInformation[i].url);
         $scope.allimagesURL.add($scope.photoInformation[i].url);
     }
 
-    console.log($scope.allimagesURL.length);
-    for(var i = 0; i < $scope.allimagesURL.length; i++){
-       console.log($scope.allimagesURL[0] + "asdfasdfads");
-
-    }
     $scope.oneURL = $scope.allimagesURL[0];
-
-
-
 
   };
 
   $scope.goBack = function() {
       window.history.back();
-  }
+  };
 
   var myIndex = 0;
-
-
-
-  console.log("WE ARE AT THE PLANT VIEW CONTROLLER");
-
 
 });

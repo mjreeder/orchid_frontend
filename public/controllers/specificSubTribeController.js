@@ -3,21 +3,11 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
     $scope.NAMEOFPAGE = $stateParams.tribe;
 
-    //$scope.tribes = [];
-    //$scope.tribes.push({name:"tribe1"});
-    //$scope.tribes.push({name:"tribe2"});
-    //$scope.tribes.push({name:"tribe3"});
-    //$scope.tribes.push({name:"tribe4"});
-    //$scope.tribes.push({name:"tribe5"});
-    //$scope.tribes.push({name:"tribe6"});
-
-
     $scope.allItems = [];
 
     $scope.moveTo = function(item){
         $location.path('/plant/' + item.accession_number);
     }
-
 
     var array = [];
 
@@ -34,6 +24,12 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
     Promise.all(array).then(function (success) {
         var newData = success[0].data.data;
 
+        console.log(newData);
+        if(newData[0] == false){
+            $state.go("404")
+
+        }
+
         for(var i = 0; i < newData.length; i++){
             $scope.collectionOfItems.push(newData[i]);
         }
@@ -44,7 +40,6 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
         $scope.$apply();
 
-        //$scope.continueLoading();
     }, function (error) {
 
     });
@@ -55,8 +50,8 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
     };
 
     var init = function() {
-        $scope.dynamicSidebarContent.specialCollections; //= factory call to pull in collections; TODO
-        $scope.dynamicSidebarContent.subtribes; //= factory call to pull in subtribes; TODO
+        $scope.dynamicSidebarContent.specialCollections;
+        $scope.dynamicSidebarContent.subtribes;
     };
 
 
@@ -78,9 +73,6 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
     promArray1.push(prom2);
 
     Promise.all(promArray1).then(function (success) {
-
-        console.log(success);
-
         var specialCollectionsData = success[0];
         var speciesCollectionsData = success[1];
 
@@ -107,19 +99,6 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
             }
         }
 
-        //for(i = 0; i < speciesCollectionsData.length; i++){
-        //    if(speciesCollectionsData[i].tribe_name == ""){
-        //
-        //    } else {
-        //        var name = speciesCollectionsData[i].tribe_name;
-        //        speciesCollectionsData[i].name = name;
-        //        $scope.collectionOfItems.push(speciesCollectionsData[i]);
-        //    }
-        //}
-
-        for(i = 0; i < $scope.dynamicSidebarContent.subtribes.length; i++){
-            console.log($scope.dynamicSidebarContent.subtribes[i]);
-        }
         $scope.continueLoad();
         $scope.$apply();
 
@@ -129,11 +108,8 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
     $scope.continueLoad = function(){
         var photoArray = [];
-        console.log($scope.collectionOfItems.length);
         for(var  i = 0; i < $scope.collectionOfItems.length; i++){
             $scope.collectionOfItems[i].hasPicture = false;
-
-            console.log($scope.collectionOfItems[i].id);
 
             if($scope.collectionOfItems[i].id == undefined){
 
@@ -148,26 +124,19 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
                 });
 
                 photoArray.push(prom);
-
             }
-
-
-
         }
 
         Promise.all(photoArray).then(function (success) {
             var cleanList = [];
-            console.log(success);
 
             for(var i = 0; i < success.length; i++){
                 for (var j = 0; j < success[i].data.data.length; j++){
                     cleanList.push(success[i].data.data[j])
                 }
-                console.log(success[i].data.data);
                 if(success[i].data.data.length == undefined){
 
                 }else {
-                    console.log(success[i].data.data.length);
                 }
             }
 
@@ -176,7 +145,6 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
                 console.log(cleanList[t].plant_id);
                 for(var i = 0; i < $scope.collectionOfItems.length; i++){
                     $scope.collectionOfItems[i].hasPicture = false;
-                    console.log(cleanList[t].url);
 
                     if (cleanList[t].plant_id == $scope.collectionOfItems[i].id){
                         $scope.collectionOfItems[i].picture = cleanList[t].url;
@@ -192,17 +160,9 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
         }, function (error) {
 
-            //$state.go("404")
+            $state.go("404")
         });
 
     }
-
-
-
-
-
-
-
-
 
 }]);

@@ -44,7 +44,7 @@
     </section>
 
        <section id="plants" ng-show="loading == false">
-           <div ng-show="plants.length == 0">Nothing to see here...</div>
+           <div ng-show="noPlantsToLoad">No plants to load...</div>
            <section ng-show="plants.length > 0">
                <span ng-repeat="i in getNumberOfPages() track by $index" ng-click="getNewPage($index+1)"></span>
                <ul>

@@ -21,7 +21,6 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
 
         console.log()
         for(var i = 0; i < $scope.currentCountries.length; i++){
-            console.log($scope.currentCountries[i].name);
             if($scope.NAMEOFPAGE == $scope.currentCountries[i].name){
                $scope.countineLoading();
             } else {
@@ -64,8 +63,6 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
 
     Promise.all(promArray1).then(function (success) {
 
-        console.log(success);
-
         var specialCollectionsData = success[0];
         var speciesCollectionsData = success[1];
 
@@ -92,19 +89,6 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
             }
         }
 
-        //for(i = 0; i < speciesCollectionsData.length; i++){
-        //    if(speciesCollectionsData[i].tribe_name == ""){
-        //
-        //    } else {
-        //        var name = speciesCollectionsData[i].tribe_name;
-        //        speciesCollectionsData[i].name = name;
-        //        $scope.collectionOfItems.push(speciesCollectionsData[i]);
-        //    }
-        //}
-
-        for(i = 0; i < $scope.dynamicSidebarContent.subtribes.length; i++){
-            console.log($scope.dynamicSidebarContent.subtribes[i]);
-        }
         $scope.continueLoad();
         $scope.$apply();
 
@@ -126,22 +110,14 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
 
         Promise.all(countryArray).then(function (success) {
 
-           //console.log(success[0].data.data);
             var newData = success[0].data.data;
-            console.log(newData);
 
             for(var i = 0; i < newData.length; i++){
                 $scope.collectionOfItems.push(newData[i]);
             }
 
-            for(var i = 0; i < $scope.collectionOfItems.length; i++){
-               console.log($scope.collectionOfItems[i]);
-            }
-
             $scope.$apply();
             $scope.continueLoading();
-
-
 
         }, function (error) {
 
@@ -169,32 +145,17 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
 
 
         Promise.all(photoArray).then(function (success) {
-            console.log("this is the photo");
-            //console.log(success);
 
             var cleanList = [];
-            //console.log(success[1].data.data);
 
             for(var i = 0; i < success.length; i++){
-
-                console.log(success[i].data.data.length);
-
                 for (var j = 0; j < success[i].data.data.length; j++){
-                    console.log(success[i].data.data[j]);
-                    cleanList.push(success[i].data.data[j])
-
-
+                    cleanList.push(success[i].data.data[j]);
                 }
-
             }
 
-            console.log(cleanList);
-
             for(var t = 0; t < cleanList.length; t++){
-                console.log(cleanList[t].plant_id);
                 for(var i = 0; i < $scope.collectionOfItems.length; i++){
-                    //$scope.collectionOfItems[i].hasPicture = false;
-                    console.log(cleanList[t].url);
                     if (cleanList[t].plant_id == $scope.collectionOfItems[i].id && cleanList[t].type == 'profile'){
                         $scope.collectionOfItems[i].picture = cleanList[t].url;
                         $scope.collectionOfItems[i].hasPicture = true;
@@ -202,13 +163,9 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
                     }
                 }
             }
-
             $scope.$apply();
 
-
-
         }, function (error) {
-
             $state.go("404")
         });
 
@@ -217,10 +174,4 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
     $scope.moveTo = function(item){
         $location.path('/plant/' + item.accession_number);
     }
-
-
-
-
-
-
 }]);

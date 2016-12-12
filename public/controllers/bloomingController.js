@@ -15,7 +15,6 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
     promArray.push(prom);
 
     Promise.all(promArray).then(function (success) {
-        console.log(success);
 
         for (var i = 0; i < success.length; i++){
             $scope.collectionOfItems = success[0].data.data;
@@ -35,8 +34,8 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
     };
 
     var init = function() {
-        $scope.dynamicSidebarContent.specialCollections; //= factory call to pull in collections; TODO
-        $scope.dynamicSidebarContent.subtribes; //= factory call to pull in subtribes; TODO
+        $scope.dynamicSidebarContent.specialCollections;
+        $scope.dynamicSidebarContent.subtribes;
     };
 
 
@@ -59,12 +58,8 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
 
     Promise.all(promArray1).then(function (success) {
 
-        console.log(success);
-
         var specialCollectionsData = success[0];
         var speciesCollectionsData = success[1];
-        console.log(speciesCollectionsData);
-
 
         var i = 0;
 
@@ -89,19 +84,6 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
             }
         }
 
-        //for(i = 0; i < speciesCollectionsData.length; i++){
-        //    if(speciesCollectionsData[i].tribe_name == ""){
-        //
-        //    } else {
-        //        var name = speciesCollectionsData[i].tribe_name;
-        //        speciesCollectionsData[i].name = name;
-        //        $scope.collectionOfItems.push(speciesCollectionsData[i]);
-        //    }
-        //}
-
-        for(i = 0; i < $scope.dynamicSidebarContent.subtribes.length; i++){
-            console.log($scope.dynamicSidebarContent.subtribes[i]);
-        }
         $scope.continueLoad();
         $scope.$apply();
 
@@ -127,31 +109,17 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
 
 
         Promise.all(photoArray).then(function (success) {
-            console.log("this is the photo");
-            //console.log(success);
 
             var cleanList = [];
 
             for(var i = 0; i < success.length; i++){
-
-                console.log(success[i].data.data.length);
-
                 for (var j = 0; j < success[i].data.data.length; j++){
-                    console.log(success[i].data.data[j]);
                     cleanList.push(success[i].data.data[j])
-
-
                 }
-
             }
 
-            console.log(cleanList);
-
             for(var t = 0; t < cleanList.length; t++){
-                console.log(cleanList[t].plant_id);
                 for(var i = 0; i < $scope.collectionOfItems.length; i++){
-                    //$scope.collectionOfItems[i].hasPicture = false;
-                    console.log(cleanList[t].url);
                     if (cleanList[t].plant_id == $scope.collectionOfItems[i].id && cleanList[t].type == 'profile'){
                         $scope.collectionOfItems[i].picture = cleanList[t].url;
                         $scope.collectionOfItems[i].hasPicture = true;
@@ -162,8 +130,6 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
 
             $scope.$apply();
 
-
-
         }, function (error) {
 
             $state.go("404")
@@ -171,9 +137,7 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
 
     }
     $scope.moveTo = function(item){
-
         $location.path('/plant/' + item.accession_number);
-
     };
 
 

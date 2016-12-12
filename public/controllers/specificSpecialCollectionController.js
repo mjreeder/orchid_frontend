@@ -2,7 +2,6 @@ var orchidApp = angular.module('orchidApp');
 orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$location', '$state', '$stateParams', 'SpeicalCollectionsFactory', 'PhotoFactory', 'PlantsFactory', function($scope, $location, $state, $stateParams, SpeicalCollectionsFactory, PhotoFactory, PlantsFactory) {
 
     var collectionNumber =  $stateParams.collection;
-    console.log("Specific Collection: ", collectionNumber);
 
     $scope.collectionOfItems = [];
 
@@ -20,7 +19,7 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
         console.log(success);
 
         if(success[0].data.data.length == 0){
-           console.log("404 page");
+            $state.go("404")
 
         } else {
             $scope.idForSpeicalCollection = success[0].data.data.id;
@@ -93,24 +92,10 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
                 var name = speciesCollectionsData[i].tribe_name;
                 speciesCollectionsData[i].name = name;
                 $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
-
             }
         }
+        $scope.continueLoading();
 
-        //for(i = 0; i < speciesCollectionsData.length; i++){
-        //    if(speciesCollectionsData[i].tribe_name == ""){
-        //
-        //    } else {
-        //        var name = speciesCollectionsData[i].tribe_name;
-        //        speciesCollectionsData[i].name = name;
-        //        $scope.collectionOfItems.push(speciesCollectionsData[i]);
-        //    }
-        //}
-
-        for(i = 0; i < $scope.dynamicSidebarContent.subtribes.length; i++){
-            console.log($scope.dynamicSidebarContent.subtribes[i]);
-        }
-        //$scope.continueLoad();
         $scope.$apply();
 
     }, function (error) {
@@ -130,12 +115,10 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
         plantsArray.push(prom1);
 
         Promise.all(plantsArray).then(function (success) {
-            console.log("this is the plants");
             var data = success[0].data.data;
-            console.log(data);
+
             for(var j = 0; j < data.length; j++){
                 $scope.collectionOfItems[j] = data[j];
-
             }
             $scope.$apply();
 
@@ -145,15 +128,12 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
 
             $state.go("404")
         });
-
-
     };
 
     $scope.continueLoading2 = function(){
         var photoArray = [];
         for(var  i = 0; i < $scope.collectionOfItems.length; i++){
             $scope.collectionOfItems[i].hasPicture = false;
-
 
             var prom = new Promise(function(resolve, reject) {
                 PhotoFactory.getPhotosByPlantID($scope.collectionOfItems[i].id).then(function (response){
@@ -167,32 +147,17 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
 
 
         Promise.all(photoArray).then(function (success) {
-            console.log("this is the photo");
-            //console.log(success);
 
             var cleanList = [];
-            //console.log(success[1].data.data);
 
             for(var i = 0; i < success.length; i++){
-
-                    console.log(success[i].data.data.length);
-
                 for (var j = 0; j < success[i].data.data.length; j++){
-                    console.log(success[i].data.data[j]);
                         cleanList.push(success[i].data.data[j])
-
-
                 }
-
             }
 
-            console.log(cleanList);
-
             for(var t = 0; t < cleanList.length; t++){
-                console.log(cleanList[t].plant_id);
                for(var i = 0; i < $scope.collectionOfItems.length; i++){
-                   //$scope.collectionOfItems[i].hasPicture = false;
-                   console.log(cleanList[t].url);
                    if (cleanList[t].plant_id == $scope.collectionOfItems[i].id && cleanList[t].type == 'profile'){
                        $scope.collectionOfItems[i].picture = cleanList[t].url;
                        $scope.collectionOfItems[i].hasPicture = true;
@@ -202,8 +167,6 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
             }
 
             $scope.$apply();
-
-
 
         }, function (error) {
 
@@ -219,11 +182,6 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
     }
 
     $scope.locationPath = function(id){
-        //if(id == undefined){
-        //    $state.go("404")
-        //} else {
-        //    $state.go("specificCollection", {collection: id})
-        //}
 
     }
 

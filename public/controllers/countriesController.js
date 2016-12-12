@@ -68,19 +68,6 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
             }
         }
 
-        //for(i = 0; i < speciesCollectionsData.length; i++){
-        //    if(speciesCollectionsData[i].tribe_name == ""){
-        //
-        //    } else {
-        //        var name = speciesCollectionsData[i].tribe_name;
-        //        speciesCollectionsData[i].name = name;
-        //        $scope.collectionOfItems.push(speciesCollectionsData[i]);
-        //    }
-        //}
-
-        for(i = 0; i < $scope.dynamicSidebarContent.subtribes.length; i++){
-            console.log($scope.dynamicSidebarContent.subtribes[i]);
-        }
         $scope.continueLoad();
         $scope.$apply();
 
@@ -107,14 +94,12 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
 
     Promise.all(promArray).then(function (success) {
 
-        console.log(success[0]);
 
         for(var i = 0; i < success[0].length; i++){
             $scope.collectionOfItems.push(success[0][i]);
         }
 
         for(var i = 0; i < $scope.collectionOfItems.length; i++){
-            console.log($scope.collectionOfItems[i]);
             $scope.collectionOfItems[i].hasPicture = false;
         }
 
@@ -128,7 +113,6 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
     $scope.loadPictures = function(){
 
         for(var i = 0 ; i < $scope.collectionOfItems.length; i++){
-            console.log($scope.collectionOfItems[i]);
 
             var prom = new Promise(function(resolve, reject) {
                 PhotoFactory.oneCountryPhoto($scope.collectionOfItems[i].id).then(function (response){
@@ -154,10 +138,6 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
                         }
                     }
                 }
-            }
-
-            for(var i = 0; i < $scope.collectionOfItems.length; i++){
-                console.log($scope.collectionOfItems[i].picture);
             }
 
             $scope.$apply();

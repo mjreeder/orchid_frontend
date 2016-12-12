@@ -41,11 +41,9 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
 
     Promise.all(promArray1).then(function (success) {
 
-        console.log(success);
 
         var specialCollectionsData = success[0];
         var speciesCollectionsData = success[1];
-        console.log(speciesCollectionsData);
 
 
         var i = 0;
@@ -71,20 +69,7 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
             }
         }
 
-        //for(i = 0; i < speciesCollectionsData.length; i++){
-        //    if(speciesCollectionsData[i].tribe_name == ""){
-        //
-        //    } else {
-        //        var name = speciesCollectionsData[i].tribe_name;
-        //        speciesCollectionsData[i].name = name;
-        //        $scope.collectionOfItems.push(speciesCollectionsData[i]);
-        //    }
-        //}
-
-        for(i = 0; i < $scope.dynamicSidebarContent.subtribes.length; i++){
-            console.log($scope.dynamicSidebarContent.subtribes[i]);
-        }
-        $scope.continueLoad();
+        //$scope.continueLoad();
         $scope.$apply();
 
     }, function (error) {
@@ -142,7 +127,6 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
     promArray.push(prom);
 
     Promise.all(promArray).then(function (success) {
-        console.log(success);
 
         for (var i = 0; i < success.length; i++){
             $scope.collectionOfItems = success[0].data.data;
@@ -161,8 +145,6 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
     $scope.loadPictures = function(){
 
         for(var i = 0 ; i < $scope.collectionOfItems.length; i++){
-            //console.log($scope.collectionOfItems[i].id);
-
             var prom = new Promise(function(resolve, reject) {
                 PhotoFactory.onePhotoCollections($scope.collectionOfItems[i].id).then(function (response){
                     resolve(response.data.data);
@@ -187,10 +169,6 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
                         }
                     }
                 }
-            }
-
-            for(var i = 0; i < $scope.collectionOfItems.length; i++){
-                console.log($scope.collectionOfItems[i].picture);
             }
 
             $scope.$apply();

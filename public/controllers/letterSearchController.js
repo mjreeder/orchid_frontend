@@ -17,6 +17,7 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
     $scope.STOPLOADING = false;
 
 
+    $scope.noPlantsToLoad = false;
 
 
     var prom = new Promise(function (resolve, reject){
@@ -24,11 +25,11 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
             //console.log("SUCCESS: ", response.data);
             $scope.plants = response.data.plants;
 
-            //if(undefined !== $scope.plants && $scope.plants.length){
-            //    console.log('asdfasdf');
-            //} else {
-            //    console.log('HEY');
-            //}
+            if(undefined !== $scope.plants && $scope.plants.length){
+                console.log('asdfasdf');
+            } else {
+                $scope.noPlantsToLoad = true;
+            }
 
 
             resolve(response.data.plants);
@@ -44,11 +45,7 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
             } else{
                 $scope.STOPLOADING = true;
                 $scope.loading = false;
-                $scope.plants.length = 0;
             }
-
-
-
 
         }).error(function(response) {
             console.log("ERROR: ", response);
