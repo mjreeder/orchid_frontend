@@ -215,7 +215,7 @@ hr {
     text-align: center;
     line-height: 1.3;
     font-size: 12px;
-    max-width: 567px;
+    max-width: 450px;
     display: block;
     margin: 10px auto;
     margin-bottom: 30px;
@@ -242,3 +242,13 @@ hr {
     margin-bottom: 50px; 
 } 
 
+
+#more-photos-caption {
+    text-align: center;
+    line-height: 1.3;
+    font-size: 12px;
+    display: block;
+    margin: 0px auto;
+    margin-bottom: 30px; 
+     max-width: 400px;
+}

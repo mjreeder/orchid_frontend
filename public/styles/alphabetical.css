@@ -210,17 +210,22 @@ main aside li {
    #search {
         display: block;
         width: 100%;
-
-        
-
- 
     }
 }
+
+
 @media screen and (max-width: 900px) {
    #search {
       display: none; 
     }
 }
+
+@media screen and (max-width: 900px) {
+   .special {
+      display: none; 
+    }
+}
+
 
 
 
@@ -340,7 +345,7 @@ padding: 5px 10px ;
     display: block; 
     margin: 0 auto;
     background-color: white; 
-    padding: 30px; 
+    padding: 30px 30px 100px 30px; 
 }
 
 

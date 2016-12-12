@@ -55,7 +55,9 @@
             <li ng-repeat="item in collectionOfItems | filter:searchBox" ng-click="moveTo(item)">
 <!--                <a><img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">-->
 
-                  <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}">
+<!--                  <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}">-->
+                      <a ui-sref="specificPlant({accession_number: {{plant.accession_number}} })"ng-style="{'background-image':'url('+plant.picture+')'}">
+                      
                       <img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
                       <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">
 
