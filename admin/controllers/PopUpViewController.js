@@ -140,6 +140,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var bloomsOverlap = function() {
       var oldBloom = $scope.data.blooming_end_date;
       var newBloom = $scope.blooming_start_date;
+      if(!$scope.data || !oldBloom){
+        return false;
+      }
       oldBloom = moment(oldBloom);
       newBloom = moment(newBloom);
       if(oldBloom.isAfter(newBloom)){
