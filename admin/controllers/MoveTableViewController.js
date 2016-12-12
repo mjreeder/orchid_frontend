@@ -78,17 +78,41 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
         }
     });
 
+    $scope.roomClick = function(room){
+        console.log(room);
+        $scope.changedRoom = room;
+        $scope.changed = true;
+        $scope.$apply();
+
+    }
+
+
     $scope.WarmPopup = false;
     $scope.DisplayPopup = false;
     $scope.CoolPopup = false;
+    $scope.outsidePopup = false;
+
 
     $scope.showWarmPopup = function() {
         if($scope.WarmPopup == false){
             $scope.CoolPopup = false;
             $scope.WarmPopup = true;
             $scope.DisplayPopup = false;
+            $scope.outsidePopup = false;
+
         } else {
             $scope.WarmPopup = false;
+        }
+    };
+
+    $scope.showOutside = function() {
+        if($scope.outsidePopup == false){
+            $scope.CoolPopup = false;
+            $scope.outsidePopup = false;
+            $scope.DisplayPopup = false;
+            $scope.outsidePopup = true;
+        } else {
+            $scope.outsidePopup = false;
         }
     };
 
@@ -98,6 +122,8 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
             $scope.CoolPopup = true;
             $scope.WarmPopup = false;
             $scope.DisplayPopup = false;
+            $scope.outsidePopup = false;
+
         } else {
             $scope.CoolPopup = false;
         }
@@ -108,6 +134,8 @@ app.controller('MoveTableViewController', function($route, $scope, $rootScope, P
             $scope.CoolPopup = false;
             $scope.WarmPopup = false;
             $scope.DisplayPopup = true;
+            $scope.outsidePopup = false;
+
         } else {
             $scope.DisplayPopup = false;
         }
