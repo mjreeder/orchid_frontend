@@ -122,7 +122,12 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleBloom = function(callback) {
         var data = prepareForFactory('blooming');
-        data.start_date = convertDateToString(data.start_date);
+        if(data.start_date){
+          data.start_date = convertDateToString(data.start_date);
+        }
+        if(data.end_date){
+          data.end_date = convertDateToString(data.end_date);
+        }
         if (objectIsNew('blooming') || $scope.createBloomPressed) {
             BloomingFactory.createBloom(data).then(function() {
                 if (callback) {
