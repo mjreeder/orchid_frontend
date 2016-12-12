@@ -97,7 +97,7 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
     });
 
 
-    $scope.countineLoading = function(){
+    $scope.continueLoad = function(){
         var countryArray = [];
 
         var prom = new Promise(function(resolve, reject) {
