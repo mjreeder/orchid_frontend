@@ -688,7 +688,7 @@ label span {
 }
 
 input[type="button"].delete-collection-button {
-    margin: 0 0 0 15px;
+    margin: 0 0 4px 10px;
     width: auto;
     font-size: 14px;
     display: inline-block;
