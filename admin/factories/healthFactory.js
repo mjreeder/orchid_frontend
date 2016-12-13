@@ -18,6 +18,13 @@ app.factory('HealthFactory', function($http, $rootScope) {
         });
     }
 
+    data.getOneHealth = function(plant_id) {
+      return $http({
+        method: "GET",
+        url: baseUrl + "/plant_id/single/3/" + plant_id
+      });
+    }
+
     data.editHealth = function (healthLink) {
         return $http({
             method: 'PUT',
