@@ -122,6 +122,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleBloom = function(callback) {
         var data = prepareForFactory('blooming');
+        data.start_date = convertDateToString(data.start_date);
         if (objectIsNew('blooming') || $scope.createBloomPressed) {
             BloomingFactory.createBloom(data).then(function() {
                 if (callback) {
@@ -135,6 +136,13 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                 }
             })
         }
+    }
+
+    var convertDateToString = function(date){
+      var day = date.getDate();
+      var month = date.getMonth();
+      var year = date.getYear();
+      return year + "-" + month + "-" + day;
     }
 
     var bloomsOverlap = function() {
