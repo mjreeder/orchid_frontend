@@ -163,6 +163,16 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
                     }
                 }
             }
+
+            for(var i = 0; $scope.collectionOfItems.length; i++)
+            {
+                if($scope.collectionOfItems[i].name == ""){
+                    console.log("wwe have hit");
+                    $scope.collectionOfItems[i].name = "<NO COMMON NAME>";
+                }
+                $scope.$apply();
+
+            }
             $scope.$apply();
 
         }, function (error) {
