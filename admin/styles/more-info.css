@@ -687,11 +687,12 @@ label span {
     display: inline-block;
 }
 
-.delete-collection-button {
+input[type="button"].delete-collection-button {
     margin: 0 0 0 15px;
     width: auto;
     font-size: 14px;
     display: inline-block;
+    background-color: #EF645F;
 }
 
 .collection-button-div {
