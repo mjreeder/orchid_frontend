@@ -107,3 +107,14 @@
 button.selected-house-movetable {
     background: #00604D;
 }
+
+
+.outside-buttons {
+    margin: 40px;
+    
+}
+
+.outside-buttons button {
+  padding: 20px 40px;  
+    font-size: 20px; 
+}

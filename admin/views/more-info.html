@@ -67,7 +67,7 @@
                     <option ng-repeat="country in allCountires">{{country.name}}</option>
                 </select>
 
-            <label id="delete-country" ng-hide="editPlant.culture" ng-show="createNew"  >Delete:</label>
+            <label id="delete-country" ng-hide="editPlant.culture" ng-show="createNew"  >Remove:</label>
             <select id="delete-country-select" ng-model="deselectedCountry" ng-change="deselectCountryFunction(deselectedCountry)" ng-disabled="editPlant.culture && !createNew" ng-show="createNew" ng-hide="editPlant.culture"></br>
                 <option disabled selected value>Select countries</option>
                 <option ng-repeat="country in selectedCountries">{{country.name}}</option>
