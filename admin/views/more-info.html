@@ -109,14 +109,14 @@
 
             <div id="delete-collection-div" >
                 <label for="delete-collection" ng-hide="editPlant.speical_collections">Delete:</label>
-                <select  name="Delete Collection" id="delete-collection">
+                <select  name="Delete Collection" id="delete-collection" ng-change="changeSpecialColelctionDelete(selectedSpecialCollectionDeletedName)" ng-model="selectedSpecialCollectionDeletedName" ng-hide="editPlant.speical_collections">
                     <option selected value="Delete Collection"></option>
                     <option ng-repeat="collection in allCollections">{{collection.name}}</option>
                 </select>
-                <div class="button-new collection-button-div">
-                    <input type="button" class="delete-collection-button" value="Delete Collection" ng-click="createNewCollection()">
+                <div class="button-new collection-button-div" ng-hide="editPlant.speical_collections">
+                    <input type="button" class="delete-collection-button" value="Delete Collection" ng-hide="editPlant.speical_collections" ng-click="deleteSpecialCollection(selectedSpecialCollectionDeleteID)">
                 </div>
-                <p id="collection-warning">(Collection) will be deleted from entire database.</p>
+                <p id="collection-warning" ng-show="collectionWarning && !editPlant.speical_collections">{{selectedSpecialCollectionDeletedName}} will be deleted from entire database.</p>
             </div>
         </fieldset>
 

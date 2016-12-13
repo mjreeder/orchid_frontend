@@ -28,6 +28,19 @@ app.factory('SpecialCollectionsFactory', function($http, $rootScope) {
         });
     };
 
+    data.deleteSpecialCollection = function (specialCollection) {
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/delete/'+specialCollection,
+            data: {
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        });
+    };
+
+
+
 
 
     return data;

@@ -46,6 +46,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.plantLocation = "";
 
+    $scope.collectionWarning = false;
+    $scope.selectedSpecialCollectionDeleteName = "";
+
     //boolean to see if there is a verifed object
     $scope.isVerified;
 
@@ -1760,6 +1763,33 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         $rootScope.apply;
 
     };
+
+    $scope.deleteSpecialCollection = function(){
+
+        if($scope.selectedSpecialCollectionDeletedName == ""){
+            window.alert("No Special Collection to delete");
+        } else {
+
+            SpecialCollectionsFactory.deleteSpecialCollection($scope.selectedSpecialCollectionDeletedName).then(function (response){
+                if(response.data.data[0] == true){
+                    $route.reload();
+
+                } else {
+                    window.alert('Error with Deleting Special Collections');
+                }
+            }, function (error) {
+                window.alert('Network Error.');
+            });
+        }
+    }
+
+    $scope.changeSpecialColelctionDelete = function(name){
+        if(name == "Delete Collection"){
+            $scope.collectionWarning = false;
+        } else {
+            $scope.collectionWarning = true;
+        }
+    }
 
     $scope.uploadFileUrl = function(url, b, thumbnailURL){
         var baseURL = "http://s3.amazonaws.com/bsuorchid/";
