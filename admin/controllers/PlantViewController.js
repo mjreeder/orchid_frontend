@@ -1761,7 +1761,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     };
 
-    $scope.uploadFileUrl = function(url, b){
+    $scope.uploadFileUrl = function(url, b, thumbnailURL){
         var baseURL = "http://s3.amazonaws.com/bsuorchid/";
         var fileName = url.split(baseURL)[1];
         var photo = {
@@ -1771,6 +1771,18 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             'fileName' : fileName
         };
 
+        PhotoFactory.createPhoto(photo).then(function (response){
+            $scope.editPlant.photos = true;
+            $scope.plant_id_url.push(data);
+        });
+
+        var fileName = thumbnailURL.split(baseURL)[1];
+        var photo = {
+            'plant_id' : $scope.plant.id,
+            'url' : thumbnailURL,
+            'type' : 'habitat',
+            'fileName' : fileName
+        };
         PhotoFactory.createPhoto(photo).then(function (response){
             $scope.editPlant.photos = true;
             $scope.plant_id_url.push(data);

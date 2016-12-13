@@ -46,5 +46,12 @@ app.factory('SprayedFactory', function($http, $rootScope) {
         });
     }
 
+    data.getOneSpray = function(plant_id){
+      return $http({
+        method: "GET",
+        url: baseUrl + "/plant_id/single/" + plant_id
+      });
+    }
+
     return data;
 });
