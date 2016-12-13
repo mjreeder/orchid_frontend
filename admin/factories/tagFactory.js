@@ -10,7 +10,6 @@ app.factory('TagFactory', function($http, $rootScope) {
     }
 
     data.createTag = function (tag) {
-        console.log("this is the tag info " + tag);
         return $http({
             method: "POST",
             url: baseUrl + '/create',
@@ -25,7 +24,6 @@ app.factory('TagFactory', function($http, $rootScope) {
     }
 
     data.updateTag = function(tag){
-        console.log("This is the tag" + tag.plant_id);
         return $http({
             method: "PUT",
             url: baseUrl + '/update',
@@ -50,7 +48,6 @@ app.factory('TagFactory', function($http, $rootScope) {
               "session_key": $rootScope.userSessionKey
           }
       });
-    }
-
+    };
     return data;
 });

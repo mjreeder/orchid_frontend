@@ -97,7 +97,7 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
     });
 
 
-    $scope.countineLoading = function(){
+    $scope.continueLoad = function(){
         var countryArray = [];
 
         var prom = new Promise(function(resolve, reject) {
@@ -162,6 +162,16 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
                         break;
                     }
                 }
+            }
+
+            for(var i = 0; $scope.collectionOfItems.length; i++)
+            {
+                if($scope.collectionOfItems[i].name == ""){
+                    console.log("wwe have hit");
+                    $scope.collectionOfItems[i].name = "<NO COMMON NAME>";
+                }
+                $scope.$apply();
+
             }
             $scope.$apply();
 

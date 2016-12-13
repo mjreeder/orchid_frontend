@@ -85,6 +85,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
           alert('Bloom cannot start in the future!');
           return;
         }
+        if(bloomEndIsBeforeStart()){
+          alert('Bloom ending cannot be before start.');
+          return;
+        }
         if (!callback) {
             asyncNetwork();
         } else {
@@ -122,6 +126,12 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleBloom = function(callback) {
         var data = prepareForFactory('blooming');
+        if(data.start_date){
+          data.start_date = convertDateToString(data.start_date);
+        }
+        if(data.end_date){
+          data.end_date = convertDateToString(data.end_date);
+        }
         if (objectIsNew('blooming') || $scope.createBloomPressed) {
             BloomingFactory.createBloom(data).then(function() {
                 if (callback) {
@@ -133,13 +143,26 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                 if (callback) {
                     callback();
                 }
-            })
+            }, function(error){
+                window.alert('Network Error. Please try again.');
+                $location.path('/');
+            });
         }
+    }
+
+    var convertDateToString = function(date){
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getYear() + 1900;
+      return year + "-" + month + "-" + day;
     }
 
     var bloomsOverlap = function() {
       var oldBloom = $scope.data.blooming_end_date;
       var newBloom = $scope.blooming_start_date;
+      if(!$scope.data || !oldBloom){
+        return false;
+      }
       oldBloom = moment(oldBloom);
       newBloom = moment(newBloom);
       if(oldBloom.isAfter(newBloom)){
@@ -149,13 +172,22 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
       }
     }
 
+    var bloomEndIsBeforeStart = function() {
+      var bloomStart = $scope.blooming_start_date;
+      var bloomEnd = $scope.blooming_end_date;
+      bloomStart = moment(bloomStart);
+      if(bloomStart.isAfter(bloomEnd)){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     var bloomStartsInFuture = function() {
       var today = $scope.today;
       var bloomStart = $scope.blooming_start_date;
-      console.log($scope.blooming_start_date);
       today = moment($scope.today);
       bloomStart = moment($scope.bloomStart);
-      console.log(bloomStart.isAfter(today));
       if(bloomStart.isAfter(today, 'day')){
         return true;
       } else {
@@ -405,7 +437,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             setTodayEndBloomState();
             disableNewBloomToday();
             setBloomingState();
-        })
+        }, function(error){
+            window.alert('Network Error. Please try again.');
+            $location.path('/');
+        });
     }
 
     var setBloomingState = function() {
@@ -427,7 +462,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     var handleSprayedInit = function() {
         SprayedFactory.getPestByPlantID($scope.plant.id).then(function(data) {
-            var lastComment = getLastComment(data);
+            var lastComment = getLastComment(data, true);
             lastComment = formatTimeStamp('timestamp', lastComment);
             concatObjects(lastComment, 'sprayed');
         })

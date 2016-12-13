@@ -38,14 +38,14 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.taxonommy">
             </button>
 
-            <label class="labelfirst">Phylum:</label><input type="text" ng-model="plant.phylum" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Class:</label><input type="text" ng-model="plant.class" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Genus:</label><input type="text" ng-model="plant.genus" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Tribe:</label><input type="text" ng-model="plant.tribe" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Species:</label><input type="text" ng-model="plant.species" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Subtribe:</label><input type="text" ng-model="plant.subtribe" ng-disabled="editPlant.taxonommy && !createNew">
-            <label>Variety:</label><input type="text" ng-model="plant.variety" ng-disabled="editPlant.taxonommy && !createNew">
-            <label class="labellast">Authority:</label><input type="text" ng-model="plant.authority" ng-disabled="editPlant.taxonommy && !createNew">
+            <label class="labelfirst">Phylum:</label><input type="text" ng-model="plant.phylum" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
+            <label>Class:</label><input type="text" ng-model="plant.class" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
+            <label>Genus:</label><input type="text" ng-model="plant.genus" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
+            <label>Tribe:</label><input type="text" ng-model="plant.tribe" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
+            <label>Species:</label><input type="text" ng-model="plant.species" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
+            <label>Subtribe:</label><input type="text" ng-model="plant.subtribe" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
+            <label>Variety:</label><input type="text" ng-model="plant.variety" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
+            <label class="labellast">Authority:</label><input type="text" ng-model="plant.authority" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
         </fieldset>
 
         <fieldset id="culture">
@@ -56,9 +56,9 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.culture">
             </button>
 
-            <label>Distribution:</label><input ng-model="plant.distribution" type="text" ng-disabled="editPlant.culture && !createNew">
-            <label>Habitat:</label><input ng-model="plant.habitat" type="text" ng-disabled="editPlant.culture && !createNew"><br/>
-            <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Add a description of about the culture of this plant that will appear to the public."></textarea>
+            <label>Distribution:</label><input ng-model="plant.distribution" type="text" maxlength="300" ng-disabled="editPlant.culture && !createNew">
+            <label>Habitat:</label><input ng-model="plant.habitat" type="text" maxlength="300" ng-disabled="editPlant.culture && !createNew"><br/>
+            <textarea ng-model="plant.origin_comment" type="textarea" ng-disabled="editPlant.culture && !createNew" maxlength="300" placeholder="Add a description of about the culture of this plant that will appear to the public."></textarea>
 
 
             <label ng-hide="editPlant.culture" ng-show="createNew" id="add-country" >Add:</label>
@@ -80,7 +80,7 @@
                 </ul>
             </div>
 
-            <textarea ng-model="plant.countries_note" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Add a description about the countries information."></textarea>
+            <textarea maxlength="1000" ng-model="plant.countries_note" type="textarea" ng-disabled="editPlant.culture && !createNew" placeholder="Add a description about the countries information."></textarea>
 
         </fieldset>
 
@@ -101,7 +101,7 @@
 
 
             <label ></label>
-            <input type="text" ng-disabled="editPlant.speical_collections && !createNew"   ng-model="newCollectionName" ng-hide="editPlant.speical_collections">
+            <input type="text" ng-disabled="editPlant.speical_collections && !createNew" maxlength="180" ng-model="newCollectionName" ng-hide="editPlant.speical_collections">
             <div class="button-new collection-button-div">
                 <input type="button" class="collection-button" value="Create New Collection" ng-click="createNewCollection()" ng-hide="editPlant.speical_collections">
             </div>
@@ -116,12 +116,12 @@
             <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.accesssion">
             <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.accesssion">
         </button>
-        <label>From:</label><input type="text" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
+        <label>From:</label><input type="text" maxlength="300" ng-model="plant.received_from" ng-disabled="editPlant.accesssion && !createNew">
         <label id="received-date">Date:</label>
         <button class="more-calendar">
             <input type="date" id="startDateBloom" ng-model="plant.date_recieved" ng-disabled="editPlant.accesssion && !createNew"/>
         </button>
-        <textarea type="textarea" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
+        <textarea type="textarea" maxlength="300" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
     </fieldset>
 
     <fieldset id="description">
@@ -133,7 +133,7 @@
         </button>
 
         <label>Provide a description that will be visible to the public:</label>
-        <textarea type="textarea" placeholder="Add a description of the plant." ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
+        <textarea maxlength="300" type="textarea" placeholder="Add a description of the plant." ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
     </fieldset>
 
     <fieldset id="hybrid">
@@ -146,18 +146,18 @@
         <label class="labelfirst">
             Parent 1:
         </label>
-        <input type="text" ng-model="plant.parent_one" ng-disabled="editPlant.hybrid && !createNew">
+        <input maxlength="300" type="text" ng-model="plant.parent_one" ng-disabled="editPlant.hybrid && !createNew">
 
         <label class="labelfirst">
             Parent 2:
         </label>
 
-        <input type="text" ng-model="plant.parent_two" ng-disabled="editPlant.hybrid && !createNew"><br/>
+        <input maxlength="300" type="text" ng-model="plant.parent_two" ng-disabled="editPlant.hybrid && !createNew"><br/>
 
         <label>GREX:</label>
-        <input type="text" ng-model="plant.grex_status" ng-disabled="editPlant.hybrid && !createNew">
+        <input maxlength="300" type="text" ng-model="plant.grex_status" ng-disabled="editPlant.hybrid && !createNew">
 
-        <textarea ng-model="plant.hybrid_comment" type="textarea" ng-disabled="editPlant.hybrid && !createNew" placeholder="Comment here about Hybrid."></textarea>
+        <textarea maxlength="300" ng-model="plant.hybrid_comment" type="textarea" ng-disabled="editPlant.hybrid && !createNew" placeholder="Comment here about Hybrid."></textarea>
 
     </fieldset>
 
@@ -248,7 +248,7 @@
         <div class="" ng-hide="!newSplit">
 
             <label for="recipient">Recipient:</label>
-            <input id="recipient" placeholder="John Smith" type='text' ng-model="newPlantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+            <input maxlength="100" id="recipient" placeholder="John Smith" type='text' ng-model="newPlantSplit.recipient" ng-disabled="editPlant.split && !createNew">
 
             <label>Split Date:</label>
             <input type="date" ng-model="newPlantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
@@ -268,7 +268,7 @@
         </button>
 
         <label>Take general notes over the flower here. This will not be seen by the public.</label>
-        <textarea type="textarea" placeholder="General notes" ng-model="plant.general_note" ng-disabled="editPlant.notes && !createNew"></textarea>
+        <textarea maxlength="1000" type="textarea" placeholder="General notes" ng-model="plant.general_note" ng-disabled="editPlant.notes && !createNew"></textarea>
     </fieldset>
 
 <fieldset id="graph" ng-hide="createNew">
