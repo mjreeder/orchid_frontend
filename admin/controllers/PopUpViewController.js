@@ -286,6 +286,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         if (!data.timestamp) {
             data.timestamp = $scope.today;
         }
+        data.timestamp = convertDateToString(data.timestamp);
         var isRecent = checkForRecent($scope.sprayed_timestamp);
         if (objectsMatch('sprayed')) {
             if (callback) {
@@ -311,6 +312,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handlePotting = function(callback) {
         var data = prepareForFactory('potting');
         var isRecent = checkForRecent($scope.potting_timestamp);
+        if(data.timestamp){
+          data.timestamp = convertDateToString(data.timestamp);
+        }
         if (objectsMatch('potting')) {
             if (callback) {
                 callback();
@@ -461,16 +465,16 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var handleSprayedInit = function() {
-        SprayedFactory.getPestByPlantID($scope.plant.id).then(function(data) {
-            var lastComment = getLastComment(data, true);
+        SprayedFactory.getOneSpray($scope.plant.id).then(function(data) {
+            var lastComment = data.data.data;
             lastComment = formatTimeStamp('timestamp', lastComment);
             concatObjects(lastComment, 'sprayed');
         })
     }
 
     var handlePottingInit = function() {
-        PottingFactory.getBloomByPlantID($scope.plant.id).then(function(data) {
-            var lastComment = getLastComment(data);
+        PottingFactory.getOnePot($scope.plant.id).then(function(data) {
+            var lastComment = data.data.data;
             lastComment = formatTimeStamp('timestamp', lastComment);
             concatObjects(lastComment, 'potting');
         })
