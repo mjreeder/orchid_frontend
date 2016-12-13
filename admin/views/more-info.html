@@ -100,12 +100,24 @@
             </br>
 
 
-            <label ></label>
+            <label ng-hide="editPlant.speical_collections">Add:</label>
             <input type="text" ng-disabled="editPlant.speical_collections && !createNew" maxlength="180" ng-model="newCollectionName" ng-hide="editPlant.speical_collections">
             <div class="button-new collection-button-div">
                 <input type="button" class="collection-button" value="Create New Collection" ng-click="createNewCollection()" ng-hide="editPlant.speical_collections">
             </div>
+            </br>
 
+            <div id="delete-collection-div" >
+                <label for="delete-collection" ng-hide="editPlant.speical_collections">Delete:</label>
+                <select  name="Delete Collection" id="delete-collection">
+                    <option selected value="Delete Collection"></option>
+                    <option ng-repeat="collection in allCollections">{{collection.name}}</option>
+                </select>
+                <div class="button-new collection-button-div">
+                    <input type="button" class="delete-collection-button" value="Delete Collection" ng-click="createNewCollection()">
+                </div>
+                <p id="collection-warning">(Collection) will be deleted from entire database.</p>
+            </div>
         </fieldset>
 
 
