@@ -4,7 +4,7 @@ a {
 
 main nav ul li {
     float: left;
-    width: 33.333333333%;
+    width: 25%;
     font-family: 'Aleo', serif;
     font-size: 20px;
     background-color: #01997b;
@@ -21,6 +21,7 @@ main nav ul li a {
 
 main nav ul {
     overflow: hidden;
+    width: 100%; 
 }
 
 #active {
