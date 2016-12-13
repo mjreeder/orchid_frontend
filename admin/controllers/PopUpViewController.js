@@ -469,8 +469,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     }
 
     var handlePottingInit = function() {
-        PottingFactory.getBloomByPlantID($scope.plant.id).then(function(data) {
-            var lastComment = getLastComment(data);
+        PottingFactory.getOnePot($scope.plant.id).then(function(data) {
+            var lastComment = data.data.data;
             lastComment = formatTimeStamp('timestamp', lastComment);
             concatObjects(lastComment, 'potting');
         })

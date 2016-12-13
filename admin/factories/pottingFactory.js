@@ -43,5 +43,12 @@ app.factory('PottingFactory', function($http, $rootScope) {
         });
     }
 
+    data.getOnePot = function(plant_id){
+      return $http({
+        method: "GET",
+        url: baseUrl + "/plant_id/single/" + plant_id
+      });
+    }
+
     return data;
 });
