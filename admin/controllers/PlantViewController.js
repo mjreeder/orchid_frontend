@@ -524,8 +524,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             PlantsFactory.updateCollection(speicalCollectionRelationshipData).then(function(response){
             }, function(error){
-                window.alert('Error. Logging out.');
-                $location.path('/logout');
+                window.alert('Network Error. Please try again.');
+                $location.path('/');
             });
 
 
@@ -606,8 +606,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                     var accessionResponse = response.data.data;
                     resolve(accessionResponse);
                 }, function(error){
-                    window.alert('Error. Logging out.');
-                    $location.path('/logout');
+                    window.alert('Network Error. Please try again.');
+                    $location.path('/');
                 });
             });
 
@@ -727,21 +727,22 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         var plant = {
             "data" : data
         };
+        console.log(plant);
 
         var prom2 = new Promise(function(resolve, reject) {
             PlantsFactory.createNew(plant).then(function(response){
                 var newPlantInfo = response.data.data;
                 resolve(newPlantInfo);
             }, function(error){
-                window.alert('Error. Logging out.');
-                $location.path('/logout');
+                window.alert('Network Error. Please try again.');
+                $location.path('/');
             });
         });
 
         promArray2.push(prom2);
         Promise.all(promArray2).then(function (success) {
-
-            var updateList = []
+            console.log(success);
+            var updateList = [];
             for (var i = 0; i < success.length; i++){
                 if (success[i] != ""){
                     $scope.newPlantID = success[i].id;
@@ -845,8 +846,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         if($scope.plant.general_note == undefined){
             $scope.plant.general_note = "";
         }
-        if($scope.plant.phylum_name == undefined){
-            $scope.plant.phylum_name = "";
+        if($scope.plant.phylum == undefined){
+            $scope.plant.phylum = "";
         }
         if($scope.plant.countries_note == undefined){
             $scope.plant.countries_note = "";
@@ -1077,6 +1078,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.newPlantSplits = [];
     $scope.addPlantSplitFunction = function() {
         $scope.newSplit = true;
+        $scope.newPlantSplit
     };
 
     $scope.editTaxonomy = function() {
@@ -1098,8 +1100,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function(response) {
 
             }, function(error){
-                window.alert('Error. Logging out.');
-                $location.path('/logout');
+                window.alert('Network Error. Please try again.');
+                $location.path('/');
             });
 
         } else {
@@ -1109,28 +1111,31 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.editSplit = function() {
         if ($scope.editPlant.split == false) {
-            $scope.editPlant.split = true;
-            for (var i = 0; i < $scope.newPlantSplits.length; i++) {
-                if ($scope.newPlantSplits[i].recipient !== '' && !$scope.newPlantSplits[i].timestamp !== null) {
-                    var plantSplit = $scope.newPlantSplits[i];
-                    splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function(response) {
+                console.log($scope.newPlantSplit.recipient);
+                console.log($scope.newPlantSplit.timestamp);
+
+                if ($scope.newPlantSplit.recipient == "" || !$scope.newPlantSplit.timestamp == undefined) {
+                    window.alert("Error creating Split");
+                } else {
+                    var plantSplit = {
+                        'recipient': $scope.newPlantSplit.recipient,
+                        'timestamp': $scope.newPlantSplit.timestamp,
+                        'note' : $scope.newPlantSplit.note
+                    };
+
+                    console.log(plantSplit);
+                    splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function (response) {
                     });
+
+                    for (var i = 0; i < $scope.splits.length; i++) {
+                        splitFactory.updateSplits($scope.splits[i], $scope.plant.id).then(function (response) {
+                        });
+                    }
+
+                    $scope.editPlant.split = true;
+
+                    $route.reload();
                 }
-            }
-            for (var i = 0; i < $scope.splits.length; i++) {
-                splitFactory.updateSplits($scope.splits[i], $scope.plant.id).then(function(response) {
-                });
-            }
-            var splitData = {
-                "plant_id" : $scope.plant.id,
-                "recipient" : $scope.newPlantSplit.recipient,
-                "timestamp" : $scope.newPlantSplit.timestamp,
-                "note" : $scope.newPlantSplit.note
-            };
-
-            splitFactory.createNewSplit(splitData, $scope.plant.id).then(function(response) {
-
-            });
         } else {
             $scope.editPlant.split = false;
         }
@@ -1159,36 +1164,58 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.editInactive = function() {
         if ($scope.editPlant.inactive == false) {
-            $scope.editPlant.inactive = true;
 
             var dead_date_object;
             var inactive_date_object;
+
+            var dateError = false;
 
             if($scope.plant.dead_date == null){
                 dead_date_object = null;
             } else {
                 dead_date_object = new Date($scope.plant.dead_date);
+                if(String(dead_date_object.getFullYear()).length > 4 || (dead_date_object.getFullYear()) < 1990){
+                    dateError = true;
+                } else {
+                    console.log(String(dead_date_object.getFullYear()).length);
+
+                }
+
+
             }
 
             if($scope.plant.inactive_date == null){
                 inactive_date_object = null;
             } else {
                 inactive_date_object = new Date($scope.plant.inactive_date);
+                if(String(inactive_date_object.getFullYear()).length > 4 || (inactive_date_object.getFullYear()) < 1990){
+                    dateError = true;
+                } else {
+                    console.log(inactive_date_object.getFullYear().length);
+                }
             }
 
-            var inactiveInformation = {
-                dead_date: dead_date_object,
-                inactive_date: inactive_date_object,
-                inactive_comment: $scope.plant.inactive_comment,
-                id: $scope.plant.id
-            };
+            if ( dateError == true) {
+                window.alert('Date is not in the correct format.');
+            } else {
 
-            PlantsFactory.editInactivePlant(inactiveInformation).then(function(response){
 
-            }, function(error){
-                window.alert('Error. Logging out.');
-                $location.path('/logout');
-            });
+                var inactiveInformation = {
+                    dead_date: dead_date_object,
+                    inactive_date: inactive_date_object,
+                    inactive_comment: $scope.plant.inactive_comment,
+                    id: $scope.plant.id
+                };
+
+                PlantsFactory.editInactivePlant(inactiveInformation).then(function (response) {
+
+                }, function (error) {
+                    window.alert('Network Error. Please try again.');
+                    $location.path('/');
+                });
+                $scope.editPlant.inactive = true;
+
+            }
 
         } else {
             $scope.editPlant.inactive = false;
@@ -1228,8 +1255,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             var x = $scope.accession_number;
             $location.path('/plant/' + x);
         }, function(error){
-            window.alert('Error. Logging out.');
-            $location.path('/logout');
+            window.alert('Network Error. Please try again.');
+            $location.path('/');
         });
 
     };
@@ -1289,8 +1316,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 };
                 PlantsFactory.editCriticalPlant(criticalPlantInformation).then(function (response) {
                 }, function(error){
-                    window.alert('Error. Logging out.');
-                    $location.path('/logout');
+                    window.alert('Network Error. Please try again.');
+                    $location.path('/');
                 });
 
                 var dataAsString = createDateFromString($scope.verifiedObject.verified_data);
@@ -1420,8 +1447,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             PlantsFactory.editCulturePlant(culturePlantInformation).then(function() {
 
             }, function(error){
-                window.alert('Error. Logging out.');
-                $location.path('/logout');
+                window.alert('Network Error. Please try again.');
+                $location.path('/');
             });
 
         } else {
@@ -1432,29 +1459,40 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.editAccession = function() {
         if ($scope.editPlant.accesssion == false) {
-            $scope.editPlant.accesssion = true;
 
             var date_object;
+            var dateError = false;
 
             if($scope.plant.date_recieved == null){
                 date_object = null;
             } else {
                 date_object = new Date($scope.plant.date_recieved);
+                if(String(date_object.getFullYear()).length > 4 || (date_object.getFullYear()) < 1990){
+                    dateError = true;
+                } else {
+
+                }
             }
 
-            var accessionPlantInformation = {
-                received_from: $scope.plant.received_from,
-                donation_comment: $scope.plant.donation_comment,
-                date_received: date_object,
-                id: $scope.plant.id
+
+            if(dateError == false){
+                var accessionPlantInformation = {
+                    received_from: $scope.plant.received_from,
+                    donation_comment: $scope.plant.donation_comment,
+                    date_received: date_object,
+                    id: $scope.plant.id
+                }
+
+                PlantsFactory.editAccessionPlant(accessionPlantInformation).then(function (response) {
+
+                }, function (error) {
+                    window.alert('Network Error. Please try again.');
+                    $location.path('/');
+                });
+                $scope.editPlant.accesssion = true;
+            } else {
+                window.alert('Date is not in the correct format.');
             }
-
-            PlantsFactory.editAccessionPlant(accessionPlantInformation).then(function(response) {
-
-            }, function(error){
-                window.alert('Error. Logging out.');
-                $location.path('/logout');
-            });
         } else {
             $scope.editPlant.accesssion = false;
         }
@@ -1470,8 +1508,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             PlantsFactory.editDescription(descriptionPlantInformation).then(function(response) {
             }, function(error){
-                window.alert('Error. Logging out.');
-                $location.path('/logout');
+                window.alert('Network Error. Please try again.');
+                $location.path('/');
             });
         } else {
             $scope.editPlant.description = false;
@@ -1492,8 +1530,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             PlantsFactory.editHybird(hybridPlantInformation).then(function(response) {
             }, function(error){
-                window.alert('Error. Logging out.');
-                $location.path('/logout');
+                window.alert('Network Error. Please try again.');
+                $location.path('/');
             });
         } else {
             $scope.editPlant.hybrid = false;
@@ -1512,8 +1550,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             PlantsFactory.updateGeneralNotes(generalNotesInformation).then(function(response) {
             }, function(error){
-                window.alert('Error. Logging out.');
-                $location.path('/logout');
+                window.alert('Network Error. Please try again.');
+                $location.path('/');
             });
 
         } else {
@@ -1739,5 +1777,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         });
         $route.reload();
 
+    }
+
+    $scope.scrollToFunction = function(){
+        $(window).scrollTop(0);
     }
 });

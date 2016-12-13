@@ -145,6 +145,9 @@ var isAuthenticated = function ($rootScope, $location, sessionService, UserFacto
             } else {
                 $rootScope.AuthUser = false;
             }
+        }, function(error){
+            window.alert('Network Error. Please try again.');
+            $location.path('/');
         });
         return true;
     } else {
@@ -158,7 +161,6 @@ var isSuperAuthenticated = function ($rootScope, $location, sessionService, User
     var superAdmin = true;
     if (session) {
         $rootScope.isLoggedIn = true;
-        console.log("HEEEE");
         UserFactory.getAuth().then(function (response){
             var data = response.data.data;
 
@@ -169,6 +171,9 @@ var isSuperAuthenticated = function ($rootScope, $location, sessionService, User
                 $location.path("/");
                 $rootScope.AuthUser = false;
             }
+        }, function(error){
+            window.alert('Network Error. Please try againssss.');
+            $location.path('/');
         });
     } else {
         $rootScope.redirect = $location.path();

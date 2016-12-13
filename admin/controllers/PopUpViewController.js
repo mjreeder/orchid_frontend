@@ -143,7 +143,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                 if (callback) {
                     callback();
                 }
-            })
+            }, function(error){
+                window.alert('Network Error. Please try again.');
+                $location.path('/');
+            });
         }
     }
 
@@ -183,10 +186,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var bloomStartsInFuture = function() {
       var today = $scope.today;
       var bloomStart = $scope.blooming_start_date;
-      console.log($scope.blooming_start_date);
       today = moment($scope.today);
       bloomStart = moment($scope.bloomStart);
-      console.log(bloomStart.isAfter(today));
       if(bloomStart.isAfter(today, 'day')){
         return true;
       } else {
@@ -436,7 +437,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             setTodayEndBloomState();
             disableNewBloomToday();
             setBloomingState();
-        })
+        }, function(error){
+            window.alert('Network Error. Please try again.');
+            $location.path('/');
+        });
     }
 
     var setBloomingState = function() {

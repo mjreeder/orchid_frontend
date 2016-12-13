@@ -1,4 +1,4 @@
-app.controller('RegisterViewController', function($scope, $rootScope, UserFactory, $route){
+app.controller('RegisterViewController', function($scope, $rootScope, UserFactory, $route, $location){
 
     $scope.newUser = false;
 
@@ -19,6 +19,9 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
                 var user = $scope.updateUsers[i];
                 UserFactory.updateUser(user).then(function (response){
 
+                }, function(error){
+                    window.alert('Network Error. Please try again.');
+                    $location.path('/');
                 });
             }
         }
@@ -71,6 +74,9 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             var data = response.data.data;
             resolve(data);
         });
+    }, function(error){
+        window.alert('Network Error. Please try again.');
+        $location.path('/');
     });
 
     promArray.push(prom);
@@ -123,6 +129,9 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
             }
             $scope.oringialUsers.push(singleUser);
         }
+    }, function(error){
+        window.alert('Network Error. Please try again.');
+        $location.path('/');
     });
 
     $scope.changePassword = true;
@@ -172,12 +181,11 @@ app.controller('RegisterViewController', function($scope, $rootScope, UserFactor
 
     $scope.changePasswordFunction = function(user) {
         if(user.warning == true){
-            window.alert("this is the current user");
+            window.alert("Warning. This is the current user.");
         }
         $scope.changePassword =false;
         var number;
         for (var index = 0; index < $scope.allUsers.length; index++){
-
             if (user.id == $scope.allUsers[index].id){
                 number = index;
             }

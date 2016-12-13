@@ -98,15 +98,10 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                             var id = updateList[p].plant_id;
                             for (var t = 0; t < $scope.plantsInTable.length; t++){
                                 if (id == $scope.plantsInTable[t].id){
-                                    console.log(updateList[p].verified_date);
                                     $scope.plantsInTable[t].last_varified = updateList[p].verified_date;
-                                    //console.log( $scope.plantsInTable[t].isToday);
-                                    console.log($scope.plantsInTable[t].last_varified);
                                     if(checkIfDateIsToday($scope.plantsInTable[t].last_varified)){
                                         $scope.plantsInTable[t].isToday = true;
-                                        console.log( $scope.plantsInTable[p].isToday);
                                     }else {
-                                        console.log( $scope.plantsInTable[p].isToday);
 
                                     }
                                 }
@@ -125,6 +120,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                         $scope.$apply();
 
                     }, function (error) {
+                        window.alert('asdfasd');
                     });
                 }
 
@@ -155,13 +151,11 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
     };
 
     var checkIfDateIsToday = function(dateString){
-        //console.log(dateString);
       var previousDay = moment(dateString).dayOfYear();
       var previousYear = moment(dateString).year();
       var currentDay = moment().dayOfYear();
       var currentYear = moment().year();
       if((previousDay == currentDay) && (previousYear == currentYear)){
-          //console.log(previousDay + "   " + currentDay + "    "+ previousYear + "   " + currentYear);
         return true;
       } else {
         return false;

@@ -26,7 +26,7 @@
                 </div>
 
                     <div class="top-margin">
-                        <textarea placeholder="Comment here about blooming." name="comments" cols="70" rows="4" ng-model="bloomingComment_note"></textarea>
+                        <textarea maxlength="300" placeholder="Comment here about blooming." name="comments" cols="70" rows="4" ng-model="bloomingComment_note"></textarea>
                     </div>
 
                 </div>
@@ -36,7 +36,7 @@
                 <button ng-click="sprayed_timestamp = today" class="today">Today</button>
                 <input type="date" id="sprayedDate" ng-model="sprayed_timestamp"/>
 
-                <textarea placeholder="Comment here about pest spraying." name="comments" cols="70" rows="4" ng-model="sprayed_note"></textarea>
+                <textarea maxlength="300" placeholder="Comment here about pest spraying." name="comments" cols="70" rows="4" ng-model="sprayed_note"></textarea>
             </div>
 
             <section id="repot" class="top-margin">
@@ -51,7 +51,7 @@
                     <button id="fair" ng-click="health_score = 'fair'" ng-class="{glowHealthFair: health_score == 'fair', noglowHealth: health_score != 'fair'}">Fair</button>
                     <button id="good" ng-click="health_score = 'good'" ng-class="{glowHealthGood: health_score == 'good', noglowHealth: health_score != 'good'}">Good</button>
 
-                <textarea name="comments" cols="70" rows="4" placeholder="Comment here about current health condition." ng-model="health_comment"></textarea>
+                <textarea name="comments" cols="70" rows="4" maxlength="300" placeholder="Comment here about current health condition." ng-model="health_comment"></textarea>
             </section>
 
             <div class="top-margin popup-flagged">
@@ -59,7 +59,7 @@
                 <input id="flagged-checkbox" type="checkbox" ng-model="flagged" ng-click="disableFlag()"/>
                 <span id="flagged-span" class="table-checkbox"></span>
                 </label>
-                <textarea name="comments" cols="70" rows="4" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
+                <textarea name="comments" cols="70" rows="4" maxlength="300" placeholder="Explain why this plant is flagged." ng-model="flag_note"></textarea>
             </div>
         <div class="button-new">
             <button id="more-info">
