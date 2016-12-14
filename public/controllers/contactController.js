@@ -1,5 +1,4 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('contactController', ['$scope', '$location', '$state', 'EmailFactory', function($scope, $location, $state, EmailFactory) {
+orchidApp.controller('contactController', function($scope, $location, $state, EmailFactory) {
 
     $scope.submit = function(){
             console.log($scope.contact.subject);
@@ -12,4 +11,4 @@ orchidApp.controller('contactController', ['$scope', '$location', '$state', 'Ema
 
         //REQUEST TO EMAIL
     }
-}]);
+});

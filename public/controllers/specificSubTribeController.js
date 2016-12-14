@@ -1,19 +1,20 @@
-orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$state', '$stateParams', 'PlantsFactory', 'PhotoFactory', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
+orchidApp.controller('specificSubTribeController', function($scope, $state, $stateParams, PlantsFactory, PhotoFactory, $error) {
 
-
-    $scope.NAMEOFPAGE = $stateParams.tribe;
+    $state.current.data.pageTitle = $stateParams.tribe;
 
     $scope.allItems = [];
 
     $scope.moveTo = function(item){
-        $location.path('/plant/' + item.accession_number);
-    }
+        $state.go('specificPlant', {accession_number: item.accession_number});
+    };
 
     var array = [];
 
     var prom = new Promise(function(resolve, reject) {
-        PlantsFactory.getPlantsFromSubTribe($scope.NAMEOFPAGE).then(function(response){
+        PlantsFactory.getPlantsFromSubTribe($state.current.data.pageTitle).then(function(response){
             resolve(response);
+        }, function(error){
+          reject(error);
         });
 
     });
@@ -26,7 +27,6 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
         if(newData[0] == false){
             $state.go("404")
-
         }
 
         for(var i = 0; i < newData.length; i++){
@@ -50,55 +50,15 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
     };
 
 
-    var promArray1 = [];
-
-    var prom1 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveCollection().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-
-    promArray1.push(prom1);
-
-    var prom2 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveSubtribes().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-    promArray1.push(prom2);
-
-    Promise.all(promArray1).then(function (success) {
-        var specialCollectionsData = success[0];
-        var speciesCollectionsData = success[1];
-
-        var i = 0;
-
-        for(i = 0; i < specialCollectionsData.length; i++){
-            $scope.dynamicSidebarContent.specialCollections.push(specialCollectionsData[i]);
-        }
-        i = 0;
-        var lengthOfSpecies = 0;
-        if (speciesCollectionsData.length > 5){
-            lengthOfSpecies = 6;
-        } else {
-            lengthOfSpecies = speciesCollectionsData.length;
-        }
-        for(i = 0; i < lengthOfSpecies; i++){
-            if(speciesCollectionsData[i].tribe_name == ""){
-
-            } else {
-                var name = speciesCollectionsData[i].tribe_name;
-                speciesCollectionsData[i].name = name;
-                $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
-
-            }
-        }
+    PlantsFactory.topFiveCollectionsAndSubtribes()
+      .then(function (success) {
+        $scope.dynamicSidebarContent.specialCollections = success.collections;
+        $scope.dynamicSidebarContent.subtribes = success.subtribes;
 
         $scope.continueLoad();
-        $scope.$apply();
 
     }, function (error) {
-
+        $error.handle(error);
     });
 
     $scope.continueLoad = function(){
@@ -109,13 +69,12 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
             if($scope.collectionOfItems[i].id == undefined){
 
             } else {
-                PhotoFactory.getPhotosByPlantID($scope.collectionOfItems[i].id).then(function (response){
-
-                });
                 var prom = new Promise(function(resolve, reject) {
                     PhotoFactory.getPhotosByPlantID($scope.collectionOfItems[i].id).then(function (response){
                         resolve(response);
-                    })
+                    }, function(error){
+                      reject(error);
+                    });
                 });
 
                 photoArray.push(prom);
@@ -148,24 +107,24 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
                 }
             }
 
-            for(var i = 0; $scope.collectionOfItems.length; i++)
+            for(var i = 0; i < $scope.collectionOfItems.length; i++)
             {
-                if($scope.collectionOfItems[i].name == ""){
+                if(!$scope.collectionOfItems[i].name){
+//                    console.log("wwe have hit");
                     $scope.collectionOfItems[i].name = "<NO COMMON NAME>";
                 }
-                $scope.$apply();
+//                $scope.$apply();
 
             }
 
-            $scope.$apply();
+//            $scope.$apply();
 
 
 
         }, function (error) {
-
-            $state.go("404")
+            $error.handle(error, false, true);
         });
 
     }
 
-}]);
+});

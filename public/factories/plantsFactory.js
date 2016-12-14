@@ -65,17 +65,64 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
         return $http.get(baseUrl + "/getPlantsFromSubTribe/" + subtribe);
     };
 
-    data.topFiveCollection = function(accessionNumber){
+    data.topFiveCollection = function(){
         return $http.get(baseUrl + '/topFiveCollections');
     };
 
-    data.topFiveSubtribes = function(subtribe){
+    data.topFiveSubtribes = function(){
         return $http.get(baseUrl + "/topFiveSpecies");
     };
 
+    /**
+     * fetch and process top five collections and subtribes
+     * @author Brandon Groff
+     * @returns {Promise} a promise that resolves to the processed data
+     */
+    data.topFiveCollectionsAndSubtribes = function() {
+      
+      var promArr = [
+        data.topFiveCollection(),
+        data.topFiveSubtribes()
+      ];
+      
+      var returnPromise = new Promise(function(resolve, reject){
+        
+        Promise.all(promArr).then(function(dataArr){
+          
+          var specialCollectionsData = dataArr[0].data.data;
+          var speciesCollectionsData = dataArr[1].data.data;
+          
+          //return arrays
+          var returnSpecialCollections = [];
+          var returnSubtribesArray = [];
 
-
-
+          for(var i = 0; i < specialCollectionsData.length; i++){
+              returnSpecialCollections.push(specialCollectionsData[i]);
+          }
+          
+          var lengthOfSpecies = speciesCollectionsData.length > 5 ? 6 : speciesCollectionsData.length;
+          
+          for(var i = 0; i < lengthOfSpecies; i++){
+              if(speciesCollectionsData[i].tribe_name){
+                  var name = speciesCollectionsData[i].tribe_name;
+                  speciesCollectionsData[i].name = name;
+                  returnSubtribesArray.push(speciesCollectionsData[i]);
+              } 
+          }
+          
+          resolve({
+            collections: returnSpecialCollections,
+            subtribes: returnSubtribesArray
+          });
+          
+        }, function(error){
+          reject(error);
+        });
+      });
+      
+      return returnPromise;
+      
+    };
 
     return data;
 });

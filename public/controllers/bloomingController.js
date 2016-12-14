@@ -1,31 +1,13 @@
-orchidApp.controller('bloomingController', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
+orchidApp.controller('bloomingController', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory, $error) {
 
-
-    $scope.NAMEOFPAGE = "Current Blooming";
     $scope.collectionOfItems = [];
 
-    var promArray = [];
-
-    var prom = new Promise(function(resolve, reject) {
-        PlantsFactory.getCurrentBlooming().then(function (response){
-           resolve(response);
-        });
-    });
-
-    promArray.push(prom);
-
-    Promise.all(promArray).then(function (success) {
-
-        for (var i = 0; i < success.length; i++){
-            $scope.collectionOfItems = success[0].data.data;
-        }
-        $scope.$apply();
+    PlantsFactory.getCurrentBlooming()
+      .then(function (response){
+        $scope.collectionOfItems = response.data.data;
         $scope.continueLoading();
-
-
-
-    }, function (error) {
-
+      }, function(error) {
+        $error.handle(error);
     });
 
     $scope.dynamicSidebarContent = {
@@ -39,56 +21,15 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
     };
 
 
-    var promArray1 = [];
+    PlantsFactory.topFiveCollectionsAndSubtribes()
+      .then(function (success) {
+        $scope.dynamicSidebarContent.specialCollections = success.collections;
+        $scope.dynamicSidebarContent.subtribes = success.subtribes;
 
-    var prom1 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveCollection().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-
-    promArray1.push(prom1);
-
-    var prom2 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveSubtribes().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-    promArray1.push(prom2);
-
-    Promise.all(promArray1).then(function (success) {
-
-        var specialCollectionsData = success[0];
-        var speciesCollectionsData = success[1];
-
-        var i = 0;
-
-        for(i = 0; i < specialCollectionsData.length; i++){
-            $scope.dynamicSidebarContent.specialCollections.push(specialCollectionsData[i]);
-        }
-        i = 0;
-        var lengthOfSpecies = 0;
-        if (speciesCollectionsData.length > 5){
-            lengthOfSpecies = 6;
-        } else {
-            lengthOfSpecies = speciesCollectionsData.length;
-        }
-        for(i = 0; i < lengthOfSpecies; i++){
-            if(speciesCollectionsData[i].tribe_name == ""){
-
-            } else {
-                var name = speciesCollectionsData[i].tribe_name;
-                speciesCollectionsData[i].name = name;
-                $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
-
-            }
-        }
-
-        $scope.continueLoad();
-        $scope.$apply();
+        $scope.continueLoading();
 
     }, function (error) {
-
+        $error.handle(error);
     });
 
 
@@ -100,13 +41,13 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
             var prom = new Promise(function(resolve, reject) {
                 PhotoFactory.getPhotosByPlantID($scope.collectionOfItems[i].id).then(function (response){
                     resolve(response);
-                })
+                }, function(error){
+                    reject(error);
+                });
             });
 
             photoArray.push(prom);
         }
-        $scope.$apply();
-
 
         Promise.all(photoArray).then(function (success) {
 
@@ -136,14 +77,13 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
 
             }
 
-            $scope.$apply();
-
         }, function (error) {
-
-            $state.go("404")
+            $error.handle(error, false, true);
+//            $state.go("404")
         });
 
-    }
+    };
+  
     $scope.moveTo = function(item){
         $location.path('/plant/' + item.accession_number);
     };
