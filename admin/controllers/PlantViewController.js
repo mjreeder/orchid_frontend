@@ -47,7 +47,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.plantLocation = "";
 
     $scope.collectionWarning = false;
-    $scope.selectedSpecialCollectionDeleteName = "";
+    $scope.selectedSpecialCollectionDeletedName = "";
 
     //boolean to see if there is a verifed object
     $scope.isVerified;
@@ -1756,27 +1756,25 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             if(photo.id == $scope.theSelectedProfilePicture.id) {
                 $scope.theSelectedProfilePicture = "";
             }
-
-
         }
-
         $rootScope.apply;
-
     };
 
     $scope.deleteSpecialCollection = function(){
 
         if($scope.selectedSpecialCollectionDeletedName == ""){
+
             window.alert("No Special Collection to delete");
         } else {
-
+            console.log($scope.selectedSpecialCollectionDeletedName);
             SpecialCollectionsFactory.deleteSpecialCollection($scope.selectedSpecialCollectionDeletedName).then(function (response){
+                console.log(response);
                 if(response.data.data[0] == true){
                     $route.reload();
-
                 } else {
                     window.alert('Error with Deleting Special Collections');
                 }
+                console.log(response);
             }, function (error) {
                 window.alert('Network Error.');
             });

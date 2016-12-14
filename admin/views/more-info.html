@@ -114,7 +114,7 @@
                     <option ng-repeat="collection in allCollections">{{collection.name}}</option>
                 </select>
                 <div class="button-new collection-button-div" ng-hide="editPlant.speical_collections">
-                    <input type="button" class="delete-collection-button" value="Delete Collection" ng-hide="editPlant.speical_collections" ng-click="deleteSpecialCollection(selectedSpecialCollectionDeleteID)">
+                    <input type="button" class="delete-collection-button" value="Delete Collection" ng-hide="editPlant.speical_collections" ng-click="deleteSpecialCollection()">
                 </div>
                 <p id="collection-warning" ng-show="collectionWarning && !editPlant.speical_collections">{{selectedSpecialCollectionDeletedName}} will be deleted from entire database.</p>
             </div>
