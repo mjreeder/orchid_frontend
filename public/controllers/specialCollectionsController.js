@@ -1,5 +1,4 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$state', '$stateParams', 'SpeicalCollectionsFactory', 'PhotoFactory', 'PlantsFactory', function($scope, $location, $state, $stateParams, SpeicalCollectionsFactory, PhotoFactory, PlantsFactory) {
+orchidApp.controller('specialCollectionsController', function($scope, $location, $state, $stateParams, SpeicalCollectionsFactory, PhotoFactory, PlantsFactory) {
 
 
     $scope.NAMEOFPAGE = "Special Collections";
@@ -126,15 +125,16 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
 
     promArray.push(prom);
 
-    Promise.all(promArray).then(function (success) {
+    Promise.all(promArray)
+      .then(function (success) {
 
         for (var i = 0; i < success.length; i++){
             $scope.collectionOfItems = success[0].data.data;
         }
-
-        $scope.$apply();
+      console.log(success);
+//        $scope.$apply();
         $scope.loadPictures();
-    }, function (error) {
+      }, function (error) {
 
     });
 
@@ -183,4 +183,4 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
     };
 
     init();
-}]);
+});

@@ -1,4 +1,27 @@
-var orchidApp = angular.module('orchidApp', ['ui.router']);
+var orchidApp = angular.module('orchidApp', ['ui.router', 'ui-notification']);
+
+orchidApp.constant('config', {
+  dev: true
+});
+
+/* Fix Angular 1.6 error */
+//orchidApp.config(['$qProvider', function ($qProvider) {
+//    $qProvider.errorOnUnhandledRejections(false);
+//}]);
+
+/* Configure the ui-notifications */
+orchidApp.config(function(NotificationProvider) {
+    NotificationProvider.setOptions({
+        delay: 4000,
+        startTop: 20,
+        startRight: 10,
+        verticalSpacing: 20,
+        horizontalSpacing: 20,
+        positionX: 'right',
+        positionY: 'top',
+        closeOnClick: true
+    });
+});
 
 orchidApp.config(function($stateProvider, $urlRouterProvider) {
 

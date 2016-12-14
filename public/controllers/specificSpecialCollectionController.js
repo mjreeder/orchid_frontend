@@ -1,5 +1,4 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$location', '$state', '$stateParams', 'SpeicalCollectionsFactory', 'PhotoFactory', 'PlantsFactory', function($scope, $location, $state, $stateParams, SpeicalCollectionsFactory, PhotoFactory, PlantsFactory) {
+orchidApp.controller('specificSpecialCollectionsController', function($scope, $location, $state, $stateParams, SpeicalCollectionsFactory, PhotoFactory, PlantsFactory) {
 
     var collectionNumber =  $stateParams.collection;
 
@@ -166,14 +165,11 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
                }
             }
 
-            for(var i = 0; $scope.collectionOfItems.length; i++)
+            for(var i = 0; i < $scope.collectionOfItems.length; i++)
             {
-                if($scope.collectionOfItems[i].name == ""){
-                    console.log("wwe have hit");
+                if(!$scope.collectionOfItems[i].name){
                     $scope.collectionOfItems[i].name = "<NO COMMON NAME>";
                 }
-                $scope.$apply();
-
             }
             $scope.$apply();
 
@@ -195,4 +191,4 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
     }
 
 
-}]);
+});

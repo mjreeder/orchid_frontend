@@ -1,5 +1,4 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('subtribeController', ['$scope', '$location', '$state', '$stateParams', 'PlantsFactory', 'PhotoFactory', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
+orchidApp.controller('subtribeController', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
 
     $scope.NAMEOFPAGE = "Sub Tribes";
 
@@ -144,4 +143,4 @@ orchidApp.controller('subtribeController', ['$scope', '$location', '$state', '$s
 
 
 
-}]);
+});

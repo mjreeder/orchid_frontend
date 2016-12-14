@@ -1,5 +1,4 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('specificCountryController', ['$scope', '$location', '$state', '$stateParams', 'countryFactory', 'PlantsFactory', 'PhotoFactory', function($scope, $location, $state, $stateParams, countryFactory, PlantsFactory, PhotoFactory) {
+orchidApp.controller('specificCountryController', function($scope, $location, $state, $stateParams, countryFactory, PlantsFactory, PhotoFactory) {
     $scope.NAMEOFPAGE = $stateParams.country;
 
     $scope.currentCountries = [];
@@ -184,4 +183,4 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
     $scope.moveTo = function(item){
         $location.path('/plant/' + item.accession_number);
     }
-}]);
+});

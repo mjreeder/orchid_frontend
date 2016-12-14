@@ -1,4 +1,4 @@
-orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$state', '$stateParams', 'PlantsFactory', 'PhotoFactory', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
+orchidApp.controller('specificSubTribeController', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
 
 
     $scope.NAMEOFPAGE = $stateParams.tribe;
@@ -175,4 +175,4 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
     }
 
-}]);
+});

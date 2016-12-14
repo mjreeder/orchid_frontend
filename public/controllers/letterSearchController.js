@@ -1,5 +1,4 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'PlantsFactory', 'PhotoFactory', function($scope, $stateParams, PlantsFactory, PhotoFactory, countryFactory) {
+orchidApp.controller('letterSearchController', function($scope, $stateParams, PlantsFactory, PhotoFactory, countryFactory) {
     $scope.letter = $stateParams.letter;
     if($scope.letter == ""){
         $location.path('/alphabet/A');
@@ -21,7 +20,7 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
 
 
     var prom = new Promise(function (resolve, reject){
-        PlantsFactory.getPaginatedPlants($scope.letter, 1, 12).success(function(response) {
+        PlantsFactory.getPaginatedPlants($scope.letter, 1, 12).then(function(response) {
             //console.log("SUCCESS: ", response.data);
             $scope.plants = response.data.plants;
 
@@ -47,7 +46,7 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
                 $scope.loading = false;
             }
 
-        }).error(function(response) {
+        }, function(response) {
             console.log("ERROR: ", response);
             $scope.loading = false;
         });
@@ -151,6 +150,6 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
     }
 
 
-}]);
+});
 
 

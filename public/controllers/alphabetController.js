@@ -1,5 +1,4 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$stateParams', 'PlantsFactory', 'PhotoFactory', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
+orchidApp.controller('alphabetController', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
     $scope.NAMEOFPAGE = "Alphabetical";
     var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     $scope.tabs = {};
@@ -162,4 +161,4 @@ orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$s
         $state.go('alphabetical.search', {letter: letter});
     };
 
-}]);
+});
