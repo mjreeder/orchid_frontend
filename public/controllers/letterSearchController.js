@@ -1,36 +1,31 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'PlantsFactory', 'PhotoFactory', function($scope, $stateParams, PlantsFactory, PhotoFactory, countryFactory) {
+orchidApp.controller('letterSearchController', function($scope, $state, $stateParams, PlantsFactory, PhotoFactory, countryFactory, $error) {
     $scope.letter = $stateParams.letter;
-    if($scope.letter == ""){
-        $state.go('alphabetical.search', {letter: letter});
+  
+    if(!$scope.letter){
+        $state.go('alphabetical.search', {letter: 'A'});
     }
+  
     $scope.loading = true;
     $scope.plants = [];
     $scope.picture = [];
     var pages = 0;
 
-
-
-    var PromArray = [];
     var picturePromArray = [];
     var pictureSideArray = [];
     $scope.STOPLOADING = false;
 
-
     $scope.noPlantsToLoad = false;
 
-
-    var prom = new Promise(function (resolve, reject){
-        PlantsFactory.getPaginatedPlants($scope.letter, 1, 12).success(function(response) {
-            $scope.plants = response.data.plants;
-
-            if(undefined !== $scope.plants && $scope.plants.length){
-            } else {
+    PlantsFactory.getPaginatedPlants($scope.letter, 1, 12)
+      .then(function(response) {
+            //console.log("SUCCESS: ", response.data);
+            $scope.plants = response.data.data.plants;
+            
+            if(!$scope.plants || $scope.plants.length == 0){
                 $scope.noPlantsToLoad = true;
             }
 
-
-            resolve(response.data.plants);
+//            resolve(response.data.plants);
             pages = response.data.pages;
 
 
@@ -44,24 +39,17 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
                 $scope.STOPLOADING = true;
                 $scope.loading = false;
             }
+      
+            xyz();
 
-        }).error(function(response) {
-            console.log("ERROR: ", response);
+        }, function(error) {
+            $error.handle(error);
             $scope.loading = false;
         });
-    });
 
-    PromArray.push(prom);
-    Promise.all(PromArray).then(function (success){
-       xyz();
-    });
-
-
-
-
-
+  
+    //WHAT DOES THIS DO??
     var xyz = function(){
-
         if($scope.STOPLOADING == false) {
 
 
@@ -71,6 +59,8 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
                         //var photoResponseData = response.data.data;
                         //$scope.picture.push(photoResponseData);
                         resolve(response.data.data);
+                    }, function(error){
+                      reject(error);
                     });
                 });
                 picturePromArray.push(prom);
@@ -100,27 +90,21 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
                                         $scope.plants[j].hasPicture = true;
                                         foundPhoto = true;
                                         break;
-                                    } else {
-                                    }
-
-
-                                } else {
-
+                                    } 
                                 }
                             }
                             if (foundPhoto == true) {
                                 break;
                             }
                         }
-                    } else {
-
-                    }
+                    } 
 
                 }
 
+                $scope.$digest();
 
-                $scope.$apply();
-
+            }, function(error){
+              $error.handle(error);
             });
         }
     };
@@ -132,23 +116,17 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
     $scope.getNewPage = function(pageNumber) {
         $scope.loading = true;
         PlantsFactory.getPaginatedPlants($scope.letter, pageNumber, 12).success(function(response) {
-            console.log("SUCCESS: ", response);
+//            console.log("SUCCESS: ", response);
             if(response.data.plants) {
                 $scope.plants = response.data.plants;
             }
             $scope.loading = false;
-        }).error(function(response) {
-            console.log("ERROR:", response);
+        }).error(function(error) {
+            $error.handle(error);
             $scope.loading = false;
         });
     };
 
-    var abc = function(){
-        //for(var i = 0; i < )
-        //console.log('abc');
-    }
-
-
-}]);
+});
 
 

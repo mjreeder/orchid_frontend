@@ -15,7 +15,7 @@
         <main>
             <article>
 
-                <h1>{{NAMEOFPAGE}}</h1>
+                <h1>{{$state.current.data.pageTitle}}</h1>
 
                 <img src="{{profilePicture}}" ng-show="haveProfilePicture" width="100%" />
 
@@ -73,7 +73,7 @@
                     There are no more photos of this plant. Maybe you should visit the Greenhouse and see it for yourself! 
                     </div>
                     <ul ng-repeat="photo in allimagesURL">
-                        <li> <img src="{{photo}}" alt="flowers"> </li>
+                        <li> <img ng-src="{{photo}}" alt="flowers"> </li>
                     </ul>
 
                 </section>

@@ -1,7 +1,4 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('subtribeController', ['$scope', '$location', '$state', '$stateParams', 'PlantsFactory', 'PhotoFactory', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
-
-    $scope.NAMEOFPAGE = "Sub Tribes";
+orchidApp.controller('subtribeController', function($scope, $state, $stateParams, PlantsFactory, PhotoFactory, $error) {
 
     $scope.collectionOfItems = [];
 
@@ -14,7 +11,7 @@ orchidApp.controller('subtribeController', ['$scope', '$location', '$state', '$s
 
 
     $scope.moveTo = function(item){
-        $location.path('/sub_tribe/' + item.name);
+        $state.go('specificSubTribe', {tribe: item.name});
     };
 
     $scope.dynamicSidebarContent = {
@@ -27,72 +24,16 @@ orchidApp.controller('subtribeController', ['$scope', '$location', '$state', '$s
         $scope.dynamicSidebarContent.subtribes; //= factory call to pull in subtribes; TODO
     };
 
+    PlantsFactory.topFiveCollectionsAndSubtribes()
+      .then(function (success) {
+        $scope.dynamicSidebarContent.specialCollections = success.collections;
+        $scope.dynamicSidebarContent.subtribes = success.subtribes;
+        $scope.collectionOfItems = success.subtribes;
 
-    var promArray1 = [];
-
-    var prom1 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveCollection().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-
-    promArray1.push(prom1);
-
-    var prom2 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveSubtribes().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-    promArray1.push(prom2);
-
-    Promise.all(promArray1).then(function (success) {
-
-        console.log(success);
-
-        var specialCollectionsData = success[0];
-        var speciesCollectionsData = success[1];
-
-        var i = 0;
-
-        for(i = 0; i < specialCollectionsData.length; i++){
-            $scope.dynamicSidebarContent.specialCollections.push(specialCollectionsData[i]);
-        }
-        i = 0;
-        var lengthOfSpecies = 0;
-        if (speciesCollectionsData.length > 5){
-            lengthOfSpecies = 6;
-        } else {
-            lengthOfSpecies = speciesCollectionsData.length;
-        }
-        for(i = 0; i < lengthOfSpecies; i++){
-            if(speciesCollectionsData[i].tribe_name == ""){
-
-            } else {
-                var name = speciesCollectionsData[i].tribe_name;
-                speciesCollectionsData[i].name = name;
-                $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
-
-            }
-        }
-
-        for(i = 0; i < speciesCollectionsData.length; i++){
-            if(speciesCollectionsData[i].tribe_name == ""){
-
-            } else {
-                var name = speciesCollectionsData[i].tribe_name;
-                speciesCollectionsData[i].name = name;
-                $scope.collectionOfItems.push(speciesCollectionsData[i]);
-            }
-        }
-
-        for(i = 0; i < $scope.dynamicSidebarContent.subtribes.length; i++){
-            console.log($scope.dynamicSidebarContent.subtribes[i]);
-        }
         $scope.continueLoad();
-        $scope.$apply();
 
     }, function (error) {
-
+        $error.handle(error);
     });
 
     var pictureArray = [];
@@ -101,11 +42,13 @@ orchidApp.controller('subtribeController', ['$scope', '$location', '$state', '$s
     $scope.continueLoad = function() {
 
         for (var i = 0; i < $scope.collectionOfItems.length; i++) {
-            console.log($scope.collectionOfItems[i].tribe_name);
+//            console.log($scope.collectionOfItems[i].tribe_name);
 
             var prom = new Promise(function (resolve, reject) {
                 PhotoFactory.onePhotoTribe($scope.collectionOfItems[i].tribe_name).then(function (response) {
                     resolve(response.data.data);
+                }, function(error){
+                  reject(error);
                 });
             });
 
@@ -116,7 +59,7 @@ orchidApp.controller('subtribeController', ['$scope', '$location', '$state', '$s
 
         Promise.all(pictureArray).then(function (success) {
 
-            console.log(success);
+//            console.log(success);
             for (var i = 0; i < $scope.collectionOfItems.length; i++) {
                 $scope.collectionOfItems[i].hasPicture = false;
             }
@@ -135,13 +78,13 @@ orchidApp.controller('subtribeController', ['$scope', '$location', '$state', '$s
                 }
             }
 
-            $scope.$apply();
+//            $scope.$apply();
 
         }, function (error) {
-
+          $error.handle(error);
         });
     }
 
 
 
-}]);
+});

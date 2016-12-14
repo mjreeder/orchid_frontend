@@ -1,8 +1,5 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$stateParams', 'countryFactory', 'PlantsFactory', 'PhotoFactory', function($scope, $location, $state, $stateParams, countryFactory, PlantsFactory, PhotoFactory) {
-    $scope.NAMEOFPAGE = $stateParams.country;
+orchidApp.controller('countriesController', function($scope, $state, $stateParams, countryFactory, PlantsFactory, PhotoFactory, $error) {
 
-    $scope.NAMEOFPAGE = "Countries";
     $scope.collectionOfItems = [];
     $scope.plantsOfCountry = [];
     $scope.dynamicSidebarContent = {
@@ -21,78 +18,30 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
     };
 
 
-    var promArray1 = [];
+    PlantsFactory.topFiveCollectionsAndSubtribes()
+      .then(function (success) {
+        $scope.dynamicSidebarContent.specialCollections = success.collections;
+        $scope.dynamicSidebarContent.subtribes = success.subtribes;
 
-    var prom1 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveCollection().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-
-    promArray1.push(prom1);
-
-    var prom2 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveSubtribes().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-    promArray1.push(prom2);
-
-    Promise.all(promArray1).then(function (success) {
-
-        var specialCollectionsData = success[0];
-        var speciesCollectionsData = success[1];
-
-        var i = 0;
-
-        for(i = 0; i < specialCollectionsData.length; i++){
-            $scope.dynamicSidebarContent.specialCollections.push(specialCollectionsData[i]);
-        }
-        i = 0;
-        var lengthOfSpecies = 0;
-        if (speciesCollectionsData.length > 5){
-            lengthOfSpecies = 6;
-        } else {
-            lengthOfSpecies = speciesCollectionsData.length;
-        }
-        for(i = 0; i < lengthOfSpecies; i++){
-            if(speciesCollectionsData[i].tribe_name == ""){
-
-            } else {
-                var name = speciesCollectionsData[i].tribe_name;
-                speciesCollectionsData[i].name = name;
-                $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
-
-            }
-        }
-        $scope.$apply();
+        $scope.loadPictures();
 
     }, function (error) {
-
+        $error.handle(error);
     });
+  
     $scope.moveTo = function(item){
-        $location.path('/country/' + item.name);
+        $state.go('specificCountry', {country: item.name});
     };
 
-    var promArray = [];
+    
     var pictureArray = [];
     var syncArray = [];
 
-
-
-    var prom = new Promise(function(resolve, reject) {
-        countryFactory.getCurrentCountires().then(function (response){
-            resolve(response.data.data);
-        });
-    });
-
-    promArray.push(prom);
-
-    Promise.all(promArray).then(function (success) {
-
-
-        for(var i = 0; i < success[0].length; i++){
-            $scope.collectionOfItems.push(success[0][i]);
+    countryFactory.getCurrentCountires().then(function (response){
+          var success = response.data.data;
+          
+          for(var i = 0; i < success.length; i++){
+            $scope.collectionOfItems.push(success[i]);
         }
 
         for(var i = 0; i < $scope.collectionOfItems.length; i++){
@@ -100,10 +49,8 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
         }
 
         $scope.loadPictures();
-
-
-    }, function (error) {
-
+    }, function(error){
+      $error.handle(error);
     });
 
     $scope.loadPictures = function(){
@@ -136,12 +83,12 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
                 }
             }
 
-            $scope.$apply();
+//            $scope.$apply();
 
         }, function (error) {
-
+            $error.handle(error);
         });
     }
 
     init();
-}]);
+});
