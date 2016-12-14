@@ -524,7 +524,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleSprayedInit = function() {
         SprayedFactory.getOneSpray($scope.plant.id).then(function(data) {
             var lastComment = data.data.data;
-            lastComment = formatTimeStamp('timestamp', lastComment);
+            if(data.timestamp){
+              lastComment = formatTimeStamp('timestamp', lastComment);
+            }
             concatObjects(lastComment, 'sprayed');
         })
     }
@@ -532,7 +534,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handlePottingInit = function() {
         PottingFactory.getOnePot($scope.plant.id).then(function(data) {
             var lastComment = data.data.data;
-            lastComment = formatTimeStamp('timestamp', lastComment);
+            if(data.timestamp){
+              lastComment = formatTimeStamp('timestamp', lastComment);
+            }
             concatObjects(lastComment, 'potting');
         })
     }
@@ -610,6 +614,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     //Add data to scope object
     var concatObjects = function(data, prefix) {
+        // console.log(data);
         for (key in data) {
             if (data.hasOwnProperty(key)) {
                 $scope[prefix + '_' + key] = data[key];
