@@ -24,7 +24,6 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
     Promise.all(array).then(function (success) {
         var newData = success[0].data.data;
 
-        console.log(newData);
         if(newData[0] == false){
             $state.go("404")
 
@@ -32,10 +31,6 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
         for(var i = 0; i < newData.length; i++){
             $scope.collectionOfItems.push(newData[i]);
-        }
-
-        for(var i = 0; i < $scope.collectionOfItems.length; i++){
-            console.log($scope.collectionOfItems[i]);
         }
 
         $scope.$apply();
@@ -115,7 +110,7 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
             } else {
                 PhotoFactory.getPhotosByPlantID($scope.collectionOfItems[i].id).then(function (response){
-                    console.log(response);
+
                 });
                 var prom = new Promise(function(resolve, reject) {
                     PhotoFactory.getPhotosByPlantID($scope.collectionOfItems[i].id).then(function (response){
@@ -142,12 +137,11 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
 
 
             for(var t = 0; t < cleanList.length; t++){
-                console.log(cleanList[t].plant_id);
                 for(var i = 0; i < $scope.collectionOfItems.length; i++){
                     $scope.collectionOfItems[i].hasPicture = false;
 
                     if (cleanList[t].plant_id == $scope.collectionOfItems[i].id){
-                        $scope.collectionOfItems[i].picture = cleanList[t].url;
+                        $scope.collectionOfItems[i].picture = cleanList[t].thumb_url;
                         $scope.collectionOfItems[i].hasPicture = true;
                         break;
                     }
@@ -157,7 +151,6 @@ orchidApp.controller('specificSubTribeController', ['$scope', '$location', '$sta
             for(var i = 0; $scope.collectionOfItems.length; i++)
             {
                 if($scope.collectionOfItems[i].name == ""){
-                    console.log("wwe have hit");
                     $scope.collectionOfItems[i].name = "<NO COMMON NAME>";
                 }
                 $scope.$apply();

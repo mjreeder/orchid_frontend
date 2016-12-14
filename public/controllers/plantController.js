@@ -34,7 +34,6 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
       $scope.getMoreBlooms = function() {
         BloomingFactory.getAllBloomByPlantID($scope.plantInformation.id).then(function(response) {
           var data = response.data.data;
-          console.log(data);
           for (var i = 0; i < data.length; i++) {
             $scope.blooms.push(data[i]);
             if (isInBloomYears(data[i]) == false) {
@@ -86,7 +85,6 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
   }
 
   $scope.createPlant = function() {
-    console.log($scope.plantInformation);
     $scope.plant = {
       'id': $scope.plantInformation.id,
 

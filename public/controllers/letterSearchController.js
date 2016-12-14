@@ -2,7 +2,7 @@ var orchidApp = angular.module('orchidApp');
 orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'PlantsFactory', 'PhotoFactory', function($scope, $stateParams, PlantsFactory, PhotoFactory, countryFactory) {
     $scope.letter = $stateParams.letter;
     if($scope.letter == ""){
-        $location.path('/alphabet/A');
+        $state.go('alphabetical.search', {letter: letter});
     }
     $scope.loading = true;
     $scope.plants = [];
@@ -22,11 +22,9 @@ orchidApp.controller('letterSearchController', ['$scope','$stateParams', 'Plants
 
     var prom = new Promise(function (resolve, reject){
         PlantsFactory.getPaginatedPlants($scope.letter, 1, 12).success(function(response) {
-            //console.log("SUCCESS: ", response.data);
             $scope.plants = response.data.plants;
 
             if(undefined !== $scope.plants && $scope.plants.length){
-                console.log('asdfasdf');
             } else {
                 $scope.noPlantsToLoad = true;
             }

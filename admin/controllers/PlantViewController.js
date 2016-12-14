@@ -1779,7 +1779,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 window.alert('Network Error.');
             });
         }
-    }
+    };
 
     $scope.changeSpecialColelctionDelete = function(name){
         if(name == "Delete Collection"){
@@ -1787,7 +1787,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         } else {
             $scope.collectionWarning = true;
         }
-    }
+    };
 
     $scope.uploadFileUrl = function(url, b, thumbnailURL){
         var baseURL = "http://s3.amazonaws.com/bsuorchid/";
