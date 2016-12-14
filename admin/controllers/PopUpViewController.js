@@ -137,6 +137,8 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                 if (callback) {
                     callback();
                 }
+            }, function(data){
+              alert("Network Error; either the network is down or you are not logged in.");
             })
         } else {
             BloomingFactory.updateBloom(data).then(function() {
@@ -144,7 +146,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                     callback();
                 }
             }, function(error){
-                window.alert('Network Error. Please try again.');
+                window.alert('"Network Error; either the network is down or you are not logged in.');
                 $location.path('/');
             });
         }
@@ -259,12 +261,20 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                 if (callback) {
                     callback();
                 }
+            }, function(data){
+              if(callback){
+                alert("Network Error; either the network is down or you are not logged in.");
+              }
             })
         } else {
             Bloom_CommentFactory.updateBloom_Comment(data).then(function() {
                 if (callback) {
                     callback();
                 }
+            }, function(data){
+              if(callback){
+                alert("Network Error; either the network is down or you are not logged in.");
+              }
             })
         }
     }
@@ -299,12 +309,20 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                 if (callback) {
                     callback();
                 }
+            }, function(data){
+              if(callback){
+                alert("Network Error; either the network is down or you are not logged in.");
+              }
             });
         } else {
             SprayedFactory.updateSplit(data).then(function() {
                 if (callback) {
                     callback();
                 }
+            }, function(data){
+              if(callback){
+                alert("Network Error; either the network is down or you are not logged in.");
+              }
             })
         }
     }
@@ -326,12 +344,20 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                 if (callback) {
                     callback();
                 }
+            }, function(data){
+              if(callback){
+                alert("Network Error; either the network is down or you are not logged in.");
+              }
             })
         } else {
             PottingFactory.updatePotting(data).then(function() {
                 if (callback) {
                     callback();
                 }
+            }, function(data){
+              if(callback){
+                alert("Network Error; either the network is down or you are not logged in.");
+              }
             })
         }
     }
@@ -361,6 +387,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             if (callback) {
                 callback();
             }
+        }, function(data){
+          if(callback){
+            alert("Network Error; either the network is down or you are not logged in.");
+          }
         });
     }
 
