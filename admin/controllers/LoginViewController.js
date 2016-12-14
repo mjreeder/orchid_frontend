@@ -1,4 +1,7 @@
 app.controller('LoginViewController', function($scope, $rootScope, $location, SessionFactory, sessionService, CONFIG){
+
+  sessionService.removeSession();
+
   $scope.login = function (credentials) {
     SessionFactory.login(credentials).then(function (response) {
       sessionService.createStoredSession(response.data.data.session_key, response.data.data.session_id);
