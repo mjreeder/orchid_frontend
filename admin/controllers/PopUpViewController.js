@@ -103,7 +103,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         handlePotting();
         handleHealth();
         handleTag(function() {
-            $route.reload();
+            //$route.reload();
         });
         $scope.closePopUp();
     }
@@ -138,6 +138,10 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                     callback();
                 }
             }, function(data){
+              console.log(data);
+              if(data.status == 403){
+                $location.path("/login");
+              }
               alert("Network Error; either the network is down or you are not logged in.");
             })
         } else {
@@ -147,7 +151,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                 }
             }, function(error){
                 window.alert('"Network Error; either the network is down or you are not logged in.');
-                $location.path('/');
+                if(error.status == 403){
+                  $location.path("/login");
+                }
             });
         }
     }
@@ -264,6 +270,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             }, function(data){
               if(callback){
                 alert("Network Error; either the network is down or you are not logged in.");
+                if(data.status == 403){
+                  $location.path("/login");
+                }
               }
             })
         } else {
@@ -274,6 +283,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             }, function(data){
               if(callback){
                 alert("Network Error; either the network is down or you are not logged in.");
+                if(data.status == 403){
+                  $location.path("/login");
+                }
               }
             })
         }
@@ -312,6 +324,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             }, function(data){
               if(callback){
                 alert("Network Error; either the network is down or you are not logged in.");
+                if(data.status == 403){
+                  $location.path("/login");
+                }
               }
             });
         } else {
@@ -322,6 +337,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             }, function(data){
               if(callback){
                 alert("Network Error; either the network is down or you are not logged in.");
+                if(data.status == 403){
+                  $location.path("/login");
+                }
               }
             })
         }
@@ -347,6 +365,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             }, function(data){
               if(callback){
                 alert("Network Error; either the network is down or you are not logged in.");
+                if(data.status == 403){
+                  $location.path("/login");
+                }
               }
             })
         } else {
@@ -357,6 +378,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             }, function(data){
               if(callback){
                 alert("Network Error; either the network is down or you are not logged in.");
+                if(data.status == 403){
+                  location.path("/login");
+                }
               }
             })
         }
@@ -390,6 +414,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         }, function(data){
           if(callback){
             alert("Network Error; either the network is down or you are not logged in.");
+            if(data.status == 403){
+              $location.path("/login");
+            }
           }
         });
     }
@@ -473,7 +500,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
             setBloomingState();
         }, function(error){
             window.alert('Network Error. Please try again.');
-            $location.path('/');
+            $location.path('/login');
         });
     }
 
