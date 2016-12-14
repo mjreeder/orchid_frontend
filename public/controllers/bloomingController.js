@@ -121,11 +121,19 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
             for(var t = 0; t < cleanList.length; t++){
                 for(var i = 0; i < $scope.collectionOfItems.length; i++){
                     if (cleanList[t].plant_id == $scope.collectionOfItems[i].id && cleanList[t].type == 'profile'){
-                        $scope.collectionOfItems[i].picture = cleanList[t].url;
+                        $scope.collectionOfItems[i].picture = cleanList[t].thumb_url;
                         $scope.collectionOfItems[i].hasPicture = true;
                         break;
                     }
                 }
+            }
+            for(var i = 0; $scope.collectionOfItems.length; i++)
+            {
+                if($scope.collectionOfItems[i].name == ""){
+                    $scope.collectionOfItems[i].name = "<NO COMMON NAME>";
+                }
+                $scope.$apply();
+
             }
 
             $scope.$apply();

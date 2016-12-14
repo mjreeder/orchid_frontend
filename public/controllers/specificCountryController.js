@@ -22,7 +22,7 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
         console.log()
         for(var i = 0; i < $scope.currentCountries.length; i++){
             if($scope.NAMEOFPAGE == $scope.currentCountries[i].name){
-               $scope.countineLoading();
+               $scope.countineLoad();
             } else {
 
             }
@@ -156,8 +156,8 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
 
             for(var t = 0; t < cleanList.length; t++){
                 for(var i = 0; i < $scope.collectionOfItems.length; i++){
-                    if (cleanList[t].plant_id == $scope.collectionOfItems[i].id && cleanList[t].type == 'profile'){
-                        $scope.collectionOfItems[i].picture = cleanList[t].url;
+                    if (cleanList[t].plant_id == $scope.collectionOfItems[i].id){
+                        $scope.collectionOfItems[i].picture = cleanList[t].thumb_url;
                         $scope.collectionOfItems[i].hasPicture = true;
                         break;
                     }
@@ -166,9 +166,11 @@ orchidApp.controller('specificCountryController', ['$scope', '$location', '$stat
 
             for(var i = 0; $scope.collectionOfItems.length; i++)
             {
-                if($scope.collectionOfItems[i].name == ""){
-                    console.log("wwe have hit");
+                console.log($scope.collectionOfItems[i].name);
+                if($scope.collectionOfItems[i].name.length == 0){
                     $scope.collectionOfItems[i].name = "<NO COMMON NAME>";
+                } else {
+
                 }
                 $scope.$apply();
 

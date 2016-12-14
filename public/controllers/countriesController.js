@@ -16,8 +16,8 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
     };
 
     var init = function() {
-        $scope.dynamicSidebarContent.specialCollections; //= factory call to pull in collections; TODO
-        $scope.dynamicSidebarContent.subtribes; //= factory call to pull in subtribes; TODO
+        $scope.dynamicSidebarContent.specialCollections;
+        $scope.dynamicSidebarContent.subtribes;
     };
 
 
@@ -39,8 +39,6 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
     promArray1.push(prom2);
 
     Promise.all(promArray1).then(function (success) {
-
-        console.log(success);
 
         var specialCollectionsData = success[0];
         var speciesCollectionsData = success[1];
@@ -67,8 +65,6 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
 
             }
         }
-
-        $scope.continueLoad();
         $scope.$apply();
 
     }, function (error) {
@@ -133,7 +129,7 @@ orchidApp.controller('countriesController', ['$scope', '$location', '$state', '$
                     } else {
                     for(var t = 0; t < $scope.collectionOfItems.length; t++) {
                         if($scope.collectionOfItems[t].id == countryID){
-                            $scope.collectionOfItems[t].picture = data[0].url;
+                            $scope.collectionOfItems[t].picture = data[0].thumb_url;
                             $scope.collectionOfItems[t].hasPicture = true;
                         }
                     }

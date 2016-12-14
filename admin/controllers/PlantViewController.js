@@ -46,6 +46,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.plantLocation = "";
 
+    $scope.collectionWarning = false;
+    $scope.selectedSpecialCollectionDeletedName = "";
+
     //boolean to see if there is a verifed object
     $scope.isVerified;
 
@@ -271,8 +274,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 })
               }
             }
+            
+            if($scope.bloomYears[0]){
+              $scope.loadBloomGraph($scope.bloomYears[0]);
+            }
 
-            $scope.loadBloomGraph($scope.bloomYears[0]);
             for (var i = 0; i < $scope.blooms.length; i++) {
               if ($scope.blooms[i].end_date == "0000-00-00") {
                 $scope.blooms[i].end_date = "present";
@@ -1753,28 +1759,58 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             if(photo.id == $scope.theSelectedProfilePicture.id) {
                 $scope.theSelectedProfilePicture = "";
             }
-
-
         }
-
         $rootScope.apply;
-
     };
 
-    $scope.uploadFileUrl = function(url, b){
+    $scope.deleteSpecialCollection = function(){
+
+        if($scope.selectedSpecialCollectionDeletedName == ""){
+
+            window.alert("No Special Collection to delete");
+        } else {
+            console.log($scope.selectedSpecialCollectionDeletedName);
+            SpecialCollectionsFactory.deleteSpecialCollection($scope.selectedSpecialCollectionDeletedName).then(function (response){
+                console.log(response);
+                if(response.data.data[0] == true){
+                    $route.reload();
+                } else {
+                    window.alert('Error with Deleting Special Collections');
+                }
+                console.log(response);
+            }, function (error) {
+                window.alert('Network Error.');
+            });
+        }
+    };
+
+    $scope.changeSpecialColelctionDelete = function(name){
+        if(name == "Delete Collection"){
+            $scope.collectionWarning = false;
+        } else {
+            $scope.collectionWarning = true;
+        }
+    };
+
+    $scope.uploadFileUrl = function(url, b, thumbnailURL){
         var baseURL = "http://s3.amazonaws.com/bsuorchid/";
+        var thumb_nail = thumbnailURL.split(baseURL)[1];
+
         var fileName = url.split(baseURL)[1];
         var photo = {
           'plant_id' : $scope.plant.id,
             'url' : url,
             'type' : 'habitat',
-            'fileName' : fileName
+            'fileName' : fileName,
+            'thumb_url' : thumbnailURL
         };
 
         PhotoFactory.createPhoto(photo).then(function (response){
             $scope.editPlant.photos = true;
             $scope.plant_id_url.push(data);
         });
+
+
         $route.reload();
 
     }

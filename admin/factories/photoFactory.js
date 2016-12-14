@@ -22,6 +22,7 @@ app.factory('PhotoFactory', function($http, $rootScope) {
                 "url": photo.url,
                 "type": photo.type,
                 "fileName": photo.fileName,
+                "thumb_url" : photo.thumb_url,
                 "session_id": $rootScope.userSessionId,
                 "session_key": $rootScope.userSessionKey
             }

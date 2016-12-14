@@ -148,6 +148,7 @@ table {
 
 .upper-heading ul li {
     display: inline-block;
+    margin-left: 40px; 
     /*text-decoration: underline;*/
 
 }
@@ -342,4 +343,14 @@ header .main-heading ul li a {
 .svg-padding {
     margin: 0 2.5%;
     width: 95%;
+}
+
+.outside-buttons {
+    margin: 40px;
+    
+}
+
+.outside-buttons button {
+  padding: 20px 40px;  
+    font-size: 20px; 
 }

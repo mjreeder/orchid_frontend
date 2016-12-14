@@ -135,7 +135,6 @@ orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$s
     };
 
     var createLetters = function(tab, startLetter, endLetter) {
-        console.log("creating letters " + startLetter + " through " + endLetter);
         var startIndex = alphabet.indexOf(startLetter);
         var endIndex = alphabet.indexOf(endLetter);
         var lettersContainer = tab.children[1];
@@ -158,7 +157,6 @@ orchidApp.controller('alphabetController', ['$scope', '$location', '$state', '$s
     };
 
     var onLetterClick = function(letter) {
-        console.log('clicked ' + letter);
         $state.go('alphabetical.search', {letter: letter});
     };
 

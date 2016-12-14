@@ -158,8 +158,9 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
 
             for(var t = 0; t < cleanList.length; t++){
                for(var i = 0; i < $scope.collectionOfItems.length; i++){
-                   if (cleanList[t].plant_id == $scope.collectionOfItems[i].id && cleanList[t].type == 'profile'){
-                       $scope.collectionOfItems[i].picture = cleanList[t].url;
+                   if (cleanList[t].plant_id == $scope.collectionOfItems[i].id){
+                       $scope.collectionOfItems[i].picture = cleanList[t].thumb_url;
+                       console.log(cleanList[t].thumb_url);
                        $scope.collectionOfItems[i].hasPicture = true;
                        break;
                    }
@@ -169,7 +170,6 @@ orchidApp.controller('specificSpecialCollectionsController', ['$scope', '$locati
             for(var i = 0; $scope.collectionOfItems.length; i++)
             {
                 if($scope.collectionOfItems[i].name == ""){
-                    console.log("wwe have hit");
                     $scope.collectionOfItems[i].name = "<NO COMMON NAME>";
                 }
                 $scope.$apply();
