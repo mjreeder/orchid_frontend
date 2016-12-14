@@ -274,8 +274,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 })
               }
             }
+            
+            if($scope.bloomYears[0]){
+              $scope.loadBloomGraph($scope.bloomYears[0]);
+            }
 
-            $scope.loadBloomGraph($scope.bloomYears[0]);
             for (var i = 0; i < $scope.blooms.length; i++) {
               if ($scope.blooms[i].end_date == "0000-00-00") {
                 $scope.blooms[i].end_date = "present";
