@@ -137,7 +137,6 @@ table {
 }
 
 
-
 /*END RESET*/
 
 .upper-heading ul {
@@ -148,16 +147,15 @@ table {
 
 .upper-heading ul li {
     display: inline-block;
-    margin-left: 40px; 
+    margin-left: 40px;
     /*text-decoration: underline;*/
-
 }
 
 a.logout {
     cursor: pointer;
 }
 
-.upper-heading ul li  a {
+.upper-heading ul li a {
     color: #2b2e30;
     font-size: 13px;
     font-weight: 200;
@@ -191,15 +189,26 @@ header .main-heading li a {
     font-weight: 500;
     font-size: 20px;
     text-decoration: none;
-    color:  #2b2e30;
+    color: #2b2e30;
     text-align: center;
 }
 
+
 /*@media screen and (max-width: 900px) {*/
-    /*.main-heading ul li a {*/
-        /*font-size: 14px;*/
-    /*}*/
+
+
+/*.main-heading ul li a {*/
+
+
+/*font-size: 14px;*/
+
+
 /*}*/
+
+
+/*}*/
+
+
 /*
 
 @media screen and (max-width: 645px) {
@@ -211,6 +220,7 @@ header .main-heading li a {
 
 
 /* start of responsiveness*/
+
 
 /*
 @media screen and (max-width: 600px) {
@@ -230,11 +240,6 @@ header .main-heading li a {
 }
 */
 
-
-
-
-
-
 @media screen and (max-width: 600px) {
     .main-heading ul li a {
         display: block;
@@ -247,13 +252,8 @@ header .main-heading li a {
     .main-heading ul {
         float: left;
         /*        margin-top: -35px; */
-
     }
 }
-
-
-
-
 
 
 /*
@@ -280,7 +280,6 @@ header .main-heading li a {
 */
 
 
-
 /*
 @media screen and (max-width: 700px) {
     header li:nth-child(2) {
@@ -295,10 +294,6 @@ header .main-heading li a {
     }
 }
 */
-
-
-
-
 
 #logo {
     width: 97px;
@@ -321,13 +316,13 @@ input[type="button"] {
     outline: none;
 }
 
-
-.button-new button, .button-new input {
+.button-new button,
+.button-new input {
     background-color: #01997b;
     color: white;
-    -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
-    -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
-    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.28);
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
+    box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.28);
     padding: 10px 15px;
     font-family: 'Raleway', sans-serif;
     text-align: center;
@@ -347,13 +342,55 @@ header .main-heading ul li a {
 
 .outside-buttons {
     margin: 40px;
-    
 }
 
 .outside-buttons button {
-  padding: 20px 40px;  
-    font-size: 20px; 
+    padding: 20px 40px;
+    font-size: 20px;
 }
 
+#user-guide-section {
+    margin: 50px;
+    margin-bottom: 200px;
+}
 
+#user-guide-section h1 {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Aleo', serif;
+    margin-bottom: 30px;
+    color: #2b2e30;
+}
 
+#user-guide-section h2 {
+    font-size: 20px;
+    background-color: #eaeee7;
+    border-bottom: #01997b solid 4px;
+    padding: 10px;
+    font-family: 'Aleo', serif;
+    font-weight: 400;
+    margin: 30px 0px;
+    color: #2b2e30;
+}
+
+#user-guide-section p {
+    margin-bottom: 20px;
+    color: #2b2e30;
+}
+
+#user-guide-section ul {
+    margin-bottom: 50px;
+    color: #2b2e30;
+}
+
+#user-guide-section li {
+    margin: 0px 75px 20px 75px;
+    list-style: circle;
+    color: #2b2e30;
+}
+
+#user-guide-section h3 {
+    margin: 0px 0px 20px 30px;
+    font-style: italic;
+    color: #2b2e30;
+}
