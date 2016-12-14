@@ -1,6 +1,6 @@
-orchidApp.controller('plantController', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory, BloomingFactory, bloomService) {
+orchidApp.controller('plantController', function($scope, $state, $stateParams, PlantsFactory, PhotoFactory, BloomingFactory, bloomService, $error) {
 
-  $scope.NAMEOFPAGE = $stateParams.accession_number;
+  $scope.accessionNum = $stateParams.accession_number;
 
   $scope.noPlant = false;
   $scope.plantInformation = "";
@@ -18,13 +18,13 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
 
   $scope.profilePicture = "";
 
-  PlantsFactory.getPlantByAccessionNumber($scope.NAMEOFPAGE).then(function(response) {
+  PlantsFactory.getPlantByAccessionNumber($scope.accessionNum).then(function(response) {
     var data = response.data.data[0];
-    $scope.NAMEOFPAGE = data.name;
+    $state.current.data.pageTitle = data.name ? data.name:'[No Title]';
     if (response.data.data[0] == false) {
       $scope.noPlant = false;
       //route to 404 if not found
-      $location.path('/404');
+      $state.go('404');
     } else {
 
       $scope.noPlant = true;
@@ -50,14 +50,15 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
               $scope.blooms[i].end_date = "present";
             }
           }
+        }, function(error) {
+          $error.handle(error);
         })
       }
       $scope.getMoreBlooms();
       $scope.createPlant();
     }
   }, function(error) {
-
-    console.log("404");
+      $error.handle(error);
   });
 
   //funtion to check if a year is the bloom years view list
@@ -105,20 +106,8 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
       'culture': $scope.plantInformation.culture
     };
 
-    var promArray = [];
-
-    var prom = new Promise(function(resolve, reject) {
-        PhotoFactory.getPhotosByPlantID($scope.plant.id).then(function (response){
-            var data = response.data.data;
-            resolve(data);
-        });
-    });
-
-    promArray.push(prom);
-
-    Promise.all(promArray).then(function (success) {
-
-        var data= success[0];
+    PhotoFactory.getPhotosByPlantID($scope.plant.id).then(function (response){
+        var data = response.data.data;
 
         $scope.allimagesURL = [];
 
@@ -142,24 +131,19 @@ orchidApp.controller('plantController', function($scope, $location, $state, $sta
                 break;
             }
         }
-        $scope.$apply();
-
-    }, function (error) {
-
+    }, function(error) {
+      $error.handle(error);
     });
+
 
     for(var i = 0; i < $scope.photoInformation.length; i++){
         $scope.allimagesURL.add($scope.photoInformation[i].url);
     }
-
     $scope.oneURL = $scope.allimagesURL[0];
-
   };
 
   $scope.goBack = function() {
       window.history.back();
   };
-
-  var myIndex = 0;
 
 });

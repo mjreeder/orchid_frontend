@@ -1,8 +1,4 @@
-var orchidApp = angular.module('orchidApp');
-orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$state', '$stateParams', 'SpeicalCollectionsFactory', 'PhotoFactory', 'PlantsFactory', function($scope, $location, $state, $stateParams, SpeicalCollectionsFactory, PhotoFactory, PlantsFactory) {
-
-
-    $scope.NAMEOFPAGE = "Special Collections";
+orchidApp.controller('specialCollectionsController', function($scope, $state, $stateParams, SpeicalCollectionsFactory, PhotoFactory, PlantsFactory, $error) {
 
     $scope.collectionOfItems = [];
     $scope.genericPicture = true;
@@ -22,62 +18,16 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
     };
 
 
-    var promArray1 = [];
+    PlantsFactory.topFiveCollectionsAndSubtribes()
+      .then(function (success) {
+        $scope.dynamicSidebarContent.specialCollections = success.collections;
+        $scope.dynamicSidebarContent.subtribes = success.subtribes;
 
-    var prom1 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveCollection().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-
-    promArray1.push(prom1);
-
-    var prom2 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveSubtribes().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-    promArray1.push(prom2);
-
-    Promise.all(promArray1).then(function (success) {
-
-
-        var specialCollectionsData = success[0];
-        var speciesCollectionsData = success[1];
-
-
-        var i = 0;
-
-        for(i = 0; i < specialCollectionsData.length; i++){
-            $scope.dynamicSidebarContent.specialCollections.push(specialCollectionsData[i]);
-        }
-        i = 0;
-        var lengthOfSpecies = 0;
-        if (speciesCollectionsData.length > 5){
-            lengthOfSpecies = 6;
-        } else {
-            lengthOfSpecies = speciesCollectionsData.length;
-        }
-        for(i = 0; i < lengthOfSpecies; i++){
-            if(speciesCollectionsData[i].tribe_name == ""){
-
-            } else {
-                var name = speciesCollectionsData[i].tribe_name;
-                speciesCollectionsData[i].name = name;
-                $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
-
-            }
-        }
-
-        //$scope.continueLoad();
-        $scope.$apply();
+        $scope.loadPictures();
 
     }, function (error) {
-
+        $error.handle(error);
     });
-
-
-
 
     $scope.idForSpeicalCollection = 0;
     var promArray = [];
@@ -98,7 +48,7 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
 
             $scope.idForSpeicalCollection = success[0].data.data.id;
 
-            $scope.$apply();
+//            $scope.$apply();
 
             $scope.locationPath($scope.idForSpeicalCollection);
 
@@ -126,15 +76,16 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
 
     promArray.push(prom);
 
-    Promise.all(promArray).then(function (success) {
+    Promise.all(promArray)
+      .then(function (success) {
 
         for (var i = 0; i < success.length; i++){
             $scope.collectionOfItems = success[0].data.data;
         }
-
-        $scope.$apply();
+//      console.log(success);
+//        $scope.$apply();
         $scope.loadPictures();
-    }, function (error) {
+      }, function (error) {
 
     });
 
@@ -175,7 +126,7 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
             $scope.$apply();
 
         }, function (error) {
-
+          $error.handle(error);
         });
     };
 
@@ -184,4 +135,4 @@ orchidApp.controller('specialCollectionsController', ['$scope', '$location', '$s
     };
 
     init();
-}]);
+});
