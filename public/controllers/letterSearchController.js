@@ -19,8 +19,8 @@ orchidApp.controller('letterSearchController', function($scope, $state, $statePa
     PlantsFactory.getPaginatedPlants($scope.letter, 1, 12)
       .then(function(response) {
             //console.log("SUCCESS: ", response.data);
-            $scope.plants = response.data.plants;
-
+            $scope.plants = response.data.data.plants;
+            
             if(undefined !== $scope.plants && $scope.plants.length){
 //                console.log('asdfasdf');
             } else {

@@ -38,10 +38,10 @@ orchidApp.controller('countriesController', function($scope, $state, $stateParam
     var syncArray = [];
 
     countryFactory.getCurrentCountires().then(function (response){
-          var success = response.data.data  
+          var success = response.data.data;
           
-          for(var i = 0; i < success[0].length; i++){
-            $scope.collectionOfItems.push(success[0][i]);
+          for(var i = 0; i < success.length; i++){
+            $scope.collectionOfItems.push(success[i]);
         }
 
         for(var i = 0; i < $scope.collectionOfItems.length; i++){
