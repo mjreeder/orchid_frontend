@@ -524,7 +524,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleSprayedInit = function() {
         SprayedFactory.getOneSpray($scope.plant.id).then(function(data) {
             var lastComment = data.data.data;
-            if(data.timestamp){
+            if(lastComment.timestamp){
               lastComment = formatTimeStamp('timestamp', lastComment);
             }
             concatObjects(lastComment, 'sprayed');
@@ -534,7 +534,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handlePottingInit = function() {
         PottingFactory.getOnePot($scope.plant.id).then(function(data) {
             var lastComment = data.data.data;
-            if(data.timestamp){
+            if(lastComment.timestamp){
               lastComment = formatTimeStamp('timestamp', lastComment);
             }
             concatObjects(lastComment, 'potting');
