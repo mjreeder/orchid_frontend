@@ -208,7 +208,7 @@
         </div>
 
         <div class="photos-group" ng-repeat="photo in plant_id_url">
-            <img src="{{photo.url}}" alt="" ng-class="{photoDeleted: photo.type == 'del', thumbnail: photo.type != 'del'}">
+            <img src="{{photo.thumb_url}}" alt="" ng-class="{photoDeleted: photo.type == 'del', thumbnail: photo.type != 'del'}">
             <div class="photos-buttons button-new">
                 <label for="thumbnail">{{photo.fileName}}</label>
                 <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
