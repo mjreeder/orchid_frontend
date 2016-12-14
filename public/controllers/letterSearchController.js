@@ -21,12 +21,9 @@ orchidApp.controller('letterSearchController', function($scope, $state, $statePa
             //console.log("SUCCESS: ", response.data);
             $scope.plants = response.data.data.plants;
             
-            if(undefined !== $scope.plants && $scope.plants.length){
-//                console.log('asdfasdf');
-            } else {
+            if(!$scope.plants || $scope.plants.length == 0){
                 $scope.noPlantsToLoad = true;
             }
-
 
 //            resolve(response.data.plants);
             pages = response.data.pages;
@@ -93,26 +90,18 @@ orchidApp.controller('letterSearchController', function($scope, $state, $statePa
                                         $scope.plants[j].hasPicture = true;
                                         foundPhoto = true;
                                         break;
-                                    } else {
-                                    }
-
-
-                                } else {
-
+                                    } 
                                 }
                             }
                             if (foundPhoto == true) {
                                 break;
                             }
                         }
-                    } else {
-
-                    }
+                    } 
 
                 }
 
-
-//                $scope.$apply();
+                $scope.$digest();
 
             }, function(error){
               $error.handle(error);
@@ -127,7 +116,7 @@ orchidApp.controller('letterSearchController', function($scope, $state, $statePa
     $scope.getNewPage = function(pageNumber) {
         $scope.loading = true;
         PlantsFactory.getPaginatedPlants($scope.letter, pageNumber, 12).success(function(response) {
-            console.log("SUCCESS: ", response);
+//            console.log("SUCCESS: ", response);
             if(response.data.plants) {
                 $scope.plants = response.data.plants;
             }
