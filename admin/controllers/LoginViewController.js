@@ -1,6 +1,6 @@
 app.controller('LoginViewController', function($scope, $rootScope, $location, SessionFactory, sessionService, CONFIG){
 
-  sessionService.removeSession();
+  sessionService.removeSession(); 
 
   $scope.login = function (credentials) {
     SessionFactory.login(credentials).then(function (response) {
