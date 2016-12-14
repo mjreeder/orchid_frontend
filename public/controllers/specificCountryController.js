@@ -1,4 +1,4 @@
-orchidApp.controller('specificCountryController', function($scope, $location, $state, $stateParams, countryFactory, PlantsFactory, PhotoFactory) {
+orchidApp.controller('specificCountryController', function($scope, $location, $state, $stateParams, countryFactory, PlantsFactory, PhotoFactory, $error) {
     $scope.NAMEOFPAGE = $stateParams.country;
 
     $scope.currentCountries = [];
@@ -18,7 +18,6 @@ orchidApp.controller('specificCountryController', function($scope, $location, $s
 
         $scope.currentCountries = success[0].data.data;
 
-        console.log()
         for(var i = 0; i < $scope.currentCountries.length; i++){
             if($scope.NAMEOFPAGE == $scope.currentCountries[i].name){
                $scope.countineLoading();
@@ -29,7 +28,7 @@ orchidApp.controller('specificCountryController', function($scope, $location, $s
 
 
     }, function (error) {
-
+        $error.handle(error);
     });
 
     $scope.dynamicSidebarContent = {
@@ -43,56 +42,15 @@ orchidApp.controller('specificCountryController', function($scope, $location, $s
     };
 
 
-    var promArray1 = [];
-
-    var prom1 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveCollection().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-
-    promArray1.push(prom1);
-
-    var prom2 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveSubtribes().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-    promArray1.push(prom2);
-
-    Promise.all(promArray1).then(function (success) {
-
-        var specialCollectionsData = success[0];
-        var speciesCollectionsData = success[1];
-
-        var i = 0;
-
-        for(i = 0; i < specialCollectionsData.length; i++){
-            $scope.dynamicSidebarContent.specialCollections.push(specialCollectionsData[i]);
-        }
-        i = 0;
-        var lengthOfSpecies = 0;
-        if (speciesCollectionsData.length > 5){
-            lengthOfSpecies = 6;
-        } else {
-            lengthOfSpecies = speciesCollectionsData.length;
-        }
-        for(i = 0; i < lengthOfSpecies; i++){
-            if(speciesCollectionsData[i].tribe_name == ""){
-
-            } else {
-                var name = speciesCollectionsData[i].tribe_name;
-                speciesCollectionsData[i].name = name;
-                $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
-
-            }
-        }
+    PlantsFactory.topFiveCollectionsAndSubtribes()
+      .then(function (success) {
+        $scope.dynamicSidebarContent.specialCollections = success.collections;
+        $scope.dynamicSidebarContent.subtribes = success.subtribes;
 
         $scope.continueLoad();
-        $scope.$apply();
 
     }, function (error) {
-
+        $error.handle(error);
     });
 
 

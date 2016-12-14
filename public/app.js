@@ -29,75 +29,122 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: '',
-            templateUrl: './views/refactored/menu.html'
+            templateUrl: './views/refactored/menu.html',
+            data: {
+              pageTitle: 'Home'
+            }
         })
         .state('about', {
             url: '/about',
-            templateUrl: './views/refactored/about.html'
+            templateUrl: './views/refactored/about.html',
+            data: {
+              pageTitle: 'About'
+            }
         })
         .state('contact', {
             url: '/contact',
             templateUrl: './views/refactored/contact.html',
-            controller: 'contactController'
+            controller: 'contactController',
+            data: {
+              pageTitle: 'Contacts'
+            }
         })
         .state('view-collections', {
             url: '/menu',
-            templateUrl: './views/refactored/menu.html'
+            templateUrl: './views/refactored/menu.html',
+            data: {
+              pageTitle: 'View Collections'
+            }
         })
         .state('generalCollections', {
             url: '/collections',
             templateUrl: './views/refactored/generalCategory.html',
-            controller: 'specialCollectionsController'
+            controller: 'specialCollectionsController',
+            data: {
+              pageTitle: 'Special Collections'
+            }
         })
         .state('alphabetical', {
             url: '/alphabet',
             abstract: true,
             templateUrl: './views/refactored/alphabetical.html',
-            controller: 'alphabetController'
+            controller: 'alphabetController',
+            data: {
+              pageTitle: 'Alphabetical'
+            }
         })
         .state('alphabetical.search', {
             url: '/:letter',
             controller: 'letterSearchController',
             parent: 'alphabetical',
-            templateUrl: './views/refactored/alphabetGrid.html'
+            templateUrl: './views/refactored/alphabetGrid.html',
+            data: {
+              pageTitle: 'Alphabetical'
+            }
         })
         .state('blooming', {
             url: '/blooming',
             templateUrl: './views/refactored/generalCategory.html',
-            controller: 'bloomingController'
+            controller: 'bloomingController',
+            data: {
+              pageTitle: 'Current Blooming'
+            }
         })
         .state('countries', {
             url: '/country',
             templateUrl: './views/refactored/generalCategory.html',
-            controller: 'countriesController'
+            controller: 'countriesController',
+            data: {
+              pageTitle: 'Countries'
+            }
         })
         .state('specificCountry', {
             url: '/country/:country',
             templateUrl: './views/refactored/generalCategory.html',
-            controller: 'specificCountryController'
+            controller: 'specificCountryController',
+            data: {
+              pageTitle: 'Loading...'
+            }
         })
         .state('subtribe', {
             url: '/sub_tribe',
             templateUrl: './views/refactored/generalCategory.html',
-            controller: 'subtribeController'
+            controller: 'subtribeController',
+            data: {
+              pageTitle: 'Sub Tribes'
+            }
         })
         .state('specificSubTribe', {
             url: '/sub_tribe/:tribe',
             templateUrl: './views/refactored/generalCategory.html',
-            controller: 'specificSubTribeController'
+            controller: 'specificSubTribeController',
+            data: {
+              pageTitle: 'Loading...'
+            }
         })
         .state('specificPlant', {
             url: '/plant/:accession_number',
             templateUrl: './views/refactored/plant.html',
-            controller: 'plantController'
+            controller: 'plantController',
+            data: {
+              pageTitle: 'Loading...'
+            }
         })
         .state('specificCollection', {
             url: '/collections/:collection',
             templateUrl: './views/refactored/generalCategory.html',
-            controller: 'specificSpecialCollectionsController'
+            controller: 'specificSpecialCollectionsController',
+            data: {
+              pageTitle: 'Loading...'
+            }
         })
         .state('404', {
             url: '*path',
             templateUrl: './views/refactored/404.html'
         })
+});
+
+orchidApp.run(function($rootScope, $state, $stateParams) {
+  //Used to allow the view to access $state service
+  $rootScope.$state = $state;
 });

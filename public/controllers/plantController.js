@@ -20,7 +20,7 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
 
   PlantsFactory.getPlantByAccessionNumber($scope.accessionNum).then(function(response) {
     var data = response.data.data[0];
-    $scope.NAMEOFPAGE = data.name;
+    $state.current.data.pageTitle = data.name ? data.name:'[No Title]';
     if (response.data.data[0] == false) {
       $scope.noPlant = false;
       //route to 404 if not found
@@ -34,7 +34,7 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
       $scope.getMoreBlooms = function() {
         BloomingFactory.getAllBloomByPlantID($scope.plantInformation.id).then(function(response) {
           var data = response.data.data;
-          console.log(data);
+          
           for (var i = 0; i < data.length; i++) {
             $scope.blooms.push(data[i]);
             if (isInBloomYears(data[i]) == false) {
@@ -87,7 +87,6 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
   }
 
   $scope.createPlant = function() {
-    console.log($scope.plantInformation);
     $scope.plant = {
       'id': $scope.plantInformation.id,
 
@@ -108,20 +107,8 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
       'culture': $scope.plantInformation.culture
     };
 
-    var promArray = [];
-
-    var prom = new Promise(function(resolve, reject) {
-        PhotoFactory.getPhotosByPlantID($scope.plant.id).then(function (response){
-            var data = response.data.data;
-            resolve(data);
-        });
-    });
-
-    promArray.push(prom);
-
-    Promise.all(promArray).then(function (success) {
-
-        var data= success[0];
+    PhotoFactory.getPhotosByPlantID($scope.plant.id).then(function (response){
+        var data = response.data.data;
 
         $scope.allimagesURL = [];
 
@@ -145,24 +132,19 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
                 break;
             }
         }
-        $scope.$apply();
-
-    }, function (error) {
+    }, function(error) {
       $error.handle(error);
     });
+
 
     for(var i = 0; i < $scope.photoInformation.length; i++){
         $scope.allimagesURL.add($scope.photoInformation[i].url);
     }
-
     $scope.oneURL = $scope.allimagesURL[0];
-
   };
 
   $scope.goBack = function() {
       window.history.back();
   };
-
-//  var myIndex = 0;
 
 });

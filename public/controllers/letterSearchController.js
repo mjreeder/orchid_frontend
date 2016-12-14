@@ -1,37 +1,34 @@
-orchidApp.controller('letterSearchController', function($scope, $stateParams, PlantsFactory, PhotoFactory, countryFactory) {
+orchidApp.controller('letterSearchController', function($scope, $state, $stateParams, PlantsFactory, PhotoFactory, countryFactory, $error) {
     $scope.letter = $stateParams.letter;
-    if($scope.letter == ""){
-        $location.path('/alphabet/A');
+  
+    if(!$scope.letter){
+        $state.go('alphabetical.search', {letter: 'A'});
     }
+  
     $scope.loading = true;
     $scope.plants = [];
     $scope.picture = [];
     var pages = 0;
 
-
-
-    var PromArray = [];
     var picturePromArray = [];
     var pictureSideArray = [];
     $scope.STOPLOADING = false;
 
-
     $scope.noPlantsToLoad = false;
 
-
-    var prom = new Promise(function (resolve, reject){
-        PlantsFactory.getPaginatedPlants($scope.letter, 1, 12).then(function(response) {
+    PlantsFactory.getPaginatedPlants($scope.letter, 1, 12)
+      .then(function(response) {
             //console.log("SUCCESS: ", response.data);
             $scope.plants = response.data.plants;
 
             if(undefined !== $scope.plants && $scope.plants.length){
-                console.log('asdfasdf');
+//                console.log('asdfasdf');
             } else {
                 $scope.noPlantsToLoad = true;
             }
 
 
-            resolve(response.data.plants);
+//            resolve(response.data.plants);
             pages = response.data.pages;
 
 
@@ -45,24 +42,17 @@ orchidApp.controller('letterSearchController', function($scope, $stateParams, Pl
                 $scope.STOPLOADING = true;
                 $scope.loading = false;
             }
+      
+            xyz();
 
-        }, function(response) {
-            console.log("ERROR: ", response);
+        }, function(error) {
+            $error.handle(error);
             $scope.loading = false;
         });
-    });
 
-    PromArray.push(prom);
-    Promise.all(PromArray).then(function (success){
-       xyz();
-    });
-
-
-
-
-
+  
+    //WHAT DOES THIS DO??
     var xyz = function(){
-
         if($scope.STOPLOADING == false) {
 
 
@@ -72,6 +62,8 @@ orchidApp.controller('letterSearchController', function($scope, $stateParams, Pl
                         //var photoResponseData = response.data.data;
                         //$scope.picture.push(photoResponseData);
                         resolve(response.data.data);
+                    }, function(error){
+                      reject(error);
                     });
                 });
                 picturePromArray.push(prom);
@@ -120,8 +112,10 @@ orchidApp.controller('letterSearchController', function($scope, $stateParams, Pl
                 }
 
 
-                $scope.$apply();
+//                $scope.$apply();
 
+            }, function(error){
+              $error.handle(error);
             });
         }
     };
@@ -138,17 +132,11 @@ orchidApp.controller('letterSearchController', function($scope, $stateParams, Pl
                 $scope.plants = response.data.plants;
             }
             $scope.loading = false;
-        }).error(function(response) {
-            console.log("ERROR:", response);
+        }).error(function(error) {
+            $error.handle(error);
             $scope.loading = false;
         });
     };
-
-    var abc = function(){
-        //for(var i = 0; i < )
-        //console.log('abc');
-    }
-
 
 });
 

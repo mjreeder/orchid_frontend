@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="styles/alphabetical.css">
 <menu>
-    <h1>{{NAMEOFPAGE}}</h1>
+    <h1>{{$state.current.data.pageTitle}}</h1>
 
     <div class="box">
             <div class="container1">
@@ -58,7 +58,7 @@
 <!--                  <a ui-sref="specificPlant({plant: {{plant.name}} })"ng-style="{'background-image':'url('+plant.picture+')'}">-->
                       <a ng-style="{'background-image':'url('+plant.picture+')'}">
                       
-                      <img src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
+                      <img ng-src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
                       <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">
 
                 <h3>{{item.name}}</h3></a>

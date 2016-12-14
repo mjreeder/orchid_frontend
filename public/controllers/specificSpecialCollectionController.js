@@ -1,40 +1,24 @@
-orchidApp.controller('specificSpecialCollectionsController', function($scope, $location, $state, $stateParams, SpeicalCollectionsFactory, PhotoFactory, PlantsFactory) {
+orchidApp.controller('specificSpecialCollectionsController', function($scope, $state, $stateParams, SpeicalCollectionsFactory, PhotoFactory, PlantsFactory, $error) {
 
     var collectionNumber =  $stateParams.collection;
 
     $scope.collectionOfItems = [];
 
-   var promArray = [];
-
-    var prom = new Promise(function(resolve, reject) {
-        SpeicalCollectionsFactory.getBySpecificID(collectionNumber).then(function (response){
-            resolve(response);
-        });
-    });
-
-    promArray.push(prom);
-
-    Promise.all(promArray).then(function (success) {
-        console.log(success);
-
-        if(success[0].data.data.length == 0){
+   
+    SpeicalCollectionsFactory.getBySpecificID(collectionNumber)
+      .then(function (response){
+        if(response.data.data.length == 0){
             $state.go("404")
 
         } else {
-            $scope.idForSpeicalCollection = success[0].data.data.id;
+            $scope.idForSpeicalCollection = response.data.data.id;
 
-            $scope.NAMEOFPAGE = success[0].data.data.name;
-
-            $scope.$apply();
-
-
+            $state.current.data.pageTitle = response.data.data.name;
+//            $scope.$apply();
             $scope.continueLoading();
         }
-
-
-    }, function (error) {
-
-        $state.go("404")
+    }, function(error) {
+      $error.handle(error, false, true);
     });
 
     $scope.dynamicSidebarContent = {
@@ -47,58 +31,15 @@ orchidApp.controller('specificSpecialCollectionsController', function($scope, $l
         $scope.dynamicSidebarContent.subtribes; //= factory call to pull in subtribes; TODO
     };
 
+    PlantsFactory.topFiveCollectionsAndSubtribes()
+      .then(function (success) {
+        $scope.dynamicSidebarContent.specialCollections = success.collections;
+        $scope.dynamicSidebarContent.subtribes = success.subtribes;
 
-    var promArray1 = [];
-
-    var prom1 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveCollection().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-
-    promArray1.push(prom1);
-
-    var prom2 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveSubtribes().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-    promArray1.push(prom2);
-
-    Promise.all(promArray1).then(function (success) {
-
-        console.log(success);
-
-        var specialCollectionsData = success[0];
-        var speciesCollectionsData = success[1];
-
-        var i = 0;
-
-        for(i = 0; i < specialCollectionsData.length; i++){
-            $scope.dynamicSidebarContent.specialCollections.push(specialCollectionsData[i]);
-        }
-        i = 0;
-        var lengthOfSpecies = 0;
-        if (speciesCollectionsData.length > 5){
-            lengthOfSpecies = 6;
-        } else {
-            lengthOfSpecies = speciesCollectionsData.length;
-        }
-        for(i = 0; i < lengthOfSpecies; i++){
-            if(speciesCollectionsData[i].tribe_name == ""){
-
-            } else {
-                var name = speciesCollectionsData[i].tribe_name;
-                speciesCollectionsData[i].name = name;
-                $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
-            }
-        }
         $scope.continueLoading();
 
-        $scope.$apply();
-
     }, function (error) {
-
+        $error.handle(error);
     });
 
     $scope.continueLoading = function(){
@@ -182,13 +123,13 @@ orchidApp.controller('specificSpecialCollectionsController', function($scope, $l
 
     $scope.moveTo = function(item){
 
-        $location.path('/plant/' + item.accession_number);
+        $state.go('specificPlant', {accession_number: item.accession_number});
 
     }
 
-    $scope.locationPath = function(id){
-
-    }
+//    $scope.locationPath = function(id){
+//
+//    }
 
 
 });

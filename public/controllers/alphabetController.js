@@ -1,10 +1,10 @@
-orchidApp.controller('alphabetController', function($scope, $location, $state, $stateParams, PlantsFactory, PhotoFactory) {
-    $scope.NAMEOFPAGE = "Alphabetical";
+orchidApp.controller('alphabetController', function($scope, $state, $stateParams, PlantsFactory, PhotoFactory, $error) {
+  
     var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     $scope.tabs = {};
     $scope.letter = $stateParams.letter;
     if($scope.letter == undefined){
-        $location.path('/alphabet/A');
+        $state.go('alphabetical.search', {letter: 'A'});
     }
     $scope.expanded = null;
 
@@ -23,7 +23,7 @@ orchidApp.controller('alphabetController', function($scope, $location, $state, $
     };
 
     $scope.reload = function(){
-        $location.path('/alphabet/A');
+        $state.go('alphabetical.search', {letter: 'A'});
     }
 
     initTabs();
@@ -38,57 +38,13 @@ orchidApp.controller('alphabetController', function($scope, $location, $state, $
         $scope.dynamicSidebarContent.subtribes; //= factory call to pull in subtribes; TODO
     };
 
-
-    var promArray1 = [];
-
-    var prom1 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveCollection().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-
-    promArray1.push(prom1);
-
-    var prom2 = new Promise(function(resolve, reject) {
-        PlantsFactory.topFiveSubtribes().then(function (response){
-            resolve(response.data.data);
-        })
-    });
-    promArray1.push(prom2);
-
-    Promise.all(promArray1).then(function (success) {
-
-
-        var specialCollectionsData = success[0];
-        var speciesCollectionsData = success[1];
-
-        var i = 0;
-
-        for(i = 0; i < specialCollectionsData.length; i++){
-            $scope.dynamicSidebarContent.specialCollections.push(specialCollectionsData[i]);
-        }
-        i = 0;
-        var lengthOfSpecies = 0;
-        if (speciesCollectionsData.length > 5){
-            lengthOfSpecies = 6;
-        } else {
-            lengthOfSpecies = speciesCollectionsData.length;
-        }
-        for(i = 0; i < lengthOfSpecies; i++){
-            if(speciesCollectionsData[i].tribe_name == ""){
-
-            } else {
-                var name = speciesCollectionsData[i].tribe_name;
-                speciesCollectionsData[i].name = name;
-                $scope.dynamicSidebarContent.subtribes.push(speciesCollectionsData[i]);
-
-            }
-        }
-
-        $scope.$apply();
+    PlantsFactory.topFiveCollectionsAndSubtribes()
+      .then(function (success) {
+        $scope.dynamicSidebarContent.specialCollections = success.collections;
+        $scope.dynamicSidebarContent.subtribes = success.subtribes;
 
     }, function (error) {
-
+        $error.handle(error);
     });
 
 
@@ -134,7 +90,6 @@ orchidApp.controller('alphabetController', function($scope, $location, $state, $
     };
 
     var createLetters = function(tab, startLetter, endLetter) {
-        console.log("creating letters " + startLetter + " through " + endLetter);
         var startIndex = alphabet.indexOf(startLetter);
         var endIndex = alphabet.indexOf(endLetter);
         var lettersContainer = tab.children[1];
@@ -157,7 +112,6 @@ orchidApp.controller('alphabetController', function($scope, $location, $state, $
     };
 
     var onLetterClick = function(letter) {
-        console.log('clicked ' + letter);
         $state.go('alphabetical.search', {letter: letter});
     };
 
