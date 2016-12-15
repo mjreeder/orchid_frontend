@@ -1,7 +1,7 @@
 app.factory('SpecialCollectionsFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'/orchid_site/public/api/special_collection';
+    var baseUrl = location.origin +'2016/orchid_site/public/api/special_collection';
 
     data.getAllSpecialCollections = function(user) {
         return $http.get(baseUrl);
