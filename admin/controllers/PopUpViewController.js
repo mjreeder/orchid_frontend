@@ -432,11 +432,25 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                 if (callback) {
                     callback();
                 }
+            }, function(data){
+                if(callback){
+                    alert("Network Error; either the network is down or you are not logged in.");
+                    if(data.status == 403){
+                        $location.path("/login");
+                    }
+                }
             })
         } else {
             TagFactory.createTag($scope.taggedPlant[0]).then(function(response) {
                 if (callback) {
                     callback();
+                }
+            }, function(data){
+                if(callback){
+                    alert("Network Error; either the network is down or you are not logged in.");
+                    if(data.status == 403){
+                        $location.path("/login");
+                    }
                 }
             })
         }
