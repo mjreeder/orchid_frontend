@@ -1,7 +1,7 @@
 app.factory('SessionFactory', function($http) {
 
     var data = {};
-    var baseUrl = location.origin +'2016/orchid_site/public/api/users';
+    var baseUrl = location.origin +'/2016/orchid_site/public/api/users';
 
     data.login = function(credentials) {
 

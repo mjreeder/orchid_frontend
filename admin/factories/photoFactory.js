@@ -1,7 +1,7 @@
 app.factory('PhotoFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'2016/orchid_site/public/api/photos';
+    var baseUrl = location.origin +'/2016/orchid_site/public/api/photos';
 
 
 
