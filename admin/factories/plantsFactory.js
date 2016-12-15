@@ -61,7 +61,8 @@ app.factory('PlantsFactory', function($http, $rootScope) {
             method: "PUT",
             url: baseUrl + '/updateGeneralNotes',
             data: {
-                "plant" : plant,
+                "general_note": plant.general_note,
+                "plant_id" : plant.id,
                 "session_id": $rootScope.userSessionId,
                 "session_key": $rootScope.userSessionKey
             }
