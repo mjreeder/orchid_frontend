@@ -432,11 +432,25 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
                 if (callback) {
                     callback();
                 }
+            }, function(data){
+                if(callback){
+                    alert("Network Error; either the network is down or you are not logged in.");
+                    if(data.status == 403){
+                        $location.path("/login");
+                    }
+                }
             })
         } else {
             TagFactory.createTag($scope.taggedPlant[0]).then(function(response) {
                 if (callback) {
                     callback();
+                }
+            }, function(data){
+                if(callback){
+                    alert("Network Error; either the network is down or you are not logged in.");
+                    if(data.status == 403){
+                        $location.path("/login");
+                    }
                 }
             })
         }
@@ -524,7 +538,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handleSprayedInit = function() {
         SprayedFactory.getOneSpray($scope.plant.id).then(function(data) {
             var lastComment = data.data.data;
-            lastComment = formatTimeStamp('timestamp', lastComment);
+            if(lastComment.timestamp){
+              lastComment = formatTimeStamp('timestamp', lastComment);
+            }
             concatObjects(lastComment, 'sprayed');
         })
     }
@@ -532,7 +548,9 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
     var handlePottingInit = function() {
         PottingFactory.getOnePot($scope.plant.id).then(function(data) {
             var lastComment = data.data.data;
-            lastComment = formatTimeStamp('timestamp', lastComment);
+            if(lastComment.timestamp){
+              lastComment = formatTimeStamp('timestamp', lastComment);
+            }
             concatObjects(lastComment, 'potting');
         })
     }
@@ -610,6 +628,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
 
     //Add data to scope object
     var concatObjects = function(data, prefix) {
+        // console.log(data);
         for (key in data) {
             if (data.hasOwnProperty(key)) {
                 $scope[prefix + '_' + key] = data[key];
