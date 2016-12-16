@@ -128,8 +128,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             var tableData = response.data.data;
             for (i = 0; i < tableData.length; i++) {
                 $scope.Tables.push(tableData[i]);
-
             }
+            $scope.Tables = _.sortBy($scope.Tables, ['name']);
+
         });
 
         newLink = [];
@@ -430,6 +431,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 for (i = 0; i < tableData.length; i++) {
                     $scope.Tables.push(tableData[i]);
                 }
+                $scope.Tables = _.sortBy($scope.Tables, ['name']);
             });
 
             countryFactory.getCountries().then(function(response) {
