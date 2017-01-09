@@ -2,7 +2,7 @@
 <section class="flower-popup" ng-controller="PopUpViewController">
     <form>
         <div class="center">
-            <h1>{{ plant_accession_number }}</h1>
+            <h1><p ng-show="plant_scientific_name != 0">{{plant_scientific_name}} :</p> {{ plant_accession_number }}</h1>
         </div>
 
         <button id="close" ng-click="closePopUp()"><img src="images/x.svg" alt="close"></button>
