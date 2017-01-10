@@ -9,8 +9,18 @@ app.factory('PhotoFactory', function($http, $rootScope) {
         return $http.get(baseUrl + "/plant_id/" + plant_id);
     }
 
-    data.getSimilarPhotos = function(name){
-        return $http.get(baseUrl + "/getSimilarPlants/" + name);
+    data.getSimilarPhotos = function(data){
+        //return $http.get(baseUrl + "/getSimilarPlants/" + name);
+        return $http({
+            method: "POST",
+            url: baseUrl + '/getSimilarPlants',
+            data: {
+                "species": data.species,
+                "genus": data.genus,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        });
     };
 
     data.createPhoto = function (photo) {
