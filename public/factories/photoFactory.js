@@ -3,7 +3,7 @@
 orchidApp.factory('PhotoFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'/orchid_site/public/api/photos';
+    var baseUrl = location.origin +'2016/orchid_site/public/api/photos';
 
     data.getPhotosByPlantID = function(plant_id) {
         return $http.get(baseUrl + "/plant_id/" + plant_id);
