@@ -1579,56 +1579,37 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.addPhotoList = [];
 
     $scope.newPhotoLink = function (photo){
-        var changed = false;
 
         for(var i = 0; i < $scope.similarPhotos.length; i++){
-            //$scope.similarPhotos[i].checked = false;
             var index = -1;
             if($scope.similarPhotos[i].id == photo.id) {
+                console.log("we have the index");
+                console.log(index);
                 index = i;
                 break;
             }
         }
+        var changed = false;
 
-        for (var i = 0; i < $scope.addPhotoList.length; i++){
-            if(photo.id == $scope.addPhotoList[i].id){
+        for (var i = 0; i < $scope.addPhotoList.length; i++) {
+
+            if (photo.id == $scope.addPhotoList[i].id) {
                 $scope.addPhotoList.splice(i, 1);
-                $scope.similarPhotos[index].clicked = "NO";
+                $scope.similarPhotos[i].clicked = "NO";
                 changed = true;
             }
         }
-        if(changed == false){
+
+        if (changed == false) {
+            console.log("we are changing");
             $scope.addPhotoList.push(photo);
             $scope.similarPhotos[index].clicked = "YES";
             $scope.addPhotoList.checked = true;
 
         }
 
+        //$scope.$apply();
     };
-
-    $scope.deleteCountry = function(country){
-      //adding the list to the delete country list
-        //adding that country back to the orginal country list
-        //sending the network reuqest to make the changes
-    };
-
-    $scope.saveNewPhotos = function(){
-        for(var k = 0; k < $scope.addPhotoList.length; k++){
-            var photoInfo = {
-                'plant_id' : $scope.plant.id,
-                'url' : $scope.addPhotoList[k].url,
-                'type' : "Habitat",
-                'fileName' : $scope.addPhotoList[k].fileName
-            }
-            PhotoFactory.createPhoto(photoInfo).then(function (response){
-            });
-        }
-        $route.reload();
-
-        $rootScope.$broadcast('photoMatcher', false);
-
-    }
-
 
     $scope.profileSelected = function(photo) {
         if (photo.id == $scope.theSelectedProfilePicture.id) {
