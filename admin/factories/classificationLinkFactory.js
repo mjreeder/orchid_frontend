@@ -1,7 +1,7 @@
 app.factory('classificationLinkFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'/2016/orchid_site/public/api/classification_link';
+    var baseUrl = location.origin +'/orchid_site/public/api/classification_link';
 
     data.createClassificationLink = function(classificationLink) {
       return $http({

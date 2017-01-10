@@ -1,7 +1,7 @@
 app.factory('ScientificClassFactory', function($http) {
 
     var data = {};
-    var baseUrl = location.origin +'/2016/orchid_site/public/api/scientific_class';
+    var baseUrl = location.origin +'/orchid_site/public/api/scientific_class';
 
     data.getAllClasses = function(user) {
         $http.get(baseUrl);
