@@ -9,6 +9,5 @@ orchidApp.controller('contactController', function($scope, $location, $state, Em
             'from_name': $scope.contact.from_name
         }
 
-        //REQUEST TO EMAIL
     }
 });

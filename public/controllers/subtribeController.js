@@ -62,7 +62,11 @@ orchidApp.controller('subtribeController', function($scope, $state, $stateParams
 //            console.log(success);
             for (var i = 0; i < $scope.collectionOfItems.length; i++) {
                 $scope.collectionOfItems[i].hasPicture = false;
+                //console.log($scope.collectionOfItems[i]);
+                $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].tribe_name;
+
             }
+            $scope.$apply();
 
             for (var i = 0; i < success.length; i++) {
                 var countryID = syncArray[i];

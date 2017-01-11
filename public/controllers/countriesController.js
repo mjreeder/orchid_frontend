@@ -39,16 +39,17 @@ orchidApp.controller('countriesController', function($scope, $state, $stateParam
 
     countryFactory.getCurrentCountires().then(function (response){
           var success = response.data.data;
+        console.log(success);
           
           for(var i = 0; i < success.length; i++){
             $scope.collectionOfItems.push(success[i]);
         }
 
         for(var i = 0; i < $scope.collectionOfItems.length; i++){
-            $scope.collectionOfItems[i].hasPicture = false;
+           console.log($scope.collectionOfItems[i]);
         }
-
-        $scope.loadPictures();
+        //
+        //$scope.loadPictures();
     }, function(error){
       $error.handle(error);
     });

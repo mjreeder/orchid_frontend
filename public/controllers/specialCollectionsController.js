@@ -94,7 +94,6 @@ orchidApp.controller('specialCollectionsController', function($scope, $state, $s
     var syncArray = [];
 
     $scope.loadPictures = function(){
-            console.log('asdf');
 
         for(var i = 0 ; i < $scope.collectionOfItems.length; i++){
             var prom = new Promise(function(resolve, reject) {
@@ -115,6 +114,7 @@ orchidApp.controller('specialCollectionsController', function($scope, $state, $s
                 if(data.length == 0){
                 } else {
                     for(var t = 0; t < $scope.collectionOfItems.length; t++) {
+                        $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].name;
                         if($scope.collectionOfItems[t].id == sp_id){
                             $scope.collectionOfItems[t].picture = data[0].thumb_url;
                             $scope.collectionOfItems[t].hasPicture = true;
