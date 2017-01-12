@@ -5,7 +5,8 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
     var data = {};
     var baseUrl = location.origin +'/orchid_site/public/api/plants';
 
-    data.getPaginatedPlants = function(alpha, index, itemsPerPage = 30) {
+    data.getPaginatedPlants = function(alpha, index, itemsPerPage) {
+        itemsPerPage = 30;
         return $http.get(baseUrl + "/alpha/" + alpha + "/" + index + "/" + itemsPerPage);
     };
 

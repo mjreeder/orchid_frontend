@@ -113,7 +113,9 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
 
         var r = 0;
         for(r = 0; r < data.length; r++){
-            $scope.allimagesURL.push(data[r].url);
+            if(data[r].type != "other"){
+                $scope.allimagesURL.push(data[r].url);
+            }
         }
 
         var foundProfilePicture = false;
@@ -124,13 +126,7 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
                 $scope.haveProfilePicture = true;
             }
         }
-        if(foundProfilePicture == false){
-            for(var i = 0;i < $scope.allimagesURL.length; i++){
-                $scope.profilePicture = $scope.allimagesURL[i];
-                $scope.haveProfilePicture = true;
-                break;
-            }
-        }
+
     }, function(error) {
       $error.handle(error);
     });

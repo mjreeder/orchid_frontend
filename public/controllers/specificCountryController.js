@@ -88,6 +88,7 @@ orchidApp.controller('specificCountryController', function($scope, $location, $s
         var photoArray = [];
         for(var  i = 0; i < $scope.collectionOfItems.length; i++){
             $scope.collectionOfItems[i].hasPicture = false;
+            $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].scientific_name;
 
 
             var prom = new Promise(function(resolve, reject) {
