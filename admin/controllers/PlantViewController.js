@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($window, $scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, bloomService, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll, SpecialCollectionsFactory, $route) {
+app.controller('PlantViewController', function($window, $scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, bloomService, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll, SpecialCollectionsFactory, $route, taxonommyFactory) {
 
 
     $scope.iFrameURL = location.origin +"/2016/orchid_site/utilities/file_frame.php?session_key=" +$rootScope.userSessionKey +"&session_id=" +$rootScope.userSessionId +"&url_section=blah";
@@ -275,7 +275,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 })
               }
             }
-            
+
             if($scope.bloomYears[0]){
               $scope.loadBloomGraph($scope.bloomYears[0]);
             }
@@ -1800,5 +1800,95 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.scrollToFunction = function(){
         $(window).scrollTop(0);
+    }
+    $scope.autoFilledClasses = [];
+    $scope.autoFilledPhylums = [];
+    $scope.autoFilledGenuses = [];
+    $scope.autoFilledTribes = [];
+    $scope.autoFilledSpecies = [];
+    $scope.autoFilledSubtribes = [];
+    $scope.autoFilledVarieties = [];
+    $scope.autoFilledAuthorities = [];
+
+    $scope.autoFillClass = function(text) {
+      if (text !== "" && text !== undefined && text !== null) {
+        taxonommyFactory.getAutoFillTaxonomy('class', text).then(function(response) {
+          $scope.autoFilledClasses = response.map(function(classObj) {
+            return classObj.class_name;
+          });
+        });
+      }
+    }
+
+
+    $scope.autoFillPhylum = function(text) {
+      if (text !== "" && text !== undefined && text !== null) {
+        taxonommyFactory.getAutoFillTaxonomy('phylum', text).then(function(response) {
+          $scope.autoFilledPhylums = response.map(function(classObj) {
+            return classObj.phylum_name;
+          });
+        });
+      }
+    }
+
+
+    $scope.autoFillGenus = function(text) {
+      if (text !== "" && text !== undefined && text !== null) {
+        taxonommyFactory.getAutoFillTaxonomy('genus', text).then(function(response) {
+          $scope.autoFilledGenuses = response.map(function(classObj) {
+            return classObj.genus_name;
+          });
+        });
+      }
+    }
+
+    $scope.autoFillTribe = function(text) {
+      if (text !== "" && text !== undefined && text !== null) {
+        taxonommyFactory.getAutoFillTaxonomy('tribe', text).then(function(response) {
+          $scope.autoFilledTribes = response.map(function(classObj) {
+            return classObj.tribe_name;
+          });
+        });
+      }
+    }
+
+    $scope.autoFillSpecies = function(text) {
+      if (text !== "" && text !== undefined && text !== null) {
+        taxonommyFactory.getAutoFillTaxonomy('species', text).then(function(response) {
+          $scope.autoFilledSpecies = response.map(function(classObj) {
+            return classObj.species_name;
+          });
+        });
+      }
+    }
+
+    $scope.autoFillSubtribe = function(text) {
+      if (text !== "" && text !== undefined && text !== null) {
+        taxonommyFactory.getAutoFillTaxonomy('subtribe', text).then(function(response) {
+          $scope.autoFilledSubtribes = response.map(function(classObj) {
+            return classObj.subtribe_name;
+          });
+        });
+      }
+    }
+
+    $scope.autoFillVariety = function(text) {
+      if (text !== "" && text !== undefined && text !== null) {
+        taxonommyFactory.getAutoFillTaxonomy('variety', text).then(function(response) {
+          $scope.autoFilledVarieties = response.map(function(classObj) {
+            return classObj.variety_name;
+          });
+        });
+      }
+    }
+
+    $scope.autoFillAuthority = function(text) {
+      if (text !== "" && text !== undefined && text !== null) {
+        taxonommyFactory.getAutoFillTaxonomy('authority', text).then(function(response) {
+          $scope.autoFilledAuthorities = response.map(function(classObj) {
+            return classObj.authority;
+          });
+        });
+      }
     }
 });
