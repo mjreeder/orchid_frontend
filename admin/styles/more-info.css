@@ -15,8 +15,22 @@ input[type="button"] {
 
 }
 
+span.highlight{
+  background: white;
+  width: auto;
+  margin-left: 0px;
+  display: initial;
+}
 
 
+
+.autocomplete li.active{
+  background-color: #01997b !important;
+}
+
+.autocomplete input{
+  width: initial !important;
+}
 
 button {
     cursor: pointer;
@@ -45,6 +59,10 @@ textarea, input, button, select {
 #notes {
     position: relative;
     overflow: auto;
+}
+
+#taxonomic{
+  overflow: visible;
 }
 
 #vitals {
@@ -206,7 +224,7 @@ fieldset h1 {
     background: #eaeee7;
 }
 
-fieldset {
+fieldset.plant-section {
     border-bottom: 5px solid #01997b;
     margin: 0 auto;
     max-width: 800px;

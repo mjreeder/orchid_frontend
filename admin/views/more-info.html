@@ -1,7 +1,7 @@
 <div>
     <form method="post">
 
-        <fieldset id="vitals">
+        <fieldset id="vitals" class="plant-section">
 
             <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-show="!createNew && !noProfile">
             <img src="images/no_plant_icon.svg" alt="" id="thumbnail" ng-show="createNew || noProfile">
@@ -30,7 +30,7 @@
             </div>
         </fieldset>
 
-        <fieldset id="taxonomic">
+        <fieldset class="plant-section" id="taxonomic">
             <h1>Taxonomic Rank</h1>
             <button class="edit" ng-click="editTaxonomy()" ng-hide="createNew" ng-hide="edit">
                 <p ng-hide="editPlant.taxonommy">Save</p>
@@ -38,21 +38,49 @@
                 <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.taxonommy">
             </button>
 
-            <label class="labelfirst">Phylum:</label><input type="text" ng-model="plant.phylum" ng-change="autoFillPhylum(plant.phylum)" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
-            <datalist id="phylum-datalist">
-                <option ng-repeat="phylum in autoFilledPhylums" value="{{phylum}}"/></datalist>
-            <label>Class:</label><input type="text" ng-model="plant.class" ng-change="autoFillClass(plant.class)" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
-            <datalist id="class-datalist">
-                <option ng-repeat="class in autoFilledClasses" value="{{class}}"/></datalist>
-            <label>Genus:</label><input type="text" ng-model="plant.genus" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
-            <label>Tribe:</label><input type="text" ng-model="plant.tribe" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
-            <label>Species:</label><input type="text" ng-model="plant.species" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
-            <label>Subtribe:</label><input type="text" ng-model="plant.subtribe" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
-            <label>Variety:</label><input type="text" ng-model="plant.variety" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
-            <label class="labellast">Authority:</label><input type="text" ng-model="plant.authority" ng-disabled="editPlant.taxonommy && !createNew" maxlength="100">
+            <label class="labelfirst">Phylum:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
+              <autocomplete attr-placeholder="" ng-model="plant.phylum" data="autoFilledPhylums" on-type="autoFillPhylum"></autocomplete>
+            </fieldset>
+
+            <label>Class:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew">
+              <autocomplete attr-placeholder="" ng-model="plant.class" data="autoFilledClasses" on-type="autoFillClass"></autocomplete>
+            </fieldset>
+
+            <label>Genus:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
+              <autocomplete attr-placeholder="" ng-model="plant.genus" data="autoFilledGenuses" on-type="autoFillGenus"></autocomplete>
+            </fieldset>
+
+            <label>Tribe:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
+              <autocomplete attr-placeholder="" ng-model="plant.tribe" data="autoFilledTribes" on-type="autoFillTribe"></autocomplete>
+            </fieldset>
+
+            <label>Species:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
+              <autocomplete attr-placeholder="" ng-model="plant.species" data="autoFilledSpecies" on-type="autoFillSpecies"></autocomplete>
+            </fieldset>
+
+            <label>Subtribe:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
+              <autocomplete attr-placeholder="" ng-model="plant.subtribe" data="autoFilledSubtribes" on-type="autoFillSubtribe"></autocomplete>
+            </fieldset>
+
+            <label>Variety:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
+              <autocomplete attr-placeholder="" ng-model="plant.variety" data="autoFilledVarieties" on-type="autoFillVariety"></autocomplete>
+            </fieldset>
+
+            <label class="labellast">Authority:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
+              <autocomplete attr-placeholder="" ng-model="plant.authority" data="autoFilledAuthorities" on-type="autoFillAuthority"></autocomplete>
+            </fieldset>
+
         </fieldset>
 
-        <fieldset id="culture">
+        <fieldset class="plant-section" id="culture">
             <h1>Culture</h1>
             <button class="edit" ng-click="!editCulture()" ng-hide="createNew">
                 <p ng-hide="editPlant.culture">Save</p>
@@ -87,7 +115,7 @@
 
 </fieldset>
 
-<fieldset id="special-collection">
+<fieldset class="plant-section" id="special-collection">
     <h1>Special Collections</h1>
     <button class="edit" ng-click="editSpecialCollections()" ng-hide="createNew">
         <p ng-hide="editPlant.speical_collections">Save</p>
@@ -122,7 +150,7 @@
 </div>
 </fieldset>
 
-<fieldset id="accession">
+<fieldset  class="plant-section" id="accession">
 <h1>Accession</h1>
 <button class="edit" ng-click="editAccession()" ng-hide="createNew">
 <p ng-hide="!editPlant.accession">Save</p>
@@ -137,7 +165,7 @@
 <textarea type="textarea" maxlength="300" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
 </fieldset>
 
-<fieldset id="description">
+<fieldset  class="plant-section" id="description">
 <h1>Description</h1>
 <button class="edit" ng-click="editDescription()" ng-hide="createNew">
 <p ng-hide="editPlant.description">Save</p>
@@ -149,7 +177,7 @@
 <textarea maxlength="300" type="textarea" placeholder="Add a description of the plant." ng-model="plant.description" ng-disabled="editPlant.description && !createNew"></textarea>
 </fieldset>
 
-<fieldset id="hybrid">
+<fieldset class="plant-section" id="hybrid">
 <h1>Hybrid</h1>
 <button class="edit" ng-click="editHybrid()" ng-hide="createNew">
 <p ng-hide="editPlant.hybrid">Save</p>
@@ -174,7 +202,7 @@ Parent 2:
 
 </fieldset>
 
-<fieldset id="inactive" ng-hide="createNew">
+<fieldset class="plant-section" id="inactive" ng-hide="createNew">
 <h1>Inactive</h1>
 <button class="edit" ng-click="editInactive()" ng-hide="createNew">
 <p ng-hide="editPlant.inactive">Save</p>
@@ -196,7 +224,7 @@ Parent 2:
 <textarea type="textarea" id="inactivecomment" ng-model="plant.inactive_comment" ng-disabled="editPlant.inactive && !createNew" placeholder="Comment about why inactive or dead."></textarea>
 </fieldset>
 
-<fieldset id="photos" ng-hide="createNew">
+<fieldset class="plant-section" id="photos" ng-hide="createNew">
 <h1>Photos</h1>
 <button class="edit" ng-click="editPhotos()" ng-hide="createNew">
 <p ng-hide="editPlant.photos">Save</p>
@@ -230,7 +258,7 @@ This plant has no photos.
 </fieldset>
 </form>
 
-<fieldset id="split" ng-hide="createNew">
+<fieldset class="plant-section" id="split" ng-hide="createNew">
 <h1>Split</h1>
 <button class="edit" ng-click="editSplit()" ng-hide="createNew">
 <p ng-hide="editPlant.split">Save</p>
@@ -271,7 +299,7 @@ This plant has not been split.
 
 </fieldset>
 
-<fieldset id="notes">
+<fieldset id="notes" class="plant-section">
 <h1>General Notes</h1>
 <button class="edit" ng-click="editGeneralNote()" ng-hide="createNew">
 <p ng-hide="editPlant.notes">Save</p>
@@ -283,7 +311,7 @@ This plant has not been split.
 <textarea maxlength="1000" type="textarea" placeholder="General notes" ng-model="plant.general_note" ng-disabled="editPlant.notes && !createNew"></textarea>
 </fieldset>
 
-<fieldset id="graph" ng-hide="createNew">
+<fieldset id="graph" ng-hide="createNew" class="plant-section">
 <h1>Blooming</h1>
 
 <div class="split-holder" ng-show="!blooms.length">
@@ -312,7 +340,7 @@ This plant has no blooming information.
 <!--        END OF BLOOMING GRAPH -->
 </fieldset>
 
-<fieldset id="weekly-checkup" ng-hide="createNew">
+<fieldset id="weekly-checkup" ng-hide="createNew" class="plant-section">
 <h1>Sprayed for Pests</h1>
 <div class="split-holder" ng-show="!sprayed.length">
 This plant has no record of being sprayed for pests.
@@ -326,7 +354,7 @@ This plant has no record of being sprayed for pests.
 </div>
 </fieldset>
 
-<fieldset id="weekly-checkup" ng-hide="createNew">
+<fieldset id="weekly-checkup" ng-hide="createNew" class="plant-section">
 <h1>Repot</h1>
 <div class="split-holder" ng-show="!repotted.length">
 This plant has no potting information.
@@ -339,7 +367,7 @@ This plant has no potting information.
 </div>
 </fieldset>
 
-<fieldset id="weekly-checkup" ng-hide="createNew">
+<fieldset id="weekly-checkup" ng-hide="createNew"class="plant-section">
 <h1>Health Condition</h1>
 <div class="split-holder" ng-show="!healthData.length">
 This plant has no health record.
