@@ -61,7 +61,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
   // function to link the plant to the more info page with corresponding id
   $scope.getMorePlantInfo = function(plant) {
     for (var i = 0; i < plant.length; i++) {
-      if (plant[i].key == 'accession number') {
+      if (plant[i].key == 'Accession #') {
         $location.path("/plant/" + plant[i].val);
       }
     }
