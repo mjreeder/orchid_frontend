@@ -27,6 +27,7 @@ app.service('plantAttributesService', function($rootScope) {
       }
       plants.push(plant);
     }
+    console.log(plants);
     return plants;
   }
 });
