@@ -22,7 +22,6 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
   // attribute that was checked
   $scope.editFilterDisplay = function(key) {
     // add key to the displayAttributes list
-
     if (displayAttributes.indexOf(key) == -1) {
       displayAttributes.push(key);
     } else {
@@ -94,7 +93,6 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
     }
 
   }
-
   // initialize plants for page
   getPaginatedPlants();
 });
