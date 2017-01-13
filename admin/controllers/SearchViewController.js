@@ -22,7 +22,6 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
   // attribute that was checked
   $scope.editFilterDisplay = function(key) {
     // add key to the displayAttributes list
-
     if (displayAttributes.indexOf(key) == -1) {
       displayAttributes.push(key);
     } else {
@@ -95,7 +94,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
 
   }
 
-  ///this is where we get rid of the name stuff
+  // function to add the correct plant attributes to the scope plants list
   function placePlantAttributes(response) {
     var plants = [];
     for (var i = 0; i < response.data.data.plants.length; i++) {

@@ -230,6 +230,10 @@ fieldset.plant-section {
     max-width: 800px;
 }
 
+fieldset.taxonomic-input{
+  width: 220px;
+}
+
 .edit {
     position: absolute;
     width: 89px;
