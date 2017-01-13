@@ -9,7 +9,7 @@ app.service('plantAttributesService', function($rootScope) {
         var val = attributes[j];
         //attributeReplace is for grabbing dual words such as scientific_name
         var attributeReplace = attributes[j].replace(/[^a-zA-Z ]/g, " ");
-        if (attributes[j] == 'accession number') {
+        if (attributes[j] == 'accession_number') {
           attributes[j] = 'Accession #';
         }
         if (attributes[j] == 'grex hybrid') {
