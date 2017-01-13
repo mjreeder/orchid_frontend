@@ -1,35 +1,50 @@
 <div id="orchid-database">
-        <div id="database-heading">
-            <h1>All Plants</h1>
-            <div class="searchbox-and-icon">
-                <form>
-                    <input type="search" id="search" placeholder="Search. . ." name="databasesearch" ng-model="searchItem" ng-change="getPlantsBySearch(searchItem)">
-                    <input type="button" id="mag-glass" name="search-button" ng-click="getPlantsBySearch(searchItem)">
-                </form>
-            </div>
+    <div id="database-heading">
+        <h1>All Plants</h1>
+        <div class="searchbox-and-icon">
+            <form>
+                <input type="search" id="search" placeholder="Search. . ." name="databasesearch" ng-model="searchItem" ng-change="getPlantsBySearch(searchItem)">
+                <input type="button" id="mag-glass" name="search-button" ng-click="getPlantsBySearch(searchItem)">
+            </form>
         </div>
+    </div>
 
-        <div class="filter-left">
-            <div class="filter-section">
-                <h2>
-                    Database Sections</h2>
-                <hr noshade>
-            </div>
-            <div class="filter-options">
-                <ul ng-repeat="(key, val) in plants[0]">
-                   <li ng-show="val.key != 'id' && val.key != 'is donation' && val.key != 'username' && val.key != 'description' && val.key != 'inactive comment' && val.key != 'dead' && val.key != 'size' && val.key != 'value' && val.key != 'culture' &&  val.key != 'hybrid comment' && val.key != 'hybrid status' && val.key != 'origin comment' && val.key != 'donation comment' && val.key != 'value'">
-                        <div class="editPlant" ng-click="editFilterDisplay(val.key)">
-                            <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/>
-                            <span class="table-checkbox"></span>
-                            <label class="filter-option" >{{val.key | capitalize}}</label>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+    <div class="filter-left">
+        <div class="filter-section">
+            <h2>
+                Database Sections</h2>
+            <hr noshade>
         </div>
+        <div class="filter-options">
+            <ul ng-repeat="(key, val) in plants[0]">
+                <li
+                    ng-show="val.key != 'id' && val.key != 'is donation' && val.key != 'username' && val.key != 'description' && val.key != 'inactive comment' && val.key != 'dead' && val.key != 'size' && val.key != 'value' && val.key != 'culture' &&  val.key != 'hybrid comment' && val.key != 'hybrid status' && val.key != 'origin comment' && val.key != 'donation comment' && val.key != 'value'">
+                    <div class="editPlant" ng-click="editFilterDisplay(val.key)">
+                        <input id="Accessionnumber" name="Accessionnumber" type="checkbox" ng-checked="val.isDisplayed"/>
+                        <span class="table-checkbox"></span>
+                        <label class="filter-option">{{val.key | capitalize}}</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-        <div class="table-right">
-          <div class="inner-table-right">
+    <div class="table-right">
+        <div class="inner-table-right">
+            <div class="sk-circle" ng-show="loading">
+                <div class="sk-circle1 sk-child"></div>
+                <div class="sk-circle2 sk-child"></div>
+                <div class="sk-circle3 sk-child"></div>
+                <div class="sk-circle4 sk-child"></div>
+                <div class="sk-circle5 sk-child"></div>
+                <div class="sk-circle6 sk-child"></div>
+                <div class="sk-circle7 sk-child"></div>
+                <div class="sk-circle8 sk-child"></div>
+                <div class="sk-circle9 sk-child"></div>
+                <div class="sk-circle10 sk-child"></div>
+                <div class="sk-circle11 sk-child"></div>
+                <div class="sk-circle12 sk-child"></div>
+            </div>
             <table width="400" class="table" cell padding="10" cell spacing="2">
                 <thead>
                     <tr>
@@ -43,11 +58,11 @@
                     </tbody>
                 </thead>
             </table>
-          </div>
-            <div class="page">
-              <div class="divider"></div>
-                 <ul uib-pagination total-items="totalPlants" num-pages="numberOfPages" ng-model="currentPage" ng-change="pageChange(number)" max-size="2" class="pagination-sm" boundary-link-numbers="true" rotate="false" items-per-page="30"></ul>
-            </div>
         </div>
+        <div class="page">
+            <div class="divider"></div>
+            <ul uib-pagination total-items="totalPlants" num-pages="numberOfPages" ng-model="currentPage" ng-change="pageChange(number)" max-size="2" class="pagination-sm" boundary-link-numbers="true" rotate="false" items-per-page="30"></ul>
+        </div>
+    </div>
 
 </div>

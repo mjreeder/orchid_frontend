@@ -3,6 +3,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
   $scope.currentPage = 1;
   $scope.numberOfPages = 0;
   $scope.searchItem;
+  $scope.loading = true;
 
   //ng-change function for search bar
   $scope.getPlantsBySearch = function() {
@@ -81,6 +82,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
         $scope.numberOfPages = response.data.data.pages;
         $scope.totalPlants = response.data.data.total;
         $scope.plants = plantAttributesService.placePlantAttributes(response, displayAttributes);
+        $scope.loading = false;
       });
     } else {
       PlantsFactory.getPlantBySearch($scope.searchItem, $scope.currentPage).then(function(response) {
@@ -88,7 +90,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
         $scope.totalPlants = response.data.data.total;
         $scope.numberOfPages = response.data.data.pages;
         $scope.plants = plantAttributesService.placePlantAttributes(response, displayAttributes);
-
+        $scope.loading = false;
       });
     }
 
