@@ -1133,6 +1133,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
                     console.log(plantSplit);
                     splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function (response) {
+                        splitFactory.addLetter($scope.plant.id).then(function(response){
+
+                        });
                     });
 
                     for (var i = 0; i < $scope.splits.length; i++) {
