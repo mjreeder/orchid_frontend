@@ -30,6 +30,11 @@ span.highlight{
 
 .autocomplete input{
   width: initial !important;
+    display: inline;
+}
+
+.autocomplete {
+    display: inline-block;
 }
 
 button {
@@ -108,7 +113,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 input {
-    margin-top: 10px;
+    margin-top: 15px;
     width: 220px;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
@@ -213,7 +218,7 @@ fieldset label {
 }
 
 .labellast {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 fieldset h1 {
@@ -232,6 +237,7 @@ fieldset.plant-section {
 
 fieldset.taxonomic-input{
   width: 220px;
+    display: inline-block;
 }
 
 .edit {

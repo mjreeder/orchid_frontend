@@ -44,7 +44,7 @@
             </fieldset>
 
             <label>Class:</label>
-            <fieldset ng-disabled="editPlant.taxonommy && !createNew">
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class="taxonomic-input">
               <autocomplete attr-placeholder="" ng-model="plant.class" data="autoFilledClasses" on-type="autoFillClass"></autocomplete>
             </fieldset>
 
