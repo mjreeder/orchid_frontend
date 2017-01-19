@@ -1120,6 +1120,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }
     };
 
+    $scope.donationSet = function() {
+        $scope.donation = !$scope.donation;
+    }
+
+    $scope.donation = false;
     $scope.editSplit = function() {
         if ($scope.editPlant.split == false) {
                 console.log($scope.newPlantSplit.recipient);
@@ -1134,11 +1139,16 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                         'note' : $scope.newPlantSplit.note
                     };
 
-                    console.log(plantSplit);
                     splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function (response) {
-                        splitFactory.addLetter($scope.plant.id).then(function(response){
+                        if($scope.donation){
+                            splitFactory.addLetter($scope.plant.id).then(function(response){
 
-                        });
+                            });
+                        } else {
+                            splitFactory.makeDonation($scope.plant.id).then(function(response){
+
+                            })
+                        }
                     });
 
                     for (var i = 0; i < $scope.splits.length; i++) {
