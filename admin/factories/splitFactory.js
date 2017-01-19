@@ -49,5 +49,16 @@ app.factory('splitFactory', function($http, $rootScope) {
         });
     }
 
+    data.makeDonation = function(plant_id) {
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/donation/' + plant_id,
+            data : {
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+              }
+        });
+    }
+
     return data;
 });
