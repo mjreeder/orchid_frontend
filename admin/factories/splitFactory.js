@@ -38,7 +38,7 @@ app.factory('splitFactory', function($http, $rootScope) {
         });
     }
 
-    data.addLeter = function(plant_id) {
+    data.addLetter = function(plant_id) {
         return $http({
             method: "PUT",
             url: baseUrl + '/add_letter/' + plant_id,
