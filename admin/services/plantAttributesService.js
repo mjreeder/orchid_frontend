@@ -21,7 +21,7 @@ app.service('plantAttributesService', function($rootScope) {
         if (attributeAfterSpecialReplace == 'grex status') {
           attributeAfterSpecialReplace = 'grex/hybrid';
         }
-        if (attributes[j] == 'variety_name') {
+        if (attributes[j] == 'variety') {
           attributes[j] = 'variety/grex';
         }
         var attribute = {
