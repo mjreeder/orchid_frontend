@@ -190,8 +190,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         var promArray1 = [];
 
-        console.log("adasdfashdlfjasdlkf jasdlkfjadkls;fj lkasdf");
-
         var prom = new Promise(function(resolve, reject) {
             SpecialCollectionsFactory.getSpecificSpecialCollectionID(id).then(function(response){
                 resolve(response.data.data);
@@ -203,12 +201,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         Promise.all(promArray1).then(function (success) {
 
-            console.log(success[0]);
             var data = success[0];
-            console.log();
 
             $scope.plant.special_collections_id = data[0].special_collections_id;
-            console.log($scope.plant.special_collections_id);
             $scope.loadSpecialCollection( $scope.plant.special_collections_id);
 
         }, function (error) {
@@ -219,28 +214,31 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         PhotoFactory.getSimilarPhotos(speciesName).then(function (response){
             var photoData = response.data.data;
             var count = 0;
-            for (var i = 0; i < photoData.length; i++) {
-                var didAdd = false;
+            if(photoData != undefined){
+            
+                for (var i = 0; i < photoData.length; i++) {
+                    var didAdd = false;
 
-                if(photoData[i].plant_id == id){
+                    if(photoData[i].plant_id == id){
 
-                } else {
+                    } else {
 
-                    for(var t = 0; t < $scope.similarPhotos.length; t++){
-                        if($scope.similarPhotos[t].url == photoData[i].url){
-                            didAdd = true;
-                            break;
-                        } else {
+                        for(var t = 0; t < $scope.similarPhotos.length; t++){
+                            if($scope.similarPhotos[t].url == photoData[i].url){
+                                didAdd = true;
+                                break;
+                            } else {
+                            }
+                        }
+                        if(didAdd == false){
+                            $scope.similarPhotos.push(photoData[i]);
                         }
                     }
-                    if(didAdd == false){
-                        $scope.similarPhotos.push(photoData[i]);
-                    }
                 }
-            }
 
-            for(var i = 0;i < $scope.similarPhotos.length; i++){
-                $scope.similarPhotos[i].clicked = "NO";
+                for(var i = 0;i < $scope.similarPhotos.length; i++){
+                    $scope.similarPhotos[i].clicked = "NO";
+                }
             }
 
         });
@@ -364,14 +362,19 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         });
 
         PlantCountryLinkFactory.getCountryByPlantID($scope.plant.id).then(function(response) {
-            for (var i = 0; i < response.data.data.length; i++) {
-                $scope.selectedCountries.push(response.data.data[i][0]);
-            }
+            if(response.data.data != undefined){
+                
+                for (var i = 0; i < response.data.data.length; i++) {
+                    $scope.selectedCountries.push(response.data.data[i][0]);
+                }
 
-            for (var i = 0; i < response.data.data.length; i++) {
-                $scope.origianlSelectedCountries.push(response.data.data[i][0]);
-            }
+                for (var i = 0; i < response.data.data.length; i++) {
+                    $scope.origianlSelectedCountries.push(response.data.data[i][0]);
+                }
 
+            }
+        }, function (error){
+            console.log("There is an error getting the countries");
         });
 
         countryFactory.getCountries().then(function(response) {
@@ -735,8 +738,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         var plant = {
             "data" : data
         };
-        console.log(plant);
-
         var prom2 = new Promise(function(resolve, reject) {
             PlantsFactory.createNew(plant).then(function(response){
                 var newPlantInfo = response.data.data;
@@ -759,7 +760,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             }
 
             $scope.createNewPlantCountryLink();
-
 
             $scope.$apply();
 
@@ -1093,6 +1093,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         if ($scope.editPlant.taxonommy == false) {
             $scope.editPlant.taxonommy = true;
 
+            window.alert('we are updating');
             var taxonmicPlantInformation = {
                 phylum_name: $scope.plant.phylum,
                 class_name: $scope.plant.class,
@@ -1104,9 +1105,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 authority: $scope.plant.authority,
                 id: $scope.plant.id
             };
+            
+            console.log(taxonmicPlantInformation);
 
             PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function(response) {
-
+                
             }, function(error){
                 window.alert('Network Error. Please try again.');
                 $location.path('/');
@@ -1133,6 +1136,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
                     console.log(plantSplit);
                     splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function (response) {
+                        splitFactory.addLetter($scope.plant.id).then(function(response){
+
+                        });
                     });
 
                     for (var i = 0; i < $scope.splits.length; i++) {
@@ -1387,6 +1393,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             // Update the record
             $scope.editPlant.culture = true;
 
+            
             var culturePlantInformation = {
                 distribution: $scope.plant.distribution,
                 habitat: $scope.plant.habitat,
@@ -1395,6 +1402,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 origin_comment: $scope.plant.origin_comment,
                 countries_note: $scope.plant.countries_note
             };
+
+                        console.log(culturePlantInformation);
 
             var alreadyAdded = false;
 

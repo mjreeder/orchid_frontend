@@ -38,5 +38,16 @@ app.factory('splitFactory', function($http, $rootScope) {
         });
     }
 
+    data.addLeter = function(plant_id) {
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/add_letter/' + plant_id,
+            data : {
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        });
+    }
+
     return data;
 });
