@@ -8,18 +8,24 @@ app.service('plantAttributesService', function($rootScope) {
       for (var j = 0; j < attributes.length; j++) {
         var val = attributes[j];
         //attributeReplace is for grabbing dual words such as scientific_name
-        var attributeReplace = attributes[j].replace(/[^a-zA-Z ]/g, " ");
-        if (attributes[j] == 'accession_number') {
-          attributes[j] = 'Accession #';
+        var attributeAfterSpecialReplace = attributes[j].replace(/[^a-zA-Z ]/g, " ");
+        if (attributeAfterSpecialReplace == 'accession number') {
+          attributeAfterSpecialReplace = 'Accession #';
         }
-        if (attributes[j] == 'grex hybrid') {
-          attributes[j] = 'grex/hybrid';
+        if (attributeAfterSpecialReplace == 'grex hybrid') {
+          attributeAfterSpecialReplace = 'grex/hybrid';
+        }
+        if (attributeAfterSpecialReplace == 'variety name') {
+          attributeAfterSpecialReplace = 'variety/grex';
+        }
+        if (attributeAfterSpecialReplace == 'grex status') {
+          attributeAfterSpecialReplace = 'grex/hybrid';
         }
         if (attributes[j] == 'variety_name') {
           attributes[j] = 'variety/grex';
         }
         var attribute = {
-          'key': attributes[j],
+          'key': attributeAfterSpecialReplace,
           'val': response.data.data.plants[i][val],
           'isDisplayed': true
         }
