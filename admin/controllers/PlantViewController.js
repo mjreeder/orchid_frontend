@@ -215,7 +215,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             var photoData = response.data.data;
             var count = 0;
             if(photoData != undefined){
-            
+
                 for (var i = 0; i < photoData.length; i++) {
                     var didAdd = false;
 
@@ -363,7 +363,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         PlantCountryLinkFactory.getCountryByPlantID($scope.plant.id).then(function(response) {
             if(response.data.data != undefined){
-                
+
                 for (var i = 0; i < response.data.data.length; i++) {
                     $scope.selectedCountries.push(response.data.data[i][0]);
                 }
@@ -1084,8 +1084,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.newSplit = false;
     $scope.newPlantSplits = [];
-    $scope.addPlantSplitFunction = function() {
+    $scope.addPlantSplitFunction = function(donation) {
         $scope.newSplit = true;
+        if(donation){
+            $scope.donationSet();
+        }
         $scope.newPlantSplit
     };
 
@@ -1105,11 +1108,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 authority: $scope.plant.authority,
                 id: $scope.plant.id
             };
-            
+
             console.log(taxonmicPlantInformation);
 
             PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function(response) {
-                
+
             }, function(error){
                 window.alert('Network Error. Please try again.');
                 $location.path('/');
@@ -1403,7 +1406,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             // Update the record
             $scope.editPlant.culture = true;
 
-            
+
             var culturePlantInformation = {
                 distribution: $scope.plant.distribution,
                 habitat: $scope.plant.habitat,
