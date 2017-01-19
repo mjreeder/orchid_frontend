@@ -23,7 +23,7 @@ orchidApp.controller('specialCollectionsController', function($scope, $state, $s
         $scope.dynamicSidebarContent.specialCollections = success.collections;
         $scope.dynamicSidebarContent.subtribes = success.subtribes;
 
-        $scope.loadPictures();
+//        $scope.loadPictures();
 
     }, function (error) {
         $error.handle(error);
@@ -82,9 +82,14 @@ orchidApp.controller('specialCollectionsController', function($scope, $state, $s
         for (var i = 0; i < success.length; i++){
             $scope.collectionOfItems = success[0].data.data;
         }
-//      console.log(success);
-//        $scope.$apply();
-        $scope.loadPictures();
+        
+        for(var i = 0; i < $scope.collectionOfItems.length; i++){
+            $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].name;
+            $scope.collectionOfItems[i].hasPicture = false;
+        }
+
+        $scope.$apply();
+
       }, function (error) {
 
     });
@@ -93,42 +98,44 @@ orchidApp.controller('specialCollectionsController', function($scope, $state, $s
     var pictureArray = [];
     var syncArray = [];
 
-    $scope.loadPictures = function(){
-
-        for(var i = 0 ; i < $scope.collectionOfItems.length; i++){
-            var prom = new Promise(function(resolve, reject) {
-                PhotoFactory.onePhotoCollections($scope.collectionOfItems[i].id).then(function (response){
-                    resolve(response.data.data);
-                });
-            });
-
-            pictureArray.push(prom);
-            syncArray.push($scope.collectionOfItems[i].id);
-        }
-
-        Promise.all(pictureArray).then(function (success) {
-
-            for(var i = 0; i < success.length; i++){
-                var sp_id = syncArray[i];
-                var data = success[i];
-                if(data.length == 0){
-                } else {
-                    for(var t = 0; t < $scope.collectionOfItems.length; t++) {
-                        $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].name;
-                        if($scope.collectionOfItems[t].id == sp_id){
-                            $scope.collectionOfItems[t].picture = data[0].thumb_url;
-                            $scope.collectionOfItems[t].hasPicture = true;
-                        }
-                    }
-                }
-            }
-
-            $scope.$apply();
-
-        }, function (error) {
-          $error.handle(error);
-        });
-    };
+//    $scope.loadPictures = function(){
+//
+//        for(var i = 0 ; i < $scope.collectionOfItems.length; i++){
+//            var prom = new Promise(function(resolve, reject) {
+//                PhotoFactory.onePhotoCollections($scope.collectionOfItems[i].id).then(function (response){
+//                    
+//                    resolve(response.data.data);
+//                });
+//            });
+//
+//            pictureArray.push(prom);
+//            syncArray.push($scope.collectionOfItems[i].id);
+//        }
+//
+//        Promise.all(pictureArray).then(function (success) {
+//
+//            for(var i = 0; i < success.length; i++){
+//                console.log(success);
+//                var sp_id = syncArray[i];
+//                var data = success[i];
+//                console.log(data);
+//                if(data.length == 0){
+//                } else {
+//                    for(var t = 0; t < $scope.collectionOfItems.length; t++) {
+//                        if($scope.collectionOfItems[t].id == sp_id){
+//                            $scope.collectionOfItems[t].picture = data[0].thumb_url;
+////                            $scope.collectionOfItems[t].hasPicture = true;
+//                        }
+//                    }
+//                }
+//            }
+//
+//            $scope.$apply();
+//
+//        }, function (error) {
+//          $error.handle(error);
+//        });
+//    };
 
     $scope.goToSpecificCollection = function(id) {
         $state.go('specificCollection', {id: id});

@@ -110,11 +110,15 @@ button.selected-house-movetable {
 
 
 .outside-buttons {
-    margin: 40px;
-    
+    margin: 40px 20px;
+    display: inline-block;
 }
 
 .outside-buttons button {
   padding: 20px 40px;  
     font-size: 20px; 
+}
+
+.outside {
+    text-align: center;
 }
