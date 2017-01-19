@@ -65,7 +65,7 @@ orchidApp.controller('specificSubTribeController', function($scope, $state, $sta
         var photoArray = [];
         for(var  i = 0; i < $scope.collectionOfItems.length; i++){
             $scope.collectionOfItems[i].hasPicture = false;
-            $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].scientific_name;
+            $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].name;
 
 
             if($scope.collectionOfItems[i].id == undefined){
