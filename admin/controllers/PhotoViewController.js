@@ -60,14 +60,14 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
                     "genus" : $scope.plant.genus,
                     "species" : $scope.plant.species
                 };
-                window.alert("BOTH of them set");
+
                 correctData = true;
             } else if ($scope.plant.species == "" && $scope.plant.genus != ""){
                 var data = {
                     "genus" : $scope.plant.genus,
                     "species" : "NULL"
                 };
-                window.alert("GENUS of them set");
+
 
                 correctData = true;
             } else if ($scope.plant.species != "" && $scope.plant.genus == ""){
@@ -75,7 +75,7 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
                     "genus" : "NULL",
                     "species" : $scope.plant.species
                 };
-                window.alert("SPECIES of them set");
+
 
                 correctData = true;
             }

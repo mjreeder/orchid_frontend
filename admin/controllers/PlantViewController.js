@@ -1047,22 +1047,26 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
 
             if ($scope.theSelectedProfilePicture.id != "" || scope.theSelectedProfilePicture.id == undefined){
-                var profile = {
-                    id: $scope.theSelectedProfilePicture.id,
-                    plant_id: $scope.theSelectedProfilePicture.plant_id,
-                    url: $scope.theSelectedProfilePicture.url,
-                    fileName: $scope.theSelectedProfilePicture.fileName,
-                    type: "profile"
-                };
 
-                var prom = new Promise(function(resolve, reject) {
+                if($scope.theSelectedProfilePicture.id != undefined){
+                    var profile = {
+                        id: $scope.theSelectedProfilePicture.id,
+                        plant_id: $scope.theSelectedProfilePicture.plant_id,
+                        url: $scope.theSelectedProfilePicture.url,
+                        fileName: $scope.theSelectedProfilePicture.fileName,
+                        type: "profile"
+                    };
 
-                    PhotoFactory.updatePhoto(profile).then(function(response) {
-                        var photoResponse = response.data.data;
-                        resolve(photoResponse);
+                    var prom = new Promise(function(resolve, reject) {
+
+                        PhotoFactory.updatePhoto(profile).then(function(response) {
+                            var photoResponse = response.data.data;
+                            resolve(photoResponse);
+                        });
                     });
-                });
-                promArray.push(prom);
+                    promArray.push(prom);
+                }
+
             } else {
             }
 
@@ -1096,7 +1100,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         if ($scope.editPlant.taxonommy == false) {
             $scope.editPlant.taxonommy = true;
 
-            window.alert('we are updating');
             var taxonmicPlantInformation = {
                 phylum_name: $scope.plant.phylum,
                 class_name: $scope.plant.class,
