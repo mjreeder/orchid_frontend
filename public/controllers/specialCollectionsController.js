@@ -17,13 +17,10 @@ orchidApp.controller('specialCollectionsController', function($scope, $state, $s
         $scope.dynamicSidebarContent.subtribes; //= factory call to pull in subtribes; TODO
     };
 
-
     PlantsFactory.topFiveCollectionsAndSubtribes()
       .then(function (success) {
         $scope.dynamicSidebarContent.specialCollections = success.collections;
         $scope.dynamicSidebarContent.subtribes = success.subtribes;
-
-//        $scope.loadPictures();
 
     }, function (error) {
         $error.handle(error);
@@ -47,16 +44,12 @@ orchidApp.controller('specialCollectionsController', function($scope, $state, $s
         Promise.all(promArray2).then(function (success) {
 
             $scope.idForSpeicalCollection = success[0].data.data.id;
-
-//            $scope.$apply();
-
             $scope.locationPath($scope.idForSpeicalCollection);
 
 
         }, function (error) {
 
         });
-
     }
 
     $scope.locationPath = function(id){
@@ -65,7 +58,6 @@ orchidApp.controller('specialCollectionsController', function($scope, $state, $s
         } else {
             $state.go("specificCollection", {collection: id})
         }
-
     }
 
     var prom = new Promise(function(resolve, reject) {
@@ -97,45 +89,6 @@ orchidApp.controller('specialCollectionsController', function($scope, $state, $s
 
     var pictureArray = [];
     var syncArray = [];
-
-//    $scope.loadPictures = function(){
-//
-//        for(var i = 0 ; i < $scope.collectionOfItems.length; i++){
-//            var prom = new Promise(function(resolve, reject) {
-//                PhotoFactory.onePhotoCollections($scope.collectionOfItems[i].id).then(function (response){
-//                    
-//                    resolve(response.data.data);
-//                });
-//            });
-//
-//            pictureArray.push(prom);
-//            syncArray.push($scope.collectionOfItems[i].id);
-//        }
-//
-//        Promise.all(pictureArray).then(function (success) {
-//
-//            for(var i = 0; i < success.length; i++){
-//                console.log(success);
-//                var sp_id = syncArray[i];
-//                var data = success[i];
-//                console.log(data);
-//                if(data.length == 0){
-//                } else {
-//                    for(var t = 0; t < $scope.collectionOfItems.length; t++) {
-//                        if($scope.collectionOfItems[t].id == sp_id){
-//                            $scope.collectionOfItems[t].picture = data[0].thumb_url;
-////                            $scope.collectionOfItems[t].hasPicture = true;
-//                        }
-//                    }
-//                }
-//            }
-//
-//            $scope.$apply();
-//
-//        }, function (error) {
-//          $error.handle(error);
-//        });
-//    };
 
     $scope.goToSpecificCollection = function(id) {
         $state.go('specificCollection', {id: id});

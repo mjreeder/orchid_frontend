@@ -2,32 +2,33 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
 
     $scope.collectionOfItems = [];
 
+
     PlantsFactory.getCurrentBlooming().then(function (response){
-        var plants = response.data.data;
-        
 
 
+        var photos = response.data.data.photo;
+        var plants = response.data.data.plants;
 
-//        if(plants != undefined){
-            
-            for(var i = 0; i < plants.length; i++){
 
+        for(var i = 0; i < plants.length; i++){
             $scope.collectionOfItems[i] = plants[i];
             $scope.collectionOfItems[i].hasPicture = false;
             var plant_id = plants[i].id;
 
             //setting the display name to the scientific name
             $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].name;
+        }
 
-//                for(var index = 0; index < photos.length; index++){
-//                    if(plant_id == photos[index].plant_id){
-//                        $scope.collectionOfItems[i].hasPicture = true;
-//                        $scope.collectionOfItems[i].picture =  photos[index].thumb_url;
-//                        break;
-//                    }
-//                }
+        for(var j = 0; j < photos.length; j++){
+            var photo_plant_id = photos[j].plant_id;
+            for(var i = 0; i <  $scope.collectionOfItems.length; i++){
+                if( $scope.collectionOfItems[i].id == photo_plant_id){
+                    $scope.collectionOfItems[i].hasPicture = true;
+                    $scope.collectionOfItems[i].picture = photos[j].thumb_url;
+                    break;
+                }
             }
-//        }
+        }
         
 
       }, function(error) {
@@ -48,6 +49,7 @@ orchidApp.controller('bloomingController', function($scope, $location, $state, $
       .then(function (success) {
         $scope.dynamicSidebarContent.specialCollections = success.collections;
         $scope.dynamicSidebarContent.subtribes = success.subtribes;
+            $scope.$apply();
 
         }, function (error) {
         $error.handle(error);

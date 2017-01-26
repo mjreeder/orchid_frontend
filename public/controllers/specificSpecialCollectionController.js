@@ -14,7 +14,6 @@ orchidApp.controller('specificSpecialCollectionsController', function($scope, $s
             $scope.idForSpeicalCollection = response.data.data.id;
 
             $state.current.data.pageTitle = response.data.data.name;
-//            $scope.$apply();
             $scope.continueLoading();
         }
     }, function(error) {
@@ -102,7 +101,6 @@ orchidApp.controller('specificSpecialCollectionsController', function($scope, $s
                for(var i = 0; i < $scope.collectionOfItems.length; i++){
                    if (cleanList[t].plant_id == $scope.collectionOfItems[i].id){
                        $scope.collectionOfItems[i].picture = cleanList[t].thumb_url;
-                       console.log(cleanList[t].thumb_url);
                        $scope.collectionOfItems[i].hasPicture = true;
                        break;
                    }
@@ -129,10 +127,5 @@ orchidApp.controller('specificSpecialCollectionsController', function($scope, $s
         $state.go('specificPlant', {accession_number: item.accession_number});
 
     }
-
-//    $scope.locationPath = function(id){
-//
-//    }
-
 
 });

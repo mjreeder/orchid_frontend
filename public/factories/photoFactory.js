@@ -24,11 +24,5 @@ orchidApp.factory('PhotoFactory', function($http, $rootScope) {
     data.onePhotoTribe = function(tribe){
         return $http.get(baseUrl + "/onePhotoTribe/" + tribe);
     };
-
-
-
-
-
-
     return data;
 });

@@ -1,6 +1,6 @@
 orchidApp.controller('specificCountryController', function($scope, $location, $state, $stateParams, countryFactory, PlantsFactory, PhotoFactory, $error) {
     $scope.NAMEOFPAGE = $stateParams.country;
-$state.current.data.pageTitle = $stateParams.country;
+    $state.current.data.pageTitle = $stateParams.country;
     $scope.currentCountries = [];
     $scope.collectionOfItems = [];
 
@@ -17,15 +17,6 @@ $state.current.data.pageTitle = $stateParams.country;
     Promise.all(promArray).then(function (success) {
 
         $scope.currentCountries = success[0].data.data;
-
-        for(var i = 0; i < $scope.currentCountries.length; i++){
-            if($scope.NAMEOFPAGE == $scope.currentCountries[i].name){
-//               $scope.continueLoad();
-            } else {
-
-            }
-        }
-
 
     }, function (error) {
         $error.handle(error);
@@ -68,7 +59,6 @@ $state.current.data.pageTitle = $stateParams.country;
         Promise.all(countryArray).then(function (success) {
 
             var newData = success[0].data.data;
-            console.log(newData);
 
             for(var i = 0; i < newData.length; i++){
                 $scope.collectionOfItems.push(newData[i]);
@@ -76,23 +66,15 @@ $state.current.data.pageTitle = $stateParams.country;
             
             for(var i = 0; i < $scope.collectionOfItems.length; i++){
                 var name = $scope.collectionOfItems[i].name;
-                
                 $scope.collectionOfItems[i].display_name = name;
-
                 $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].name;
-                console.log($scope.collectionOfItems[i]);
-
             }
-
             $scope.$apply();
             $scope.continueLoading();
 
         }, function (error) {
 
         });
-
-
-
     };
 
     $scope.continueLoading = function(){
@@ -105,11 +87,9 @@ $state.current.data.pageTitle = $stateParams.country;
                     resolve(response);
                 })
             });
-
             photoArray.push(prom);
         }
         $scope.$apply();
-
 
         Promise.all(photoArray).then(function (success) {
 
@@ -131,24 +111,12 @@ $state.current.data.pageTitle = $stateParams.country;
                 }
             }
 
-//            for(var i = 0; $scope.collectionOfItems.length; i++)
-//            {
-//                console.log($scope.collectionOfItems[i].name);
-//                if($scope.collectionOfItems[i].name.length == 0){
-//                    $scope.collectionOfItems[i].name = "<NO COMMON NAME>";
-//                } else {
-//
-//                }
-//                $scope.$apply();
-//
-//            }
             $scope.$apply();
 
         }, function (error) {
             $state.go("404")
         });
-
-    }
+    };
 
     $scope.moveTo = function(item){
         $location.path('/plant/' + item.accession_number);

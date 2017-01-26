@@ -92,7 +92,7 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
           
           var specialCollectionsData = dataArr[0].data.data;
           var speciesCollectionsData = dataArr[1].data.data;
-          
+
           //return arrays
           var returnSpecialCollections = [];
           var returnSubtribesArray = [];
@@ -104,8 +104,8 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
           var lengthOfSpecies = speciesCollectionsData.length > 5 ? 6 : speciesCollectionsData.length;
           
           for(var i = 0; i < lengthOfSpecies; i++){
-              if(speciesCollectionsData[i].tribe_name){
-                  var name = speciesCollectionsData[i].tribe_name;
+              if(speciesCollectionsData[i].subtribe_name){
+                  var name = speciesCollectionsData[i].subtribe_name;
                   speciesCollectionsData[i].name = name;
                   returnSubtribesArray.push(speciesCollectionsData[i]);
               } 

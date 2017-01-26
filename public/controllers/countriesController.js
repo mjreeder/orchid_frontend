@@ -32,66 +32,39 @@ orchidApp.controller('countriesController', function($scope, $state, $stateParam
     $scope.moveTo = function(item){
         $state.go('specificCountry', {country: item.name});
     };
-
     
     var pictureArray = [];
     var syncArray = [];
 
     countryFactory.getCurrentCountires().then(function (response){
-          var success = response.data.data;
-        console.log(success);
-          
-          for(var i = 0; i < success.length; i++){
-            $scope.collectionOfItems.push(success[i]);
+          var countires = response.data.data.countries;
+        var photos = response.data.data.photos;
+
+          for(var i = 0; i < countires.length; i++){
+            $scope.collectionOfItems.push(countires[i]);
         }
 
         for(var i = 0; i < $scope.collectionOfItems.length; i++){
-           console.log($scope.collectionOfItems[i]);
-        }
-        for(var i = 0; i < $scope.collectionOfItems.length; i++){
             $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].name;
+            $scope.collectionOfItems[i].hasPicture = false;
         }
-        //$scope.loadPictures();
+
+        for(var i = 0; i < photos.length; i++){
+            var photo_plant_id = photos[i].country_id;
+
+            for(var j = 0; j < $scope.collectionOfItems.length; j++){
+                if(photo_plant_id == $scope.collectionOfItems[j].id){
+                    $scope.collectionOfItems[j].hasPicture = true;
+                    $scope.collectionOfItems[j].picture = photos[i].picture;
+                    //console.log(photos[i].picture);
+                }
+            }
+        }
+
+
     }, function(error){
       $error.handle(error);
     });
-
-//    $scope.loadPictures = function(){
-//
-//        for(var i = 0 ; i < $scope.collectionOfItems.length; i++){
-//
-//            var prom = new Promise(function(resolve, reject) {
-//                PhotoFactory.oneCountryPhoto($scope.collectionOfItems[i].id).then(function (response){
-//                    resolve(response.data.data);
-//                });
-//            });
-//
-//            pictureArray.push(prom);
-//            syncArray.push($scope.collectionOfItems[i].id);
-//        }
-//
-//        Promise.all(pictureArray).then(function (success) {
-//
-//            for(var i = 0; i < success.length; i++){
-//                var countryID = syncArray[i];
-//                var data = success[i];
-//                if(data.length == 0){
-//                    } else {
-//                    for(var t = 0; t < $scope.collectionOfItems.length; t++) {
-//                        if($scope.collectionOfItems[t].id == countryID){
-//                            $scope.collectionOfItems[t].picture = data[0].thumb_url;
-//                            $scope.collectionOfItems[t].hasPicture = true;
-//                        }
-//                    }
-//                }
-//            }
-//
-////            $scope.$apply();
-//
-//        }, function (error) {
-//            $error.handle(error);
-//        });
-//    }
 
     init();
 });

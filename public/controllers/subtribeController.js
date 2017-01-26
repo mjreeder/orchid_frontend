@@ -2,14 +2,6 @@ orchidApp.controller('subtribeController', function($scope, $state, $stateParams
 
     $scope.collectionOfItems = [];
 
-    //$scope.collectionOfItems.push({name:"tribe1"});
-    //$scope.collectionOfItems.push({name:"tribe2"});
-    //$scope.collectionOfItems.push({name:"tribe3"});
-    //$scope.collectionOfItems.push({name:"tribe4"});
-    //$scope.collectionOfItems.push({name:"tribe5"});
-    //$scope.collectionOfItems.push({name:"tribe6"});
-
-
     $scope.moveTo = function(item){
         $state.go('specificSubTribe', {tribe: item.name});
     };
@@ -42,7 +34,6 @@ orchidApp.controller('subtribeController', function($scope, $state, $stateParams
     $scope.continueLoad = function() {
 
         for (var i = 0; i < $scope.collectionOfItems.length; i++) {
-//            console.log($scope.collectionOfItems[i].tribe_name);
 
             var prom = new Promise(function (resolve, reject) {
                 PhotoFactory.onePhotoTribe($scope.collectionOfItems[i].tribe_name).then(function (response) {
@@ -59,13 +50,11 @@ orchidApp.controller('subtribeController', function($scope, $state, $stateParams
 
         Promise.all(pictureArray).then(function (success) {
 
-//            console.log(success);
             for (var i = 0; i < $scope.collectionOfItems.length; i++) {
                 $scope.collectionOfItems[i].hasPicture = false;
-                //console.log($scope.collectionOfItems[i]);
-                $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].tribe_name;
-
+                $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].subtribe_name;
             }
+
             $scope.$apply();
 
             for (var i = 0; i < success.length; i++) {
@@ -81,8 +70,6 @@ orchidApp.controller('subtribeController', function($scope, $state, $stateParams
                     }
                 }
             }
-
-//            $scope.$apply();
 
         }, function (error) {
           $error.handle(error);

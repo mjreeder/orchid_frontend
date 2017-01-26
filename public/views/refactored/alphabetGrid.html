@@ -1,41 +1,42 @@
 <!--<aside class="menubox" >-->
-    <aside class="menubox" id="alphabet-menu">
+<aside class="menubox">
 
 
-        <section class="whitebox">
-            <ul>
-                <li>
-                    <!--
-                                        <a href="">
-                                            <h4> Orchids </h4></a>
-                    -->
-                </li>
-                <li><a ui-sref="generalCollections">Special Collections</a></li>
-                <section class="special">
-                    <ul>
-                        <li ng-repeat="collection in dynamicSidebarContent.specialCollections">
-                            <a ui-sref="specificCollection({ collection: collection.special_collections_id })">{{collection.name}}</a></li>
+    <section class="whitebox">
+        <ul>
+            <li>
+                <!--
+                                    <a href="">
+                                        <h4> Orchids </h4></a>
+                -->
+            </li>
+            <li><a ui-sref="generalCollections">Special Collections</a></li>
+            <section class="special">
+                <ul>
+                    <li ng-repeat="collection in dynamicSidebarContent.specialCollections">
+                        <a ui-sref="specificCollection({ collection: collection.special_collections_id })">{{collection.name}}</a></li>
 
-                    </ul>
-                </section>
-                <li ng-click="reload()"><a>Alphabetical</a></li>
-                <li>
-                    <a ui-sref="countries">
-                        <div id="place">Countries</div>
-                    </a>
-                </li>
-                <li><a ui-sref="blooming">What's in Bloom</a></li>
-                <li><a ui-sref="subtribe">Subtribes</a></li>
-                <section class="special">
-                    <ul>
-                        <li ng-repeat="subtribe in dynamicSidebarContent.subtribes"><a ui-sref="specificSubTribe({ tribe: subtribe.tribe_name })">{{subtribe.tribe_name}}</a></li>
-                    </ul>
-                </section>
+                </ul>
+            </section>
+
+            <li><a ui-sref="alphabetical.search({ letter: A })">Alphabetical</a></li>
+            <li>
+                <a ui-sref="countries">
+                    <div id="place">Countries</div>
+                </a>
+            </li>
+            <li><a ui-sref="blooming">What's in Bloom</a></li>
+            <li><a ui-sref="subtribe">Subtribes</a></li>
+            <section class="special">
+                <ul>
+                    <li ng-repeat="subtribe in dynamicSidebarContent.subtribes"><a ui-sref="specificSubTribe({ tribe: subtribe.subtribe_name })">{{subtribe.subtribe_name}}</a></li>
+                </ul>
+            </section>
 
 
-            </ul>
-        </section>
-    </aside>
+        </ul>
+    </section>
+</aside>
 
    <section id="grid">
    

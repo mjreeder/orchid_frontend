@@ -8,7 +8,5 @@ orchidApp.factory('PlantCountryLinkFactory', function($http, $rootScope) {
     data.getCountryByPlantID = function(plant_id) {
         return $http.get(baseUrl + "/plant_id/" + plant_id);
     };
-
-
     return data;
 });

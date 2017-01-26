@@ -115,12 +115,15 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
         for(r = 0; r < data.length; r++){
             if(data[r].type != "other"){
                 $scope.allimagesURL.push(data[r].url);
+
             }
         }
 
+
         var foundProfilePicture = false;
-        for(var i = 0;i < $scope.allimagesURL.length; i++){
-            if($scope.allimagesURL[i].type == "profile"){
+        for(var i = 0;i < data.length; i++){
+
+            if(data[i].type == "profile"){
                 $scope.profilePicture = $scope.allimagesURL[i];
                 foundProfilePicture = faslse = true;
                 $scope.haveProfilePicture = true;
@@ -131,7 +134,6 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
       $error.handle(error);
     });
 
-
     for(var i = 0; i < $scope.photoInformation.length; i++){
         $scope.allimagesURL.add($scope.photoInformation[i].url);
     }
@@ -141,5 +143,4 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
   $scope.goBack = function() {
       window.history.back();
   };
-
 });
