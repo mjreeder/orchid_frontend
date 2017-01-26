@@ -1146,7 +1146,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                     };
 
                     splitFactory.createNewSplit(plantSplit, $scope.plant.id).then(function (response) {
-                        if($scope.donation){
+                        if(!$scope.donation){
                             splitFactory.addLetter($scope.plant.id).then(function(response){
 
                             });
