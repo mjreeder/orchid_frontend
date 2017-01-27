@@ -22,6 +22,10 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
         return $http.get(baseUrl + '/accession/' + accessionNumber);
     };
 
+    data.getCount = function(){
+        return $http.get(baseUrl + '/getCount');
+    };
+
     data.getPlantBySearch = function(searchItem, index) {
         return $http.get(baseUrl + '/search_all/' + searchItem + "/" + index);
     };

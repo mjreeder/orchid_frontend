@@ -30,6 +30,11 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
       $scope.noPlant = true;
       $scope.plantInformation = response.data.data[0];
 
+      PlantsFactory.getCount().then(function (response){
+        console.log(response);
+        //$scope.totalCount
+      })
+
       //get plant blooms for bloom graph
       $scope.getMoreBlooms = function() {
         BloomingFactory.getAllBloomByPlantID($scope.plantInformation.id).then(function(response) {
@@ -86,6 +91,8 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
   }
 
   $scope.createPlant = function() {
+
+    console.log($scope.plantInformation);
     $scope.plant = {
       'id': $scope.plantInformation.id,
 
@@ -96,6 +103,9 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
       'tribe_name': $scope.plantInformation.tribe,
       'genus_name': $scope.plantInformation.genus,
         'phylum_name' : $scope.plantInformation.phylum,
+
+      'description' : $scope.plantInformation.description,
+      'distribution' : $scope.plantInformation.distribution,
 
       'parent_one': $scope.plantInformation.parent_one,
       'parent_two': $scope.plantInformation.parent_two,
@@ -115,7 +125,6 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
         for(r = 0; r < data.length; r++){
             if(data[r].type != "other"){
                 $scope.allimagesURL.push(data[r].url);
-
             }
         }
 
