@@ -165,6 +165,48 @@
 <textarea type="textarea" maxlength="300" placeholder="Comment about the donation." ng-disabled="editPlant.accesssion && !createNew" ng-model="plant.donation_comment"></textarea>
 </fieldset>
 
+        <fieldset class="plant-section" id="split" ng-hide="createNew">
+            <h1>Division</h1>
+            <button class="edit" ng-click="editSplit()" ng-hide="createNew">
+                <p ng-hide="editPlant.split">Save</p>
+                <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
+                <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
+            </button>
+
+            <div class="split-holder" ng-show="!splits.length">
+                This plant has not been divisons.
+            </div>
+
+            <div class="" ng-repeat="plantSplit in splits">
+
+                <label for="recipient">Recipient:</label>
+                <input id="recipient" placeholder="N/A" type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+
+                <label>Split Date:</label>
+                <input type="date" ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
+
+                <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+
+            </div>
+            <div class="button-new">
+                <button class="split-add" type="button" ng-hide="editPlant.split || newSplit" ng-click="addPlantSplitFunction()" ng-disabled="editPlant.split && !createNew">Add Split</button>
+                <button class="split-add" type="button" ng-hide="editPlant.split || newSplit" ng-click="addPlantSplitFunction(true)" ng-disabled="editPlant.split && !createNew">Add Donation</button>
+            </div>
+
+            <div class="" ng-hide="!newSplit">
+
+                <label for="recipient">Recipient:</label>
+                <input maxlength="100" id="recipient" placeholder="John Smith" type='text' ng-model="newPlantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+
+                <label>Split Date:</label>
+                <input type="date" ng-model="newPlantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
+
+                <textarea type="textarea" placeholder="Comment on splitting plant." ng-model="newPlantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+
+            </div>
+
+        </fieldset>
+
 <fieldset  class="plant-section" id="description">
 <h1>Description</h1>
 <button class="edit" ng-click="editDescription()" ng-hide="createNew">
@@ -258,83 +300,77 @@ This plant has no photos.
 </fieldset>
 </form>
 
-<fieldset class="plant-section" id="split" ng-hide="createNew">
-<h1>Split</h1>
-<button class="edit" ng-click="editSplit()" ng-hide="createNew">
-<p ng-hide="editPlant.split">Save</p>
-<img src="images/edit.svg" alt="edit" ng-hide="!editPlant.split">
-<img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.split">
-</button>
 
-<div class="split-holder" ng-show="!splits.length">
-This plant has not been split.
-</div>
 
-<div class="" ng-repeat="plantSplit in splits">
+    <fieldset id="notes" class="plant-section">
+        <h1>General Notes</h1>
+        <button class="edit" ng-click="editGeneralNote()" ng-hide="createNew">
+            <p ng-hide="editPlant.notes">Save</p>
+            <img src="images/edit.svg" alt="edit" ng-hide="!editPlant.notes">
+            <img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.notes">
+        </button>
 
-<label for="recipient">Recipient:</label>
-<input id="recipient" placeholder="N/A" type='text' ng-model="plantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+        <label>Take general notes over the flower here. This will not be seen by the public.</label>
+        <textarea maxlength="1000" type="textarea" placeholder="General notes" ng-model="plant.general_note" ng-disabled="editPlant.notes && !createNew"></textarea>
+    </fieldset>
 
-<label>Split Date:</label>
-<input type="date" ng-model="plantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
+    <fieldset id="graph" ng-hide="createNew" class="plant-section">
+        <h1>Blooming</h1>
 
-<textarea type="textarea" placeholder="Comment on splitting plant." ng-model="plantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
+        <div class="split-holder" ng-show="!blooms.length">
+            This plant has no blooming information.
+        </div>
+        <div class="">
+            <div class="button-new outside-buttons">
+                <button ng-click="addGenericBloom()">Add</button>
+            </div>
 
-</div>
-<div class="button-new">
-<button class="split-add" type="button" ng-hide="editPlant.split || newSplit" ng-click="addPlantSplitFunction()" ng-disabled="editPlant.split && !createNew">Add Split</button>
-<button class="split-add" type="button" ng-hide="editPlant.split || newSplit" ng-click="addPlantSplitFunction(true)" ng-disabled="editPlant.split && !createNew">Add Donation</button>
-</div>
+            <div class="button-new outside-buttons">
+                <button ng-click="updateGenericBloom(bloom)">Update</button>
+            </div>
+            <select class="round" ng-model="bloom">
+                <option selected value>
 
-<div class="" ng-hide="!newSplit">
+                </option>
+                <option ng-repeat="bloom in allBloomData">({{bloom.id}}) {{bloom.start_date}} {{bloom.end_date}}</option>
+            </select>
 
-<label for="recipient">Recipient:</label>
-<input maxlength="100" id="recipient" placeholder="John Smith" type='text' ng-model="newPlantSplit.recipient" ng-disabled="editPlant.split && !createNew">
+            <br>
+            <label ng-hide="!addBloom">Start Date:</label>
+            <label ng-hide="!updateBloom">Start Date:</label>
 
-<label>Split Date:</label>
-<input type="date" ng-model="newPlantSplit.timestamp" ng-disabled="editPlant.split && !createNew">
+            <input type="date" placeholder="1" ng-model="updateBloomStartDate" ng-hide="!updateBloom">
+            <input type="date" placeholder="1" ng-model="add.addStartDate" ng-hide="!addBloom">
 
-<textarea type="textarea" placeholder="Comment on splitting plant." ng-model="newPlantSplit.note" ng-disabled="editPlant.split && !createNew"></textarea>
 
-</div>
+            <label ng-hide="!addBloom">End Date:</label>
+            <label ng-hide="!updateBloom">End Date:</label>
+            <input type="date" placeholder="1" ng-model="updateBloomEndDate" ng-hide="!updateBloom">
+            <input type="date" placeholder="1" ng-model="add.addStartEnd" ng-hide="!addBloom">
 
-</fieldset>
 
-<fieldset id="notes" class="plant-section">
-<h1>General Notes</h1>
-<button class="edit" ng-click="editGeneralNote()" ng-hide="createNew">
-<p ng-hide="editPlant.notes">Save</p>
-<img src="images/edit.svg" alt="edit" ng-hide="!editPlant.notes">
-<img src="images/checkmark.svg" alt="edit" ng-hide="editPlant.notes">
-</button>
+            <div class="button-new outside-buttons">
+                <button ng-hide="!addBloom" ng-click="saveNewBloom(add)">Save</button>
+                <button ng-hide="!updateBloom" ng-click="updateBloomFunction()">Save</button>
+                <button ng-hide="!updateBloom" ng-click="deleteBloom()">Delete</button>
+            </div>
 
-<label>Take general notes over the flower here. This will not be seen by the public.</label>
-<textarea maxlength="1000" type="textarea" placeholder="General notes" ng-model="plant.general_note" ng-disabled="editPlant.notes && !createNew"></textarea>
-</fieldset>
+        </div>
 
-<fieldset id="graph" ng-hide="createNew" class="plant-section">
-<h1>Blooming</h1>
+        <div class="bloooming-entry" ng-repeat="bloom in blooms">
+        <span class="more-info-base two-items-view text-align-top span-date">{{bloom.start_date}} - {{bloom.end_date}}</span>
+            <span class="more-info-base two-items-view span-comment">{{bloom.note}}</span>
+        </div>
 
-<div class="split-holder" ng-show="!blooms.length">
-This plant has no blooming information.
-</div>
+        <div class="button-new">
+            <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
+        </div>
 
-<div class="bloooming-entry" ng-repeat="bloom in blooms">
-<span class="more-info-base two-items-view text-align-top span-date">{{bloom.start_date}}
--
-{{bloom.end_date}}</span>
-<span class="more-info-base two-items-view span-comment">{{bloom.note}}</span>
-</div>
-
-<div class="button-new">
-<input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
-</div>
-
-<div class="blooming-years">
-<div ng-repeat="year in bloomYears">
-<input type="button" value="{{year.year}}" class="blooming-view-year" ng-click="loadBloomGraph(year)">
-</div>
-</div>
+    <div class="blooming-years">
+        <div ng-repeat="year in bloomYears">
+            <input type="button" value="{{year.year}}" class="blooming-view-year" ng-click="loadBloomGraph(year)">
+        </div>
+    </div>
 
 <!--        START OF BLOOMING GRAPH -->
 <div id="bloom_timeline" ng-hide="!blooms.length"></div>

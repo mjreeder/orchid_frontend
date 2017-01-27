@@ -36,6 +36,20 @@ app.factory('BloomingFactory', function($http, $rootScope) {
     });
   }
 
+  data.createGenericBloom = function(blooming) {
+    return $http({
+      method: "POST",
+      url: baseUrl + '/createGenericBloom',
+      data: {
+        "plant_id": blooming.plantId,
+        "start_date": blooming.start_date,
+        "end_date": blooming.end_date,
+        "session_id": $rootScope.userSessionId,
+        "session_key": $rootScope.userSessionKey
+      }
+    });
+  }
+
   data.updateBloom = function(blooming) {
     return $http({
       method: "PUT",
@@ -44,6 +58,18 @@ app.factory('BloomingFactory', function($http, $rootScope) {
         "plant_id": blooming.plantId,
         "end_date": blooming.end_date,
         "start_date": blooming.start_date,
+        "id": blooming.id,
+        "session_id": $rootScope.userSessionId,
+        "session_key": $rootScope.userSessionKey
+      }
+    });
+  }
+
+  data.deleteBloom = function(blooming) {
+    return $http({
+      method: "PUT",
+      url: baseUrl + '/delete',
+      data: {
         "id": blooming.id,
         "session_id": $rootScope.userSessionId,
         "session_key": $rootScope.userSessionKey

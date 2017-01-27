@@ -78,6 +78,110 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.selectedCountries = [];
 
+    $scope.updateBloom = false;
+
+    $scope.addBloom = false;
+
+    $scope.updateBloomFunction = function(){
+
+        var updateData = {
+            'plant_id' : $scope.plant.id,
+            'end_date': $scope.updateBloomEndDate,
+            'start_date' : $scope.updateBloomStartDate,
+            'id' : $scope.updateBloomid
+        };
+
+        BloomingFactory.updateBloom(updateData).then(function(response){
+            console.log(response);
+            window.alert("congrats, updated good");
+
+        }, function (error){
+            console.log(error);
+            window.alert("there is an alert, something went wrong");
+        })
+    };
+
+    $scope.updateGenericBloom = function(data){
+
+        if(data == "N/A" || data == ""){
+            window.alert("Please Select Time range");
+        } else {
+
+
+            console.log(data);
+
+            if ($scope.addBloom == true) {
+                $scope.addBloom = false;
+            }
+            $scope.updateBloom = true;
+
+
+            var dataString = data;
+            var n = dataString.indexOf(')');
+            var id = dataString.substring(1, n);
+
+            $scope.updateBloomid = id;
+            for (var i = 0; i < $scope.allBloomData.length; i++) {
+                if (id == $scope.allBloomData[i].id) {
+                    $scope.updateBloomStartDate = createDateFromString($scope.allBloomData[i].start_date);
+                    $scope.updateBloomEndDate = createDateFromString($scope.allBloomData[i].end_date);
+                }
+            }
+        }
+    };
+
+    $scope.deleteBloom = function(){
+        //this is the function to delete a bloom
+        var deleteData = {
+            'id': $scope.updateBloomid
+        }
+
+        BloomingFactory.deleteBloom(deleteData).then(function(response){
+            window.alert("Update Successful");
+            $scope.updateBloomStartDate = "";
+            $scope.updateBloomEndDate = "";
+            $scope.bloom = "";
+
+        }, function (error){
+            console.log(error);
+            window.alert("there is an alert, something went wrong");
+        })
+    }
+
+    $scope.addGenericBloom = function(){
+
+        $scope.bloom = "N/A";
+        $scope.addBloom = true;
+        if( $scope.updateBloom == true)
+        {
+            $scope.updateBloom = false;
+        }
+
+    };
+
+    $scope.saveNewBloom = function(data){
+        console.log(data);
+        var createGenericBloom = {
+            'start_date': data.addStartDate,
+            'end_date' : data.addStartEnd,
+            'plantId' : $scope.plant.id
+        }
+        console.log(createGenericBloom);
+        BloomingFactory.createGenericBloom(createGenericBloom).then(function(response){
+            window.alert("Addition Successful");
+            $scope.updateBloomEndDate = "";
+            $scope.updateBloomStartDate = "";
+            $scope.add.addStartDate = "";
+            $scope.add.addStartEnd = "";
+            $route.reload();
+
+
+        }, function (error){
+            console.log(error);
+            window.alert("there is an alert");
+        })
+    }
+
     $scope.selectCountry = function() {
         //loop over the all countries and only return those that are not the selected country
         $scope.allCountires = $scope.allCountires.filter(function(countryObject) {
@@ -197,14 +301,30 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         });
 
+        var prom2 = new Promise(function(resolve, reject) {
+           BloomingFactory.getAllBloomByPlantID(id).then(function (response){
+               resolve(response.data.data);
+           })
+
+        });
+
         promArray1.push(prom);
+        promArray1.push(prom2);
+
 
         Promise.all(promArray1).then(function (success) {
+            console.log(success);
 
             var data = success[0];
 
             $scope.plant.special_collections_id = data[0].special_collections_id;
             $scope.loadSpecialCollection( $scope.plant.special_collections_id);
+
+            var bloom_data = success[1];
+
+            $scope.bloom = "N/A";
+
+            $scope.allBloomData = bloom_data;
 
         }, function (error) {
 
