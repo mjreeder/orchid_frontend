@@ -78,6 +78,10 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
         return $http.get(baseUrl + "/topFiveSpecies");
     };
 
+    data.getCountOfTotalPlants = function(){
+        return $http.get(baseUrl + "/getCount");
+    }
+
     /**
      * fetch and process top five collections and subtribes
      * @author Brandon Groff
