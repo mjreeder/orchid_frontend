@@ -22,10 +22,14 @@
                         <option ng-repeat="table in Tables">{{table.name}}</option>
                     </select>
                 </label>
+
                 <label>{{plant.genus}} {{plant.species}}</label>
                 <label><input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label>
                 <label id="verified-label" for="verified" ng-hide="createNew">Last Verified:</label>
                 <input type="date" id="verified" class="more-calendar" ng-model="verifiedDate" ng-disabled="editPlant.critical && !createNew" ng-hide="createNew" class="round">
+                <br>
+                <label id="verified-label" for="verified" ng-hide="createNew">Greenhouse:</label>
+                <input type="text"  class="more-calendar" ng-model="plant.username" ng-disabled="true" ng-hide="createNew" class="round">
 
             </div>
         </fieldset>
@@ -326,13 +330,13 @@ This plant has no photos.
             </div>
 
             <div class="button-new outside-buttons">
-                <button ng-click="updateGenericBloom(bloom)">Update</button>
+                <button ng-click="updateGenericBloom(bloom)" ng-hide="allBloomData == 0">Update</button>
             </div>
-            <select class="round" ng-model="bloom">
+            <select class="round" ng-model="bloom" ng-hide="allBloomData == 0">
                 <option selected value>
 
                 </option>
-                <option ng-repeat="bloom in allBloomData">({{bloom.id}}) {{bloom.start_date}} {{bloom.end_date}}</option>
+                <option ng-repeat="bloom in allBloomData">{{bloom.start_date}} {{bloom.end_date}}</option>
             </select>
 
             <br>
@@ -377,60 +381,180 @@ This plant has no photos.
 <!--        END OF BLOOMING GRAPH -->
 </fieldset>
 
-<fieldset id="weekly-checkup" ng-hide="createNew" class="plant-section">
-<h1>Sprayed for Pests</h1>
-<div class="split-holder" ng-show="!sprayed.length">
-This plant has no record of being sprayed for pests.
-</div>
-<p class="sprayed-entry" ng-repeat="spray in sprayed">
-<span class=" more-info-base text-align-top span-date">{{spray.timestamp}}</span>
-<span class=" more-info-base span-comment">{{spray.note}}</span>
-</p>
-<div class="button-new">
-<input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">
-</div>
-</fieldset>
+    <fieldset id="weekly-checkup" ng-hide="createNew" class="plant-section">
+        <h1>Sprayed for Pests</h1>
+        <div class="split-holder" ng-show="!sprayed.length">
+            This plant has no record of being sprayed for pests.
+        </div>
 
-<fieldset id="weekly-checkup" ng-hide="createNew" class="plant-section">
-<h1>Repot</h1>
-<div class="split-holder" ng-show="!repotted.length">
-This plant has no potting information.
-</div>
-<p class="repotting-entry" ng-repeat="repot in repotted">
-<span class=" more-info-base">{{repot.timestamp}}</span>
-</p>
-<div class="button-new">
-<input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()" ng-show="repottedMoreShow">
-</div>
-</fieldset>
+    <div class="">
+        <div class="button-new outside-buttons">
+            <button ng-click="addGenericPest()">Add</button>
+        </div>
 
-<fieldset id="weekly-checkup" ng-hide="createNew"class="plant-section">
-<h1>Health Condition</h1>
-<div class="split-holder" ng-show="!healthData.length">
-This plant has no health record.
-</div>
-<div class="health-entry" ng-repeat="health in healthData">
-<span class="text-align-top more-info-base span-date">{{health.timestamp}}</span>
-<span class="more-info-base span-comment">{{health.score}}:</br>{{health.comment}}</span>
-</div>
-<div class="button-new">
-<input type="button" value="View More" class="blooming-view-more" ng-click="getMoreHealth()" ng-show="healthMoreShow">
-</div>
+        <div class="button-new outside-buttons">
+            <button ng-click="updateGenericPest(pest)" ng-hide="allSprayedData == 0">Update</button>
+        </div>
+        <select class="round" ng-model="pest" ng-hide="allSprayedData == 0">
+            <option selected value>
 
-</fieldset>
+            </option>
+            <option ng-repeat="spray in allSprayedData">{{spray.timestamp}}</option>
+        </select>
 
-<div class="end-section">
+        <br>
+        <label ng-hide="!addBloom">Date:</label>
 
-<div id="back-to-top" class="button-new">
-<button ng-click="scrollToFunction()">
-Back to Top</button>
-</div>
+        <input type="date" placeholder="1" ng-model="updatePestDate" ng-hide="!updateSpray">
+        <input type="date" ng-model="spray.timestamp" placeholder="1" ng-hide="!addSpray">
 
-<div id="moreinfo-save-button" class="button-new" ng-hide="!createNew">
-<input type="button" ng-click="saveAll()" value="Save All" ng-hide="!createNew || !editPlant.save">
-</div>
-</div>
 
-<div ng-include="'views/photoPopup.html'" ng-show="profilePopUp"></div>
+        <label ng-hide="!addBloom">Comment:</label>
+        <label ng-hide="!updateBloom">Comment:</label>
+
+
+        <textarea ng-model="spray.note" type="textarea" maxlength="300" ng-hide="!addSpray" placeholder="Add comment abouts pests"></textarea>
+        <textarea ng-model="updatePestNote" type="textarea" ng-hide="!updateSpray" maxlength="300" placeholder="Note about pests"></textarea>
+
+        <div class="button-new outside-buttons">
+            <button ng-hide="!addSpray" ng-click="saveNewSpray(spray)">Save</button>
+            <button ng-hide="!updateSpray" ng-click="updatePestFunction()">Save</button>
+            <button ng-hide="!updateSpray" ng-click="deletePest()">Delete</button>
+        </div>
+
+    </div>
+        <p class="sprayed-entry" ng-repeat="spray in sprayed">
+            <span class=" more-info-base text-align-top span-date">{{spray.timestamp}}</span>
+            <span class=" more-info-base span-comment">{{spray.note}}</span>
+        </p>
+        <div class="button-new">
+            <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreSprayed()" ng-show="sprayedMoreShow">
+        </div>
+    </fieldset>
+
+    <fieldset id="weekly-checkup" ng-hide="createNew" class="plant-section">
+        <h1>Repot</h1>
+        <div class="split-holder" ng-show="!repotted.length">
+            This plant has no potting information.
+        </div>
+
+        <div class="">
+            <div class="button-new outside-buttons">
+                <button ng-click="addGenericPotting()">Add</button>
+            </div>
+
+            <div class="button-new outside-buttons">
+                <button ng-click="updateGenericRepot(potting)" ng-hide="allRepotData == 0">Update</button>
+            </div>
+            <select class="round" ng-model="potting" ng-hide="allRepotData == 0">
+                <option selected value>
+
+                </option>
+                <option ng-repeat="potting in allRepotData">{{potting.timestamp}}</option>
+            </select>
+
+            <br>
+            <label ng-hide="!addRepot">Date:</label>
+            <label ng-hide="!updateRepot">Date:</label>
+
+
+            <input type="date" placeholder="1" ng-model="updateRepotDate" ng-hide="!updateRepot">
+            <input type="date" ng-model="potting.timestamp" placeholder="1" ng-hide="!addRepot">
+
+
+            <div class="button-new outside-buttons">
+                <button ng-hide="!addRepot" ng-click="saveNewRepotting(potting)">Save</button>
+                <button ng-hide="!updateRepot" ng-click="updateRepotFunction()">Save</button>
+                <button ng-hide="!updateRepot" ng-click="deletePotting()">Delete</button>
+            </div>
+
+        </div>
+
+        <p class="repotting-entry" ng-repeat="repot in repotted">
+            <span class=" more-info-base">{{repot.timestamp}}</span>
+        </p>
+        <div class="button-new">
+            <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreRepotted()" ng-show="repottedMoreShow">
+        </div>
+    </fieldset>
+
+    <fieldset id="weekly-checkup" ng-hide="createNew"class="plant-section">
+        <h1>Health Condition</h1>
+        <div class="split-holder" ng-show="!healthData.length">
+            This plant has no health record.
+        </div>
+
+        <div class="">
+            <div class="button-new outside-buttons">
+                <button ng-click="addGenericHealth()">Add</button>
+            </div>
+
+            <div class="button-new outside-buttons">
+                <button ng-click="updateGenericHealth(health)" ng-hide='allHealthData.length == 0'>Update</button>
+            </div>
+            <select class="round" ng-model="health" ng-hide='allHealthData.length == 0'>
+                <option selected value>
+
+                </option>
+                <option ng-repeat="health in allHealthData">{{health.timestamp}}</option>
+            </select>
+
+            <br>
+            <label ng-hide="!addHealth">Date:</label>
+            <label ng-hide="!updateHealth">Date:</label>
+
+
+            <input type="date" placeholder="1" ng-model="updateHealthDate" ng-hide="!updateHealth">
+            <input type="date" ng-model="health.timestamp" placeholder="1" ng-hide="!addHealth">
+
+            <section id="current-health" class="top-margin">
+                <label ng-hide="!updateHealth">Current health condition:</label>
+                <label ng-hide="!addHealth">Current health condition:</label>
+
+                <button id="poor" ng-click="updateHealthScore('poor')" ng-hide="!updateHealth" ng-class="{glowHealthPoor: health_score == 'poor', noglowHealth: health_score != 'poor'}">Poor</button>
+                <button id="fair" ng-click="updateHealthScore('fair')" ng-hide="!updateHealth" ng-class="{glowHealthFair: health_score == 'fair', noglowHealth: health_score != 'fair'}">Fair</button>
+                <button id="good" ng-click="updateHealthScore('good')" ng-hide="!updateHealth" ng-class="{glowHealthGood: health_score == 'good', noglowHealth: health_score != 'good'}">Good</button>
+
+                <button id="poor" ng-click="updateHealthScore('poor')" ng-hide="!addHealth" ng-class="{glowHealthPoor: health_score == 'poor', noglowHealth: health_score != 'poor'}">Poor</button>
+                <button id="fair" ng-click="updateHealthScore('fair')" ng-hide="!addHealth" ng-class="{glowHealthFair: health_score == 'fair', noglowHealth: health_score != 'fair'}">Fair</button>
+                <button id="good" ng-click="updateHealthScore('good')" ng-hide="!addHealth" ng-class="{glowHealthGood: health_score == 'good', noglowHealth: health_score != 'good'}">Good</button>
+
+
+                <textarea name="comments" cols="70" rows="4" maxlength="300" placeholder="Comment here about current health condition." ng-hide="!updateHealth" ng-model="updateHealthComment"></textarea>
+                <textarea name="comments" cols="70" rows="4" maxlength="300" placeholder="Comment here about current health condition." ng-hide="!addHealth" ng-model="health.comment"></textarea>
+
+            </section>
+
+            <div class="button-new outside-buttons">
+                <button ng-hide="!addHealth" ng-click="saveNewHealth(health)">Save</button>
+                <button ng-hide="!updateHealth" ng-click="updateHealthFunction()">Save</button>
+                <button ng-hide="!updateHealth" ng-click="deleteHealth()">Delete</button>
+            </div>
+
+        </div>
+
+        <div class="health-entry" ng-repeat="health in healthData">
+            <span class="text-align-top more-info-base span-date">{{health.timestamp}}</span>
+            <span class="more-info-base span-comment">{{health.score}}:</br>{{health.comment}}</span>
+        </div>
+        <div class="button-new">
+            <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreHealth()" ng-show="healthMoreShow">
+        </div>
+
+    </fieldset>
+
+    <div class="end-section">
+
+        <div id="back-to-top" class="button-new">
+            <button ng-click="scrollToFunction()">
+                Back to Top</button>
+        </div>
+
+        <div id="moreinfo-save-button" class="button-new" ng-hide="!createNew">
+            <input type="button" ng-click="saveAll()" value="Save All" ng-hide="!createNew || !editPlant.save">
+        </div>
+    </div>
+
+    <div ng-include="'views/photoPopup.html'" ng-show="profilePopUp"></div>
 
 </div>

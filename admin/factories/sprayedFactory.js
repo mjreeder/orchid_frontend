@@ -5,6 +5,13 @@ app.factory('SprayedFactory', function($http, $rootScope) {
 
 
 
+    data.getAllSpraysFromPlantID = function(plant_id) {
+        return $http({
+            method: "GET",
+            url: baseUrl + "/plant_id/" + plant_id
+        });
+    }
+
     data.getPestByPlantID = function(plant_id, page) {
         if (page == undefined){
             page = 1;
@@ -51,6 +58,18 @@ app.factory('SprayedFactory', function($http, $rootScope) {
         method: "GET",
         url: baseUrl + "/plant_id/single/" + plant_id
       });
+    };
+
+    data.deleteSprayed = function (split){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/delete',
+            data: {
+                "id": split.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        });
     }
 
     return data;

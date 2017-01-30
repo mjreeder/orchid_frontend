@@ -1,4 +1,4 @@
-app.controller('PlantViewController', function($window, $scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, bloomService, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll, SpecialCollectionsFactory, $route, taxonommyFactory) {
+app.controller('PlantViewController', function($window, $scope, UserFactory, CONFIG, countryFactory, $rootScope, $routeParams, PlantsFactory, LocationFactory, classificationLinkFactory, bloomService, TagFactory, $location, PlantCountryLinkFactory, PhotoFactory, splitFactory, BloomingFactory, SprayedFactory, PottingFactory, HealthFactory, VerifiedFactory, $anchorScroll, SpecialCollectionsFactory, $route, taxonommyFactory, PestFactory) {
 
 
     $scope.iFrameURL = location.origin +"/2016/orchid_site/utilities/file_frame.php?session_key=" +$rootScope.userSessionKey +"&session_id=" +$rootScope.userSessionId +"&url_section=blah";
@@ -36,6 +36,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.sprayedMoreShow = true;
     $scope.repottedMoreShow = true;
     $scope.healthMoreShow = true;
+
 
     //COLLECTIONS
     $scope.allCollections = [];
@@ -82,6 +83,22 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.addBloom = false;
 
+    $scope.updateSpray = false;
+
+    $scope.addSpray = false;
+
+    $scope.addRepot = false;
+
+    $scope.updateRepot = false;
+
+    $scope.addHealth = false;
+
+    $scope.updateHealth = false;
+
+
+    /*****************/
+    /* BLOOMING CRUD */
+    /*****************/
     $scope.updateBloomFunction = function(){
 
         var updateData = {
@@ -92,9 +109,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         };
 
         BloomingFactory.updateBloom(updateData).then(function(response){
-            console.log(response);
-            window.alert("congrats, updated good");
-
+            window.alert("Update Bloom");
+            $route.reload();
         }, function (error){
             console.log(error);
             window.alert("there is an alert, something went wrong");
@@ -106,23 +122,19 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         if(data == "N/A" || data == ""){
             window.alert("Please Select Time range");
         } else {
-
-
-            console.log(data);
-
             if ($scope.addBloom == true) {
                 $scope.addBloom = false;
             }
             $scope.updateBloom = true;
 
 
-            var dataString = data;
-            var n = dataString.indexOf(')');
-            var id = dataString.substring(1, n);
+            var dataString = data.substring(0, 10);
+            console.log(dataString);
 
-            $scope.updateBloomid = id;
             for (var i = 0; i < $scope.allBloomData.length; i++) {
-                if (id == $scope.allBloomData[i].id) {
+                if (dataString == $scope.allBloomData[i].start_date) {
+                    $scope.updateBloomid = $scope.allBloomData[i].id;
+
                     $scope.updateBloomStartDate = createDateFromString($scope.allBloomData[i].start_date);
                     $scope.updateBloomEndDate = createDateFromString($scope.allBloomData[i].end_date);
                 }
@@ -137,10 +149,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }
 
         BloomingFactory.deleteBloom(deleteData).then(function(response){
-            window.alert("Update Successful");
+            window.alert("Deleted Bloom");
             $scope.updateBloomStartDate = "";
             $scope.updateBloomEndDate = "";
             $scope.bloom = "";
+            $route.reload();
 
         }, function (error){
             console.log(error);
@@ -160,13 +173,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     };
 
     $scope.saveNewBloom = function(data){
-        console.log(data);
         var createGenericBloom = {
             'start_date': data.addStartDate,
             'end_date' : data.addStartEnd,
             'plantId' : $scope.plant.id
         }
-        console.log(createGenericBloom);
         BloomingFactory.createGenericBloom(createGenericBloom).then(function(response){
             window.alert("Addition Successful");
             $scope.updateBloomEndDate = "";
@@ -180,7 +191,292 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             console.log(error);
             window.alert("there is an alert");
         })
+    };
+
+    /*****************/
+    /*   PEST CRUD   */
+    /*****************/
+
+    $scope.updatePestFunction = function(){
+
+        var updateData = {
+            'plantId' : $scope.plant.id,
+            'timestamp': $scope.updatePestDate,
+            'id' : $scope.updateSprayedID,
+            'note' : $scope.updatePestNote
+        };
+        SprayedFactory.updateSplit(updateData).then(function (response){
+            window.alert('Update Spray');
+            $route.reload();
+
+        }, function (error){
+            window.alert("Error. Please log out and try again");
+        });
+    };
+
+    $scope.updateGenericPest = function(data){
+
+        console.log(data);
+        if(data == "N/A" || data == "" || data == undefined){
+            window.alert("Please Select Time range");
+            $scope.addSpray = false;
+
+        } else {
+
+            if ($scope.addSpray == true) {
+                $scope.addSpray = false;
+            }
+            $scope.updateSpray = true;
+
+            var dataString = data;
+
+            for (var i = 0; i < $scope.allSprayedData.length; i++) {
+
+                if (dataString == $scope.allSprayedData[i].timestamp) {
+                    $scope.updateSprayedID = $scope.allSprayedData[i].id;
+                    $scope.updatePestDate = createDateFromString($scope.allSprayedData[i].timestamp);
+                    $scope.updatePestNote = $scope.allSprayedData[i].note;
+                }
+            }
+        }
+    };
+
+    $scope.deletePest = function(){
+        //this is the function to delete a bloom
+        var deleteData = {
+            'id': $scope.updateSprayedID
+        };
+
+        SprayedFactory.deleteSprayed(deleteData).then(function (response){
+            window.alert("Spray Deleted");
+            $route.reload();
+        }, function (error){
+            window.alert("Error. Please log out and try again");
+        });
+    };
+
+    $scope.addGenericPest = function(){
+        if($scope.addSpray == false){
+            $scope.addSpray = true;
+        } else {
+            $scope.addSpray = false;
+        }
+    };
+
+    $scope.saveNewSpray = function(data){
+
+        if(data.note == undefined){
+            data.note = "";
+        }
+        var createGenericPest = {
+            'timestamp': data.timestamp,
+            'note' : data.note,
+            'plantId' : $scope.plant.id
+        };
+
+        SprayedFactory.createSplit(createGenericPest).then(function (response){
+            window.alert("Created Spray");
+            $route.reload();
+        }, function (response){
+            window.alert("Error. Please log out and try again");
+
+        });
+    };
+
+    /*****************/
+    /*   REPOT CRUD  */
+    /*****************/
+
+    $scope.updateRepotFunction = function(){
+
+        var updateData = {
+            'plantId' : $scope.plant.id,
+            'timestamp': $scope.updateRepotDate,
+            'id' : $scope.updateRepotID
+        };
+
+        PottingFactory.updatePotting(updateData).then(function (response){
+            window.alert('Update Complete');
+            $route.reload();
+        }, function (error){
+            window.alert("Error. Please log out and try again");
+
+        });
+    };
+
+    $scope.updateGenericRepot = function(data){
+        if(data == "N/A" || data == "" || data == undefined){
+            window.alert("Please Select Time range");
+            $scope.addRepot = false;
+
+        } else {
+
+            if ($scope.addRepot == true) {
+                $scope.addRepot = false;
+            }
+            $scope.updateRepot = true;
+
+            var dataString = data;
+
+            for (var i = 0; i < $scope.allRepotData.length; i++) {
+                if (dataString == $scope.allRepotData[i].timestamp) {
+                    $scope.updateRepotID = $scope.allRepotData[i].id;
+                    $scope.updateRepotDate = createDateFromString($scope.allRepotData[i].timestamp);
+                }
+            }
+        }
+    };
+
+    $scope.deletePotting = function(){
+        //this is the function to delete a bloom
+        var deleteData = {
+            'id': $scope.updateRepotID
+        };
+
+        PottingFactory.deletePotting(deleteData).then(function (response){
+            window.alert("Repot Deleted");
+            $route.reload();
+        }, function(error){
+            window.alert("Error. Please log out and try again");
+        });
+
+    };
+
+    $scope.addGenericPotting = function(){
+        if($scope.addRepot == false){
+            $scope.addRepot = true;
+        } else {
+            $scope.addRepot = false;
+        }
+        $scope.updateRepot = false;
+        $scope.potting = "";
+    };
+
+    $scope.saveNewRepotting = function(data){
+
+        var createGenericRepot = {
+            'timestamp': data.timestamp,
+            'plantId' : $scope.plant.id
+        };
+        console.log(createGenericRepot);
+
+        PottingFactory.createPest(createGenericRepot).then(function (response){
+            window.alert("Created new repot");
+            $route.reload();
+        }, function (error){
+            window.alert("Error. Please log out and try again");
+        });
+    };
+
+    /*****************/
+    /*   HEALTH CRUD  */
+    /*****************/
+
+    $scope.updateHealthFunction = function(){
+
+        var updateData = {
+            'plant_id' : $scope.plant.id,
+            'timestamp': $scope.updateHealthDate,
+            'id' : $scope.updateHealthID,
+            'score' : $scope.health_score,
+            'comment' : $scope.updateHealthComment
+        };
+
+        HealthFactory.editHealth(updateData).then(function (response){
+            window.alert('Update Health Complete');
+            $route.reload();
+        }, function (response){
+            window.alert("Error. Please log out and try again");
+        });
+    };
+
+    $scope.updateGenericHealth = function(data){
+        if(data == "N/A" || data == "" || data == undefined){
+            window.alert("Please Select Time range");
+            $scope.addHealth = false;
+
+        } else {
+
+            if ($scope.addHealth == true) {
+                $scope.addHealth = false;
+            }
+            $scope.updateHealth = true;
+            $scope.addHealth = false;
+
+
+            var dataString = data;
+
+            for (var i = 0; i < $scope.allHealthData.length; i++) {
+                if (dataString == $scope.allHealthData[i].timestamp) {
+                    $scope.updateHealthID = $scope.allHealthData[i].id;
+
+                    $scope.updateHealthDate = createDateFromString($scope.allHealthData[i].timestamp);
+                    $scope.health_score = $scope.allHealthData[i].score;
+                    $scope.updateHealthComment = $scope.allHealthData[i].comment;
+                }
+            }
+        }
+    };
+
+    $scope.deleteHealth = function(){
+        //this is the function to delete a bloom
+        var deleteData = {
+            'id': $scope.updateHealthID
+        };
+
+        HealthFactory.deleteHealth(deleteData).then(function (response){
+            window.alert("Health Deleted");
+            $route.reload();
+        }, function (error){
+            window.alert("Error. Please log out and try again");
+        });
+    };
+
+    $scope.addGenericHealth = function(){
+        if($scope.addHealth == false){
+            $scope.addHealth = true;
+        } else {
+            $scope.addHealth = false;
+        }
+        $scope.updateHealth = false;
+        $scope.health = "";
+
+    };
+
+    $scope.saveNewHealth = function(data){
+
+        var createGenericHealth = {
+            'timestamp': data.timestamp,
+            'plantId' : $scope.plant.id,
+            'score' : $scope.health_score,
+            'comment' :data.comment
+        };
+
+        HealthFactory.createHealth(createGenericHealth).then(function (response){
+            window.alert("Created new Health");
+            $route.reload();
+        }, function (error){
+            window.alert("Error. Please log out and try again");
+        });
+    };
+
+    $scope.updateHealthScore = function (value){
+        if(value == 'poor'){
+            $scope.health_score = 'poor';
+        } else if (value == 'fair'){
+            $scope.health_score = 'fair';
+        }else if (value == 'good'){
+            $scope.health_score = 'good';
+        }
     }
+
+
+
+
+
+
+
+    ///this is the new information
 
     $scope.selectCountry = function() {
         //loop over the all countries and only return those that are not the selected country
@@ -308,16 +604,38 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         });
 
+        var prom3 = new Promise(function(resolve, reject) {
+            SprayedFactory.getAllSpraysFromPlantID($scope.plant.id).then(function (response){
+                resolve(response.data.data);
+            });
+
+        });
+
+        var prom4 = new Promise(function(resolve, reject) {
+            PottingFactory.getAllPottingFromPlantID($scope.plant.id).then(function (response){
+                resolve(response.data.data);
+            });
+        });
+
+        var prom5 = new Promise(function(resolve, reject) {
+            HealthFactory.getAllHealthByPlantID($scope.plant.id).then(function (response){
+               resolve(response.data.data);
+            });
+        });
+
+
+
         promArray1.push(prom);
         promArray1.push(prom2);
+        promArray1.push(prom3);
+        promArray1.push(prom4);
+        promArray1.push(prom5);
 
 
         Promise.all(promArray1).then(function (success) {
-            console.log(success);
+            var specialCollectionData = success[0];
 
-            var data = success[0];
-
-            $scope.plant.special_collections_id = data[0].special_collections_id;
+            $scope.plant.special_collections_id = specialCollectionData[0].special_collections_id;
             $scope.loadSpecialCollection( $scope.plant.special_collections_id);
 
             var bloom_data = success[1];
@@ -326,8 +644,14 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             $scope.allBloomData = bloom_data;
 
-        }, function (error) {
+            $scope.allSprayedData = success[2];
 
+            $scope.allRepotData = success[3];
+
+            $scope.allHealthData = success[4];
+
+        }, function (error) {
+            console.log(error);
         });
 
 
@@ -852,7 +1176,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             "special_collections_id" : $scope.collectionID,
             "general_note": $scope.plant.general_note,
             "phylum_name": $scope.plant.phylum,
-            "countries_note" : $scope.plant.countries_note
+            "countries_note" : $scope.plant.countries_note,
+            "username" : "ROGH"
         };
 
         var plant = {
@@ -870,7 +1195,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         promArray2.push(prom2);
         Promise.all(promArray2).then(function (success) {
-            console.log(success);
             var updateList = [];
             for (var i = 0; i < success.length; i++){
                 if (success[i] != ""){
@@ -891,7 +1215,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.createNewPlantCountryLink = function(){
         for(var i = 0; i < $scope.selectedCountries.length; i++){
-          console.log('derp');
             var p_c_link = {
                 'plant_id' : $scope.newPlantID,
                 'country_id': $scope.selectedCountries[i].id
@@ -1232,7 +1555,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 id: $scope.plant.id
             };
 
-            console.log(taxonmicPlantInformation);
 
             PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function(response) {
 
@@ -1253,8 +1575,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.donation = false;
     $scope.editSplit = function() {
         if ($scope.editPlant.split == false) {
-                console.log($scope.newPlantSplit.recipient);
-                console.log($scope.newPlantSplit.timestamp);
+
 
                 if ($scope.newPlantSplit.recipient == "" || !$scope.newPlantSplit.timestamp == undefined) {
                     window.alert("Error creating Split");
@@ -1327,11 +1648,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 if(String(dead_date_object.getFullYear()).length > 4 || (dead_date_object.getFullYear()) < 1990){
                     dateError = true;
                 } else {
-                    console.log(String(dead_date_object.getFullYear()).length);
 
                 }
-
-
             }
 
             if($scope.plant.inactive_date == null){
@@ -1341,7 +1659,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 if(String(inactive_date_object.getFullYear()).length > 4 || (inactive_date_object.getFullYear()) < 1990){
                     dateError = true;
                 } else {
-                    console.log(inactive_date_object.getFullYear().length);
                 }
             }
 
@@ -1377,7 +1694,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             scientific_name: $scope.plant.scientific_name,
             name: $scope.plant.name,
             location_id: $scope.plant.location_id,
-            accession_number: $scope.plant.accession_number
+            accession_number: $scope.plant.accession_number,
+            username: "ROGH"
         };
 
         $scope.editPlant = {
@@ -1539,7 +1857,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 countries_note: $scope.plant.countries_note
             };
 
-                        console.log(culturePlantInformation);
 
             var alreadyAdded = false;
 
@@ -1728,8 +2045,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         for(var i = 0; i < $scope.similarPhotos.length; i++){
             var index = -1;
             if($scope.similarPhotos[i].id == photo.id) {
-                console.log("we have the index");
-                console.log(index);
                 index = i;
                 break;
             }
@@ -1746,7 +2061,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }
 
         if (changed == false) {
-            console.log("we are changing");
             $scope.addPhotoList.push(photo);
             $scope.similarPhotos[index].clicked = "YES";
             $scope.addPhotoList.checked = true;
@@ -1897,15 +2211,12 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             window.alert("No Special Collection to delete");
         } else {
-            console.log($scope.selectedSpecialCollectionDeletedName);
             SpecialCollectionsFactory.deleteSpecialCollection($scope.selectedSpecialCollectionDeletedName).then(function (response){
-                console.log(response);
                 if(response.data.data[0] == true){
                     $route.reload();
                 } else {
                     window.alert('Error with Deleting Special Collections');
                 }
-                console.log(response);
             }, function (error) {
                 window.alert('Network Error.');
             });

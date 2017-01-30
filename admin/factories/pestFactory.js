@@ -6,11 +6,11 @@ app.factory('PestFactory', function($http, $rootScope) {
 
 
     data.getPestByPlantID = function(plant_id) {
-        $http.get(baseUrl + "/plant_id/" + plant_id);
+        return $http.get(baseUrl + "/plant_id/" + plant_id);
     }
 
     data.createPest = function (pest) {
-        $http({
+        return $http({
             method: "POST",
             url: baseUrl + '/create',
             data: {
@@ -24,7 +24,7 @@ app.factory('PestFactory', function($http, $rootScope) {
     }
 
     data.updatePest = function(pest){
-        $http({
+        return $http({
             method: "PUT",
             url: baseUrl + '/update',
             data: {

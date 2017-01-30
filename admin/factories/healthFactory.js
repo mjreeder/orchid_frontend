@@ -39,6 +39,25 @@ app.factory('HealthFactory', function($http, $rootScope) {
                 "session_key": $rootScope.userSessionKey
             }
         })
+    };
+
+    data.deleteHealth = function (healthLink) {
+        return $http({
+            method: 'PUT',
+            url: baseUrl + '/delete',
+            data: {
+                "id": healthLink.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        })
+    };
+
+    data.getAllHealthByPlantID = function (plant_id){
+        return $http({
+            method: "GET",
+            url: baseUrl + '/plant_id/' + plant_id
+        })
     }
 
     data.getHealthBtPlantID = function(id, page){

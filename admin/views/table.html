@@ -54,7 +54,7 @@
             
             <div id="main-table">
             <tbody>
-            <tr ng-repeat="plant in plantsInTable | orderBy : 'genus'" ng-class="{alertRow: plant.tagged == true}"  ng-show="showRows">
+            <tr ng-repeat="plant in plantsInTable | orderBy : 'genus'"  ng-class="{bloomingRow: plant.isBlooming == true, alertRow: plant.tagged == true}"  ng-show="showRows">
 
                 <td ng-show="movePlants">
                    <label> <input type="checkbox" ng-click="wantPlantMoved(plant)"/><span class="table-checkbox"></span></label>

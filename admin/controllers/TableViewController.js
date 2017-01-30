@@ -1,4 +1,4 @@
-app.controller('TableViewController', function($route, CONFIG, $scope, $location, LocationFactory, PlantsFactory, $routeParams, $rootScope, TagFactory, VerifiedFactory) {
+app.controller('TableViewController', function($route, CONFIG, $scope, $location, LocationFactory, PlantsFactory, $routeParams, $rootScope, TagFactory, VerifiedFactory, BloomingFactory) {
 
     var param1 = $routeParams.table_name;
 
@@ -52,6 +52,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                     }
 
                     var promArray = [];
+                    var promArray4 = [];
 
                     for (var i = 0; i < $scope.plantsInTable.length; i++) {
                         var plant = $scope.plantsInTable[i];
@@ -82,8 +83,51 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                                 reject(err);
                             });
                         });
+
+                        var prom2 = new Promise(function(resolve, reject) {
+                            BloomingFactory.getAllBloomByPlantID(plant.id).then(function (response){
+                              resolve(response.data.data);
+                            })
+                        });
+
+
                         promArray.push(prom);
+                        promArray4.push(prom2);
                     }
+                    var hasBloms = [];
+
+                    Promise.all(promArray4).then(function (success) {
+
+                        for (var i = 0; i < success.length; i++){
+                            if (success[i] != ""){
+                                hasBloms.push(success[i]);
+
+                            }
+                        }
+
+                        for (var i = 0; i < hasBloms.length; i++){
+                            var blooms = hasBloms[i];
+                            for(var t = 0; t < blooms.length; t++){
+                                //console.log()
+                                if(blooms[t].end_date == "0000-00-00"){
+                                    console.log(blooms[t]);
+                                    for(var r = 0; r < $scope.plantsInTable.length; r++){
+                                        if(blooms[t].plant_id == $scope.plantsInTable[r].id){
+                                            $scope.plantsInTable[r].isBlooming = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        $scope.$apply();
+
+
+
+
+                    }, function (error) {
+                        //window.alert('asdfasd');
+                    });
 
                     Promise.all(promArray).then(function (success) {
                         var updateList = [];
@@ -120,7 +164,7 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                         $scope.$apply();
 
                     }, function (error) {
-                        window.alert('asdfasd');
+                        //window.alert('asdfasd');
                     });
                 }
 
