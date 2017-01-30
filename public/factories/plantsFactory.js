@@ -5,7 +5,8 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
     var data = {};
     var baseUrl = location.origin +'/orchid_site/public/api/plants';
 
-    data.getPaginatedPlants = function(alpha, index, itemsPerPage = 30) {
+    data.getPaginatedPlants = function(alpha, index, itemsPerPage) {
+        itemsPerPage = 30;
         return $http.get(baseUrl + "/alpha/" + alpha + "/" + index + "/" + itemsPerPage);
     };
 
@@ -19,6 +20,10 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
 
     data.getPlantByAccessionNumber = function(accessionNumber) {
         return $http.get(baseUrl + '/accession/' + accessionNumber);
+    };
+
+    data.getCount = function(){
+        return $http.get(baseUrl + '/getCount');
     };
 
     data.getPlantBySearch = function(searchItem, index) {
@@ -91,7 +96,7 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
           
           var specialCollectionsData = dataArr[0].data.data;
           var speciesCollectionsData = dataArr[1].data.data;
-          
+
           //return arrays
           var returnSpecialCollections = [];
           var returnSubtribesArray = [];
@@ -103,8 +108,8 @@ orchidApp.factory('PlantsFactory', function($http, $rootScope) {
           var lengthOfSpecies = speciesCollectionsData.length > 5 ? 6 : speciesCollectionsData.length;
           
           for(var i = 0; i < lengthOfSpecies; i++){
-              if(speciesCollectionsData[i].tribe_name){
-                  var name = speciesCollectionsData[i].tribe_name;
+              if(speciesCollectionsData[i].subtribe_name){
+                  var name = speciesCollectionsData[i].subtribe_name;
                   speciesCollectionsData[i].name = name;
                   returnSubtribesArray.push(speciesCollectionsData[i]);
               } 

@@ -15,8 +15,27 @@ input[type="button"] {
 
 }
 
+span.highlight{
+  background: white;
+  width: auto;
+  margin-left: 0px;
+  display: initial;
+}
 
 
+
+.autocomplete li.active{
+  background-color: #01997b !important;
+}
+
+.autocomplete input{
+  width: initial !important;
+    display: inline;
+}
+
+.autocomplete {
+    display: inline-block;
+}
 
 button {
     cursor: pointer;
@@ -45,6 +64,10 @@ textarea, input, button, select {
 #notes {
     position: relative;
     overflow: auto;
+}
+
+#taxonomic{
+  overflow: visible;
 }
 
 #vitals {
@@ -90,7 +113,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 input {
-    margin-top: 10px;
+    margin-top: 15px;
     width: 220px;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
@@ -195,7 +218,7 @@ fieldset label {
 }
 
 .labellast {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 fieldset h1 {
@@ -206,10 +229,15 @@ fieldset h1 {
     background: #eaeee7;
 }
 
-fieldset {
+fieldset.plant-section {
     border-bottom: 5px solid #01997b;
     margin: 0 auto;
     max-width: 800px;
+}
+
+fieldset.taxonomic-input{
+  width: 220px;
+    display: inline-block;
 }
 
 .edit {

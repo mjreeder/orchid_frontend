@@ -11,8 +11,6 @@ orchidApp.controller('alphabetController', function($scope, $state, $stateParams
     var initTabs = function() {
         var tabs = document.getElementById('tabs').children;
         if(tabs.length != undefined) {
-
-
             for (var i = 0; i < tabs.length; i++) {
                 var tab = tabs[i];
                 var key = tab.dataset.startLetter;
@@ -39,13 +37,14 @@ orchidApp.controller('alphabetController', function($scope, $state, $stateParams
     };
 
     PlantsFactory.topFiveCollectionsAndSubtribes()
-      .then(function (success) {
-        $scope.dynamicSidebarContent.specialCollections = success.collections;
-        $scope.dynamicSidebarContent.subtribes = success.subtribes;
+        .then(function (success) {
+            $scope.dynamicSidebarContent.specialCollections = success.collections;
+            $scope.dynamicSidebarContent.subtribes = success.subtribes;
+            $scope.$apply();
 
-    }, function (error) {
-        $error.handle(error);
-    });
+        }, function (error) {
+            $error.handle(error);
+        });
 
 
     $scope.toggleExpanded = function(event) {

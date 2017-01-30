@@ -30,6 +30,7 @@ app.controller('PopUpViewController', function(CONFIG, $scope, $location, $rootS
         destroy();
         $scope.plant = data;
         $scope.data = {};
+        $scope.scientific_name = data.genus + " " + data.species;
         concatObjects(data, 'plant');
         init();
     })

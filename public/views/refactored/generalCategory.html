@@ -39,7 +39,7 @@
                 <li><a ui-sref="subtribe">Subtribes</a></li>
                 <section class="special">
                     <ul>
-                        <li ng-repeat="subtribe in dynamicSidebarContent.subtribes"><a ui-sref="specificSubTribe({ tribe: subtribe.tribe_name })">{{subtribe.tribe_name}}</a></li>
+                        <li ng-repeat="subtribe in dynamicSidebarContent.subtribes"><a ui-sref="specificSubTribe({ tribe: subtribe.subtribe_name })">{{subtribe.subtribe_name}}</a></li>
                     </ul>
                 </section>
 
@@ -61,7 +61,7 @@
                       <img ng-src="{{item.picture}}" ng-hide="!item.hasPicture" alt="">
                       <img src="./images/no-photo.svg" ng-hide="item.hasPicture" alt="">
 
-                <h3>{{item.name}}</h3></a>
+                <h3>{{item.display_name}}</h3></a>
 
             </li>
         </ul>

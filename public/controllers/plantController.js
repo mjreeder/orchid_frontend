@@ -30,6 +30,11 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
       $scope.noPlant = true;
       $scope.plantInformation = response.data.data[0];
 
+      PlantsFactory.getCount().then(function (response){
+        console.log(response);
+        //$scope.totalCount
+      })
+
       //get plant blooms for bloom graph
       $scope.getMoreBlooms = function() {
         BloomingFactory.getAllBloomByPlantID($scope.plantInformation.id).then(function(response) {
@@ -86,6 +91,8 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
   }
 
   $scope.createPlant = function() {
+
+    console.log($scope.plantInformation);
     $scope.plant = {
       'id': $scope.plantInformation.id,
 
@@ -96,6 +103,9 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
       'tribe_name': $scope.plantInformation.tribe,
       'genus_name': $scope.plantInformation.genus,
         'phylum_name' : $scope.plantInformation.phylum,
+
+      'description' : $scope.plantInformation.description,
+      'distribution' : $scope.plantInformation.distribution,
 
       'parent_one': $scope.plantInformation.parent_one,
       'parent_two': $scope.plantInformation.parent_two,
@@ -113,28 +123,25 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
 
         var r = 0;
         for(r = 0; r < data.length; r++){
-            $scope.allimagesURL.push(data[r].url);
+            if(data[r].type != "other"){
+                $scope.allimagesURL.push(data[r].url);
+            }
         }
 
+
         var foundProfilePicture = false;
-        for(var i = 0;i < $scope.allimagesURL.length; i++){
-            if($scope.allimagesURL[i].type == "profile"){
+        for(var i = 0;i < data.length; i++){
+
+            if(data[i].type == "profile"){
                 $scope.profilePicture = $scope.allimagesURL[i];
                 foundProfilePicture = faslse = true;
                 $scope.haveProfilePicture = true;
             }
         }
-        if(foundProfilePicture == false){
-            for(var i = 0;i < $scope.allimagesURL.length; i++){
-                $scope.profilePicture = $scope.allimagesURL[i];
-                $scope.haveProfilePicture = true;
-                break;
-            }
-        }
+
     }, function(error) {
       $error.handle(error);
     });
-
 
     for(var i = 0; i < $scope.photoInformation.length; i++){
         $scope.allimagesURL.add($scope.photoInformation[i].url);
@@ -145,5 +152,4 @@ orchidApp.controller('plantController', function($scope, $state, $stateParams, P
   $scope.goBack = function() {
       window.history.back();
   };
-
 });

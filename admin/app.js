@@ -1,6 +1,7 @@
 var app = angular.module('orchid', [
     'ngRoute',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'autocomplete'
 ]);
 
 app.run(function($rootScope){

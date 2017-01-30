@@ -4,6 +4,12 @@ app.factory('PottingFactory', function($http, $rootScope) {
     var baseUrl = location.origin +'/orchid_site/public/api/potting';
 
 
+    data.getAllPottingFromPlantID = function(plant_id){
+        return $http({
+            method: "GET",
+            url: baseUrl + "/plant_id/" + plant_id
+        });
+    };
 
     data.getBloomByPlantID = function(plant_id, page) {
         if (page == undefined){
@@ -35,7 +41,6 @@ app.factory('PottingFactory', function($http, $rootScope) {
             data: {
                 "plant_id": potting.plantId,
                 "timestamp": potting.timestamp,
-                "note": potting.note,
                 "id": potting.id,
                 "session_id": $rootScope.userSessionId,
                 "session_key": $rootScope.userSessionKey
@@ -48,7 +53,21 @@ app.factory('PottingFactory', function($http, $rootScope) {
         method: "GET",
         url: baseUrl + "/plant_id/single/" + plant_id
       });
+    };
+
+    data.deletePotting = function(potting){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/delete',
+            data: {
+                "id": potting.id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        });
     }
+
+
 
     return data;
 });

@@ -13,7 +13,9 @@ orchidApp.service('$error', function(config, $toast, $state){
    * @param {boolean} notify = false a boolean to notify the user
    * @param {boolean} redirect = false a boolean to redirect the page to 404 page
    */
-  this.handle = function(error, notify = false, redirect = false) {
+  this.handle = function(error, notify, redirect) {
+    notify = false;
+    redirect = false;
     if (config.dev) {
       console.log(error);
       console.trace();

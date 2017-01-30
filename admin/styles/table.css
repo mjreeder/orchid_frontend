@@ -352,6 +352,10 @@ td {
     background-color: #fde48f;
 }
 
+.bloomingRow {
+    background-color: lightblue;
+}
+
 .customNgDisabled {
     background-color: #dfe0e0;
     color: #808080;

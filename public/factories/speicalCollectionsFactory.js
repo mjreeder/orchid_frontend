@@ -9,15 +9,13 @@ orchidApp.factory('SpeicalCollectionsFactory', function($http, $rootScope) {
         return $http.get(baseUrl);
     };
 
-
     data.getBySpecificID = function(id){
         return $http.get(baseUrl + '/id/' + id);
-    }
-
+    };
 
     data.getPlantsWithSpecificID = function(id){
         return $http.get(baseUrl + '/plants/' + id);
-    }
+    };
 
     return data;
 });

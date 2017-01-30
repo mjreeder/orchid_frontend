@@ -9,6 +9,11 @@ orchidApp.controller('contactController', function($scope, $location, $state, Em
             'from_name': $scope.contact.from_name
         }
 
-        //REQUEST TO EMAIL
+        EmailFactory.createNote(data).then(function (response){
+            window.alert("Question Sent! Thanks for the feedback!");
+        }, function (error){
+           window.alert("there is an error with submission");
+            console.log(error);
+        });
     }
 });

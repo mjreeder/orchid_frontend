@@ -1,8 +1,9 @@
-app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $location, PlantsFactory, classificationLinkFactory) {
+app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $location, PlantsFactory, classificationLinkFactory, plantAttributesService) {
   var displayAttributes = [];
   $scope.currentPage = 1;
   $scope.numberOfPages = 0;
   $scope.searchItem;
+  $scope.loading = true;
 
   //ng-change function for search bar
   $scope.getPlantsBySearch = function() {
@@ -22,7 +23,6 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
   // attribute that was checked
   $scope.editFilterDisplay = function(key) {
     // add key to the displayAttributes list
-
     if (displayAttributes.indexOf(key) == -1) {
       displayAttributes.push(key);
     } else {
@@ -61,7 +61,7 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
   // function to link the plant to the more info page with corresponding id
   $scope.getMorePlantInfo = function(plant) {
     for (var i = 0; i < plant.length; i++) {
-      if (plant[i].key == 'accession number') {
+      if (plant[i].key == 'Accession #') {
         $location.path("/plant/" + plant[i].val);
       }
     }
@@ -81,51 +81,20 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
       PlantsFactory.getAllPaginatedPlants($scope.currentPage).then(function(response) {
         $scope.numberOfPages = response.data.data.pages;
         $scope.totalPlants = response.data.data.total;
-        $scope.plants = placePlantAttributes(response);
+        $scope.plants = plantAttributesService.placePlantAttributes(response, displayAttributes);
+        $scope.loading = false;
       });
     } else {
       PlantsFactory.getPlantBySearch($scope.searchItem, $scope.currentPage).then(function(response) {
         //changes the location and special collections id into name
         $scope.totalPlants = response.data.data.total;
         $scope.numberOfPages = response.data.data.pages;
-        $scope.plants = placePlantAttributes(response);
-
+        $scope.plants = plantAttributesService.placePlantAttributes(response, displayAttributes);
+        $scope.loading = false;
       });
     }
 
   }
-
-  ///this is where we get rid of the name stuff
-  function placePlantAttributes(response) {
-    var plants = [];
-    for (var i = 0; i < response.data.data.plants.length; i++) {
-      var plant = [];
-      var attributes = Object.keys(response.data.data.plants[i]);
-      for (var j = 0; j < attributes.length; j++) {
-        var val = attributes[j];
-        //attributeReplace is for grabbing dual words such as scientific_name
-        var attributeReplace = attributes[j].replace(/[^a-zA-Z ]/g, " ");
-        if (attributes[j] == 'accession_number' || attributes[j] == 'name' || displayAttributes.indexOf(attributeReplace) !== -1) {
-          var attribute = {
-            'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
-            'val': response.data.data.plants[i][val],
-            'isDisplayed': true
-          }
-        } else {
-          var attribute = {
-            'key': attributes[j].replace(/[^a-zA-Z ]/g, " "),
-            'val': response.data.data.plants[i][val],
-            'isDisplayed': false
-          }
-        }
-        plant.push(attribute);
-      }
-      plants.push(plant);
-    }
-    // console.log(plants, displayAttributes);
-    return plants;
-  }
-
   // initialize plants for page
   getPaginatedPlants();
 });
