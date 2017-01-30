@@ -30,6 +30,7 @@ orchidApp.config(function($stateProvider, $urlRouterProvider) {
         .state('home', {
             url: '',
             templateUrl: './views/refactored/menu.html',
+            controller: 'HomePageController',
             data: {
               pageTitle: 'Home'
             }
