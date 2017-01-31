@@ -1,7 +1,7 @@
 app.factory('HealthFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'/orchid_site/public/api/health';
+    var baseUrl = location.origin +'/2016/orchid_site/public/api/health';
 
     data.createHealth = function(healthLink) {
         return $http({

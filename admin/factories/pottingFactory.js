@@ -1,7 +1,7 @@
 app.factory('PottingFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'/orchid_site/public/api/potting';
+    var baseUrl = location.origin +'/2016/orchid_site/public/api/potting';
 
 
     data.getAllPottingFromPlantID = function(plant_id){
