@@ -1,7 +1,7 @@
 orchidApp.factory('EmailFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'/orchid_site/public/api/email';
+    var baseUrl = location.origin +'/2016/orchid_site/public/api/email';
 
     data.createNote = function (note) {
         $http({

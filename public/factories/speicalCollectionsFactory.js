@@ -3,7 +3,7 @@ var orchidApp = angular.module('orchidApp');
 orchidApp.factory('SpeicalCollectionsFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'/orchid_site/public/api/special_collection';
+    var baseUrl = location.origin +'/2016/orchid_site/public/api/special_collection';
 
     data.getSpeicalCollections = function() {
         return $http.get(baseUrl);

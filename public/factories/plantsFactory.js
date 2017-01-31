@@ -3,7 +3,7 @@ var orchidApp = angular.module('orchidApp');
 orchidApp.factory('PlantsFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'/orchid_site/public/api/plants';
+    var baseUrl = location.origin +'/2016/orchid_site/public/api/plants';
 
     data.getPaginatedPlants = function(alpha, index, itemsPerPage) {
         itemsPerPage = 30;
