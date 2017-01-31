@@ -1,7 +1,7 @@
 app.factory('SprayedFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'/orchid_site/public/api/sprayed';
+    var baseUrl = location.origin +'/2016/orchid_site/public/api/sprayed';
 
 
 

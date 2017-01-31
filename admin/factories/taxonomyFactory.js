@@ -1,7 +1,7 @@
 app.factory('taxonommyFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'/orchid_site/public/api/plants/autofill/';
+    var baseUrl = location.origin +'/2016/orchid_site/public/api/plants/autofill/';
 
     data.getAutoFillTaxonomy = function(taxonommy, text) {
         return new Promise(function(resolve, reject){
