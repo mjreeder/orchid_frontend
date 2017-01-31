@@ -1,4 +1,4 @@
-<div>
+<fieldset>
     <form method="post">
 
         <fieldset id="vitals" class="plant-section">
@@ -13,7 +13,8 @@
             </button>
 
             <div>
-                <label><input placeholder="Accession Number" type="text" ng-model="plant.accession_number" name="accession" ng-disabled="!createNew"></label>
+                <label id="scientific-name">{{plant.genus}} {{plant.species}}</label>
+
                 <label id="location"><img src="images/location.svg" alt="Location">
                     <select class="round" ng-model="plantLocation" ng-disabled="editPlant.critical && !createNew">
                         <option selected value>
@@ -23,12 +24,16 @@
                     </select>
                 </label>
 
-                <label>{{plant.genus}} {{plant.species}}</label>
-                <label><input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew"></label>
-                <label id="verified-label" for="verified" ng-hide="createNew">Last Verified:</label>
+                <label>Accession Number:</label>
+                <input placeholder="Accession Number" type="text" ng-model="plant.accession_number" name="accession" ng-disabled="!createNew">
+
+                <label>Common Name:</label>
+                <input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew">
+
+                <label for="verified" ng-hide="createNew">Last Verified:</label>
                 <input type="date" id="verified" class="more-calendar" ng-model="verifiedDate" ng-disabled="editPlant.critical && !createNew" ng-hide="createNew" class="round">
-                <br>
-                <label id="verified-label" for="verified" ng-hide="createNew">Greenhouse:</label>
+
+                <label for="verified" ng-hide="createNew">Greenhouse:</label>
                 <input type="text"  class="more-calendar" ng-model="plant.username" ng-disabled="true" ng-hide="createNew" class="round">
 
             </div>
@@ -324,22 +329,20 @@ This plant has no photos.
         <div class="split-holder" ng-show="!blooms.length">
             This plant has no blooming information.
         </div>
-        <div class="">
-            <div class="button-new outside-buttons">
-                <button ng-click="addGenericBloom()">Add</button>
+        <div class="add-update">
+            <div class="button-new">
+                <button ng-click="addGenericBloom()" ng-hide="updateBloom">Add</button>
+            </div>
+            <div class="update-div">
+                <select class="round" ng-model="bloom" ng-show="!allBloomData == 0" ng-hide="addBloom || allBloomData == 0">
+                    <option selected value> Select date to update </option>
+                    <option ng-repeat="bloom in allBloomData">{{bloom.start_date}} {{bloom.end_date}}</option>
+                </select>
+                <div class="button-new">
+                    <button ng-click="updateGenericBloom(bloom)" ng-show="!allBloomData == 0" ng-hide="addBloom || allBloomData == 0">Update</button>
+                </div>
             </div>
 
-            <div class="button-new outside-buttons">
-                <button ng-click="updateGenericBloom(bloom)" ng-hide="allBloomData == 0">Update</button>
-            </div>
-            <select class="round" ng-model="bloom" ng-hide="allBloomData == 0">
-                <option selected value>
-
-                </option>
-                <option ng-repeat="bloom in allBloomData">{{bloom.start_date}} {{bloom.end_date}}</option>
-            </select>
-
-            <br>
             <label ng-hide="!addBloom">Start Date:</label>
             <label ng-hide="!updateBloom">Start Date:</label>
 
@@ -353,7 +356,7 @@ This plant has no photos.
             <input type="date" placeholder="1" ng-model="add.addStartEnd" ng-hide="!addBloom">
 
 
-            <div class="button-new outside-buttons">
+            <div class="button-new bloom-save-delete">
                 <button ng-hide="!addBloom" ng-click="saveNewBloom(add)">Save</button>
                 <button ng-hide="!updateBloom" ng-click="updateBloomFunction()">Save</button>
                 <button ng-hide="!updateBloom" ng-click="deleteBloom()">Delete</button>
@@ -387,40 +390,32 @@ This plant has no photos.
             This plant has no record of being sprayed for pests.
         </div>
 
-    <div class="">
-        <div class="button-new outside-buttons">
-            <button ng-click="addGenericPest()">Add</button>
+    <div class="add-update">
+        <div class="button-new">
+            <button ng-click="addGenericPest()" ng-hide="updateSpray">Add</button>
         </div>
 
-        <div class="button-new outside-buttons">
-            <button ng-click="updateGenericPest(pest)" ng-hide="allSprayedData == 0">Update</button>
+        <div class="update-div">
+            <select class="round" ng-model="pest" ng-show="!allSprayedData == 0" ng-hide="addSpray || allSprayedData == 0">
+                <option selected value>Select date to update</option>
+                <option ng-repeat="spray in allSprayedData">{{spray.timestamp}}</option>
+            </select>
+            <div class="button-new">
+                <button ng-click="updateGenericPest(pest)" ng-show="!allSprayedData == 0" ng-hide="addSpray || allSprayedData == 0">Update</button>
+            </div>
         </div>
-        <select class="round" ng-model="pest" ng-hide="allSprayedData == 0">
-            <option selected value>
 
-            </option>
-            <option ng-repeat="spray in allSprayedData">{{spray.timestamp}}</option>
-        </select>
+        <input type="date" placeholder="1" ng-model="updatePestDate" ng-hide="!updateSpray" class="sprayed-date-update">
+        <input type="date" ng-model="spray.timestamp" placeholder="1" ng-hide="!addSpray" class="sprayed-date-update">
 
-        <br>
-        <label ng-hide="!addBloom">Date:</label>
-
-        <input type="date" placeholder="1" ng-model="updatePestDate" ng-hide="!updateSpray">
-        <input type="date" ng-model="spray.timestamp" placeholder="1" ng-hide="!addSpray">
-
-
-        <label ng-hide="!addBloom">Comment:</label>
-        <label ng-hide="!updateBloom">Comment:</label>
-
-
-        <textarea ng-model="spray.note" type="textarea" maxlength="300" ng-hide="!addSpray" placeholder="Add comment abouts pests"></textarea>
-        <textarea ng-model="updatePestNote" type="textarea" ng-hide="!updateSpray" maxlength="300" placeholder="Note about pests"></textarea>
-
-        <div class="button-new outside-buttons">
+        <div class="button-new save-delete">
             <button ng-hide="!addSpray" ng-click="saveNewSpray(spray)">Save</button>
             <button ng-hide="!updateSpray" ng-click="updatePestFunction()">Save</button>
             <button ng-hide="!updateSpray" ng-click="deletePest()">Delete</button>
         </div>
+
+        <textarea ng-model="spray.note" type="textarea" maxlength="300" ng-hide="!addSpray" placeholder="Add comment abouts pests"></textarea>
+        <textarea ng-model="updatePestNote" type="textarea" ng-hide="!updateSpray" maxlength="300" placeholder="Note about pests"></textarea>
 
     </div>
         <p class="sprayed-entry" ng-repeat="spray in sprayed">
@@ -438,37 +433,35 @@ This plant has no photos.
             This plant has no potting information.
         </div>
 
-        <div class="">
-            <div class="button-new outside-buttons">
-                <button ng-click="addGenericPotting()">Add</button>
+        <div class="add-update">
+            <div class="button-new">
+                <button ng-click="addGenericPotting()" ng-hide="updateRepot">Add</button>
+         </div>
+
+         <div class="update-div">
+             <select class="round" ng-model="potting" ng-hide="allRepotData == 0" ng-show="!addRepot">
+                 <option selected value> Select date to update</option>
+                 <option ng-repeat="potting in allRepotData">{{potting.timestamp}}</option>
+             </select>
+             <div class="button-new">
+                 <button ng-click="updateGenericRepot(potting)" ng-hide="allRepotData == 0 || addRepot">Update</button>
+             </div>
+         </div>
+
+            <div class="date-update">
+                <label ng-hide="!addRepot">Date:</label>
+                <label ng-hide="!updateRepot">Date:</label>
+
+                <input type="date" placeholder="1" ng-model="updateRepotDate" ng-hide="!updateRepot">
+                <input type="date" ng-model="potting.timestamp" placeholder="1" ng-hide="!addRepot">
             </div>
 
-            <div class="button-new outside-buttons">
-                <button ng-click="updateGenericRepot(potting)" ng-hide="allRepotData == 0">Update</button>
-            </div>
-            <select class="round" ng-model="potting" ng-hide="allRepotData == 0">
-                <option selected value>
-
-                </option>
-                <option ng-repeat="potting in allRepotData">{{potting.timestamp}}</option>
-            </select>
-
-            <br>
-            <label ng-hide="!addRepot">Date:</label>
-            <label ng-hide="!updateRepot">Date:</label>
-
-
-            <input type="date" placeholder="1" ng-model="updateRepotDate" ng-hide="!updateRepot">
-            <input type="date" ng-model="potting.timestamp" placeholder="1" ng-hide="!addRepot">
-
-
-            <div class="button-new outside-buttons">
-                <button ng-hide="!addRepot" ng-click="saveNewRepotting(potting)">Save</button>
-                <button ng-hide="!updateRepot" ng-click="updateRepotFunction()">Save</button>
-                <button ng-hide="!updateRepot" ng-click="deletePotting()">Delete</button>
-            </div>
-
-        </div>
+         <div class="button-new save-delete">
+             <button ng-hide="!addRepot" ng-click="saveNewRepotting(potting)">Save</button>
+             <button ng-hide="!updateRepot" ng-click="updateRepotFunction()">Save</button>
+             <button ng-hide="!updateRepot" ng-click="deletePotting()">Delete</button>
+         </div>
+    </div>
 
         <p class="repotting-entry" ng-repeat="repot in repotted">
             <span class=" more-info-base">{{repot.timestamp}}</span>
@@ -484,32 +477,30 @@ This plant has no photos.
             This plant has no health record.
         </div>
 
-        <div class="">
-            <div class="button-new outside-buttons">
-                <button ng-click="addGenericHealth()">Add</button>
+        <div class="add-update">
+            <div class="button-new">
+                <button ng-click="addGenericHealth()" ng-hide="updateHealth">Add</button>
             </div>
 
-            <div class="button-new outside-buttons">
-                <button ng-click="updateGenericHealth(health)" ng-hide='allHealthData.length == 0'>Update</button>
+            <div class="update-div">
+                <select class="round" ng-model="health" ng-hide="allHealthData == 0 || addHealth">
+                    <option selected value>Select date to update</option>
+                    <option ng-repeat="health in allHealthData">{{health.timestamp}}</option>
+                </select>
+                <div class="button-new">
+                    <button ng-click="updateGenericHealth(health)" ng-hide="allHealthData == 0 || addHealth">Update</button>
+                </div>
             </div>
-            <select class="round" ng-model="health" ng-hide='allHealthData.length == 0'>
-                <option selected value>
 
-                </option>
-                <option ng-repeat="health in allHealthData">{{health.timestamp}}</option>
-            </select>
+            <!--<label ng-hide="!addHealth">Date:</label>-->
+            <!--<label ng-hide="!updateHealth">Date:</label>-->
 
-            <br>
-            <label ng-hide="!addHealth">Date:</label>
-            <label ng-hide="!updateHealth">Date:</label>
+            <input type="date" placeholder="1" ng-model="updateHealthDate" ng-hide="!updateHealth" class="health-date">
+            <input type="date" ng-model="health.timestamp" placeholder="1" ng-hide="!addHealth" class="health-date">
 
-
-            <input type="date" placeholder="1" ng-model="updateHealthDate" ng-hide="!updateHealth">
-            <input type="date" ng-model="health.timestamp" placeholder="1" ng-hide="!addHealth">
-
-            <section id="current-health" class="top-margin">
-                <label ng-hide="!updateHealth">Current health condition:</label>
-                <label ng-hide="!addHealth">Current health condition:</label>
+            <section id="current-health" class="health-more-info">
+                <label ng-hide="!updateHealth">Health condition:</label>
+                <label ng-hide="!addHealth">Health condition:</label>
 
                 <button id="poor" ng-click="updateHealthScore('poor')" ng-hide="!updateHealth" ng-class="{glowHealthPoor: health_score == 'poor', noglowHealth: health_score != 'poor'}">Poor</button>
                 <button id="fair" ng-click="updateHealthScore('fair')" ng-hide="!updateHealth" ng-class="{glowHealthFair: health_score == 'fair', noglowHealth: health_score != 'fair'}">Fair</button>
@@ -522,10 +513,9 @@ This plant has no photos.
 
                 <textarea name="comments" cols="70" rows="4" maxlength="300" placeholder="Comment here about current health condition." ng-hide="!updateHealth" ng-model="updateHealthComment"></textarea>
                 <textarea name="comments" cols="70" rows="4" maxlength="300" placeholder="Comment here about current health condition." ng-hide="!addHealth" ng-model="health.comment"></textarea>
-
             </section>
 
-            <div class="button-new outside-buttons">
+            <div class="button-new save-delete">
                 <button ng-hide="!addHealth" ng-click="saveNewHealth(health)">Save</button>
                 <button ng-hide="!updateHealth" ng-click="updateHealthFunction()">Save</button>
                 <button ng-hide="!updateHealth" ng-click="deleteHealth()">Delete</button>

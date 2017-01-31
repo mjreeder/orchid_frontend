@@ -81,12 +81,14 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
             }
 
             if(correctData == true){
+                $scope.similarPhotos = [];
                 PhotoFactory.getSimilarPhotos(data).then(function (response) {
                     var data2 = response.data.data;
-                    console.log(data2);
+
                     for (var i = 0; i < data2.length; i++){
                         var photoAdded = false;
                         var singlePhoto = data2[i];
+
                         for (var p = 0; p < $scope.plantsURL.length; p++){
                             if(singlePhoto.url == $scope.plantsURL[p].url){
                                 photoAdded = true;
@@ -99,7 +101,6 @@ app.controller('PhotoViewController', function($route, $scope, $rootScope, Plant
                     }
                     for(var j = 0; j < $scope.similarPhotos.length; j++){
                         $scope.similarPhotos[j].clicked = "NO";
-                        console.log($scope.similarPhotos[j]);
                     }
                 });
             } else {

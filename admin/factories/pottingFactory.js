@@ -7,7 +7,7 @@ app.factory('PottingFactory', function($http, $rootScope) {
     data.getAllPottingFromPlantID = function(plant_id){
         return $http({
             method: "GET",
-            url: baseUrl + "/plant_id/" + plant_id
+            url: baseUrl + "/allPotting/" + plant_id
         });
     };
 

@@ -46,6 +46,8 @@
     <script src="./controllers/plantController.js"></script>
     <script src="./controllers/specificSubTribeController.js"></script>
     <script src="./controllers/contactController.js"></script>
+    <script src="./controllers/homePageController.js"></script>
+
 
     <!-- Services -->
     <script src="./services/bloomGraphService.js"></script>
@@ -55,12 +57,12 @@
 <!--    responsiveness for iphones -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body ng-app="orchidApp">
+<body ng-app="orchidApp" ng-controller="HomePageController">
 <header>
        
         <div class="plant-count"> 
          <div class="plant-count-text"> <p><span id="large-font"> Number of</span> <br> Living Plants</p> </div>
-         <div class="number"> 2,318 </div>
+         <div class="number"> {{count}} </div>
         </div>
         
         
