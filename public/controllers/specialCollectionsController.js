@@ -71,16 +71,23 @@ orchidApp.controller('specialCollectionsController', function($scope, $state, $s
     Promise.all(promArray)
       .then(function (success) {
 
-        for (var i = 0; i < success.length; i++){
-            $scope.collectionOfItems = success[0].data.data;
-        }
-        
-        for(var i = 0; i < $scope.collectionOfItems.length; i++){
-            $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].name;
-            $scope.collectionOfItems[i].hasPicture = false;
-        }
+            if(success[0].data.data[0] == false){
 
-        $scope.$apply();
+            } else {
+                for (var i = 0; i < success.length; i++){
+                    $scope.collectionOfItems = success[0].data.data;
+                }
+
+
+                for(var i = 0; i < $scope.collectionOfItems.length; i++){
+                    $scope.collectionOfItems[i].display_name = $scope.collectionOfItems[i].name;
+                    $scope.collectionOfItems[i].hasPicture = false;
+                }
+
+                $scope.$apply();
+            }
+
+
 
       }, function (error) {
 
