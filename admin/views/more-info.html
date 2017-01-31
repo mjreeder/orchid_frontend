@@ -331,15 +331,15 @@ This plant has no photos.
         </div>
         <div class="add-update">
             <div class="button-new">
-                <button ng-click="addGenericBloom()">Add</button>
+                <button ng-click="addGenericBloom()" ng-hide="updateBloom">Add</button>
             </div>
             <div class="update-div">
-                <select class="round" ng-model="bloom" ng-hide="allBloomData == 0">
-                    <option selected value>Select dates to update</option>
+                <select class="round" ng-model="bloom" ng-show="!allBloomData == 0" ng-hide="addBloom || allBloomData == 0">
+                    <option selected value> Select date to update </option>
                     <option ng-repeat="bloom in allBloomData">{{bloom.start_date}} {{bloom.end_date}}</option>
                 </select>
                 <div class="button-new">
-                    <button ng-click="updateGenericBloom(bloom)" ng-hide="allBloomData == 0">Update</button>
+                    <button ng-click="updateGenericBloom(bloom)" ng-show="!allBloomData == 0" ng-hide="addBloom || allBloomData == 0">Update</button>
                 </div>
             </div>
 
@@ -392,16 +392,16 @@ This plant has no photos.
 
     <div class="add-update">
         <div class="button-new">
-            <button ng-click="addGenericPest()">Add</button>
+            <button ng-click="addGenericPest()" ng-hide="updateSpray">Add</button>
         </div>
 
         <div class="update-div">
-            <select class="round" ng-model="pest" ng-hide="allSprayedData == 0">
-                <option selected value> Select date to update </option>
+            <select class="round" ng-model="pest" ng-show="!allSprayedData == 0" ng-hide="addSpray || allSprayedData == 0">
+                <option selected value>Select date to update</option>
                 <option ng-repeat="spray in allSprayedData">{{spray.timestamp}}</option>
             </select>
             <div class="button-new">
-                <button ng-click="updateGenericPest(pest)" ng-hide="allSprayedData == 0">Update</button>
+                <button ng-click="updateGenericPest(pest)" ng-show="!allSprayedData == 0" ng-hide="addSpray || allSprayedData == 0">Update</button>
             </div>
         </div>
 
@@ -435,16 +435,16 @@ This plant has no photos.
 
         <div class="add-update">
             <div class="button-new">
-                <button ng-click="addGenericPotting()">Add</button>
+                <button ng-click="addGenericPotting()" ng-hide="updateRepot">Add</button>
          </div>
 
          <div class="update-div">
-             <select class="round" ng-model="potting" ng-hide="allRepotData == 0">
+             <select class="round" ng-model="potting" ng-hide="allRepotData == 0" ng-show="!addRepot">
                  <option selected value> Select date to update</option>
                  <option ng-repeat="potting in allRepotData">{{potting.timestamp}}</option>
              </select>
              <div class="button-new">
-                 <button ng-click="updateGenericRepot(potting)" ng-hide="allRepotData == 0">Update</button>
+                 <button ng-click="updateGenericRepot(potting)" ng-hide="allRepotData == 0 || addRepot">Update</button>
              </div>
          </div>
 
@@ -479,16 +479,16 @@ This plant has no photos.
 
         <div class="add-update">
             <div class="button-new">
-                <button ng-click="addGenericHealth()">Add</button>
+                <button ng-click="addGenericHealth()" ng-hide="updateHealth">Add</button>
             </div>
 
             <div class="update-div">
-                <select class="round" ng-model="health" ng-hide='allHealthData.length == 0'>
+                <select class="round" ng-model="health" ng-hide="allHealthData == 0 || addHealth">
                     <option selected value>Select date to update</option>
                     <option ng-repeat="health in allHealthData">{{health.timestamp}}</option>
                 </select>
                 <div class="button-new">
-                    <button ng-click="updateGenericHealth(health)" ng-hide='allHealthData.length == 0'>Update</button>
+                    <button ng-click="updateGenericHealth(health)" ng-hide="allHealthData == 0 || addHealth">Update</button>
                 </div>
             </div>
 

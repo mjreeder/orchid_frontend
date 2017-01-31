@@ -74,6 +74,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.origianlSelectedCountries = [];
 
+
+
     $scope.selectedCountry;
     $scope.deselectedCountry;
 
@@ -113,19 +115,25 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             $route.reload();
         }, function (error){
             console.log(error);
-            window.alert("there is an alert, something went wrong");
+            window.alert("Nothing was selected. Try again. If continues, log out and log in.");
         })
     };
 
     $scope.updateGenericBloom = function(data){
 
-        if(data == "N/A" || data == ""){
+        if(data == "N/A" || data == "" || data == undefined){
             window.alert("Please Select Time range");
         } else {
             if ($scope.addBloom == true) {
                 $scope.addBloom = false;
             }
-            $scope.updateBloom = true;
+
+            if($scope.updateBloom == false){
+                $scope.updateBloom = true;
+            } else {
+                $scope.updateBloom = false;
+
+            }
 
 
             var dataString = data.substring(0, 10);
@@ -142,6 +150,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }
     };
 
+
     $scope.deleteBloom = function(){
         //this is the function to delete a bloom
         var deleteData = {
@@ -152,45 +161,50 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             window.alert("Deleted Bloom");
             $scope.updateBloomStartDate = "";
             $scope.updateBloomEndDate = "";
-            $scope.bloom = "";
             $route.reload();
 
         }, function (error){
             console.log(error);
-            window.alert("there is an alert, something went wrong");
+            window.alert("Nothing was selected. Try again. If continues, log out and log in.");
         })
     }
 
     $scope.addGenericBloom = function(){
 
-        $scope.bloom = "N/A";
-        $scope.addBloom = true;
-        if( $scope.updateBloom == true)
-        {
-            $scope.updateBloom = false;
+
+        if($scope.addBloom == true){
+            $scope.addBloom = false;
+
+        } else {
+            $scope.addBloom = true;
         }
 
     };
 
     $scope.saveNewBloom = function(data){
-        var createGenericBloom = {
-            'start_date': data.addStartDate,
-            'end_date' : data.addStartEnd,
-            'plantId' : $scope.plant.id
+        if(data == undefined){
+            window.alert("Please enter values");
+        } else {
+            var createGenericBloom = {
+                'start_date': data.addStartDate,
+                'end_date' : data.addStartEnd,
+                'plantId' : $scope.plant.id
+            }
+            BloomingFactory.createGenericBloom(createGenericBloom).then(function(response){
+                window.alert("Addition Successful");
+                $scope.updateBloomEndDate = "";
+                $scope.updateBloomStartDate = "";
+                $scope.add.addStartDate = "";
+                $scope.add.addStartEnd = "";
+                $route.reload();
+
+
+            }, function (error){
+                console.log(error);
+                window.alert("there is an alert");
+            })
         }
-        BloomingFactory.createGenericBloom(createGenericBloom).then(function(response){
-            window.alert("Addition Successful");
-            $scope.updateBloomEndDate = "";
-            $scope.updateBloomStartDate = "";
-            $scope.add.addStartDate = "";
-            $scope.add.addStartEnd = "";
-            $route.reload();
 
-
-        }, function (error){
-            console.log(error);
-            window.alert("there is an alert");
-        })
     };
 
     /*****************/
@@ -216,17 +230,20 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.updateGenericPest = function(data){
 
-        console.log(data);
         if(data == "N/A" || data == "" || data == undefined){
             window.alert("Please Select Time range");
             $scope.addSpray = false;
-
         } else {
 
             if ($scope.addSpray == true) {
                 $scope.addSpray = false;
+            } else {
             }
-            $scope.updateSpray = true;
+            if($scope.updateSpray == true){
+                $scope.updateSpray = false;
+            } else {
+                $scope.updateSpray = true;
+            }
 
             var dataString = data;
 
@@ -265,22 +282,27 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.saveNewSpray = function(data){
 
-        if(data.note == undefined){
-            data.note = "";
+        if(data == undefined){
+            window.alert("Please enter values");
+        } else {
+            if(data.note == undefined){
+                data.note = "";
+            }
+            var createGenericPest = {
+                'timestamp': data.timestamp,
+                'note' : data.note,
+                'plantId' : $scope.plant.id
+            };
+
+            SprayedFactory.createSplit(createGenericPest).then(function (response){
+                window.alert("Created Spray");
+                $route.reload();
+            }, function (response){
+                window.alert("Error. Please log out and try again");
+
+            });
         }
-        var createGenericPest = {
-            'timestamp': data.timestamp,
-            'note' : data.note,
-            'plantId' : $scope.plant.id
-        };
 
-        SprayedFactory.createSplit(createGenericPest).then(function (response){
-            window.alert("Created Spray");
-            $route.reload();
-        }, function (response){
-            window.alert("Error. Please log out and try again");
-
-        });
     };
 
     /*****************/
@@ -313,8 +335,15 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             if ($scope.addRepot == true) {
                 $scope.addRepot = false;
+            }else {
+
             }
-            $scope.updateRepot = true;
+            if($scope.updateRepot == true){
+                $scope.updateRepot = false;
+            }else {
+                $scope.updateRepot = true;
+
+            }
 
             var dataString = data;
 
@@ -358,7 +387,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             'timestamp': data.timestamp,
             'plantId' : $scope.plant.id
         };
-        console.log(createGenericRepot);
 
         PottingFactory.createPest(createGenericRepot).then(function (response){
             window.alert("Created new repot");
@@ -373,6 +401,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     /*****************/
 
     $scope.updateHealthFunction = function(){
+
+
 
         var updateData = {
             'plant_id' : $scope.plant.id,
@@ -399,9 +429,17 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             if ($scope.addHealth == true) {
                 $scope.addHealth = false;
+            }else {
+
             }
-            $scope.updateHealth = true;
-            $scope.addHealth = false;
+            if($scope.updateHealth == true){
+                $scope.updateHealth = false;
+            }else {
+                $scope.updateHealth = true;
+
+            }
+
+
 
 
             var dataString = data;
@@ -433,6 +471,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     };
 
     $scope.addGenericHealth = function(){
+        console.log('asd');
         if($scope.addHealth == false){
             $scope.addHealth = true;
         } else {
@@ -444,20 +483,26 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     };
 
     $scope.saveNewHealth = function(data){
+        if(data == undefined || $scope.health_score == undefined || data.timestamp == undefined){
+            window.alert("Please enter data");
+        } else {
+            if(data.comment == undefined){
+                data.comment = "";
+            }
+            var createGenericHealth = {
+                'timestamp': data.timestamp,
+                'plantId': $scope.plant.id,
+                'score': $scope.health_score,
+                'comment': data.comment
+            };
 
-        var createGenericHealth = {
-            'timestamp': data.timestamp,
-            'plantId' : $scope.plant.id,
-            'score' : $scope.health_score,
-            'comment' :data.comment
-        };
-
-        HealthFactory.createHealth(createGenericHealth).then(function (response){
-            window.alert("Created new Health");
-            $route.reload();
-        }, function (error){
-            window.alert("Error. Please log out and try again");
-        });
+            HealthFactory.createHealth(createGenericHealth).then(function (response) {
+                window.alert("Created new Health");
+                $route.reload();
+            }, function (error) {
+                window.alert("Error. Please log out and try again");
+            });
+        }
     };
 
     $scope.updateHealthScore = function (value){
@@ -640,11 +685,13 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
             var bloom_data = success[1];
 
-            $scope.bloom = "N/A";
-
             $scope.allBloomData = bloom_data;
 
             $scope.allSprayedData = success[2];
+
+            if($scope.allSprayedData[0] == false){
+                $scope.allSprayedData = [];
+            }
 
             $scope.allRepotData = success[3];
 
@@ -654,38 +701,58 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             console.log(error);
         });
 
-
-        PhotoFactory.getSimilarPhotos(speciesName).then(function (response){
-            var photoData = response.data.data;
-            var count = 0;
-            if(photoData != undefined){
-
-                for (var i = 0; i < photoData.length; i++) {
-                    var didAdd = false;
-
-                    if(photoData[i].plant_id == id){
-
-                    } else {
-
-                        for(var t = 0; t < $scope.similarPhotos.length; t++){
-                            if($scope.similarPhotos[t].url == photoData[i].url){
-                                didAdd = true;
-                                break;
-                            } else {
-                            }
-                        }
-                        if(didAdd == false){
-                            $scope.similarPhotos.push(photoData[i]);
-                        }
-                    }
-                }
-
-                for(var i = 0;i < $scope.similarPhotos.length; i++){
-                    $scope.similarPhotos[i].clicked = "NO";
-                }
-            }
-
-        });
+        //if($scope.plant.genus != "" && $scope.plant.species != ""){
+        //    var photoData = {
+        //        'species' : $scope.plant.species,
+        //        'genus' : $scope.plant.genus
+        //    }
+        //} else if($scope.plant.genus != ""){
+        //    var photoData = {
+        //        'species' : "NULL",
+        //        'genus' : $scope.plant.genus
+        //    }
+        //} else if($scope.plant.species != ""){
+        //    var photoData = {
+        //        'species' : $scope.plant.species,
+        //        'genus' : "NULL"
+        //    }
+        //
+        //}
+        //console.log(photoData);
+        //
+        //
+        //PhotoFactory.getSimilarPhotos(photoData).then(function (response){
+        //    var photoData = response.data.data;
+        //    var count = 0;
+        //    if(photoData != undefined){
+        //
+        //        for (var i = 0; i < photoData.length; i++) {
+        //            var didAdd = false;
+        //
+        //            if(photoData[i].plant_id == id){
+        //
+        //            } else {
+        //
+        //                for(var t = 0; t < $scope.similarPhotos.length; t++){
+        //                    if($scope.similarPhotos[t].url == photoData[i].url){
+        //                        didAdd = true;
+        //                        break;
+        //                    } else {
+        //                    }
+        //                }
+        //                if(didAdd == false){
+        //                    $scope.similarPhotos.push(photoData[i]);
+        //                }
+        //            }
+        //        }
+        //
+        //        for(var i = 0;i < $scope.similarPhotos.length; i++){
+        //            $scope.similarPhotos[i].clicked = "NO";
+        //        }
+        //    }
+        //    //$scope.$apply();
+        //
+        //});
 
         VerifiedFactory.getLastVerifiedDate(id).then(function (response){
             if(response.data.data.length == 0){
