@@ -212,16 +212,18 @@ table {
     border: 1px solid white;
 }
 
+
+
+#large-font {
+ font-size: 17px;   
+}
+
 .plant-count-text p {
     color: white; 
     text-transform: uppercase;
     font-family: 'Raleway', sans-serif;
-    font-size: 14px; 
+    font-size: 25px; 
     font-weight: 100;
-}
-
-#large-font {
- font-size: 17px;   
 }
 
 .number {
