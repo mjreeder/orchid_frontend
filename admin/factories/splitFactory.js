@@ -1,7 +1,7 @@
-app.factory('splitFactory', function($http, $rootScope) {
+app.factory('splitFactory', function($http, $rootScope, CONFIG) {
 
     var data = {};
-    var baseUrl = location.origin +'/2016/orchid_site/public/api/split';
+    var baseUrl = location.origin + CONFIG.urlfixForServer +'/orchid_site/public/api/split';
 
     data.getSplitForPlantId = function(plant_id) {
         return $http.get(baseUrl + "/plant_id/" + plant_id);

@@ -1,7 +1,7 @@
-app.factory('VerifiedFactory', function($http, sessionService, $rootScope) {
+app.factory('VerifiedFactory', function($http, sessionService, $rootScope, CONFIG) {
 
     var data = {};
-    var baseUrl = location.origin +'/2016/orchid_site/public/api/verified';
+    var baseUrl = location.origin +CONFIG.urlfixForServer +'/orchid_site/public/api/verified';
 
     data.getLastVerifiedDate = function(plant_id) {
         return $http({

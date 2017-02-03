@@ -1,7 +1,7 @@
-app.factory('TagFactory', function($http, $rootScope) {
+app.factory('TagFactory', function($http, $rootScope, CONFIG) {
 
     var data = {};
-    var baseUrl = location.origin +'/2016/orchid_site/public/api/tag';
+    var baseUrl = location.origin + CONFIG.urlfixForServer +'/orchid_site/public/api/tag';
 
 
 

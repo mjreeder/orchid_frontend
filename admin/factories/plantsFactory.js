@@ -1,7 +1,7 @@
-app.factory('PlantsFactory', function($http, $rootScope) {
+app.factory('PlantsFactory', function($http, $rootScope, CONFIG) {
 
     var data = {};
-    var baseUrl = location.origin +'/2016/orchid_site/public/api/plants';
+    var baseUrl = location.origin + CONFIG.urlfixForServer +'/orchid_site/public/api/plants';
 
     data.getPaginatedPlants = function(alpha, index) {
         return $http.get(baseUrl + "/alpha/" + alpha + "/" + index);
@@ -55,6 +55,29 @@ app.factory('PlantsFactory', function($http, $rootScope) {
             }
         });
     };
+
+    data.getDistinctCount = function(){
+        return $http({
+            method: "GET",
+            url: baseUrl + '/getDistinctCount',
+            data: {
+            }
+        });
+    };
+
+    data.getCount = function(){
+        return $http.get(baseUrl + '/getCount');
+    };
+
+
+    data.getDeadPlantsInYear = function(){
+        return $http({
+            method: "GET",
+            url: baseUrl + '/dead_date_year',
+            data: {
+            }
+        });
+    }
 
     data.updateGeneralNotes = function (plant){
         return $http({

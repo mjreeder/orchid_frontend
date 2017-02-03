@@ -1,7 +1,7 @@
-app.factory('countryFactory', function($http) {
+app.factory('countryFactory', function($http, CONFIG) {
 
     var data = {};
-    var baseUrl = location.origin +'/2016/orchid_site/public/api/country';
+    var baseUrl = location.origin +CONFIG.urlfixForServer +'/orchid_site/public/api/country';
 
 
     data.getCountries = function(id){

@@ -1,0 +1,70 @@
+<br>
+
+
+
+
+<div class="svg-padding">
+    <div class="button-new outside-buttons">
+        <a href="http://apso.bsu.edu/2016/orchid_site/utilities/plant_drop.php"><button>Plants Excel Drop</button></a>
+    </div>
+    <div class="button-new outside-buttons">
+        <a href="http://apso.bsu.edu/2016/orchid_site/utilities/blooming_data.php"><button>Bloom Excel Drop</button></a>
+    </div>
+    <div class="button-new outside-buttons">
+        <a href="http://apso.bsu.edu/2016/orchid_site/utilities/blooming_data.php"><button>Bloom Excel Drop</button></a>
+    </div>
+
+    <div class="button-new outside-buttons">
+        <a href="http://apso.bsu.edu/2016/orchid_site/utilities/repot_data.php"><button>Repot Excel Drop</button></a>
+    </div>
+    <div class="button-new outside-buttons">
+        <a href="http://apso.bsu.edu/2016/orchid_site/utilities/sprayed_data.php"><button>Sprayed Excel Drop</button></a>
+    </div>
+
+</div>
+
+<fieldset id="weekly-checkup" ng-hide="createNew" class="plant-section">
+    <h1>Number Living</h1>
+
+    <div class="update-div">
+
+
+        <div class="round">
+            <h1>{{living_plants}}</h1>
+        </div>
+
+    </div>
+</fieldset>
+
+
+<fieldset id="weekly-checkup" ng-hide="createNew" class="plant-section">
+    <h1>Dead Plants Per Year</h1>
+
+    <div class="add-update">
+
+
+        <div class="update-div">
+            <ul class="round" ng-model="potting" ng-hide="allRepotData == 0" ng-show="!addRepot">
+                <li ng-repeat="dead in dead_years">{{dead}}</li>
+            </ul>
+
+        </div>
+
+    </div>
+</fieldset>
+
+<br>
+
+<fieldset id="weekly-checkup" ng-hide="createNew" class="plant-section">
+    <h1>Genus Collection</h1>
+
+    <div class="update-div">
+
+
+        <div class="round">
+            <h1>{{unique_genus}}</h1>
+        </div>
+
+    </div>
+</fieldset>
+

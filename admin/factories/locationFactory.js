@@ -1,7 +1,7 @@
-app.factory('LocationFactory', function($http, $rootScope) {
+app.factory('LocationFactory', function($http, $rootScope, CONFIG) {
 
     var data = {};
-    var baseUrl = location.origin +'/2016/orchid_site/public/api/location';
+    var baseUrl = location.origin + CONFIG.urlfixForServer +'/orchid_site/public/api/location';
 
     data.getTableLocations = function() {
         return $http.get(baseUrl);

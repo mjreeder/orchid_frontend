@@ -29,6 +29,13 @@ app.config(function ($routeProvider, CONFIG) {
             'data': isAuthenticated
         }
     }).
+        when('/reports', {
+            controller: 'ReportViewController',
+            templateUrl: 'views/report.html',
+            resolve: {
+                'data': isAuthenticated
+            }
+        }).
         when('/house/outside', {
             controller: 'DisplayViewController',
             templateUrl: 'views/outside.html',

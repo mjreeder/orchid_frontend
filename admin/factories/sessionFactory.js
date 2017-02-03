@@ -1,7 +1,7 @@
-app.factory('SessionFactory', function($http) {
+app.factory('SessionFactory', function($http, CONFIG) {
 
     var data = {};
-    var baseUrl = location.origin +'/2016/orchid_site/public/api/users';
+    var baseUrl = location.origin +CONFIG.urlfixForServer +'/orchid_site/public/api/users';
 
     data.login = function(credentials) {
 

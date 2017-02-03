@@ -1,7 +1,7 @@
-app.factory('NotesFactory', function($http, $rootScope) {
+app.factory('NotesFactory', function($http, $rootScope, CONFIG) {
 
     var data = {};
-    var baseUrl = location.origin +'/2016/orchid_site/public/api/notes';
+    var baseUrl = location.origin + CONFIG.urlfixForServer +'/orchid_site/public/api/notes';
 
     data.getAllNotes = function() {
         $http.get(baseUrl);
