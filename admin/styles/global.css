@@ -395,3 +395,28 @@ header .main-heading ul li a {
     color: #2b2e30;
 }
 
+
+
+
+/* report css */
+
+
+.update-div li {
+    font-size: 20px; 
+}
+
+
+.update-div ul {
+ margin: 0 0 0px 50px;    
+}
+
+.reports-section h2 {
+ font-size: 30px;  
+    margin: 0 0 30px 30px;
+}
+.reports-section h1 {
+ border-bottom: 5px solid #01997b;   
+    border-top: none;
+}
+
+
