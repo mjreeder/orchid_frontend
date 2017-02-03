@@ -397,8 +397,10 @@ header .main-heading ul li a {
 
 
 
+/*    ******   REPORT PAGE STYLING ********* */
 
-/* report css */
+
+
 
 
 .update-div li {
@@ -418,5 +420,7 @@ header .main-heading ul li a {
  border-bottom: 5px solid #01997b;   
     border-top: none;
 }
+
+
 
 
