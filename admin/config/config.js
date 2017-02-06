@@ -4,5 +4,5 @@ app.constant('CONFIG', {
         messageTimeout: 5000,
         maxFileSizeBits: 50 * 1000000,
 
-    urlfixForServer: ''
+    urlfixForServer: '/2016'
 });
