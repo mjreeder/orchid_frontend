@@ -13,8 +13,8 @@ app.factory('UserFactory', function($http, sessionService, $rootScope, CONFIG) {
               "email"       : user.email,
               "password"    : user.password,
               "auth_level"   : user.auth_level,
-              "session_id"  : $rootScope.userSessionKey,
-              "session_key" : $rootScope.userSessionId
+              "session_id"  : $rootScope.userSessionId,
+              "session_key" : $rootScope.userSessionKey
           }
       });
     }
