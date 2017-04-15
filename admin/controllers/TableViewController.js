@@ -4,13 +4,17 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
     $scope.showTable = false;
     $scope.plantsInTable = [];
+    $scope.tableDoneLoading = false;
 
     LocationFactory.checkTable(param1).then(function(response) {
+
         var booleanValue = response.data.data[0];
 
         if (booleanValue == false) {
             $location.path('#/404');
         } else {
+
+        }
             //we are in a legal table
             $scope.current_table_name = param1;
             $scope.id = response.data.data.id;
@@ -18,166 +22,50 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
             //GETTING THE LOCATION AND THE VERIFICATION INFORMATION FOR EACH PLANT
             PlantsFactory.getByLocationID($scope.id).then(function(response) {
-                if (response.data[0] == false) {
-                    $scope.showTable = false;
+
+                console.log(response.data.data);
+                if (response.data.data[0] == "Table Empty") {
+                    console.log("There is no plants to load");
+                    console.log("need to show the message");
                 } else {
-                    $scope.showTable = true;
-                    $scope.plantsInTable = response.data.data;
-
-                    for(var i = 0; i < $scope.plantsInTable.length; i++){
-                        var in_date = $scope.plantsInTable[i].inactive_date;
-
-                        if(in_date == "0000-00-00" || in_date == null){
-                            //do nothing since there is no date.
-                        } else {
-
-                            $scope.plantsInTable.splice(i, 1);
-                        }
-                    }
-
-                    for(var i = 0; i < $scope.plantsInTable.length; i++){
-                        var de_date = $scope.plantsInTable[i].dead_date;
-
-                        if(de_date == "0000-00-00" || de_date == null){
-                            //do nothing since there is no date.
-                        } else {
-                            $scope.plantsInTable.splice(i, 1);
-                        }
-                    }
-
-                    for (var i = 0; i < $scope.plantsInTable.length; i++) {
-
-                        $scope.plantsInTable[i].last_varified = "0000-00-00";
-                        $scope.plantsInTable[i].isToday = false;
-                    }
-
-                    var promArray = [];
-                    var promArray4 = [];
-
-                    for (var i = 0; i < $scope.plantsInTable.length; i++) {
-                        var plant = $scope.plantsInTable[i];
-
-                        //UPDATING THE COLOR OF THE PLANTS
-                        TagFactory.getPestByPlantID(plant.id).then(function(response) {
-                            var tagResponse = response.data.data;
-
-                            for (var i = 0; i < $scope.plantsInTable.length; i++) {
-                                if ($scope.plantsInTable[i].id == tagResponse.plant_id) {
-                                    if(tagResponse.active == 1){
-                                        $scope.plantsInTable[i].tagged = true;
-                                    } else {
-
-                                    }
-                                }
-                                $scope.plantsInTable[i].addObeject = "value3";
-                            }
-                        });
-
-                        var prom = new Promise(function(resolve, reject) {
-                                //GETTING THE VERIFIED RECORDS FOR ALL THE PLANTS
-                                VerifiedFactory.getLastVerifiedDate(plant.id).then(function (response){
-                                    var verifiedResponse = response.data.data;
-                                    resolve(verifiedResponse);
-                                },
-                            function (err){
-                                reject(err);
-                            });
-                        });
-
-                        var prom2 = new Promise(function(resolve, reject) {
-                            BloomingFactory.getAllBloomByPlantID(plant.id).then(function (response){
-                              resolve(response.data.data);
-                            })
-                        });
-
-
-                        promArray.push(prom);
-                        promArray4.push(prom2);
-                    }
-                    var hasBloms = [];
-
-                    Promise.all(promArray4).then(function (success) {
-
-                        for (var i = 0; i < success.length; i++){
-                            if (success[i] != ""){
-                                hasBloms.push(success[i]);
-
-                            }
-                        }
-
-                        for (var i = 0; i < hasBloms.length; i++){
-                            var blooms = hasBloms[i];
-                            for(var t = 0; t < blooms.length; t++){
-                                //console.log()
-                                if(blooms[t].end_date == "0000-00-00"){
-                                    console.log(blooms[t]);
-                                    for(var r = 0; r < $scope.plantsInTable.length; r++){
-                                        if(blooms[t].plant_id == $scope.plantsInTable[r].id){
-                                            $scope.plantsInTable[r].isBlooming = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        $scope.$apply();
-
-
-
-
-                    }, function (error) {
-                        //window.alert('asdfasd');
-                    });
-
-                    Promise.all(promArray).then(function (success) {
-                        var updateList = [];
-                        for (var i = 0; i < success.length; i++){
-                            if (success[i] != ""){
-                                var id = success[i][0].plant_id;
-                                updateList.push(success[i][0]);
-                            }
-                        }
-
-                        for (var p = 0; p < updateList.length; p++){
-                            var id = updateList[p].plant_id;
-                            for (var t = 0; t < $scope.plantsInTable.length; t++){
-                                if (id == $scope.plantsInTable[t].id){
-                                    $scope.plantsInTable[t].last_varified = updateList[p].verified_date;
-                                    if(checkIfDateIsToday($scope.plantsInTable[t].last_varified)){
-                                        $scope.plantsInTable[t].isToday = true;
-                                    }else {
-
-                                    }
-                                }
-                            }
-                        }
-
-                        for (var t = 0; t < $scope.plantsInTable.length; t++){
-                            if($scope.plantsInTable[t].last_varified == "0000-00-00"){
-                                $scope.plantsInTable[t].last_varified = "N/A";
-                                $scope.plantsInTable[t].isToday = false;
-
-                            } else {
-                               
-                            }
-                        }
-                        $scope.$apply();
-
-                    }, function (error) {
-                        //window.alert('asdfasd');
-                    });
+                    console.log("we have plants to load");
                 }
 
-                $scope.showRows = $scope.plantsInTable[0];
-                for(var i = 0; i < $scope.plantsInTable.length; i++){
-                    if(!$scope.plantsInTable[i]){
-                        $scope.SHOWTHISNOW = false;
+                for(var i = 0; i < response.data.data.length; i++){
+                    var plantBlooming = response.data.data[i].blooming;
+                    var plantInfo = response.data.data[i].info;
+                    var plantTagged = response.data.data[i].tagged;
+                    var plantVerified = response.data.data[i].verified;
+
+                    //seeing it has a verfieid date
+                    if(plantVerified == null){
+                        plantInfo.last_varified = "N/A";
                     } else {
-                        $scope.SHOWTHISNOW = true;
+                       plantInfo.last_varified = plantVerified[0].verified_date;
+                        //todo determing if it is todays date
                     }
+
+                    //SEEING if it is taggged
+                    if(plantTagged == null){
+                        plantInfo.tagged = false;
+                    } else {
+                        plantTagged.tagged = true;
+                    }
+
+                    //pSEEING if the plant is blooming
+                    if(plantBlooming == null){
+                        plantInfo.isBlooming = false;
+                    } else {
+                        //todo edit this method for whether it is truly blooming
+                        plantInfo.isBlooming = true;
+                    }
+
+                    $scope.plantsInTable.push(plantInfo);
                 }
+
+                $scope.showTable = true;
+                $scope.showRows = true;
             });
-        }
     });
 
     var formatVerification = function(){
