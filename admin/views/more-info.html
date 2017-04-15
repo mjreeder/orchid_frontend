@@ -540,6 +540,12 @@ This plant has no photos.
                 Back to Top</button>
         </div>
 
+        <div id="delete" class="button-new">
+            <button ng-click="deletePlant()">
+                Delete Plant</button>
+        </div>
+
+
         <div id="moreinfo-save-button" class="button-new" ng-hide="!createNew">
             <input type="button" ng-click="saveAll()" value="Save All" ng-hide="!createNew || !editPlant.save">
         </div>

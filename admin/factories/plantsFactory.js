@@ -56,6 +56,19 @@ app.factory('PlantsFactory', function($http, $rootScope, CONFIG) {
         });
     };
 
+    data.inactivePlant = function(plant_id){
+        console.log("THis is the plant_id" + plant_id );
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/inactivePlant',
+            data: {
+                "plant_id" : plant_id,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        });
+    }
+
     data.getDistinctCount = function(){
         return $http({
             method: "GET",

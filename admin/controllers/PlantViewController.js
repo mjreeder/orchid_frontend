@@ -515,6 +515,14 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }
     }
 
+    $scope.deletePlant = function() {
+        PlantsFactory.inactivePlant($scope.plant.id).then(function (response) {
+            console.log("we have deleted the plant");
+        }, function (error) {
+            console.log("There is an when delete the plant");
+        });
+    }
+
 
 
 
