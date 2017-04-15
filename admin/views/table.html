@@ -54,7 +54,7 @@
             
             <div id="main-table">
             <tbody>
-            <tr ng-repeat="plant in plantsInTable | orderBy : 'genus'"  ng-class="{bloomingRow: plant.isBlooming == true, alertRow: plant.tagged == true}"  ng-show="showRows">
+            <tr ng-repeat="plant in plantsInTable | orderBy : 'genus'"  ng-class="{alertRow: plant.tagged == true, bloomingRow: plant.isBlooming == true}"  ng-show="showRows">
 
                 <td ng-show="movePlants">
                    <label> <input type="checkbox" ng-click="wantPlantMoved(plant)"/><span class="table-checkbox"></span></label>
@@ -84,7 +84,7 @@
         </table>
     </div>
 
-    <h1 id="no-plants-table" ng-show="!SHOWTHISNOW">No plants to show.</h1>
+    <h1 id="no-plants-table" ng-show="!plantsToShow">No plants to show.</h1>
 
 
     <div class="table-footer button-new" ng-if="showTable">
@@ -96,9 +96,9 @@
 
 
         <!--SHOW POPUPS-->
-    <div ng-include="'views/pop-up.html'" ng-show="popupShow"></div>
+    <div ng-include="'views/pop-up.html'" ng-show="mainPopUp"></div>
 
-        <div ng-include="'views/MoveTable.html'" ng-show="showPopup2"></div>
+        <div ng-include="'views/MoveTable.html'" ng-show="moveTablePopUpBoolean"></div>
 
 
 </main>

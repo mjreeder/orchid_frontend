@@ -12,8 +12,6 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
 
         if (booleanValue == false) {
             $location.path('#/404');
-        } else {
-
         }
             //we are in a legal table
             $scope.current_table_name = param1;
@@ -26,41 +24,42 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                 console.log(response.data.data);
                 if (response.data.data[0] == "Table Empty") {
                     console.log("There is no plants to load");
-                    console.log("need to show the message");
+                    $scope.plantsToShow = false;
                 } else {
                     console.log("we have plants to load");
-                }
+                    $scope.plantsToShow = true;
 
-                for(var i = 0; i < response.data.data.length; i++){
-                    var plantBlooming = response.data.data[i].blooming;
-                    var plantInfo = response.data.data[i].info;
-                    var plantTagged = response.data.data[i].tagged;
-                    var plantVerified = response.data.data[i].verified;
+                    for (var i = 0; i < response.data.data.length && response.data.data[0] != "Table Empty"; i++) {
+                        var plantBlooming = response.data.data[i].blooming;
+                        var plantInfo = response.data.data[i].info;
+                        var plantTagged = response.data.data[i].tagged;
+                        var plantVerified = response.data.data[i].verified;
 
-                    //seeing it has a verfieid date
-                    if(plantVerified == null){
-                        plantInfo.last_varified = "N/A";
-                    } else {
-                       plantInfo.last_varified = plantVerified[0].verified_date;
-                        //todo determing if it is todays date
+                        //seeing it has a verfieid date
+                        if (plantVerified == null) {
+                            plantInfo.last_varified = "N/A";
+                        } else {
+                            var v_date = plantVerified[plantVerified.length - 1].verified_date;
+                            plantInfo.isToday = checkIfDateIsToday(v_date);
+                            plantInfo.last_varified = v_date;
+                        }
+
+                        //SEEING if it is taggged
+                        if (plantTagged == null) {
+                            plantInfo.tagged = false;
+                        } else {
+                            plantInfo.tagged = true;
+                        }
+
+                        //SEEING if the plant is blooming
+                        if (plantBlooming == null) {
+                            plantInfo.isBlooming = false;
+                        } else {
+                            plantInfo.isBlooming = true;
+                        }
+
+                        $scope.plantsInTable.push(plantInfo);
                     }
-
-                    //SEEING if it is taggged
-                    if(plantTagged == null){
-                        plantInfo.tagged = false;
-                    } else {
-                        plantTagged.tagged = true;
-                    }
-
-                    //pSEEING if the plant is blooming
-                    if(plantBlooming == null){
-                        plantInfo.isBlooming = false;
-                    } else {
-                        //todo edit this method for whether it is truly blooming
-                        plantInfo.isBlooming = true;
-                    }
-
-                    $scope.plantsInTable.push(plantInfo);
                 }
 
                 $scope.showTable = true;
@@ -158,18 +157,18 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
         $route.reload();
     };
 
-    $scope.popupShow = false;
+    $scope.mainPopUp = false;
 
-    $scope.showPopup2 = false;
+    $scope.moveTablePopUpBoolean = false;
 
     $scope.showPopup = function(plant) {
         $rootScope.$broadcast('current-plant', plant);
-        $scope.popupShow = !$scope.popupShow;
+        $scope.mainPopUp = !$scope.mainPopUp;
     };
 
     $scope.$on('popup-close', function(event, data) {
         if (data == true) {
-            $scope.popupShow = false;
+            $scope.mainPopUp = false;
         }
     });
 
@@ -179,12 +178,12 @@ app.controller('TableViewController', function($route, CONFIG, $scope, $location
                 'a': $scope.addedMovePlants
             }
         });
-        $scope.showPopup2 = !$scope.showPopup2;
+        $scope.moveTablePopUpBoolean = !$scope.moveTablePopUpBoolean;
     };
 
     $scope.$on('popup-close2', function(event, data) {
         if (data == true) {
-            $scope.showPopup2 = false;
+            $scope.moveTablePopUpBoolean = false;
         }
     });
 });
