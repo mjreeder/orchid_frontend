@@ -348,12 +348,12 @@ td {
     background-color: #808080;
 }
 
-.alertRow {
-    background-color: #fde48f;
-}
-
 .bloomingRow {
     background-color: lightblue;
+}
+
+.alertRow {
+    background-color: #fde48f;
 }
 
 .customNgDisabled {
