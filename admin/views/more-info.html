@@ -54,7 +54,12 @@
 
             <label>Class:</label>
             <fieldset ng-disabled="editPlant.taxonommy && !createNew" class="taxonomic-input">
-              <autocomplete attr-placeholder="" ng-model="plant.class" data="autoFilledClasses" on-type="autoFillClass"></autocomplete>
+              <autocomplete attr-placeholder="" ng-model="plant.class" data="autoFilledFamily" on-type="autoFillClass"></autocomplete>
+            </fieldset>
+
+            <label>Family:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class="taxonomic-input">
+                <autocomplete attr-placeholder="" ng-model="plant.family" data="autoFilledClasses" on-type="autoFillClass"></autocomplete>
             </fieldset>
 
             <label>Genus:</label>

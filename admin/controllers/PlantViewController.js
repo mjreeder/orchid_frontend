@@ -1162,9 +1162,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
                 var value = updateList[((updateList.length)-1)];
                 if(value == true){
-                    $scope.accessionError = true;
-                }  else {
                     $scope.accessionError = false;
+                }  else {
+                    $scope.accessionError = true;
                 }
 
                 $scope.$apply();
@@ -1611,7 +1611,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             console.log(response);
             console.log("we are done with the new creation");
         }, function (error){
-        
+
         });
 
     }
@@ -2454,6 +2454,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.scrollToFunction = function(){
         $(window).scrollTop(0);
     }
+    $scope.autoFilledFamily = [];
     $scope.autoFilledClasses = [];
     $scope.autoFilledPhylums = [];
     $scope.autoFilledGenuses = [];
@@ -2465,12 +2466,22 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.autoFillClass = function(text) {
       if (text !== "" && text !== undefined && text !== null) {
-        taxonommyFactory.getAutoFillTaxonomy('class', text).then(function(response) {
+        taxonommyFactory.getAutoFillTaxonomy('family', text).then(function(response) {
           $scope.autoFilledClasses = response.map(function(classObj) {
             return classObj.class_name;
           });
         });
       }
+    }
+
+    $scope.autoFillFamily = function(text) {
+        if (text !== "" && text !== undefined && text !== null) {
+            taxonommyFactory.getAutoFillTaxonomy('class', text).then(function(response) {
+                $scope.autoFilledFamily = response.map(function(classObj) {
+                    return classObj.class_name;
+                });
+            });
+        }
     }
 
 
