@@ -28,7 +28,7 @@
                 <input placeholder="Accession Number" type="text" ng-model="plant.accession_number" name="accession" ng-disabled="!createNew">
 
                 <label>Common Name:</label>
-                <input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew">
+                <input placeholder="P" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew">
 
                 <label for="verified" ng-hide="createNew">Last Verified:</label>
                 <input type="date" id="verified" class="more-calendar" ng-model="verifiedDate" ng-disabled="editPlant.critical && !createNew" ng-hide="createNew" class="round">
@@ -289,8 +289,8 @@ This plant has no photos.
 
 <div class="photos-group" ng-repeat="photo in plant_id_url">
 <img src="{{photo.thumb_url}}" alt="" ng-class="{photoDeleted: photo.type == 'del', thumbnail: photo.type != 'del'}">
-<div class="photos-buttons button-new">
-    <label for="thumbnail">{{photo.fileName}}</label>
+    <input type="text" ng-model="photo.fileName" name="common">
+    <div class="photos-buttons button-new">
     <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
     <input type="button" value="Habit" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
     <input type="button" value="Other" ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'other', noglowHealth: photo.type != 'other'}">
@@ -538,6 +538,11 @@ This plant has no photos.
         <div id="back-to-top" class="button-new">
             <button ng-click="scrollToFunction()">
                 Back to Top</button>
+        </div>
+
+        <div id="new" class="button-new">
+            <button ng-click="copyToNewPlant()">
+                Copy Plant to New Plant</button>
         </div>
 
         <div id="delete" class="button-new">

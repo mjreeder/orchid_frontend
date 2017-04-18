@@ -47,6 +47,18 @@ app.factory('PlantsFactory', function($http, $rootScope, CONFIG) {
         });
     };
 
+    data.createPlantWithNewAccessionNumber = function(plant){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/createPlantWithNewAccessionNumber',
+            data: {
+                "plant": plant,
+                "session_id": $rootScope.userSessionId,
+                "session_key": $rootScope.userSessionKey
+            }
+        });
+    }
+
     data.checkAccessionNumber = function(accession_number){
         return $http({
             method: "GET",
@@ -56,11 +68,12 @@ app.factory('PlantsFactory', function($http, $rootScope, CONFIG) {
         });
     };
 
+
+
     data.inactivePlant = function(plant_id){
-        console.log("THis is the plant_id" + plant_id );
         return $http({
             method: "PUT",
-            url: baseUrl + '/inactivePlant',
+            url: baseUrl + '/deletePlants',
             data: {
                 "plant_id" : plant_id,
                 "session_id": $rootScope.userSessionId,

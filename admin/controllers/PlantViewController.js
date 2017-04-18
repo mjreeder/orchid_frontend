@@ -402,8 +402,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.updateHealthFunction = function(){
 
-
-
         var updateData = {
             'plant_id' : $scope.plant.id,
             'timestamp': $scope.updateHealthDate,
@@ -516,11 +514,20 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     }
 
     $scope.deletePlant = function() {
-        PlantsFactory.inactivePlant($scope.plant.id).then(function (response) {
-            console.log("we have deleted the plant");
-        }, function (error) {
-            console.log("There is an when delete the plant");
-        });
+        var verifiy_accession_number = prompt("*Warning* Please enter the accession number to delete. Accession Number " + $scope.plant.accession_number , "");
+
+        if (verifiy_accession_number == null || verifiy_accession_number != $scope.plant.accession_number) {
+
+        } else {
+            $window.alert("Plant Deleted.")
+            if(verifiy_accession_number == $scope.plant.accession_number){
+                PlantsFactory.inactivePlant($scope.plant.id).then(function (response) {
+                    $location.path('/search');
+                }, function (error) {
+                    console.log("There is an when delete the plant");
+                });
+            }
+        }
     }
 
 
@@ -1237,6 +1244,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             "variety_name" : $scope.plant.variety,
             "authority" : $scope.plant.authority,
             "species_name" : $scope.plant.species,
+            "family_name" : "hello",
             "habitat" : $scope.plant.habitat,
             "origin_comment" : $scope.plant.origin_comment,
             "received_from" : $scope.plant.received_from,
@@ -1495,6 +1503,119 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }
     };
 
+    $scope.copyToNewPlant = function(){
+        var newAccession = prompt("Creating new plant. PLease give new accession:", "");
+
+        if (newAccession == null) {
+
+        } else {
+
+            console.log(newAccession);
+            PlantsFactory.checkAccessionNumber(newAccession).then(function (response){
+                console.log(response);
+                var data = response.data.data;
+                if(data[0] == true){
+                    createOldPlantWithNewAccessionNumber($scope.plant, newAccession);
+
+                } else {
+
+                }
+            }, function (errorr){
+
+            });
+
+        }
+
+        console.log($scope.plant);
+    }
+
+    var createOldPlantWithNewAccessionNumber = function(oldPlantData, newAccessionNumber){
+
+        $scope.newPlantA = $scope.plant;
+
+        //Getting the collection ID or setting it to null
+        if($scope.selectedCollectionName == ""){
+            //SETTING THE COLLECTION ID TO NOTHING SINCE THERE IS NONE
+            $scope.newPlantA.collectionID = null;
+        } else {
+            //GETTING THE CORRECT ID FOR THE COLLECTIONS
+            for(var i = 0; i < $scope.allCollections.length; i++){
+                if($scope.selectedCollectionName == $scope.allCollections[i].name){
+                    $scope.newPlantA.collectionID = $scope.allCollections[i].id;
+                    break;
+                }
+            }
+        }
+
+        //Getting the table ID
+        for(var i = 0; i < $scope.Tables.length; i++){
+            if($scope.plantLocation == $scope.Tables[i].name){
+                $scope.tableID = $scope.Tables[i].id;
+                $scope.tableError == false;
+                break;
+            }
+        }
+
+        $scope.newPlantA.tableID = 12;
+
+        var newPlantA_date_recieved_object;
+        if($scope.plant.date_recieved == null){
+            newPlantA_date_recieved_object = null;
+        } else {
+            newPlantA_date_recieved_object = $scope.plant.date_recieved;
+        }
+
+
+        var data = {
+            "accession_number" : $scope.newPlantA.accession_number,
+            "name" : $scope.newPlantA.name,
+            "scientific_name" : $scope.newPlantA.scientific_name,
+            "class_name" : $scope.newPlantA.class,
+            "tribe_name" : $scope.newPlantA.tribe,
+            "subtribe_name" : $scope.newPlantA.subtribe,
+            "genus_name" : $scope.newPlantA.genus,
+            "distribution" : $scope.newPlantA.distribution,
+            "variety_name" : $scope.newPlantA.variety,
+            "authority" : $scope.newPlantA.authority,
+            "species_name" : $scope.newPlantA.species,
+            "family_name" : "hello",
+            "habitat" : $scope.newPlantA.habitat,
+            "origin_comment" : $scope.newPlantA.origin_comment,
+            "received_from" : $scope.newPlantA.received_from,
+            "donation_comment": $scope.newPlantA.donation_comment,
+            "date_received": newPlantA_date_recieved_object,
+            "description": $scope.newPlantA.description,
+            "parent_one": $scope.newPlantA.parent_one,
+            "parent_two" : $scope.newPlantA.parent_two,
+            "grex_status" : $scope.newPlantA.grex_status,
+            "hybrid_comment" : $scope.newPlantA.hybrid_comment,
+            "location_id" : $scope.tableID,
+            "special_collections_id" : $scope.newPlantA.collectionID,
+            "general_note": $scope.newPlantA.general_note,
+            "phylum_name": $scope.newPlantA.phylum,
+            "countries_note" : $scope.newPlantA.countries_note,
+            "username" : "ROGH",
+            "old_accession_numer" : $scope.plant.accession_number,
+        };
+
+        var plantAData = {
+            "data" : data
+        };
+
+
+        data.new_plant_accession_number = newAccessionNumber;
+        console.log(data);
+        console.log(plantAData);
+
+        PlantsFactory.createPlantWithNewAccessionNumber(plantAData).then(function (response){
+            console.log(response);
+            console.log("we are done with the new creation");
+        }, function (error){
+        
+        });
+
+    }
+
     $scope.editPhotos = function() {
         if ($scope.editPlant.photos == false) {
             $scope.editPlant.photos = true;
@@ -1526,6 +1647,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                     type: "habitat",
                     fileName: $scope.newHabitatList[i].fileName
                 };
+                console.log(habitatInfo);
 
 
                 var prom = new Promise(function(resolve, reject) {
