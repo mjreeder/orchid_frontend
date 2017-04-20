@@ -22,6 +22,13 @@ app.factory('BloomingFactory', function($http, $rootScope, CONFIG) {
     });
   };
 
+  data.getGraphData = function(plant_id){
+    return $http({
+      method: "GET",
+      url: baseUrl + "/graphData/" + plant_id
+    });
+  };
+
   data.createBloom = function(blooming) {
     return $http({
       method: "POST",

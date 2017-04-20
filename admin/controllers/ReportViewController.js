@@ -9,8 +9,11 @@ app.controller('ReportViewController', function(CONFIG, PlantsFactory, $scope){
 
     PlantsFactory.getDistinctCount().then(function (response){
         //$scope.unique_genus = response.data.data;
-        $scope.unique_genus = response.data.data['COUNT(DISTINCT genus_name)'];
+        console.log(response.data.data.genus);
+        $scope.unique_genus = response.data.data.genus.genus_number;
+        $scope.unique_species = response.data.data.species.species_number;
         console.log($scope.unique_genus);
+
     }, function (error){
 
     });

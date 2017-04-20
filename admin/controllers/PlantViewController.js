@@ -530,12 +530,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }
     }
 
-
-
-
-
-
-
     ///this is the new information
 
     $scope.selectCountry = function() {
@@ -633,6 +627,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             species: plantData.species,
             variety: plantData.variety,
             phylum: plantData.phylum,
+            family: plantData.family,
             image: "",
             dead_date: createDateFromString(plantData.dead_date),
             general_note: plantData.general_note,
@@ -641,7 +636,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         //assigning the table to plant.
         $scope.plantLocation = plantData.location;
-
 
         $scope.originalAccessionNumber = $scope.plant.accession_number;
 
@@ -652,6 +646,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         var prom = new Promise(function(resolve, reject) {
             SpecialCollectionsFactory.getSpecificSpecialCollectionID(id).then(function(response){
+                console.log(response.data.data);
                 resolve(response.data.data);
             });
 
@@ -659,6 +654,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         var prom2 = new Promise(function(resolve, reject) {
            BloomingFactory.getAllBloomByPlantID(id).then(function (response){
+               console.log(response.data.data);
+
                resolve(response.data.data);
            })
 
@@ -801,7 +798,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             }
 
             if($scope.bloomYears[0]){
-              $scope.loadBloomGraph($scope.bloomYears[0]);
+              //$scope.loadBloomGraph($scope.bloomYears[0]);
             }
 
             for (var i = 0; i < $scope.blooms.length; i++) {
@@ -824,12 +821,12 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }
 
         // function to load bloom graph for a given calender year,
-        $scope.loadBloomGraph = function(year) {
-          document.getElementById("bloom_timeline").innerHTML = "";
-          var container = document.getElementById('bloom_timeline');
-          var graphData = bloomService.loadBloomGraphData($scope.blooms, year);
-          var timeline = new vis.Timeline(container, graphData.data, graphData.options);
-        }
+        //$scope.loadBloomGraph = function(year) {
+        //  document.getElementById("bloom_timeline").innerHTML = "";
+        //  var container = document.getElementById('bloom_timeline');
+        //  var graphData = bloomService.loadBloomGraphData($scope.blooms, year);
+        //  var timeline = new vis.Timeline(container, graphData.data, graphData.options);
+        //}
 
         var sprayPage = 0;
         $scope.sprayed = [];
@@ -915,6 +912,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             }
         });
 
+
         //todo need to look at why this is not pulling in the correct image
         PhotoFactory.getPhtosByPlantID($scope.plant.id).then(function(response) {
             if (response.data.data != "") {
@@ -947,6 +945,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
 
         });
+
+        populateGraph();
+
     }, function(error) {
         var param1 = $routeParams.accession_number;
         if (param1 == "create") {
@@ -1244,7 +1245,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             "variety_name" : $scope.plant.variety,
             "authority" : $scope.plant.authority,
             "species_name" : $scope.plant.species,
-            "family_name" : "hello",
+            "family_name" : $scope.plant.family,
             "habitat" : $scope.plant.habitat,
             "origin_comment" : $scope.plant.origin_comment,
             "received_from" : $scope.plant.received_from,
@@ -1736,12 +1737,16 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         $scope.newPlantSplit
     };
 
+    $scope.autoFillTaxonomicRanking;
+
     $scope.editTaxonomy = function() {
         if ($scope.editPlant.taxonommy == false) {
             $scope.editPlant.taxonommy = true;
 
+
             var taxonmicPlantInformation = {
                 phylum_name: $scope.plant.phylum,
+                family_name: $scope.plant.family,
                 class_name: $scope.plant.class,
                 tribe_name: $scope.plant.tribe,
                 subtribe_name: $scope.plant.subtribe,
@@ -1749,9 +1754,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 species_name: $scope.plant.species,
                 variety_name: $scope.plant.variety,
                 authority: $scope.plant.authority,
-                id: $scope.plant.id
+                id: $scope.plant.id,
+                autofill: $scope.autoFillTaxonomicRanking
             };
 
+            console.log(taxonmicPlantInformation);
 
             PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function(response) {
 
@@ -2466,7 +2473,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.autoFillClass = function(text) {
       if (text !== "" && text !== undefined && text !== null) {
-        taxonommyFactory.getAutoFillTaxonomy('family', text).then(function(response) {
+        taxonommyFactory.getAutoFillTaxonomy('class', text).then(function(response) {
           $scope.autoFilledClasses = response.map(function(classObj) {
             return classObj.class_name;
           });
@@ -2476,9 +2483,9 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.autoFillFamily = function(text) {
         if (text !== "" && text !== undefined && text !== null) {
-            taxonommyFactory.getAutoFillTaxonomy('class', text).then(function(response) {
+            taxonommyFactory.getAutoFillTaxonomy('family', text).then(function(response) {
                 $scope.autoFilledFamily = response.map(function(classObj) {
-                    return classObj.class_name;
+                    return classObj.family_name;
                 });
             });
         }
@@ -2556,97 +2563,191 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
       }
     }
 
+    var populateGraph = function() {
 
-    var data = 1;
-    Highcharts.chart('container', {
-        chart: {
-            type: 'scatter',
-            zoomType: 'xy'
-        },
-        title: {
-            text: 'Height Versus Weight of 507 Individuals by Gender'
-        },
-        subtitle: {
-            text: 'Source: Heinz  2003'
-        },
-        xAxis: {
-            title: {
-                enabled: true,
-                text: 'Months'
-            },
-            startOnTick: true,
-            endOnTick: true,
-            showLastLabel: true,
-            max: 12,
-            allowDecimals: false,
-            mintickinterval: 1,
-            minRange: 10,
-            tickInterval:1,
-            min: 1
-        },
-        yAxis: {
-            title: {
-                text: 'Weight (kg)'
-            },
-            mintickinterval: 1,
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            verticalAlign: 'top',
-            x: 100,
-            y: 70,
-            floating: true,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
-            borderWidth: 1
-        },
-        plotOptions: {
-            scatter: {
-                marker: {
-                    radius: 5,
-                    states: {
-                        hover: {
-                            enabled: true,
-                            lineColor: 'rgb(100,100,100)'
-                        }
-                    }
+        console.log("we are populating");
+        BloomingFactory.getGraphData($scope.plant.id).then(function (response) {
+            $scope.graphData = response.data.data;
+
+
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'scatter',
+                    zoomType: 'xy'
                 },
-                states: {
-                    hover: {
+                title: {
+                    text: 'Plant Chart'
+                },
+                subtitle: {
+                    text: 'Blooming Data'
+                },
+                xAxis: {
+                    title: {
+                        enabled: true,
+                        text: 'Months'
+                    },
+                    startOnTick: true,
+                    endOnTick: true,
+                    showLastLabel: true,
+                    max: 13,
+                    allowDecimals: false,
+                    mintickinterval: 1,
+                    minRange: 10,
+                    tickInterval: 1,
+                    min: 1
+                },
+                yAxis: {
+                    title: {
+                        text: 'Hits'
+                    },
+                    mintickinterval: 1,
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'left',
+                    verticalAlign: 'top',
+                    x: 100,
+                    y: 70,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+                    borderWidth: 1
+                },
+                plotOptions: {
+                    scatter: {
                         marker: {
-                            enabled: false
+                            radius: 5,
+                            states: {
+                                hover: {
+                                    enabled: true,
+                                    lineColor: 'rgb(100,100,100)'
+                                }
+                            }
+                        },
+                        states: {
+                            hover: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<b>{series.name}</b><br>',
+                            pointFormat: '{point.x} Month, {point.y} hits'
                         }
                     }
                 },
-                tooltip: {
-                    headerFormat: '<b>{series.name}</b><br>',
-                    pointFormat: '{point.x} Month, {point.y} kg'
-                }
-            }
-        },
-        series: [{
-            name: 'Hits',
-            color: 'rgba(223, 83, 83, .5)',
-            data: (function () {
-                // generate an array of random data
-                var data = [], time = (new Date()).getTime(), i;
+                series: [{
+                    name: 'Start Date',
+                    color: 'rgba(223, 83, 83, .5)',
+                    data: (function () {
+                        // generate an array of random data
+
+                        var data = [];
 
 
-                for (i = 0; i <= 12; i += 1) {
-                    data.push([
-                        i,
-                        3
-                    ]);
-                }
+                        for (i = 0; i <= 11; i += 1) {
+                            var singleMonthData = $scope.graphData[i];
+                            console.log(singleMonthData);
+                            //
+                            var monthPart = singleMonthData.month;
+                            var firstCount = 0;
+                            var secondCount = 0;
+                            var thirdCount = 0;
+                            //
+                            firstCount = singleMonthData.startBreakDown[".3"]["count"];
+                            secondCount = singleMonthData.startBreakDown[".6"]["count"];
+                            thirdCount = singleMonthData.startBreakDown[".9"]["count"];
+                            ////
+                            console.log(monthPart + .3);
+                            console.log("Here is the data " + firstCount + "-" + secondCount + "-" + thirdCount);
+                            for (var a = firstCount; a > 0; a--) {
+                                data.push([
+                                    monthPart + .3,
+                                    parseInt(a)
+                                ]);
+                            }
+
+                            //
+                            for (var b = secondCount; b > 0; b--) {
+                                data.push([
+                                    monthPart + .6,
+                                    parseInt(b)
+                                ]);
+                            }
+                            //
+
+                            for (var c = thirdCount; c > 0; c--) {
+                                data.push([
+                                    monthPart + .9,
+                                    parseInt(c)
+                                ]);
+                            }
+                        }
 
 
-                return data;
-            }())
 
-        }, {
-            name: 'Months',
-            color: 'rgba(119, 152, 191, .5)',
-            data: []
-        }]
-    });
+                        return data;
+                    }())
+
+                }, {
+                    name: 'End Date',
+                    color: 'rgba(119, 152, 191, .5)',
+                    data: (function () {
+                        // generate an array of random data
+
+                        var data = [];
+
+
+                        for (i = 0; i <= 11; i += 1) {
+                            var singleMonthData = $scope.graphData[i];
+                            console.log(singleMonthData);
+                            //
+                            var monthPart = singleMonthData.month;
+                            var firstCount = 0;
+                            var secondCount = 0;
+                            var thirdCount = 0;
+                            //
+                            firstCount = singleMonthData.endBreakDown[".3"]["count"];
+                            secondCount = singleMonthData.endBreakDown[".6"]["count"];
+                            thirdCount = singleMonthData.endBreakDown[".9"]["count"];
+                            ////
+                            console.log(monthPart + .3);
+                            console.log("Here is the data " + firstCount + "-" + secondCount + "-" + thirdCount);
+                            for (var a = firstCount; a > 0; a--) {
+                                data.push([
+                                    monthPart + .3,
+                                    parseInt(a)
+                                ]);
+                            }
+
+                            //
+                            for (var b = secondCount; b > 0; b--) {
+                                data.push([
+                                    monthPart + .6,
+                                    parseInt(b)
+                                ]);
+                            }
+                            //
+
+                            for (var c = thirdCount; c > 0; c--) {
+                                data.push([
+                                    monthPart + .9,
+                                    parseInt(c)
+                                ]);
+                            }
+                        }
+
+
+
+                        return data;
+                    }())
+                }]
+            });
+        }, function (error) {
+
+        });
+    }
+
+
+
 });

@@ -28,7 +28,7 @@
                 <input placeholder="Accession Number" type="text" ng-model="plant.accession_number" name="accession" ng-disabled="!createNew">
 
                 <label>Common Name:</label>
-                <input placeholder="P" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew">
+                <input placeholder="Common Name" type="text" ng-model="plant.name" name="common" ng-disabled="editPlant.critical && !createNew">
 
                 <label for="verified" ng-hide="createNew">Last Verified:</label>
                 <input type="date" id="verified" class="more-calendar" ng-model="verifiedDate" ng-disabled="editPlant.critical && !createNew" ng-hide="createNew" class="round">
@@ -54,12 +54,12 @@
 
             <label>Class:</label>
             <fieldset ng-disabled="editPlant.taxonommy && !createNew" class="taxonomic-input">
-              <autocomplete attr-placeholder="" ng-model="plant.class" data="autoFilledFamily" on-type="autoFillClass"></autocomplete>
+              <autocomplete attr-placeholder="" ng-model="plant.class" data="autoFilledClasses" on-type="autoFillClass"></autocomplete>
             </fieldset>
 
             <label>Family:</label>
             <fieldset ng-disabled="editPlant.taxonommy && !createNew" class="taxonomic-input">
-                <autocomplete attr-placeholder="" ng-model="plant.family" data="autoFilledClasses" on-type="autoFillClass"></autocomplete>
+                <autocomplete attr-placeholder="" ng-model="plant.family" data="autoFilledFamily" on-type="autoFillFamily"></autocomplete>
             </fieldset>
 
             <label>Genus:</label>
@@ -87,10 +87,16 @@
               <autocomplete attr-placeholder="" ng-model="plant.variety" data="autoFilledVarieties" on-type="autoFillVariety"></autocomplete>
             </fieldset>
 
-            <label class="labellast">Authority:</label>
+            <label>Authority:</label>
             <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
               <autocomplete attr-placeholder="" ng-model="plant.authority" data="autoFilledAuthorities" on-type="autoFillAuthority"></autocomplete>
             </fieldset>
+
+            <label class="labellast">AutoFill:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
+                <input type="checkbox" ng-model="autoFillTaxonomicRanking"/><span class="table-checkbox"></span></label>
+            </fieldset>
+
 
         </fieldset>
 
@@ -273,7 +279,7 @@ Parent 2:
 
 <label for="deaddate">Dead:</label>
 <button class="more-calendar">
-<input type="date" id="deaddate" id="inactive-disabled" placeholder="1" ng-model="plant.dead_date" ng-disabled="editPlant.inactive && !createNew">
+<input type="date" id="deaddate" id="inactive-disabled" placeholder="" ng-model="plant.dead_date" ng-disabled="editPlant.inactive && !createNew">
 </button>
 <!--<output>{{ plant.dead_date | date }}</output>-->
 
@@ -378,11 +384,6 @@ This plant has no photos.
             <input type="button" value="View More" class="blooming-view-more" ng-click="getMoreBlooms()" ng-show="bloomingMoreShow">
         </div>
 
-    <div class="blooming-years">
-        <div ng-repeat="year in bloomYears">
-            <input type="button" value="{{year.year}}" class="blooming-view-year" ng-click="loadBloomGraph(year)">
-        </div>
-    </div>
 
 <!--        START OF BLOOMING GRAPH -->
         <div id="container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
