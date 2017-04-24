@@ -55,6 +55,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     //boolean to see if there is a verifed object
     $scope.isVerified;
 
+
     SpecialCollectionsFactory.getAllSpecialCollections().then(function(response){
         var responseAllCollections = response.data.data;
         for(var i = 0; i < responseAllCollections.length; i++){
@@ -99,7 +100,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.updateHealth = false;
 
-    window.onbeforeunload = function() { return "Your work will be lost."; };
 
     /*****************/
     /* BLOOMING CRUD */
@@ -713,7 +713,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }, function (error) {
             console.log(error);
         });
-        
+
         VerifiedFactory.getLastVerifiedDate(id).then(function (response){
             if(response.data.data.length == 0){
                 $scope.isVerified = false;
@@ -1603,7 +1603,15 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         $scope.newPlantSplit
     };
 
-    $scope.autoFillTaxonomicRanking;
+    $scope.autoFillTaxonomicRanking = "false";
+
+    $scope.autoFillHit = function(){
+        if($scope.autoFillTaxonomicRanking == "false"){
+            $scope.autoFillTaxonomicRanking = "true"
+        } else {
+            $scope.autoFillTaxonomicRanking = "false";
+        }
+    }
 
     $scope.editTaxonomy = function() {
         if ($scope.editPlant.taxonommy == false) {
@@ -1624,7 +1632,10 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             //    autofill: "true"
             //};
 
+
+
             var taxonmicPlantInformation = {
+                autofill: $scope.autoFillTaxonomicRanking,
                 phylum_name: $scope.plant.phylum,
                 family_name: $scope.plant.family,
                 class_name: $scope.plant.class,
@@ -1634,8 +1645,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 species_name: $scope.plant.species,
                 variety_name: $scope.plant.variety,
                 authority: $scope.plant.authority,
-                id: $scope.plant.id,
-                autofill: "true"
+                id: $scope.plant.id
             };
 
 
@@ -1850,7 +1860,24 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }
     };
 
+    $scope.checkBloomDate = function(){
+        console.log("it has changed");
+        console.log($scope.add.addStartDate);
 
+        var bloom_start_date;
+
+        bloom_start_date = new Date($scope.add.addStartDate);
+
+        if(String(bloom_start_date.getFullYear()).length > 4 || (bloom_start_date.getFullYear()) < 1990){
+            // not ready to add
+        } else {
+            bloom_start_date.setDate(bloom_start_date.getDate() + 7);
+            $scope.add.addStartEnd = bloom_start_date;
+
+        }
+
+
+    }
 
     $scope.editCritical = function() {
         $scope.checkedTable = false;

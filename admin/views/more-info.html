@@ -95,7 +95,7 @@
 
             <label class="labellast">AutoFill:</label>
             <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
-                <input type="checkbox" ng-model="autoFillTaxonomicRanking"/><span class="table-checkbox"></span></label>
+                <input type="checkbox" ng-click="autoFillHit()"/><span class="table-checkbox"></span></label>
             </fieldset>
 
 
@@ -359,7 +359,7 @@ This plant has no photos.
             <label ng-hide="!updateBloom">Start Date:</label>
 
             <input type="date" placeholder="1" ng-model="updateBloomStartDate" ng-hide="!updateBloom">
-            <input type="date" placeholder="1" ng-model="add.addStartDate" ng-hide="!addBloom">
+            <input type="date" placeholder="1" ng-model="add.addStartDate" ng-change="checkBloomDate()" ng-hide="!addBloom">
 
 
             <label ng-hide="!addBloom">End Date:</label>
