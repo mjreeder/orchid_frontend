@@ -1,7 +1,8 @@
 <fieldset>
     <form method="post">
-
         <fieldset id="vitals" class="plant-section">
+
+
 
             <img src="{{plant.image.url}}" alt="" id="thumbnail" ng-show="!createNew && !noProfile">
             <img src="images/no_plant_icon.svg" alt="" id="thumbnail" ng-show="createNew || noProfile">
@@ -62,24 +63,24 @@
                 <autocomplete attr-placeholder="" ng-model="plant.family" data="autoFilledFamily" on-type="autoFillFamily"></autocomplete>
             </fieldset>
 
+            <label>Tribe:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
+                <autocomplete attr-placeholder="" ng-model="plant.tribe" data="autoFilledTribes" on-type="autoFillTribe"></autocomplete>
+            </fieldset>
+
+            <label>Subtribe:</label>
+            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
+                <autocomplete attr-placeholder="" ng-model="plant.subtribe" data="autoFilledSubtribes" on-type="autoFillSubtribe"></autocomplete>
+            </fieldset>
+
             <label>Genus:</label>
             <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
               <autocomplete attr-placeholder="" ng-model="plant.genus" data="autoFilledGenuses" on-type="autoFillGenus"></autocomplete>
             </fieldset>
 
-            <label>Tribe:</label>
-            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
-              <autocomplete attr-placeholder="" ng-model="plant.tribe" data="autoFilledTribes" on-type="autoFillTribe"></autocomplete>
-            </fieldset>
-
             <label>Species:</label>
             <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
               <autocomplete attr-placeholder="" ng-model="plant.species" data="autoFilledSpecies" on-type="autoFillSpecies"></autocomplete>
-            </fieldset>
-
-            <label>Subtribe:</label>
-            <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
-              <autocomplete attr-placeholder="" ng-model="plant.subtribe" data="autoFilledSubtribes" on-type="autoFillSubtribe"></autocomplete>
             </fieldset>
 
             <label>Variety:</label>
@@ -300,7 +301,7 @@ This plant has no photos.
 
 <div class="photos-group" ng-repeat="photo in plant_id_url">
 <img src="{{photo.thumb_url}}" alt="" ng-class="{photoDeleted: photo.type == 'del', thumbnail: photo.type != 'del'}">
-    <input type="text" ng-model="photo.fileName" name="common">
+    <input type="text" ng-model="photo.fileName" name="common" ng-change="">
     <div class="photos-buttons button-new">
     <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
     <input type="button" value="Habit" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">

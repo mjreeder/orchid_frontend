@@ -50,6 +50,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.collectionWarning = false;
     $scope.selectedSpecialCollectionDeletedName = "";
 
+    $scope.OGPhotos = [];
+
     //boolean to see if there is a verifed object
     $scope.isVerified;
 
@@ -97,6 +99,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
     $scope.updateHealth = false;
 
+    window.onbeforeunload = function() { return "Your work will be lost."; };
 
     /*****************/
     /* BLOOMING CRUD */
@@ -137,7 +140,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
 
             var dataString = data.substring(0, 10);
-            console.log(dataString);
 
             for (var i = 0; i < $scope.allBloomData.length; i++) {
                 if (dataString == $scope.allBloomData[i].start_date) {
@@ -469,7 +471,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     };
 
     $scope.addGenericHealth = function(){
-        console.log('asd');
         if($scope.addHealth == false){
             $scope.addHealth = true;
         } else {
@@ -712,60 +713,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }, function (error) {
             console.log(error);
         });
-
-        //if($scope.plant.genus != "" && $scope.plant.species != ""){
-        //    var photoData = {
-        //        'species' : $scope.plant.species,
-        //        'genus' : $scope.plant.genus
-        //    }
-        //} else if($scope.plant.genus != ""){
-        //    var photoData = {
-        //        'species' : "NULL",
-        //        'genus' : $scope.plant.genus
-        //    }
-        //} else if($scope.plant.species != ""){
-        //    var photoData = {
-        //        'species' : $scope.plant.species,
-        //        'genus' : "NULL"
-        //    }
-        //
-        //}
-        //console.log(photoData);
-        //
-        //
-        //PhotoFactory.getSimilarPhotos(photoData).then(function (response){
-        //    var photoData = response.data.data;
-        //    var count = 0;
-        //    if(photoData != undefined){
-        //
-        //        for (var i = 0; i < photoData.length; i++) {
-        //            var didAdd = false;
-        //
-        //            if(photoData[i].plant_id == id){
-        //
-        //            } else {
-        //
-        //                for(var t = 0; t < $scope.similarPhotos.length; t++){
-        //                    if($scope.similarPhotos[t].url == photoData[i].url){
-        //                        didAdd = true;
-        //                        break;
-        //                    } else {
-        //                    }
-        //                }
-        //                if(didAdd == false){
-        //                    $scope.similarPhotos.push(photoData[i]);
-        //                }
-        //            }
-        //        }
-        //
-        //        for(var i = 0;i < $scope.similarPhotos.length; i++){
-        //            $scope.similarPhotos[i].clicked = "NO";
-        //        }
-        //    }
-        //    //$scope.$apply();
-        //
-        //});
-
+        
         VerifiedFactory.getLastVerifiedDate(id).then(function (response){
             if(response.data.data.length == 0){
                 $scope.isVerified = false;
@@ -1524,10 +1472,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             }, function (errorr){
 
             });
-
         }
-
-        console.log($scope.plant);
     }
 
     var createOldPlantWithNewAccessionNumber = function(oldPlantData, newAccessionNumber){
@@ -1603,14 +1548,10 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             "data" : data
         };
 
-
         data.new_plant_accession_number = newAccessionNumber;
-        console.log(data);
-        console.log(plantAData);
 
         PlantsFactory.createPlantWithNewAccessionNumber(plantAData).then(function (response){
-            console.log(response);
-            console.log("we are done with the new creation");
+            //todo make sure this is correct
         }, function (error){
 
         });
@@ -1620,103 +1561,18 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     $scope.editPhotos = function() {
         if ($scope.editPlant.photos == false) {
             $scope.editPlant.photos = true;
-            var promArray = [];
 
-            for (var i = 0; i < $scope.deletedPictures.length; i++) {
-                var deleteInfo = {
-                    id: $scope.deletedPictures[i].id,
-                    plant_id: $scope.deletedPictures[i].plant_id,
-                    url: $scope.deletedPictures[i].url,
-                    type: $scope.deletedPictures[i].type
-                };
+            var photoData = $scope.plant_id_url;
 
-                var prom = new Promise(function(resolve, reject) {
-                    PhotoFactory.deletePhoto(deleteInfo).then(function(response) {
-                        var photoResponse = response.data.data;
-                        resolve(photoResponse);
-                    });
-                });
+            PhotoFactory.updatePhoto(photoData).then(function(response) {
+                var photoResponse = response.data.data;
+                $scope.plant_id_url = [];
+                $scope.plant_id_url = response.data.data;
 
-                promArray.push(prom);
-            }
-
-            for (var i = 0; i < $scope.newHabitatList.length; i++) {
-                var habitatInfo = {
-                    id: $scope.newHabitatList[i].id,
-                    plant_id: $scope.newHabitatList[i].plant_id,
-                    url: $scope.newHabitatList[i].url,
-                    type: "habitat",
-                    fileName: $scope.newHabitatList[i].fileName
-                };
-                console.log(habitatInfo);
-
-
-                var prom = new Promise(function(resolve, reject) {
-                    PhotoFactory.updatePhoto(habitatInfo).then(function(response) {
-                        var photoResponse = response.data.data;
-                        resolve(photoResponse);
-                    });
-                });
-
-                promArray.push(prom);
-            }
-
-
-
-
-            for (var i = 0; i < $scope.otherList.length; i++) {
-
-                var otherInformation = {
-                    id: $scope.otherList[i].id,
-                    plant_id: $scope.otherList[i].plant_id,
-                    url: $scope.otherList[i].url,
-                    fileName: $scope.otherList[i].fileName,
-                    type: "other"
-                };
-
-
-
-                var prom = new Promise(function(resolve, reject) {
-                    PhotoFactory.updatePhoto(otherInformation).then(function(response) {
-                        var photoResponse = response.data.data;
-                        resolve(photoResponse);
-                    });
-                });
-
-                promArray.push(prom);
-            }
-
-
-            if ($scope.theSelectedProfilePicture.id != "" || scope.theSelectedProfilePicture.id == undefined){
-
-                if($scope.theSelectedProfilePicture.id != undefined){
-                    var profile = {
-                        id: $scope.theSelectedProfilePicture.id,
-                        plant_id: $scope.theSelectedProfilePicture.plant_id,
-                        url: $scope.theSelectedProfilePicture.url,
-                        fileName: $scope.theSelectedProfilePicture.fileName,
-                        type: "profile"
-                    };
-
-                    var prom = new Promise(function(resolve, reject) {
-
-                        PhotoFactory.updatePhoto(profile).then(function(response) {
-                            var photoResponse = response.data.data;
-                            resolve(photoResponse);
-                        });
-                    });
-                    promArray.push(prom);
-                }
-
-            } else {
-            }
-
-            Promise.all(promArray).then(function (success) {
-                $scope.$apply();
-
-                $route.reload();
-            }, function (error) {
-
+                formatData();
+            }, function (error){
+                //todo put in the error message
+                //todo if the photo comes back as profile then we need to indicate that
 
             });
 
@@ -1725,7 +1581,17 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
         }
     };
 
+    var formatData = function (){
+        for(var i = 0; i < $scope.plant_id_url.length; i++){
+            if($scope.plant_id_url[i]['type'] == "profile"){
+                var proPicture = $scope.plant_id_url[i];
+                $scope.plant.image = proPicture;
+                $scope.theSelectedProfilePicture = proPicture;
+                $scope.noProfile = false;
 
+            }
+        }
+    }
 
     $scope.newSplit = false;
     $scope.newPlantSplits = [];
@@ -1744,6 +1610,20 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             $scope.editPlant.taxonommy = true;
 
 
+            //var taxonmicPlantInformation = {
+            //    phylum_name: $scope.plant.phylum,
+            //    family_name: $scope.plant.family,
+            //    class_name: $scope.plant.class,
+            //    tribe_name: $scope.plant.tribe,
+            //    subtribe_name: $scope.plant.subtribe,
+            //    genus_name: $scope.plant.genus,
+            //    species_name: $scope.plant.species,
+            //    variety_name: $scope.plant.variety,
+            //    authority: $scope.plant.authority,
+            //    id: $scope.plant.id,
+            //    autofill: "true"
+            //};
+
             var taxonmicPlantInformation = {
                 phylum_name: $scope.plant.phylum,
                 family_name: $scope.plant.family,
@@ -1755,12 +1635,22 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 variety_name: $scope.plant.variety,
                 authority: $scope.plant.authority,
                 id: $scope.plant.id,
-                autofill: $scope.autoFillTaxonomicRanking
+                autofill: "true"
             };
 
-            console.log(taxonmicPlantInformation);
 
             PlantsFactory.editTaxonmicPlant(taxonmicPlantInformation).then(function(response) {
+
+                var data = response.data.data;
+                $scope.plant.phylum = data.phylum_name;
+                $scope.plant.family = data.family_name;
+                $scope.plant.class = data.class_name;
+                $scope.plant.tribe = data.tribe_name;
+                $scope.plant.subtribe = data.subtribe_name;
+                $scope.plant.genus = data.genus_name;
+                $scope.plant.species = data.species_name;
+                $scope.plant.variety = data.variety_name;
+                $scope.plant.authority = data.authority;
 
             }, function(error){
                 window.alert('Network Error. Please try again.');
@@ -2374,38 +2264,19 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     };
 
     $scope.habitatSelected = function(photo) {
-
-        var noChange = false;
-        for (var i = 0; i < $scope.newHabitatList.length; i++){
-            if(photo.id == $scope.newHabitatList[i].id){
-                //do nothing since it is already there
-                noChange = true;
+         var index;
+        for (var i = 0; i < $scope.plant_id_url.length; i++){
+            if ($scope.plant_id_url[i].id == photo.id){
+                index = i;
+                break;
             }
         }
-        if(noChange == false){
-            //we need to made a change
-            var index;
-            for (var i = 0; i < $scope.plant_id_url.length; i++){
-                if ($scope.plant_id_url[i].id == photo.id){
-                    index = i;
-                    break;
-                }
-            }
+        $scope.plant_id_url[index].type = 'habitat';
 
-            $scope.newHabitatList.push(photo);
-            $scope.plant_id_url[index].type = 'habitat';
-
-            //seeing if it is in the other list
-            for(var j = 0; j < $scope.otherPictures.length; j++){
-                if(photo.id == $scope.otherPictures[j].id){
-                    $scope.otherPictures.splice(j, 1);
-                    break;
-                }
-            }
-            if(photo.id == $scope.theSelectedProfilePicture.id) {
-                $scope.theSelectedProfilePicture = "";
-            }
+        if(photo.id == $scope.theSelectedProfilePicture.id) {
+            $scope.theSelectedProfilePicture = "";
         }
+
         $rootScope.apply;
     };
 
@@ -2564,8 +2435,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
     }
 
     var populateGraph = function() {
-
-        console.log("we are populating");
         BloomingFactory.getGraphData($scope.plant.id).then(function (response) {
             $scope.graphData = response.data.data;
 
@@ -2647,7 +2516,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
                         for (i = 0; i <= 11; i += 1) {
                             var singleMonthData = $scope.graphData[i];
-                            console.log(singleMonthData);
                             //
                             var monthPart = singleMonthData.month;
                             var firstCount = 0;
@@ -2657,10 +2525,8 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                             firstCount = singleMonthData.startBreakDown[".3"]["count"];
                             secondCount = singleMonthData.startBreakDown[".6"]["count"];
                             thirdCount = singleMonthData.startBreakDown[".9"]["count"];
-                            ////
-                            console.log(monthPart + .3);
-                            console.log("Here is the data " + firstCount + "-" + secondCount + "-" + thirdCount);
-                            for (var a = firstCount; a > 0; a--) {
+
+                           for (var a = firstCount; a > 0; a--) {
                                 data.push([
                                     monthPart + .3,
                                     parseInt(a)
@@ -2700,7 +2566,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
                         for (i = 0; i <= 11; i += 1) {
                             var singleMonthData = $scope.graphData[i];
-                            console.log(singleMonthData);
                             //
                             var monthPart = singleMonthData.month;
                             var firstCount = 0;
@@ -2711,8 +2576,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                             secondCount = singleMonthData.endBreakDown[".6"]["count"];
                             thirdCount = singleMonthData.endBreakDown[".9"]["count"];
                             ////
-                            console.log(monthPart + .3);
-                            console.log("Here is the data " + firstCount + "-" + secondCount + "-" + thirdCount);
                             for (var a = firstCount; a > 0; a--) {
                                 data.push([
                                     monthPart + .3,

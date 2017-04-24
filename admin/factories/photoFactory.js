@@ -44,12 +44,7 @@ app.factory('PhotoFactory', function($http, $rootScope, CONFIG) {
             method: "PUT",
             url: baseUrl + '/update',
             data: {
-                "plant_id": photo.plant_id,
-                "url": photo.url,
-                "type": photo.type,
-                "id": photo.id,
-                "active": photo.active,
-                "fileName" : photo.fileName,
+                "allPhotos" : photo,
                 "session_id": $rootScope.userSessionId,
                 "session_key": $rootScope.userSessionKey
             }
