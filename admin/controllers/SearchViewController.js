@@ -5,6 +5,10 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
   $scope.searchItem;
   $scope.loading = true;
 
+  if($rootScope.reloadTerm != undefined){
+    $scope.searchItem = $rootScope.reloadTerm;
+  }
+
   //ng-change function for search bar
   $scope.getPlantsBySearch = function() {
     //if search goes empty, bring back to default
@@ -62,6 +66,8 @@ app.controller('SearchViewController', function(CONFIG, $scope, $rootScope, $loc
   $scope.getMorePlantInfo = function(plant) {
     for (var i = 0; i < plant.length; i++) {
       if (plant[i].key == 'Accession #') {
+        $rootScope.reloadTerm = $scope.searchItem;
+        console.log($scope.searchItem);
         $location.path("/plant/" + plant[i].val);
       }
     }
