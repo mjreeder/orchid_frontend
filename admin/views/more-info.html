@@ -93,9 +93,9 @@
               <autocomplete attr-placeholder="" ng-model="plant.authority" data="autoFilledAuthorities" on-type="autoFillAuthority"></autocomplete>
             </fieldset>
 
-            <label class="labellast">AutoFill:</label>
+            <label class="labellast">Auto fill:</label>
             <fieldset ng-disabled="editPlant.taxonommy && !createNew" class='taxonomic-input'>
-                <input type="checkbox" ng-click="autoFillHit()"/><span class="table-checkbox"></span></label>
+                <label class="autofill-checkbox"><input type="checkbox" ng-click="autoFillHit()"/><span class="table-checkbox"></span>
             </fieldset>
 
 
@@ -301,14 +301,14 @@ This plant has no photos.
 
 <div class="photos-group" ng-repeat="photo in plant_id_url">
 <img src="{{photo.thumb_url}}" alt="" ng-class="{photoDeleted: photo.type == 'del', thumbnail: photo.type != 'del'}">
-    <input type="text" ng-model="photo.fileName" name="common" ng-change="">
+    <input type="text" ng-model="photo.fileName" ng-disabled="editPlant.photos && !createNew" name="common" ng-change="">
     <div class="photos-buttons button-new">
-    <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
-    <input type="button" value="Habit" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
-    <input type="button" value="Other" ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'other', noglowHealth: photo.type != 'other'}">
-    <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{deletePhoto: photo.type == 'del', noglowHealth: photo.type != 'del'}">
-    <p class="delete-photo-warning" ng-hide="editPlant.photos || photo.type != 'del'">The photo will not be deleted until you hit the save button. If you do not want to delete this photo, select an option above.</p>
-</div>
+        <input type="button" value="Profile" ng-click="profileSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'profile', noglowHealth: photo.type != 'profile'}">
+        <input type="button" value="Habit" ng-click="habitatSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'habitat', noglowHealth: photo.type != 'habitat'}">
+        <input type="button" value="Other" ng-click="otherSelected(photo)" ng-hide="editPlant.photos" ng-class="{selectedPhoto: photo.type == 'other', noglowHealth: photo.type != 'other'}">
+        <input type="button" value="Delete" ng-hide="editPlant.photos" ng-click="deletedSelcted(photo)" id="photos-delete1" ng-class="{deletePhoto: photo.type == 'del', noglowHealth: photo.type != 'del'}">
+        <p class="delete-photo-warning" ng-hide="editPlant.photos || photo.type != 'del'">The photo will not be deleted until you hit the save button. If you do not want to delete this photo, select an option above.</p>
+    </div>
 </div>
 
 <div class="photos-group">
@@ -387,7 +387,7 @@ This plant has no photos.
 
 
 <!--        START OF BLOOMING GRAPH -->
-        <div id="container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
+        <div id="container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto; margin-bottom: 20px; max-width: 100vw; background-color: #ffffff;"></div>
         <!--        END OF BLOOMING GRAPH -->
 </fieldset>
 
@@ -549,7 +549,7 @@ This plant has no photos.
 
         <div id="new" class="button-new">
             <button ng-click="copyToNewPlant()">
-                Copy Plant to New Plant</button>
+                Copy to New Plant</button>
         </div>
 
         <div id="delete" class="button-new">
