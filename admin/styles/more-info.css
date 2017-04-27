@@ -29,7 +29,7 @@ span.highlight{
 }
 
 .autocomplete input{
-  width: initial !important;
+  /*width: initial !important;*/
     display: inline;
 }
 
@@ -272,7 +272,7 @@ fieldset.taxonomic-input{
     display: inline-block;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 760px) {
     fieldset.taxonomic-input {
         width: 70%;
     }
