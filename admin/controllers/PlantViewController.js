@@ -2285,9 +2285,7 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                 $scope.theSelectedProfilePicture = "";
             }
         }
-
         $rootScope.apply;
-
     };
 
     $scope.habitatSelected = function(photo) {
@@ -2350,8 +2348,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
             $scope.editPlant.photos = true;
             $scope.plant_id_url.push(data);
         });
-
-
         $route.reload();
 
     }
@@ -2543,31 +2539,29 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
                         for (i = 0; i <= 11; i += 1) {
                             var singleMonthData = $scope.graphData[i];
-                            //
+
                             var monthPart = singleMonthData.month;
                             var firstCount = 0;
                             var secondCount = 0;
                             var thirdCount = 0;
-                            //
+
                             firstCount = singleMonthData.startBreakDown[".3"]["count"];
                             secondCount = singleMonthData.startBreakDown[".6"]["count"];
                             thirdCount = singleMonthData.startBreakDown[".9"]["count"];
 
-                           for (var a = firstCount; a > 0; a--) {
+                            for (var a = firstCount; a > 0; a--) {
                                 data.push([
                                     monthPart + .3,
                                     parseInt(a)
                                 ]);
                             }
 
-                            //
                             for (var b = secondCount; b > 0; b--) {
                                 data.push([
                                     monthPart + .6,
                                     parseInt(b)
                                 ]);
                             }
-                            //
 
                             for (var c = thirdCount; c > 0; c--) {
                                 data.push([
@@ -2576,9 +2570,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                                 ]);
                             }
                         }
-
-
-
                         return data;
                     }())
 
@@ -2589,8 +2580,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                         // generate an array of random data
 
                         var data = [];
-
-
                         for (i = 0; i <= 11; i += 1) {
                             var singleMonthData = $scope.graphData[i];
                             //
@@ -2598,11 +2587,11 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                             var firstCount = 0;
                             var secondCount = 0;
                             var thirdCount = 0;
-                            //
+
                             firstCount = singleMonthData.endBreakDown[".3"]["count"];
                             secondCount = singleMonthData.endBreakDown[".6"]["count"];
                             thirdCount = singleMonthData.endBreakDown[".9"]["count"];
-                            ////
+
                             for (var a = firstCount; a > 0; a--) {
                                 data.push([
                                     monthPart + .3,
@@ -2610,14 +2599,12 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                                 ]);
                             }
 
-                            //
                             for (var b = secondCount; b > 0; b--) {
                                 data.push([
                                     monthPart + .6,
                                     parseInt(b)
                                 ]);
                             }
-                            //
 
                             for (var c = thirdCount; c > 0; c--) {
                                 data.push([
@@ -2626,9 +2613,6 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
                                 ]);
                             }
                         }
-
-
-
                         return data;
                     }())
                 }]
@@ -2637,7 +2621,4 @@ app.controller('PlantViewController', function($window, $scope, UserFactory, CON
 
         });
     }
-
-
-
 });
